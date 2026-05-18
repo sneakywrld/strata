@@ -1,0 +1,153 @@
+# ============================================================
+#  Biome: Crimson Cliff — Crimson Domain
+# ============================================================
+# Sheer walls of crimson nylium-covered netherrack rising in
+# dramatic vertical faces, their surfaces draped with weeping
+# vines that cascade hundreds of blocks downward into the haze
+# below. The crimson nylium clings to even the steepest surfaces,
+# creating a living red wall that breathes spore particles into
+# the updraft. Narrow ledges jut out at irregular intervals,
+# offering precarious footholds above dizzying drops. The cliff
+# faces are punctuated by horizontal cave mouths where crimson
+# root caves burrow into the rock. From the top, the crimson
+# forest canopy spreads out below like a red carpet; from the
+# bottom, the cliffs tower overhead like fortress walls. Falling
+# is the primary threat here — combat on narrow ledges is lethal.
+#
+# Gameplay notes:
+#   - Extreme fall damage hazard — Feather Falling essential.
+#   - Weeping vines provide dangerous but usable descent paths.
+#   - Narrow ledge combat — knockback effects are devastating.
+#   - Crimson wood scaffolding recommended for safe traversal.
+#   - Cave mouths in cliff faces lead to root caves.
+#   - Excellent vantage point for scouting surrounding terrain.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The crimson cliff provides
+# dramatic vertical terrain within the crimson domain.
+id = "strata:crimson_cliff"
+
+# display-name: Human-readable name for player displays.
+display-name = "Crimson Cliff"
+
+# category: NETHER — nether environment with extreme vertical
+# terrain and crimson nylium-covered cliff faces.
+category = "NETHER"
+
+# zone: Part of the crimson zone — the most vertically dramatic
+# terrain in the crimson domain.
+zone = "crimson"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Standard crimson warmth — the exposed cliff
+# faces allow heat to radiate freely.
+#   0.6 = standard crimson domain temperature.
+temperature = 0.6
+
+# humidity: Moderate — fungal growth persists on the cliff
+# surfaces but is less dense than forest floor.
+#   0.5 = moderate organic presence on vertical surfaces.
+humidity = 0.5
+
+# continentalness: Positive — cliffs represent elevated terrain
+# in the nether, generating at higher vertical positions.
+#   0.6 = elevated terrain, significantly above mid-level.
+continentalness = 0.6
+
+# erosion: Very low — the terrain is steep and jagged, with
+# dramatic vertical faces and minimal flat ground.
+#   0.1 = extremely rough, vertical terrain.
+erosion = 0.1
+
+# weirdness: Moderate — steep crimson cliffs are dramatic but
+# not fundamentally unusual nether terrain.
+#   0.3 = moderately unusual vertical formations.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Elevated — the cliffs rise well above standard
+# nether floor level, creating the dramatic vertical drops.
+#   65 = significantly above standard floor (40), creating
+#   25+ block cliff faces at transitions.
+base-height = 65
+
+# height-variation: Very high — the defining characteristic of
+# this biome is extreme elevation changes.
+#   12.0 = dramatic height variation creating sheer cliff faces.
+height-variation = 12.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Crimson nylium covering the cliff faces and ledges.
+# Even vertical surfaces support the living fungal block.
+top-block = "minecraft:crimson_nylium"
+
+# filler-block: Netherrack forming the cliff structure beneath
+# the nylium surface coating.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Thin surface layer on steep terrain.
+#   3 = shallow nylium/netherrack coating over cliff structure.
+filler-depth = 3
+
+# underwater-block: Magma blocks at any lava-level cliff bases.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Sparse fungi clinging to ledges — limited flat ground
+# prevents dense fungal growth.
+#   2.0 = sparse fungi on available ledges and plateaus.
+trees = { types = ["crimson_fungus_huge"], density = 2.0 }
+
+# grass-density: Crimson roots on ledges and cliff shelves.
+#   0.3 = sparse coverage on available flat surfaces.
+grass-density = 0.3
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Cliff-specific features.
+#   weeping_vines — dense vines cascading down cliff faces,
+#     the defining visual element of crimson cliffs.
+#   crimson_fungus_small — small fungi on ledges.
+#   cliff_cave_mouth — cave openings in cliff faces leading
+#     to crimson root cave biomes.
+extra-features = [
+    { feature = "weeping_vines", density = 12.0 },
+    { feature = "crimson_fungus_small", density = 3.0 },
+    { feature = "cliff_cave_mouth", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Reduced mob spawning due to limited flat ground. Piglins
+# patrol the wider ledges; hoglins are rare on narrow terrain.
+[biome.spawning]
+# piglin: Small patrol groups on the wider cliff ledges.
+# Their crossbow attacks are especially dangerous here —
+# knockback near cliff edges means certain death.
+piglin = { weight = 10, min-group = 1, max-group = 3 }
+
+# hoglin: Rare — hoglins need flat ground for charging and
+# the narrow ledges don't suit their behavior.
+hoglin = { weight = 4, min-group = 1, max-group = 2 }
+
+# ghast: Cliff faces provide open vertical space for ghasts.
+# Their fireballs can knock players off ledges.
+ghast = { weight = 6, min-group = 1, max-group = 1 }

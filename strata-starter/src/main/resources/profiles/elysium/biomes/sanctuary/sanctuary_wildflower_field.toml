@@ -1,0 +1,166 @@
+# ============================================================
+#  Biome: Sanctuary Wildflower Field — Sanctuary Zone
+# ============================================================
+# A dense carpet of mixed wildflowers swaying in the breeze, alive
+# with the hum of bees. Every color of the rainbow blooms here. This
+# is the most visually striking biome near spawn — a painter's dream
+# of poppies, cornflowers, sunflowers, and tulips.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal generator reference.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_wildflower_field"
+
+# display-name: Human-readable name shown in F3 debug, /strata info,
+# and zone-entry messages.
+display-name = "Sanctuary Wildflower Field"
+
+# category: PLAINS because the terrain is open grassland dominated
+# by flowers rather than trees. Plains ambient sounds apply.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "PLAINS"
+
+# zone: Generates only within the sanctuary zone (0-1500 blocks
+# from spawn).
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate. Slightly wetter and more "weird" than the
+# standard meadow to create a distinct floral sub-biome.
+[biome.climate]
+# temperature: 0.5 = warm. Flowers need warmth to bloom abundantly.
+# Consistent with the sanctuary zone's mild climate.
+temperature = 0.5
+
+# humidity: 0.45 = moderate-to-dry. Just enough moisture for
+# prolific flowering without encouraging tree growth. Drier than
+# the grove (0.5) but wetter than the farmland (0.4).
+humidity = 0.45
+
+# continentalness: 0.3 = inland. Standard sanctuary placement.
+continentalness = 0.3
+
+# erosion: 0.75 = gently rolling. Soft terrain that shows off the
+# flower colors across gentle undulations, creating a quilt-like
+# patchwork visible from nearby hilltops.
+erosion = 0.75
+
+# weirdness: 0.2 = noticeable variant. Higher weirdness separates
+# this from the meadow (0.0) and orchard (0.15), ensuring the
+# wildflower field generates in its own distinct pockets.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 4.0 = same as the meadow. The wildflower field is
+# essentially a meadow variant, so matching the elevation creates
+# seamless transitions at biome borders.
+# Range: -64.0 to 256.0
+base-height = 4.0
+
+# height-variation: 2.0 = gentle rolls. Slightly less variation
+# than the meadow (2.5) to create broader, more uniform flower
+# carpets visible from a distance.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The dense flowers grow on top of grass,
+# and the green base color contrasts beautifully with the blooms.
+top-block = "minecraft:grass_block"
+
+# filler-block: Standard dirt. Flowers need normal soil to root in.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. No special soil treatment
+# needed — flowers are surface-level features.
+# Range: 1 to 8
+filler-depth = 3
+
+# underwater-block: Sand for any incidental water at biome edges.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Almost none. The wildflower field is defined by the absence
+# of trees and the dominance of flowers. A rare lone tree serves as
+# a scenic backdrop.
+#   density: 0.2 = very rare. ~1 tree per 5 chunks.
+trees = { types = ["oak"], density = 0.2 }
+
+# grass-density: 5.0 = moderate. Grass grows between flower patches
+# but does not dominate. Less than the meadow because flowers occupy
+# much of the available space.
+grass-density = 5.0
+
+# flower-density: 12.0 = extremely dense. This is the defining
+# feature of the biome. Nearly every block has a flower or is
+# adjacent to one. The maximum practical density before flowers
+# start overwriting each other.
+# Range: 0.0 to 15.0
+flower-density = 12.0
+
+# flower-types: The full rainbow. Every available flower type is
+# included to create maximum visual variety. The result is a
+# patchwork quilt of colors.
+flower-types = [
+    "poppy",
+    "dandelion",
+    "cornflower",
+    "allium",
+    "azure_bluet",
+    "oxeye_daisy",
+    "tulip_red",
+    "tulip_orange",
+    "tulip_white",
+    "tulip_pink",
+    "lily_of_the_valley"
+]
+
+# tall-flowers: Large two-block-tall flowers for vertical variety.
+# Sunflowers, lilacs, rose bushes, and peonies tower above the
+# shorter blooms.
+#   density: 4.0 = frequent tall-flower patches interspersed among
+#            the shorter flowers.
+#   types: All available tall flower variants.
+tall-flowers = { types = ["sunflower", "lilac", "rose_bush", "peony"], density = 4.0 }
+
+# bee-nest-bonus: 2.0 = doubled bee nest chance on the rare trees.
+# The abundant flowers need pollinators.
+bee-nest-bonus = 2.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The wildflower field is bee paradise. Passive mobs are present
+# but the buzzing bees are the dominant feature.
+
+# bee: Highest bee density in the sanctuary zone. Swarms are
+# constantly visible among the flowers, collecting pollen.
+bee = { weight = 20, min-group = 3, max-group = 5 }
+
+# rabbit: Rabbits hide among the tall flowers. Moderate presence.
+rabbit = { weight = 8, min-group = 2, max-group = 3 }
+
+# sheep: Small groups graze among the flowers. Their wool colors
+# complement the flower palette.
+sheep = { weight = 6, min-group = 2, max-group = 3 }
+
+# chicken: A few chickens scratching around. Low key presence.
+chicken = { weight = 5, min-group = 1, max-group = 2 }

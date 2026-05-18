@@ -1,0 +1,180 @@
+# ============================================================
+#  Biome: Ancient Battlefield — Rare Biomes
+# ============================================================
+# A flat, desolate field where a great battle was fought long
+# ago. The coarse dirt is trampled flat and lifeless, scarred
+# by trenches and craters. Scattered across the field are armor
+# stands bearing damaged iron and leather armor — silent
+# sentinels standing where soldiers fell. Bone blocks jut from
+# the earth in clusters, remnants of the fallen left to bleach
+# in the sun. The air feels heavy and still, and hostile mobs
+# spawn at elevated rates as if the land itself remembers the
+# violence. At night, the battlefield is haunted — skeleton
+# archers and zombies rise in unusual numbers, recreating the
+# battle that ended them.
+#
+# Gameplay notes:
+#   - Armor stands with damaged equipment — free early-game
+#     armor if you can survive the night.
+#   - Bone blocks provide bone meal in bulk — farming supply.
+#   - Extremely flat terrain — excellent PvP arena potential.
+#   - Elevated hostile spawns at night — dangerous campsite.
+#   - Coarse dirt surface means no grass regrowth — the land
+#     is permanently scarred.
+#   - Possible hidden loot chests buried in the trenches.
+#   - Very rare biome — weirdness 0.95 restricts generation
+#     to extreme noise anomalies.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Rare biomes use the
+# "rare_" prefix to signal their exceptional scarcity.
+id = "strata:rare_ancient_battlefield"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Ancient Battlefield"
+
+# category: PLAINS — the flat, open terrain is functionally
+# a degraded plain. PLAINS enables standard grass tinting
+# (though coarse dirt overrides visible grass) and open-sky
+# mob spawning rules.
+category = "PLAINS"
+
+# zone: "rare" — rare biomes can generate in any zone where
+# their climate values and weirdness threshold are met. They
+# are not bound to a single zone.
+zone = "rare"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Mild, dry conditions. The battlefield could exist in many
+# climates — the key parameter is the extreme weirdness that
+# restricts it to the rarest noise anomalies.
+[biome.climate]
+# temperature: 0.4 = cool temperate. A mild temperature that
+# could place this battlefield in many different zone contexts.
+# The battlefield is not defined by its climate but by its
+# extreme weirdness value.
+temperature = 0.4
+
+# humidity: 0.3 = dry. The trampled, compacted soil does not
+# retain moisture well. Sparse, dead vegetation and exposed
+# earth dominate.
+humidity = 0.3
+
+# continentalness: 0.5 = inland. Battlefields form on the
+# open interior plains where armies could maneuver — not in
+# mountains, forests, or coastal terrain.
+continentalness = 0.5
+
+# erosion: 0.8 = extremely flat. Battlefields are typically
+# fought on the flattest available terrain. The high erosion
+# creates the pancake-flat surface that defines the biome.
+erosion = 0.8
+
+# weirdness: 0.95 = extremely rare. The battlefield is one
+# of the rarest biomes in Elysium. This extreme weirdness
+# value means it only generates in the most anomalous noise
+# pockets — players may explore for hours before finding one.
+weirdness = 0.95
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = slightly above sea level. The battlefield
+# is on a low rise — armies historically chose elevated ground
+# for combat advantage. Just enough height to be above the
+# surrounding terrain.
+# Range: -64.0 to 256.0
+base-height = 3
+
+# height-variation: 1 = nearly flat. The trampled battlefield
+# is almost perfectly level — centuries of weather have filled
+# the trenches and smoothed the craters to subtle depressions.
+# Range: 0.0 to 30.0
+height-variation = 1
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Coarse dirt — permanently scarred ground that cannot regrow
+# grass. The trampled, compacted surface of an ancient
+# battlefield.
+[biome.surface]
+# top-block: Coarse dirt — trampled, lifeless soil. Unlike
+# regular dirt, coarse dirt does not grow grass, making the
+# battlefield's barren state permanent and irreversible.
+top-block = "minecraft:coarse_dirt"
+
+# filler-block: Dirt beneath the compacted surface. The
+# deeper soil is normal, but the surface layer was compacted
+# by thousands of armored feet beyond recovery.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. Normal soil conditions
+# beneath the compacted surface crust.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Dirt in any water-filled trenches or
+# craters — muddy depressions that collect rainwater.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Bone blocks and dead features. No living vegetation — the
+# land is scarred beyond recovery.
+[biome.features]
+# trees: No trees. The battlefield is an open field — any
+# trees that once stood here were cut down for siege works.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Zero. Coarse dirt does not support grass.
+# The ground is barren and will remain so.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: Zero. Nothing blooms on the dead ground.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# dead-bush-density: Sparse. A few dried remnants of bushes
+# that tried to reclaim the field and failed.
+dead-bush-density = 1.5
+
+# extra-features: Bone blocks and armor stands are the
+# defining features — the remnants of the fallen.
+extra-features = [
+    # Bone block clusters jutting from the earth — mass graves.
+    { feature = "bone_block", density = 4.0 },
+    # Armor stands with damaged equipment — the fallen soldiers.
+    { feature = "armor_stand", density = 2.0 },
+    # Cobweb clusters on the armor stands and bone piles.
+    { feature = "cobweb_cluster", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The battlefield is haunted. Hostile mob spawns are elevated
+# significantly — the undead rise in unusual numbers as if
+# the dead soldiers are returning to fight again.
+[biome.spawning]
+# Skeleton: Archers rising from the bone-studded ground.
+# The most common hostile mob — they spawn in groups.
+skeleton = { weight = 20, min-group = 2, max-group = 4 }
+
+# Zombie: Shambling infantry from the ancient army. They
+# emerge from the dirt at night in intimidating numbers.
+zombie = { weight = 15, min-group = 2, max-group = 4 }
+
+# Phantom: Circle above the battlefield at night, drawn by
+# the lingering death energy. Attack sleep-deprived players.
+phantom = { weight = 5, min-group = 1, max-group = 2 }

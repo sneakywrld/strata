@@ -1,0 +1,131 @@
+# ============================================================
+#  Biome: Whispering Overgrown Ruins — Whispering Woodlands
+# ============================================================
+# Crumbling stone brick walls, shattered archways, and collapsed
+# towers — all consumed by centuries of relentless forest growth.
+# Thick roots crack through foundations, vines smother every
+# surface, and moss obscures what were once carved inscriptions.
+# Beneath the rubble, mob spawner dungeons still churn out threats.
+# This biome rewards exploration but punishes carelessness.
+#
+# Gameplay Notes:
+#   - Ruins contain loot chests with mid-tier dungeon loot.
+#   - Mob spawner dungeons (zombie/skeleton/spider) near the surface.
+#   - Stone bricks and mossy stone bricks are plentiful for harvest.
+#   - Hidden basements may connect to the cave system below.
+#   - Creepers blend in among the grey rubble — stay alert.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_overgrown_ruins"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Overgrown Ruins"
+
+# category: FOREST — the ruins exist within the forest context.
+# The forest has reclaimed the structures, not the other way around.
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Moderate — standard woodland temperature.
+temperature = 0.5
+# humidity: Slightly lower — stone rubble drains moisture faster than soil.
+humidity = 0.65
+# continentalness: Mid-inland — ruins are found deep within the woodland.
+continentalness = 0.5
+# erosion: Moderate — the terrain is partially shaped by the collapsing
+# structures, creating an uneven mix of natural and artificial topography.
+erosion = 0.5
+# weirdness: High positive (0.5) — ruins are a distinctly unusual
+# terrain feature that stands out from standard forest generation.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard forest floor with slight elevation from
+# rubble accumulation over centuries.
+base-height = 69
+
+# height-variation: Moderate — collapsed walls and foundations create
+# an irregular surface with sudden 2-4 block height changes.
+height-variation = 6
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Mossy cobblestone — the rubble layer is the new "surface".
+# Natural dirt/grass only peeks through in gaps between stone.
+top-block = "minecraft:mossy_cobblestone"
+
+# filler-block: Stone bricks — the remnants of the original structures
+# form the sub-surface layer beneath the rubble.
+filler-block = "minecraft:stone_bricks"
+
+# filler-depth: 3 blocks of structure remains before natural stone.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Moderate density. Trees grow through and around the ruins,
+# their roots cracking foundations. Dark oak and oak mix.
+trees = { types = ["dark_oak", "fancy_oak"], density = 8 }
+
+# grass-density: Moderate — grass colonizes rubble gaps.
+grass-density = 5
+
+# flower-density: Low — rocky surface limits flower growth.
+flower-density = 1.5
+
+# vines: Heavy vine coverage smothering every stone surface.
+# Vines are the primary visual indicator that these are ruins.
+vines = { enabled = true, density = 10 }
+
+# mushrooms: Grow in the sheltered corners of collapsed structures.
+mushrooms = { brown = 4, red = 2 }
+
+# ruins: High density of ruin structures. These are procedurally
+# placed stone brick formations — walls, arches, columns, floors.
+ruins = { enabled = true, density = 5 }
+
+# spawner-dungeons: Underground and semi-exposed mob spawner rooms.
+# These generate within or beneath the ruin structures.
+spawner-dungeons = { enabled = true, density = 2, types = ["zombie", "skeleton", "spider"] }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Elevated hostile spawning — dark corners in ruins shelter mobs.
+hostile-density-multiplier = 1.3
+
+# Creepers are especially dangerous here — they blend with stone.
+creeper-weight-bonus = 25
+
+# Silverfish hide in the cracked stone brick blocks.
+silverfish-weight = 15
+
+# Passive mobs are sparse — the uneven terrain deters grazing animals.
+passive-density-multiplier = 0.5

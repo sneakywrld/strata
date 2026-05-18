@@ -1,0 +1,152 @@
+# ============================================================
+#  Biome: Abyssal Sculk Cavern — Abyssal Depths
+# ============================================================
+# A sprawling cave system saturated with sculk growth far
+# denser than even the deep dark. Every surface — floor,
+# walls, ceiling — is coated in sculk veins that pulse with
+# a sickly blue-green bioluminescence. Ancient city fragments
+# protrude from the sculk mass: crumbling deepslate brick
+# walls, reinforced deepslate pillars, and wool-lined
+# corridors of a civilization that once tried to contain the
+# sculk and failed. Sculk catalysts cluster near what appear
+# to be old battlegrounds, their hunger for death never sated.
+#
+# Gameplay notes:
+#   - Highest sculk density in the game — XP farming potential.
+#   - Ancient city loot chests with Swift Sneak III, echo shards.
+#   - Even more dangerous than deep dark — more shriekers per chunk.
+#   - Deepslate brick structures provide navigational landmarks.
+#   - Wool corridors hint at historical Warden containment attempts.
+#   - Sculk catalysts can be exploited for XP with a mob grinder.
+#   - Adjacent to abyssal_deep_dark — part of the sculk mega-region.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The sculk cavern is the
+# extreme-density variant of the deep dark.
+id = "strata:abyssal_sculk_cavern"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Sculk Cavern"
+
+# category: CAVE — deep underground biome dominated by the
+# sculk organism. Suppressed ambient sounds.
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Similar to the deep dark but with higher weirdness,
+# reflecting the extreme sculk concentration and the
+# anomalous nature of the ancient city ruins embedded within.
+[biome.climate]
+# temperature: Cold — sculk absorbs ambient heat aggressively
+# in such dense concentrations.
+# 0.2 = matches the deep dark's chill.
+temperature = 0.2
+
+# humidity: Moderate — the sculk maintains its own moisture
+# balance, neither parched nor dripping.
+# 0.5 = slightly wetter than the deep dark due to greater biomass.
+humidity = 0.5
+
+# continentalness: Neutral — sculk caverns form deep
+# underground regardless of surface geography.
+# 0.5 = no continental bias.
+continentalness = 0.5
+
+# erosion: Slightly reduced — the ancient city structures
+# and dense sculk mass resist natural cave erosion.
+# 0.4 = somewhat more structured than natural caves.
+erosion = 0.4
+
+# weirdness: High — this is an unusual, rare biome that only
+# appears under specific noise conditions. The ancient city
+# ruins make it a unique landmark.
+# 0.6 = rarer than the standard deep dark.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Very deep — the sculk cavern sits near the
+# bottom of the Abyssal zone where ancient cities were built.
+# -50 = roughly 50 blocks below sea level, near bedrock.
+base-height = -50
+
+# height-variation: Moderate — ancient city structures create
+# multi-level spaces with raised platforms, corridors, and
+# open gathering halls.
+# 15 = enough for multi-story ruin exploration.
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Dense sculk coverage over ancient deepslate brick ruins.
+[biome.surface]
+# top-block: Sculk blocks — even denser than the deep dark.
+# The organism has completely consumed the surface layer.
+top-block = "minecraft:sculk"
+
+# filler-block: Reinforced deepslate — remnants of the
+# ancient city's construction material beneath the sculk.
+filler-block = "minecraft:reinforced_deepslate"
+
+# filler-depth: Deeper sculk penetration than the standard
+# deep dark — the organism has had more time to colonize.
+# 3 = sculk has eaten through multiple layers of ruins.
+filler-depth = 3
+
+# underwater-block: Sculk has colonized any water-filled
+# areas within the cavern.
+underwater-block = "minecraft:sculk"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Maximum sculk density with ancient city structural remnants.
+[biome.features]
+# trees: No vegetation of any kind.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Sculk has consumed all plant matter.
+grass-density = 0.0
+
+# flower-density: Nothing organic survives.
+flower-density = 0.0
+
+# extra-features: Dense sculk ecosystem plus structural ruins.
+#   sculk_vein — covering every available surface.
+#   sculk_sensor — dense network of vibration detectors.
+#   sculk_shrieker — numerous sentinels throughout the cavern.
+#   sculk_catalyst — clustered near ancient battle sites.
+#   ancient_city_fragment — crumbling deepslate brick structures
+#     with loot chests, wool corridors, and reinforced deepslate.
+extra-features = [
+    { feature = "sculk_vein", density = 20.0 },
+    { feature = "sculk_sensor", density = 8.0 },
+    { feature = "sculk_shrieker", density = 5.0 },
+    { feature = "sculk_catalyst", density = 4.0 },
+    { feature = "ancient_city_fragment", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Even more hostile-suppressed than the deep dark. The sculk
+# organism has consumed everything. Only the Warden exists.
+[biome.spawning]
+# All normal spawning is almost entirely suppressed.
+# The Warden is summoned by sculk shriekers, not spawn tables.
+hostile-density-multiplier = 0.05
+
+# Absolutely no passive life survives.
+passive-density-multiplier = 0.0

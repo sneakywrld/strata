@@ -1,0 +1,58 @@
+# ============================================================
+#  Nether Terrain Density — Netherveil
+# ============================================================
+# The nether uses a unique terrain generation approach:
+# - Solid netherrack forms both floor and ceiling
+# - Large open pockets of air (and lava) carved between them
+# - The density function creates the "cave-like" nether feel
+#
+# Unlike the overworld, nether terrain is generated as a
+# 3D noise field between Y=0 (floor) and Y=128 (ceiling),
+# with both the bottom and top being solid.
+# ============================================================
+
+[density]
+# -------------------------------------------------------
+# Nether Cave Shape
+# -------------------------------------------------------
+# The nether is essentially one massive cave system. The density
+# function creates open spaces between solid netherrack floor/ceiling.
+
+# floor-gradient: Y-level below which terrain is always solid.
+# Default: 5 (first 5 blocks above bedrock are solid netherrack)
+floor-gradient = 5
+
+# ceiling-gradient: Y-level above which terrain is always solid.
+# Default: 123 (last 5 blocks below ceiling are solid netherrack)
+ceiling-gradient = 123
+
+# cave-scale: Size of nether cave openings.
+# Higher = larger open areas. Lower = more cramped tunnels.
+# Default: 1.0. Range: 0.5 to 3.0
+cave-scale = 1.2
+
+# pillar-frequency: How often netherrack pillars span floor to ceiling.
+# These create the characteristic nether "columns".
+# Default: 0.3. Range: 0.0 to 1.0
+pillar-frequency = 0.3
+
+# vertical-openness: How tall open areas tend to be.
+# Higher = more vertical space. Lower = flatter, more tunnel-like.
+# Default: 1.0. Range: 0.3 to 3.0
+vertical-openness = 1.2
+
+# -------------------------------------------------------
+# Terrain Noise
+# -------------------------------------------------------
+# primary-noise: Main 3D noise shaping nether terrain.
+primary-noise = "strata:nether_terrain"
+
+# secondary-noise: Detail noise for surface roughness.
+secondary-noise = "strata:nether_detail"
+
+# -------------------------------------------------------
+# Lava Level
+# -------------------------------------------------------
+# lava-level: Y-level below which open spaces fill with lava.
+# Default: 32 (matching world sea-level)
+lava-level = 32

@@ -1,0 +1,135 @@
+# ============================================================
+#  Biome: Verdant Forest — Verdant Expanse
+# ============================================================
+# A classic mixed forest of oak and birch trees with dappled
+# sunlight filtering through the canopy. Mushroom patches grow
+# in the shade of large trees, and natural clearings provide
+# flat areas for camps and shelters. The forest floor is rich
+# with ferns and fallen leaves.
+#
+# Gameplay: Abundant wood supply for early-game crafting.
+# Mushroom patches provide food. Clearings offer safe build
+# spots. Standard hostile mob spawning under the canopy at night.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Format: "strata:<zone>_<name>".
+# Must be lowercase with underscores only. Used internally for
+# biome lookups, commands, and config cross-references.
+id = "strata:verdant_forest"
+
+# display-name: Human-readable name shown in F3 debug screen,
+# minimap mods, and /strata biome info commands.
+display-name = "Verdant Forest"
+
+# category: Vanilla biome category. FOREST enables forest-specific
+# ambient sounds (birdsong), wolf spawning, and woodland mansion
+# structure placement eligibility.
+category = "FOREST"
+
+# zone: Parent zone from zones/zones.toml. Controls where this
+# biome can generate (1500-3500 blocks from spawn for verdant).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# The 5-axis climate system places this biome where world noise
+# matches these target values. Each axis ranges -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.5 = mild warmth. Forests in temperate latitudes
+# support both oak and birch growth without extremes.
+temperature = 0.5
+
+# humidity: 0.5 = moderate moisture. Balanced rainfall supports
+# a mixed canopy without becoming jungle-dense.
+humidity = 0.5
+
+# continentalness: 0.4 = moderately inland. Forests form the
+# interior transition between coast and deep continental zones.
+continentalness = 0.4
+
+# erosion: 0.6 = moderate erosion. Terrain is gently undulating
+# rather than flat — gives the forest floor natural contours
+# with shallow ravines and small hills under the canopy.
+erosion = 0.6
+
+# weirdness: 0.0 = completely normal. This is the "default" forest
+# variant — no unusual features or terrain quirks.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5 blocks above sea level. Slightly elevated
+# compared to plains, giving the forest a gentle rise that
+# makes it visually distinct on the horizon.
+base-height = 5
+
+# height-variation: 1.5 = gentle undulation. The forest floor
+# has natural hills and depressions, creating varied sight lines
+# and interesting micro-terrain for builds.
+height-variation = 1.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Standard grass block. Forest floor is living
+# grassland beneath the tree canopy.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt subsoil, consistent with a healthy forest
+# ecosystem with deep organic topsoil.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 blocks of dirt before stone. Standard depth
+# for temperate forest biomes.
+filler-depth = 3
+
+# underwater-block: Dirt for any submerged surfaces (small ponds
+# or stream beds within the forest).
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Mixed oak and birch with occasional fancy oaks for variety.
+#   "oak" = standard small oaks (4-7 blocks tall).
+#   "birch" = white-barked birch (5-8 blocks tall).
+#   "fancy_oak" = large spreading oaks (8-14 blocks tall) for canopy drama.
+#   density 8.0 = moderately dense forest. Not impenetrable, but clearly
+#   wooded with trees every few blocks. Clearings emerge naturally from
+#   placement randomness.
+trees = { types = ["oak", "birch", "fancy_oak"], density = 8.0 }
+
+# grass-density: 30.0 = moderate ground cover. Less than open plains
+# because the tree canopy reduces light and competes for space.
+grass-density = 30.0
+
+# flower-density: 2.0 = scattered wildflowers in clearings and
+# along forest edges. Mostly poppies and dandelions.
+flower-density = 2.0
+
+# extra-features: Mushrooms thrive in the shaded forest floor.
+extra-features = [
+    { feature = "brown_mushroom", density = 3.0 },
+    { feature = "red_mushroom", density = 1.5 },
+    { feature = "fern", density = 8.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Forests support a standard passive mob population plus wolves,
+# which are forest-exclusive predators in vanilla Minecraft.
+[biome.spawning]
+# Wolves spawn in forest biomes — they hunt in small packs.
+wolf = { weight = 5, min-group = 2, max-group = 4 }
+# Foxes are forest dwellers, appearing at dawn and dusk.
+fox = { weight = 3, min-group = 1, max-group = 2 }

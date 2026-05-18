@@ -1,0 +1,149 @@
+# ============================================================
+#  Biome: Warm Ocean — Elysium Ocean
+# ============================================================
+# Shallow turquoise water alive with colour and movement. Coral
+# formations break the surface in places, their pinks, purples,
+# and yellows vivid against the white sand below. Sea pickles
+# cluster on the reef tops, casting gentle bioluminescent light
+# at night. Turtles glide through the warm shallows, surfacing
+# occasionally, while tropical fish in every conceivable colour
+# dart between coral branches.
+#
+# Gameplay notes:
+#   - Abundant coral blocks and fans for decorative building.
+#   - Sea pickles provide underwater lighting material.
+#   - Turtles drop scute for turtle helmets (water breathing).
+#   - Tropical fish are collectible in buckets for aquariums.
+#   - Shallow depth (~10 blocks max) allows easy exploration
+#     without Respiration or Aqua Affinity enchantments.
+#   - Transitions into elysium_coral_reef_flat at its most
+#     vibrant and elysium_lukewarm_ocean at greater depth.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<biome_name>" — lowercase, underscores only.
+id = "strata:elysium_warm_ocean"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Warm Ocean"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, grass tint, and mob behavior.
+# OCEAN enables aquatic mob spawning rules, underwater ambient
+# sounds, and ocean-specific structure generation (monuments, ruins).
+category = "OCEAN"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml or a cross-zone biome directory.
+# Ocean biomes span all zones — they generate wherever climate
+# noise selects them regardless of distance from spawn.
+zone = "ocean"
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate
+# values. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.8 = warm tropical water. The high temperature
+# is essential for coral growth — coral only generates in biomes
+# with temperature >= 0.5 in Minecraft's internal rules.
+temperature = 0.8
+
+# humidity: 0.5 = moderate oceanic moisture. Ocean surfaces
+# maintain stable humidity regardless of nearby landmasses.
+humidity = 0.5
+
+# continentalness: -0.6 = oceanic. Negative values place this
+# biome offshore, away from continental shelves. Not as deep
+# as the deep ocean variants (-0.8 to -0.9).
+continentalness = -0.6
+
+# erosion: 0.5 = moderately eroded. The warm shallows have
+# smooth, gently undulating floors shaped by mild currents.
+erosion = 0.5
+
+# weirdness: 0.0 = the default warm ocean variant. No unusual
+# terrain features — this is the standard warm ocean biome.
+weirdness = 0.0
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+[biome.terrain]
+# base-height: -10 blocks below sea level. Shallow enough that
+# sunlight penetrates to the floor, enabling coral photosynthesis
+# and making the colourful seabed visible from the surface.
+# Range: -64.0 to 256.0
+base-height = -10
+
+# height-variation: 3 = gentle undulation. The sandy floor has
+# soft rolling dunes and coral mounds but no dramatic drops.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 3
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+[biome.surface]
+# top-block: Clean white sand on the ocean floor, characteristic
+# of warm tropical seas where coral debris breaks down into sand.
+top-block = "minecraft:sand"
+
+# filler-block: Sand continues below the surface. Tropical ocean
+# floors are deep sand beds deposited by millennia of coral erosion.
+filler-block = "minecraft:sand"
+
+# filler-depth: 4 blocks of sand before hitting sandstone/stone.
+# Thick sand layer consistent with coral-sand accumulation.
+filler-depth = 4
+
+# underwater-block: Sand for the seabed itself. Consistent with
+# the tropical sand-bottom aesthetic.
+underwater-block = "minecraft:sand"
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+[biome.features]
+# trees: No trees — this is a fully submerged ocean biome.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Represents seagrass coverage on the ocean floor.
+# 0.4 = moderate patches of seagrass swaying in the current.
+grass-density = 0.4
+
+# extra-features: Coral, sea pickles, and aquatic vegetation
+# that define the warm ocean's visual identity.
+extra-features = [
+    # Coral formations — the biome's signature feature.
+    { feature = "coral_reef", density = 6.0 },
+    # Sea pickles on coral and sand — bioluminescent at night.
+    { feature = "sea_pickle", density = 4.0 },
+    # Seagrass beds between coral clusters.
+    { feature = "tall_seagrass", density = 3.0 },
+]
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Warm water supports the most diverse aquatic life of any
+# ocean biome. Tropical fish dominate, with turtles as the
+# signature passive mob and pufferfish as a minor hazard.
+[biome.spawning]
+# Tropical fish in large, colourful schools — multiple variants.
+tropical_fish = { weight = 25, min-group = 4, max-group = 8 }
+# Pufferfish near coral — inflict poison when approached.
+pufferfish = { weight = 8, min-group = 1, max-group = 3 }
+# Sea turtles gliding through the shallows.
+turtle = { weight = 6, min-group = 2, max-group = 4 }
+# Squid in slightly deeper pockets.
+squid = { weight = 5, min-group = 1, max-group = 3 }

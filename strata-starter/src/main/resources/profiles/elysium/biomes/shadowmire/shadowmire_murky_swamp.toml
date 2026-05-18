@@ -1,0 +1,199 @@
+# ============================================================
+#  Biome: Murky Swamp — Shadowmire Swamps
+# ============================================================
+# The definitive swamp — dark, stagnant water choked with algae
+# and decaying plant matter. Dead trees rise from the murk like
+# skeletal fingers, their bare branches draped in cobwebs. A thick
+# blanket of fog hugs the ground at all hours, reducing visibility
+# to a few dozen blocks. The air is heavy with the sound of
+# croaking and buzzing, and hostile mobs prowl even during the day
+# where the fog is thickest. This is the biome that sets the tone
+# for the entire Shadowmire zone — oppressive, dangerous, and
+# deeply unwelcoming.
+#
+# Gameplay Notes:
+#   - Fog reduces visibility, making navigation treacherous.
+#   - Hostile mobs spawn at elevated rates due to permanent shade.
+#   - Dead trees provide wood but no leaves for composting.
+#   - Mud surface slows movement slightly — plan paths carefully.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_murky_swamp"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Murky Swamp"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, grass tint, and mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# SWAMP enables the murky green water tint, drab grass coloring,
+# and swamp-specific ambient sounds (frogs, crickets).
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+# The zone controls distance-from-spawn placement, difficulty scaling,
+# and mob density multipliers for this biome.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.6 = mild warmth — muggy subtropical
+# conditions that keep the swamp water tepid and stagnant, perfect
+# for breeding mosquitoes and decay bacteria.
+temperature = 0.6
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. 0.9 = near-saturated air that condenses
+# into the signature thick fog and keeps every surface damp with
+# a thin film of moisture.
+humidity = 0.9
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = moderately inland, placing
+# the swamp in a low-lying basin fed by inland rivers and runoff
+# rather than tidal influence.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.7 = heavily eroded
+# flat terrain — millennia of water accumulation have worn the land
+# down to a featureless, waterlogged plain.
+erosion = 0.7
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.0 = the baseline variant, making this the standard
+# murky swamp that generates most frequently in the zone.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 0 = exactly at sea level,
+# meaning much of the terrain sits right at the waterline — pockets
+# of land barely rise above the stagnant pools surrounding them.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 2 = very slight variation — the swamp is overwhelmingly flat with
+# only small hummocks of land rising above the waterlogged surface.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Grass block provides a thin veneer of life over the mud beneath,
+# patchy and sickly-green under the swamp's SWAMP category tint.
+top-block = "minecraft:grass_block"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Mud replaces standard dirt to reinforce the soggy,
+# waterlogged character of the swamp floor. Players sink slightly
+# when walking on exposed mud patches.
+filler-block = "minecraft:mud"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 4 provides a deep layer of saturated mud before
+# reaching stone — digging down reveals just more muck.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, channels) that overlap this biome. Mud at the bottom
+# of the murky water makes it impossible to see the lakebed.
+underwater-block = "minecraft:mud"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Dead and dying trees dominate the murky swamp. Stripped
+# oak logs stand as leafless trunks, while the occasional dark oak
+# clings to life with a sparse, drooping canopy.
+#   types: Tree definition keys from features/trees.toml.
+#   density: Placement attempts per chunk (16x16 area).
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            4.0 = moderate — enough dead trunks to feel oppressive
+#            without making movement impossible.
+trees = { types = ["dead_oak", "swamp_oak"], density = 4.0 }
+
+# grass-density: Short grass and tall grass placement per chunk.
+# Range: 0.0 to 100.0. 5.0 = sparse, patchy grass clinging to
+# the few hummocks that stay above the waterline. Most ground
+# is too waterlogged for grass to take hold.
+grass-density = 5.0
+
+# flower-density: Mixed wildflower patches per chunk.
+# Range: 0.0 to 15.0. 0.5 = almost none — only the hardiest
+# blue orchids survive in the perpetual gloom.
+flower-density = 0.5
+
+# extra-features: Additional feature placements specific to this biome.
+# Each entry names a vegetation key from features/vegetation.toml
+# with an optional density override.
+extra-features = [
+    { feature = "lily_pad", density = 6.0 },
+    { feature = "dead_bush", density = 3.0 },
+    { feature = "cobweb_cluster", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The murky swamp is a hostile place. Slimes bubble up from the mud,
+# witches lurk among the dead trees, and the fog conceals zombies
+# and skeletons even during the day.
+
+# slime: Swamp slimes spawn abundantly in the waterlogged terrain.
+# weight: 20 makes slimes the most common hostile encounter.
+# min-group/max-group: Spawn in groups of 1-3.
+slime = { weight = 20, min-group = 1, max-group = 3 }
+
+# witch: Witches are drawn to the swamp's alchemical ingredients.
+# weight: 8 for a meaningful but not dominant presence.
+# min-group/max-group: Always solitary.
+witch = { weight = 8, min-group = 1, max-group = 1 }
+
+# zombie: Shambling undead that emerge from the fog unexpectedly.
+# weight: 12 makes them a common threat alongside slimes.
+# min-group/max-group: Small packs of 2-4.
+zombie = { weight = 12, min-group = 2, max-group = 4 }
+
+# frog: Frogs croak from lily pads and mud patches throughout.
+# weight: 10 for consistent ambient presence.
+# min-group/max-group: Small groups of 2-4.
+frog = { weight = 10, min-group = 2, max-group = 4 }

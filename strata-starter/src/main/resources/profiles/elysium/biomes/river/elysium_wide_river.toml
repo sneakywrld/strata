@@ -1,0 +1,171 @@
+# ============================================================
+#  Biome: Wide River — Elysium Rivers
+# ============================================================
+# A broad, lazy river stretching 20-40 blocks across, its
+# surface glassy and slow-moving. Sandy banks slope gently to
+# the water on both sides, with tall sugarcane stands lining
+# the edges. Small sand-bar islands break the surface mid-
+# channel, splitting the current into braided channels. The
+# water is deeper than the forest river — 4-6 blocks in the
+# center — and the bottom is sandy with occasional clay
+# deposits. This is a major waterway, navigable by boat and
+# rich with fish. River villages and docks may appear on the
+# wider banks.
+#
+# Gameplay notes:
+#   - Navigable by boat — a natural highway between zones.
+#   - Sugarcane grows abundantly on the sandy banks — paper
+#     and sugar supply.
+#   - Sand bars provide building platforms mid-river.
+#   - Deep enough center channel for boat travel without
+#     running aground.
+#   - Excellent fishing — large cod and salmon schools.
+#   - Clay patches in the bends for brick production.
+#   - Pairs with verdant and sanctuary zone lowlands.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. River biomes use the
+# "elysium_" prefix as cross-zone water features.
+id = "strata:elysium_wide_river"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Wide River"
+
+# category: RIVER — enables river-specific generation,
+# aquatic spawning, and flowing water ambient sounds.
+category = "RIVER"
+
+# zone: "river" — river biomes are cross-zone features that
+# follow noise-determined paths through the landscape.
+zone = "river"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Temperate and moderate — a lowland river in comfortable
+# climate conditions, supporting abundant life on its banks.
+[biome.climate]
+# temperature: 0.5 = temperate. The wide water surface
+# moderates temperature, keeping the river corridor mild
+# and comfortable through all seasons.
+temperature = 0.5
+
+# humidity: 0.5 = moderate. The broad water surface adds
+# moisture to the air, but the open sky above the wide
+# channel allows it to dissipate evenly.
+humidity = 0.5
+
+# continentalness: 0.3 = moderate inland. Wide rivers form
+# in the lowlands between the mountains and the coast, where
+# multiple tributaries have merged into a single major channel.
+continentalness = 0.3
+
+# erosion: 0.7 = heavily eroded. The wide, flat channel is
+# the result of millennia of erosion carving an ever-broader
+# floodplain through soft lowland sediments.
+erosion = 0.7
+
+# weirdness: 0.0 = completely normal. Wide lowland rivers are
+# the most natural river form in flat terrain. Zero weirdness
+# ensures frequent generation in appropriate landscapes.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -4 = well below sea level. The river channel
+# is deeply incised relative to the surrounding banks. The
+# center channel reaches 4+ blocks of water depth, enabling
+# boat travel without running aground on the sandy bottom.
+# Range: -64.0 to 256.0
+base-height = -4
+
+# height-variation: 2 = very flat. The wide river has a
+# uniform, gently sloping bottom. Sand bars create minor
+# elevation changes, but the overall channel floor is
+# smooth and predictable.
+# Range: 0.0 to 30.0
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Sandy river — the dominant substrate is sand, deposited by
+# the slow current. Banks are sandy with sugarcane-friendly
+# conditions.
+[biome.surface]
+# top-block: Sand — the wide river's banks and exposed bars
+# are all sand. The slow current deposits fine sediment rather
+# than washing it away.
+top-block = "minecraft:sand"
+
+# filler-block: Sand continues below the surface. The river
+# floodplain is deep sand deposited over centuries of
+# seasonal flooding.
+filler-block = "minecraft:sand"
+
+# filler-depth: 4 = thick sand deposits. Lowland rivers
+# accumulate deep alluvial sand beds — players dig through
+# sand for many blocks before hitting stone.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Sand on the riverbed — clean sandy bottom
+# visible through the clear, slow-moving water.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Sugarcane-lined banks and sand bar islands. The wide open
+# channel has few trees but abundant aquatic vegetation.
+[biome.features]
+# trees: Very sparse trees along the banks — the occasional
+# willow-like oak leaning over the water.
+#   types: "oak" — representing riverside willows.
+#   density: 0.3 = rare individual trees on the widest banks.
+#            Range: 0.0 to 30.0+
+trees = { types = ["oak"], density = 0.3 }
+
+# grass-density: Moderate grass on the sandy banks. Tough
+# river grass grows where sand meets soil.
+# Range: 0.0 to 100.0
+grass-density = 8.0
+
+# flower-density: Minimal flowers on the sandy substrate.
+# Range: 0.0 to 15.0
+flower-density = 0.5
+
+# extra-features: Sugarcane is the defining bank-side feature,
+# with clay deposits and seagrass in the water.
+extra-features = [
+    # Sugarcane stands lining the river banks — abundant growth.
+    { feature = "sugarcane", density = 6.0 },
+    # Clay deposits in the riverbed bends — brick material.
+    { feature = "clay", density = 3.0 },
+    # Seagrass in the deeper channel sections.
+    { feature = "seagrass", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Abundant river life. Fish schools in the deep channel,
+# and turtles bask on the sand bars.
+[biome.spawning]
+# Cod: Large schools in the deep center channel. The wide
+# river supports the highest fish density of any river biome.
+cod = { weight = 15, min-group = 3, max-group = 6 }
+
+# Salmon: Share the river with cod, preferring the slightly
+# faster sections between sand bars.
+salmon = { weight = 10, min-group = 2, max-group = 4 }
+
+# Turtle: Bask on sand bars and nest on the sandy banks.
+turtle = { weight = 6, min-group = 1, max-group = 2 }

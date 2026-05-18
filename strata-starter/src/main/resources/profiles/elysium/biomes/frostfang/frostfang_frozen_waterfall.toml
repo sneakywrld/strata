@@ -1,0 +1,100 @@
+# ============================================================
+#  Biome: Frostfang Frozen Waterfall — Frostfang Peaks
+# ============================================================
+# A sheer cliff face dominated by a massive cascade of blue
+# ice — a waterfall frozen mid-flow. The ice sheet stretches
+# 30 blocks wide and drops the full height of the cliff,
+# its surface rippled with frozen wave patterns that catch
+# the light. A perpetual mist of ice crystals hangs in the
+# air at the base where the frozen cascade meets the ground,
+# creating an ethereal atmosphere. Behind the ice sheet,
+# hollows and small caves form where water once carved the
+# rock before the freeze claimed it.
+#
+# Gameplay notes:
+#   - The frozen waterfall is a dramatic visual landmark
+#     visible from great distances across the zone.
+#   - Blue ice on the waterfall face can be harvested, but
+#     mining it risks opening the cliff to hidden caves
+#     behind the ice sheet.
+#   - The mist effect at the base reduces visibility and
+#     creates ambush opportunities for hostile mobs.
+#   - Moderate height-variation keeps the cliff traversable
+#     with careful pathfinding along ledges.
+#   - Pairs with frostfang_ice_cave behind the falls and
+#     frostfang_glacial_valley at the base.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_frozen_waterfall"     # Unique registry ID
+display-name = "Frostfang Frozen Waterfall"  # Shown in F3 debug & maps
+category = "MOUNTAIN"                        # Mountain cliff feature
+zone = "frostfang"                           # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The higher humidity reflects the moisture
+# that originally fed the waterfall before it froze. The
+# moderate weirdness places this biome in slightly unusual
+# terrain — it needs a cliff face to generate convincingly.
+[biome.climate]
+temperature = -0.6          # Very cold — ice remains solid year-round
+humidity = 0.5              # Higher moisture — residual from water source
+continentalness = 0.8       # Deep inland mountain environment
+erosion = -0.6              # Low erosion — steep cliff face preserved
+weirdness = 0.3             # Slightly unusual terrain — cliff formations
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 50 places the waterfall midpoint at a
+# dramatic elevation. The height-variation of 30 creates
+# the cliff face — the top of the falls sits around 80
+# blocks above sea level, while the splash pool at the
+# base sits around 20. This vertical range defines the
+# scale of the frozen cascade.
+[biome.terrain]
+base-height = 50            # Cliff midpoint — waterfall spans above/below
+height-variation = 30       # +/-30 blocks — full drop of the frozen falls
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# The cliff face is coated in blue ice where the waterfall
+# froze. Snow block covers horizontal surfaces and ledges.
+# The filler depth is moderate — the ice sheet is a surface
+# feature over the underlying stone cliff.
+[biome.surface]
+top-block = "minecraft:blue_ice"         # Frozen waterfall surface
+filler-block = "minecraft:packed_ice"    # Thick ice behind the cascade face
+filler-depth = 4                         # Ice extends several blocks inward
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Minimal vegetation — a few hardy ferns cling to ledges
+# where mist deposits moisture. No trees grow on the
+# cliff face itself. The sparse grass represents ice-
+# tolerant mosses near the splash zone.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees on the cliff face
+grass-density = 0.05                     # Trace moss/fern on wet ledges
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# The frozen mist at the base provides cover for strays
+# and other hostile mobs. The cliff face itself is too
+# steep for most mob spawns, but the ledges and base
+# area see normal hostile spawning at night. Bats may
+# emerge from caves behind the ice sheet.
+[biome.spawning]
+# Strays patrol the misty base of the waterfall.
+# Bats inhabit the hollow spaces behind the ice.
+# Standard hostile mob rules apply in darkness.
+# No passive mobs — too steep and cold for wildlife.

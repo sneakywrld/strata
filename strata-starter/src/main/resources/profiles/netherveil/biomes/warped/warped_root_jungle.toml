@@ -1,0 +1,146 @@
+# ============================================================
+#  Biome: Warped Root Jungle — Warped Domain
+# ============================================================
+# An impenetrable tangle of twisting vines that have grown
+# completely out of control, forming a three-dimensional maze
+# of spiraling blue-green tendrils from floor to ceiling. Unlike
+# the orderly warped forest where vines accent the fungi, here
+# the vines ARE the biome — they fill every cubic meter of space
+# in a chaotic web that blocks movement in every direction.
+# Players must cut through walls of twisting vines to make
+# any progress, and the vines regrow behind them. The warped
+# fungi that originally spawned the vines are completely
+# obscured, buried under layers of their own offspring. Navigation
+# is a three-dimensional puzzle with no clear paths and no
+# landmarks. Endermen teleport effortlessly through the vine
+# mass, appearing beside players with no warning.
+#
+# Gameplay notes:
+#   - Extremely slow movement — constant vine breaking required.
+#   - Three-dimensional maze — vertical and horizontal obstacles.
+#   - Endermen teleport freely — can't be avoided by movement.
+#   - Shears for efficient vine clearing (otherwise, any tool).
+#   - Twisting vine farming at maximum efficiency.
+#   - Easy to get completely lost — use coordinates or compasses.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The root jungle is the most
+# impenetrable and disorienting warped variant.
+id = "strata:warped_root_jungle"
+
+# display-name: Human-readable name for player displays.
+display-name = "Warped Root Jungle"
+
+# category: NETHER — nether environment dominated by an
+# impenetrable mass of twisting vines.
+category = "NETHER"
+
+# zone: Part of the warped zone — the most overgrown and
+# difficult-to-navigate area in the warped domain.
+zone = "warped"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cool — the dense vine mass insulates against
+# nether heat, creating a cool organic cocoon.
+#   0.2 = cool, enclosed environment.
+temperature = 0.2
+
+# humidity: Maximum — the vine mass represents peak organic
+# density in the warped domain.
+#   0.95 = near-maximum organic density.
+humidity = 0.95
+
+# continentalness: Neutral — root jungles form within standard
+# warped forest regions.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Minimal — the vine mass fills all available space,
+# leaving no open terrain whatsoever.
+#   0.05 = essentially zero open space.
+erosion = 0.05
+
+# weirdness: Very high — the extreme vine overgrowth is the
+# most unusual warped terrain formation.
+#   0.8 = highly unusual, chaotic organic growth.
+weirdness = 0.8
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the ground is buried
+# under vine growth but at typical elevation.
+#   40 = standard nether floor, obscured by vines.
+base-height = 40
+
+# height-variation: Low ground variation — irrelevant since
+# the vine mass fills all space above ground.
+#   3.0 = moderate ground variation, hidden by vine density.
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Warped nylium — buried under vine roots but
+# providing the growth foundation.
+top-block = "minecraft:warped_nylium"
+
+# filler-block: Netherrack beneath the nylium.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Buried huge fungi — present but completely obscured
+# by the vine overgrowth they spawned.
+#   4.0 = moderate fungi, invisible under vine mass.
+trees = { types = ["warped_fungus_huge"], density = 4.0 }
+
+# grass-density: Dense warped roots beneath the vine canopy.
+#   0.7 = high ground cover, barely visible under vines.
+grass-density = 0.7
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Root jungle specific features.
+#   twisting_vines — maximum density, the biome-defining feature.
+#     Fills all available space in a chaotic web.
+#   warped_fungus_small — buried small fungi.
+#   nether_sprouts — surviving sprouts in vine gaps.
+#   shroomlight_cluster — dim light filtering through the
+#     vine mass from embedded shroomlight blocks.
+extra-features = [
+    { feature = "twisting_vines", density = 25.0 },
+    { feature = "warped_fungus_small", density = 3.0 },
+    { feature = "nether_sprouts", density = 2.0 },
+    { feature = "shroomlight_cluster", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen teleport freely through the vine mass, appearing
+# beside players without warning.
+[biome.spawning]
+# enderman: High density — the vine mass doesn't impede their
+# teleportation at all, making them uniquely dangerous here.
+# Players can't retreat or dodge in the vine tangle.
+enderman = { weight = 18, min-group = 1, max-group = 3 }

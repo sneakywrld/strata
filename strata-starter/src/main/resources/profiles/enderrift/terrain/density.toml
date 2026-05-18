@@ -1,0 +1,83 @@
+# ============================================================
+#  End Terrain Density — Enderrift
+# ============================================================
+# The End uses island-based terrain: floating landmasses
+# surrounded by void. Terrain is generated as isolated
+# end stone islands with varying size and shape.
+#
+# The central island is a fixed large platform for the
+# dragon fight. Outer islands are procedurally generated
+# using noise-based island placement.
+# ============================================================
+
+[density]
+# -------------------------------------------------------
+# Central Island
+# -------------------------------------------------------
+# The main dragon fight island. Always generates at (0,0).
+
+# central-radius: Radius of the central island platform.
+# Default: 200. Range: 100 to 500
+central-radius = 200
+
+# central-height: Base Y-level of the central island surface.
+# Default: 65
+central-height = 65
+
+# central-thickness: How thick the central island is (blocks).
+# Default: 15
+central-thickness = 15
+
+# -------------------------------------------------------
+# Outer Island Generation
+# -------------------------------------------------------
+# Outer islands float in the void beyond the central island.
+# They're generated using 2D noise to determine island placement
+# and 3D noise for island shape.
+
+# island-noise: Noise function controlling island placement.
+# High values = island present. Low values = void gap.
+island-noise = "strata:end_island"
+
+# island-threshold: Noise threshold for island generation.
+# Higher = fewer, more separated islands. Lower = denser island field.
+# Default: 0.1. Range: -0.5 to 0.5
+island-threshold = 0.1
+
+# island-height-base: Base Y-level for outer island surfaces.
+# Default: 60. Range: 30 to 100
+island-height-base = 60
+
+# island-height-variation: How much island heights vary.
+# Default: 25. Range: 5 to 50
+island-height-variation = 25
+
+# island-thickness-range: Min and max island thickness.
+# Default: [5, 30]
+island-thickness-range = [5, 30]
+
+# -------------------------------------------------------
+# Island Shape
+# -------------------------------------------------------
+# shape-noise: 3D noise for island terrain detail.
+shape-noise = "strata:end_shape"
+
+# edge-taper: How quickly islands taper at their edges.
+# Higher = sharper edges (cliff-like). Lower = gentle slopes.
+# Default: 1.5. Range: 0.5 to 3.0
+edge-taper = 1.5
+
+# pillar-frequency: How often tall end stone pillars generate.
+# Default: 0.05. Range: 0.0 to 0.2
+pillar-frequency = 0.05
+
+# -------------------------------------------------------
+# Void Gap Configuration
+# -------------------------------------------------------
+# gap-between-central-and-outer: Distance in blocks of pure void
+# between the central island edge and the first outer islands.
+gap-between-central-and-outer = 800
+
+# void-fog-y: Y-level below which void fog particles appear.
+# Default: 30
+void-fog-y = 30

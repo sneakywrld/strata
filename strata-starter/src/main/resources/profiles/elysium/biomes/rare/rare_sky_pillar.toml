@@ -1,0 +1,171 @@
+# ============================================================
+#  Biome: Sky Pillar — Rare Biomes
+# ============================================================
+# A breathtaking geological anomaly — a narrow stone pillar
+# that rises from the surrounding terrain to incredible
+# heights, its tip reaching Y=200 or beyond. The pillar is
+# perhaps 10-15 blocks in diameter, tapering slightly toward
+# the summit. The stone is weathered and cracked, with stubborn
+# vines and moss clinging to the lower faces. At the very top,
+# a small flat platform holds a treasure — a chest or rare
+# block reward for anyone brave enough to scale the sheer face.
+# The pillar casts a dramatic shadow across the landscape,
+# visible as a silhouette from enormous distances. Climbing it
+# without elytra is a genuine challenge; falling is lethal.
+#
+# Gameplay notes:
+#   - Treasure chest at the summit — enchanted gear, diamonds,
+#     or rare materials as reward for the climb.
+#   - Extreme fall damage risk — 100+ blocks straight down.
+#   - Climbing requires scaffolding, water bucket MLG, or
+#     creative block-placement skills.
+#   - Visible from great distance — navigation landmark.
+#   - Lightning rod effect during storms — the pillar
+#     attracts lightning strikes at the summit.
+#   - Base-height 80 + variation 60 creates peaks near Y=200+.
+#   - The rarest non-unique biome: weirdness 0.99.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Rare biomes use the
+# "rare_" prefix to signal exceptional scarcity.
+id = "strata:rare_sky_pillar"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Sky Pillar"
+
+# category: MOUNTAIN — the extreme vertical terrain is a
+# mountain feature. MOUNTAIN enables wind ambient sounds at
+# high altitude, goat spawning rules, and the fog distance
+# reduction that creates the sense of extreme elevation.
+category = "MOUNTAIN"
+
+# zone: "rare" — rare biomes generate wherever their extreme
+# weirdness threshold is met, regardless of zone.
+zone = "rare"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Cold and dry at extreme altitude. The pillar's summit is
+# above the cloud layer, with thin air and constant wind.
+[biome.climate]
+# temperature: 0.3 = cool. The base of the pillar may be
+# temperate, but the summit is exposed to upper-atmosphere
+# conditions. The averaged temperature reflects this range.
+temperature = 0.3
+
+# humidity: 0.3 = dry. The extreme altitude and constant wind
+# strip moisture from the air. No water pools form on the
+# pillar's sheer sides.
+humidity = 0.3
+
+# continentalness: 0.6 = inland. Dramatic geological features
+# form in the continental interior where tectonic forces
+# create the uplift that produces such anomalies.
+continentalness = 0.6
+
+# erosion: -0.9 = extreme resistance. The pillar exists
+# because it is made of the hardest possible rock. The
+# surrounding terrain eroded away while this resistant core
+# remained standing — the very definition of negative erosion.
+erosion = -0.9
+
+# weirdness: 0.99 = maximum practical rarity. The sky pillar
+# is the single rarest biome in Elysium. Only the most extreme
+# noise anomaly in the entire world map can produce this value.
+# Finding one is a genuinely legendary event.
+weirdness = 0.99
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 80 = far above sea level. The pillar's base
+# is already elevated, and the extreme height-variation pushes
+# the summit far beyond normal terrain heights. The combination
+# creates terrain that reaches Y=200+.
+# Range: -64.0 to 256.0
+base-height = 80
+
+# height-variation: 60 = the most extreme variation possible
+# in a practical biome. This creates the pillar's dramatic
+# vertical profile — the terrain rockets upward in a narrow
+# column, vastly taller than it is wide.
+# Range: 0.0 to 30.0 (but this biome intentionally exceeds
+# the typical range for its dramatic effect)
+height-variation = 60
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Bare stone — the pillar is naked rock, scoured by wind
+# and too steep for any soil to accumulate.
+[biome.surface]
+# top-block: Stone — raw, wind-polished rock. The sheer faces
+# cannot hold soil, and the constant wind prevents dust from
+# settling on any surface.
+top-block = "minecraft:stone"
+
+# filler-block: Stone all the way through. The pillar is a
+# monolithic column of resistant rock — no layers, no
+# sediment, just solid stone.
+filler-block = "minecraft:stone"
+
+# filler-depth: 5 = solid stone. The entire pillar structure
+# is unyielding rock from base to summit.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Stone at the pillar's base where
+# groundwater pools — bare rock basins.
+underwater-block = "minecraft:stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Almost nothing grows on the sheer stone faces. A few vines
+# cling to the lower sections, and moss patches appear in
+# sheltered cracks.
+[biome.features]
+# trees: No trees. The sheer stone surface and extreme
+# altitude prevent any tree establishment.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Zero. No soil exists for grass to root in.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: Zero. No flowers on bare stone.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Vines on the lower faces and moss in
+# sheltered cracks are the only living features.
+extra-features = [
+    # Vine growth on the lower pillar faces — handholds for
+    # the brave.
+    { feature = "vine", density = 2.0 },
+    # Moss in sheltered cracks — the only green on the rock.
+    { feature = "moss_carpet", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Minimal mob presence. Goats on the lower ledges, and
+# phantoms circling the summit at night.
+[biome.spawning]
+# Goat: The only mob sure-footed enough to navigate the
+# pillar's lower ledges. They can ram players off the edge —
+# lethal at this height.
+goat = { weight = 5, min-group = 1, max-group = 2 }
+
+# Phantom: Circle the pillar's summit at night, diving at
+# players who attempt the climb without sleeping. A fall from
+# phantom knockback is fatal.
+phantom = { weight = 8, min-group = 1, max-group = 3 }

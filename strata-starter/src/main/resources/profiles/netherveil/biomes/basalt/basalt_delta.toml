@@ -1,0 +1,163 @@
+# ============================================================
+#  Biome: Basalt Delta — Basalt Deltas
+# ============================================================
+# A jagged volcanic landscape of dark basalt columns and magma
+# block fields, where the nether's geological violence is on
+# full display. The terrain is a nightmare of sharp elevation
+# changes — basalt pillars jut up at random heights, separated
+# by gaps that drop into magma block floors or lava pools below.
+# The dark gray-black basalt creates a stark contrast with the
+# orange glow of magma blocks and lava, and white ash particles
+# drift through the air like volcanic snow. Magma cubes bounce
+# between the basalt columns in endless, mindless patterns, their
+# translucent orange bodies splitting into smaller cubes when
+# killed. The terrain is incredibly hostile to navigation — every
+# step requires careful consideration of the jagged, uneven
+# surface. This is the baseline basalt biome, defining the
+# volcanic character of the entire delta region.
+#
+# Gameplay notes:
+#   - Extremely jagged terrain — high fall damage risk.
+#   - Magma blocks deal contact damage — jump constantly.
+#   - Magma cube swarms are persistent and unavoidable.
+#   - Basalt harvesting for building material.
+#   - Blackstone found in the basalt — nether stone tools.
+#   - Fire Resistance recommended for lava gap crossings.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the basalt delta.
+# The primary biome of the Basalt Deltas — a volcanic hellscape
+# of basalt columns and magma block fields.
+# Format: "strata:<region>_<biome_name>"
+id = "strata:basalt_delta"
+
+# display-name: Human-readable name shown in F3 debug screen,
+# minimap overlays, and /strata biome info commands.
+display-name = "Basalt Delta"
+
+# category: NETHER — nether environment with volcanic ash
+# particles, extreme terrain roughness, and magma block hazards.
+category = "NETHER"
+
+# zone: Which Netherveil region this biome belongs to. Must
+# match a zone key defined in zones/zones.toml. The basalt zone
+# governs magma cube density and basalt/magma block generation.
+zone = "basalt"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# In the nether, climate axes are repurposed from their
+# overworld meanings. Temperature maps to volcanic heat
+# intensity, humidity to fungal/organic density, and the
+# remaining axes control nether-specific terrain placement.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Extremely hot — the basalt deltas are the most
+# volcanically active region. Magma blocks and lava pools radiate
+# intense heat throughout the biome.
+#   0.9 = near-maximum heat from volcanic activity.
+temperature = 0.9
+
+# humidity: Very dry — the volcanic heat removes all moisture.
+# No organic material survives in this environment.
+#   -0.5 = extremely dry, volcanic conditions.
+humidity = -0.5
+
+# continentalness: Neutral — basalt deltas form at standard
+# nether levels.
+#   0.1 = slight inland tendency.
+continentalness = 0.1
+
+# erosion: Very low — the terrain is extremely jagged and rough,
+# with constant sharp elevation changes.
+#   0.1 = extremely rough, jagged volcanic terrain.
+erosion = 0.1
+
+# weirdness: Moderate — basalt deltas are a recognized nether
+# biome type but visually dramatic.
+#   0.4 = moderately unusual volcanic terrain.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the basalt terrain is
+# at normal elevation but incredibly uneven.
+#   40 = standard nether floor, with extreme surface roughness.
+base-height = 40
+
+# height-variation: Very high — the basalt columns and gaps
+# create constant dramatic elevation changes.
+#   9.0 = extreme terrain roughness, highly jagged surface.
+height-variation = 9.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Basalt — the dark volcanic rock that defines the
+# delta landscape. Smooth, columnar, and visually stark.
+top-block = "minecraft:basalt"
+
+# filler-block: Netherrack beneath the basalt surface layer.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard basalt depth.
+#   4 = typical basalt surface layer.
+filler-depth = 4
+
+# underwater-block: Magma blocks — the signature block lining
+# all surfaces near lava in the basalt deltas.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the volcanic basalt landscape.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on basalt.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Basalt delta specific features.
+#   magma_block_field — patches of magma blocks between
+#     basalt columns, dealing contact damage.
+#   basalt_column — natural basalt pillar formations.
+#   lava_pool — lava pockets between basalt structures.
+#   blackstone_deposit — blackstone veins in the basalt,
+#     craftable into stone-tier tools and furnaces.
+extra-features = [
+    { feature = "magma_block_field", density = 8.0 },
+    { feature = "basalt_column", density = 6.0 },
+    { feature = "lava_pool", density = 3.0 },
+    { feature = "blackstone_deposit", density = 4.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Magma cubes dominate the basalt deltas. Their persistent
+# bouncing and splitting create constant low-level combat.
+[biome.spawning]
+# magma_cube: The signature mob of basalt deltas. Bouncing
+# cubes of all sizes fill the terrain, splitting into smaller
+# versions when killed. They deal contact damage and their
+# persistent nature makes the biome feel alive with hostile motion.
+magma_cube = { weight = 25, min-group = 2, max-group = 5 }
+
+# ghast: Ghasts overhead — their fireballs are devastating in
+# the jagged terrain where dodging is nearly impossible.
+ghast = { weight = 8, min-group = 1, max-group = 1 }
+
+# strider: Striders in the lava pools between basalt formations.
+strider = { weight = 5, min-group = 1, max-group = 2 }

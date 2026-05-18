@@ -1,0 +1,149 @@
+# ============================================================
+#  Biome: Crimson Thicket — Crimson Domain
+# ============================================================
+# An impossibly dense concentration of crimson fungi packed so
+# tightly that visibility drops to near zero. Every direction
+# is a wall of crimson stems, nether wart blocks, and weeping
+# vines tangled into an impenetrable curtain. The spore particle
+# density is suffocating — the air itself appears solid red.
+# Navigation becomes a claustrophobic nightmare as players push
+# through fungal growth that blocks sightlines in every
+# direction. Hoglins lurk behind every stem, their charges
+# devastating in the tight quarters where dodging is impossible.
+# This is the most dangerous variant of crimson terrain — an
+# ambush predator's paradise.
+#
+# Gameplay notes:
+#   - Near-zero visibility — torch placement critical.
+#   - Hoglin ambushes are lethal in the tight corridors.
+#   - Shield strongly recommended — can't dodge charges.
+#   - Crimson wood harvesting extremely efficient here.
+#   - Easy to get lost — bring a compass or breadcrumb trail.
+#   - Piglins use the thicket as hunting cover.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The crimson thicket is the
+# densest and most claustrophobic variant of crimson terrain.
+id = "strata:crimson_thicket"
+
+# display-name: Human-readable name for player displays.
+display-name = "Crimson Thicket"
+
+# category: NETHER — nether environment with extremely dense
+# crimson particle effects and limited visibility.
+category = "NETHER"
+
+# zone: Part of the crimson zone — the most overgrown and
+# dangerous pocket within the crimson domain.
+zone = "crimson"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Warm — the extremely dense fungal growth traps
+# heat even more effectively than the standard forest.
+#   0.65 = warm pocket of stagnant, trapped air.
+temperature = 0.65
+
+# humidity: Maximum organic density — the thicket represents
+# peak fungal growth in the crimson domain.
+#   1.0 = saturated fungal density, maximum organic content.
+humidity = 1.0
+
+# continentalness: Neutral — thickets form within standard
+# crimson forest regions without positional preference.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Very low — the terrain is extremely cluttered,
+# with almost no open space between fungal structures.
+#   0.1 = minimal open space, maze-like density.
+erosion = 0.1
+
+# weirdness: Moderately unusual — the density is extreme
+# even by crimson forest standards.
+#   0.4 = notably unusual fungal concentration.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the complexity is
+# entirely above ground in the fungal density.
+#   40 = standard nether floor level.
+base-height = 40
+
+# height-variation: Low ground variation — the floor itself
+# is relatively flat, obscured by the overwhelming canopy.
+#   3.0 = gentle undulation hidden beneath dense fungi.
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Crimson nylium — the living surface that feeds
+# the extreme fungal density above.
+top-block = "minecraft:crimson_nylium"
+
+# filler-block: Netherrack substrate beneath the nylium.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Extremely dense huge crimson fungi — packed so tightly
+# their canopies merge into a continuous ceiling.
+#   12.0 = maximum density, creating the wall-to-wall effect.
+trees = { types = ["crimson_fungus_huge"], density = 12.0 }
+
+# grass-density: Dense crimson roots carpet every exposed surface.
+#   0.9 = near-complete ground cover.
+grass-density = 0.9
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Thicket-specific features emphasizing density.
+#   weeping_vines — extremely dense vine curtains blocking sight.
+#   crimson_fungus_small — dense floor-level fungi.
+#   nether_wart_block_patch — wart blocks filling gaps.
+#   shroomlight_cluster — dim lighting in the canopy.
+extra-features = [
+    { feature = "weeping_vines", density = 15.0 },
+    { feature = "crimson_fungus_small", density = 10.0 },
+    { feature = "nether_wart_block_patch", density = 6.0 },
+    { feature = "shroomlight_cluster", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Hoglins are the apex predator here — their ambush attacks
+# are devastating in the confined space.
+[biome.spawning]
+# hoglin: Extremely dangerous in the thicket — they charge from
+# behind fungal walls with no warning. Higher spawn weight and
+# group sizes create frequent, deadly encounters.
+hoglin = { weight = 20, min-group = 3, max-group = 6 }
+
+# piglin: Hunting parties use the thicket as cover, ambushing
+# players who aren't wearing gold armor.
+piglin = { weight = 10, min-group = 2, max-group = 4 }
+
+# zombified_piglin: Occasional presence among the dense growth.
+zombified_piglin = { weight = 4, min-group = 1, max-group = 2 }

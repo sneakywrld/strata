@@ -1,0 +1,39 @@
+# ============================================================
+#  Nether Cave Carvers — Netherveil
+# ============================================================
+# The nether is already a massive cave system, but additional
+# carvers create tunnels and pockets within the netherrack.
+# ============================================================
+
+# -------------------------------------------------------
+# Nether Tunnels — Additional passages through netherrack
+# -------------------------------------------------------
+[carvers.nether_tunnel]
+enabled = true
+noise = "strata:nether_terrain"
+threshold = -0.55
+y-range = [5, 120]
+width-range = [3, 8]
+vertical-stretch = 0.6
+
+# -------------------------------------------------------
+# Lava Pockets — Hidden lava lakes in walls
+# -------------------------------------------------------
+[carvers.lava_pocket]
+enabled = true
+noise = "strata:nether_lava_pocket"
+threshold = -0.7
+y-range = [10, 60]
+# fill-block: These carved pockets fill with lava.
+fill-block = "minecraft:lava"
+
+# -------------------------------------------------------
+# Nether Rift — Deep vertical crevices
+# -------------------------------------------------------
+[carvers.nether_rift]
+enabled = true
+noise = "strata:nether_detail"
+threshold = -0.75
+y-range = [5, 100]
+width-range = [1, 3]
+vertical-stretch = 3.0

@@ -1,0 +1,135 @@
+# ============================================================
+#  Biome: Temperate Ocean — Elysium Ocean
+# ============================================================
+# The standard mid-latitude ocean — cool blue water stretching
+# to the horizon. Below the surface, tall kelp forests rise
+# from the rocky floor, their fronds swaying rhythmically in
+# the current and filtering the sunlight into dappled green
+# patterns. Cod and salmon patrol the kelp columns while squid
+# hover in the gaps between. This is the most common ocean
+# biome in the Elysium profile, forming the vast majority of
+# open water between continental shelves.
+#
+# Gameplay notes:
+#   - Kelp is harvestable for dried kelp (smelting fuel) and
+#     dried kelp blocks (compact fuel storage).
+#   - Cod and salmon are reliable food sources for fishing.
+#   - Squid drop ink sacs for dye and glow ink.
+#   - Depth of ~30 blocks requires Respiration enchantment
+#     or water breathing potions for sustained exploration.
+#   - Ocean monuments may generate in or adjacent to this biome.
+#   - Transitions into elysium_deep_ocean beyond the shelf edge.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+# id: Unique namespaced identifier. The standard temperate ocean
+# is the baseline against which other ocean variants are defined.
+id = "strata:elysium_temperate_ocean"
+
+# display-name: Shown in F3 debug screen and minimap overlays.
+display-name = "Temperate Ocean"
+
+# category: OCEAN enables aquatic mob rules, underwater ambient
+# sounds, and ocean structure generation.
+category = "OCEAN"
+
+# zone: Ocean biomes span all zones — they generate based on
+# climate noise rather than distance from spawn.
+zone = "ocean"
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+[biome.climate]
+# temperature: 0.4 = cool temperate water. Below the coral
+# threshold (0.5), so no coral generates naturally here.
+# Kelp thrives in these cooler conditions instead.
+temperature = 0.4
+
+# humidity: 0.5 = standard oceanic moisture.
+humidity = 0.5
+
+# continentalness: -0.6 = offshore oceanic. Standard distance
+# from continental shelves for mid-depth ocean.
+continentalness = -0.6
+
+# erosion: 0.3 = low-moderate erosion. The ocean floor has been
+# smoothed by deep currents over geological time but retains
+# gentle ridges and depressions.
+erosion = 0.3
+
+# weirdness: 0.0 = the baseline temperate ocean. No unusual
+# terrain features — the default open water biome.
+weirdness = 0.0
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+[biome.terrain]
+# base-height: -30 blocks below sea level. Deep enough to be
+# imposing without being oppressively dark. Sunlight reaches
+# the floor on clear days but fades toward evening.
+base-height = -30
+
+# height-variation: 5 = moderate rolling terrain. Rocky ridges
+# and sandy valleys create varied topography for kelp anchoring.
+height-variation = 5
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+[biome.surface]
+# top-block: Gravel floor characteristic of temperate ocean beds.
+# Coarser sediment than the sand of warmer biomes, deposited by
+# stronger mid-latitude currents.
+top-block = "minecraft:gravel"
+
+# filler-block: Gravel extending below the surface. Temperate
+# ocean floors accumulate gravel and cobble from eroded coastlines.
+filler-block = "minecraft:gravel"
+
+# filler-depth: 3 blocks of gravel before stone. Moderate
+# sediment depth over the rocky ocean floor.
+filler-depth = 3
+
+# underwater-block: Gravel seabed for consistency with the
+# temperate ocean aesthetic.
+underwater-block = "minecraft:gravel"
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+[biome.features]
+# trees: No trees — fully submerged biome.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.3 = sparse seagrass between kelp stands.
+# Kelp dominates the vegetation here rather than seagrass.
+grass-density = 0.3
+
+# extra-features: Dense kelp forests are the defining feature.
+extra-features = [
+    # Kelp forests — tall columns reaching toward the surface.
+    { feature = "kelp", density = 8.0 },
+    # Seagrass in clearings between kelp stands.
+    { feature = "tall_seagrass", density = 2.0 },
+]
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Classic cold-water fish dominate. Cod and salmon are abundant,
+# squid hover in the kelp corridors, and dolphins occasionally
+# pass through. Drowned spawn at night in deeper areas.
+[biome.spawning]
+# Cod in large schools — the dominant fish species.
+cod = { weight = 15, min-group = 3, max-group = 7 }
+# Salmon in smaller schools among the kelp.
+salmon = { weight = 10, min-group = 2, max-group = 5 }
+# Squid drifting through the kelp forest corridors.
+squid = { weight = 8, min-group = 1, max-group = 4 }
+# Drowned at night — the primary aquatic hostile threat.
+drowned = { weight = 10, min-group = 1, max-group = 2 }

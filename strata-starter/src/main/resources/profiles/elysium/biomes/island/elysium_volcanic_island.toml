@@ -1,0 +1,166 @@
+# ============================================================
+#  Biome: Volcanic Island — Elysium Islands
+# ============================================================
+# A smoldering basalt cone rising sharply from the sea, its
+# summit crowned by a ragged crater that vents wisps of smoke
+# and the occasional burst of embers. The slopes are armored
+# in dark basalt and blackstone, cracked by lava veins that
+# glow orange at night. Near the waterline, obsidian shelves
+# form where lava once met the ocean. Magma blocks bubble in
+# shallow tidepools, and the sulfurous air discourages all but
+# the hardiest life. A dangerous but mineral-rich destination.
+#
+# Gameplay notes:
+#   - Obsidian and magma blocks available without a diamond
+#     pick — lava-water interactions on the shoreline.
+#   - Basalt and blackstone for Nether-themed building material
+#     obtainable in the Overworld.
+#   - Extreme fall damage risk on the steep, unforgiving slopes.
+#   - Lava pools near the crater provide smelting fuel.
+#   - No passive mobs — hostile mobs spawn at elevated rates
+#     in the crater's shadow and cave networks.
+#   - Excellent landmark — the smoking peak is visible from
+#     far across the ocean.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Island biomes use the
+# "elysium_" prefix as they are cross-zone ocean features.
+id = "strata:elysium_volcanic_island"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Volcanic Island"
+
+# category: BADLANDS — the barren, mineral-rich landscape of
+# the volcano resembles badlands terrain. BADLANDS enables the
+# warm amber sky tint, terracotta-family block generation, and
+# hostile-leaning mob spawning rules.
+category = "BADLANDS"
+
+# zone: "island" — island biomes generate in the ocean
+# independent of mainland zone placement.
+zone = "island"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The extreme heat and low humidity reflect
+# the volcano's baked, arid conditions. High weirdness ensures
+# this dramatic feature only appears in unusual noise pockets.
+[biome.climate]
+# temperature: 0.9 = scorching. Residual geothermal heat from
+# the magma beneath radiates through the basalt, keeping the
+# surface dangerously hot even at night.
+temperature = 0.9
+
+# humidity: -0.2 = dry. The volcanic heat drives moisture away,
+# and the steep slopes shed rain instantly. No vegetation can
+# establish on the parched basalt surface.
+humidity = -0.2
+
+# continentalness: -0.3 = offshore island. Sits in the ocean
+# away from the mainland, but not in the deepest waters.
+continentalness = -0.3
+
+# erosion: -0.3 = resistant to erosion. The hard basalt and
+# blackstone resist weathering, maintaining the steep volcanic
+# cone shape with dramatic cliff faces and sharp ridgelines.
+erosion = -0.3
+
+# weirdness: 0.6 = unusual terrain feature. Volcanic islands
+# are rare, dramatic landmarks. The elevated weirdness ensures
+# they generate infrequently, making each discovery memorable.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 20 = significantly above sea level. The
+# volcanic cone rises steeply from the ocean surface, creating
+# a dramatic peak visible from great distances. The summit may
+# reach Y=108+ with height variation.
+# Range: -64.0 to 256.0
+base-height = 20
+
+# height-variation: 25 = extreme variation. The volcano's
+# profile is wildly uneven — the crater rim peaks sharply
+# while lava channels carve deep gashes in the slopes. This
+# creates the rugged, jagged silhouette of an active volcano.
+# Range: 0.0 to 30.0
+height-variation = 25
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Dark volcanic rock — basalt and blackstone dominate the
+# surface. No soil or vegetation survives the heat and
+# toxic fumes.
+[biome.surface]
+# top-block: Basalt — dark columnar volcanic rock. Gives the
+# island its menacing dark appearance against the blue ocean.
+top-block = "minecraft:basalt"
+
+# filler-block: Blackstone beneath the basalt surface. The
+# volcanic core is solid igneous rock all the way down.
+filler-block = "minecraft:blackstone"
+
+# filler-depth: 5 = thick igneous layer. The entire island is
+# solid volcanic rock with no soil or sedimentary deposits.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Obsidian forms where lava met the ocean
+# at the island's base. Dark glass-like shelves ring the
+# waterline.
+underwater-block = "minecraft:obsidian"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Barren volcanic landscape — no trees, no grass, no flowers.
+# Only magma, obsidian, and lava features dot the surface.
+[biome.features]
+# trees: No trees. Nothing grows on the scorched basalt slopes.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Zero. The volcanic surface is completely
+# barren — no soil exists for grass to root in.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: Zero. No flowering plants survive the heat
+# and toxic volcanic gases.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Volcanic features — magma blocks, lava
+# pools, and obsidian formations define the island's character.
+extra-features = [
+    # Magma blocks in cracks and tidepools — damage hazard.
+    { feature = "magma_block", density = 5.0 },
+    # Small lava pools near the crater — smelting resource.
+    { feature = "lava_pool", density = 2.0 },
+    # Obsidian shelves along the shoreline.
+    { feature = "obsidian_patch", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The volcanic island is inhospitable. No passive mobs survive
+# here. Magma cubes bubble up from the lava vents, and strays
+# (reskinned as volcanic phantoms) circle the crater at night.
+[biome.spawning]
+# Magma cubes: Spawn near lava sources and magma blocks.
+# They bounce across the basalt slopes, dealing contact damage.
+magma_cube = { weight = 15, min-group = 1, max-group = 3 }
+
+# Skeleton: Hostile archers that patrol the dark slopes.
+# The volcanic shadow provides enough darkness for daytime spawns.
+skeleton = { weight = 10, min-group = 1, max-group = 2 }

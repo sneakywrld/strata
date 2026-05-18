@@ -1,0 +1,165 @@
+# ============================================================
+#  Biome: Cherry Island — Elysium Islands
+# ============================================================
+# A serene, almost ethereal island blanketed in cherry blossom
+# trees. Pale pink petals drift constantly from the canopy,
+# carpeting the grass below in a soft floral layer. The trees
+# are graceful and open, their branches arching wide to create
+# dappled shade. Pink petal blocks cover the ground in dense
+# patches, and the entire island radiates a peaceful, almost
+# magical atmosphere. Bees hum between the blossoms, and
+# rabbits hop through the pink-tinted undergrowth. Time seems
+# to slow here — a perfect place for contemplation and
+# building a beautiful home.
+#
+# Gameplay notes:
+#   - Cherry wood is a unique pink-toned building material.
+#   - Pink petals are a decorative ground cover block.
+#   - Bees provide honey and honeycomb for crafting.
+#   - Extremely photogenic — ideal for screenshot builds.
+#   - Peaceful atmosphere with no elevated hostile spawns.
+#   - Cherry saplings can be collected for planting elsewhere.
+#   - Small island footprint makes it a cozy, contained base.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Island biomes use the
+# "elysium_" prefix as cross-zone ocean features.
+id = "strata:elysium_cherry_island"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Cherry Island"
+
+# category: FOREST — cherry groves are a forest subtype. The
+# FOREST category enables tree-density mechanics, forest
+# ambient sounds, and the leaf-litter particle effects that
+# complement the falling petal aesthetic.
+category = "FOREST"
+
+# zone: "island" — island biomes generate offshore in ocean
+# areas, independent of mainland zone boundaries.
+zone = "island"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Mild, temperate conditions — perfect spring weather that
+# keeps the cherry trees in perpetual bloom.
+[biome.climate]
+# temperature: 0.5 = temperate. The mild warmth sustains the
+# perpetual blooming season. Not too hot to wilt the petals,
+# not too cold to prevent flowering.
+temperature = 0.5
+
+# humidity: 0.5 = moderate moisture. Balanced humidity keeps
+# the blossoms fresh and the grass green without creating
+# muddy or swampy conditions.
+humidity = 0.5
+
+# continentalness: -0.3 = offshore island. Positioned in the
+# ocean away from the mainland, giving the cherry grove its
+# isolated, sanctuary-like quality.
+continentalness = -0.3
+
+# erosion: 0.4 = moderately eroded. Gentle, rounded terrain
+# with soft slopes — no harsh cliffs or jagged features to
+# break the peaceful aesthetic.
+erosion = 0.4
+
+# weirdness: 0.6 = somewhat unusual. Cherry islands are a
+# special discovery — common enough to find with exploration
+# but rare enough to feel rewarding.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = just above sea level. A low, gentle island
+# that rises softly from the water. The modest elevation
+# creates an intimate, sheltered feel beneath the cherry canopy.
+# Range: -64.0 to 256.0
+base-height = 3
+
+# height-variation: 5 = gentle rolling terrain. Small hillocks
+# and shallow dips add visual interest without disrupting the
+# serene, garden-like atmosphere.
+# Range: 0.0 to 30.0
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Lush grass carpeted in pink petals — a manicured garden
+# feel on a natural island.
+[biome.surface]
+# top-block: Grass block — the cherry grove's lush green base
+# provides contrast against the pink petal carpet above.
+top-block = "minecraft:grass_block"
+
+# filler-block: Rich dirt beneath the grass. The fertile soil
+# sustains the cherry trees' extensive root systems.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard topsoil depth. Normal soil
+# conditions with good drainage — cherries prefer well-drained
+# soil over waterlogged ground.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Dirt beneath any small ponds — natural
+# and clean, matching the island's pristine aesthetic.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Cherry trees dominate with pink petal ground cover between
+# them. The biome is a curated natural garden.
+[biome.features]
+# trees: Cherry trees are the sole tree type. Their wide,
+# arching canopy and pink leaves define the biome's identity.
+#   types: "cherry" = cherry blossom trees with pink leaf blocks.
+#   density: 5.0 = moderately dense. Enough trees to form a
+#            canopy but spaced to let light filter through for
+#            the garden-like dappled shade effect.
+#            Range: 0.0 to 30.0+
+trees = { types = ["cherry"], density = 5.0 }
+
+# grass-density: Lush ground cover beneath the cherry canopy.
+# Short grass fills the spaces between petal patches.
+# Range: 0.0 to 100.0
+grass-density = 15.0
+
+# flower-density: Abundant flowers complement the cherry
+# blossoms. Alliums and pink tulips match the color palette.
+# Range: 0.0 to 15.0
+flower-density = 5.0
+
+# extra-features: Pink petals and bee nests are the signature
+# features that complete the cherry grove aesthetic.
+extra-features = [
+    # Pink petal ground cover — the defining surface feature.
+    { feature = "pink_petals", density = 8.0 },
+    # Bee nests in the cherry trees — honey production.
+    { feature = "bee_nest", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Peaceful wildlife. Bees pollinate the blossoms, and rabbits
+# hop through the petal-covered grass. No elevated hostile
+# spawns — this is a tranquil sanctuary island.
+[biome.spawning]
+# Bee: The primary pollinator, buzzing between cherry blossoms.
+# Produces honey and honeycomb. Neutral but stings if provoked.
+bee = { weight = 10, min-group = 1, max-group = 3 }
+
+# Rabbit: Small, gentle animals that hop through the petals.
+# They blend into the soft landscape perfectly.
+rabbit = { weight = 8, min-group = 2, max-group = 4 }

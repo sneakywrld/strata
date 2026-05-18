@@ -1,0 +1,202 @@
+# ============================================================
+#  Structure Configuration — Elysium Overworld
+# ============================================================
+# Controls structure placement, sizing, and biome restrictions.
+#
+# IMPORTANT: Villages in Elysium are 2-3x larger than vanilla.
+# They have more buildings, functional farms, animal pens,
+# and roads connecting buildings.
+# ============================================================
+
+# -------------------------------------------------------
+# Villages — Enhanced (2-3x larger than vanilla)
+# -------------------------------------------------------
+[structures.village]
+# type: Structure generation method.
+# "jigsaw" = modular piece-based assembly (like vanilla).
+type = "jigsaw"
+
+# spacing: Grid spacing for structure starts (in chunks).
+# Lower = more frequent. Vanilla is 34 for villages.
+spacing = 28
+
+# separation: Minimum distance between structures (in chunks).
+# Must be less than spacing.
+separation = 8
+
+# salt: Random salt for placement grid. Each structure needs a unique salt.
+salt = 10387312
+
+# max-pieces: Maximum number of jigsaw pieces per village.
+# Vanilla is ~12. We use 25-35 for much larger villages.
+max-pieces = 30
+
+# max-depth: Jigsaw assembly depth. Higher = more complex layouts.
+# Vanilla is 6. We use 10 for sprawling village layouts.
+max-depth = 10
+
+# terrain-adaptation: How the structure interacts with terrain.
+# "beard_thin" = fills underneath with terrain (vanilla default).
+# "beard_box" = box fill. "none" = no adaptation.
+terrain-adaptation = "beard_thin"
+
+# biome-filter: Biomes where this structure can generate.
+biome-filter = [
+    "sanctuary_meadow", "sanctuary_farmland",
+    "verdant_plains", "verdant_rolling_hills",
+    "verdant_sunflower_fields", "scorched_badlands_plateau",
+]
+
+# -------------------------------------------------------
+# Desert Temples
+# -------------------------------------------------------
+[structures.desert_temple]
+type = "schematic"
+spacing = 32
+separation = 8
+salt = 14357617
+biome-filter = ["scorched"]
+
+# -------------------------------------------------------
+# Jungle Temples
+# -------------------------------------------------------
+[structures.jungle_temple]
+type = "schematic"
+spacing = 32
+separation = 8
+salt = 14357619
+biome-filter = ["verdant_bamboo_thicket"]
+
+# -------------------------------------------------------
+# Witch Huts
+# -------------------------------------------------------
+[structures.witch_hut]
+type = "schematic"
+spacing = 32
+separation = 8
+salt = 14357620
+biome-filter = ["shadowmire", "whispering_witch_wood"]
+
+# -------------------------------------------------------
+# Ocean Monuments
+# -------------------------------------------------------
+[structures.ocean_monument]
+type = "jigsaw"
+spacing = 32
+separation = 5
+salt = 10387313
+biome-filter = ["elysium_deep_ocean", "elysium_deep_frozen_ocean"]
+
+# -------------------------------------------------------
+# Woodland Mansions
+# -------------------------------------------------------
+[structures.woodland_mansion]
+type = "jigsaw"
+spacing = 80
+separation = 20
+salt = 10387319
+max-pieces = 60
+max-depth = 12
+biome-filter = ["whispering_dark_forest", "whispering_ancient_woods"]
+
+# -------------------------------------------------------
+# Pillager Outposts
+# -------------------------------------------------------
+[structures.pillager_outpost]
+type = "jigsaw"
+spacing = 32
+separation = 8
+salt = 165745296
+max-pieces = 8
+biome-filter = [
+    "verdant_plains", "scorched_badlands_plateau",
+    "frostfang_alpine_meadow",
+]
+
+# -------------------------------------------------------
+# Strongholds
+# -------------------------------------------------------
+[structures.stronghold]
+type = "jigsaw"
+# count: Total number of strongholds in the world.
+count = 128
+# distance: Distance from spawn to first ring (in chunks).
+distance = 32
+# spread: Ring spread factor.
+spread = 3
+
+# -------------------------------------------------------
+# Mineshafts
+# -------------------------------------------------------
+[structures.mineshaft]
+type = "procedural"
+# chance: Per-chunk probability.
+chance = 0.004
+y-range = [-40, 50]
+
+# -------------------------------------------------------
+# Dungeons (Mob Spawners)
+# -------------------------------------------------------
+[structures.dungeon]
+type = "procedural"
+# attempts: Placement attempts per chunk.
+attempts = 8
+y-range = [-56, 56]
+
+# -------------------------------------------------------
+# Ruined Portals
+# -------------------------------------------------------
+[structures.ruined_portal]
+type = "schematic"
+spacing = 25
+separation = 10
+salt = 34222645
+# Appear everywhere, but more common in embercrag.
+biome-filter = []
+
+# -------------------------------------------------------
+# Shipwrecks
+# -------------------------------------------------------
+[structures.shipwreck]
+type = "schematic"
+spacing = 24
+separation = 4
+salt = 165745295
+biome-filter = [
+    "stormbreak", "elysium_warm_ocean", "elysium_lukewarm_ocean",
+    "elysium_temperate_ocean", "elysium_cold_ocean", "elysium_deep_ocean",
+]
+
+# -------------------------------------------------------
+# Buried Treasure
+# -------------------------------------------------------
+[structures.buried_treasure]
+type = "schematic"
+spacing = 1
+separation = 0
+salt = 10387320
+# chance: Per-chunk probability. Only in beach biomes.
+chance = 0.01
+biome-filter = ["stormbreak_sandy_beach", "stormbreak_rocky_beach"]
+
+# -------------------------------------------------------
+# Igloos
+# -------------------------------------------------------
+[structures.igloo]
+type = "schematic"
+spacing = 32
+separation = 8
+salt = 14357618
+biome-filter = ["frostfang"]
+
+# -------------------------------------------------------
+# Ancient Cities (Deep Dark)
+# -------------------------------------------------------
+[structures.ancient_city]
+type = "jigsaw"
+spacing = 24
+separation = 8
+salt = 20083232
+max-pieces = 40
+max-depth = 8
+biome-filter = ["abyssal_deep_dark", "abyssal_sculk_cavern"]

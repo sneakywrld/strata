@@ -1,0 +1,156 @@
+# ============================================================
+#  Biome: Abyssal Ore Vein — Abyssal Depths
+# ============================================================
+# A mineral-rich zone where tectonic forces have concentrated
+# enormous ore deposits into mega-veins threading through the
+# stone. Iron and copper mega-veins — some spanning dozens of
+# blocks — are embedded in a host matrix of tuff and granite,
+# their oxidized surfaces gleaming in torchlight. Raw ore
+# blocks cluster in dense pockets, and lucky miners may
+# stumble upon diamond seams exposed where the mega-veins
+# intersect fault lines. The cave walls here are a mosaic of
+# different stone types, telling a geological story of
+# immense pressure and time.
+#
+# Gameplay notes:
+#   - Primary mining destination in the Abyssal zone.
+#   - Iron and copper mega-veins yield massive quantities.
+#   - Tuff and granite host rock indicate vein proximity.
+#   - Fortune III is exceptionally valuable here.
+#   - Higher-than-normal diamond and lapis generation.
+#   - Zombie and skeleton spawns protect the riches.
+#   - Pairs with abyssal_lava_chamber for deep mining runs.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The ore vein biome is
+# the go-to mining destination for resource gathering.
+id = "strata:abyssal_ore_vein"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Ore Vein"
+
+# category: CAVE — underground biome focused on mineral
+# deposits rather than ecological features.
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Standard underground conditions — the ore vein biome is
+# defined by its mineral content, not its climate.
+[biome.climate]
+# temperature: Cool underground ambient. Nothing special
+# about the thermal conditions in ore zones.
+# 0.3 = standard cave temperature.
+temperature = 0.3
+
+# humidity: Low — the dense rock matrix does not retain
+# moisture well. Ore veins are relatively dry caves.
+# 0.3 = below-average cave humidity.
+humidity = 0.3
+
+# continentalness: Neutral — ore mega-veins form deep
+# underground regardless of surface geography.
+# 0.5 = no continental bias.
+continentalness = 0.5
+
+# erosion: Balanced — the cave system follows natural
+# fracture lines in the ore-bearing rock.
+# 0.5 = standard cave erosion profile.
+erosion = 0.5
+
+# weirdness: Moderately elevated — mega-veins are a special
+# geological feature, rarer than ordinary cave biomes.
+# 0.4 = uncommon but sought-after biome type.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Mid-depth in the Abyssal zone — ore veins
+# form in the geological sweet spot between deepslate and
+# standard stone layers.
+# -35 = roughly 35 blocks below sea level.
+base-height = -35
+
+# height-variation: Low — the cave follows the vein's path
+# through relatively consistent rock layers.
+# 10 = gentle undulation along the vein's course.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The host rock matrix surrounding the ore mega-veins.
+[biome.surface]
+# top-block: Tuff — the volcanic host rock that often
+# accompanies iron mega-veins in vanilla generation.
+top-block = "minecraft:tuff"
+
+# filler-block: Granite — a secondary host rock type that
+# indicates copper vein proximity.
+filler-block = "minecraft:granite"
+
+# filler-depth: Thick host rock layer surrounding the veins.
+# 3 = substantial indicator rock before hitting standard stone.
+filler-depth = 3
+
+# underwater-block: Gravel — water in ore caves carries
+# eroded stone fragments.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Ore deposits and mineral features. Dense resource placement.
+[biome.features]
+# trees: No vegetation in a mining zone.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No surface vegetation.
+grass-density = 0.0
+
+# flower-density: No flowers underground.
+flower-density = 0.0
+
+# extra-features: Ore deposits and geological features.
+#   iron_mega_vein — massive iron ore + raw iron block clusters.
+#   copper_mega_vein — large copper ore veins in granite matrix.
+#   diamond_pocket — small but valuable diamond ore clusters.
+#   lapis_deposit — lapis lazuli concentrated in veins.
+#   tuff_cluster — host rock indicator patches.
+extra-features = [
+    { feature = "iron_mega_vein", density = 4.0 },
+    { feature = "copper_mega_vein", density = 3.0 },
+    { feature = "diamond_pocket", density = 1.5 },
+    { feature = "lapis_deposit", density = 2.0 },
+    { feature = "tuff_cluster", density = 5.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Standard hostile cave mobs guard the mineral wealth.
+[biome.spawning]
+# zombie: Common threat in the dark tunnels. They shamble
+# through the narrow ore passages.
+zombie = { weight = 12, min-group = 1, max-group = 3 }
+
+# skeleton: Archers posted in wider chambers where they
+# have line of sight down long tunnels.
+skeleton = { weight = 10, min-group = 1, max-group = 2 }
+
+# creeper: Devastating in the confined ore tunnels —
+# explosions destroy precious ore blocks.
+creeper = { weight = 8, min-group = 1, max-group = 1 }
+
+# bat: Ambient cave life.
+bat = { weight = 8, min-group = 1, max-group = 3 }

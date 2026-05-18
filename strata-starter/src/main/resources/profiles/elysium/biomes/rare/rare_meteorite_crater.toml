@@ -1,0 +1,174 @@
+# ============================================================
+#  Biome: Meteorite Crater — Rare Biomes
+# ============================================================
+# A massive impact crater gouged into the earth by a meteorite
+# strike. The crater rim is a raised ring of deepslate and
+# shattered stone, pushed upward by the impact force. The
+# interior slopes steeply downward to a flat, scorched floor
+# littered with metallic debris — iron blocks and gold blocks
+# embedded in the fused stone at the impact center. The heat
+# of impact vitrified the surrounding stone into smooth
+# deepslate, and nothing grows within the crater's blasted
+# perimeter. At the very center, a small mound of mixed ores
+# marks the remains of the meteorite itself — the richest
+# single mining target in Elysium.
+#
+# Gameplay notes:
+#   - Iron and gold blocks at the crater center — enormous
+#     mineral windfall for whoever finds it first.
+#   - Deepslate rim provides deepslate building material at
+#     the surface without deep mining.
+#   - Crater shape provides natural defensive perimeter —
+#     enemies must climb the rim to reach the interior.
+#   - Negative base-height creates the depression.
+#   - No vegetation — the impact sterilized the ground.
+#   - Very rare: weirdness 0.97 restricts generation.
+#   - Excellent faction base location for multiplayer.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Rare biomes use the
+# "rare_" prefix to signal exceptional scarcity.
+id = "strata:rare_meteorite_crater"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Meteorite Crater"
+
+# category: PLAINS — the flat, open crater floor is
+# functionally a barren plain. PLAINS provides neutral
+# mechanics without imposing biome-specific assumptions.
+category = "PLAINS"
+
+# zone: "rare" — rare biomes generate wherever their extreme
+# weirdness threshold is met, regardless of zone.
+zone = "rare"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Temperate and dry. The impact scorched the ground and the
+# exposed deepslate absorbs and re-radiates heat, creating
+# warmer conditions than the surrounding terrain.
+[biome.climate]
+# temperature: 0.5 = temperate. The dark deepslate absorbs
+# solar heat, warming the crater slightly above ambient. At
+# night, the stone radiates stored heat back.
+temperature = 0.5
+
+# humidity: 0.2 = dry. The impact fused the soil, making it
+# impermeable. Rainwater pools briefly but drains quickly
+# through impact fractures. No moisture is retained.
+humidity = 0.2
+
+# continentalness: 0.5 = moderately inland. Meteorites can
+# strike anywhere, but the crater is best preserved in
+# interior terrain where ocean erosion cannot erase it.
+continentalness = 0.5
+
+# erosion: 0.5 = moderate. The crater has weathered over time
+# — the original sharp rim has softened, and sediment has
+# partially filled the bowl. But the deepslate preserves the
+# overall shape.
+erosion = 0.5
+
+# weirdness: 0.97 = extremely rare. Meteorite craters are
+# extraordinary features. This high weirdness ensures only
+# one or two exist in a typical Elysium world.
+weirdness = 0.97
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -8 = well below surrounding terrain. The crater
+# floor sits in a deep depression, with the rim rising above
+# the surrounding landscape. The negative height creates the
+# bowl shape that defines the impact crater.
+# Range: -64.0 to 256.0
+base-height = -8
+
+# height-variation: 5 = moderate. The crater floor is
+# relatively flat at the center, but the rim rises sharply at
+# the edges. The variation creates the bowl-to-rim transition.
+# Range: 0.0 to 30.0
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Deepslate — the impact heat and pressure transformed the
+# surface stone into deepslate, which normally only forms
+# deep underground.
+[biome.surface]
+# top-block: Deepslate — impact-fused stone. The dark, dense
+# material gives the crater an ominous, alien appearance. It
+# contrasts sharply with the surrounding natural terrain.
+top-block = "minecraft:deepslate"
+
+# filler-block: Deepslate continues below the surface. The
+# impact transformed the stone to significant depth.
+filler-block = "minecraft:deepslate"
+
+# filler-depth: 5 = deep transformation zone. The meteorite's
+# heat penetrated several blocks below the surface, converting
+# ordinary stone to deepslate throughout.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Deepslate in any water pools that collect
+# in the crater floor — dark, mineral-stained water.
+underwater-block = "minecraft:deepslate"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Completely barren. The impact sterilized the ground, and
+# nothing has regrown. Metallic debris is the only feature.
+[biome.features]
+# trees: No trees. The fused deepslate surface cannot support
+# root growth, and the sterilized soil has no organic matter.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Zero. Nothing grows in the blast zone.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: Zero. The sterilized ground is barren.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Metallic debris from the meteorite and
+# impact-fractured stone define the crater's interior.
+extra-features = [
+    # Iron block deposits — meteoritic iron scattered across
+    # the crater floor. The primary mining reward.
+    { feature = "iron_ore_deposit", density = 4.0 },
+    # Gold block deposits — rarer but present in the meteorite
+    # remnants at the crater center.
+    { feature = "gold_ore_deposit", density = 2.0 },
+    # Exposed stone fractures radiating from the impact point.
+    { feature = "exposed_stone", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The crater is lifeless by day. At night, the dark deepslate
+# floor becomes a hostile mob spawning ground — the smooth,
+# flat surface has no hiding spots for players.
+[biome.spawning]
+# Zombie: Emerge from the fractured deepslate at night. The
+# flat, open crater provides no cover for either side.
+zombie = { weight = 12, min-group = 2, max-group = 4 }
+
+# Skeleton: Archers on the crater rim have elevation advantage
+# over players on the crater floor — dangerous geometry.
+skeleton = { weight = 10, min-group = 1, max-group = 3 }
+
+# Enderman: Drawn to the meteorite's otherworldly material.
+# They stand motionless among the debris, staring.
+enderman = { weight = 5, min-group = 1, max-group = 1 }

@@ -1,0 +1,145 @@
+# ============================================================
+#  Biome: Nether Wastes Obsidian Platform — Nether Wastes Region
+# ============================================================
+# Flat obsidian platforms jut from the netherrack terrain like
+# ancient landing pads, their perfectly smooth surfaces standing
+# in stark contrast to the rough wasteland around them. Scattered
+# fragments of nether portal frames suggest these platforms were
+# once part of a vast portal network — perhaps built by an
+# ancient civilization that traveled between dimensions. Piglin
+# patrol squads march across the platforms in organized groups,
+# guarding whatever secrets these structures still hold. The
+# obsidian is nearly indestructible, making these platforms
+# natural defensive positions and landmarks.
+#
+# Gameplay notes:
+#   - Obsidian harvesting with diamond pickaxe (slow but valuable).
+#   - Portal frame fragments hint at nether portal mechanics.
+#   - Piglin patrols are organized and aggressive if provoked.
+#   - Flat obsidian platforms make excellent base foundations.
+#   - Crying obsidian patches provide respawn anchor material.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The obsidian platform is a
+# lore-rich variant of the nether wastes with structured terrain.
+id = "strata:nether_wastes_obsidian_platform"
+
+# display-name: Human-readable name for player displays.
+display-name = "Obsidian Platform"
+
+# category: NETHER — standard nether environment with ancient
+# structured obsidian formations.
+category = "NETHER"
+
+# zone: Part of the wastes region — an anomalous structured
+# area within the nether wasteland.
+zone = "wastes"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Standard nether warmth — obsidian is thermally
+# stable and doesn't affect ambient temperature.
+#   0.5 = baseline nether temperature.
+temperature = 0.5
+
+# humidity: Neutral — the obsidian platforms neither retain
+# nor repel moisture.
+#   0.0 = standard nether humidity, no organic influence.
+humidity = 0.0
+
+# continentalness: Slightly inland — platforms tend to generate
+# in stable terrain away from lava ocean edges.
+#   0.3 = moderately inland placement.
+continentalness = 0.3
+
+# erosion: High — the platforms themselves are flat, and the
+# surrounding terrain has been leveled by whatever force
+# created these structures.
+#   0.8 = very flat, structured terrain.
+erosion = 0.8
+
+# weirdness: Elevated — the perfectly flat obsidian platforms
+# are clearly artificial and unusual for nether terrain.
+#   0.5 = notably unusual, suggesting artificial origin.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Slightly elevated — the platforms sit above
+# the surrounding wastes like raised stages.
+#   42 = raised above standard wastes floor level.
+base-height = 42
+
+# height-variation: Very low — the obsidian platforms are
+# defined by their flatness. Perfectly level surfaces.
+#   1.0 = near-flat terrain with minimal variation.
+height-variation = 1.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Netherrack is the base surface between the
+# obsidian platform features. The obsidian itself is placed
+# as a feature overlay.
+top-block = "minecraft:netherrack"
+
+# filler-block: Netherrack beneath — the platforms sit on
+# standard nether geology.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard fill depth.
+#   4 = typical nether substrate depth.
+filler-depth = 4
+
+# underwater-block: Obsidian — where lava meets these
+# formations, it has cooled into obsidian crusts.
+underwater-block = "minecraft:obsidian"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation on the barren obsidian platforms.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life grows on obsidian or netherrack.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Obsidian platform specific features.
+#   obsidian_platform — flat obsidian surface formations.
+#   portal_fragment — broken nether portal frame remnants.
+#   crying_obsidian_patch — rare crying obsidian deposits.
+extra-features = [
+    { feature = "obsidian_platform", density = 4.0 },
+    { feature = "portal_fragment", density = 1.5 },
+    { feature = "crying_obsidian_patch", density = 0.8 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Piglin patrols dominate this biome, guarding the platforms.
+[biome.spawning]
+# piglin: Organized patrol squads that march across the
+# obsidian platforms. Armed with crossbows and gold swords.
+# They are hostile to players not wearing gold armor.
+piglin = { weight = 20, min-group = 3, max-group = 6 }
+
+# zombified_piglin: Fallen members of the patrol, now undead.
+# Smaller groups than in open wastes.
+zombified_piglin = { weight = 12, min-group = 2, max-group = 4 }
+
+# ghast: Occasional ghast sightings above the platforms.
+ghast = { weight = 4, min-group = 1, max-group = 1 }

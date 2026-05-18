@@ -1,0 +1,136 @@
+# ============================================================
+#  Biome: Whispering Mossy Ravine — Whispering Woodlands
+# ============================================================
+# A deep, narrow ravine cutting through the woodland floor, its
+# walls draped in thick moss carpets and glow berry vines. Water
+# trickles down the stone sides, and big dripleaf platforms jut
+# from ledges. Cave entrances yawn in the ravine walls, hinting
+# at deeper underground networks. The ravine floor is perpetually
+# damp and dim — an excellent transition from surface to caves.
+#
+# Gameplay Notes:
+#   - Exposed ore veins visible in ravine walls.
+#   - Dripleaf platforms enable vertical traversal (or deadly falls).
+#   - Glow berries provide natural dim lighting and a food source.
+#   - Cave entrances connect to the Abyssal Depths zone below.
+#   - Moss carpet is slippery — watch your step near edges.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_mossy_ravine"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Mossy Ravine"
+
+# category: Broad classification. FOREST because it generates within
+# the woodland zone, even though the terrain is ravine-like.
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Moderate — sheltered ravine retains ambient warmth.
+temperature = 0.5
+# humidity: Very high — water seepage and poor air circulation keep
+# the ravine perpetually damp. Moss and glow berries depend on this.
+humidity = 0.75
+# continentalness: Mid-inland — ravines form within the forest interior.
+continentalness = 0.5
+# erosion: Low — the ravine itself is the result of heavy erosion.
+# Lower erosion values in Strata correspond to more carved terrain.
+erosion = 0.35
+# weirdness: Negative — ravines are a "dip" in the terrain weirdness
+# spectrum, representing natural geological depressions.
+weirdness = -0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Very low — the ravine floor sits well below the
+# surrounding forest. 52 is roughly 10 blocks below sea level,
+# creating a dramatic gash in the landscape.
+base-height = 52
+
+# height-variation: High — the ravine has steep walls, ledges,
+# and an uneven floor with pools and rubble.
+height-variation = 12
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Moss block — the entire ravine floor is carpeted in
+# thick green moss from constant moisture.
+top-block = "minecraft:moss_block"
+
+# filler-block: Clay — wet sediment deposited by water flow over time.
+filler-block = "minecraft:clay"
+
+# filler-depth: Standard 3-block depth.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Very sparse — the narrow ravine walls block most tree growth.
+# Only small oaks cling to ledges where enough light filters down.
+trees = { types = ["oak"], density = 2 }
+
+# grass-density: Low — moss dominates the ground cover instead.
+grass-density = 2
+
+# flower-density: Minimal — too dim for most flowers.
+flower-density = 0.5
+
+# mushrooms: Abundant in the damp, dark ravine environment.
+mushrooms = { brown = 6, red = 3 }
+
+# dripleaf: Big dripleaf platforms on ledges and near water.
+# These serve as natural stepping stones for traversal.
+dripleaf = { enabled = true, density = 5 }
+
+# glow-berries: Hang from the ravine ceiling and upper walls,
+# providing the primary light source in the ravine depths.
+glow-berries = { enabled = true, density = 8 }
+
+# moss-carpet: Additional moss carpet layers on ledges and flat areas.
+moss-carpet = { enabled = true, density = 6 }
+
+# cave-entrances: Openings in ravine walls leading underground.
+# These connect to the carver cave systems defined in carvers/caves.toml.
+cave-entrances = { enabled = true, density = 3 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Hostile density is elevated — the ravine floor is dark enough for
+# daytime hostile spawning on the lowest levels.
+hostile-density-multiplier = 1.3
+
+# Bats are common in the sheltered ravine — more ambient than surface.
+bat-weight-bonus = 15
+
+# Glow squid may appear in ravine pools that connect to underground water.
+glow-squid-weight-bonus = 10
+
+# Passive mobs are rare — the ravine is too steep for most animals.
+passive-density-multiplier = 0.3

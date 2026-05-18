@@ -1,0 +1,100 @@
+# ============================================================
+#  Biome: Frostfang Alpine Meadow — Frostfang Peaks
+# ============================================================
+# A rare pocket of life above the treeline. This gently
+# rolling mountain meadow sits in a sheltered depression
+# between higher ridges, protected from the worst winds.
+# Hardy alpine wildflowers — represented by an abundance
+# of poppies, azure bluets, and oxeye daisies — carpet
+# the thin soil in a riot of colour against the snow-
+# dusted backdrop. Mountain goats graze the slopes, and
+# the views across the Frostfang range from this vantage
+# point are among the most stunning in the world.
+#
+# Gameplay notes:
+#   - The most hospitable biome in the Frostfang zone and
+#     the only one where building a base is practical.
+#   - Wildflower density provides dye resources.
+#   - Goat spawns give access to goat horns and food.
+#   - Low height-variation makes this flat enough for
+#     farming and construction.
+#   - Serves as a rest stop between dangerous ascents.
+#   - Pairs with frostfang_spruce_slope below and
+#     frostfang_rocky_ridge / frostfang_snowy_peak above.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_alpine_meadow"       # Unique registry ID
+display-name = "Frostfang Alpine Meadow"    # Shown in F3 debug & maps
+category = "PLAINS"                          # Open grassland above treeline
+zone = "frostfang"                           # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The warmer temperature (for Frostfang)
+# and positive erosion reflect the sheltered, gentler
+# terrain. Lower continentalness than the peaks means
+# these meadows appear on the outer shoulders of the
+# range rather than at the highest inland points.
+[biome.climate]
+temperature = -0.2          # Cool but not bitter — sheltered from wind
+humidity = 0.3              # Dry alpine air with some ground moisture
+continentalness = 0.7       # Inland mountain but not the deepest peaks
+erosion = 0.2               # Moderate erosion — gently rounded terrain
+weirdness = 0.0             # Neutral — common meadow formation
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 25 places the meadow well above sea level
+# but below the treeline. The very low height-variation of
+# 5 creates the gentle, rolling character that makes this
+# biome suitable for building and farming — a stark contrast
+# to the jagged terrain surrounding it.
+[biome.terrain]
+base-height = 25            # Above valley floor, below treeline
+height-variation = 5        # +/-5 blocks — gentle rolling hills
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# A thin layer of grass covers the alpine soil. Beneath
+# the topsoil, coarse dirt represents the rocky, nutrient-
+# poor substrate typical of high-altitude meadows. The
+# filler depth is shallow — bedrock is never far away in
+# the mountains.
+[biome.surface]
+top-block = "minecraft:grass_block"      # Living grass — rare in Frostfang
+filler-block = "minecraft:coarse_dirt"   # Rocky alpine substrate
+filler-depth = 3                         # Thin soil over mountain stone
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# The meadow is defined by its wildflowers and grasses.
+# No trees grow here — this is above the treeline — but
+# the grass density is the highest in the zone. Scattered
+# sweet berry bushes provide an additional food source.
+[biome.features]
+trees = { types = [], density = 0.0 }    # Above treeline — no trees
+grass-density = 0.8                      # Lush meadow grass and wildflowers
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Mountain goats are the signature mob of the alpine
+# meadow. Rabbits browse among the wildflowers. This
+# is one of the few Frostfang biomes with meaningful
+# passive mob spawns, making it valuable for food and
+# resources on extended mountain expeditions.
+# Hostile mobs follow standard night/darkness rules.
+[biome.spawning]
+# Goats spawn in small herds — the meadow's signature.
+# Rabbits are common among the wildflowers.
+# Standard hostile mobs at night, but the open terrain
+# gives players good sightlines for early detection.

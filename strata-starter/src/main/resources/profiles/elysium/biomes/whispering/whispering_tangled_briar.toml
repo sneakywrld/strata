@@ -1,0 +1,131 @@
+# ============================================================
+#  Biome: Whispering Tangled Briar — Whispering Woodlands
+# ============================================================
+# A vicious thicket of sweet berry bushes and thorny undergrowth
+# that tears at armor and slows movement to a crawl. The briar
+# patch is nearly impenetrable — every step deals thorn damage
+# and the dense bushes block sightlines. Fox dens hide within
+# the thicket, and the foxes feast on the abundant berries. This
+# biome is a natural barrier zone within the Whispering Woodlands.
+#
+# Gameplay Notes:
+#   - Sweet berry bushes deal damage and slow movement (vanilla behavior).
+#   - Foxes are abundant and can be tamed with sweet berries.
+#   - Sweet berries are a reliable food source (harvest while walking).
+#   - Bringing shears speeds clearing paths through the briars.
+#   - Fire spreads rapidly here — avoid flint and steel.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_tangled_briar"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Tangled Briar"
+
+# category: FOREST — a thorny forest undergrowth variant.
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Moderate — standard forest temperatures.
+temperature = 0.5
+# humidity: Moderate — slightly drier than other whispering biomes.
+# Berry bushes prefer well-drained soil over waterlogged conditions.
+humidity = 0.6
+# continentalness: Mid-inland — forms within the forest interior.
+continentalness = 0.5
+# erosion: Above neutral — gently rolling terrain. The briar patches
+# favor slopes and clearings where sunlight reaches the ground.
+erosion = 0.6
+# weirdness: Slightly positive (0.2) — a mildly unusual variant
+# that generates in the gaps between other whispering biomes.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard forest floor elevation. The briars grow
+# at the same level as the surrounding woodland.
+base-height = 67
+
+# height-variation: Low — relatively flat terrain that allows the
+# briar patch to form a continuous, impassable thicket.
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block — healthy grass beneath the berry bushes.
+# The thorny canopy protects the soil from direct sun and erosion.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt — standard fertile forest soil.
+filler-block = "minecraft:dirt"
+
+# filler-depth: Standard 3-block depth.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Sparse — the briars choke out most tree saplings.
+# Only a few tough spruce and oak manage to grow above the thorns.
+trees = { types = ["spruce", "oak"], density = 4 }
+
+# grass-density: Low — the berry bushes dominate ground cover.
+grass-density = 3
+
+# flower-density: Very low — thorns crowd out delicate flowers.
+flower-density = 0.5
+
+# sweet-berry-bushes: The signature feature. Extremely dense placement
+# of sweet berry bushes creates a near-impenetrable wall of thorns.
+# density 20 is among the highest feature densities in the profile.
+sweet-berry-bushes = { enabled = true, density = 20 }
+
+# mushrooms: A few mushrooms in the shadiest spots under the thorns.
+mushrooms = { brown = 2, red = 1 }
+
+# fox-dens: Small burrows where foxes sleep during the day.
+# Foxes spawn near these dens and return to them to rest.
+fox-dens = { enabled = true, density = 3 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Moderate hostile spawning — the briar canopy provides some shade
+# but not enough for heavy hostile presence.
+hostile-density-multiplier = 1.0
+
+# Foxes are the dominant mob — they thrive on the abundant berries.
+fox-weight-bonus = 40
+
+# Rabbits also shelter in the briar patch (natural predator defense).
+rabbit-weight-bonus = 20
+
+# Wolves avoid the thorns — reduced wolf spawning.
+wolf-weight-bonus = -10
+
+# Passive density is moderate — the berries attract wildlife.
+passive-density-multiplier = 0.9

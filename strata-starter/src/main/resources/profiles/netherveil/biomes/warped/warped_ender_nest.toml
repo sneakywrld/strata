@@ -1,0 +1,148 @@
+# ============================================================
+#  Biome: Warped Ender Nest — Warped Domain
+# ============================================================
+# A concentration of endermen so dense it defies explanation.
+# The warped fungi here are stunted and twisted, their growth
+# disrupted by the constant teleportation of dozens of endermen
+# materializing and dematerializing around them. The air crackles
+# with purple teleportation particles, and the ground is littered
+# with blocks the endermen have picked up and abandoned — a
+# chaotic mess of random netherrack, nylium, and warped wart
+# blocks scattered at random. Every direction holds an enderman,
+# their glowing purple eyes piercing the teal spore haze.
+# Moving through this biome without looking at any of them is
+# nearly impossible — the density ensures eye contact accidents
+# are constant. When one is provoked, others teleport into
+# range, creating cascading aggro chains. This is the most
+# dangerous area in the warped domain.
+#
+# Gameplay notes:
+#   - Extremely high enderman density — deadly without precautions.
+#   - Carved pumpkin helmet MANDATORY for safe traversal.
+#   - Ender pearl farming at maximum efficiency.
+#   - Cascading aggro — provoking one draws others in.
+#   - Blocks scattered by endermen create chaotic terrain.
+#   - Water bucket useless in the nether — can't place water.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The ender nest has the
+# highest enderman concentration in the Netherveil profile.
+id = "strata:warped_ender_nest"
+
+# display-name: Human-readable name for player displays.
+display-name = "Warped Ender Nest"
+
+# category: NETHER — nether environment dominated by extreme
+# enderman density and teleportation particle effects.
+category = "NETHER"
+
+# zone: Part of the warped zone — the most dangerous area
+# within the otherwise relatively safe warped domain.
+zone = "warped"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cool — enderman teleportation seems to draw
+# heat from the surrounding air, creating cold spots.
+#   0.2 = cool from teleportation energy absorption.
+temperature = 0.2
+
+# humidity: High — warped nylium and fungal growth persist
+# despite the enderman disruption.
+#   0.6 = high organic presence beneath the enderman chaos.
+humidity = 0.6
+
+# continentalness: Neutral — ender nests form in standard
+# warped forest regions.
+#   0.1 = slight inland preference.
+continentalness = 0.1
+
+# erosion: Moderate — the terrain is moderately open but
+# disrupted by enderman block-moving activity.
+#   0.4 = moderately rough from enderman terraforming.
+erosion = 0.4
+
+# weirdness: Very high — the extreme enderman concentration
+# and their block-scattering create bizarre terrain.
+#   0.8 = highly unusual, chaotic environment.
+weirdness = 0.8
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the chaos is from mob
+# density, not terrain elevation.
+#   40 = standard nether floor level.
+base-height = 40
+
+# height-variation: Moderate — enderman block movement creates
+# irregular terrain with random block placements.
+#   5.0 = uneven terrain from enderman block displacement.
+height-variation = 5.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Warped nylium — partially disrupted by enderman
+# block-picking behavior, creating gaps of netherrack.
+top-block = "minecraft:warped_nylium"
+
+# filler-block: Netherrack beneath the disrupted nylium.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Stunted, twisted fungi — enderman activity disrupts
+# normal fungal growth patterns.
+#   3.0 = reduced fungi, many disrupted by enderman presence.
+trees = { types = ["warped_fungus_huge"], density = 3.0 }
+
+# grass-density: Sparse — enderman block-picking removes ground
+# cover regularly.
+#   0.3 = reduced from enderman disruption.
+grass-density = 0.3
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Ender nest specific features.
+#   enderman_scattered_blocks — random blocks placed by endermen
+#     creating chaotic terrain additions.
+#   warped_fungus_small — surviving small fungi between endermen.
+#   twisting_vines — disrupted vines, partially pulled by endermen.
+#   nether_sprouts — sparse surviving sprouts.
+extra-features = [
+    { feature = "enderman_scattered_blocks", density = 6.0 },
+    { feature = "warped_fungus_small", density = 3.0 },
+    { feature = "twisting_vines", density = 3.0 },
+    { feature = "nether_sprouts", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Maximum enderman density — the highest in the entire
+# Netherveil profile.
+[biome.spawning]
+# enderman: Extreme density — the defining characteristic of
+# this biome. Endermen fill the area to capacity, creating a
+# gauntlet of purple eyes. Cascading aggro chains make even
+# single provocation events potentially lethal.
+enderman = { weight = 40, min-group = 2, max-group = 6 }

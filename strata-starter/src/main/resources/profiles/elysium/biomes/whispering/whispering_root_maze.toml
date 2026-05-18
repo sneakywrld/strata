@@ -1,0 +1,138 @@
+# ============================================================
+#  Biome: Whispering Root Maze — Whispering Woodlands
+# ============================================================
+# A bewildering labyrinth of above-ground root networks inspired
+# by mangrove swamps but transplanted into the dark forest. Thick
+# arching roots rise 3-5 blocks above the ground, creating winding
+# corridors, dead ends, and hidden chambers. Treasure chests are
+# concealed within the root tangles, rewarding those who can
+# navigate the maze. The roots block sightlines completely, making
+# this biome disorienting and claustrophobic.
+#
+# Gameplay Notes:
+#   - Mangrove roots form a natural maze above the ground surface.
+#   - Hidden loot chests within root hollows contain woodland treasure.
+#   - The maze structure makes mob encounters dangerous — no escape route.
+#   - Breaking roots is slow (axe recommended) but creates shortcuts.
+#   - Compass and maps are essential for navigation.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_root_maze"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Root Maze"
+
+# category: FOREST — root maze within the woodland context.
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Slightly warm — the enclosed root corridors trap heat.
+temperature = 0.55
+# humidity: Very high — moisture is trapped between the dense roots,
+# and the ground stays perpetually damp.
+humidity = 0.75
+# continentalness: Mid-inland — deep within the woodland zone.
+continentalness = 0.5
+# erosion: Above neutral — the root network stabilizes the terrain,
+# creating a relatively smooth, flat surface beneath the maze.
+erosion = 0.6
+# weirdness: Moderate positive (0.35) — unusual but not extreme.
+# The root maze is strange but has a natural feel to it.
+weirdness = 0.35
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Slightly below standard forest elevation. The root
+# maze sits in a gentle depression where water collects, feeding
+# the massive root growth.
+base-height = 65
+
+# height-variation: Very low — the ground beneath the roots must be
+# flat for the maze corridors to function properly.
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Muddy mangrove roots — the ground is a tangle of
+# exposed root material mixed with waterlogged mud.
+top-block = "minecraft:mud"
+
+# filler-block: Rooted dirt — the root network extends below surface.
+filler-block = "minecraft:rooted_dirt"
+
+# filler-depth: 3 blocks of root-permeated soil.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Mangrove trees are the primary tree type — their root
+# structures form the maze walls. Dark oak fills the upper canopy.
+# High density ensures dense, overlapping root coverage.
+trees = { types = ["mangrove", "dark_oak"], density = 12 }
+
+# root-maze: The signature feature. Generates additional above-ground
+# root arches and walls beyond what the mangrove trees produce.
+# These create the maze-like corridors and dead ends.
+root-maze = { enabled = true, density = 8, wall-height = 4 }
+
+# grass-density: Very low — the root coverage and mud suppress grass.
+grass-density = 1
+
+# flower-density: Zero — no flowers grow in the dark root corridors.
+flower-density = 0.0
+
+# mushrooms: Abundant in the dark, humid corridors between roots.
+mushrooms = { brown = 6, red = 3 }
+
+# moss-carpet: Moss grows on root surfaces and the ground.
+moss-carpet = { enabled = true, density = 5 }
+
+# treasure-chests: Hidden loot chests within root hollows and dead ends.
+# These contain mid-tier exploration loot — maps, enchanted books,
+# iron/gold equipment, and occasionally rare items.
+treasure-chests = { enabled = true, density = 2, loot-table = "whispering_root_treasure" }
+
+# hanging-roots: Roots dangle from the underside of arches.
+hanging-roots = { enabled = true, density = 6 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Elevated hostile spawning — the maze corridors are dark and
+# mobs can lurk around any corner.
+hostile-density-multiplier = 1.3
+
+# Spiders can climb over the root walls — they ignore the maze.
+spider-weight-bonus = 25
+
+# Zombies are dangerous in tight corridors — harder to kite.
+zombie-weight-bonus = 15
+
+# Passive mobs are very scarce — the maze deters large animals.
+passive-density-multiplier = 0.2

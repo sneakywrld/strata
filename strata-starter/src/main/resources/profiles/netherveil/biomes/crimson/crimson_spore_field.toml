@@ -1,0 +1,151 @@
+# ============================================================
+#  Biome: Crimson Spore Field — Crimson Domain
+# ============================================================
+# A surreal landscape where crimson spore particles fill the air
+# in such overwhelming density that the world appears to glow red.
+# The nylium floor stretches in broad undulating patches, broken
+# by clusters of small crimson fungi releasing constant plumes
+# of spores into the stagnant air. Visibility is reduced not by
+# physical obstructions but by the sheer volume of drifting
+# particles — a biological fog that coats every surface in a
+# fine crimson dust. The fungi here are smaller but far more
+# numerous than in the forest proper, forming carpets rather
+# than canopies. The effect is dreamlike and disorienting, as
+# distance and depth perception fail in the particle haze.
+#
+# Gameplay notes:
+#   - Reduced visibility from particle density, not blocks.
+#   - Crimson fungus harvesting at extreme efficiency.
+#   - Nylium collection — large exposed nylium surface area.
+#   - Bone meal on nylium spreads crimson vegetation rapidly.
+#   - Navigation difficult — use landmarks or coordinates.
+#   - Particle effects may impact client performance.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The spore field is a
+# particle-heavy crimson variant focused on atmosphere.
+id = "strata:crimson_spore_field"
+
+# display-name: Human-readable name for player displays.
+display-name = "Crimson Spore Field"
+
+# category: NETHER — nether environment with extreme crimson
+# spore particle density creating a red atmospheric haze.
+category = "NETHER"
+
+# zone: Part of the crimson zone — the most atmospherically
+# dense area within the crimson domain.
+zone = "crimson"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Moderate warmth — the open terrain allows heat
+# to circulate, unlike the enclosed forest.
+#   0.55 = moderate nether warmth, slightly above baseline.
+temperature = 0.55
+
+# humidity: Very high — the sheer volume of airborne spores
+# represents extreme organic material in the atmosphere.
+#   0.9 = near-maximum organic atmospheric density.
+humidity = 0.9
+
+# continentalness: Neutral — spore fields appear at standard
+# nether levels without vertical preference.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Moderate to high — the terrain is relatively open
+# with broad flat areas of exposed nylium.
+#   0.6 = open terrain with gentle rolling nylium patches.
+erosion = 0.6
+
+# weirdness: Moderately unusual — the extreme spore density
+# creates an otherworldly atmospheric effect.
+#   0.4 = notably unusual particle-saturated environment.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the spore field occupies
+# a typical elevation with open sightlines (obscured by spores).
+#   40 = standard nether floor level.
+base-height = 40
+
+# height-variation: Low to moderate — broad rolling nylium
+# patches with gentle elevation changes.
+#   3.5 = gentle undulation across the spore field.
+height-variation = 3.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Crimson nylium — large unbroken patches of the
+# living fungal surface, actively releasing spore particles.
+top-block = "minecraft:crimson_nylium"
+
+# filler-block: Netherrack beneath the nylium surface.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Very sparse huge fungi — the spore field favors small
+# fungi over the towering variants.
+#   1.0 = rare isolated huge fungi among the small clusters.
+trees = { types = ["crimson_fungus_huge"], density = 1.0 }
+
+# grass-density: Dense crimson roots covering the nylium.
+#   0.7 = high root coverage across the field.
+grass-density = 0.7
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Spore field features emphasizing particles.
+#   crimson_fungus_small — extremely dense small fungi, the
+#     primary spore source blanketing the nylium surface.
+#   crimson_spore_emitter — concentrated particle sources.
+#   nether_wart_block_patch — wart block ground accumulations.
+#   weeping_vines — sparse vines from occasional ceiling fungi.
+extra-features = [
+    { feature = "crimson_fungus_small", density = 12.0 },
+    { feature = "crimson_spore_emitter", density = 8.0 },
+    { feature = "nether_wart_block_patch", density = 4.0 },
+    { feature = "weeping_vines", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Standard crimson mobs with slightly reduced density —
+# the open terrain makes ambushes less common.
+[biome.spawning]
+# hoglin: Moderate presence — hoglins graze on the small fungi
+# but prefer the denser forest cover for nesting.
+hoglin = { weight = 10, min-group = 2, max-group = 4 }
+
+# piglin: Patrol groups moving through the spore haze.
+piglin = { weight = 8, min-group = 2, max-group = 3 }
+
+# zombified_piglin: Wandering undead piglins in the haze.
+zombified_piglin = { weight = 5, min-group = 1, max-group = 2 }
+
+# enderman: Occasional enderman sighting through the spore fog.
+enderman = { weight = 2, min-group = 1, max-group = 1 }

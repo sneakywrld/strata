@@ -1,0 +1,171 @@
+# ============================================================
+#  Biome: Chorus Flower Field — Chorus Domain
+# ============================================================
+# An open, sun-bathed expanse (by End standards) where chorus
+# plants are kept short and flower prolifically. Unlike the
+# dense forest, this field prioritizes flowers over height —
+# the plants rarely exceed 8 blocks and nearly every one
+# terminates in a harvestable chorus flower. A prime farming
+# biome for players seeking chorus fruit and flowers.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:chorus_flower_field"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Chorus Flower Field"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "chorus"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. 0.2 = slightly warm, the open flower field
+# receives more ambient light than shaded chorus biomes.
+temperature = 0.2
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. 0.1 = near neutral, the abundant flowers create
+# a faintly more hospitable atmosphere.
+humidity = 0.1
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.5 = well inland, flower fields occupy
+# stable central terrain with good growing conditions.
+continentalness = 0.5
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. 0.7 = quite flat, the field needs
+# gentle terrain for uniform flower distribution.
+erosion = 0.7
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.1 = nearly standard — this is one of the more "normal"
+# chorus variants.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 63 matches
+# typical End island altitude — a comfortable, accessible field.
+# Range: 0 to 256
+base-height = 63
+
+# height-variation: Controls terrain undulation. 3 is low —
+# gentle rolling that lets players survey the flower field
+# from any vantage point.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — standard End ground.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Solid end stone.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 4 is standard depth.
+# Range: 1 to 8
+filler-depth = 4
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 7.0 — high density but not maximum. Plants are plentiful but
+# spaced enough to walk between them, unlike the dense forest.
+chorus-density = 7.0
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.8 — very high flowering rate. This is the defining feature:
+# nearly every plant has a harvestable flower, making this the
+# premier chorus flower farming biome.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.8
+
+# chorus-height-min: Minimum height for chorus plants in this biome.
+# 3 — short minimum; many plants are small and bushy.
+# Range: 3 to 15
+chorus-height-min = 3
+
+# chorus-height-max: Maximum height for chorus plants.
+# 8 — capped low. The plants stay short, putting their energy
+# into flowering rather than vertical growth.
+# Range: 10 to 30
+chorus-height-max = 8
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.002 — sparse rods scattered among the flowers like garden posts.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.002
+
+# purpur-density: Purpur growth formations per chunk.
+# 0.03 — occasional purpur formations at the base of flower clusters.
+# Range: 0.0 to 0.3
+purpur-density = 0.03
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.0 — no crystals in the flower field.
+# Range: 0.0 to 0.1
+crystal-chance = 0.0
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — no obsidian; pure end stone and chorus.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Reduced presence. The open flower field is peaceful
+# territory — endermen pass through but do not congregate.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 65, min-group = 1, max-group = 2 }
+
+# shulker: No shulkers in the open field.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Minimal presence in the flower field.
+endermite = { weight = 1, min-group = 1, max-group = 1 }

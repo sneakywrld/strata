@@ -1,0 +1,167 @@
+# ============================================================
+#  Biome: Abyssal Tuff Gallery — Abyssal Depths
+# ============================================================
+# An architecturally striking cave system with smooth tuff
+# walls that look almost hand-carved. Calcite veins streak
+# through the grey tuff in clean white lines, creating a
+# natural gallery aesthetic — as if the cave were designed
+# rather than eroded. The geometry is orderly: flat floors,
+# arched ceilings, and clean perpendicular intersections.
+# Iron ore clusters are exposed in the walls, their rust-red
+# flecks contrasting against the pale tuff. The atmosphere is
+# clean and dry, with excellent acoustics that carry sound
+# clearly rather than distorting it. Copper ore deposits add
+# patches of oxidized green to the monochrome palette.
+#
+# Gameplay notes:
+#   - Primary iron ore source in the Abyssal zone.
+#   - Copper ore as a secondary mining target.
+#   - Clean tuff and calcite are decorative building blocks.
+#   - Orderly cave geometry makes navigation straightforward.
+#   - Low mob density — safer mining environment.
+#   - Pairs with abyssal_ore_vein for resource extraction
+#     and abyssal_crystal_grotto for mineral-themed caves.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal registry.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:abyssal_tuff_gallery"
+
+# display-name: Human-readable name shown in F3 debug overlay,
+# minimap plugins, and /strata biome info commands.
+display-name = "Tuff Gallery"
+
+# category: CAVE — underground biome with cave ambient sounds,
+# no sky light, and cave-specific feature placement.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "CAVE"
+
+# zone: Parent zone key from zones/zones.toml. The abyssal zone
+# is Y-based (Y -64 to 63) rather than distance-based, so this
+# biome generates underground regardless of distance from spawn.
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values position this biome within the multi-noise
+# climate system. The tuff gallery has mild, balanced conditions
+# — it is a common, reliable cave type.
+[biome.climate]
+# temperature: Cool underground ambient. Tuff forms in
+# volcanically influenced but now-dormant geological zones.
+# 0.3 = standard cave coolness.
+temperature = 0.3
+
+# humidity: Moderate — the tuff walls are relatively
+# impermeable, keeping moisture levels controlled.
+# 0.4 = slightly dry, clean-feeling air.
+humidity = 0.4
+
+# continentalness: Neutral — tuff galleries form across
+# all continental positions as a common geological feature.
+# 0.5 = mid-range, no placement bias.
+continentalness = 0.5
+
+# erosion: Balanced — tuff is erosion-resistant, producing
+# clean-cut cave walls rather than crumbling surfaces.
+# 0.5 = stable cave geometry, orderly intersections.
+erosion = 0.5
+
+# weirdness: Low positive — tuff galleries are a fairly
+# common cave type, slightly less ordinary than cheese caves
+# but not exotic.
+# 0.15 = mildly unusual, encountered regularly.
+weirdness = 0.15
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Average Y-level of the gallery floor.
+# -15 = upper-Abyssal zone, where tuff naturally generates
+# in vanilla Minecraft (between stone and deepslate).
+base-height = -15
+
+# height-variation: Moderate — arched ceilings provide
+# comfortable headroom without creating cavernous voids.
+# 10 = even, gallery-like proportions.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The gallery's defining feature is its tuff-and-calcite
+# palette — clean, smooth, almost architectural surfaces.
+[biome.surface]
+# top-block: Tuff forms the primary floor and wall material.
+# Its grey texture gives the cave a refined, uniform appearance.
+top-block = "minecraft:tuff"
+
+# filler-block: Calcite veins beneath the tuff surface — the
+# white mineral streaks visible where the tuff has worn thin.
+filler-block = "minecraft:calcite"
+
+# filler-depth: Moderate calcite layer reflecting the
+# geological stratification of the gallery.
+# 3 = visible calcite bands in any excavation.
+filler-depth = 3
+
+# underwater-block: Rare water pools have clean gravel beds,
+# consistent with the gallery's tidy aesthetic.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Gallery features emphasize mineral deposits and the clean
+# tuff-calcite aesthetic — functional mining and visual appeal.
+[biome.features]
+# trees: No vegetation in the dry tuff galleries.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on tuff surfaces.
+grass-density = 0.0
+
+# flower-density: No flowers underground.
+flower-density = 0.0
+
+# extra-features: Gallery mineral deposits.
+#   iron_ore_cluster — exposed iron ore veins in tuff walls,
+#     the primary resource draw for this biome.
+#   calcite_vein — white calcite streaks through grey tuff,
+#     the gallery's signature visual motif.
+#   copper_ore_cluster — oxidized copper deposits adding
+#     green-teal accents to the monochrome palette.
+#   glow_lichen — sparse patches providing dim illumination
+#     along the orderly gallery corridors.
+extra-features = [
+    { feature = "iron_ore_cluster", density = 10.0 },
+    { feature = "calcite_vein", density = 8.0 },
+    { feature = "copper_ore_cluster", density = 6.0 },
+    { feature = "glow_lichen", density = 4.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The tuff gallery is relatively peaceful — its orderly
+# geometry and moderate light suppress most hostiles.
+[biome.spawning]
+# bat: Bats roost in the arched ceiling spaces, common
+# but non-threatening.
+bat = { weight = 15, min-group = 1, max-group = 3 }
+
+# zombie: Occasional zombies wander the gallery corridors,
+# the primary low-level threat for miners.
+zombie = { weight = 8, min-group = 1, max-group = 2 }
+
+# glow_squid: Small water pools attract bioluminescent squid
+# whose glow complements the gallery's ambient lighting.
+glow_squid = { weight = 5, min-group = 1, max-group = 2 }

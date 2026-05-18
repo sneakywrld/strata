@@ -1,0 +1,127 @@
+# ============================================================
+#  Biome: Whispering Fern Gully — Whispering Woodlands
+# ============================================================
+# A low-lying valley blanketed in waist-high ferns. The air is
+# thick with humidity and the ground is perpetually damp. Dense
+# fern coverage obscures the ground, hiding cave spider dens
+# that lurk just below the surface. Tall ferns and large ferns
+# form a secondary canopy at eye level, making it difficult to
+# spot threats until they are right on top of you.
+#
+# Gameplay Notes:
+#   - Dense ferns block line-of-sight at ground level.
+#   - Cave spider spawners generate near the surface (Y 50-65).
+#   - The damp soil means crops grow faster in this biome.
+#   - String drops from cave spiders make this a tripwire source.
+#   - Walking through ferns does not alert sculk sensors.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_fern_gully"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Fern Gully"
+
+# category: Broad classification. FOREST — a forested valley variant.
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Moderate — the valley traps warm, humid air.
+temperature = 0.5
+# humidity: High — the gully floor collects moisture from surrounding slopes.
+humidity = 0.7
+# continentalness: Mid-inland — nestled within the woodland interior.
+continentalness = 0.5
+# erosion: Slightly above neutral — the gully is a gentle depression,
+# not a dramatic ravine. Softer terrain shaping.
+erosion = 0.55
+# weirdness: Slightly negative — a gentle dip in weirdness space,
+# representing a natural valley within the forest.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Low valley floor sitting just above sea level.
+# The gully collects runoff from surrounding higher terrain.
+base-height = 64
+
+# height-variation: Very low — the gully is a smooth, flat valley
+# floor, making the dense fern coverage even more disorienting.
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block — the damp soil supports lush growth.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt — standard fertile soil in the valley.
+filler-block = "minecraft:dirt"
+
+# filler-depth: Standard 3-block depth.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Sparse tree cover — the gully is dominated by ferns, not trees.
+# A few scattered spruce and oak provide vertical landmarks.
+trees = { types = ["spruce", "oak"], density = 4 }
+
+# grass-density: Very high — the entire gully floor is ferns.
+# This overrides the standard grass generation with fern-heavy placement.
+grass-density = 14
+
+# fern-override: When enabled, the majority of grass placement uses
+# fern and large_fern blocks instead of short_grass/tall_grass.
+# This references vegetation types defined in features/vegetation.toml.
+fern-ratio = 0.85
+
+# flower-density: Low — the ferns crowd out most flowers.
+flower-density = 1.5
+
+# mushrooms: Some mushrooms in the dampest, shadiest spots.
+mushrooms = { brown = 3, red = 1 }
+
+# cave-spider-dens: Near-surface cave spider spawner clusters.
+# These generate as small cobweb-filled pockets 2-6 blocks underground.
+cave-spider-dens = { enabled = true, density = 3, min-y = 50, max-y = 65 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Moderate hostile increase — the fern cover provides shade pockets
+# and the valley floor is dim in the early/late hours.
+hostile-density-multiplier = 1.2
+
+# Cave spiders spawn at elevated rates near their dens.
+cave-spider-weight-bonus = 40
+
+# Rabbits hide among the ferns — slightly higher passive count.
+rabbit-weight-bonus = 10
+
+# Standard passive density — some animals graze in the gully.
+passive-density-multiplier = 0.8

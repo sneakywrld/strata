@@ -1,0 +1,85 @@
+# ============================================================
+#  Biome: Stormbreak Coral Cove — Stormbreak Coast
+# ============================================================
+# A sheltered bay where warm, shallow water nurtures vibrant
+# coral reefs in every colour. Schools of tropical fish dart
+# between brain coral, tube coral, and fan coral formations.
+# The cove is protected from open-ocean currents by enclosing
+# headlands, keeping the water calm and crystal-clear. Sea
+# pickles dot the sandy floor, casting bioluminescent light
+# at night. This is one of the most visually striking biomes
+# in the Stormbreak zone.
+#
+# Gameplay notes:
+#   - Rich source of coral blocks, coral fans, and sea pickles.
+#   - Tropical fish can be caught or bucketed for aquariums.
+#   - Shallow depth (max ~7 blocks) makes exploration easy
+#     without Respiration enchantment.
+#   - Pairs beautifully with stormbreak_sandy_beach at the
+#     waterline and stormbreak_harbor_bay for port building.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_coral_cove"          # Unique registry ID
+display-name = "Stormbreak Coral Cove"       # Shown in F3 debug & maps
+category = "OCEAN"                           # Classified as shallow ocean
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Warm and humid — the sheltered bay traps heat. Higher
+# temperature than other Stormbreak biomes because the cove
+# is protected from cold ocean currents.
+[biome.climate]
+temperature = 0.7           # Warm — sheltered from cold winds
+humidity = 0.6              # Humid tropical microclimate
+continentalness = -0.2      # Oceanic — submerged cove floor
+erosion = 0.3               # Moderate erosion — smoothed by gentle currents
+weirdness = 0.1             # Slight weirdness — unusual warm pocket
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# The cove floor sits a few blocks below sea level with very
+# little variation — a gently undulating sandy basin.
+[biome.terrain]
+base-height = -5            # 5 blocks below sea level — shallow bay
+height-variation = 2        # Nearly flat seabed with gentle slopes
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Clean white sand on the cove floor. Coral generates as
+# features on top of the sand surface.
+[biome.surface]
+top-block = "minecraft:sand"             # Clean sandy cove floor
+filler-block = "minecraft:sand"          # Deep sand bed — no stone near surface
+filler-depth = 3                         # 3 blocks of sand before sandstone
+underwater-block = "minecraft:sand"      # Consistent sandy seabed
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# No trees (underwater biome). Coral, sea pickles, seagrass,
+# and tropical fish are the defining features. Grass density
+# here represents seagrass coverage on the cove floor.
+[biome.features]
+trees = { types = [], density = 0.0 }    # Underwater — no trees
+grass-density = 0.6                      # Dense seagrass meadows on the floor
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Tropical fish are the signature passive mob. Schools of
+# colourful fish populate the warm, shallow water. Pufferfish
+# also appear among the coral. Drowned are rare here — the
+# shallow, well-lit water discourages hostile spawns.
+[biome.spawning]
+# Tropical fish in large schools — multiple colour variants.
+# Pufferfish near coral formations — hazard for careless swimmers.
+# Squid in deeper pockets toward the centre of the cove.
+# Hostile mobs suppressed by shallow depth and light penetration.

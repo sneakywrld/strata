@@ -1,0 +1,152 @@
+# ============================================================
+#  Biome: Abyssal Drip Cave — Abyssal Depths
+# ============================================================
+# A classic dripstone cave sculpted over millennia by mineral-
+# rich water seeping through the ceiling. Stalactites hang in
+# dense curtains from above, some stretching meters downward,
+# while matching stalagmites rise from the floor to meet them.
+# Where they connect, thick stone columns divide the cave into
+# cathedral-like alcoves. Drip particles constantly fall from
+# pointed dripstone tips, filling the air with a gentle rain
+# effect. Cauldrons placed beneath dripping tips slowly fill
+# with water (or lava, if above a lava source).
+#
+# Gameplay notes:
+#   - Pointed dripstone is harvestable for building/traps.
+#   - Stalactites deal falling damage to mobs walking beneath.
+#   - Dripstone can be farmed for renewable lava using cauldrons.
+#   - Dense column formations create natural cover in combat.
+#   - Drip particles provide ambient visual atmosphere.
+#   - Connects to abyssal_cheese_chamber and abyssal_underground_river.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The drip cave is the
+# classic dripstone-focused biome of the Abyssal zone.
+id = "strata:abyssal_drip_cave"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Drip Cave"
+
+# category: CAVE — underground biome with dripping ambient
+# sound effects and cave-specific feature placement.
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Dripstone caves require sustained moisture and moderate
+# temperatures for the slow mineral deposition that builds
+# stalactites and stalagmites.
+[biome.climate]
+# temperature: Cool and stable — the constant water seepage
+# maintains a consistent cave temperature.
+# 0.3 = standard underground coolness.
+temperature = 0.3
+
+# humidity: High — the constant dripping keeps the air
+# saturated with moisture. This is one of the wetter caves.
+# 0.7 = very humid from continuous water seepage.
+humidity = 0.7
+
+# continentalness: Neutral — dripstone caves form anywhere
+# with sufficient overhead water sources.
+# 0.5 = no geographic bias.
+continentalness = 0.5
+
+# erosion: Balanced — the dripstone formations both resist
+# and contribute to the cave's shape over time.
+# 0.5 = standard cave erosion profile.
+erosion = 0.5
+
+# weirdness: Slightly unusual — dripstone caves are common
+# but have a distinctive character that sets them apart.
+# 0.1 = very slightly weird, nearly standard.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Upper Abyssal zone — dripstone caves form
+# where surface water percolates down through rock layers.
+# -20 = relatively shallow underground, near the zone ceiling.
+base-height = -20
+
+# height-variation: Moderate — the cave has an uneven floor
+# with pools, raised platforms between stalagmites, and
+# varying ceiling heights where stalactites cluster.
+# 15 = interesting vertical variety without extreme drops.
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Dripstone block is the signature material — the mineral-
+# rich stone that forms through centuries of drip deposition.
+[biome.surface]
+# top-block: Dripstone block — the compacted mineral surface
+# that forms the cave floor in dripstone biomes.
+top-block = "minecraft:dripstone_block"
+
+# filler-block: Standard stone beneath the dripstone layer.
+# The dripstone is a surface coating, not deep replacement.
+filler-block = "minecraft:stone"
+
+# filler-depth: Moderate dripstone accumulation depth.
+# 3 = standard mineral deposit thickness.
+filler-depth = 3
+
+# underwater-block: Dripstone block continues beneath any
+# cave pools, stained by the same mineral-rich water.
+underwater-block = "minecraft:dripstone_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Dense stalactite and stalagmite formations with drip
+# particle effects.
+[biome.features]
+# trees: No trees in the underground.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No surface vegetation.
+grass-density = 0.0
+
+# flower-density: No flowers underground.
+flower-density = 0.0
+
+# extra-features: Dripstone formations and cave decorations.
+#   pointed_dripstone — stalactites and stalagmites in dense
+#     clusters, some forming complete columns floor-to-ceiling.
+#   dripstone_cluster — groups of pointed dripstone on surfaces.
+#   drip_water — particle effect from stalactite tips.
+#   glow_lichen — sparse bioluminescence on cave walls.
+extra-features = [
+    { feature = "pointed_dripstone", density = 18.0 },
+    { feature = "dripstone_cluster", density = 10.0 },
+    { feature = "drip_water", density = 12.0 },
+    { feature = "glow_lichen", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Standard cave mob spawning with bats as the dominant
+# ambient creature.
+[biome.spawning]
+# bat: Very common — bats love the sheltered dripstone caves.
+bat = { weight = 15, min-group = 2, max-group = 5 }
+
+# creeper: Standard hostile spawn. The dense dripstone columns
+# provide ambush cover for creepers.
+creeper = { weight = 8, min-group = 1, max-group = 1 }
+
+# spider: Spiders navigate the uneven terrain easily.
+spider = { weight = 6, min-group = 1, max-group = 2 }

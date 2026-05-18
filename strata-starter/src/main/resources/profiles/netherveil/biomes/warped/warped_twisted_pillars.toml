@@ -1,0 +1,150 @@
+# ============================================================
+#  Biome: Warped Twisted Pillars — Warped Domain
+# ============================================================
+# A surreal landscape of tall, spiraling netherrack pillars
+# wrapped in warped fungal growth. The pillars twist upward from
+# the nylium floor like frozen tornados, their surfaces coated
+# in warped nylium and crawling with twisting vines that follow
+# the spiral grain of the stone. Small warped fungi sprout from
+# crevices at every level, and shroomlight blocks embedded in
+# the pillar surfaces create a constellation of teal lights
+# spiraling upward into the darkness. The spaces between pillars
+# form narrow canyons where the warped spore haze settles into
+# concentrated teal rivers of particles. The overall effect is
+# a forest of twisted stone fingers reaching skyward, each one
+# dressed in living warped growth — architecture that seems
+# grown rather than formed.
+#
+# Gameplay notes:
+#   - Pillar-top platforms for secure base building.
+#   - Twisting vine highways spiraling up the pillars.
+#   - Narrow pillar canyons channel mob encounters.
+#   - Mixed warped wood and netherrack resource gathering.
+#   - Spectacular vantage points from pillar tops.
+#   - Endermen teleport freely between pillar surfaces.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The twisted pillars biome
+# features dramatic spiraling netherrack columns with warped growth.
+id = "strata:warped_twisted_pillars"
+
+# display-name: Human-readable name for player displays.
+display-name = "Warped Twisted Pillars"
+
+# category: NETHER — nether environment with dramatic vertical
+# stone formations covered in warped fungal growth.
+category = "NETHER"
+
+# zone: Part of the warped zone — a geologically dramatic area
+# within the warped domain.
+zone = "warped"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cool — the vertical stone pillars radiate stored
+# heat slowly, and the warped growth absorbs warmth.
+#   0.3 = cool nether environment, consistent with warped domain.
+temperature = 0.3
+
+# humidity: Moderate — warped growth covers the pillars but the
+# open spaces between allow air circulation.
+#   0.5 = moderate organic presence on pillar surfaces.
+humidity = 0.5
+
+# continentalness: Positive — the pillars rise well above
+# standard terrain, representing elevated formations.
+#   0.4 = elevated terrain with vertical pillar structures.
+continentalness = 0.4
+
+# erosion: Very low — the terrain is extremely vertical and
+# jagged, defined by the pillar formations.
+#   0.15 = very rough, vertical terrain.
+erosion = 0.15
+
+# weirdness: High — spiraling netherrack pillars with warped
+# fungal coating are a dramatic and unusual formation.
+#   0.7 = highly unusual geological feature.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Moderate — the floor between pillars sits at
+# standard level, with pillars rising far above.
+#   42 = slightly elevated base between pillar structures.
+base-height = 42
+
+# height-variation: Very high — the pillars create extreme
+# vertical variation from canyon floor to pillar top.
+#   10.0 = dramatic height changes between canyons and pillars.
+height-variation = 10.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Warped nylium — coating the pillar surfaces and
+# the canyon floors between them.
+top-block = "minecraft:warped_nylium"
+
+# filler-block: Netherrack forming the pillar core structure.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Sparse huge fungi growing on pillar tops and wider
+# ledges — limited flat ground restricts growth.
+#   2.5 = sparse fungi on available surfaces.
+trees = { types = ["warped_fungus_huge"], density = 2.5 }
+
+# grass-density: Warped roots and sprouts on pillar surfaces
+# and canyon floors.
+#   0.4 = moderate coverage on available horizontal surfaces.
+grass-density = 0.4
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Pillar-specific features.
+#   twisting_vines — vines spiraling up the pillar surfaces,
+#     following the twist of the stone.
+#   warped_fungus_small — small fungi in pillar crevices.
+#   shroomlight_cluster — embedded in pillar surfaces at
+#     various heights, creating spiral light patterns.
+#   nether_sprouts — vegetation on canyon floors.
+extra-features = [
+    { feature = "twisting_vines", density = 12.0 },
+    { feature = "warped_fungus_small", density = 4.0 },
+    { feature = "shroomlight_cluster", density = 3.0 },
+    { feature = "nether_sprouts", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen use the vertical pillar surfaces as teleportation
+# destinations across all heights.
+[biome.spawning]
+# enderman: Moderate density — they teleport between pillar
+# surfaces at all heights, appearing and disappearing along
+# the spiraling stone columns.
+enderman = { weight = 18, min-group = 1, max-group = 3 }
+
+# strider: Rare striders in canyon-floor lava pools.
+strider = { weight = 2, min-group = 1, max-group = 1 }

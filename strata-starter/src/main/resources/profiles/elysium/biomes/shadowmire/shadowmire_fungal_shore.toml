@@ -1,0 +1,160 @@
+# ============================================================
+#  Biome: Fungal Shore — Shadowmire Swamps
+# ============================================================
+# Where the swamp meets standing water, a bizarre mushroom ecosystem
+# has taken hold. The lakeside is blanketed in mycelium, and
+# mushrooms of every size — from tiny red caps to towering giant
+# brown mushrooms — crowd the shoreline. Glowing spore particles
+# drift upward from the mycelium surface, creating columns of soft
+# bioluminescence that are visible from great distances at night.
+# The air smells of damp earth and truffle. This biome feels more
+# like something from another dimension than a natural swamp feature.
+#
+# Gameplay Notes:
+#   - Mycelium spreads to adjacent dirt — contain it or embrace it.
+#   - Mushrooms can be harvested in enormous quantities here.
+#   - Mooshrooms may spawn — the only place in Shadowmire for them.
+#   - Glowing spores provide low ambient light at night.
+#   - The surreal atmosphere offers a break from the swamp's hostility.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_fungal_shore"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Fungal Shore"
+
+# category: The broad Minecraft biome category this belongs to.
+# MUSHROOM enables the unique mushroom island mechanics — hostile
+# mobs do not spawn naturally on the surface, making this a rare
+# safe haven within the otherwise dangerous Shadowmire.
+category = "MUSHROOM"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.6 = mild warmth — the decomposing fungal matter
+# generates moderate heat, keeping the shore warm and humid.
+temperature = 0.6
+
+# humidity: 0.85 = very high moisture — the lakeside location and
+# dense fungal growth maintain near-constant high humidity.
+humidity = 0.85
+
+# continentalness: 0.6 = moderately inland — the fungal shore
+# forms along the edges of inland swamp lakes.
+continentalness = 0.6
+
+# erosion: 0.7 = heavily eroded — the shoreline is flat and gentle,
+# sloping gradually into the adjacent water body.
+erosion = 0.7
+
+# weirdness: 0.5 = notably unusual — the fungal shore is a rare
+# and strange variant that only generates where the weirdness noise
+# is elevated, making it a discovery moment for players.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 0 = at sea level. The shore sits right at the
+# waterline, with mycelium-covered ground gradually transitioning
+# to shallow water.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 0
+
+# height-variation: 2 = slight variation. The shore has gentle
+# undulations where mushroom root networks (mycelium) have raised
+# or compressed the terrain.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Mycelium — the defining surface of this biome. The
+# fungal mat covers everything, giving the shore its distinctive
+# purple-gray appearance and supporting mushroom growth even in
+# full sunlight.
+top-block = "minecraft:mycelium"
+
+# filler-block: Dirt beneath the mycelium — the fungal network
+# has not yet penetrated deeper than the surface layer, and
+# standard dirt provides the substrate.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. The mycelium is a surface
+# phenomenon; below it, normal swamp substrate prevails.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Mud at the lake bottom where the shore meets
+# the water — organic sediment from fungal decomposition.
+underwater-block = "minecraft:mud"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Giant mushrooms completely replace trees here. Both brown
+# and red varieties grow to impressive sizes on the mycelium.
+#   types: Tree definition keys from features/trees.toml.
+#   density: 5.0 = moderate density — giant mushrooms are large
+#            enough that moderate placement fills the skyline.
+trees = { types = ["giant_brown_mushroom", "giant_red_mushroom"], density = 5.0 }
+
+# grass-density: 0.0 = no grass — mycelium does not support grass
+# growth. The ground is entirely fungal mat.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers — mushrooms fill every niche
+# that flowering plants would normally occupy.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# mushrooms: Extremely dense mushroom coverage — this is the
+# mushroom capital of the Shadowmire.
+mushrooms = { brown = 15, red = 10 }
+
+# extra-features: Glowing spore particles, mycelium spread zones,
+# and glow lichen on surfaces provide the bioluminescent atmosphere.
+extra-features = [
+    { feature = "glow_spore_emitter", density = 5.0 },
+    { feature = "glow_lichen_patch", density = 3.0 },
+    { feature = "mushroom_cluster", density = 6.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The MUSHROOM category prevents natural hostile mob spawns on the
+# surface. Mooshrooms are the signature passive mob, providing
+# mushroom stew on demand. Bats add ambient atmosphere.
+
+# mooshroom: The iconic mushroom island cow — provides infinite
+# mushroom stew when milked with a bowl.
+# weight: 12 for a consistent presence.
+# min-group/max-group: Small herds of 2-4.
+mooshroom = { weight = 12, min-group = 2, max-group = 4 }
+
+# bat: Bats flutter between the giant mushroom caps at dusk.
+# weight: 6 for ambient atmosphere.
+bat = { weight = 6, min-group = 2, max-group = 3 }

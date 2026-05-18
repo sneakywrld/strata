@@ -1,0 +1,166 @@
+# ============================================================
+#  Biome: Abyssal Root Cellar — Abyssal Depths
+# ============================================================
+# A shallow-cave biome where the boundary between surface and
+# underground blurs. Massive tree roots from the world above
+# punch through the ceiling, dangling in thick curtains of
+# hanging roots and azalea root clusters. Dripleaf plants
+# sprout wherever root moisture drips to the cave floor,
+# creating natural stepping-stone platforms over muddy pools.
+# Rooted dirt and moss carpet the ground, and pockets of lush
+# cave vegetation thrive in the dim root-filtered light. The
+# atmosphere is earthy, humid, and alive — a stark contrast
+# to the sterile stone of deeper Abyssal biomes.
+#
+# Gameplay notes:
+#   - Shallowest Abyssal biome — sits just below the surface.
+#   - Hanging roots and dripleaf provide vertical traversal.
+#   - Azalea bushes indicate cave entrances from the surface.
+#   - Rich in rooted dirt, moss blocks, and clay.
+#   - Lush atmosphere supports passive mob spawns.
+#   - Pairs with abyssal_moss_cavern for the lush underground
+#     theme and abyssal_drip_cave for moisture-focused caves.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal registry.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:abyssal_root_cellar"
+
+# display-name: Human-readable name shown in F3 debug overlay,
+# minimap plugins, and /strata biome info commands.
+display-name = "Root Cellar"
+
+# category: CAVE — underground biome with cave ambient sounds,
+# no sky light, and cave-specific feature placement.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "CAVE"
+
+# zone: Parent zone key from zones/zones.toml. The abyssal zone
+# is Y-based (Y -64 to 63) rather than distance-based, so this
+# biome generates underground regardless of distance from spawn.
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values position this biome within the multi-noise
+# climate system. Higher humidity reflects the constant
+# moisture percolating down from surface soil. Slightly
+# negative weirdness makes it a common shallow-cave find.
+[biome.climate]
+# temperature: Mild warmth — proximity to the surface and
+# organic root matter keep temperatures moderate.
+# 0.4 = warm-side underground, hospitable to vegetation.
+temperature = 0.4
+
+# humidity: High moisture from root water transport and
+# soil seepage. The air is thick with earthy dampness.
+# 0.7 = lush-cave humidity, supporting rich plant growth.
+humidity = 0.7
+
+# continentalness: Neutral — root cellars form wherever
+# forests grow above, independent of continental position.
+# 0.5 = mid-range, no coastal or inland bias.
+continentalness = 0.5
+
+# erosion: Slightly elevated — root penetration and water
+# seepage slowly widen these shallow caves.
+# 0.6 = moderate-to-high erosion, soft soil walls.
+erosion = 0.6
+
+# weirdness: Slightly negative — root cellars are a common
+# cave variant, frequently encountered near the surface.
+# -0.25 = unremarkable cave type, not exotic.
+weirdness = -0.25
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Average Y-level of the cave floor.
+# -5 = just below sea level, the shallowest Abyssal biome.
+# Roots from surface trees visibly penetrate the ceiling.
+base-height = -5
+
+# height-variation: Moderate — uneven root clusters and
+# dripleaf platforms create varied vertical interest.
+# 10 = enough variation for organic-feeling chambers.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Root cellar surfaces are dominated by organic materials —
+# rooted dirt, moss, and mud from constant water seepage.
+[biome.surface]
+# top-block: Rooted dirt — the primary floor material,
+# permeated by fine root networks from the trees above.
+top-block = "minecraft:rooted_dirt"
+
+# filler-block: Moss block beneath the rooted dirt layer,
+# representing the lush transition zone between soil and stone.
+filler-block = "minecraft:moss_block"
+
+# filler-depth: Thick organic layer before hitting stone.
+# 4 = deep soil and moss buildup from millennia of root decay.
+filler-depth = 4
+
+# underwater-block: Muddy pools collect beneath drip points.
+# Clay beds form in the standing water.
+underwater-block = "minecraft:clay"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Root cellar features emphasize living vegetation — hanging
+# roots, azaleas, dripleaf, and lush cave moss.
+[biome.features]
+# trees: No full trees, but azalea bushes grow where roots
+# cluster near light sources.
+trees = { types = ["azalea_bush"], density = 0.3 }
+
+# grass-density: Sparse grass tufts grow on moss patches.
+grass-density = 0.2
+
+# flower-density: Spore blossoms and azalea flowers provide
+# faint color in the dim root-filtered light.
+flower-density = 0.15
+
+# extra-features: Root cellar-specific decorations.
+#   hanging_roots — thick root curtains dangling from ceiling,
+#     the biome's signature visual element.
+#   azalea_roots — azalea root clusters with flowering tops,
+#     marking surface-accessible dig points.
+#   dripleaf — big dripleaf plants forming tilt-platforms
+#     over muddy pools; small dripleaf as ground cover.
+#   moss_carpet — lush moss spreading across floor surfaces.
+extra-features = [
+    { feature = "hanging_roots", density = 14.0 },
+    { feature = "azalea_roots", density = 6.0 },
+    { feature = "dripleaf", density = 8.0 },
+    { feature = "moss_carpet", density = 10.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The lush root cellar supports passive and semi-passive
+# mobs — the organic environment suppresses most hostiles.
+[biome.spawning]
+# axolotl: Thrives in the muddy pools beneath drip points.
+# The lush cave moisture provides ideal habitat.
+axolotl = { weight = 10, min-group = 1, max-group = 3 }
+
+# bat: Common roost site — bats hang from root tangles
+# in the ceiling between feeding flights.
+bat = { weight = 15, min-group = 2, max-group = 4 }
+
+# glow_squid: Small pools harbor bioluminescent squid,
+# their glow visible through the hanging root curtains.
+glow_squid = { weight = 5, min-group = 1, max-group = 2 }

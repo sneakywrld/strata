@@ -1,0 +1,146 @@
+# ============================================================
+#  Biome: Verdant Pastoral Ridge — Verdant Expanse
+# ============================================================
+# A long, elevated ridge with sweeping views across the Verdant
+# Expanse. Grazing animals wander the wind-swept grass, and a
+# natural shepherd's path follows the ridgeline. The constant
+# breeze bends the tall grass, creating a dynamic, living
+# landscape. This is the highest non-mountain terrain in the zone.
+#
+# Gameplay: Excellent vantage points for scouting and landmark
+# navigation. The ridge acts as a natural boundary marker between
+# lower biomes. Wind-swept conditions mean few trees for wood,
+# but the panoramic views make it a premier build location.
+# Goats and sheep dominate the fauna. The shepherd's path
+# provides natural trail-finding for exploration.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "pastoral_ridge" combines
+# the grazing/shepherd theme with the elevated terrain type.
+id = "strata:verdant_pastoral_ridge"
+
+# display-name: Player-facing name emphasizing both the pastoral
+# (farming/grazing) character and the ridge terrain.
+display-name = "Verdant Pastoral Ridge"
+
+# category: PLAINS — despite the elevation, the terrain character
+# is open grassland. PLAINS category enables horse spawning,
+# village eligibility on flatter ridge sections, and standard
+# plains ambient audio (now with wind on the exposed ridge).
+category = "PLAINS"
+
+# zone: Verdant Expanse (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.5 = standard temperate. The ridge elevation is
+# not high enough to significantly cool the air. Wind chill is
+# a factor, but average temperature remains moderate.
+temperature = 0.5
+
+# humidity: 0.35 = slightly dry. Wind exposure on the ridge
+# whisks moisture away quickly. Less humid than sheltered
+# valley biomes. Matches rolling_hills humidity.
+humidity = 0.35
+
+# continentalness: 0.45 = moderately-to-deeply inland. Ridges
+# form from tectonic activity further from coastlines, sharing
+# the same continental band as rolling_hills and birch_highlands.
+continentalness = 0.45
+
+# erosion: 0.4 = moderate-low erosion. Lower erosion than most
+# Verdant biomes creates the elevated ridge terrain. The terrain
+# has resisted flattening, maintaining its ridgeline elevation.
+# This is the lowest erosion in the Verdant zone.
+erosion = 0.4
+
+# weirdness: 0.05 = nearly standard. Pastoral ridges are a
+# natural terrain feature, not exotic. The slight offset from
+# 0.0 prevents exact overlap with rolling_hills placement.
+weirdness = 0.05
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 18 = the highest terrain in the Verdant zone.
+# The ridge rises above rolling_hills (12) and birch_highlands (15),
+# serving as a natural skyline feature visible from surrounding
+# biomes. Not mountain-height, but clearly elevated.
+base-height = 18
+
+# height-variation: 3.5 = moderate variation along the ridge.
+# The ridgeline undulates between higher peaks and lower saddles,
+# creating a natural walking path along the crest. Side slopes
+# are steeper, dropping down to adjacent biomes.
+height-variation = 3.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The ridge is fully grass-covered —
+# green and lush despite the wind exposure. No exposed rock
+# (that's reserved for true mountain biomes).
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt. Thinner soil on the wind-swept ridge,
+# with stone closer to the surface on steeper slopes.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 2 = thinner topsoil than flatland biomes.
+# Wind erosion and the elevated position mean less soil
+# accumulation. Stone is visible on the steepest ridge faces
+# (handled by surface/rules.toml slope detection).
+filler-depth = 2
+
+# underwater-block: Dirt for any rare hilltop springs or
+# rain-catch pools.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Very sparse, wind-bent trees. The ridge's wind exposure
+# prevents tall tree growth. Only hardy oaks survive.
+#   density 0.3 = very few trees. Lone, wind-shaped oaks serve
+#   as dramatic silhouettes against the sky — iconic ridge imagery.
+trees = { types = ["oak"], density = 0.3 }
+
+# grass-density: 55.0 = dense, wind-swept grass. Tall grass
+# dominates the ridge, bending in the breeze. The grass is the
+# primary visual feature alongside the terrain itself.
+grass-density = 55.0
+
+# flower-density: 2.5 = light wildflowers. Hardy species that
+# tolerate wind exposure — cornflowers and daisies.
+flower-density = 2.5
+
+# extra-features: Wind-adapted ridge vegetation.
+extra-features = [
+    # Tall grass is especially prominent — the wind-swept look.
+    { feature = "tall_grass", density = 15.0 },
+    # Exposed stone on the steepest ridge faces.
+    { feature = "exposed_stone", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Hilltop grazers and wind-tolerant species.
+[biome.spawning]
+# Sheep in large flocks — the "pastoral" in pastoral ridge.
+# Shepherds would tend these flocks along the ridgeline.
+sheep = { weight = 18, min-group = 4, max-group = 8 }
+# Goats are natural ridge-dwellers, comfortable on steep terrain.
+goat = { weight = 8, min-group = 2, max-group = 4 }
+# Donkeys carry supplies along the shepherd's path.
+donkey = { weight = 3, min-group = 1, max-group = 2 }

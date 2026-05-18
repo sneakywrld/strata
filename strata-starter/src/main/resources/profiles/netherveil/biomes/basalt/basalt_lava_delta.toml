@@ -1,0 +1,150 @@
+# ============================================================
+#  Biome: Basalt Lava Delta — Basalt Deltas
+# ============================================================
+# A fragmented landscape of basalt islands floating in a sea of
+# lava, connected only by narrow basalt bridges and magma block
+# stepping stones. The "delta" in the name is literal here — this
+# is where the basalt terrain breaks apart into isolated platforms
+# surrounded by molten rock. Each island is a small basalt plateau,
+# some large enough for a few steps, others just a single block
+# wide. Players must hop between platforms with precision, knowing
+# that a missed jump means falling into lava. The orange lava glow
+# illuminates the dark basalt from below, creating dramatic
+# uplighting, and striders wade through the lava channels between
+# islands. Magma cubes bounce between platforms effortlessly,
+# their fire immunity making the lava gaps irrelevant to them.
+#
+# Gameplay notes:
+#   - Precision platforming over lava — one mistake is fatal.
+#   - Fire Resistance potions absolutely mandatory.
+#   - Strider riding for safe lava channel crossing.
+#   - Ender pearls for risky but fast island-hopping.
+#   - Magma cubes knock players off platforms into lava.
+#   - Basalt bridge building to connect islands safely.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The lava delta is the most
+# dangerous basalt variant, defined by lava-surrounded platforms.
+id = "strata:basalt_lava_delta"
+
+# display-name: Human-readable name for player displays.
+display-name = "Basalt Lava Delta"
+
+# category: NETHER — nether environment of basalt islands in
+# a lava ocean, requiring precision movement.
+category = "NETHER"
+
+# zone: Part of the basalt zone — the most lava-exposed and
+# platforming-intensive area in the basalt deltas.
+zone = "basalt"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Maximum heat — surrounded by lava on all sides,
+# this is the hottest biome in the Netherveil profile.
+#   1.0 = maximum volcanic heat from lava immersion.
+temperature = 1.0
+
+# humidity: Extremely dry — the surrounding lava bakes all
+# moisture from the air instantly.
+#   -0.6 = maximum aridity from lava proximity.
+humidity = -0.6
+
+# continentalness: Strongly negative — the lava delta forms
+# at lava ocean level, with islands barely above the surface.
+#   -0.7 = lava ocean level, island terrain.
+continentalness = -0.7
+
+# erosion: Extreme — the lava has eroded the basalt terrain
+# into fragmented islands and narrow bridges.
+#   0.9 = maximum erosion, terrain broken into fragments.
+erosion = 0.9
+
+# weirdness: Moderate — lava-surrounded islands are dramatic
+# but a natural extension of basalt delta terrain.
+#   0.4 = moderately unusual fragmented terrain.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Very low — the islands sit barely above lava
+# level, some dipping below the surface.
+#   33 = barely above lava ocean (Y=31), creating narrow
+#   platforms that frequently meet lava.
+base-height = 33
+
+# height-variation: Moderate — islands vary from single-block
+# stepping stones to larger plateaus.
+#   4.0 = varied island sizes and heights.
+height-variation = 4.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Basalt — the dark volcanic rock forming the
+# island surfaces and bridge connections.
+top-block = "minecraft:basalt"
+
+# filler-block: Netherrack beneath the basalt island surfaces.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Thin — the islands are shallow basalt caps
+# over netherrack, with lava beneath.
+#   2 = thin island crust above the lava ocean.
+filler-depth = 2
+
+# underwater-block: Magma blocks lining the lava channel floors
+# between basalt islands.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation on the tiny basalt islands.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on basalt.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Lava delta specific features.
+#   magma_block_field — magma blocks on island edges and
+#     as stepping stones between platforms.
+#   basalt_bridge — narrow basalt connections between islands.
+#   lava_pool — additional lava within larger islands.
+#   strider_spawn_point — strider gathering areas in channels.
+extra-features = [
+    { feature = "magma_block_field", density = 10.0 },
+    { feature = "basalt_bridge", density = 4.0 },
+    { feature = "lava_pool", density = 6.0 },
+    { feature = "strider_spawn_point", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Magma cubes and striders dominate the lava-rich terrain.
+[biome.spawning]
+# magma_cube: Extremely dangerous on small platforms — their
+# bouncing knockback pushes players into surrounding lava.
+magma_cube = { weight = 20, min-group = 2, max-group = 4 }
+
+# strider: Abundant in the lava channels — essential for safe
+# traversal between distant basalt islands.
+strider = { weight = 15, min-group = 1, max-group = 3 }
+
+# ghast: Devastating overhead — fireballs knock players off
+# platforms into the lava. Open lava provides flight space.
+ghast = { weight = 10, min-group = 1, max-group = 1 }

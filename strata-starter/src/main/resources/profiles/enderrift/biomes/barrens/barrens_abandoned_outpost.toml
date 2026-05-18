@@ -1,0 +1,170 @@
+# ============================================================
+#  Biome: Barrens Abandoned Outpost — Barrens Zone
+# ============================================================
+# The remains of an End ruin cluster, long since looted and
+# abandoned. Purpur blocks and end stone bricks lie scattered
+# across the terrain in broken foundations and toppled walls.
+# No shulker guards remain — the outpost was cleared out ages
+# ago. Chests, if any survive, have been emptied. This biome
+# tells a story of past habitation and present desolation.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:barrens_abandoned_outpost"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Abandoned Outpost"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "barrens"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. -0.2 = slightly cold, the ruins provide no
+# shelter from the void chill.
+temperature = -0.2
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. -0.6 = dry, typical barrens atmosphere with
+# no moisture retained by the crumbling structures.
+humidity = -0.6
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.3 = moderately inland, the outpost was
+# built on stable ground but the island has since eroded around it.
+continentalness = 0.3
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. 0.4 = gently uneven, the terrain
+# is mostly flat with rubble mounds from collapsed structures.
+erosion = 0.4
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.2 = slightly unusual — ruins in the barrens are unexpected
+# but not as strange as geological anomalies.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 58 is slightly
+# above typical barrens — the outpost was built on a raised
+# platform that still provides a slight elevation advantage.
+# Range: 0 to 256
+base-height = 58
+
+# height-variation: Controls terrain undulation. 5 creates modest
+# bumps — rubble piles, collapsed walls, and foundation remnants
+# create gentle terrain irregularity.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — the base terrain. Purpur and end brick ruins appear
+# as feature decorations scattered across this surface.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. End stone beneath the surface.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 4 is standard depth.
+# Range: 1 to 8
+filler-depth = 4
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 0.4 — sparse chorus has begun reclaiming the abandoned outpost,
+# growing through cracks in the old foundations.
+chorus-density = 0.4
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.25 — moderate flowering as the chorus slowly reclaims the ruins.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.25
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.008 — scattered end rods remain from the outpost's original
+# lighting system, most broken or toppled but a few still standing.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.008
+
+# ruin-density: Scattered ruin fragments per chunk. Purpur blocks,
+# end stone bricks, and purpur pillars are placed in broken
+# clusters representing the outpost's collapsed structures.
+# Range: 0.0 to 5.0.
+# 2.5 — moderate ruin density. Every chunk has remnants but the
+# outpost was small and much has been scavenged.
+ruin-density = 2.5
+
+# ruin-blocks: Block types used in ruin generation. These materials
+# reflect the end city construction palette.
+ruin-blocks = ["minecraft:purpur_block", "minecraft:purpur_pillar", "minecraft:end_stone_bricks"]
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.0 — no crystals among the ruins.
+# Range: 0.0 to 0.1
+crystal-chance = 0.0
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — no obsidian in the outpost area.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Standard presence. Endermen wander the ruins without
+# interest in the abandoned structures.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 90, min-group = 1, max-group = 3 }
+
+# shulker: Explicitly zero. The outpost's shulker guards are long
+# gone — this is a key thematic element of the biome. Players
+# hoping for shulker shells will be disappointed.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Low presence among the rubble.
+endermite = { weight = 2, min-group = 1, max-group = 1 }

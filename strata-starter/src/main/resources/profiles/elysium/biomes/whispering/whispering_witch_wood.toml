@@ -1,0 +1,143 @@
+# ============================================================
+#  Biome: Whispering Witch Wood — Whispering Woodlands
+# ============================================================
+# A twisted swamp-forest where witchcraft permeates the landscape.
+# Witch huts perch on stilts above murky pools, cauldrons bubble
+# with unknown concoctions, and the foliage carries an unnatural
+# purple tint. Potion ingredient plants grow wild — nether wart
+# in shaded alcoves, sugar cane along pools, spider eyes in webs.
+# The witches here are not just random spawns — they own this land.
+#
+# Gameplay Notes:
+#   - Witch huts generate at elevated rates (2-3 per biome patch).
+#   - Potion ingredient plants grow naturally (nether wart, etc.).
+#   - Cauldrons with random potion contents dot the landscape.
+#   - Witch-thrown potions include Poison, Weakness, and Slowness.
+#   - Good source of redstone, glowstone, and glass bottles.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_witch_wood"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Witch Wood"
+
+# category: SWAMP — the wet, dark, witch-infested nature aligns
+# with swamp categorization for structure and spawning purposes.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Moderate — standard woodland temperature.
+temperature = 0.5
+# humidity: High — the swampy pools and perpetual dampness sustain
+# the witch-friendly environment.
+humidity = 0.7
+# continentalness: Mid-inland — witch woods form in forest interiors
+# where pools collect in low-lying terrain.
+continentalness = 0.5
+# erosion: Slightly above neutral — gently depressed terrain that
+# allows standing water to accumulate.
+erosion = 0.55
+# weirdness: High positive (0.7) — witchcraft makes this one of the
+# most unusual variants in the Whispering zone.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: At sea level — the witch wood is partially flooded.
+# Pools of shallow water are interspersed with muddy hummocks.
+base-height = 63
+
+# height-variation: Low — the terrain is flat and boggy,
+# with gentle rises where witch huts are placed.
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Mud — the swampy surface is thick, squelching mud.
+# Mud slows movement slightly and sets the swamp atmosphere.
+top-block = "minecraft:mud"
+
+# filler-block: Clay — waterlogged sediment beneath the mud layer.
+filler-block = "minecraft:clay"
+
+# filler-depth: Standard 3-block depth.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Dark oak with swamp-style proportions. The canopy has a
+# purple-tinted color overlay (handled by biome color mapping).
+trees = { types = ["dark_oak", "swamp_oak"], density = 8 }
+
+# grass-density: Moderate — swamp grasses grow on the muddy hummocks.
+grass-density = 5
+
+# flower-density: Low — the swampy conditions suppress most flowers.
+# Blue orchids are the exception, thriving in the damp shade.
+flower-density = 1.5
+
+# lily-pads: Float on the surface of standing water pools.
+lily-pads = { enabled = true, density = 6 }
+
+# mushrooms: Common in the damp, shaded environment.
+mushrooms = { brown = 5, red = 3 }
+
+# witch-huts: Elevated generation rate for witch hut structures.
+# These are stilted wooden huts with cauldrons, crafting tables,
+# and a witch occupant. Loot includes potion ingredients.
+witch-huts = { enabled = true, density = 2 }
+
+# cauldrons: Standalone cauldrons placed on the ground, some filled
+# with water, some with potions. Decorative and functional.
+cauldrons = { enabled = true, density = 4 }
+
+# potion-plants: Nether wart, sugar cane, and other brewing ingredients
+# growing in shaded alcoves and along water edges.
+potion-plants = { enabled = true, density = 3 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Elevated hostile spawning — the dark, swampy conditions breed mobs.
+hostile-density-multiplier = 1.4
+
+# Witches are the signature mob — dramatically increased spawn weight.
+witch-weight-bonus = 60
+
+# Slimes spawn in the swampy pools at any Y level in this biome.
+slime-weight-bonus = 20
+
+# Cats may spawn near witch huts (vanilla witch hut cat behavior).
+cat-weight = 5
+
+# Frogs spawn in the muddy pools.
+frog-weight = 10
+
+# Passive mobs are scarce — the swamp is inhospitable to grazing.
+passive-density-multiplier = 0.3

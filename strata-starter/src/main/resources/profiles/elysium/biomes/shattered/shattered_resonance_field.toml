@@ -1,0 +1,181 @@
+# ============================================================
+#  Biome: Resonance Field — The Shattered Reach
+# ============================================================
+# The sculk has found the End, and the End has found the sculk.
+# The ground is a patchwork of sculk blocks and end stone, fused
+# together in an unnatural symbiosis. Sculk veins crawl across
+# end-stone surfaces like dark capillaries, and sculk sensors dot
+# the landscape, twitching at every footstep and breath. Vibration
+# particles ripple outward from every disturbance, visible as
+# concentric rings in the air. The Warden roams here alongside
+# endermen — two apex predators sharing territory in an uneasy
+# coexistence. Every sound the player makes is heard, tracked,
+# and answered. Silence is survival.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier for generator placement, region maps,
+# and cross-biome transition logic.
+id = "strata:shattered_resonance_field"
+
+# Human-readable name for debug screens and admin commands.
+display-name = "Resonance Field"
+
+# CUSTOM category — bespoke sculk+end-stone surface blending and
+# forced Warden spawn logic. No vanilla biome equivalent.
+category = "CUSTOM"
+
+# Part of the Shattered Reach endgame zone. The Resonance Field
+# represents the fusion of two alien ecosystems — sculk and ender —
+# into something worse than either alone.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.1, cool. The sculk absorbs thermal energy the
+# same way it absorbs vibrations. The air is slightly warmer than
+# pure end-stone biomes because the sculk generates a faint
+# biological heat.
+temperature = 0.1
+
+# Humidity — 0.3, moderate. The sculk retains moisture — its
+# surface is slightly damp to the touch, organic and unsettling.
+# The end stone patches are bone-dry by contrast.
+humidity = 0.3
+
+# Continentalness — 0.5, interior. The Resonance Field grows in
+# stable terrain where the sculk had time to establish and merge
+# with the ender substrate.
+continentalness = 0.5
+
+# Erosion — 0.4, moderate. The sculk actually *repairs* erosion by
+# growing over damaged terrain, while the end stone erodes normally.
+# The result is a patchwork of smooth sculk and rough stone.
+erosion = 0.4
+
+# Weirdness — 0.95, near-maximum. Two alien ecosystems fused into
+# one, monitored by sculk sensors and patrolled by Wardens and
+# endermen. This biome is profoundly, fundamentally wrong.
+weirdness = 0.95
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — 5 blocks above sea level. The field is low-lying,
+# like a basin where sculk spores settled and took root. Not
+# dramatic terrain — the danger is biological, not geographical.
+base-height = 5
+
+# Height variation — 10 blocks. Sculk mounds (shriekers on top)
+# create gentle hills, and end-stone ridges poke through the sculk
+# carpet. Enough variation to block sight lines and create ambush
+# opportunities for the Warden.
+height-variation = 10
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — sculk. The dominant surface material. Dark, organic,
+# and unsettlingly alive. It pulses faintly underfoot, and XP orbs
+# are absorbed on contact.
+top-block = "minecraft:sculk"
+
+# Filler block — end_stone beneath the sculk layer. The alien
+# substrate of the Shattered Reach lies just below, and the sculk
+# has bonded to it at a molecular level.
+filler-block = "minecraft:end_stone"
+
+# Filler depth — 4 blocks of end stone. The sculk surface is thin
+# (1-2 blocks) but the end-stone contamination runs deeper.
+filler-depth = 4
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Sculk sensor clusters — groups of sculk_sensor blocks placed
+# every 10-15 blocks across the field. They detect player movement,
+# block breaking, footsteps, and projectiles, transmitting signals
+# to nearby shriekers. The primary detection mechanism.
+sculk-sensor-clusters = true
+
+# Sculk shrieker mounds — raised sculk hills topped with
+# sculk_shrieker blocks. When activated by sensor signals, they
+# summon the Warden. Placed at regular intervals to ensure full
+# detection coverage across the biome.
+shrieker-mounds = true
+
+# Sculk vein networks — sculk_vein blocks crawling across exposed
+# end_stone surfaces, end_stone_brick ruins, and any other non-sculk
+# blocks. Visually demonstrates the sculk's expansion and hunger.
+sculk-vein-networks = true
+
+# End stone ridges — lines of exposed end_stone breaking through
+# the sculk carpet, like the spine of a buried landscape. The sculk
+# cannot fully consume the ender material, creating a permanent
+# border war on the surface.
+end-stone-ridges = true
+
+# Vibration particles — ambient ripple-ring particles emanating
+# from sculk sensors and traveling across the air, visible to
+# players. These show the detection network in action, adding
+# tension and providing gameplay-relevant visual information.
+vibration-particles = true
+
+# Sculk catalyst nodes — sculk_catalyst blocks placed in shallow
+# depressions, actively converting any nearby mob deaths into more
+# sculk growth. The field is self-expanding and self-repairing.
+sculk-catalysts = true
+
+# End rod signal posts — end_rod blocks on end_stone pillars at
+# the field's edges, marking the boundary. A warning system —
+# possibly placed by previous travelers. Cross this line at your
+# own risk.
+boundary-markers = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Warden — the apex predator. Summoned by sculk shriekers but also
+# spawns naturally in this biome at a low rate. Unlike vanilla deep
+# dark, the Warden here patrols the open surface, making it far
+# more dangerous. Low weight but always terrifying.
+warden = 5
+
+# Endermen share the field with the sculk ecosystem. They do not
+# trigger sculk sensors (canonically silent teleportation), giving
+# them an eerie advantage. They coexist with the Warden without
+# conflict.
+enderman = 60
+
+# Shulkers attach to end-stone ridges, their projectile attacks
+# triggering nearby sculk sensors and potentially chain-summoning
+# the Warden. A devastating combo.
+shulker = 15
+
+# Silverfish burrow in the end stone beneath the sculk, erupting
+# when players mine through the surface layer. Their movement
+# triggers every sensor in range.
+silverfish = 20
+
+# Phantoms sweep the skies above. Their dive attacks force players
+# to move and make noise, feeding the sculk detection network.
+phantom = 15
+
+# Cave spiders occupy the gaps between sculk and end stone, their
+# poison adding a debuff layer to an already overwhelming biome.
+cave_spider = 10

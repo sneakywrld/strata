@@ -1,0 +1,174 @@
+# ============================================================
+#  Biome: Forest River — Elysium Rivers
+# ============================================================
+# A gentle watercourse meandering beneath a dense forest
+# canopy. Dappled sunlight filters through overhanging oaks
+# and birches, casting shifting patterns on the water's
+# surface. Fallen logs bridge the channel at intervals, their
+# bark soft with moss and shelf fungi. Lily pads cluster in
+# the slower bends, and dragonflies hover above the calm
+# surface. The water is clear and shallow — rarely more than
+# 3-4 blocks deep — with a sandy-dirt bottom visible through
+# the gentle current. This is the idyllic forest stream of
+# fairy tales, peaceful and full of life.
+#
+# Gameplay notes:
+#   - Fallen logs serve as natural bridges — free crossing.
+#   - Lily pads can be collected for pond decoration.
+#   - Gentle current does not push entities significantly.
+#   - Shallow enough to wade across without swimming.
+#   - Rich fishing spot — cod and salmon in the pools.
+#   - Good source of clay in the riverbed bends.
+#   - Pairs with verdant and whispering zone forests.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. River biomes use the
+# "elysium_" prefix as cross-zone water features.
+id = "strata:elysium_forest_river"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Forest River"
+
+# category: RIVER — enables river-specific generation,
+# aquatic spawning rules, and flowing water ambient sounds.
+category = "RIVER"
+
+# zone: "river" — river biomes are cross-zone features that
+# follow noise-determined paths through the landscape.
+zone = "river"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Temperate and moderately humid — sheltered by the forest
+# canopy, the river corridor maintains mild, comfortable
+# conditions.
+[biome.climate]
+# temperature: 0.5 = temperate. The forest canopy moderates
+# both summer heat and winter cold, keeping the river corridor
+# at a comfortable temperature year-round.
+temperature = 0.5
+
+# humidity: 0.6 = elevated moisture. The combination of the
+# water surface and dense canopy traps humidity, creating
+# the lush, green conditions that support lily pads and moss.
+humidity = 0.6
+
+# continentalness: 0.4 = moderately inland. Forest rivers
+# flow through the interior midlands, connecting mountain
+# headwaters to coastal deltas.
+continentalness = 0.4
+
+# erosion: 0.6 = well-eroded. The gentle river has carved a
+# broad, shallow channel through the soft forest soil over
+# millennia, creating the wide, easy-to-cross watercourse.
+erosion = 0.6
+
+# weirdness: 0.0 = completely normal. Forest rivers are a
+# natural, expected feature in temperate woodlands. Zero
+# weirdness ensures they generate frequently.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -2 = slightly below sea level. The riverbed
+# sits in a shallow depression carved into the forest floor.
+# Surrounding forest terrain is higher on both sides, forming
+# gentle banks that slope down to the water.
+# Range: -64.0 to 256.0
+base-height = -2
+
+# height-variation: 2 = very flat. The riverbed is smooth and
+# uniform — no dramatic drops or rapids. The gentle gradient
+# creates the slow, meandering flow characteristic of a mature
+# forest river.
+# Range: 0.0 to 30.0
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Rich forest soil on the banks, transitioning to dirt and
+# clay in the riverbed. The canopy keeps the soil moist.
+[biome.surface]
+# top-block: Grass block — lush riverside grass growing right
+# to the water's edge. The RIVER category combined with the
+# adjacent forest creates a rich green tint.
+top-block = "minecraft:grass_block"
+
+# filler-block: Fertile dirt beneath the grass. The forest
+# river corridor accumulates deep, rich soil from decades of
+# leaf litter decomposition and sediment deposition.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 4 = deep topsoil. The river floodplain
+# accumulates thick alluvial deposits over centuries of
+# seasonal flooding.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Dirt on the riverbed — natural forest
+# stream bottom mixed with fallen leaves and organic debris.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Overhanging trees, fallen log bridges, and lily pads create
+# the classic forest river aesthetic.
+[biome.features]
+# trees: Mixed canopy overhanging the river. Oak and birch
+# lean over the water, their branches creating a tunnel
+# effect in the densest sections.
+#   types: "oak" and "birch" — the dominant forest species.
+#   density: 4.0 = moderate density along the banks. Enough
+#            to create a canopy but not so thick that the
+#            river channel is completely hidden from above.
+#            Range: 0.0 to 30.0+
+trees = { types = ["oak", "birch"], density = 4.0 }
+
+# grass-density: Lush riverside grass and ferns on the banks.
+# Range: 0.0 to 100.0
+grass-density = 20.0
+
+# flower-density: Moderate wildflowers on the sunlit banks.
+# Range: 0.0 to 15.0
+flower-density = 3.0
+
+# extra-features: Fallen logs, lily pads, and clay deposits
+# are the signature features of the forest river.
+extra-features = [
+    # Lily pads in the slower bends and pooled areas.
+    { feature = "lily_pad", density = 4.0 },
+    # Fallen log bridges across the channel.
+    { feature = "fallen_log", density = 2.0 },
+    # Clay deposits in the riverbed bends.
+    { feature = "clay", density = 2.0 },
+    # Fern clusters on the shaded banks.
+    { feature = "fern", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Peaceful riverside wildlife. Fish in the water, frogs on
+# the lily pads, and foxes drinking at the water's edge.
+[biome.spawning]
+# Cod: Common freshwater fish in the clear, gentle current.
+# Easy fishing for food.
+cod = { weight = 12, min-group = 2, max-group = 4 }
+
+# Frog: Sit on lily pads and the riverbanks, croaking.
+# Temperate variant — green-brown coloring.
+frog = { weight = 8, min-group = 1, max-group = 3 }
+
+# Fox: Visit the river to drink and hunt fish at dawn.
+# Shy but tameable with sweet berries.
+fox = { weight = 5, min-group = 1, max-group = 2 }

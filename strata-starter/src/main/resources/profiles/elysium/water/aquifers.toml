@@ -1,0 +1,62 @@
+# ============================================================
+#  Aquifer Configuration — Elysium Overworld
+# ============================================================
+# Aquifers create underground water and lava pockets using 3D noise.
+# Each aquifer has its own water level, creating diverse underground
+# water features — flooded caves, underground lakes, and lava chambers.
+# ============================================================
+
+[aquifers]
+# -------------------------------------------------------
+# Enable/Disable
+# -------------------------------------------------------
+enabled = true
+
+# -------------------------------------------------------
+# Noise Configuration
+# -------------------------------------------------------
+# noise: Reference to the 3D noise function defining aquifer boundaries.
+noise = "strata:aquifer"
+
+# barrier-noise: Secondary noise for aquifer wall thickness.
+# Prevents water from leaking through thin cave walls.
+barrier-noise = "strata:terrain_3d"
+
+# -------------------------------------------------------
+# Water Aquifers
+# -------------------------------------------------------
+# water-level-range: Range of Y-levels for aquifer water surfaces.
+# Each aquifer pocket gets a random water level within this range.
+# Default: [0, 50]. Below 0 = flooded deep caves.
+water-level-range = [0, 50]
+
+# water-threshold: Noise threshold for creating a water-filled aquifer.
+# Lower = more aquifers. Higher = fewer, more isolated aquifers.
+# Default: 0.3. Range: 0.0 to 1.0
+water-threshold = 0.3
+
+# -------------------------------------------------------
+# Lava Aquifers
+# -------------------------------------------------------
+# lava-enabled: Enable lava-filled aquifer pockets deep underground.
+lava-enabled = true
+
+# lava-threshold-y: Y-level below which aquifers contain lava instead of water.
+# Default: -20. Range: -64 to 0
+lava-threshold-y = -20
+
+# lava-threshold: Noise threshold for lava aquifers (within lava Y range).
+# Default: 0.4. Range: 0.0 to 1.0
+lava-threshold = 0.4
+
+# -------------------------------------------------------
+# Visual Features
+# -------------------------------------------------------
+# drip-particles: Enable drip stone/water particles above aquifers.
+drip-particles = true
+
+# glow-lichen: Place glow lichen near underground water surfaces.
+glow-lichen = true
+
+# glow-lichen-density: Density of glow lichen (0.0 to 1.0).
+glow-lichen-density = 0.15

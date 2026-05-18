@@ -1,0 +1,177 @@
+# ============================================================
+#  Biome: Jungle Island — Elysium Islands
+# ============================================================
+# A dense, steaming jungle packed onto a mid-sized island.
+# Towering jungle trees form a nearly impenetrable canopy,
+# their trunks wrapped in vines that hang in thick curtains.
+# Cocoa pods cling to the larger trunks, parrots screech from
+# the upper canopy, and ocelots slink through the undergrowth.
+# Somewhere in the tangled interior, a hidden jungle temple
+# waits — its mossy cobblestone walls barely visible through
+# the foliage. The humidity is oppressive, the visibility is
+# poor, and every step risks walking into a concealed ravine.
+#
+# Gameplay notes:
+#   - Cocoa beans for brown dye and cookies — renewable crop.
+#   - Ocelots can be tamed into cats that repel creepers.
+#   - Parrots mimic nearby mob sounds — useful early warning.
+#   - Jungle temple loot includes enchanted books and diamonds.
+#   - Dense canopy creates dark spots where mobs spawn by day.
+#   - Vines enable vertical climbing without ladders or blocks.
+#   - Bamboo may generate in patches — scaffolding material.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Island biomes use the
+# "elysium_" prefix as cross-zone ocean features.
+id = "strata:elysium_jungle_island"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Jungle Island"
+
+# category: JUNGLE — enables jungle-specific mechanics
+# including ocelot spawning, jungle temple generation, cocoa
+# bean growth on jungle logs, and the lush green grass tint.
+category = "JUNGLE"
+
+# zone: "island" — island biomes generate offshore in ocean
+# areas, independent of mainland zone boundaries.
+zone = "island"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Hot and humid — classic tropical jungle conditions. The
+# density of the canopy traps moisture and heat, creating a
+# greenhouse effect that sustains explosive plant growth.
+[biome.climate]
+# temperature: 0.8 = hot tropical. The dense canopy traps
+# solar heat, and the island's low elevation prevents cooling
+# winds from reaching the interior.
+temperature = 0.8
+
+# humidity: 0.8 = very humid. Moisture from the surrounding
+# ocean saturates the dense canopy. Condensation drips from
+# every leaf, and the air feels thick and heavy.
+humidity = 0.8
+
+# continentalness: -0.3 = offshore island positioning. Far
+# enough from the mainland to feel isolated, close enough
+# that the island has accumulated sufficient soil for a jungle.
+continentalness = -0.3
+
+# erosion: 0.4 = moderately eroded. The dense root network
+# prevents severe erosion, but the heavy rainfall creates
+# gullies and stream channels through the jungle floor.
+erosion = 0.4
+
+# weirdness: 0.5 = moderately unusual. Jungle islands are
+# notable discoveries but not as rare as mushroom islands.
+# The moderate weirdness ensures occasional generation.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5 = slightly elevated. The island rises gently
+# from the waterline, with the jungle interior sitting above
+# the surrounding beach fringe. Enough elevation for the
+# temple to sit on solid ground above sea level.
+# Range: -64.0 to 256.0
+base-height = 5
+
+# height-variation: 10 = moderate terrain diversity. The
+# jungle floor is uneven — small hills, stream channels, and
+# natural clearings create varied topography beneath the
+# uniform canopy. Enough relief to hide the temple.
+# Range: 0.0 to 30.0
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Standard jungle floor — grass block over dirt, covered in
+# leaf litter and undergrowth.
+[biome.surface]
+# top-block: Grass block — the JUNGLE category gives it a
+# rich, saturated green tint appropriate for tropical foliage.
+top-block = "minecraft:grass_block"
+
+# filler-block: Rich tropical soil beneath the grass. Dense
+# root networks bind the dirt together.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 4 = deep topsoil. Millennia of leaf litter
+# decomposition have created a thick, fertile soil layer
+# perfect for sustaining the massive jungle trees.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Dirt lines any streams or pools in the
+# jungle interior — muddy, root-filled watercourses.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Dense, multi-layered jungle canopy. Large jungle trees
+# tower overhead, with smaller jungle bushes filling every
+# gap. Vines drape from every surface, and cocoa pods
+# cling to the larger trunks.
+[biome.features]
+# trees: Dense jungle canopy with both large and small trees.
+#   types: "jungle" for towering canopy trees, "jungle_bush"
+#          for understory shrubs that fill gaps in the canopy.
+#   density: 12.0 = very dense. The jungle is nearly
+#            impenetrable, with trees packed tightly together.
+#            Range: 0.0 to 30.0+
+trees = { types = ["jungle", "jungle_bush"], density = 12.0 }
+
+# grass-density: Dense undergrowth. Ferns and tall grass fill
+# every patch of light that penetrates the canopy.
+# Range: 0.0 to 100.0
+grass-density = 20.0
+
+# flower-density: Minimal flowers. The canopy blocks too much
+# light for most flowering plants to thrive.
+# Range: 0.0 to 15.0
+flower-density = 0.5
+
+# extra-features: Vines, cocoa, bamboo, and melons add
+# vertical interest and harvestable resources throughout
+# the jungle interior.
+extra-features = [
+    # Vines hang from every tree trunk and canopy edge.
+    { feature = "vine", density = 8.0 },
+    # Cocoa pods on jungle log trunks — dye and food source.
+    { feature = "cocoa", density = 3.0 },
+    # Bamboo patches in clearings — scaffolding material.
+    { feature = "bamboo", density = 2.0 },
+    # Wild melon patches on the jungle floor.
+    { feature = "melon", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Classic jungle wildlife. Parrots and ocelots are the
+# signature mobs, with hostile creepers lurking in the dark
+# spots beneath the dense canopy.
+[biome.spawning]
+# Parrots: Colorful birds in the upper canopy. Can be tamed
+# with seeds. They mimic nearby hostile mob sounds, providing
+# an audible early warning system.
+parrot = { weight = 12, min-group = 1, max-group = 3 }
+
+# Ocelots: Shy jungle cats that flee from players unless
+# approached slowly with raw fish. Tamed cats repel creepers.
+ocelot = { weight = 8, min-group = 1, max-group = 2 }
+
+# Creeper: The dense undergrowth and dark canopy shadows
+# provide perfect ambush conditions for creepers.
+creeper = { weight = 10, min-group = 1, max-group = 1 }

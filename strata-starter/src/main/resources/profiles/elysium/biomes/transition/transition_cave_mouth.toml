@@ -1,0 +1,188 @@
+# ============================================================
+#  Biome: Cave Mouth — Transition Zone
+# ============================================================
+# The threshold between the sunlit surface world and the
+# Abyssal Depths below. Massive cave openings yawn in the
+# hillside, their dark interiors visible from dozens of blocks
+# away. The terrain steps down sharply at the cave lip, and
+# daylight penetrates only a few blocks into the entrance
+# before the darkness swallows it completely. Cold, damp air
+# flows outward from the cave — a perpetual exhalation that
+# chills exposed skin. The stone around the openings is
+# cracked and weathered, stained with mineral deposits from
+# groundwater seepage. Bats stream out at dusk, and the
+# faintest echoes of hostile mobs drift up from below.
+#
+# Gameplay notes:
+#   - Large cave openings visible from the surface — major
+#     exploration landmarks.
+#   - Gateway to the Abyssal Depths underground zone.
+#   - Cold air from the cave openings — light freeze damage
+#     near the entrance without warm gear.
+#   - Bats at dusk signal the cave locations from distance.
+#   - Stone surface provides immediate building material.
+#   - High height-variation creates the dramatic cliff faces
+#     that contain the cave openings.
+#   - Hostile mobs spawn in the shadowed overhangs even by day.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Transition biomes use the
+# "transition_" prefix to mark them as boundary biomes.
+id = "strata:transition_cave_mouth"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Cave Mouth"
+
+# category: CAVE — the biome is fundamentally defined by its
+# cave openings. CAVE enables subterranean spawning rules,
+# cave-specific ambient sounds (dripping water, echoes), and
+# reduced sky light calculations appropriate for sheltered
+# terrain.
+category = "CAVE"
+
+# zone: "transition" — sits between the surface world and the
+# Abyssal Depths, marking the point where underground
+# exploration begins.
+zone = "transition"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Cool, moderate, and sheltered. The cave openings create a
+# microclimate where underground air mixes with the surface
+# atmosphere. Low erosion maintains the steep cliff faces
+# that contain the openings.
+[biome.climate]
+# temperature: 0.4 = cool. The constant outflow of cold cave
+# air lowers the ambient temperature. The deeper the cave
+# entrance, the cooler the air that flows from it.
+temperature = 0.4
+
+# humidity: 0.5 = moderate. Groundwater seepage keeps the
+# cave mouth area damp, with mineral-stained drip marks on
+# every surface. Not swampy, but perpetually moist.
+humidity = 0.5
+
+# continentalness: 0.5 = moderately inland. Cave systems
+# develop in the interior where thick rock formations have
+# been carved by millennia of groundwater flow.
+continentalness = 0.5
+
+# erosion: 0.3 = moderate resistance. The cliff faces around
+# the cave openings are relatively stable — hard enough to
+# maintain the dramatic overhangs without collapsing.
+erosion = 0.3
+
+# weirdness: 0.0 = completely normal. Cave mouths are natural
+# geological features that should appear wherever the Abyssal
+# zone meets the surface. Zero weirdness ensures reliable
+# generation at zone boundaries.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5 = slightly elevated. The cave mouths open
+# in hillsides and cliff faces, placing the terrain above
+# the surrounding lowlands. The actual cave openings cut
+# downward from this base level.
+# Range: -64.0 to 256.0
+base-height = 5
+
+# height-variation: 15 = extreme variation. The terrain swings
+# dramatically between the high cliff faces above the cave
+# openings and the deep cave interiors below. This extreme
+# variation is essential for creating the large, visible
+# cave mouths that define the biome.
+# Range: 0.0 to 30.0
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Bare stone — the cave mouth area is exposed rock with
+# minimal soil cover. The constant air flow and steep grades
+# prevent soil accumulation.
+[biome.surface]
+# top-block: Stone — exposed bedrock around the cave openings.
+# The thin soil that once covered the hillside has eroded away,
+# revealing the hard rock that contains the cave system.
+top-block = "minecraft:stone"
+
+# filler-block: Stone continues below. The entire biome is
+# solid rock — the cave system carved from a massive stone
+# formation.
+filler-block = "minecraft:stone"
+
+# filler-depth: 4 = solid stone. No sedimentary layers — the
+# cave mouth area is structurally sound rock that supports
+# the large overhangs and cave ceilings.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Stone on the floor of any water pools in
+# the cave entrances — groundwater collecting in stone basins.
+underwater-block = "minecraft:stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Minimal surface vegetation. The cave mouth area is bare
+# stone with moss, glow lichen, and drip features that hint
+# at the underground world below.
+[biome.features]
+# trees: No trees on the exposed stone. The steep grade and
+# lack of soil prevent any tree establishment.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Very sparse. A few grass tufts in cracks
+# where soil has accumulated.
+# Range: 0.0 to 100.0
+grass-density = 2.0
+
+# flower-density: Zero. No flowers on the barren stone.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Cave-themed decorations that signal the
+# transition to the underground world below.
+extra-features = [
+    # Glow lichen on the cave walls and overhangs — the first
+    # sign of the underground biome's bioluminescent features.
+    { feature = "glow_lichen", density = 4.0 },
+    # Moss carpet on the damp stone near the cave openings.
+    { feature = "moss_carpet", density = 3.0 },
+    # Dripstone formations at the cave mouth edges.
+    { feature = "dripstone", density = 2.0 },
+    # Cobweb clusters in the cave entrance shadows.
+    { feature = "cobweb_cluster", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Cave mobs begin appearing at the surface here. Bats pour
+# out at dusk, and hostile mobs lurk in the shadowed overhangs.
+# This is the difficulty ramp into the Abyssal zone.
+[biome.spawning]
+# Bat: Stream out of the cave at dusk in large groups.
+# Visible from distance, they serve as a landmark signal.
+bat = { weight = 15, min-group = 3, max-group = 8 }
+
+# Zombie: Lurk in the shadowed cave entrance, emerging at
+# dusk to patrol the surrounding area.
+zombie = { weight = 10, min-group = 1, max-group = 3 }
+
+# Spider: Spin webs across the cave mouth, ambushing players
+# who enter without looking up.
+spider = { weight = 8, min-group = 1, max-group = 2 }
+
+# Creeper: Hide in the dark recesses just inside the cave
+# entrance — devastating ambush potential.
+creeper = { weight = 6, min-group = 1, max-group = 1 }

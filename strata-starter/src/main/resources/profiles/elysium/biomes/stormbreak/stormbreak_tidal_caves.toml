@@ -1,0 +1,85 @@
+# ============================================================
+#  Biome: Stormbreak Tidal Caves — Stormbreak Coast
+# ============================================================
+# Sea-level cave networks carved into the coastal rock by
+# millennia of tidal action. At low depths, passages flood
+# with seawater, creating treacherous half-submerged tunnels.
+# Drowned mobs patrol the deeper flooded sections, and buried
+# treasure can be found embedded in the cave walls and sandy
+# floors. Stalactites of stone drip above dark tidal pools,
+# and the echo of water slapping against rock fills every
+# chamber.
+#
+# Gameplay notes:
+#   - Exploration-focused biome rewarding careful navigation.
+#   - Drowned spawns make underwater sections dangerous.
+#   - Buried treasure loot tables provide mid-game rewards.
+#   - Respiration and Aqua Affinity enchantments are valuable.
+#   - Connects naturally to stormbreak_sea_cliffs and
+#     stormbreak_rocky_beach at the shoreline.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_tidal_caves"         # Unique registry ID
+display-name = "Stormbreak Tidal Caves"      # Shown in F3 debug & maps
+category = "BEACH"                           # Coastal category
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Cool and damp — constantly bathed in ocean moisture.
+# The negative weirdness value helps segregate this biome
+# into rarer, more unusual coastal pockets.
+[biome.climate]
+temperature = 0.4           # Cool — subterranean and ocean-cooled
+humidity = 0.6              # High humidity from standing seawater
+continentalness = -0.15     # More oceanic than standard beach biomes
+erosion = -0.3              # Moderate-low erosion — carved, not flat
+weirdness = -0.2            # Slightly unusual terrain signature
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# Terrain sits right at sea level with very little variation.
+# The biome is mostly flat with cave openings — dramatic
+# vertical features come from cave carvers, not surface noise.
+[biome.terrain]
+base-height = 0             # At sea level — tidal zone
+height-variation = 5        # Gentle undulation around the waterline
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Sandy floors inside the caves, with stone walls and ceilings.
+# Sand accumulates where tidal currents slow, while gravel
+# lines the deeper flooded passages.
+[biome.surface]
+top-block = "minecraft:sand"             # Tidal sand deposits on floor
+filler-block = "minecraft:sandstone"     # Compacted sand beneath surface
+filler-depth = 3                         # 3 blocks before hitting stone
+underwater-block = "minecraft:sand"      # Sandy seabed in flooded areas
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# No surface trees — this is a cave/shoreline biome. Sparse
+# seagrass may generate in the flooded sections.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees in cave environment
+grass-density = 0.05                     # Minimal — mostly bare rock/sand
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Drowned are the signature hostile mob, patrolling flooded
+# tunnels with tridents. Bats inhabit the dry upper chambers.
+# No passive surface mobs — this is not hospitable terrain.
+[biome.spawning]
+# Drowned spawn in flooded cave sections — they carry tridents
+# at standard drop rates, giving this biome loot significance.
+# Bats fill the dry cave chambers above the waterline.
+# Standard hostile mobs (zombies, skeletons) in dark dry areas.

@@ -1,0 +1,170 @@
+# ============================================================
+#  Biome: Mountain Stream — Elysium Rivers
+# ============================================================
+# A narrow, fast-flowing watercourse tumbling down a steep
+# mountain slope. The streambed is a jumble of water-polished
+# gravel and smooth boulders, with white water churning around
+# every obstacle. Spray fills the air where the stream drops
+# over small ledges, and the rushing sound is constant and
+# deafening up close. Thin ribbons of moss cling to the
+# boulders above the splash zone, and the occasional hardy
+# spruce overhangs the banks. This is the headwater — the
+# place where Elysium's rivers are born from snowmelt and
+# mountain springs.
+#
+# Gameplay notes:
+#   - Fast water current pushes entities downstream.
+#   - Gravel bed provides flint for arrows.
+#   - Steep banks make crossing difficult without bridges.
+#   - Salmon spawn in the cold, fast water — food source.
+#   - Narrow width (3-6 blocks) — easy to jump across at
+#     some points.
+#   - Pairs with frostfang zones upstream and wider river
+#     biomes downstream.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. River biomes use the
+# "elysium_" prefix as they span multiple zones, connecting
+# mountain headwaters to ocean deltas.
+id = "strata:elysium_mountain_stream"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Mountain Stream"
+
+# category: RIVER — enables river-specific mechanics including
+# linear terrain carving, aquatic mob spawning rules, and
+# the water-surface ambient sounds appropriate for flowing
+# watercourses.
+category = "RIVER"
+
+# zone: "river" — river biomes span multiple zones, carving
+# channels through whatever terrain they cross. They generate
+# along noise-determined paths from high to low elevation.
+zone = "river"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Cold mountain conditions. The stream is fed by snowmelt
+# and originates at high elevation where temperatures are
+# near freezing even in summer.
+[biome.climate]
+# temperature: 0.0 = cold temperate. The water is barely above
+# freezing, fed directly by snowmelt from the peaks above.
+# Spray from the rapids chills the surrounding air.
+temperature = 0.0
+
+# humidity: 0.5 = moderate. The rushing water adds moisture to
+# the immediate vicinity, but the steep terrain and wind
+# prevent humidity from building up.
+humidity = 0.5
+
+# continentalness: 0.6 = inland. Mountain streams originate
+# deep in the continental interior, high in the mountain
+# ranges where precipitation collects.
+continentalness = 0.6
+
+# erosion: 0.3 = moderate erosion. The fast water actively
+# carves the streambed, but the hard mountain rock resists,
+# creating the boulder-strewn channel rather than a wide,
+# eroded valley.
+erosion = 0.3
+
+# weirdness: 0.0 = normal. Mountain streams are a natural,
+# expected feature wherever mountains meet lower terrain.
+# Zero weirdness ensures frequent generation.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 0 = at sea level. While the stream flows at
+# mountain elevation, the biome's base-height reflects the
+# channel floor level relative to surrounding terrain. The
+# stream carves slightly into the mountainside.
+# Range: -64.0 to 256.0
+base-height = 0
+
+# height-variation: 3 = minor undulation. The streambed has
+# small drops and pools — miniature waterfalls and plunge
+# pools — but stays within a narrow elevation band.
+# Range: 0.0 to 30.0
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Water-polished gravel and stone — the classic mountain
+# stream substrate.
+[biome.surface]
+# top-block: Gravel — water-tumbled pebbles and small stones.
+# The constant flow keeps the streambed clean and free of soil.
+top-block = "minecraft:gravel"
+
+# filler-block: Stone beneath the gravel. The stream has
+# scoured away all soft material, exposing the bedrock only
+# a few blocks below the gravel surface.
+filler-block = "minecraft:stone"
+
+# filler-depth: 2 = thin gravel layer over solid stone. The
+# fast water prevents deep sediment accumulation — everything
+# gets washed downstream.
+# Range: 1 to 8.
+filler-depth = 2
+
+# underwater-block: Gravel on the streambed beneath the
+# water — consistent with the water-polished stone character.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Sparse vegetation — only the hardiest plants survive next
+# to the rushing water. Boulders are the dominant feature.
+[biome.features]
+# trees: Rare overhanging spruce on the stream banks. The
+# narrow channel leaves little room for tree growth.
+#   types: "spruce" — hardy mountain conifers.
+#   density: 0.3 = very sparse. Only occasional trees where
+#            the bank is wide enough to support roots.
+#            Range: 0.0 to 30.0+
+trees = { types = ["spruce"], density = 0.3 }
+
+# grass-density: Minimal. The gravel surface and constant
+# spray prevent grass establishment on the stream banks.
+# Range: 0.0 to 100.0
+grass-density = 3.0
+
+# flower-density: Zero. No flowers survive the constant spray
+# and lack of soil on the rocky stream banks.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Boulders in the streambed and moss on the
+# wetter surfaces define the mountain stream character.
+extra-features = [
+    # Large boulders in the stream channel — the signature feature.
+    { feature = "boulder", density = 4.0 },
+    # Moss carpet on rocks above the splash zone.
+    { feature = "moss_carpet", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Salmon thrive in the cold, fast water. Few other mobs can
+# survive the steep terrain and rushing current.
+[biome.spawning]
+# Salmon: Spawn in the cold, oxygenated mountain water.
+# They leap upstream over small falls — a visual treat.
+salmon = { weight = 15, min-group = 2, max-group = 4 }
+
+# Wolf: Packs hunt along the stream banks, drawn by the
+# salmon. They may be seen fishing at shallow points.
+wolf = { weight = 5, min-group = 2, max-group = 3 }

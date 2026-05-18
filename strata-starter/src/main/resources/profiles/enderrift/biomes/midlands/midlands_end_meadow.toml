@@ -1,0 +1,166 @@
+# ============================================================
+#  Biome: Midlands End Meadow — Midlands Zone
+# ============================================================
+# A flat, peaceful expanse of end stone dotted with scattered
+# chorus flowers. The gentlest terrain in the midlands region,
+# offering a rare moment of calm in the alien landscape. Chorus
+# flowers bloom in small clusters but the terrain is otherwise
+# uncluttered — an open field in the void.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:midlands_end_meadow"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "End Meadow"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "midlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. The End is cold and alien; 0.0 reflects its
+# neutral, lifeless thermal signature.
+temperature = 0.0
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. End has no weather or water; -0.5 indicates the
+# dry, arid nature of the dimension.
+humidity = -0.5
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.4 = moderately interior — this meadow sits
+# comfortably within the midlands island, not near any edge.
+continentalness = 0.4
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.8 = nearly flat,
+# reflecting this biome's smooth, meadow-like terrain profile.
+erosion = 0.8
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.1 = slightly unusual — the scattered chorus flowers add a mild
+# otherworldly quality without being extreme.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. End islands float
+# in void, so this is an absolute Y coordinate, not relative to sea
+# level. 63 places this at a comfortable mid-height for the midlands,
+# matching vanilla end island altitude.
+# Range: 0 to 256
+base-height = 63
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 3 produces gentle rolling terrain — subtle contour that keeps the
+# meadow traversable and open without being glass-flat.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+# End biomes default to end_stone throughout.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone is the natural ground of the End dimension.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. End stone continues beneath the surface, forming
+# the solid island mass.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 4 gives a standard end island thickness before the
+# generator transitions to deeper stone or void.
+# Range: 1 to 8
+filler-depth = 4
+
+# underwater-block: Block placed on the bed of any liquid bodies.
+# The End has no water; this is set to end_stone as a fallback
+# in case any modded interaction creates fluid.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references feature types defined in features/features.toml.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk (16x16 area).
+# Range: 0.0 (barren) to 10.0 (dense forest).
+# 1.5 scatters a modest handful of chorus plants across the meadow —
+# enough to provide harvestable chorus fruit without cluttering the
+# open field aesthetic.
+chorus-density = 1.5
+
+# chorus-flower-chance: Probability that a chorus plant terminates
+# in a flower rather than bare stem. 0.6 is notably higher than
+# average, reflecting this biome's "meadow" identity — flowers are
+# the defining visual element.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.6
+
+# end-rod-chance: Per-position probability of decorative end rods
+# generating on the surface. 0.002 places very sparse rods — just
+# enough to catch the eye without disrupting the peaceful openness.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.002
+
+# crystal-chance: Per-position probability of amethyst crystal
+# clusters appearing on end stone surfaces. 0.0 — the meadow is
+# a simple, unadorned landscape without crystal formations.
+# Range: 0.0 to 0.1
+crystal-chance = 0.0
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — no obsidian in this gentle biome; the surface is pure
+# end stone.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults.
+[biome.spawning]
+# enderman: Reduced presence in this peaceful meadow. The open
+# terrain and calm atmosphere mean fewer enderman roam here.
+# weight: Relative spawn chance (global default is 100).
+# min-group/max-group: How many spawn together.
+enderman = { weight = 60, min-group = 1, max-group = 2 }
+
+# shulker: No shulkers in the open meadow — they are bound to
+# end cities and structured biomes. weight 0 disables them here.
+shulker = { weight = 0, min-group = 0, max-group = 0 }

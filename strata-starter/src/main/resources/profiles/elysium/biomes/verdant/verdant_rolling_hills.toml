@@ -1,0 +1,135 @@
+# ============================================================
+#  Biome: Verdant Rolling Hills — Verdant Expanse
+# ============================================================
+# Gentle undulating terrain with panoramic views across the
+# Verdant Expanse. Scattered lone trees dot the hillsides, and
+# exposed coal ore seams peek out from eroded slopes. The hills
+# are never steep enough to require jumping — they roll smoothly
+# like waves frozen in grass.
+#
+# Gameplay: Elevated vantage points for scouting. Exposed coal
+# on hillside cuts provides easy early-game fuel. The varied
+# elevation makes interesting multi-level base designs. Sheep
+# and goats graze the hilltops.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier.
+# "rolling_hills" distinguishes this from flat verdant_plains.
+id = "strata:verdant_rolling_hills"
+
+# display-name: Shown in F3 debug, minimap overlays, and
+# /strata biome info command output.
+display-name = "Verdant Rolling Hills"
+
+# category: PLAINS — despite the hills, the overall character is
+# open grassland. PLAINS category enables horse and donkey spawns,
+# village eligibility, and standard plains ambient sounds.
+category = "PLAINS"
+
+# zone: Verdant Expanse. Generates 1500-3500 blocks from spawn.
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.5 = standard temperate. Rolling hills have
+# the same climate as plains — altitude differences here are
+# too subtle to affect temperature noticeably.
+temperature = 0.5
+
+# humidity: 0.35 = slightly dry. Hilltops drain well and wind
+# exposure reduces moisture retention slightly compared to
+# sheltered valleys.
+humidity = 0.35
+
+# continentalness: 0.45 = slightly more inland than plains.
+# Hills form further from the coast where terrain has more
+# elevation variation from tectonic activity.
+continentalness = 0.45
+
+# erosion: 0.5 = moderate erosion. Lower than plains (0.8) to
+# create noticeable hills, but high enough to keep them gentle
+# rather than mountainous. This is the key differentiator.
+erosion = 0.5
+
+# weirdness: 0.0 = standard. Normal-variant hills without
+# any exotic features or unusual terrain artifacts.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 12 blocks above sea level. Elevated baseline
+# creates the "rolling" feel — hills rise above surrounding
+# plains and forest biomes for scenic vistas.
+base-height = 12
+
+# height-variation: 4.0 = moderate undulation. Creates smooth
+# wave-like hills approximately 8-16 blocks in amplitude.
+# Steep enough to be visually interesting, gentle enough to
+# walk up without jumping.
+height-variation = 4.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The hills are entirely grass-covered —
+# no exposed rock on the surface (that's for mountains).
+top-block = "minecraft:grass_block"
+
+# filler-block: Standard dirt beneath the grass.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. On steeper slopes the dirt
+# layer may be thinner (handled by surface/rules.toml slope logic),
+# exposing stone and coal ore seams.
+filler-depth = 3
+
+# underwater-block: Dirt for any small ponds in hill depressions.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Scattered lone trees — iconic hilltop silhouettes.
+#   "oak" and "fancy_oak" provide visual landmarks on hilltops.
+#   density 1.0 = sparse scattering, roughly one tree per chunk.
+#   Trees on hills are more visible than in plains, so fewer
+#   are needed for visual impact.
+trees = { types = ["oak", "fancy_oak"], density = 1.0 }
+
+# grass-density: 50.0 = lush grass cover across the hillsides.
+# Slightly less than plains because wind exposure on hills
+# thins the grass slightly.
+grass-density = 50.0
+
+# flower-density: 3.0 = moderate wildflower coverage.
+# Flowers cluster in the sheltered valleys between hills.
+flower-density = 3.0
+
+# extra-features: Exposed ore seams on eroded hillsides.
+extra-features = [
+    # Coal ore is exposed where erosion cuts into hillsides.
+    # This provides an early-game fuel source visible from the surface.
+    { feature = "exposed_coal", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Hilltop grazers and herd animals that prefer open terrain.
+[biome.spawning]
+# Sheep graze on the grassy hilltops — large flocks.
+sheep = { weight = 15, min-group = 3, max-group = 6 }
+# Goats climb the hills — they prefer elevated, open terrain.
+goat = { weight = 5, min-group = 2, max-group = 3 }
+# Horses roam the open hillsides in small herds.
+horse = { weight = 5, min-group = 2, max-group = 3 }

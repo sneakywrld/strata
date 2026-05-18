@@ -1,0 +1,80 @@
+# ============================================================
+#  Biome: Stormbreak Rocky Beach — Stormbreak Coast
+# ============================================================
+# A rough, wave-battered shoreline of gravel and exposed
+# stone. Tide pools formed by waterlogged slabs shelter small
+# aquatic life between the rocks. Scattered shipwreck debris —
+# planks, fences, and chests — washes up among the boulders,
+# hinting at the coast's treacherous reputation. The footing
+# is uneven and the surf is relentless, making this a harsh
+# but rewarding biome to explore on foot.
+#
+# Gameplay notes:
+#   - Tide pools (waterlogged slabs) are a unique visual touch.
+#   - Shipwreck debris provides early-game loot without diving.
+#   - Gravel is abundant — good source of flint.
+#   - Naturally borders stormbreak_sea_cliffs above and
+#     stormbreak_tidal_caves at water level.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_rocky_beach"         # Unique registry ID
+display-name = "Stormbreak Rocky Beach"      # Shown in F3 debug & maps
+category = "BEACH"                           # Standard coastal beach type
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Cool and moderately dry — exposed to wind with little
+# vegetation to hold moisture. Low continentalness places
+# it right at the ocean edge.
+[biome.climate]
+temperature = 0.4           # Cool — open to ocean breezes
+humidity = 0.4              # Drier than average — wind-dried gravel
+continentalness = -0.05     # Right at the continental edge
+erosion = 0.2               # Moderate erosion — rocks worn smooth
+weirdness = 0.0             # Neutral — common coastal feature
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# Barely above sea level with gentle undulation from scattered
+# boulders and gravel mounds.
+[biome.terrain]
+base-height = 1             # Just above waterline
+height-variation = 2        # Low mounds of gravel and stone
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Gravel is the dominant surface material, with exposed stone
+# patches where waves have scoured away loose material.
+[biome.surface]
+top-block = "minecraft:gravel"           # Loose gravel beach surface
+filler-block = "minecraft:stone"         # Solid rock beneath thin gravel
+filler-depth = 3                         # 3 blocks of gravel over stone
+underwater-block = "minecraft:gravel"    # Gravel continues underwater
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# No trees survive on the exposed, wave-washed gravel. Only
+# the hardiest grass tufts appear between rocks.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees — too exposed
+grass-density = 0.05                     # Minimal grass between rocks
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Few passive mobs — the terrain is inhospitable. Standard
+# hostile spawns at night. The main draw is loot from
+# shipwreck debris features, not mob farming.
+[biome.spawning]
+# No notable passive mob spawns — barren gravel shore.
+# Standard night-time hostile spawns (zombies, skeletons).
+# Drowned may wander ashore from adjacent ocean chunks.

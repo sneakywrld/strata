@@ -1,0 +1,76 @@
+# ============================================================
+#  End Structures — Enderrift
+# ============================================================
+# End-specific structures. End cities are the primary
+# generated structures, appearing on outer islands.
+# ============================================================
+
+# -------------------------------------------------------
+# End Cities
+# -------------------------------------------------------
+[structures.end_city]
+type = "jigsaw"
+# spacing: Grid spacing in chunks. Vanilla is 20.
+# We use 16 for more frequent end cities.
+spacing = 16
+separation = 4
+salt = 10387313
+max-pieces = 30
+max-depth = 8
+# End cities only spawn on outer islands, not the central island.
+# biome-filter restricts to highlands/midlands biomes.
+biome-filter = ["highlands", "midlands"]
+
+# -------------------------------------------------------
+# End Ship (part of End City)
+# -------------------------------------------------------
+# End ships are generated as part of end cities.
+# The ship-chance controls how often an end city includes a ship.
+[structures.end_city.ship]
+# ship-chance: Probability of an end city having a ship.
+# Vanilla is ~50%. We keep that for balance.
+chance = 0.5
+
+# -------------------------------------------------------
+# End Gateway
+# -------------------------------------------------------
+# End gateways are placed after dragon defeats and scatter
+# across the outer islands. These are handled by the engine.
+[structures.end_gateway]
+# scatter-radius: How far from center gateways can appear.
+scatter-radius = 4000
+# count: Number of gateways generated per dragon kill.
+count = 20
+
+# -------------------------------------------------------
+# Obsidian Pillars (Central Island)
+# -------------------------------------------------------
+[structures.obsidian_pillar]
+# count: Number of obsidian towers around the central island.
+count = 10
+# height-range: Min and max pillar heights.
+height-range = [20, 50]
+# cage-chance: Probability of iron cage around end crystal.
+cage-chance = 0.3
+
+# -------------------------------------------------------
+# End Ruins (Custom Strata Structure)
+# -------------------------------------------------------
+# Small purpur/end brick ruins scattered across outer islands.
+[structures.end_ruins]
+type = "schematic"
+spacing = 12
+separation = 4
+salt = 93847291
+biome-filter = ["highlands", "midlands", "barrens"]
+
+# -------------------------------------------------------
+# Crystal Shrine (Custom Strata Structure)
+# -------------------------------------------------------
+# Amethyst/end crystal formations with rare loot.
+[structures.crystal_shrine]
+type = "schematic"
+spacing = 32
+separation = 8
+salt = 48273651
+biome-filter = ["highlands", "chorus"]

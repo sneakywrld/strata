@@ -1,0 +1,100 @@
+# ============================================================
+#  Biome: Frostfang Spruce Slope — Frostfang Peaks
+# ============================================================
+# Dense spruce forest blankets the lower mountain slopes,
+# their dark green boughs heavy with snow. The canopy is
+# thick enough to block much of the sky, creating a
+# perpetual twilight beneath the trees. Snow accumulates
+# in drifts between the trunks, and frozen streams thread
+# downhill through the undergrowth. The air smells of
+# pine resin and cold earth. Wolves hunt in packs through
+# the trees, and the crack of frozen branches breaking
+# under snow weight punctuates the silence.
+#
+# Gameplay notes:
+#   - Primary wood source in the Frostfang zone — spruce
+#     logs are abundant and essential for mountain bases.
+#   - Dense canopy reduces light levels, allowing hostile
+#     mob spawns even during daytime in deep forest.
+#   - Wolf packs can be tamed for companions or avoided
+#     as a threat depending on player preparedness.
+#   - The sloped terrain (height-variation=20) makes
+#     navigation more challenging than flat taiga.
+#   - Pairs with frostfang_alpine_meadow above and
+#     frostfang_glacial_valley / frostfang_snowfield below.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_spruce_slope"         # Unique registry ID
+display-name = "Frostfang Spruce Slope"      # Shown in F3 debug & maps
+category = "TAIGA"                           # Snowy coniferous forest
+zone = "frostfang"                           # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The slightly higher humidity supports
+# the dense forest growth. The mildly negative erosion
+# creates the sloped terrain that defines this biome's
+# character — forest climbing uphill toward the treeline.
+[biome.climate]
+temperature = -0.3          # Cold but survivable — forest insulates
+humidity = 0.5              # Higher moisture supports dense growth
+continentalness = 0.7       # Inland mountain slopes
+erosion = -0.2              # Slightly low erosion — noticeable slope
+weirdness = 0.0             # Neutral — standard slope formation
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 15 places the forest on the lower-to-mid
+# mountain slopes. The height-variation of 20 creates the
+# characteristic climbing terrain — the forest rises from
+# near sea-level valleys up toward the alpine meadow zone.
+# This gradient gives the biome a strong sense of ascent.
+[biome.terrain]
+base-height = 15            # Lower mountain slopes — forested belt
+height-variation = 20       # +/-20 blocks — noticeable uphill climb
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# A layer of podzol covers the forest floor — formed by
+# decades of spruce needle decomposition. Below the podzol,
+# coarse dirt represents the rocky mountain substrate.
+# Snow layers accumulate on top of the podzol between trees.
+[biome.surface]
+top-block = "minecraft:podzol"           # Spruce needle litter floor
+filler-block = "minecraft:coarse_dirt"   # Rocky substrate beneath
+filler-depth = 3                         # Moderate soil depth on slope
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Dense spruce forest is the defining feature. Both normal
+# spruce and mega (2x2) spruce trees generate, with the
+# mega variants becoming more common at higher elevations.
+# Ferns and sweet berry bushes populate the understory.
+[biome.features]
+trees = { types = ["spruce", "mega_spruce"], density = 0.7 }  # Dense conifer forest
+grass-density = 0.3                      # Ferns and ground cover under canopy
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Wolf packs are the signature fauna of the spruce slope.
+# They hunt rabbits and foxes through the undergrowth.
+# Foxes carry items and are a source of entertainment and
+# minor loot. The dense canopy allows hostile mobs to
+# persist in shadowed areas even during the day — players
+# should stay alert beneath the trees.
+[biome.spawning]
+# Wolf packs of 2-4 roam the forest — tameable but
+# hostile to nearby passive mobs and skeletons.
+# Foxes spawn under spruce canopy, may carry items.
+# Rabbits provide a food source and wolf prey.
+# Hostile mobs in dark areas day and night.

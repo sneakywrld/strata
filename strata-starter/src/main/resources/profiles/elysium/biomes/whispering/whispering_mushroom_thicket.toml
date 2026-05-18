@@ -1,0 +1,123 @@
+# ============================================================
+#  Biome: Whispering Mushroom Thicket — Whispering Woodlands
+# ============================================================
+# A surreal pocket within the woodland where giant mushrooms have
+# overtaken the dark oak canopy. Towering red and brown mushroom
+# caps form a secondary roof above the leaf layer, and patches of
+# mycelium creep across the forest floor. The air is thick with
+# spore particles, and the ground squelches underfoot. This biome
+# blends the dark forest atmosphere with mushroom island aesthetics.
+#
+# Gameplay Notes:
+#   - Giant mushrooms yield mushroom blocks (decoration/fuel).
+#   - Mycelium patches allow mushroom placement at any light level.
+#   - Mooshrooms may spawn on mycelium patches (rare).
+#   - Mushroom stew ingredients are everywhere.
+#   - No hostile mobs spawn on mycelium (vanilla behavior).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_mushroom_thicket"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Mushroom Thicket"
+
+# category: MUSHROOM — the mushroom-dominant nature takes priority
+# over the forest backdrop for feature generation purposes.
+category = "MUSHROOM"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Moderate — mushrooms thrive in temperate conditions.
+temperature = 0.5
+# humidity: High — spore propagation requires significant moisture.
+humidity = 0.7
+# continentalness: Mid-inland — sheltered pockets within the forest.
+continentalness = 0.5
+# erosion: Slightly above neutral — gentle terrain, slightly boggy.
+erosion = 0.55
+# weirdness: Notable positive (0.4) — giant mushrooms mixed with
+# dark oaks is a distinctly unusual terrain variant.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard forest elevation. The mushroom thicket sits
+# at the same level as the surrounding dark forest.
+base-height = 67
+
+# height-variation: Low — flat terrain allows mushroom caps to form
+# a uniform ceiling and mycelium to spread evenly.
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Mycelium — the fungal network has colonized the surface.
+# Mycelium spreads naturally in-game if conditions allow.
+top-block = "minecraft:mycelium"
+
+# filler-block: Dirt — standard sub-surface beneath the mycelium.
+filler-block = "minecraft:dirt"
+
+# filler-depth: Standard 3-block depth.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Dark oak is still present but shares space with giant mushrooms.
+# Lower density than the pure dark forest — mushrooms fill the gaps.
+trees = { types = ["dark_oak"], density = 7 }
+
+# giant-mushrooms: Towering red and brown mushroom structures.
+# These are the signature feature of this biome.
+# density is placement attempts per chunk.
+giant-mushrooms = { types = ["huge_brown_mushroom", "huge_red_mushroom"], density = 6 }
+
+# grass-density: Low — mycelium does not support standard grass growth.
+grass-density = 1
+
+# flower-density: Zero — mycelium surface does not host flowers.
+flower-density = 0.0
+
+# mushrooms: Extremely high — small mushrooms carpet the floor.
+# Mycelium allows placement regardless of light level.
+mushrooms = { brown = 14, red = 10 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Hostile spawning is suppressed — mycelium patches mimic the
+# mushroom island safe-zone behavior. Mobs still spawn on dirt/grass
+# patches where mycelium has not spread, but overall density is lower.
+hostile-density-multiplier = 0.6
+
+# Mooshrooms have a rare chance to spawn on mycelium patches.
+# This is a unique reward for finding this biome.
+mooshroom-weight = 5
+
+# Standard passive density — the relative safety attracts animals.
+passive-density-multiplier = 1.0

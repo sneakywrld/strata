@@ -1,0 +1,168 @@
+# ============================================================
+#  Biome: Sand Atoll — Elysium Islands
+# ============================================================
+# A ring-shaped ribbon of sand encircling a shallow turquoise
+# lagoon. The sand bar barely rises above sea level — just one
+# or two blocks of dry land at its highest — and is so narrow
+# that the ocean is visible on both sides at once. Inside the
+# lagoon, the water is crystal-clear and shallow enough to wade
+# across, with vibrant coral formations, sea pickles, and
+# tropical fish visible from the surface. The atoll is a
+# quintessential tropical formation: beautiful, fragile, and
+# exposed to every storm that crosses the ocean.
+#
+# Gameplay notes:
+#   - Coral reef inside the lagoon — blocks, fans, and pickles.
+#   - Extremely shallow water for easy coral harvesting.
+#   - Minimal building space — the sand bar is only 3-8 wide.
+#   - Vulnerable to ocean storms — no shelter from wind.
+#   - Buried treasure may generate beneath the sand ring.
+#   - Excellent early-game fishing spot in the calm lagoon.
+#   - Seagrass and kelp provide composting material.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Island biomes use the
+# "elysium_" prefix as cross-zone ocean features.
+id = "strata:elysium_sand_atoll"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Sand Atoll"
+
+# category: BEACH — the sandy ring is essentially a circular
+# beach. BEACH enables turtle nesting behavior, sand-specific
+# ambient sounds, and buried treasure chest generation.
+category = "BEACH"
+
+# zone: "island" — island biomes generate offshore in ocean
+# areas, independent of mainland zone boundaries.
+zone = "island"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Warm tropical conditions with high erosion — the sand bar
+# is constantly reshaped by waves and currents.
+[biome.climate]
+# temperature: 0.7 = warm tropical. The lagoon water stays
+# comfortably warm, supporting coral growth and tropical fish
+# populations year-round.
+temperature = 0.7
+
+# humidity: 0.5 = moderate oceanic moisture. Constant sea
+# breeze maintains stable humidity across the low-lying atoll.
+humidity = 0.5
+
+# continentalness: -0.4 = further offshore than most islands.
+# Atolls form in deep ocean areas where volcanic seamounts
+# once rose to the surface, then sank as coral grew upward.
+continentalness = -0.4
+
+# erosion: 0.6 = heavily eroded. The sand bar is the product
+# of extreme erosion — a former island worn down to nothing
+# but a sand ring by millennia of wave action.
+erosion = 0.6
+
+# weirdness: 0.55 = moderately unusual. Ring-shaped terrain
+# formations require specific noise conditions. The weirdness
+# value ensures atolls appear occasionally but not commonly.
+weirdness = 0.55
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 1 = barely above sea level. The sand ring sits
+# just one block above the waterline at its highest point.
+# This extreme low profile is essential for the atoll aesthetic
+# — a fragile ribbon of sand floating on the ocean surface.
+# Range: -64.0 to 256.0
+base-height = 1
+
+# height-variation: 2 = very flat. The atoll ring has almost
+# no elevation change — it is uniformly low and narrow. The
+# minimal variation prevents the sand from forming hills that
+# would break the delicate ring silhouette.
+# Range: 0.0 to 30.0
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Pure sand — the entire atoll is composed of coral-sand
+# deposits. No soil, no stone, just compacted sand.
+[biome.surface]
+# top-block: Sand — the white coral sand that forms the ring.
+# The same material as tropical beaches but deposited in a
+# circular formation by ocean currents.
+top-block = "minecraft:sand"
+
+# filler-block: Sand continues below the surface. The atoll
+# is sand all the way down to the underlying reef rock.
+filler-block = "minecraft:sand"
+
+# filler-depth: 3 = moderate sand depth. The sand deposit is
+# not as deep as a full island — it is a thin layer over the
+# submerged reef structure beneath.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Sand on the lagoon floor and the outer
+# seafloor — consistent tropical sand bottom.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Almost no land vegetation — the sand bar is too narrow and
+# exposed. The lagoon interior holds the real features: coral
+# reef, sea pickles, and aquatic plants.
+[biome.features]
+# trees: No trees. The sand bar is too narrow, too exposed,
+# and too low-lying to support tree growth.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Zero. Sand surface with no soil for grass.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: Zero. No flowers on the bare sand ring.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: The lagoon's coral reef is the atoll's
+# defining feature — vibrant underwater life contrasting
+# with the barren sand surface above water.
+extra-features = [
+    # Coral reef formations inside the lagoon — the main attraction.
+    { feature = "coral_reef", density = 7.0 },
+    # Sea pickles on coral — bioluminescent at night.
+    { feature = "sea_pickle", density = 4.0 },
+    # Seagrass beds in the shallow lagoon water.
+    { feature = "seagrass", density = 5.0 },
+    # Tall seagrass in slightly deeper lagoon pockets.
+    { feature = "tall_seagrass", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Tropical aquatic life in the lagoon. The sand ring itself
+# hosts turtles and the occasional crab-like silverfish. The
+# protected lagoon is a nursery for tropical fish.
+[biome.spawning]
+# Tropical fish: Abundant in the sheltered lagoon. Multiple
+# color variants school between coral formations.
+tropical_fish = { weight = 20, min-group = 3, max-group = 6 }
+
+# Turtle: Nests on the narrow sand ring. The protected lagoon
+# provides safe water for hatchlings.
+turtle = { weight = 10, min-group = 1, max-group = 3 }
+
+# Pufferfish: Lurk near coral formations in the lagoon.
+# Inflict poison when players approach too closely.
+pufferfish = { weight = 5, min-group = 1, max-group = 2 }

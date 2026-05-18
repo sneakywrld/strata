@@ -1,0 +1,192 @@
+# ============================================================
+#  Biome: Fossil Fields — Scorched Badlands
+# ============================================================
+# A canyon system where erosion has exposed ancient fossil deposits
+# in the terracotta walls. Bone blocks jut from cliff faces at
+# various heights, and partially excavated skeletons litter the
+# canyon floor. The terrain evokes an archaeological dig site —
+# scaffolding-like structures, exposed strata, and the thrill of
+# paleontological discovery. Players can harvest bone blocks and
+# bone meal here, making this biome a valuable resource destination.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_fossil_fields"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Fossil Fields"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# BADLANDS provides the warm sky tint and dry ambiance appropriate
+# for an arid canyon dig site.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.85 = very hot, standard for the interior
+# badlands canyons where fossils are exposed.
+temperature = 0.85
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.55 = very dry, which paradoxically
+# helps preserve fossils — moisture would accelerate their decay.
+humidity = -0.55
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, where ancient
+# seabeds have been uplifted and eroded to reveal their fossil
+# contents.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.3 = moderate erosion
+# has carved canyons deep enough to expose fossil-bearing layers
+# without destroying the deposits entirely.
+erosion = 0.3
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.5 = moderately unusual, reflecting the rare geological
+# conditions needed to both preserve and then expose fossil beds.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 8.0 places the canyon
+# floor above sea level but below the surrounding plateaus,
+# creating accessible excavation sites in the canyon walls.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 8.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 10.0 creates moderately rough terrain with exposed cliff faces,
+# rubble slopes, and terraced excavation ledges — varied enough
+# to expose fossils at multiple elevations.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 10.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Light gray terracotta represents the chalky, calcium-rich
+# sedimentary layer where fossils accumulate — visually distinct
+# from the red and orange terracotta of adjacent biomes.
+top-block = "minecraft:light_gray_terracotta"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Plain terracotta forms the canyon walls beneath
+# the fossil-bearing surface layer.
+filler-block = "minecraft:terracotta"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 5 provides sufficient depth for fossil deposits to
+# appear embedded in the cliff faces at varying depths.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Sand with fossil
+# fragments — any water pooling in the dig site.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#          "dead_bush_large" = skeletal dead trees adding atmosphere.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.1 places only rare dead trees, keeping the focus on
+#            the fossil deposits and exposed rock faces.
+trees = { types = ["dead_bush_large"], density = 0.1 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.2 = minimal grass clinging to sediment
+# deposits on the canyon floor between excavation sites.
+grass-density = 0.2
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = no flowers in this arid dig site.
+flower-density = 0.0
+
+# dead-bush-density: Dead bush features per chunk. Dry brush
+# growing around fossil exposure sites. 1.5 provides moderate
+# coverage without obscuring the bone block deposits.
+dead-bush-density = 1.5
+
+# fossil-density: Fossil structure features per chunk. These are
+# bone block formations embedded in canyon walls and partially
+# exposed on the surface — the biome's defining feature.
+# 3.0 ensures players encounter multiple fossil sites per chunk,
+# making exploration consistently rewarding.
+fossil-density = 3.0
+
+# bone-block-scatter: Individual bone blocks scattered on the
+# surface per chunk, representing fragments eroded from larger
+# fossil deposits. 2.0 creates a breadcrumb trail that leads
+# players to richer deposits in the walls.
+bone-block-scatter = 2.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The fossil fields attract undead drawn to the ancient bones.
+# Skeletons are thematically dominant here — fittingly, they are
+# the most common hostile mob in a biome defined by skeletal remains.
+
+# skeleton: Thematically perfect for the fossil biome. Skeletons
+# spawn in elevated numbers among the ancient bones, blending in
+# with the bone block deposits and surprising unwary players.
+# weight: 18 makes skeletons the overwhelming hostile presence.
+skeleton = { weight = 18, min-group = 2, max-group = 4 }
+
+# husk: Desert undead that supplement the skeletons. Their Hunger
+# debuff adds resource pressure for players spending time mining
+# fossils.
+# weight: 8 for a secondary hostile presence.
+husk = { weight = 8, min-group = 1, max-group = 3 }
+
+# rabbit: Hardy desert rabbits nesting in the soft sediment
+# around fossil sites.
+# weight: 5 for sparse passive life.
+rabbit = { weight = 5, min-group = 1, max-group = 3 }

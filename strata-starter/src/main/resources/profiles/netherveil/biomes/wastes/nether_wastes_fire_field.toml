@@ -1,0 +1,148 @@
+# ============================================================
+#  Biome: Nether Wastes Fire Field — Nether Wastes Region
+# ============================================================
+# A hellscape of eternal flame where scattered fires burn across
+# the netherrack surface as far as the eye can see. The air
+# shimmers with heat distortion, and the flickering orange glow
+# of a thousand fires illuminates the cavern in dancing shadows.
+# Blazes drift among the flames like living torches, their
+# spinning rod bodies barely distinguishable from the fire around
+# them. This is the hottest surface biome in the wastes — players
+# without fire resistance will find themselves constantly on fire
+# from brushing against flame patches. The fire never goes out,
+# sustained by the netherrack beneath it.
+#
+# Gameplay notes:
+#   - Fire Resistance potions mandatory for safe exploration.
+#   - Blazes spawn outside of fortresses here — blaze rod source.
+#   - Fire Aspect enchantment theme — fire charges drop from blazes.
+#   - Netherrack + flint & steel = permanent light markers.
+#   - Extremely high light level suppresses other hostile spawns.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The fire field is the
+# hottest and most hazardous wastes variant.
+id = "strata:nether_wastes_fire_field"
+
+# display-name: Human-readable name for player displays.
+display-name = "Fire Field"
+
+# category: NETHER — nether environment with extreme fire
+# density and heat-themed ambient effects.
+category = "NETHER"
+
+# zone: Part of the wastes region — the most thermally
+# extreme area within the nether wasteland.
+zone = "wastes"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Elevated — the constant fire coverage raises
+# the ambient temperature well above standard nether levels.
+#   0.7 = significantly hotter than baseline wastes.
+temperature = 0.7
+
+# humidity: Very dry — the intense heat evaporates all moisture
+# instantly. The driest biome in the wastes region.
+#   -0.3 = parched, bone-dry environment.
+humidity = -0.3
+
+# continentalness: Neutral — fire fields can appear anywhere
+# in the mid-level nether terrain.
+#   0.1 = slight inland bias.
+continentalness = 0.1
+
+# erosion: Moderate — the terrain is moderately open to allow
+# fire spread across broad netherrack surfaces.
+#   0.6 = open terrain facilitating fire coverage.
+erosion = 0.6
+
+# weirdness: Moderately unusual — the density of fire is
+# abnormal even by nether standards.
+#   0.4 = notably unusual fire concentration.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — fire burns on the
+# same netherrack surface as the rest of the wastes.
+#   40 = standard wastes floor level.
+base-height = 40
+
+# height-variation: Moderate — some terrain variation to
+# create elevated fire ridges and flaming valleys.
+#   4.0 = moderate undulation, creating fire-covered hills.
+height-variation = 4.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Netherrack — the essential surface for sustaining
+# eternal fire. Netherrack is the only block that burns forever.
+top-block = "minecraft:netherrack"
+
+# filler-block: Netherrack throughout — consistent fuel source
+# for the surface fire.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical netherrack substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks in lava-adjacent areas.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation — everything organic has burned away.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life — incinerated.
+grass-density = 0.0
+
+# flower-density: No flowers survive the constant fire.
+flower-density = 0.0
+
+# extra-features: Fire field specific features.
+#   fire_patch — dense fire coverage on netherrack surfaces.
+#     Very high density creates the wall-to-wall fire effect.
+#   lava_pool — lava pockets adding to the heat intensity.
+#   blaze_spawner_natural — natural blaze spawning points
+#     outside of fortress structures.
+extra-features = [
+    { feature = "fire_patch", density = 15.0 },
+    { feature = "lava_pool", density = 3.0 },
+    { feature = "blaze_spawner_natural", density = 0.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Fire-themed mobs dominate. Blazes are the signature threat.
+[biome.spawning]
+# blaze: The signature mob of the fire field — blazes spawn
+# naturally here outside of fortresses, making this a valuable
+# blaze rod farming location. Their fireballs add to the chaos.
+blaze = { weight = 15, min-group = 1, max-group = 3 }
+
+# zombified_piglin: Reduced presence — even the undead piglins
+# avoid the densest fire patches.
+zombified_piglin = { weight = 10, min-group = 2, max-group = 4 }
+
+# ghast: Rare overhead — the dense fire and blaze presence
+# makes the airspace contested.
+ghast = { weight = 5, min-group = 1, max-group = 1 }
+
+# magma_cube: Fire-resistant and comfortable among the flames.
+magma_cube = { weight = 8, min-group = 1, max-group = 3 }

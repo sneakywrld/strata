@@ -1,0 +1,171 @@
+# ============================================================
+#  Biome: Forest Edge — Transition Zone
+# ============================================================
+# The gradual boundary where Verdant Expanse meets the
+# Whispering Woodlands. Oak canopy thins out as the first
+# dark oak saplings take root, casting deeper shadows. The
+# undergrowth thickens noticeably — ferns, tall grass, and
+# bushes crowd the narrowing gaps between tree trunks. The
+# light level drops step by step until the Whispering zone's
+# permanent twilight swallows the path ahead.
+#
+# Gameplay notes:
+#   - Gentle difficulty ramp: more hostile mobs than Verdant
+#     but fewer than Whispering proper.
+#   - Mixed wood types make this a useful logging biome.
+#   - Dense undergrowth hides the occasional zombie or spider
+#     during the day; stay alert near thickets.
+#   - Good landmark biome: when the dark oaks start, the
+#     Whispering zone is close.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for this biome. Transition
+# biomes use the "transition_" prefix to mark them as boundary
+# biomes between two major zones.
+id = "strata:transition_forest_edge"
+
+# display-name: Human-readable name shown in F3 debug, minimaps,
+# and /strata biome info commands.
+display-name = "Forest Edge"
+
+# category: FOREST — the canopy is still dominant, though
+# thinning. This enables forest-specific ambient sounds, foliage
+# coloring, and structure placement rules.
+category = "FOREST"
+
+# zone: "transition" — transition biomes belong to a special
+# pseudo-zone that sits between two full zones, blending their
+# characteristics. Climate values are tuned to place this biome
+# at the boundary where Verdant and Whispering noise values meet.
+zone = "transition"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where
+# this biome places in the world. These values are tuned to sit
+# between Verdant (warm, moderate humidity) and Whispering
+# (warm, high humidity, moderate erosion) so the biome generates
+# naturally at their shared border.
+[biome.climate]
+# temperature: Temperate — matching the mild warmth shared by
+# both Verdant and Whispering zones. 0.5 = comfortable warmth,
+# neither hot nor cold.
+temperature = 0.5
+
+# humidity: Elevated compared to Verdant (0.3) but below
+# Whispering (0.7). 0.6 = noticeably damper air as the forest
+# canopy begins trapping moisture. Moss and ferns thrive here.
+humidity = 0.6
+
+# continentalness: Slightly less inland than either neighbor.
+# 0.45 = moderate interior positioning, consistent with a
+# transitional forest belt between grassland and deep woods.
+continentalness = 0.45
+
+# erosion: Moderate — terrain is gently rolling, more textured
+# than flat Verdant plains but smoother than Whispering's ravines.
+# 0.55 = mild hilliness with a soft, undulating forest floor.
+erosion = 0.55
+
+# weirdness: Near-zero — this is a natural, expected transition
+# that should generate frequently wherever the two zones meet.
+# 0.05 = almost entirely normal terrain behavior.
+weirdness = 0.05
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Slightly elevated above Verdant plains (3) but
+# well below Whispering's hills. 5 = a gentle rise in terrain
+# as the landscape transitions from open grassland to wooded
+# hills. Players notice the ground climbing subtly.
+# Range: -64.0 to 256.0
+base-height = 5
+
+# height-variation: Moderate undulation. 5 = noticeable rolling
+# terrain — small hillocks and shallow dips create a more
+# interesting surface than the flat Verdant plains while staying
+# tame compared to the Whispering zone's gullies and ravines.
+# Range: 0.0 to 30.0
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Standard forest floor — grass and dirt. The transition has
+# not yet reached the mossy, root-covered surfaces of the
+# deeper Whispering biomes.
+[biome.surface]
+# top-block: Living grass — the canopy is thin enough to let
+# sufficient sunlight through for healthy grass growth.
+top-block = "minecraft:grass_block"
+
+# filler-block: Standard dirt beneath the grass layer. Roots
+# from the thickening forest penetrate this layer.
+filler-block = "minecraft:dirt"
+
+# filler-depth: Standard depth. 3 = normal topsoil before
+# reaching stone, consistent with temperate forest conditions.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Dirt lines any small ponds or streams
+# running through the forest edge — natural and unassuming.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# A blend of Verdant and Whispering tree types. Oak still
+# dominates but dark oak is making its first appearance.
+# Undergrowth is noticeably denser than the open Verdant zone.
+[biome.features]
+# trees: Mixed canopy — oak from the Verdant side, dark oak
+# encroaching from Whispering. Birch fills gaps in the canopy.
+#   density: 6.0 = medium-dense forest. Thicker than Verdant's
+#   sparse scattering (0.3) but well short of Whispering's
+#   impenetrable canopy (14.0). This is the transitional gradient.
+trees = { types = ["oak", "dark_oak", "birch"], density = 6.0 }
+
+# grass-density: Dense undergrowth — tall grass and ferns fill
+# the spaces between tree trunks. 30.0 = thick ground cover
+# that gives the biome its "overgrown edge" character.
+# Range: 0.0 to 100.0
+grass-density = 30.0
+
+# flower-density: Moderate flowers — enough sunlight still
+# filters through for wildflowers, though fewer than open plains.
+# 2.5 = scattered patches of forest flowers.
+# Range: 0.0 to 15.0
+flower-density = 2.5
+
+# extra-features: Fern clusters that foreshadow the Whispering
+# zone's lush undergrowth, and fallen logs beginning to appear.
+extra-features = [
+    { feature = "fern", density = 5.0 },
+    { feature = "fallen_log", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# A gentle increase in danger compared to Verdant. The thinning
+# canopy lets some shade through, increasing daytime hostile
+# spawns slightly. Wildlife is still present but less abundant.
+[biome.spawning]
+# Wolves begin appearing at the forest edge — they hunt in
+# small packs among the thickening undergrowth.
+wolf = { weight = 5, min-group = 2, max-group = 3 }
+
+# Foxes shelter in the dense bushes and fern patches.
+fox = { weight = 4, min-group = 1, max-group = 2 }
+
+# Spiders find more hiding spots in the undergrowth.
+# Slightly elevated spawn weight compared to open Verdant.
+spider = { weight = 10, min-group = 1, max-group = 2 }

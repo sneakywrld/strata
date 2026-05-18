@@ -1,0 +1,168 @@
+# ============================================================
+#  Biome: Ice Island — Elysium Islands
+# ============================================================
+# A frozen island locked in permanent winter, its surface a
+# jagged expanse of packed ice and snow. Towering spikes of
+# blue ice erupt from the terrain like frozen geysers, their
+# translucent surfaces glinting in the pale arctic light. Igloos
+# half-buried in snowdrifts dot the landscape, their chimneys
+# barely visible above the white blanket. Polar bears patrol
+# the ice edge, and the surrounding sea is choked with ice
+# floes. The wind never stops, and exposed players take
+# freezing damage without cold-weather gear.
+#
+# Gameplay notes:
+#   - Blue ice is a premium building material and fastest
+#     boat-travel surface in the game.
+#   - Packed ice does not melt near torches — safe building.
+#   - Igloos may contain hidden basements with brewing stands
+#     and golden apples.
+#   - Polar bears are neutral but extremely dangerous when
+#     protecting cubs — hit hard and move fast.
+#   - Freezing damage mechanic requires warm armor or campfires.
+#   - Ice can be harvested with Silk Touch for ice highways.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Island biomes use the
+# "elysium_" prefix as cross-zone ocean features.
+id = "strata:elysium_ice_island"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Ice Island"
+
+# category: MOUNTAIN — the ice spikes and rugged frozen terrain
+# resemble mountain features. MOUNTAIN enables goat spawning
+# rules, powder snow patches, and the cold ambient sounds
+# appropriate for an arctic environment.
+category = "MOUNTAIN"
+
+# zone: "island" — island biomes generate offshore in ocean
+# areas, independent of mainland zone boundaries.
+zone = "island"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Bitterly cold and moderately humid — the moisture feeds
+# constant snowfall that builds the ice formations over time.
+[biome.climate]
+# temperature: -0.7 = deeply frozen. Well below freezing, this
+# ensures all precipitation falls as snow and all surface water
+# freezes solid. One of the coldest biomes in Elysium.
+temperature = -0.7
+
+# humidity: 0.4 = moderate moisture. Enough atmospheric water
+# to sustain heavy snowfall and ice formation, carried in from
+# the surrounding ocean.
+humidity = 0.4
+
+# continentalness: -0.3 = offshore island. Positioned in the
+# ocean away from the mainland, creating an isolated frozen
+# outpost surrounded by icy seas.
+continentalness = -0.3
+
+# erosion: 0.3 = gently eroded. The ice surface is smoothed by
+# wind polishing in places, but the spikes resist erosion,
+# maintaining their dramatic vertical profiles.
+erosion = 0.3
+
+# weirdness: 0.5 = moderately unusual. Frozen islands are
+# notable features that should generate occasionally in cold
+# ocean regions, providing destination landmarks.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = just above sea level. The island itself is
+# low-lying, with the dramatic height coming from the ice
+# spikes that erupt above the base surface. The low base
+# creates the illusion of ice growing upward from the sea.
+# Range: -64.0 to 256.0
+base-height = 3
+
+# height-variation: 8 = notable undulation. The ice spikes and
+# snowdrifts create significant local elevation changes, with
+# valleys between spike clusters and wind-sculpted ridges.
+# Range: 0.0 to 30.0
+height-variation = 8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Frozen surface — snow blocks and packed ice form the island's
+# permanent frozen crust.
+[biome.surface]
+# top-block: Snow block — solid compressed snow that forms the
+# island's white, featureless surface. Distinct from snow
+# layers (which melt), snow blocks are permanent terrain.
+top-block = "minecraft:snow_block"
+
+# filler-block: Packed ice beneath the snow. The island's core
+# is solid ice compacted by immense pressure and cold.
+filler-block = "minecraft:packed_ice"
+
+# filler-depth: 5 = thick ice layer. The entire island is
+# essentially a massive ice formation with a snow mantle.
+# Digging down reveals nothing but ice for many blocks.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Packed ice lines the seafloor around the
+# island — the freezing water solidifies everything it touches.
+underwater-block = "minecraft:packed_ice"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# No vegetation — pure ice and snow. Blue ice spikes are the
+# signature feature, erupting from the surface like frozen
+# pillars. Igloos provide shelter and loot.
+[biome.features]
+# trees: No trees. Nothing grows on the frozen surface.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Zero. Snow and ice cover everything — no
+# soil is exposed for grass to grow.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: Zero. No flowering plants survive the
+# permanent deep freeze.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Blue ice spikes and igloos define the
+# island's visual identity and provide exploration goals.
+extra-features = [
+    # Blue ice spikes — towering frozen pillars. The island's
+    # most dramatic visual feature and a valuable resource.
+    { feature = "blue_ice_spike", density = 4.0 },
+    # Packed ice boulders scattered across the surface.
+    { feature = "ice_boulder", density = 2.0 },
+    # Snow drift formations shaped by the constant wind.
+    { feature = "snow_drift", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Arctic wildlife — polar bears are the dominant mob, with
+# strays providing the hostile presence. The frozen landscape
+# supports very little life.
+[biome.spawning]
+# Polar bears: The signature arctic mob. Neutral but become
+# hostile when protecting cubs. They patrol the ice edges
+# looking for fish and can deal devastating melee damage.
+polar_bear = { weight = 12, min-group = 1, max-group = 2 }
+
+# Stray: Frozen skeleton variant that fires slowness arrows.
+# They wander the ice flats at night, their tattered cloaks
+# blending into the snowdrifts.
+stray = { weight = 10, min-group = 1, max-group = 2 }

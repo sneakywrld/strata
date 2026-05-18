@@ -1,0 +1,88 @@
+# ============================================================
+#  STRATA WORLD PROFILE — "Netherveil" (Enhanced Nether)
+# ============================================================
+# An enhanced nether dimension with expanded biome variety,
+# new cave formations, and richer nether-specific features.
+# 48 unique nether biomes organized into 6 thematic regions.
+#
+# Author: SneakyWrld
+# Environment: NETHER
+# Biome Count: 48
+#
+# Key features:
+#   - 6 nether regions with distinct terrain and atmosphere
+#   - Enhanced lava oceans with geological features
+#   - Expanded fortress and bastion generation
+#   - Ancient debris concentrated in specific biomes
+#   - MythicMobs-ready zone system for nether difficulty
+#
+# To use: /strata create my_nether netherveil
+# ============================================================
+
+# -------------------------------------------------------
+# Profile Metadata
+# -------------------------------------------------------
+name = "Netherveil"
+description = "Enhanced nether — 48 biomes, 6 regions, expanded structures, richer resource distribution"
+author = "SneakyWrld"
+version = "1.0.0"
+environment = "NETHER"
+
+# -------------------------------------------------------
+# World Bounds (Nether uses 0-256 in modern, 0-128 in legacy)
+# -------------------------------------------------------
+[world]
+# min-y: Nether floor. Standard is 0.
+min-y = 0
+# max-y: Nether ceiling. Standard is 128, extended to 256 on 1.18+.
+max-y = 256
+# sea-level: Lava ocean level in the nether.
+# Standard vanilla is 31. We raise it slightly for more dramatic lava features.
+sea-level = 32
+# ceiling: Enable bedrock ceiling generation.
+ceiling = true
+# ceiling-y: Y-level of the bedrock ceiling.
+ceiling-y = 128
+
+# -------------------------------------------------------
+# Terrain Generation
+# -------------------------------------------------------
+[terrain]
+config-dir = "terrain"
+
+# -------------------------------------------------------
+# Noise Functions
+# -------------------------------------------------------
+[noise]
+config-dir = "noise"
+
+# -------------------------------------------------------
+# Carvers (Nether caves)
+# -------------------------------------------------------
+[carvers]
+config-dir = "carvers"
+
+# -------------------------------------------------------
+# Features (Ores, vegetation, lava)
+# -------------------------------------------------------
+[features]
+config-dir = "features"
+
+# -------------------------------------------------------
+# Structures
+# -------------------------------------------------------
+[structures]
+config-dir = "structures"
+
+# -------------------------------------------------------
+# Entity Spawning
+# -------------------------------------------------------
+[entities]
+config-dir = "entities"
+
+# -------------------------------------------------------
+# Biomes
+# -------------------------------------------------------
+[biomes]
+config-dir = "biomes"
+total-count = 48

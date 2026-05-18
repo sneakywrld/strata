@@ -1,0 +1,128 @@
+# ============================================================
+#  Biome: Outer End Bridge — Outer Islands
+# ============================================================
+# Thin natural bridges of end stone that connect larger
+# islands across the void. These precarious causeways are
+# rarely more than 3-5 blocks wide, stretching dozens of
+# blocks between island masses with nothing but empty void
+# below. The bridges sag slightly in the middle where the
+# span is weakest, and some have gaps or missing sections
+# that require careful jumping. Walking across a bridge with
+# endermen spawning on the narrow path is a quintessential
+# End survival experience — one wrong look and a teleporting
+# enderman knocks you into oblivion.
+#
+# Gameplay notes:
+#   - NARROW terrain — 3-5 blocks wide, void on both sides.
+#   - Natural connections between larger island biomes.
+#   - Some bridges have gaps requiring jumping.
+#   - Enderman encounters are extremely dangerous here.
+#   - No elytra needed but strongly recommended as backup.
+#   - No chorus plants — too narrow for root systems.
+#   - Good chokepoint for base defense or mob farms.
+#   - Pairs with outer_end_island and outer_end_plateau
+#     (the islands bridges connect).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the thin natural
+# bridge formations connecting outer End islands.
+id = "strata:outer_end_bridge"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Outer End Bridge"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Outer Islands region.
+region = "outer"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly cold — the thin bridge is fully
+# exposed to void on all sides, losing heat rapidly.
+# -0.15 = noticeable chill from void exposure.
+temperature = -0.15
+
+# humidity: Bone-dry. 0.0 = no moisture on the narrow
+# exposed bridge surface.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.2 = slightly unusual terrain formation.
+# Bridges are less common than standard islands, requiring
+# specific noise conditions to generate the narrow
+# connecting geometry.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 60 — matches standard outer island height,
+# creating level connections between islands. The bridge
+# surface aligns with island edges for natural transition.
+base-height = 60
+
+# height-variation: 5 = low variation. Bridges are
+# relatively flat with a gentle sag in the middle. Too
+# much variation would make the bridge impossibly narrow
+# or create impassable gaps. The gentle undulation creates
+# the characteristic droop at mid-span.
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — same material as the islands
+# the bridge connects.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone beneath the surface.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 2 = thin. Bridges are structurally
+# minimal — just enough end stone to form a walkable
+# surface. The thinness is intentional, conveying
+# fragility and danger.
+# Range: 1 to 8.
+filler-depth = 2
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Bridges are too narrow for any vegetation. Clean,
+# unobstructed surface is essential for safe traversal.
+[biome.features]
+# end-specific: No features. The bridge surface must
+# remain clear — any decoration would obstruct the
+# already treacherous path.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation on bridges.
+grass-density = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen on bridges are a nightmare scenario. The narrow
+# path means there is nowhere to dodge, and knockback
+# sends players directly into the void.
+[biome.spawning]
+# enderman: Reduced weight — limited spawn surface. But
+# when they do spawn, encounters are almost always lethal
+# for unprepared players. The narrow bridge leaves no
+# room to break line-of-sight.
+enderman = { weight = 20, min-group = 1, max-group = 2 }

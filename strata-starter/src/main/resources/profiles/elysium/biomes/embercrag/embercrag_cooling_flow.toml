@@ -1,0 +1,156 @@
+# ============================================================
+#  Biome: Cooling Flow — Embercrag Volcanic
+# ============================================================
+# A recent lava flow in the process of solidifying. The surface is
+# a thin crust of obsidian that cracks and glows orange along its
+# fracture lines, revealing the still-molten magma beneath. Walking
+# on the flow is dangerous — the crust is only a few blocks thick
+# in places, and breaking through means falling into lava. Magma
+# blocks form a transitional layer between the solid obsidian crust
+# and the flowing lava below. Steam rises from the fractures,
+# and the terrain has the undulating, ropy texture of pahoehoe lava
+# that froze mid-flow. This is one of the most dynamic biomes in
+# the Embercrag — the landscape is literally still forming.
+#
+# Gameplay Notes:
+#   - The obsidian crust can break — fall damage into lava is fatal.
+#   - Magma blocks beneath the surface deal damage through sneaking.
+#   - Obsidian can be mined here but the substrate is dangerous.
+#   - The crust thickness varies — look for fracture glow indicators.
+#   - This biome transitions between active lava and cooled terrain.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_cooling_flow"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Cooling Flow"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.85 = very hot — the partially molten lava beneath
+# the crust radiates intense heat through the thin obsidian layer.
+temperature = 0.85
+
+# humidity: -0.3 = dry — steam escapes from fractures but the
+# overall humidity is low as the water quickly evaporates.
+humidity = -0.3
+
+# continentalness: 0.7 = firmly inland — the cooling flow
+# originates from volcanic vents deep within the complex.
+continentalness = 0.7
+
+# erosion: 0.5 = moderate erosion — the flow is relatively flat,
+# as lava naturally levels before cooling, but the ropy surface
+# texture creates gentle undulations.
+erosion = 0.5
+
+# weirdness: 0.15 = slightly unusual — cooling flows are a natural
+# and expected feature of active volcanic regions.
+weirdness = 0.15
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5 = slightly above sea level. The lava flow has
+# pooled on the volcanic plateau at moderate elevation, creating
+# a relatively flat expanse.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 5
+
+# height-variation: 4 = moderate variation. The ropy pahoehoe
+# texture creates gentle mounds and depressions, and pressure
+# ridges where one flow section cooled against another.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 4
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Obsidian — the cooled crust forms a dark, glassy
+# surface. Unlike the obsidian field biome, this crust is thin
+# and fragile in places.
+top-block = "minecraft:obsidian"
+
+# filler-block: Magma block — directly beneath the obsidian crust,
+# the still-hot magma forms a dangerous layer that damages players
+# who break through the surface.
+filler-block = "minecraft:magma_block"
+
+# filler-depth: 3 = relatively thin crust-to-magma transition.
+# The flow is recent enough that only a few blocks of material
+# have solidified.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Magma block — any exposed liquid in the flow
+# is lava, not water, sitting on active magma substrate.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation grows on the still-cooling lava flow.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.0 = barren volcanic surface.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Fracture lines showing lava glow, steam vents,
+# pressure ridges, and thin-crust hazard zones.
+extra-features = [
+    { feature = "lava_fracture", density = 4.0 },
+    { feature = "steam_vent", density = 3.0 },
+    { feature = "pressure_ridge", density = 2.0 },
+    { feature = "magma_block_patch", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The cooling flow is too hot for most mobs. Only fire-immune
+# creatures thrive here. Magma cubes are the primary inhabitants,
+# with the occasional strider navigating any exposed lava pools.
+
+# magma_cube: Magma cubes are perfectly at home on the hot surface.
+# weight: 20 makes them the dominant mob.
+# min-group/max-group: Groups of 1-3.
+magma_cube = { weight = 20, min-group = 1, max-group = 3 }
+
+# strider: Striders walk on any exposed lava pools where the crust
+# has broken through.
+# weight: 5 for an occasional presence.
+strider = { weight = 5, min-group = 1, max-group = 1 }
+
+# skeleton: Skeletons patrol the cooler margins of the flow where
+# the crust is thickest and most stable.
+# weight: 8 for a ranged threat on the flow's edges.
+skeleton = { weight = 8, min-group = 1, max-group = 2 }

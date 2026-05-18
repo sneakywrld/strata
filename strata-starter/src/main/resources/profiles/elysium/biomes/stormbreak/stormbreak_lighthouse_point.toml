@@ -1,0 +1,89 @@
+# ============================================================
+#  Biome: Stormbreak Lighthouse Point — Stormbreak Coast
+# ============================================================
+# A rocky headland jutting out into the ocean, crowned by a
+# lighthouse structure built from stone bricks and iron blocks.
+# The point rises 25+ blocks above the sea, offering
+# panoramic views of the surrounding Stormbreak coastline.
+# Wind howls across the exposed stone, and the terrain drops
+# steeply on three sides into crashing waves below. This is
+# a landmark biome — visible from great distance and serving
+# as a natural navigation aid.
+#
+# Gameplay notes:
+#   - The lighthouse structure provides a ready-made shelter
+#     and early-game base location.
+#   - Iron blocks in the lighthouse are a significant early
+#     resource find.
+#   - Dramatic elevation makes this an ideal lookout point.
+#   - The headland shape (narrow, high, surrounded by ocean)
+#     creates natural mob-proofing on three sides.
+#   - Borders stormbreak_sea_cliffs and stormbreak_cliff_forest
+#     on the landward side.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_lighthouse_point"    # Unique registry ID
+display-name = "Stormbreak Lighthouse Point" # Shown in F3 debug & maps
+category = "BEACH"                           # Coastal headland category
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Cool and exposed — maximum wind, moderate moisture. The
+# positive weirdness value makes this a rarer, more dramatic
+# biome that generates at specific headland positions.
+[biome.climate]
+temperature = 0.4           # Cool — fully exposed to ocean winds
+humidity = 0.45             # Moderate — some sea spray, mostly dry rock
+continentalness = -0.05     # Coastal edge — headland extends into ocean
+erosion = -0.4              # Low erosion — resistant rock headland
+weirdness = 0.3             # High weirdness — rare landmark biome
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# Elevated headland with significant variation from the steep
+# cliff drops on the ocean-facing sides.
+[biome.terrain]
+base-height = 25            # Headland rises 25 blocks above sea level
+height-variation = 10       # Steep sides, flatter top — range 15-35
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Exposed stone with patches of grass on the flatter summit.
+# The headland is primarily solid rock, resistant to the
+# erosion that has worn away softer surrounding coastline.
+[biome.surface]
+top-block = "minecraft:stone"            # Hard exposed rock surface
+filler-block = "minecraft:stone"         # Solid stone throughout
+filler-depth = 3                         # Minimal soil — all rock
+underwater-block = "minecraft:gravel"    # Gravel at the submerged base
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Very sparse vegetation — only wind-resistant grass on the
+# summit. The lighthouse itself is a structure feature, not
+# a tree. No significant tree cover on the exposed point.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees — too exposed to wind
+grass-density = 0.15                     # Some hardy grass on the summit
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Chickens (seabirds) may nest on sheltered ledges below the
+# summit. The lighthouse interior may contain a cat (stray)
+# as a lighthouse keeper's companion. Standard hostile spawns
+# at night.
+[biome.spawning]
+# Chickens on ledges — representing seabirds at the headland.
+# Possible cat spawn inside the lighthouse structure.
+# Standard hostile mobs at night on the exposed summit.
+# No aquatic spawns on the headland itself — too elevated.

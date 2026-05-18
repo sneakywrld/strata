@@ -1,0 +1,95 @@
+# ============================================================
+#  Noise Functions — Netherveil (Nether)
+# ============================================================
+# Noise functions specific to nether terrain generation.
+# The nether uses different noise characteristics than the
+# overworld — more chaotic, higher contrast, sharper features.
+# ============================================================
+
+# -------------------------------------------------------
+# Terrain Noises
+# -------------------------------------------------------
+
+# Primary nether terrain: creates the large-scale cave shapes.
+[functions."strata:nether_terrain"]
+type = "open_simplex_2"
+frequency = 0.01
+seed-offset = 5000
+[functions."strata:nether_terrain".fractal]
+octaves = 4
+lacunarity = 2.0
+gain = 0.5
+
+# Detail noise: adds surface roughness to nether walls.
+[functions."strata:nether_detail"]
+type = "simplex"
+frequency = 0.05
+seed-offset = 5010
+[functions."strata:nether_detail".fractal]
+octaves = 3
+lacunarity = 2.5
+gain = 0.4
+
+# -------------------------------------------------------
+# Biome Noises
+# -------------------------------------------------------
+
+# Nether temperature: controls biome distribution (hot regions).
+[functions."strata:nether_temperature"]
+type = "simplex"
+frequency = 0.001
+seed-offset = 5100
+[functions."strata:nether_temperature".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.5
+
+# Nether humidity: controls wet/dry (soul sand vs. netherrack).
+[functions."strata:nether_humidity"]
+type = "simplex"
+frequency = 0.0012
+seed-offset = 5110
+[functions."strata:nether_humidity".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.5
+
+# Nether weirdness: determines exotic biome variants.
+[functions."strata:nether_weirdness"]
+type = "simplex"
+frequency = 0.0008
+seed-offset = 5120
+[functions."strata:nether_weirdness".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.55
+
+# -------------------------------------------------------
+# Feature Noises
+# -------------------------------------------------------
+
+# Nether ore scatter noise.
+[functions."strata:nether_ore"]
+type = "simplex"
+frequency = 0.04
+seed-offset = 5200
+
+# Nether vegetation density.
+[functions."strata:nether_vegetation"]
+type = "simplex"
+frequency = 0.02
+seed-offset = 5210
+[functions."strata:nether_vegetation".fractal]
+octaves = 2
+lacunarity = 2.0
+gain = 0.5
+
+# Lava pocket noise: creates underground lava lakes.
+[functions."strata:nether_lava_pocket"]
+type = "open_simplex_2"
+frequency = 0.015
+seed-offset = 5220
+[functions."strata:nether_lava_pocket".fractal]
+octaves = 2
+lacunarity = 2.0
+gain = 0.5

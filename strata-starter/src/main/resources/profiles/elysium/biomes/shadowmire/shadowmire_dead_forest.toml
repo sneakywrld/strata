@@ -1,0 +1,167 @@
+# ============================================================
+#  Biome: Dead Forest — Shadowmire Swamps
+# ============================================================
+# A graveyard of trees. Stripped logs stand like bleached bones in
+# neat rows — the remnants of a forest that drowned when the water
+# table rose centuries ago. The few surviving trees cling to life
+# with sparse, yellowed leaves that form a thin, decaying canopy
+# overhead. Spore blossom particles drift downward from the rotting
+# wood, giving the air a hazy, dreamlike quality. The ground is
+# carpeted in fallen bark, dead leaves (brown carpets), and fungal
+# growth. This is the Shadowmire at its most melancholy — not
+# hostile, just slowly, inexorably dying.
+#
+# Gameplay Notes:
+#   - Stripped logs provide wood without needing to chop live trees.
+#   - Spore particles reduce visibility in the upper canopy.
+#   - The elevated terrain makes this a relatively dry foothold.
+#   - Mushrooms and fungi are abundant on decaying wood.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_dead_forest"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Dead Forest"
+
+# category: The broad Minecraft biome category this belongs to.
+# SWAMP maintains the zone's murky atmosphere and ambient sounds
+# even on this slightly elevated terrain.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.5 = temperate — slightly cooler than the lowland
+# swamp due to the elevated terrain and lack of stagnant water
+# to trap heat.
+temperature = 0.5
+
+# humidity: 0.8 = high moisture — the decaying wood releases
+# moisture as it breaks down, and the thin canopy traps humid air
+# beneath it.
+humidity = 0.8
+
+# continentalness: 0.6 = moderately inland — the dead forest
+# occupies the slightly higher ground within the swamp basin.
+continentalness = 0.6
+
+# erosion: 0.5 = moderate erosion — the terrain has some gentle
+# rolling hills where the old forest floor remains intact, unlike
+# the completely flat lowland swamp.
+erosion = 0.5
+
+# weirdness: 0.2 = slightly unusual — the dead forest variant
+# only generates where conditions killed the original canopy,
+# a somewhat uncommon occurrence.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = a few blocks above sea level. The dead forest
+# sits on slightly elevated ground — high enough that the tree
+# roots originally grew in soil, not water, before the swamp
+# encroached.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 3
+
+# height-variation: 5 = moderate undulation. The old forest floor
+# has gentle hills and depressions where root systems raised and
+# lowered the terrain over decades of growth and decay.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Podzol — the acidic, needle-and-bark-covered surface
+# typical of decaying coniferous and mixed forests. The layer of
+# decomposing wood and leaves has transformed the topsoil.
+top-block = "minecraft:podzol"
+
+# filler-block: Coarse dirt beneath the podzol — too compacted and
+# root-choked to support new growth, but not yet mud.
+filler-block = "minecraft:coarse_dirt"
+
+# filler-depth: 3 = standard depth. The root zone of the dead trees
+# extends through this layer before hitting stone.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Dirt on the bed of any puddles or pools that
+# form in depressions between the dead tree stumps.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Stripped logs (dead trunks) dominate. A few sparse-leaf
+# oaks represent the last survivors of the original forest.
+#   types: Tree definition keys from features/trees.toml.
+#   density: 8.0 = dense stand of dead trunks — the original forest
+#            was thick, and the trunks remain even though the canopy
+#            is gone.
+trees = { types = ["stripped_oak", "stripped_birch", "sparse_oak"], density = 8.0 }
+
+# grass-density: 3.0 = sparse ground cover. Ferns and dead grass
+# patches survive in the gaps between fallen trunks.
+# Range: 0.0 to 100.0.
+grass-density = 3.0
+
+# flower-density: 0.0 = no flowers. The acidic podzol and deep
+# shade prevent any flowering plants from establishing.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# mushrooms: Fungi thrive on the decaying wood — both brown and red
+# mushrooms are abundant on logs and podzol.
+mushrooms = { brown = 6, red = 3 }
+
+# extra-features: Fallen logs, spore blossom particles, and brown
+# carpet patches (dead leaves) complete the decaying forest floor.
+extra-features = [
+    { feature = "fallen_log", density = 4.0 },
+    { feature = "spore_blossom", density = 2.0 },
+    { feature = "brown_carpet_patch", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The dead forest is quieter than the lowland swamp — fewer slimes
+# but more spiders nesting in the hollow trunks, and the occasional
+# skeleton archer perched on a dead limb.
+
+# spider: Spiders nest in the hollow dead trunks and spin webs
+# between the bare branches above.
+# weight: 15 makes them the primary hostile threat.
+# min-group/max-group: Small clusters of 1-3.
+spider = { weight = 15, min-group = 1, max-group = 3 }
+
+# skeleton: Archers take advantage of the clear sightlines between
+# the bare trunks.
+# weight: 10 for a steady ranged threat.
+skeleton = { weight = 10, min-group = 1, max-group = 2 }
+
+# bat: Bats roost in the hollow dead trees and emerge at dusk.
+# weight: 8 for ambient atmosphere.
+bat = { weight = 8, min-group = 2, max-group = 4 }

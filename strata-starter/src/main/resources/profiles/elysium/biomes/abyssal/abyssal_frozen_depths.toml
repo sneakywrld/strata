@@ -1,0 +1,154 @@
+# ============================================================
+#  Biome: Abyssal Frozen Depths — Abyssal Depths
+# ============================================================
+# An anomalous frozen cave system where subterranean cold
+# pockets have created a permanent underground glacier. Packed
+# ice formations jut from the floor and walls in jagged
+# crystalline shapes, and cold water pools shimmer with a
+# thin ice film that cracks underfoot. The air is bitterly
+# cold — breath fogs instantly, and exposed water freezes.
+# Strays patrol the ice corridors, their frozen arrows
+# glinting in the dim blue light reflected off countless
+# ice surfaces. The silence is broken only by the occasional
+# crack of expanding ice and the clink of frozen bones.
+#
+# Gameplay notes:
+#   - Frost Walker boots prevent ice breakage and cold damage.
+#   - Packed ice is harvestable for ice-road construction.
+#   - Cold water pools inflict Slowness if waded through.
+#   - Strays replace standard skeletons — frozen arrow threat.
+#   - Blue ice forms in the deepest, coldest pockets.
+#   - Useful for obtaining packed/blue ice without a Nether portal.
+#   - Adjacent to abyssal_deep_dark and abyssal_ore_vein.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The frozen depths is
+# the cold extreme of the Abyssal biome palette.
+id = "strata:abyssal_frozen_depths"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Frozen Depths"
+
+# category: CAVE — underground frozen biome. Despite the ice,
+# this is a cave biome, not an ICY surface biome.
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Extremely cold for a cave. The frozen depths represent
+# geological cold traps where subterranean ice persists
+# year-round.
+[biome.climate]
+# temperature: Deeply sub-zero — the coldest biome in the
+# Abyssal zone. Underground cold pockets can be colder than
+# surface winter.
+# -0.5 = well below freezing; water sources freeze solid.
+temperature = -0.5
+
+# humidity: Moderate — ice sublimation provides some moisture,
+# but the extreme cold limits water vapor in the air.
+# 0.4 = slightly below average for caves.
+humidity = 0.4
+
+# continentalness: Neutral — frozen cave pockets form deep
+# underground independent of surface climate.
+# 0.5 = no continental bias.
+continentalness = 0.5
+
+# erosion: Balanced — ice expansion slowly cracks and reshapes
+# the cave, but the frozen state also preserves structure.
+# 0.5 = standard cave profile.
+erosion = 0.5
+
+# weirdness: Slightly elevated — frozen underground caves are
+# an unusual phenomenon requiring specific geological conditions.
+# 0.3 = moderately uncommon biome.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Deep underground — cold pockets form far from
+# surface heat influence.
+# -40 = roughly 40 blocks below sea level, deep in the zone.
+base-height = -40
+
+# height-variation: Low — ice formations create a relatively
+# level frozen floor with ice pillars and ridges.
+# 10 = gentle undulation under the ice surface.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Ice and frozen stone dominate every surface.
+[biome.surface]
+# top-block: Packed ice — dense, compressed ice that does
+# not melt from light sources. Slippery underfoot.
+top-block = "minecraft:packed_ice"
+
+# filler-block: Ice — standard ice beneath the packed
+# surface. Will melt if exposed to strong light.
+filler-block = "minecraft:ice"
+
+# filler-depth: Thick ice layer built up over millennia.
+# 4 = deep ice penetration into the cave floor.
+filler-depth = 4
+
+# underwater-block: Packed ice lines the bottom of cold
+# water pools — the water is just barely above freezing.
+underwater-block = "minecraft:packed_ice"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Ice formations and frozen features. No vegetation survives.
+[biome.features]
+# trees: No vegetation in frozen caves.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Nothing grows on ice.
+grass-density = 0.0
+
+# flower-density: No flowers survive the cold.
+flower-density = 0.0
+
+# extra-features: Ice formations and frozen features.
+#   packed_ice_pillar — tall ice columns floor-to-ceiling.
+#   blue_ice_cluster — rare ultra-compressed ice in deep pockets.
+#   ice_spike — jagged ice formations on the cave floor.
+#   frozen_pool — still cold-water pools with thin ice surfaces.
+extra-features = [
+    { feature = "packed_ice_pillar", density = 6.0 },
+    { feature = "blue_ice_cluster", density = 2.0 },
+    { feature = "ice_spike", density = 8.0 },
+    { feature = "frozen_pool", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Cold-adapted hostile mobs dominate. Strays are the
+# signature threat.
+[biome.spawning]
+# stray: Frozen skeleton variant that fires Slowness arrows.
+# The dominant hostile mob in the frozen depths.
+stray = { weight = 18, min-group = 1, max-group = 3 }
+
+# skeleton: Some standard skeletons persist alongside strays.
+skeleton = { weight = 5, min-group = 1, max-group = 2 }
+
+# bat: Hardy cave bats survive the cold in sheltered pockets.
+bat = { weight = 5, min-group = 1, max-group = 2 }
+
+# No passive mobs survive the freezing conditions.
+passive-density-multiplier = 0.0

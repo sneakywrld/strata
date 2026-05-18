@@ -1,0 +1,191 @@
+# ============================================================
+#  Biome: Dust Devil Plain — Scorched Badlands
+# ============================================================
+# A vast sandy plain swept by constant wind, where columns of
+# swirling dust rise unpredictably from the heated ground. Sparse
+# dead bushes tumble across the landscape, and visibility fluctuates
+# as dust clouds roll through. The terrain is gently rolling but
+# mostly open, offering little shelter from the scouring wind. This
+# is a transitional biome between the deep desert and the mesa
+# formations — exposed, dynamic, and disorienting.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_dust_devil_plain"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Dust Devil Plain"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# DESERT provides the warm haze and dry ambient audio fitting for
+# a wind-swept sandy expanse.
+category = "DESERT"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.9 = very hot, with the constant wind
+# providing no relief since the air itself is superheated by the
+# sand surface.
+temperature = 0.9
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.65 = extremely dry, the wind strips
+# any trace moisture from the air, creating the bone-dry conditions
+# necessary for dust devil formation.
+humidity = -0.65
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, consistent with
+# the scorched zone's continental interior placement.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.85 = highly eroded
+# by the constant wind, producing the mostly flat sandy plain
+# characteristic of wind-scoured desert terrain.
+erosion = 0.85
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.2 = slightly unusual, reflecting the dynamic dust
+# devil activity that distinguishes this plain from ordinary desert.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 5.0 elevates the plain
+# slightly above sea level — enough to sit above the dried riverbeds
+# but below the mesa plateaus.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 5.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 3.0 creates gentle undulation from wind-sculpted sand dunes and
+# deflation hollows — enough topography to feel natural without
+# creating significant obstacles.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Sand covers the entire plain, loose and wind-blown, constantly
+# shifting under the persistent desert gusts.
+top-block = "minecraft:sand"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Sandstone has been compressed from the deep sand
+# deposits underlying the surface layer.
+filler-block = "minecraft:sandstone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 3 provides a standard sandstone layer before
+# transitioning to normal stone generation.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Sand matches the
+# dominant surface material.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.0 = no trees survive the constant scouring wind.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.0 = no living grass; the wind uproots
+# anything that tries to establish.
+grass-density = 0.0
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = no flowers on the wind-blasted plain.
+flower-density = 0.0
+
+# dead-bush-density: Dead bush features per chunk. Tumbleweeds
+# and dead shrubs scattered across the sand, representing the
+# iconic rolling debris of desert plains. 3.0 provides visible
+# scattering that enhances the wind-swept atmosphere.
+dead-bush-density = 3.0
+
+# cactus-density: Cactus features per chunk. Occasional small
+# cacti that have survived the wind by growing low to the ground.
+# 1.0 provides sparse cactus presence — far fewer than the cactus
+# desert, as the wind prevents tall growth.
+cactus-density = 1.0
+
+# dust-particle-density: Decorative swirling dust particle emitters
+# per chunk. These create the visual dust devil effect — columns
+# of particles spiraling upward from the hot ground. 4.0 ensures
+# multiple dust devils are visible at any given time, defining the
+# biome's signature atmosphere.
+dust-particle-density = 4.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The dust devil plain is dangerous primarily due to low visibility.
+# Mobs can approach under cover of dust clouds, and players may
+# stumble into groups they did not see. Husks are the dominant
+# threat, perfectly camouflaged against the sand.
+
+# husk: Sand-colored undead that blend into the dusty terrain.
+# Nearly invisible during dust storms, they strike from close range
+# before players can react. Hunger debuff adds resource pressure.
+# weight: 16 for high hostile presence across the open plain.
+husk = { weight = 16, min-group = 2, max-group = 5 }
+
+# rabbit: Desert rabbits that hunker down between wind gusts.
+# The only passive mob hardy enough for this wind-blasted terrain.
+# weight: 6 for occasional sightings between dust clouds.
+rabbit = { weight = 6, min-group = 1, max-group = 3 }
+
+# skeleton: Ranged attackers that fire from within dust clouds,
+# their arrows arriving before players can spot the source.
+# weight: 8 for a meaningful ranged threat.
+skeleton = { weight = 8, min-group = 1, max-group = 2 }

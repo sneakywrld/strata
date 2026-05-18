@@ -1,0 +1,167 @@
+# ============================================================
+#  Biome: Barrens Dust Field — Barrens Zone
+# ============================================================
+# An eerie flatland where purple chorus-derived particle dust
+# hangs perpetually in the air above end stone terrain. The
+# particles drift like slow ash, reducing visibility and lending
+# the landscape a haunted, hazy quality. The ground is flat and
+# featureless beneath the purple haze — walking through feels
+# like wading through a dream.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:barrens_dust_field"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Dust Field"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "barrens"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. -0.1 = slightly cool, the dust particles
+# create a thin insulating layer that moderates the void chill.
+temperature = -0.1
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. -0.5 = dry, but the ambient particle dust creates
+# a false sense of atmospheric density.
+humidity = -0.5
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.4 = moderately inland, the dust field
+# occupies a stable interior section of the barrens.
+continentalness = 0.4
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate, 1.0 = flat. 0.8 = very flat terrain, the dust
+# settles evenly on a smooth end stone plain.
+erosion = 0.8
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.5 = notably weird — the persistent purple particle haze is
+# an unusual atmospheric phenomenon for the End.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 55 is standard
+# barrens height — nothing remarkable about the terrain beneath
+# the dust; the atmosphere is the attraction.
+# Range: 0 to 256
+base-height = 55
+
+# height-variation: Controls terrain undulation. 3 is very low —
+# the dust field is pancake flat, allowing the particle effect
+# to dominate the visual experience.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — standard surface beneath the dust layer.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Solid end stone.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 3 is standard barrens depth.
+# Range: 1 to 8
+filler-depth = 3
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 0.2 — near-zero chorus. The dust field has a few remnant chorus
+# stumps whose decay may be the source of the purple particle dust.
+chorus-density = 0.2
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.1 — the few surviving stalks are withered and rarely flower.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.1
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.001 — extremely rare rods emerge from the dust, barely visible
+# through the haze.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.001
+
+# particle-type: The ambient particle effect for this biome.
+# "portal" uses the purple ender particle, creating the signature
+# dust field haze. This is the biome's primary visual identity.
+particle-type = "minecraft:portal"
+
+# particle-density: Density of ambient particles in the air.
+# Range: 0.0 to 1.0.
+# 0.8 — very dense particle field, creating a thick purple haze
+# that significantly reduces visibility and atmosphere.
+particle-density = 0.8
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.0 — no crystals visible through the dust.
+# Range: 0.0 to 0.1
+crystal-chance = 0.0
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — no obsidian beneath the dust.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Moderate presence. The purple haze seems to comfort
+# endermen, resembling the particle trail of their teleportation.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 80, min-group = 1, max-group = 3 }
+
+# shulker: No shulkers — no structures in the dust field.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Slightly elevated. The particle-rich environment
+# seems to encourage endermite materialization.
+endermite = { weight = 4, min-group = 1, max-group = 2 }

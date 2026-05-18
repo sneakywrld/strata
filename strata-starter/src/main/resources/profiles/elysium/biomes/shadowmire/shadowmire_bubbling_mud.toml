@@ -1,0 +1,158 @@
+# ============================================================
+#  Biome: Bubbling Mud — Shadowmire Swamps
+# ============================================================
+# A treacherous expanse of deep mud pits and soul sand patches
+# where methane bubbles continuously break the surface with wet,
+# gurgling pops. The ground is unreliable — what appears solid may
+# be a thin crust over deep mud that swallows unwary travelers up
+# to their waist. Soul sand patches further slow movement to a
+# crawl, making this biome a nightmare to cross on foot. Bubble
+# particles drift upward from the most active vents, and the smell
+# of sulfur hangs heavy in the stagnant air.
+#
+# Gameplay Notes:
+#   - Soul sand and mud both slow movement — stack potions of speed.
+#   - Bubble vents can be spotted by particle effects before stepping on them.
+#   - Soul sand is valuable for nether wart farming.
+#   - The flat, open terrain makes ranged mob attacks especially dangerous.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_bubbling_mud"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Bubbling Mud"
+
+# category: The broad Minecraft biome category this belongs to.
+# SWAMP enables the murky water tint and swamp ambient sounds
+# appropriate for this hazardous mud flat.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.6 = mild warmth — the decomposing organic matter
+# generates its own heat, keeping the mud tepid even at night.
+temperature = 0.6
+
+# humidity: 0.85 = very high moisture — the saturated mud and
+# constant bubbling keep the air thick with water vapor.
+humidity = 0.85
+
+# continentalness: 0.6 = moderately inland — these mud flats form
+# in low-lying basins where water collects but cannot drain.
+continentalness = 0.6
+
+# erosion: 0.8 = very heavily eroded — the terrain has been worn
+# down to an almost perfectly flat plane of mud with no remaining
+# topographic features.
+erosion = 0.8
+
+# weirdness: 0.3 = moderately unusual — the bubbling vents and
+# soul sand deposits make this an atypical swamp variant that only
+# generates where the weirdness noise is elevated.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -1 = one block below sea level. The mud flat sits
+# in a slight depression, ensuring most of the surface is covered
+# by a thin layer of murky standing water.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = -1
+
+# height-variation: 1 = extremely flat. The mud offers no grip for
+# erosion to create features — it simply fills every low point
+# uniformly, creating a featureless expanse.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 1
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Mud is the defining surface — deep, sticky, and
+# movement-slowing. The entire biome is a mud flat with no grass
+# cover or solid ground to be found.
+top-block = "minecraft:mud"
+
+# filler-block: Soul sand beneath the mud surface creates the
+# bubbling effect and further slows movement for anyone who digs
+# down to escape the surface hazards.
+filler-block = "minecraft:soul_sand"
+
+# filler-depth: 3 = moderate depth of soul sand beneath the mud.
+# Deep enough to be a meaningful resource for nether wart farming
+# but not so deep that it dominates the excavation experience.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Mud lines the bottom of any standing water
+# pools, making the water opaque and concealing depth.
+underwater-block = "minecraft:mud"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No trees can root in the unstable mud — this is a barren,
+# treeless expanse of bubbling muck.
+#   density: 0.0 = completely treeless.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 1.0 = almost none. Only the hardiest sedges poke
+# above the mud surface on the rare semi-solid hummock.
+# Range: 0.0 to 100.0.
+grass-density = 1.0
+
+# flower-density: 0.0 = no flowers survive in the toxic mud.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Soul sand vents, bubble columns, and scattered
+# dead bushes are the only surface features.
+extra-features = [
+    { feature = "soul_sand_patch", density = 4.0 },
+    { feature = "bubble_vent", density = 3.0 },
+    { feature = "dead_bush", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The bubbling mud is inhospitable to most life. Slimes thrive in
+# the waterlogged conditions, and magma cubes occasionally spawn
+# near the hottest vents. Skeletons patrol the open flats where
+# they have clear line-of-sight on slowed players.
+
+# slime: The dominant mob — slimes emerge continuously from the mud.
+# weight: 25 makes them overwhelmingly common.
+# min-group/max-group: Groups of 2-4 bubble up together.
+slime = { weight = 25, min-group = 2, max-group = 4 }
+
+# magma_cube: Rare spawns near the hottest bubble vents.
+# weight: 5 for an occasional dangerous surprise.
+# min-group/max-group: Solitary spawns.
+magma_cube = { weight = 5, min-group = 1, max-group = 1 }
+
+# skeleton: Skeletons take advantage of the open terrain and slow
+# movement to snipe players from a distance.
+# weight: 10 for a consistent ranged threat.
+skeleton = { weight = 10, min-group = 1, max-group = 2 }

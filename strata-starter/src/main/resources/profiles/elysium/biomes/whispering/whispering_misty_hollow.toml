@@ -1,0 +1,132 @@
+# ============================================================
+#  Biome: Whispering Misty Hollow — Whispering Woodlands
+# ============================================================
+# A low-lying valley where cold air pools and condenses into a
+# perpetual blanket of thick fog. Visibility is reduced to a few
+# blocks, and the world beyond the mist fades to ghostly grey
+# silhouettes. Sound feels muffled. The trees here are gnarled
+# and twisted, their trunks barely visible until you walk into
+# them. An eerie ambient soundscape completes the unsettling mood.
+#
+# Gameplay Notes:
+#   - Fog particles reduce effective visibility to ~8-12 blocks.
+#   - Hostile mobs can approach within melee range before detection.
+#   - The hollow is a valley — navigating out requires climbing.
+#   - Ambient sound effects create psychological unease.
+#   - Glow lichen and lanterns are critical for wayfinding.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_misty_hollow"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Misty Hollow"
+
+# category: FOREST — a fog-filled forest valley variant.
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Moderate — fog forms at the dew point, which requires
+# temperate conditions and high humidity working together.
+temperature = 0.5
+# humidity: Very high (0.8) — the highest in the zone. Persistent fog
+# requires near-saturation moisture levels in the trapped valley air.
+humidity = 0.8
+# continentalness: Mid-inland — hollows form in interior forest terrain.
+continentalness = 0.5
+# erosion: High (0.65) — the hollow is a deeply eroded depression.
+# High erosion in Strata creates lower, smoother terrain.
+erosion = 0.65
+# weirdness: Slightly negative (-0.15) — a subtle terrain anomaly,
+# a natural depression where the fog pools.
+weirdness = -0.15
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Low — the hollow sits well below the surrounding forest.
+# This depression is what causes cold air to pool and fog to form.
+base-height = 60
+
+# height-variation: Very low — the hollow floor is remarkably flat,
+# a smooth bowl shape that traps the fog layer uniformly.
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block — damp but alive. The fog keeps it
+# perpetually moist, giving the grass a dark saturated tint.
+top-block = "minecraft:grass_block"
+
+# filler-block: Clay — the waterlogged soil in the hollow has
+# a high clay content from centuries of sediment deposition.
+filler-block = "minecraft:clay"
+
+# filler-depth: Standard 3-block depth.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Moderate density of gnarled, twisted trees. Oak and dark oak
+# in smaller sizes — the perpetual damp stunts vertical growth.
+trees = { types = ["oak", "dark_oak"], density = 8 }
+
+# grass-density: Moderate — the damp conditions support lush but
+# low-lying ground cover.
+grass-density = 6
+
+# flower-density: Low — the constant fog and reduced light
+# suppress flower growth. Only shade-tolerant species survive.
+flower-density = 1.0
+
+# mushrooms: Thrive in the perpetual damp conditions.
+mushrooms = { brown = 5, red = 2 }
+
+# fog-particles: Custom particle effect creating the signature mist.
+# This is a Strata-specific feature that spawns white/grey particles
+# at ground level throughout the biome.
+fog-particles = { enabled = true, density = 12, color = "#C0C0C0", max-y = 72 }
+
+# ambient-sounds: Eerie sound effects that play at random intervals.
+# Distant creaking, muffled footsteps, wind sighing through branches.
+ambient-sounds = { enabled = true, sound-pool = "whispering_misty", interval = 30 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Elevated hostile spawning — the fog provides concealment,
+# making mobs more dangerous even if light levels are adequate.
+hostile-density-multiplier = 1.3
+
+# Creepers are terrifyingly effective in fog — invisible until detonation.
+creeper-weight-bonus = 35
+
+# Phantoms may spawn at lower sky-darkness thresholds in the hollow.
+phantom-threshold-reduction = 2
+
+# Passive mobs are scarce — the eerie atmosphere deters wildlife.
+passive-density-multiplier = 0.4

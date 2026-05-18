@@ -1,0 +1,150 @@
+# ============================================================
+#  Biome: Verdant Wetland — Verdant Expanse
+# ============================================================
+# A shallow, marshy transition zone along river edges and low-lying
+# areas. Reeds and tall grass rise from waterlogged ground, frogs
+# croak from lily pad perches, and clay deposits lurk beneath the
+# murky shallows. Unlike the darker Shadowmire swamps, this wetland
+# is bright and green — a cheerful marsh in the Verdant zone.
+#
+# Gameplay: Clay is abundant here — the primary source for bricks
+# and decorated pots. Frogs spawn naturally (froglight farming
+# potential). Sugar cane and lily pads are plentiful. The shallow
+# water makes traversal slow but not dangerous. Slimes spawn at
+# night, providing slimeball access in the Verdant zone.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "wetland" distinguishes this
+# from the darker, more dangerous swamps in the Shadowmire zone.
+id = "strata:verdant_wetland"
+
+# display-name: Player-facing name. "Wetland" rather than "swamp"
+# to convey the lighter, friendlier atmosphere.
+display-name = "Verdant Wetland"
+
+# category: SWAMP — enables swamp-specific mechanics: slime spawning
+# at any Y-level (not just below Y=40), witch hut eligibility,
+# blue-green water tint, and swamp ambient sounds (frogs, bubbles).
+category = "SWAMP"
+
+# zone: Verdant Expanse (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.5 = standard temperate. Verdant wetlands are
+# warm enough to support frog spawning and lily pad growth, but
+# not tropical. This matches the Verdant zone's mild character.
+temperature = 0.5
+
+# humidity: 0.65 = high moisture. Wetlands are defined by water
+# saturation — this is the second-highest humidity in the Verdant
+# zone (after bamboo_thicket at 0.7). The water table is at or
+# above ground level.
+humidity = 0.65
+
+# continentalness: 0.4 = moderately inland. Wetlands form in
+# low-lying inland depressions where water collects.
+continentalness = 0.4
+
+# erosion: 0.75 = heavily eroded. Flat, low terrain that has
+# been eroded into natural depressions and basins where water
+# pools and marshland develops.
+erosion = 0.75
+
+# weirdness: -0.1 = slightly negative. Negative weirdness
+# correlates with low terrain features (rivers, valleys, wetlands).
+# This matches verdant_river_valley's weirdness, allowing the
+# two biomes to generate adjacently along waterways.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 0 = at sea level. Wetlands sit right at the
+# water line — parts of the terrain are above water, parts below.
+# This creates the characteristic mix of land and shallow water.
+base-height = 0
+
+# height-variation: 0.5 = very gentle. The terrain barely
+# undulates, creating a patchwork of tiny islands, mud flats,
+# and shallow pools just above and below the waterline.
+height-variation = 0.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The Verdant wetland has green, living
+# ground cover — not the dead/dark tones of a Shadowmire swamp.
+top-block = "minecraft:grass_block"
+
+# filler-block: Clay. Wetland soil is saturated clay — this
+# provides the clay resource players come here to harvest.
+# The clay filler is exposed wherever the surface dips below water.
+filler-block = "minecraft:clay"
+
+# filler-depth: 4 = deep clay deposits. Wetlands have thick
+# clay sediment layers deposited by slow-moving water over time.
+# This makes the biome a productive clay harvesting location.
+filler-depth = 4
+
+# underwater-block: Clay for all submerged surfaces. The entire
+# water bottom is clay, making underwater harvesting worthwhile.
+underwater-block = "minecraft:clay"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Sparse trees adapted to wet soil. Only standard oaks
+# that can tolerate occasional waterlogging.
+#   density 1.5 = scattered trees on the drier hummocks within
+#   the wetland. Not dense enough to be a forest.
+trees = { types = ["oak"], density = 1.5 }
+
+# grass-density: 40.0 = moderate grass on exposed ground.
+# Tall grass dominates — the moist conditions favor taller,
+# reed-like growth over short grass.
+grass-density = 40.0
+
+# flower-density: 2.0 = light flower coverage. Wetland flowers
+# are primarily blue orchids (swamp-associated in vanilla).
+flower-density = 2.0
+
+# extra-features: Aquatic and wetland-specific vegetation.
+extra-features = [
+    # Sugar cane grows densely along the waterline edges.
+    { feature = "sugar_cane", density = 6.0 },
+    # Lily pads cover calm water surfaces extensively.
+    { feature = "lily_pad", density = 8.0 },
+    # Blue orchids are the signature wetland flower.
+    { feature = "blue_orchid", density = 3.0 },
+    # Clay deposits are exposed on the water bottom (supplementing
+    # the clay filler-block).
+    { feature = "clay_deposit", density = 5.0 },
+    # Seagrass in the shallow submerged areas.
+    { feature = "seagrass", density = 4.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Wetland-adapted fauna: amphibians, aquatic species, and slimes.
+[biome.spawning]
+# Frogs are the signature wetland mob — spawn abundantly here.
+frog = { weight = 15, min-group = 2, max-group = 5 }
+# Slimes spawn in swamp-category biomes at any Y-level at night.
+# This is the primary surface slime source in the Verdant zone.
+slime = { weight = 10, min-group = 1, max-group = 3 }
+# Salmon in the shallow marsh waterways.
+salmon = { weight = 8, min-group = 1, max-group = 3 }
+# Drowned lurk in the deeper pools at night.
+drowned = { weight = 8, min-group = 1, max-group = 1 }

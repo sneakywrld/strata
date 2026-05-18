@@ -1,0 +1,150 @@
+# ============================================================
+#  Biome: Abyssal Crystal Grotto — Abyssal Depths
+# ============================================================
+# A breathtaking geode-style cavern lined with amethyst crystal
+# formations. The walls sparkle with clusters of amethyst in
+# every stage of growth, from small buds to fully mature
+# clusters that chime softly when disturbed. Budding amethyst
+# blocks embedded in the walls slowly regenerate harvested
+# crystals, making this a renewable resource site. Glow lichen
+# and the crystals themselves cast a warm purple-violet light
+# across the smooth calcite and tuff surfaces.
+#
+# Gameplay notes:
+#   - Primary source of amethyst shards in the Abyssal zone.
+#   - Budding amethyst blocks cannot be moved — must farm in situ.
+#   - Crystal chimes alert nearby mobs when broken carelessly.
+#   - Calcite and smooth basalt form the geode shell layers.
+#   - Tuff host rock indicates proximity to deepslate transition.
+#   - Pairs with abyssal_ore_vein for resource-focused exploration.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Crystal grotto is a rare
+# and visually striking cave pocket.
+id = "strata:abyssal_crystal_grotto"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Crystal Grotto"
+
+# category: CAVE — underground biome with cave ambient sounds
+# and no sky light influence.
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Crystal grottos form in specific geological conditions —
+# moderate temperature, balanced humidity, and slightly
+# unusual weirdness to make them rarer than standard caves.
+[biome.climate]
+# temperature: Cool subterranean temperature. Crystals form
+# best in stable thermal conditions.
+# 0.3 = consistent underground cool.
+temperature = 0.3
+
+# humidity: Moderate moisture — not as wet as the cheese
+# chamber, but enough for mineral-rich water seepage that
+# feeds crystal growth.
+# 0.5 = balanced underground humidity.
+humidity = 0.5
+
+# continentalness: Neutral — geodes form regardless of
+# continental position. 0.5 = no coastal or inland bias.
+continentalness = 0.5
+
+# erosion: Slightly lower erosion than average — the geode
+# shell protects the interior from cave expansion.
+# 0.4 = moderately resistant to erosion.
+erosion = 0.4
+
+# weirdness: Positive weirdness makes this biome less common.
+# 0.3 = somewhat unusual — geodes are special finds, not
+# every-cave occurrences.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Geodes tend to form in the upper portion of
+# the deep underground. -25 = roughly 25 blocks below sea
+# level, accessible but still firmly in cave territory.
+base-height = -25
+
+# height-variation: Moderate — the geode interior has a
+# rounded shape with uneven crystal-covered walls.
+# 15 = enough variation for interesting geometry without
+# creating massive open spaces.
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The geode has a layered shell: outer tuff, middle calcite,
+# inner amethyst. Surface blocks represent the innermost
+# walkable layer.
+[biome.surface]
+# top-block: Smooth basalt forms the polished inner shell of
+# the geode, giving it a distinct dark glossy appearance.
+top-block = "minecraft:smooth_basalt"
+
+# filler-block: Calcite beneath the basalt — the middle
+# geological layer of the geode structure.
+filler-block = "minecraft:calcite"
+
+# filler-depth: Thick calcite layer representing the geode's
+# structural shell. 4 = substantial mineral barrier.
+filler-depth = 4
+
+# underwater-block: Any small water pools inside the geode
+# have amethyst-stained beds.
+underwater-block = "minecraft:calcite"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# The grotto is dominated by amethyst formations — clusters,
+# buds, and budding blocks embedded in the walls, ceiling,
+# and floor.
+[biome.features]
+# trees: No trees in an underground geode.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation grows on crystal surfaces.
+grass-density = 0.0
+
+# flower-density: No flowers underground.
+flower-density = 0.0
+
+# extra-features: Crystal and geode decorations.
+#   amethyst_cluster — mature crystal formations on all surfaces.
+#   budding_amethyst — renewable amethyst source blocks in walls.
+#   glow_lichen — sparse bioluminescence supplementing crystal glow.
+#   small_amethyst_bud — early-growth crystals filling gaps.
+extra-features = [
+    { feature = "amethyst_cluster", density = 15.0 },
+    { feature = "budding_amethyst", density = 4.0 },
+    { feature = "glow_lichen", density = 5.0 },
+    { feature = "small_amethyst_bud", density = 10.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The crystal grotto is relatively peaceful — the enclosed
+# space and ambient light suppress most hostile spawns.
+[biome.spawning]
+# bat: Bats roost among the crystal formations, their
+# echolocation complementing the crystal chimes.
+bat = { weight = 15, min-group = 2, max-group = 5 }
+
+# glow_squid: Small pools inside the geode attract
+# bioluminescent squid.
+glow_squid = { weight = 5, min-group = 1, max-group = 2 }

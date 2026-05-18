@@ -1,0 +1,126 @@
+# ============================================================
+#  Terrain Height Splines — Elysium Overworld
+# ============================================================
+# Splines map climate parameters (continentalness, erosion, weirdness)
+# to terrain height offsets. They create the distinct terrain shapes
+# for different biome types (flat plains, rolling hills, mountains).
+#
+# Each spline is a list of control points: [input, output].
+# The input is a noise value (-1.0 to 1.0), and the output is a
+# height offset added to the base terrain density.
+#
+# Strata interpolates smoothly between control points using cubic splines.
+# ============================================================
+
+# -------------------------------------------------------
+# Continentalness → Base Height
+# -------------------------------------------------------
+# Maps how far inland a location is to its base terrain height.
+# Negative continentalness = deep ocean. Positive = high inland.
+[splines.continental-height]
+# description: Converts continentalness noise into base height offset.
+# -1.0 = deep ocean floor, 0.0 = coastline, 1.0 = far inland plateau
+description = "Continental influence on base terrain height"
+
+# points: Control points as [continentalness, height_offset].
+# height_offset is in blocks relative to sea level.
+#
+# Key transitions:
+#   -1.0 → -50  Deep ocean (Y ~13)
+#   -0.5 → -30  Shallow ocean (Y ~33)
+#   -0.2 → -5   Continental shelf (Y ~58)
+#    0.0 →  0   Coastline (Y ~63)
+#    0.3 → 15   Lowlands (Y ~78)
+#    0.6 → 40   Highlands (Y ~103)
+#    1.0 → 80   Mountain base (Y ~143)
+points = [
+    [-1.0, -50.0],
+    [-0.7, -40.0],
+    [-0.5, -30.0],
+    [-0.3, -15.0],
+    [-0.2,  -5.0],
+    [-0.05,  0.0],
+    [ 0.0,   2.0],
+    [ 0.1,   5.0],
+    [ 0.3,  15.0],
+    [ 0.5,  30.0],
+    [ 0.6,  40.0],
+    [ 0.8,  60.0],
+    [ 1.0,  80.0],
+]
+
+# -------------------------------------------------------
+# Erosion → Height Variation
+# -------------------------------------------------------
+# Controls how much terrain varies at a given erosion level.
+# Low erosion = mountains (high variation).
+# High erosion = flat plains (low variation).
+[splines.erosion-height]
+description = "Erosion influence on terrain height variation"
+
+# points: [erosion, height_variation_multiplier]
+# The multiplier scales the terrain noise amplitude.
+#   -1.0 → 3.0  Extremely mountainous (triple height variation)
+#   -0.5 → 2.0  Rugged hills
+#    0.0 → 1.0  Standard terrain
+#    0.5 → 0.4  Gentle rolling
+#    1.0 → 0.1  Nearly flat (plains, oceans)
+points = [
+    [-1.0, 3.0],
+    [-0.7, 2.5],
+    [-0.4, 1.8],
+    [-0.2, 1.3],
+    [ 0.0, 1.0],
+    [ 0.2, 0.7],
+    [ 0.5, 0.4],
+    [ 0.7, 0.2],
+    [ 1.0, 0.1],
+]
+
+# -------------------------------------------------------
+# Weirdness → Terrain Modifier
+# -------------------------------------------------------
+# Weirdness adds unique terrain features (mesas, spikes, ridges).
+# Extreme weirdness values produce unusual landforms.
+[splines.weirdness-modifier]
+description = "Weirdness influence on terrain character"
+
+# points: [weirdness, terrain_modifier]
+# Modifier values:
+#   0.0 = no change (standard terrain)
+#   Positive = raised/exaggerated terrain
+#   Negative = carved/inverted terrain (valleys, basins)
+points = [
+    [-1.0, -15.0],
+    [-0.7,  -8.0],
+    [-0.3,  -2.0],
+    [ 0.0,   0.0],
+    [ 0.3,   3.0],
+    [ 0.6,  10.0],
+    [ 0.8,  20.0],
+    [ 1.0,  35.0],
+]
+
+# -------------------------------------------------------
+# Mountain Peak Spline
+# -------------------------------------------------------
+# When continentalness > 0.5 and erosion < -0.3, this spline
+# adds jagged peaks on top of the base mountain shape.
+[splines.mountain-peak]
+description = "Additional height for mountain peaks"
+
+# apply-when: Conditions for this spline to take effect.
+# Both conditions must be true for the spline to apply.
+apply-when = { min-continentalness = 0.5, max-erosion = -0.3 }
+
+# points: [weirdness, peak_height_addition]
+# Weirdness determines peak shape — high weirdness = taller, sharper peaks.
+points = [
+    [-1.0,   0.0],
+    [-0.5,   5.0],
+    [ 0.0,  15.0],
+    [ 0.3,  30.0],
+    [ 0.5,  50.0],
+    [ 0.7,  65.0],
+    [ 1.0,  80.0],
+]

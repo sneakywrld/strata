@@ -1,0 +1,140 @@
+# ============================================================
+#  Biome: Central Fountain — Central Island
+# ============================================================
+# A small, elevated shrine area near the exit portal where
+# a decorative end stone fountain formation rises from the
+# platform. End rods protrude from the structure like frozen
+# jets of light, casting a soft white glow across the nearby
+# end stone. The fountain is not functional — there is no
+# water in the End — but its shape evokes a ceremonial basin,
+# suggesting this was once a place of significance to whatever
+# intelligence shaped the End dimension. The terrain here is
+# the highest point on the central island, a gentle crown
+# that overlooks the dragon arena.
+#
+# Gameplay notes:
+#   - Highest point on the central island (base 66).
+#   - End rod lighting provides safe visibility at night
+#     cycles (if any lighting mod is active).
+#   - Decorative landmark useful for navigation.
+#   - Very flat terrain — good staging area for organized
+#     groups preparing for the dragon fight.
+#   - The fountain structure is a feature-placed decoration,
+#     not a proper structure with loot.
+#   - Pairs with central_platform (surrounding arena) and
+#     central_obsidian_ring (nearby ring).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the decorative
+# fountain shrine near the exit portal.
+id = "strata:central_fountain"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Central Fountain"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Central Island region. The fountain occupies a
+# small area near the exit portal at the island's center.
+region = "central"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly warm — the end rods emit a faint
+# warmth that subtly raises the local temperature.
+# 0.1 = barely perceptible warmth above neutral.
+temperature = 0.1
+
+# humidity: Dry. 0.0 = standard End aridity. The fountain
+# holds no water despite its basin shape.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.3 = moderately unusual. The presence of a
+# decorative structure in the otherwise barren End is
+# anomalous, reflected in elevated weirdness.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 66 — the highest point on the central
+# island, one block above the main platform (65). This
+# subtle elevation gives the fountain a pedestal effect,
+# making it visible from across the arena.
+base-height = 66
+
+# height-variation: 1 = essentially flat. The shrine area
+# is a smooth, deliberate surface — not natural erosion
+# but intentional construction. Minimal variation
+# reinforces the artificial, designed quality.
+height-variation = 1
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — continuous with the rest of the
+# central island. The fountain structure sits atop the
+# same pale yellow surface.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone beneath, standard for central
+# island biomes.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard island depth. The fountain
+# area is as structurally solid as the main platform.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# The fountain structure and its end rod lighting are the
+# defining features of this biome. End rods provide
+# ambient illumination.
+[biome.features]
+# end-specific: End rod formations and the decorative
+# fountain structure. End rods are placed as vertical
+# and angled poles radiating from the fountain basin,
+# creating a soft ambient light source.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation at the shrine.
+grass-density = 0.0
+
+# extra-features: Decorative end-themed features.
+#   end_rod_cluster — groups of end rods placed vertically
+#       and at angles, providing soft white lighting.
+#   end_stone_fountain — the central decorative structure,
+#       a basin shape carved from end stone bricks.
+extra-features = [
+    { feature = "end_rod_cluster", density = 3.0 },
+    { feature = "end_stone_fountain", density = 0.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen are present but slightly less dense here —
+# the end rod light discourages clustering.
+[biome.spawning]
+# enderman: Moderate presence. The illumination from end
+# rods makes this a slightly less popular gathering spot
+# for endermen, who prefer darker areas. Still dangerous
+# — players should not let their guard down.
+enderman = { weight = 25, min-group = 1, max-group = 3 }

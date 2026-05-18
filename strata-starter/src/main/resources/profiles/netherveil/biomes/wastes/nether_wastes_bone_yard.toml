@@ -1,0 +1,152 @@
+# ============================================================
+#  Biome: Nether Wastes Bone Yard — Nether Wastes Region
+# ============================================================
+# A grim expanse where massive bone block deposits breach the
+# netherrack surface, forming skeletal ridges and half-buried
+# ribcage formations of impossible scale. These are the remains
+# of ancient nether creatures whose bones have fossilized into
+# solid bone block — each deposit hinting at leviathans that
+# once roamed the nether. Wither skeletons patrol the bone
+# fields as if drawn to the remains, and soul fire flickers
+# blue among the bone formations where soul sand has
+# accumulated in the crevices. The atmosphere is oppressive
+# and funereal — a graveyard of titanic proportions.
+#
+# Gameplay notes:
+#   - Bone block harvesting — bone meal production at scale.
+#   - Wither skeleton farming for skulls (Wither boss).
+#   - Soul fire provides blue illumination and wither damage.
+#   - Soul sand deposits for wither building material.
+#   - Nether fossil structures partially exposed in terrain.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The bone yard is a
+# resource-rich, dangerous variant of the nether wastes.
+id = "strata:nether_wastes_bone_yard"
+
+# display-name: Human-readable name for player displays.
+display-name = "Bone Yard"
+
+# category: NETHER — nether environment with a distinctly
+# funereal, skeletal atmosphere.
+category = "NETHER"
+
+# zone: Part of the wastes region — a morbid pocket within
+# the standard nether wasteland.
+zone = "wastes"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly cool for the nether — the bone deposits
+# and soul sand presence absorb ambient heat.
+#   0.4 = marginally cooler than standard wastes.
+temperature = 0.4
+
+# humidity: Slightly dry — the porous bone block and soul sand
+# don't retain moisture.
+#   -0.1 = mildly arid conditions.
+humidity = -0.1
+
+# continentalness: Neutral — bone yards appear throughout the
+# mid-level nether without positional bias.
+#   0.1 = slight inland tendency.
+continentalness = 0.1
+
+# erosion: Moderate — the bone formations create uneven terrain
+# with ridges and valleys between fossil deposits.
+#   0.4 = moderately rough terrain shaped by fossil deposits.
+erosion = 0.4
+
+# weirdness: Elevated — massive bone formations are unusual
+# and disturbing features of the nether landscape.
+#   0.5 = notably unusual terrain with fossil formations.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor with bone ridges rising
+# above the surrounding terrain.
+#   40 = standard wastes floor, with bone formations rising higher.
+base-height = 40
+
+# height-variation: Moderate to high — the bone formations
+# create significant elevation changes.
+#   6.0 = noticeable terrain variation from fossil ridges.
+height-variation = 6.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Netherrack remains the base surface — bone block
+# deposits are placed as feature overlays.
+top-block = "minecraft:netherrack"
+
+# filler-block: Netherrack substrate mixed with bone block
+# deposits deeper underground.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth — the bone formations extend
+# deeper as feature placements.
+#   4 = typical nether substrate depth.
+filler-depth = 4
+
+# underwater-block: Soul sand — where lava meets the bone
+# yard, soul sand accumulates at the boundary.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the skeletal bone yard.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant growth among the bones.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Bone yard specific features.
+#   bone_block_deposit — massive bone block formations.
+#   nether_fossil — vanilla nether fossil structures.
+#   soul_sand_patch — soul sand accumulation in bone crevices.
+#   soul_fire — blue fire burning on soul sand patches.
+extra-features = [
+    { feature = "bone_block_deposit", density = 8.0 },
+    { feature = "nether_fossil", density = 2.0 },
+    { feature = "soul_sand_patch", density = 4.0 },
+    { feature = "soul_fire", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Wither skeletons and standard skeletons dominate. The bone
+# yard is one of the best places to farm wither skeleton skulls.
+[biome.spawning]
+# wither_skeleton: The dominant mob — drawn to the bone
+# deposits like guardians of the dead. Their stone sword
+# attacks inflict Wither effect, and they drop valuable skulls.
+wither_skeleton = { weight = 18, min-group = 2, max-group = 4 }
+
+# skeleton: Standard skeletons accompany wither skeletons,
+# adding ranged arrow attacks to the patrol groups.
+skeleton = { weight = 8, min-group = 1, max-group = 3 }
+
+# zombified_piglin: Reduced presence — the wither skeleton
+# dominance and soul fire deter piglin herds.
+zombified_piglin = { weight = 8, min-group = 1, max-group = 3 }
+
+# ghast: Occasional ghast overhead, their cries echoing
+# off the bone formations.
+ghast = { weight = 4, min-group = 1, max-group = 1 }

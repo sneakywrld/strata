@@ -1,0 +1,159 @@
+# ============================================================
+#  Biome: Volcanic Crater — Embercrag Volcanic
+# ============================================================
+# The beating heart of the Embercrag — an active volcanic crater
+# with a churning pool of lava at its center. The crater rim rises
+# steeply from the surrounding terrain, and the interior walls
+# are streaked with netherrack and magma blocks that glow with
+# infernal heat. Smoke particles billow upward from the lava pool
+# in a column visible for hundreds of blocks. The air shimmers
+# with convection currents, and the ground trembles with subsurface
+# volcanic activity. This is the most dangerous surface biome in
+# the Embercrag — falling into the crater is almost certainly fatal,
+# and the mobs that spawn here are among the most dangerous in the
+# overworld.
+#
+# Gameplay Notes:
+#   - The crater is a massive fall hazard — the rim is narrow.
+#   - Lava pool at the center is deep and wide.
+#   - Fire resistance potions are strongly recommended.
+#   - Netherrack and magma blocks can be harvested from crater walls.
+#   - The height advantage of the rim is useful for ranged combat.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_volcanic_crater"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Volcanic Crater"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 1.0 = maximum heat — the active lava pool and
+# exposed magma create the most extreme temperatures in the zone.
+temperature = 1.0
+
+# humidity: -0.6 = very dry — the extreme heat drives all moisture
+# from the air, creating a desiccating environment.
+humidity = -0.6
+
+# continentalness: 0.7 = firmly inland — the volcanic crater sits
+# at the center of the Embercrag volcanic field.
+continentalness = 0.7
+
+# erosion: -0.6 = very low erosion — the crater rim is steep and
+# sharp, maintained by ongoing volcanic activity that deposits
+# new material faster than erosion can wear it down.
+erosion = -0.6
+
+# weirdness: 0.5 = notably unusual — the active crater is a rare,
+# dramatic feature that only generates where the weirdness noise
+# peaks, making it a landmark discovery.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 40 = very elevated. The volcanic crater sits atop
+# a major volcanic edifice, towering over the surrounding lava
+# fields and basalt formations.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 40
+
+# height-variation: 30 = extreme variation. The crater rim rises
+# steeply, and the interior drops dramatically to the lava pool,
+# creating the characteristic caldera profile with 50+ block relief.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 30
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Netherrack — the extreme heat has transformed the
+# surface rock into this nether-like material. The reddish-brown
+# stone signals extreme danger and volcanic intensity.
+top-block = "minecraft:netherrack"
+
+# filler-block: Magma block — beneath the netherrack surface,
+# active magma permeates the crater walls. Walking on exposed
+# patches deals damage without sneaking.
+filler-block = "minecraft:magma_block"
+
+# filler-depth: 5 = deep magma layer. The entire crater structure
+# is permeated with active volcanic material.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Magma block — any liquid at the bottom of the
+# crater is lava, not water, and the substrate is active magma.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation of any kind survives near the active crater.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.0 = barren volcanic rock.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Lava pools, magma block surfaces, smoke vents,
+# and netherrack formations define the crater.
+extra-features = [
+    { feature = "lava_pool", density = 4.0 },
+    { feature = "magma_block_surface", density = 6.0 },
+    { feature = "smoke_vent", density = 5.0 },
+    { feature = "netherrack_formation", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The volcanic crater spawns the most dangerous mobs in the
+# Embercrag. Magma cubes dominate, blazes patrol the skies above
+# the lava, and the extreme environment demands full preparation.
+
+# magma_cube: The dominant mob — magma cubes bounce along the
+# crater rim and interior walls.
+# weight: 25 makes them overwhelmingly common.
+# min-group/max-group: Groups of 2-4.
+magma_cube = { weight = 25, min-group = 2, max-group = 4 }
+
+# blaze: Blazes hover above the lava pool, launching fireballs at
+# anyone who approaches the crater rim.
+# weight: 10 for a consistent, dangerous ranged threat.
+# min-group/max-group: Pairs patrol together.
+blaze = { weight = 10, min-group = 1, max-group = 2 }
+
+# ghast: Rare ghast spawns above the crater — their fireballs are
+# devastating on the narrow crater rim.
+# weight: 3 for a rare but terrifying encounter.
+ghast = { weight = 3, min-group = 1, max-group = 1 }

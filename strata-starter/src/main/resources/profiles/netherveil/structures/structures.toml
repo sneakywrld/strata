@@ -1,0 +1,54 @@
+# ============================================================
+#  Nether Structures — Netherveil
+# ============================================================
+# Nether-specific structures. Fortresses and bastions are
+# the primary generated structures.
+# ============================================================
+
+# -------------------------------------------------------
+# Nether Fortresses
+# -------------------------------------------------------
+[structures.nether_fortress]
+type = "jigsaw"
+# spacing: Grid spacing in chunks. Vanilla is 27.
+# We use 24 for slightly more frequent fortresses.
+spacing = 24
+separation = 4
+salt = 30084232
+max-pieces = 50
+max-depth = 10
+# Fortresses spawn in all nether biomes.
+biome-filter = []
+
+# -------------------------------------------------------
+# Bastion Remnants
+# -------------------------------------------------------
+[structures.bastion_remnant]
+type = "jigsaw"
+# spacing: Vanilla is 27. We match for balance.
+spacing = 27
+separation = 4
+salt = 30084233
+max-pieces = 40
+max-depth = 8
+# Bastions don't spawn in basalt deltas (matching vanilla).
+biome-filter-exclude = ["basalt"]
+
+# -------------------------------------------------------
+# Ruined Portals (Nether Side)
+# -------------------------------------------------------
+[structures.nether_ruined_portal]
+type = "schematic"
+spacing = 20
+separation = 8
+salt = 34222646
+
+# -------------------------------------------------------
+# Nether Fossil (Soul Sand Valley)
+# -------------------------------------------------------
+[structures.nether_fossil]
+type = "schematic"
+spacing = 2
+separation = 1
+salt = 14357921
+biome-filter = ["soul"]

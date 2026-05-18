@@ -1,0 +1,1 @@
+// buildSrc settings - intentionally minimal

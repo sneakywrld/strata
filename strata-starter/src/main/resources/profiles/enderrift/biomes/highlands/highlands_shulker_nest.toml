@@ -1,0 +1,153 @@
+# ============================================================
+#  Biome: Highlands Shulker Nest — End Highlands
+# ============================================================
+# A dense concentration of shulkers inhabiting a cluster of
+# purpur structures that have partially collapsed into the
+# end stone terrain. Unlike intact end cities, these
+# structures are broken and scattered — purpur walls at odd
+# angles, half-buried towers, and toppled purpur pillars
+# create a maze-like environment. Shulkers infest every
+# available surface, their shells camouflaged against the
+# purple blocks. The density of levitation bullets in this
+# biome makes it one of the most dangerous in the highlands
+# — players hit by multiple shulkers simultaneously can be
+# launched to lethal heights.
+#
+# Gameplay notes:
+#   - HIGHEST shulker density in the End.
+#   - Primary shulker shell farming location.
+#   - Collapsed purpur structures create a maze.
+#   - Multiple simultaneous levitation effects are lethal.
+#   - Shield is essential — blocks levitation bullets.
+#   - Purpur blocks harvestable from the ruins.
+#   - Shulkers respawn (if configured) making this a
+#     renewable shulker shell source.
+#   - Pairs with highlands_end_city_island (intact cities)
+#     and highlands_ancient_tower (other structures).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the shulker-
+# infested purpur ruins in the highlands.
+id = "strata:highlands_shulker_nest"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Shulker Nest"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Highlands region.
+region = "highlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Warm — the dense shulker population and
+# purpur structures create a warmer microclimate. 0.25 =
+# noticeably warmer than open End terrain.
+temperature = 0.25
+
+# humidity: Slightly elevated — the enclosed ruins trap
+# trace moisture. 0.15 = marginally more humid than open
+# highlands.
+humidity = 0.15
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.4 = elevated weirdness. Shulker nests are
+# uncommon and dangerous — they generate in unusual noise
+# conditions, making each discovery both exciting and
+# threatening.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 70 — slightly below standard highlands
+# (75). The collapsed structures have settled into the
+# terrain, pulling the effective surface lower. The ruins
+# themselves add height above this base.
+base-height = 70
+
+# height-variation: 10 = moderate variation. The mix of
+# intact and collapsed purpur structures creates uneven
+# terrain — walls jutting up, collapsed floors creating
+# depressions, rubble piles forming bumps.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Purpur dominates the surface where structures have
+# collapsed into the terrain.
+[biome.surface]
+# top-block: Purpur block — the ruins have fused with
+# the terrain, making purpur the dominant surface
+# material. End stone is only visible where the ruins
+# have gaps.
+top-block = "minecraft:purpur_block"
+
+# filler-block: End stone beneath the purpur rubble.
+# The ruins sit on the standard end stone substrate.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 3 = moderate depth. The purpur layer is
+# a surface coating of collapsed structures, not deep
+# geological deposits.
+# Range: 1 to 8.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Collapsed purpur structures and shulker attachment
+# points define this biome. No natural vegetation
+# survives the shulker infestation.
+[biome.features]
+# end-specific: Collapsed purpur ruins with shulker
+# spawn surfaces. No chorus plants — shulkers have
+# destroyed or displaced any vegetation.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation — shulkers dominate.
+grass-density = 0.0
+
+# extra-features: Purpur ruin features.
+#   purpur_ruin_wall — partially standing purpur walls
+#       at various angles, providing shulker perches.
+#   purpur_rubble — collapsed purpur block piles creating
+#       uneven ground and hiding shulkers.
+#   purpur_pillar_broken — snapped purpur pillar stumps
+#       jutting from the terrain at angles.
+extra-features = [
+    { feature = "purpur_ruin_wall", density = 5.0 },
+    { feature = "purpur_rubble", density = 4.0 },
+    { feature = "purpur_pillar_broken", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Shulkers are the dominant mob. Endermen are present but
+# overshadowed by the shulker threat.
+[biome.spawning]
+# enderman: Reduced presence — the dense purpur ruins
+# and shulker population leave less open ground for
+# enderman spawning.
+enderman = { weight = 20, min-group = 1, max-group = 2 }
+
+# shulker: EXTREMELY high density. Shulkers attach to
+# every available purpur surface — walls, ceilings,
+# pillars. Multiple shulkers can target a player
+# simultaneously, stacking levitation effects.
+shulker = { weight = 30, min-group = 2, max-group = 5 }

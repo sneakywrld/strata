@@ -1,0 +1,178 @@
+# ============================================================
+#  Biome: Badlands Plateau — Scorched Badlands
+# ============================================================
+# A wide, flat-topped plateau stretching to the horizon, covered in
+# coarse dirt and scattered dead bushes. The surface is hardened and
+# cracked from relentless sun exposure. Occasional patches of gravel
+# mark where ancient water channels once flowed. This is the vast,
+# empty tableland between the more dramatic mesa formations — stark,
+# windswept, and desolate.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_badlands_plateau"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Badlands Plateau"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# BADLANDS maintains the warm amber sky and dry ambient audio
+# consistent with the scorched zone's visual identity.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.85 = very hot but marginally cooler than
+# the red mesa, reflecting the slightly higher elevation and constant
+# wind exposure on the open plateau.
+temperature = 0.85
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.45 = very dry with only trace moisture,
+# enough to sustain the coarse dirt surface layer but nothing more.
+humidity = -0.45
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland placement
+# consistent with other scorched zone biomes.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.0 = moderate terrain
+# that preserves the flat-topped plateau form while allowing some
+# gentle variation across the broad surface.
+erosion = 0.0
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.1 = nearly standard, with just enough offset to
+# differentiate this from the red mesa in climate space.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 25.0 elevates the plateau
+# above the surrounding terrain, though slightly lower than the red
+# mesa, creating a tiered landscape when the two biomes are adjacent.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 25.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 3.0 keeps the plateau top broad and flat — a defining trait — while
+# permitting subtle undulation from ancient dried waterways.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Coarse dirt represents the hard-packed, sun-baked surface of the
+# plateau — too dry for grass but not pure clay like the mesa.
+top-block = "minecraft:coarse_dirt"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Plain terracotta forms the geological base of the
+# plateau, connecting it to the mesa terrain system.
+filler-block = "minecraft:terracotta"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 4 provides a solid terracotta foundation visible at
+# plateau edges and where erosion has cut into the surface.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Red sand matches the
+# scorched zone's terracotta palette for any rare water features.
+underwater-block = "minecraft:red_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#          "dead_bush_large" = skeletal dead trees for atmosphere.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.08 places extremely rare dead trees, reinforcing the
+#            wind-blasted emptiness of the plateau.
+trees = { types = ["dead_bush_large"], density = 0.08 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.3 = barely any grass survives the constant
+# wind and sun on the exposed plateau surface.
+grass-density = 0.3
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = no flowers on this barren tableland.
+flower-density = 0.0
+
+# dead-bush-density: Dead bush features per chunk. The primary
+# surface vegetation — dry, brittle shrubs clinging to the coarse
+# dirt. 4.0 provides notable coverage that defines the biome's look.
+dead-bush-density = 4.0
+
+# gravel-patch-density: Patches of gravel per chunk, representing
+# dried stream beds and erosion deposits on the plateau surface.
+# 1.5 creates occasional visual variety across the flat terrain.
+gravel-patch-density = 1.5
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The open plateau offers no cover from the sun or from mobs.
+# Husks roam freely at night, and rabbits are the only animals
+# tough enough to survive the harsh conditions.
+
+# husk: Desert undead perfectly adapted to the sun-scorched plateau.
+# Hunger debuff on hit makes food management critical here.
+# weight: 14 ensures husks dominate the nighttime spawns.
+husk = { weight = 14, min-group = 2, max-group = 5 }
+
+# rabbit: Hardy desert rabbits that feed on dead bush roots.
+# weight: 5 for sparse but present passive life.
+rabbit = { weight = 5, min-group = 2, max-group = 3 }
+
+# skeleton: Exposed plateau provides clear sight lines for ranged
+# attackers. Skeletons are especially dangerous in this open terrain.
+# weight: 10 makes them a common secondary threat.
+skeleton = { weight = 10, min-group = 1, max-group = 3 }

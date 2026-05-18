@@ -1,0 +1,90 @@
+# ============================================================
+#  Biome: Stormbreak Sea Stack Field — Stormbreak Coast
+# ============================================================
+# A dramatic seascape of towering stone pillars — sea stacks —
+# rising from shallow ocean water. Carved over aeons by wave
+# action, these natural monuments range from narrow spires to
+# broad arches with tunnels large enough to sail through.
+# Vegetation clings to the tops of the tallest stacks, and
+# the shallow water between them is littered with fallen
+# rubble and gravel. This is the most visually spectacular
+# biome in the Stormbreak zone.
+#
+# Gameplay notes:
+#   - Extreme height variation (up to 30 blocks) creates
+#     dramatic vertical gameplay.
+#   - Sea stacks can be hollowed out for hidden bases.
+#   - Natural arches provide cover and dramatic build sites.
+#   - Navigation by boat is challenging but rewarding.
+#   - Borders stormbreak_sea_cliffs (where stacks form from
+#     collapsed cliff sections) and open ocean.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_sea_stack_field"     # Unique registry ID
+display-name = "Stormbreak Sea Stack Field"  # Shown in F3 debug & maps
+category = "OCEAN"                           # Ocean category — pillars rise from water
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Cool, moderately humid, and very high weirdness — the
+# extreme weirdness value is what drives the unusual,
+# pillar-like terrain generation. Very low erosion preserves
+# the dramatic vertical features.
+[biome.climate]
+temperature = 0.4           # Cool — open ocean exposure
+humidity = 0.5              # Moderate sea moisture
+continentalness = -0.15     # Oceanic — stacks rise from open water
+erosion = -0.6              # Very low erosion — pillars still standing
+weirdness = 0.5             # Very high — most unusual terrain in zone
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# The base sits below sea level (shallow ocean floor) but
+# the extreme height variation creates pillars that tower
+# 25+ blocks above the waterline.
+[biome.terrain]
+base-height = -5            # Ocean floor between the stacks
+height-variation = 30       # Massive variation — spires reach 25+ above water
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Stone dominates — the stacks are solid rock. Gravel
+# accumulates at the base where fragments have broken off.
+# Moss and vines may grow on the shaded sides of taller
+# stacks.
+[biome.surface]
+top-block = "minecraft:stone"            # Exposed stone pillars
+filler-block = "minecraft:stone"         # Solid rock throughout
+filler-depth = 3                         # All stone — no soil layer
+underwater-block = "minecraft:gravel"    # Rubble on the seabed between stacks
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Sparse vegetation on stack tops only — a few hardy bushes
+# or single trees where enough soil has accumulated. The
+# stacks themselves are generated as terrain, not features.
+[biome.features]
+trees = { types = ["oak"], density = 0.02 }  # Rare single trees on stack tops
+grass-density = 0.1                          # Minimal — mostly bare stone
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Seabirds (chickens) nest on stack tops. Drowned may lurk
+# in the shadowed water between pillars. The dramatic terrain
+# creates many dark pockets for hostile spawns even during
+# daytime.
+[biome.spawning]
+# Chickens (seabirds) on the flat tops of sea stacks.
+# Drowned in the shaded water between pillars — trident drops.
+# Standard hostile mobs in dark crevices and under arches.
+# Squid and fish in the open water channels between stacks.

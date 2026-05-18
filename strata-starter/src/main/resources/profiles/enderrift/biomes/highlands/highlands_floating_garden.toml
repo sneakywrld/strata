@@ -1,0 +1,148 @@
+# ============================================================
+#  Biome: Highlands Floating Garden — End Highlands
+# ============================================================
+# The most beautiful biome in the End dimension. A large
+# floating island adorned with carefully spaced chorus flowers
+# in full bloom, end rods arranged in elegant patterns, and
+# the occasional purpur accent creating splashes of purple
+# against the end stone canvas. By End standards, this is
+# lush — not the wild tangle of an end forest, but a curated
+# garden where every chorus plant seems deliberately placed.
+# End rods rise from the surface like luminous stems, their
+# soft white glow creating pools of gentle light. The terrain
+# is smooth and gently rolling, inviting quiet exploration.
+# This biome feels intentional — as if some unseen intelligence
+# cultivated this island as a sanctuary.
+#
+# Gameplay notes:
+#   - Most visually appealing biome in the End.
+#   - End rod lighting creates safe, well-lit environment.
+#   - Chorus flowers in full bloom — harvestable.
+#   - Lower hostile density — the lighting deters mobs.
+#   - Excellent location for player bases and gardens.
+#   - Purpur accent blocks add decorative variety.
+#   - Screenshot destination — popular with builders.
+#   - Pairs with highlands_end_forest (wild counterpart)
+#     and highlands_gateway_plaza (nearby safe zone).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the curated chorus
+# garden island in the End highlands.
+id = "strata:highlands_floating_garden"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Floating Garden"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Highlands region.
+region = "highlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Warm — end rod lighting and the sheltered
+# garden microclimate create a warmer environment.
+# 0.2 = pleasantly warm for End standards.
+temperature = 0.2
+
+# humidity: Elevated — the chorus flowers and careful
+# spacing allow more moisture retention than wild chorus
+# forest. 0.25 = the second-highest humidity in the End.
+humidity = 0.25
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.35 = moderately weird. A "garden" in the
+# End is inherently anomalous — the curated quality
+# stands out against the wild, chaotic End landscape.
+weirdness = 0.35
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 80 — elevated above standard highlands
+# (75). The garden floats high, adding to its ethereal,
+# otherworldly quality. Players look down from the garden
+# across the darker highlands below.
+base-height = 80
+
+# height-variation: 5 = low variation. The garden surface
+# is gently rolling — smooth enough to feel cultivated
+# but with enough contour to create natural planting
+# beds and viewing areas.
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — the garden "soil." Chorus plants
+# and end rods are feature-placed on this surface.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — solid island beneath the
+# garden surface.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 5 = thick, solid island. The garden's
+# mass supports its elevated position.
+# Range: 1 to 8.
+filler-depth = 5
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Carefully spaced chorus flowers, elegant end rod
+# arrangements, and purpur accent blocks create the
+# garden aesthetic. Density is moderate — deliberate
+# spacing, not wild overgrowth.
+[biome.features]
+# end-specific: Curated chorus flower arrangements with
+# end rod lighting. The chorus density is lower than the
+# end forest but more aesthetically pleasing — each
+# plant has space to be appreciated individually.
+trees = { types = ["chorus_tree"], density = 3.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Garden decorations.
+#   end_rod_cluster — elegant arrangements of end rods
+#       creating ambient lighting throughout the garden.
+#   end_rod_lamppost — taller end rod formations serving
+#       as garden lamp posts along paths.
+#   purpur_accent — small purpur block features embedded
+#       in the end stone surface as decorative borders.
+#   chorus_flower_display — individual chorus flowers
+#       placed for aesthetic effect (not full plants).
+extra-features = [
+    { feature = "end_rod_cluster", density = 4.0 },
+    { feature = "end_rod_lamppost", density = 2.5 },
+    { feature = "purpur_accent", density = 2.0 },
+    { feature = "chorus_flower_display", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The abundant lighting significantly reduces hostile mob
+# spawning. Endermen are less common here than in any
+# other highlands biome.
+[biome.spawning]
+# enderman: Low presence — the end rod lighting creates
+# enough ambient light to discourage enderman spawning.
+# This makes the garden one of the safest biomes in the
+# End, ideal for player bases.
+enderman = { weight = 12, min-group = 1, max-group = 2 }

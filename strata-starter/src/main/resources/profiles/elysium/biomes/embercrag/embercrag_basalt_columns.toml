@@ -1,0 +1,160 @@
+# ============================================================
+#  Biome: Basalt Columns — Embercrag Volcanic
+# ============================================================
+# Towering hexagonal basalt columns rise from the scorched earth
+# in geometric perfection — the result of ancient lava flows that
+# cooled slowly under immense pressure. The columns range from
+# single-block pillars to massive formations 20+ blocks tall,
+# creating a dramatic and alien landscape. The geology here tells
+# a story of volcanic fury followed by eons of erosion that
+# exposed these crystalline structures. The terrain is steep and
+# jagged, with deep crevasses between column clusters where lava
+# once flowed. This is the Embercrag at its most visually striking
+# — a natural cathedral of stone.
+#
+# Gameplay Notes:
+#   - Column tops provide natural elevated platforms for building.
+#   - Basalt can be harvested for building material in large quantities.
+#   - The steep terrain with gaps is a significant fall hazard.
+#   - Hostile mobs spawn in the dark crevasses between columns.
+#   - Elytra navigation through column forests is thrilling but risky.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_basalt_columns"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Basalt Columns"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint and dry atmosphere
+# that suits volcanic terrain.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.8 = hot — residual geothermal heat radiates from
+# the basalt, keeping the air warm even though the lava that formed
+# these columns cooled long ago.
+temperature = 0.8
+
+# humidity: -0.3 = dry — the volcanic rock retains no moisture,
+# and the geothermal heat drives away any humidity.
+humidity = -0.3
+
+# continentalness: 0.7 = firmly inland — the volcanic field sits
+# deep in the continental interior, far from any oceanic influence.
+continentalness = 0.7
+
+# erosion: -0.4 = low erosion — the basalt columns are extremely
+# resistant to weathering, maintaining their sharp geometric forms
+# over geological time. This produces steep, jagged terrain.
+erosion = -0.4
+
+# weirdness: 0.0 = the baseline variant — basalt columns are the
+# standard, most common biome type in the Embercrag zone.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 15 = significantly elevated above sea level. The
+# basalt field sits on an elevated plateau formed by ancient lava
+# flows that solidified well above the surrounding terrain.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 15
+
+# height-variation: 20 = dramatic variation. The columns create
+# extreme vertical relief — towering pillars next to deep crevasses
+# produce the signature columnar landscape.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 20
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Basalt — the defining surface of this biome. The
+# hexagonal columns are exposed basalt from top to bottom, giving
+# the terrain its distinctive dark gray, geometric appearance.
+top-block = "minecraft:basalt"
+
+# filler-block: Smooth basalt — beneath the rough surface basalt,
+# the deeper rock is smooth and dense, representing the interior
+# of the original lava flow that cooled more slowly.
+filler-block = "minecraft:smooth_basalt"
+
+# filler-depth: 6 = deep basalt layer. The columnar formations
+# extend well below the surface, and players will dig through
+# many layers of basalt before reaching standard stone.
+# Range: 1 to 8.
+filler-depth = 6
+
+# underwater-block: Blackstone — any water that collects in the
+# crevasses between columns sits on a bed of dark volcanic rock.
+underwater-block = "minecraft:blackstone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No trees grow on the bare basalt — the rock surface
+# provides no soil or moisture for root systems.
+#   density: 0.0 = completely treeless volcanic terrain.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.0 = no vegetation. Bare basalt supports nothing.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers on the barren volcanic rock.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Basalt pillar formations and occasional magma
+# block veins where geothermal heat still reaches the surface.
+extra-features = [
+    { feature = "basalt_pillar", density = 6.0 },
+    { feature = "magma_vein", density = 1.0 },
+    { feature = "gravel_patch", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The basalt columns are harsh and lifeless on the surface, but the
+# dark crevasses between formations harbor hostile mobs. Endermen
+# are drawn to the geometric basalt structures.
+
+# skeleton: Archers perch on column tops and fire down into the
+# crevasses where players navigate.
+# weight: 12 for a consistent ranged threat.
+# min-group/max-group: Solitary snipers.
+skeleton = { weight = 12, min-group = 1, max-group = 2 }
+
+# enderman: Endermen are attracted to the geometric basalt — they
+# occasionally pick up and rearrange basalt blocks.
+# weight: 8 for a meaningful but not dominant presence.
+enderman = { weight = 8, min-group = 1, max-group = 2 }
+
+# silverfish: Silverfish infest the basalt layers, bursting out
+# when players mine the columns for building material.
+# weight: 6 for an occasional mining hazard.
+silverfish = { weight = 6, min-group = 2, max-group = 4 }

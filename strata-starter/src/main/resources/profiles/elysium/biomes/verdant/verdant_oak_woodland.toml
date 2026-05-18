@@ -1,0 +1,143 @@
+# ============================================================
+#  Biome: Verdant Oak Woodland — Verdant Expanse
+# ============================================================
+# A dense, mature oak forest with a thick canopy that filters
+# sunlight into golden shafts. Fallen logs decompose on the
+# forest floor alongside lush fern undergrowth. The woodland
+# feels ancient and sheltering — a step deeper into nature than
+# the lighter verdant_forest.
+#
+# Gameplay: Excellent wood supply with dense oak log harvesting.
+# Fallen logs provide free wood without felling trees. The thick
+# canopy creates darker areas where hostile mobs can spawn even
+# during the day if leaf density is high enough. Fern-covered
+# floor hides surface ore outcrops.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "oak_woodland" indicates
+# a denser, oak-dominated variant distinct from mixed "forest".
+id = "strata:verdant_oak_woodland"
+
+# display-name: Shown in F3 debug, minimaps, and /strata commands.
+display-name = "Verdant Oak Woodland"
+
+# category: FOREST — enables wolf spawning, forest ambient sounds,
+# and woodland mansion structure eligibility. The denser variant
+# within the FOREST category for the Verdant zone.
+category = "FOREST"
+
+# zone: Verdant Expanse. Generates 1500-3500 blocks from spawn.
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.5 = standard temperate. Dense canopy provides
+# shade that moderates temperature extremes.
+temperature = 0.5
+
+# humidity: 0.55 = moderately humid. The dense canopy traps
+# moisture and the thick leaf litter retains rainfall. Higher
+# than verdant_forest (0.5) reflecting the denser vegetation.
+humidity = 0.55
+
+# continentalness: 0.4 = moderately inland. Oak woodlands form
+# in the same continental band as other verdant forests.
+continentalness = 0.4
+
+# erosion: 0.55 = moderate erosion. Similar to verdant_forest
+# but slightly rougher — root networks and fallen logs create
+# micro-terrain variation on the forest floor.
+erosion = 0.55
+
+# weirdness: 0.1 = slightly unusual. Differentiates from the
+# base verdant_forest (0.0) so both can coexist in the zone
+# without generating in identical climate bands.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5 = same as verdant_forest. Woodlands share
+# the same elevation band as lighter forests.
+base-height = 5
+
+# height-variation: 1.0 = gentle terrain. Slightly less varied
+# than verdant_forest (1.5) because thick root networks and
+# leaf litter fill in small terrain gaps.
+height-variation = 1.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The ferns and ground cover are placed
+# as features on top of the base grass surface.
+top-block = "minecraft:grass_block"
+
+# filler-block: Rich dirt. Dense root networks penetrate deeply
+# into the organic soil.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth for forested terrain.
+filler-depth = 3
+
+# underwater-block: Dirt for small streams or puddles in the
+# woodland floor.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Dense oak-dominated canopy with occasional fancy oaks.
+#   "oak" = standard oaks forming the bulk of the woodland.
+#   "fancy_oak" = large spreading oaks that create canopy gaps
+#   and dramatic visual centerpieces.
+#   density 12.0 = very dense. This is the defining trait — the
+#   woodland is thick enough to feel enclosed. Compare to
+#   verdant_forest's 8.0.
+trees = { types = ["oak", "fancy_oak"], density = 12.0 }
+
+# grass-density: 15.0 = reduced ground grass. The thick canopy
+# blocks enough sunlight that grass struggles. Most ground cover
+# is ferns (listed in extra-features).
+grass-density = 15.0
+
+# flower-density: 1.0 = sparse flowers. Too little light reaches
+# the forest floor for flowers to thrive. Only shade-tolerant
+# species survive here.
+flower-density = 1.0
+
+# extra-features: Dense fern undergrowth and decomposition features.
+extra-features = [
+    # Ferns dominate the undergrowth — the signature ground cover.
+    { feature = "fern", density = 15.0 },
+    # Large ferns add vertical depth to the undergrowth layer.
+    { feature = "large_fern", density = 6.0 },
+    # Fallen logs (horizontal oak logs) decompose on the forest floor.
+    # Provides free wood and visual atmosphere.
+    { feature = "fallen_log", density = 2.0 },
+    # Brown mushrooms thrive in the deep shade.
+    { feature = "brown_mushroom", density = 4.0 },
+    { feature = "red_mushroom", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Dense woodlands support a robust wildlife population sheltered
+# under the thick canopy.
+[biome.spawning]
+# Wolves in larger packs — dense forest supports bigger territories.
+wolf = { weight = 8, min-group = 2, max-group = 5 }
+# Foxes are common in dense woods, hiding in the undergrowth.
+fox = { weight = 5, min-group = 1, max-group = 3 }
+# Spiders have slightly higher spawn weight — web-friendly canopy.
+spider = { weight = 15, min-group = 1, max-group = 2 }

@@ -1,0 +1,144 @@
+# ============================================================
+#  Biome: Basalt Column Forest — Basalt Deltas
+# ============================================================
+# A dense maze of basalt columns stretching from floor to ceiling,
+# packed so tightly that navigating between them requires constant
+# weaving and squeezing through narrow gaps. The columns are
+# natural basalt pillars — hexagonal in cross-section, smooth-
+# surfaced, and uniformly dark. The effect is a stone forest of
+# featureless dark trunks with no canopy, just columns disappearing
+# upward into darkness. The narrow gaps between columns create
+# a labyrinth where players can hear magma cubes bouncing nearby
+# but can't see them until they squeeze around a corner. Sightlines
+# are limited to a few blocks in any direction, and the uniformity
+# of the columns makes every corridor look identical. Getting lost
+# is not just possible — it's expected. The column forest is the
+# basalt delta's answer to the crimson thicket.
+#
+# Gameplay notes:
+#   - Maze-like navigation — every corridor looks the same.
+#   - Block trail or coordinate tracking mandatory.
+#   - Magma cube encounters in tight corridors.
+#   - Basalt harvesting at extreme efficiency.
+#   - Shield essential — can't dodge in narrow gaps.
+#   - Sound is the primary threat detection method.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The column forest is the
+# densest and most maze-like basalt variant.
+id = "strata:basalt_column_forest"
+
+# display-name: Human-readable name for player displays.
+display-name = "Basalt Column Forest"
+
+# category: NETHER — nether environment with extremely dense
+# basalt column formations creating a stone labyrinth.
+category = "NETHER"
+
+# zone: Part of the basalt zone — the most claustrophobic and
+# disorienting area within the basalt deltas.
+zone = "basalt"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Hot — the dense basalt columns trap volcanic
+# heat in the narrow corridors between them.
+#   0.85 = very hot, trapped heat in narrow corridors.
+temperature = 0.85
+
+# humidity: Very dry — volcanic basalt retains no moisture.
+#   -0.4 = dry conditions between stone columns.
+humidity = -0.4
+
+# continentalness: Neutral — column forests form within
+# standard basalt delta terrain.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Minimal — the terrain is maximally obstructed by
+# floor-to-ceiling columns with almost no open space.
+#   0.05 = essentially zero open space, pure maze.
+erosion = 0.05
+
+# weirdness: High — the density of floor-to-ceiling columns
+# is extraordinary and visually dramatic.
+#   0.6 = highly unusual column density.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the columns rise from
+# a typical elevation to the ceiling.
+#   40 = standard nether floor between columns.
+base-height = 40
+
+# height-variation: Low between columns — the floor is
+# relatively flat, with the columns providing vertical mass.
+#   2.0 = flat corridors between towering columns.
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Basalt — the corridor floors match the column
+# material, creating a monolithic dark environment.
+top-block = "minecraft:basalt"
+
+# filler-block: Netherrack beneath the basalt floor.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical basalt surface layer.
+filler-depth = 4
+
+# underwater-block: Magma blocks in any lava gaps.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the stone labyrinth.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on basalt.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Column forest specific features.
+#   basalt_column — extremely dense floor-to-ceiling columns,
+#     the defining feature creating the maze layout.
+#   magma_block_field — small magma block patches in wider
+#     junctions between column clusters.
+#   blackstone_deposit — blackstone veins within columns.
+extra-features = [
+    { feature = "basalt_column", density = 18.0 },
+    { feature = "magma_block_field", density = 3.0 },
+    { feature = "blackstone_deposit", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Magma cubes in the narrow corridors — impossible to avoid.
+[biome.spawning]
+# magma_cube: Magma cubes squeeze through the columns, appearing
+# around corners with no warning. Their bouncing is audible
+# before visual — use sound to anticipate encounters.
+magma_cube = { weight = 20, min-group = 1, max-group = 4 }
+
+# ghast: No ghasts — the dense columns prevent flight.
+# This is one of the few biomes where ghasts cannot spawn.
+
+# strider: No striders — no lava pools large enough.

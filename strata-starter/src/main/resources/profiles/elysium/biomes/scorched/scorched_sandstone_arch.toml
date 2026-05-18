@@ -1,0 +1,180 @@
+# ============================================================
+#  Biome: Sandstone Arch — Scorched Badlands
+# ============================================================
+# A dramatic landscape of natural sandstone arches, pillars, and
+# balanced rocks sculpted by millennia of wind erosion. Towering
+# formations rise from the desert floor like the bones of ancient
+# giants. Narrow passages wind between the pillars, creating a
+# labyrinthine terrain that is visually spectacular but easy to get
+# lost in. The extreme height variation makes this one of the most
+# vertically dynamic biomes in the scorched zone.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_sandstone_arch"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Sandstone Arch"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# BADLANDS provides the amber sky tint that complements the warm
+# sandstone palette and enhances the monument-valley atmosphere.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.9 = very hot, with the sandstone
+# absorbing and radiating heat, creating shimmering air currents
+# visible between the towering formations.
+temperature = 0.9
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.55 = very dry, the wind that carved
+# these arches carried no moisture with it.
+humidity = -0.55
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, where constant
+# wind and zero rainfall create the conditions for wind erosion to
+# dominate the landscape.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. -0.3 = significant
+# resistance to erosion in the harder stone, preserving the tall
+# pillar and arch structures that softer rock would not maintain.
+erosion = -0.3
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.5 = moderately unusual, reflecting the exotic and
+# visually striking nature of natural arch formations that are
+# rare in the real world.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 10.0 elevates the base
+# desert floor above sea level, providing a foundation from which
+# the sandstone pillars and arches rise dramatically.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 10.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 25.0 is extremely high, producing the towering pillars, natural
+# bridges, and deep passages that define this biome. Players will
+# encounter dramatic vertical terrain requiring climbing or bridging.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 25.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Smooth sandstone caps the formations, representing the harder
+# erosion-resistant layer that protects the softer stone below
+# and creates the flat tops of arches and pillar caps.
+top-block = "minecraft:smooth_sandstone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Regular sandstone forms the bulk of every arch,
+# pillar, and wall — the predominant geological material.
+filler-block = "minecraft:sandstone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 7 provides a thick sandstone body for the formations,
+# ensuring the arches and pillars are solid sandstone throughout
+# rather than transitioning to generic stone too quickly.
+# Range: 1 to 8.
+filler-depth = 7
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Sand collects at the
+# base of any rare water pooling in arch shadows.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.0 = no trees; bare sandstone is the entire visual.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.0 = no grass on the bare sandstone; there
+# is no soil for roots to establish.
+grass-density = 0.0
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = pure stone, no flowers.
+flower-density = 0.0
+
+# dead-bush-density: Dead bush features per chunk. Rare brittle
+# shrubs that found purchase in cracks between sandstone blocks.
+# 0.5 keeps the terrain almost entirely bare stone.
+dead-bush-density = 0.5
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The sandstone labyrinth creates dangerous ambush conditions.
+# Mobs lurk in the shadows between pillars and beneath arches,
+# invisible until the player rounds a corner.
+
+# husk: Desert undead that hide in the shade of arches during
+# the day, emerging aggressively at night. The narrow passages
+# make escape difficult.
+# weight: 12 for a consistent hostile presence.
+husk = { weight = 12, min-group = 1, max-group = 3 }
+
+# skeleton: Ranged attackers positioned atop arches and pillars.
+# Extremely dangerous when they have the high ground advantage.
+# weight: 10 creates frequent ranged threats from above.
+skeleton = { weight = 10, min-group = 1, max-group = 2 }
+
+# spider: Climb the sandstone pillars and drop onto unsuspecting
+# players. The vertical terrain gives spiders a significant
+# advantage.
+# weight: 6 for occasional but memorable ambushes.
+spider = { weight = 6, min-group = 1, max-group = 2 }

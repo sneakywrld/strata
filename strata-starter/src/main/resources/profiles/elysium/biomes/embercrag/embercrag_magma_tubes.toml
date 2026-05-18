@@ -1,0 +1,157 @@
+# ============================================================
+#  Biome: Magma Tubes — Embercrag Volcanic
+# ============================================================
+# Underground lava tubes that have been exposed to the surface by
+# erosion and collapse. The terrain is pocked with openings that
+# drop into winding tunnels lined with magma blocks, obsidian, and
+# flowing lava. Some tubes are dry and cooled — dark tunnels
+# perfect for mob spawns — while others still carry active lava
+# flows. The surface above the tubes is unstable, with frequent
+# sinkholes and collapsed sections that reveal the glowing tunnels
+# below. Magma cubes bounce through the tubes in large numbers,
+# their gelatinous bodies perfectly adapted to the volcanic
+# environment.
+#
+# Gameplay Notes:
+#   - Sinkholes create unexpected fall hazards — watch your step.
+#   - Lava tubes provide sheltered but dangerous travel routes.
+#   - Magma cubes spawn at very high rates inside the tubes.
+#   - Cooled tubes contain valuable obsidian and magma blocks.
+#   - The tube network can be used as a underground highway system.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_magma_tubes"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Magma Tubes"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.9 = very hot — heat radiates from the underground
+# lava flows through the thin surface crust.
+temperature = 0.9
+
+# humidity: -0.4 = dry — the geothermal heat eliminates any surface
+# moisture, and the volcanic rock is impermeable.
+humidity = -0.4
+
+# continentalness: 0.7 = firmly inland — the tube network extends
+# beneath the volcanic plateau.
+continentalness = 0.7
+
+# erosion: 0.2 = low-to-moderate erosion — the tubes create
+# hollowed terrain that has partially collapsed, producing moderate
+# surface variation without the steep relief of the crater.
+erosion = 0.2
+
+# weirdness: 0.4 = moderately unusual — exposed lava tubes are an
+# uncommon geological feature that makes this biome distinctive.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 10 = moderately elevated. The tube network sits
+# at mid-elevation on the volcanic plateau, with the surface above
+# the tubes forming a gently rolling landscape.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 10
+
+# height-variation: 10 = significant variation. Collapsed tube
+# sections create dramatic sinkholes next to intact surface areas,
+# producing highly irregular terrain.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Blackstone — the surface crust above the tubes is
+# heat-darkened volcanic rock, fragile in places where the tubes
+# have weakened it from below.
+top-block = "minecraft:blackstone"
+
+# filler-block: Basalt — the structural rock between and around
+# the tube tunnels. Dense and resistant, but hollowed by the
+# original lava flows.
+filler-block = "minecraft:basalt"
+
+# filler-depth: 5 = deep volcanic rock. The tubes cut through
+# many layers, exposing the full depth of the volcanic substrate.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Magma block — any pooled lava or rare water
+# in the exposed tubes sits on active magma.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation on the volcanic surface above the tubes.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.0 = barren volcanic terrain.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Tube openings, collapsed sinkholes, magma block
+# patches, and obsidian formations where lava cooled in the tubes.
+extra-features = [
+    { feature = "tube_opening", density = 2.0 },
+    { feature = "sinkhole", density = 1.5 },
+    { feature = "magma_block_patch", density = 4.0 },
+    { feature = "obsidian_formation", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Magma cubes dominate the tubes, bouncing through the tunnels in
+# large groups. The enclosed spaces make encounters with them
+# particularly dangerous. Wither skeletons occasionally spawn in
+# the darkest sections.
+
+# magma_cube: The dominant mob — they fill the tubes and bounce
+# across the surface above collapsed sections.
+# weight: 22 makes them overwhelmingly common.
+# min-group/max-group: Groups of 2-5 fill tube sections.
+magma_cube = { weight = 22, min-group = 2, max-group = 5 }
+
+# wither_skeleton: Rare spawns in the darkest tube sections — a
+# dangerous surprise in the confined tunnels.
+# weight: 4 for a rare but deadly encounter.
+wither_skeleton = { weight = 4, min-group = 1, max-group = 1 }
+
+# zombie: Standard zombies spawn on the surface at night where the
+# tube collapse has created dark recesses.
+# weight: 8 for a basic melee threat.
+zombie = { weight = 8, min-group = 1, max-group = 2 }

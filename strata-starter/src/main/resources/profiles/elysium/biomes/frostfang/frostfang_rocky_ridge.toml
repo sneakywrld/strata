@@ -1,0 +1,106 @@
+# ============================================================
+#  Biome: Frostfang Rocky Ridge — Frostfang Peaks
+# ============================================================
+# A long, exposed ridge of bare stone running along the
+# mountain's spine. Wind has stripped away all snow and
+# soil, leaving raw rock carved into dramatic formations
+# — arches, spires, and wind-hollowed cavities. The stone
+# itself is rich with mineral veins; emerald deposits are
+# visible in exposed cliff faces, and iron ore streaks the
+# grey rock with rust-coloured bands. The ridge is
+# perpetually wind-blasted, and the exposed elevation
+# offers commanding views in every direction — making it
+# both a navigation landmark and a strategic vantage point.
+#
+# Gameplay notes:
+#   - Premier mining destination in the Frostfang zone.
+#     Emerald veins are exposed on the surface rather than
+#     buried underground, rewarding exploration.
+#   - Iron ore abundance supports tool and armour crafting
+#     for extended mountain expeditions.
+#   - Wind-carved formations create natural shelters and
+#     defensible positions along the ridge.
+#   - The exposed elevation provides the best sightlines
+#     in the zone — ideal for scouting routes.
+#   - High elevation with steep drops on either side makes
+#     falling the primary hazard.
+#   - Pairs with frostfang_snowy_peak above and
+#     frostfang_spruce_slope / frostfang_alpine_meadow below.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_rocky_ridge"          # Unique registry ID
+display-name = "Frostfang Rocky Ridge"       # Shown in F3 debug & maps
+category = "MOUNTAIN"                        # Exposed mountain ridge
+zone = "frostfang"                           # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The low humidity reflects the wind-
+# scoured conditions — no moisture accumulates on the
+# exposed rock. Very low erosion creates the steep, sharp
+# ridge profile. The slight positive weirdness allows for
+# the unusual wind-carved formations.
+[biome.climate]
+temperature = -0.4          # Cold but drier than surrounding biomes
+humidity = 0.2              # Very dry — wind strips all moisture
+continentalness = 0.8       # Deep inland mountain spine
+erosion = -0.7              # Very low erosion — steep, sharp ridgeline
+weirdness = 0.1             # Slightly unusual — wind-carved shapes
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 60 places the ridge at high elevation —
+# above the treeline but below the summit. The height-
+# variation of 25 creates the dramatic profile of spires
+# and notches along the ridgeline, with the highest points
+# reaching 85 blocks and saddles dropping to 35.
+[biome.terrain]
+base-height = 60            # High ridge — above treeline
+height-variation = 25       # +/-25 blocks — jagged ridge profile
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Bare stone dominates — wind has removed all soil and
+# snow. The filler is also stone, representing the
+# solid bedrock that forms the ridge's core. The thin
+# filler depth indicates there is no meaningful surface
+# layer — just raw mountain rock all the way down.
+[biome.surface]
+top-block = "minecraft:stone"            # Bare wind-stripped rock
+filler-block = "minecraft:stone"         # Solid rock core throughout
+filler-depth = 2                         # Minimal surface layer — solid stone
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# No vegetation survives on the wind-blasted ridge. The
+# exposed stone is completely barren. The only "features"
+# are the mineral veins visible in the rock faces —
+# emerald and iron ore that generate as part of the
+# underground ore distribution, exposed here by erosion.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees — bare exposed rock
+grass-density = 0.0                      # No vegetation on wind-stripped stone
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Goats are at home on the rocky ridge, leaping between
+# formations with ease. They are the only passive mob
+# that spawns here. At night, standard hostile mobs
+# appear in the shadows of wind-carved hollows. The
+# narrow ridge and steep drops on either side make
+# knockback effects particularly deadly.
+[biome.spawning]
+# Goats navigate the ridge with ease — signature mob.
+# Standard hostile mobs spawn in wind-hollow shadows.
+# Knockback near cliff edges is extremely dangerous.
+# No other passive mobs — too exposed for most wildlife.

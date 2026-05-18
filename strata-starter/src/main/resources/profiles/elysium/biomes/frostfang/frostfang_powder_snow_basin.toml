@@ -1,0 +1,109 @@
+# ============================================================
+#  Biome: Frostfang Powder Snow Basin — Frostfang Peaks
+# ============================================================
+# A deceptive valley where loose, powdery snow has
+# accumulated to lethal depths. What appears to be a
+# gentle snow-covered basin is actually a death trap —
+# players who step onto the powder snow sink immediately,
+# taking freezing damage as they plunge below the surface.
+# The snow here is not compacted like elsewhere in the
+# zone; it is light, dry, and completely unable to support
+# weight. Only leather boots prevent sinking. Scattered
+# bones on the surface hint at previous victims — both
+# mob and perhaps player.
+#
+# Gameplay notes:
+#   - This is an environmental hazard biome designed to
+#     punish unprepared players. Leather boots are the
+#     counter — they allow walking on powder snow.
+#   - The basin looks identical to safe snowfields from
+#     a distance, making it a genuine trap. Players must
+#     learn to read terrain context clues.
+#   - Sinking into powder snow causes freezing damage
+#     over time — escape requires breaking blocks upward
+#     or being pulled out by allies.
+#   - The high weirdness value (0.6) ensures these basins
+#     appear rarely and unpredictably, maintaining their
+#     surprise factor.
+#   - Valuable resources may be hidden at the basin floor
+#     beneath the powder snow — risk vs. reward.
+#   - Pairs with frostfang_snowfield on the edges and
+#     frostfang_glacial_valley as a transition zone.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_powder_snow_basin"        # Unique registry ID
+display-name = "Frostfang Powder Snow Basin"     # Shown in F3 debug & maps
+category = "MOUNTAIN"                            # Mountain hazard terrain
+zone = "frostfang"                               # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The high weirdness value is critical —
+# it restricts this biome to unusual terrain pockets,
+# keeping it rare enough to remain a genuine surprise.
+# The slightly higher humidity contributes to the loose
+# snow texture that makes the powder so dangerous.
+[biome.climate]
+temperature = -0.6          # Very cold — powder snow stays dry and loose
+humidity = 0.45             # Slightly elevated — feeds snow accumulation
+continentalness = 0.75      # Deep in mountain range interior
+erosion = 0.4               # Moderate erosion — basin collects snowfall
+weirdness = 0.6             # High weirdness — rare, unpredictable
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 5 places the basin at low elevation —
+# it sits in a natural depression where powder snow
+# collects via wind transport. The low height-variation
+# of 3 creates a gently sloping bowl shape that looks
+# harmlessly walkable from the rim.
+[biome.terrain]
+base-height = 5             # Low depression — snow collection basin
+height-variation = 3        # +/-3 blocks — gentle bowl shape
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# The top block is powder snow — the lethal trap itself.
+# Below the powder, compacted snow blocks represent
+# older, denser layers. The deep filler creates a
+# significant sinking hazard — players fall through
+# multiple blocks before hitting solid ground.
+[biome.surface]
+top-block = "minecraft:powder_snow"      # Lethal trap — sinks players
+filler-block = "minecraft:snow_block"    # Compacted snow beneath powder
+filler-depth = 6                         # Deep — long fall before solid ground
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# The powder snow surface cannot support any vegetation.
+# The basin is completely barren — a featureless white
+# expanse that gives no visual warning of the danger
+# beneath. This blankness is intentional and critical
+# to the biome's trap function.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees — nothing can root here
+grass-density = 0.0                      # No vegetation on powder snow
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Mobs that spawn here often sink into the powder snow
+# themselves, creating an eerie landscape of partially
+# buried creatures. Strays are the exception — as undead
+# they do not take freezing damage and can wade through
+# the powder. Skeletons and other mobs may be found
+# frozen partway into the surface, visible but stuck.
+[biome.spawning]
+# Strays wade through powder snow freely — dangerous.
+# Other hostile mobs may spawn and become trapped.
+# No passive mobs — the basin kills anything without
+# leather boots or freezing immunity.

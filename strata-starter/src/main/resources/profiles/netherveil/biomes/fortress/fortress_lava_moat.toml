@@ -1,0 +1,148 @@
+# ============================================================
+#  Biome: Fortress Lava Moat — Fortress Domain
+# ============================================================
+# A wide ring of lava surrounding fortress structures, serving
+# as a natural defensive barrier that forces players to find or
+# build crossing points. The moat is too wide to jump and too
+# deep to survive without Fire Resistance — it functions exactly
+# like a medieval castle moat but filled with molten rock instead
+# of water. Narrow netherrack causeways bridge the moat at
+# irregular intervals, creating chokepoints that fortress mobs
+# defend aggressively. The lava surface glows bright orange,
+# illuminating the fortress walls above from below in dramatic
+# uplighting. Striders wade through the moat, offering an
+# alternative crossing method for players with warped fungus
+# on a stick. Ghasts circle overhead, their fireballs aimed at
+# anyone attempting to cross the causeways — the moat is a kill
+# zone by design.
+#
+# Gameplay notes:
+#   - Lava moat blocks direct fortress approach.
+#   - Causeways are chokepoints defended by fortress mobs.
+#   - Strider riding across the moat — safest crossing method.
+#   - Fire Resistance allows swimming the moat directly.
+#   - Block bridging possible but slow and exposed to ghasts.
+#   - Ender pearls for emergency moat crossing.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The lava moat is a
+# defensive barrier biome surrounding fortress structures.
+id = "strata:fortress_lava_moat"
+
+# display-name: Human-readable name for player displays.
+display-name = "Fortress Lava Moat"
+
+# category: NETHER — nether environment featuring a wide lava
+# moat as a defensive barrier.
+category = "NETHER"
+
+# zone: Part of the fortress zone — the primary defensive
+# barrier around fortress structures.
+zone = "fortress"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Hot — the wide lava moat radiates intense heat.
+#   0.7 = elevated heat from the lava moat surface.
+temperature = 0.7
+
+# humidity: Dry — the lava heat removes all moisture.
+#   -0.3 = dry from lava radiation.
+humidity = -0.3
+
+# continentalness: Negative — the moat sits at lava level,
+# a depression surrounding the fortress.
+#   -0.4 = low-lying moat terrain around the fortress.
+continentalness = -0.4
+
+# erosion: High — the lava has eroded the terrain into a
+# smooth moat channel.
+#   0.8 = smooth moat channel, heavily eroded.
+erosion = 0.8
+
+# weirdness: Moderate — a lava moat is dramatic but a natural
+# nether formation around elevated structures.
+#   0.3 = moderately unusual defensive formation.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Very low — the moat is at lava level.
+#   31 = at lava ocean level, the moat IS lava.
+base-height = 31
+
+# height-variation: Low — the moat is uniformly deep with
+# occasional causeway bridges rising above.
+#   3.0 = mostly flat lava with rare causeway ridges.
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Netherrack — the causeway and shore surfaces,
+# surrounded by the lava moat.
+top-block = "minecraft:netherrack"
+
+# filler-block: Netherrack beneath causeway surfaces.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Thin — causeways are narrow strips over lava.
+#   2 = thin causeway structures above the moat.
+filler-depth = 2
+
+# underwater-block: Magma blocks lining the moat floor.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation over the lava moat.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on causeways.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Lava moat specific features.
+#   netherrack_causeway — narrow bridges across the moat,
+#     the primary crossing points.
+#   magma_block_shore — magma blocks at moat edges.
+#   nether_brick_rubble — fortress debris in the moat.
+#   strider_spawn_point — strider congregation for moat crossing.
+extra-features = [
+    { feature = "netherrack_causeway", density = 2.0 },
+    { feature = "magma_block_shore", density = 6.0 },
+    { feature = "nether_brick_rubble", density = 3.0 },
+    { feature = "strider_spawn_point", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Moat defenders focus on causeway chokepoints. Ghasts patrol
+# overhead to deny crossing attempts.
+[biome.spawning]
+# ghast: High overhead presence — ghasts target anyone on
+# causeways or attempting to bridge the moat. Devastating.
+ghast = { weight = 12, min-group = 1, max-group = 2 }
+
+# strider: Striders in the moat lava — rideable for crossing.
+strider = { weight = 12, min-group = 1, max-group = 2 }
+
+# blaze: Blazes hover over the moat, firing at causeway users.
+blaze = { weight = 8, min-group = 1, max-group = 2 }
+
+# wither_skeleton: Guards stationed on causeway endpoints.
+wither_skeleton = { weight = 6, min-group = 1, max-group = 2 }

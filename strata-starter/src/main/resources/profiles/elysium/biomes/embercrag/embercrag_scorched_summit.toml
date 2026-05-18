@@ -1,0 +1,165 @@
+# ============================================================
+#  Biome: Scorched Summit — Embercrag Volcanic
+# ============================================================
+# The highest peak in the Embercrag volcanic range — a towering
+# mountain of blackened rock crowned with patches of netherrack
+# and ancient nether corruption. The summit pierces the cloud layer,
+# and the air at the top is thin, hot, and acrid. Wither skeleton
+# scouts have been sighted patrolling the uppermost reaches —
+# whether they crossed from the nether through the dimensional
+# weakness here or have always haunted this peak is unknown. The
+# scorched summit is the ultimate destination in the Embercrag —
+# reaching it requires traversing every other volcanic biome, and
+# the rewards (and dangers) match the difficulty of the ascent.
+#
+# Gameplay Notes:
+#   - The highest elevation biome in the Embercrag zone.
+#   - Wither skeletons drop wither skeleton skulls — a rare resource.
+#   - The thin air and steep terrain make combat extremely dangerous.
+#   - Netherrack patches support eternal fire beacons.
+#   - The view from the summit reveals the entire volcanic landscape.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_scorched_summit"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Scorched Summit"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.95 = extremely hot — despite the altitude, the
+# volcanic heat and nether corruption keep the summit scorching.
+temperature = 0.95
+
+# humidity: -0.5 = very dry — the extreme altitude and heat create
+# a desiccating environment with zero moisture.
+humidity = -0.5
+
+# continentalness: 0.75 = deep inland — the summit sits at the
+# very center of the volcanic complex, as far from any coast as
+# possible.
+continentalness = 0.75
+
+# erosion: -0.7 = very low erosion — the summit is the least
+# eroded point in the Embercrag, maintaining its extreme elevation
+# and steep, jagged profile.
+erosion = -0.7
+
+# weirdness: 0.7 = very unusual — the nether corruption and wither
+# skeleton presence make this one of the strangest surface biomes
+# in the entire world.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 60 = extremely elevated — the highest biome in the
+# Embercrag zone, towering over everything else in the volcanic
+# landscape.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 60
+
+# height-variation: 30 = extreme variation. The summit is a
+# jagged, irregular peak with dramatic cliff faces and narrow
+# ledges. The terrain is treacherous in every direction.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 30
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Blackstone — the summit is dark, heat-forged volcanic
+# rock. The netherrack patches are placed as features rather than
+# as the dominant surface to create visual variety.
+top-block = "minecraft:blackstone"
+
+# filler-block: Netherrack — beneath the blackstone surface, the
+# nether corruption has transformed deeper layers into this
+# otherworldly material.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: 5 = deep nether corruption. The dimensional
+# weakness at the summit has allowed nether transformation to
+# penetrate far below the surface.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Magma block — any rare pools at the summit
+# are superheated by the volcanic and nether energies.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation at the scorched summit — the combination of
+# extreme heat, altitude, and nether corruption prevents all growth.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.0 = barren volcanic summit.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Netherrack patches, magma veins, and fire
+# formations mark the summit's nether corruption.
+extra-features = [
+    { feature = "netherrack_patch", density = 4.0 },
+    { feature = "magma_vein", density = 3.0 },
+    { feature = "soul_fire_patch", density = 2.0 },
+    { feature = "blackstone_spire", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The scorched summit is the most dangerous biome in the Embercrag.
+# Wither skeletons — normally exclusive to nether fortresses —
+# patrol the peak. Their skull drops make this a high-risk,
+# high-reward destination.
+
+# wither_skeleton: The signature threat — they patrol the summit
+# in small groups, their stone swords dealing devastating damage.
+# weight: 12 makes them uncommon but a defining encounter.
+# min-group/max-group: Pairs of wither skeletons.
+wither_skeleton = { weight = 12, min-group = 1, max-group = 2 }
+
+# blaze: Blazes hover above the summit, their fireballs combining
+# with the wither skeletons for a multi-threat combat scenario.
+# weight: 8 for a consistent aerial threat.
+blaze = { weight = 8, min-group = 1, max-group = 2 }
+
+# magma_cube: Magma cubes bounce among the netherrack patches.
+# weight: 10 for a common but less threatening mob.
+magma_cube = { weight = 10, min-group = 1, max-group = 3 }
+
+# hostile-density-multiplier: The summit is extremely hostile.
+# Mob spawns are significantly elevated to reflect the end-game
+# difficulty of this biome.
+hostile-density-multiplier = 1.6

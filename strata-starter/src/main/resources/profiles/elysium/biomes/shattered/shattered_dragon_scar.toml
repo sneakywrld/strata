@@ -1,0 +1,173 @@
+# ============================================================
+#  Biome: Dragon Scar — The Shattered Reach
+# ============================================================
+# A colossal impact crater scarred into the earth — the place where
+# the Ender Dragon, pulled through the dimensional rift, crashed into
+# the overworld. The ground is scorched obsidian fused with end stone.
+# At the crater's center sits a dragon egg altar surrounded by a ring
+# of end crystal pillars, still pulsing with energy. The crater walls
+# are steep and layered with ash, crying obsidian, and blackened
+# stone. This is hallowed, cursed ground — a monument to the most
+# violent moment of the Shattered Reach's creation. Everything here
+# wants to kill you, and the dragon's echo still haunts the sky.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier for generator placement, region maps,
+# and cross-biome references.
+id = "strata:shattered_dragon_scar"
+
+# Human-readable name for debug screens and admin commands.
+display-name = "Dragon Scar"
+
+# CUSTOM category — requires bespoke crater terrain carving and
+# central altar structure placement. No vanilla equivalent.
+category = "CUSTOM"
+
+# Part of the Shattered Reach endgame zone. The Dragon Scar is the
+# climactic landmark — the physical evidence of the event that
+# created the entire zone.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.3, the warmest in the Shattered Reach. Residual
+# heat from the impact still radiates from the obsidian floor. The
+# end crystals pulse with thermal energy. The air shimmers.
+temperature = 0.3
+
+# Humidity — -0.2, negative/arid. The impact incinerated all
+# moisture. The crater is bone-dry, and the heated obsidian surface
+# evaporates any precipitation before it can settle.
+humidity = -0.2
+
+# Continentalness — 0.5, central landmass. The dragon struck the
+# heart of the zone — the most geologically stable point, which
+# is why the crater holds its shape rather than collapsing.
+continentalness = 0.5
+
+# Erosion — 0.1, minimal. The impact is geologically recent (in
+# worldgen terms). Obsidian resists weathering, so the crater rim
+# and walls are sharp, well-defined, and imposing.
+erosion = 0.1
+
+# Weirdness — 1.0, maximum. A dragon impact crater with a glowing
+# altar and pulsing end crystals is as weird as reality gets. Tied
+# with the Gravity Well for the highest weirdness score.
+weirdness = 1.0
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — -10, below sea level. The crater floor sits deep
+# below the surrounding terrain, emphasizing the violence of the
+# impact. Players descend into the scar.
+base-height = -10
+
+# Height variation — 20 blocks. The crater walls rise steeply from
+# the floor, and the central altar mound adds elevation. Rubble
+# piles and collapsed rim sections create varied terrain within
+# the bowl.
+height-variation = 20
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — obsidian. The entire crater floor is fused obsidian,
+# flash-cooled by the dimensional energy of the impact. Dark,
+# mirror-smooth, and foreboding.
+top-block = "minecraft:obsidian"
+
+# Filler block — end_stone beneath the obsidian crust. The impact
+# drove end-dimension material deep into the ground, creating a
+# thick alien substrate below the scorched surface.
+filler-block = "minecraft:end_stone"
+
+# Filler depth — 8 blocks. The impact contamination runs deep —
+# this was not a surface event but a dimensional puncture that
+# transformed the underground geology.
+filler-depth = 8
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Dragon egg altar — a central raised platform of obsidian and
+# end_stone_bricks with a dragon_egg block at its apex. The altar
+# is the focal point of the entire biome and a key landmark.
+dragon-egg-altar = true
+
+# End crystal pillars — tall obsidian columns topped with end
+# crystals arranged in a ring around the altar, still pulsing
+# with energy. Destroying them may trigger events.
+end-crystal-pillars = true
+
+# Crying obsidian streaks — veins of crying_obsidian running
+# down the crater walls like frozen tears, dripping purple
+# particles. Indicates stress fractures from the impact.
+crying-obsidian-streaks = true
+
+# Scorched earth rim — the crater edge is a ring of blackened
+# grass_block (charred texture), dead bushes, and fire_block
+# remnants. The destruction radiates outward from the impact.
+scorched-rim = true
+
+# Ash particle layer — ambient particle effect of falling grey
+# particles within the crater bowl, like perpetual volcanic ash.
+# Reduces distant visibility and adds oppressive atmosphere.
+ash-particles = true
+
+# Dragon bone fragments — large, decorative bone_block structures
+# partially buried in the crater floor, implying the dragon's
+# physical remains are entombed here.
+dragon-bone-fragments = true
+
+# Impact glass — patches of tinted_glass embedded in the obsidian
+# floor where extreme heat vitrified the stone. Translucent and
+# unsettling, revealing the void-touched substrate below.
+impact-glass = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Endermen swarm the crater in massive numbers, drawn to the
+# residual dragon energy and the altar. Second highest density
+# after the Ender Wastes.
+enderman = 100
+
+# Shulkers guard the altar platform and crystal pillars, firing
+# on any player who approaches the central structure.
+shulker = 25
+
+# Phantoms — the "dragon's echo." They circle the crater in large
+# groups, mimicking the dragon's flight pattern. Highest phantom
+# density in the Shattered Reach.
+phantom = 50
+
+# Blazes hover near the end crystal pillars, drawn by the energy.
+# They add ranged fire attacks to the already punishing crater
+# approach.
+blaze = 15
+
+# Wither skeletons patrol the crater floor, armed and dangerous.
+# The dimensional energy attracts nether-adjacent entities.
+wither_skeleton = 20
+
+# Ghast — rare but devastating. A single ghast occasionally spawns
+# above the crater, raining fireballs into the bowl. Ultimate
+# pressure on exposed players.
+ghast = 3

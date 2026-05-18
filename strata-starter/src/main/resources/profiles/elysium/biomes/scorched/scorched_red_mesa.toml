@@ -1,0 +1,172 @@
+# ============================================================
+#  Biome: Red Mesa — Scorched Badlands
+# ============================================================
+# Classic red terracotta mesa plateau with a broad, flat top and
+# dramatically striped canyon walls descending on all sides. Layers
+# of red, orange, and brown terracotta create iconic banding visible
+# from great distances. Dead bushes cling to the upper surface, and
+# the hard-packed clay resists erosion, leaving sheer cliff faces.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_red_mesa"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Red Mesa"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# BADLANDS enables the warm amber sky tint and terracotta palette
+# that gives mesa biomes their signature visual atmosphere.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.9 = intensely hot, reflecting the baked
+# clay surface that radiates heat well into the night.
+temperature = 0.9
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.5 = very dry air with minimal rainfall,
+# consistent with the arid climate that formed these terracotta layers
+# over geological time.
+humidity = -0.5
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = firmly inland, placing mesas
+# deep in the continent's interior where arid conditions prevail.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. -0.2 = moderate resistance
+# to erosion, keeping the plateau edges steep and well-defined with
+# sheer cliff faces characteristic of mesa landforms.
+erosion = -0.2
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.0 = the default variant, making this the standard red
+# mesa that generates as the primary mesa biome type.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 30.0 lifts the plateau
+# surface high above surrounding desert floor, creating the dramatic
+# flat-topped mesa silhouette visible from a distance.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 30.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 5.0 keeps the plateau top relatively flat — true to the mesa form —
+# while allowing gentle undulation and occasional shallow depressions.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 5.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Red terracotta gives the mesa its signature rusty-red appearance
+# and stands out sharply against the amber sky of the badlands.
+top-block = "minecraft:red_terracotta"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Plain terracotta (uncolored) forms the bulk of the
+# mesa body and creates the banded striping effect when exposed in
+# cliff walls alongside stained variants.
+filler-block = "minecraft:terracotta"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 5 provides a thick terracotta cap that reinforces the
+# banded canyon-wall effect when cliffs are cut into the plateau.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Red sand continues the
+# terracotta color palette even at the bottom of rare puddles and
+# ephemeral pools.
+underwater-block = "minecraft:red_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#          "dead_bush_large" = tall dead tree skeleton for atmosphere.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.1 places an occasional dead tree on the plateau top,
+#            reinforcing the barren mesa aesthetic.
+trees = { types = ["dead_bush_large"], density = 0.1 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.5 scatters only the hardiest dry grass
+# tufts across the baked clay surface — sparse and realistic.
+grass-density = 0.5
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = no flowers survive the extreme heat
+# and dryness of the mesa plateau.
+flower-density = 0.0
+
+# dead-bush-density: Dead bush features per chunk. These dry,
+# tumble-ready shrubs are the dominant surface vegetation on mesas.
+# 3.0 provides scattered but visible coverage.
+dead-bush-density = 3.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The baked mesa is inhospitable to most life. Husks replace zombies
+# as the primary undead threat, and rabbits are the only passive mob
+# hardy enough to survive on the sun-blasted plateau.
+
+# husk: Desert-adapted undead that replace zombies on the mesa.
+# They inflict Hunger on hit, making them a greater survival threat.
+# weight: 15 ensures husks are the dominant hostile mob here.
+# min-group/max-group: Spawn in small packs of 2-4.
+husk = { weight = 15, min-group = 2, max-group = 4 }
+
+# rabbit: Small desert rabbits that survive on sparse vegetation.
+# The gold variant is common in badlands biomes.
+# weight: 6 for occasional passive mob sightings.
+rabbit = { weight = 6, min-group = 2, max-group = 3 }

@@ -1,0 +1,152 @@
+# ============================================================
+#  Biome: Blackstone Ridge — Embercrag Volcanic
+# ============================================================
+# A massive ridge of polished blackstone that rises like a dark
+# wall across the volcanic landscape. The ridge was formed by a
+# volcanic dike — magma that intruded into a crack in the earth's
+# crust and cooled into an extremely hard, dense rock that resisted
+# erosion long after the surrounding terrain wore away. Veins of
+# gilded blackstone run through the formation, their golden flecks
+# glinting in the volcanic light. Piglin scouts patrol the ridge,
+# drawn from the nether by the gilded blackstone deposits that
+# remind them of their home dimension.
+#
+# Gameplay Notes:
+#   - Gilded blackstone drops gold nuggets when mined — a gold source.
+#   - Piglins are aggressive unless the player wears gold armor.
+#   - The ridge provides natural walls and elevated positions.
+#   - Polished blackstone is an excellent building material.
+#   - The steep ridge is a natural chokepoint for territorial control.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_blackstone_ridge"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Blackstone Ridge"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.85 = very hot — the dense blackstone absorbs and
+# radiates heat effectively, keeping the ridge warm even at night.
+temperature = 0.85
+
+# humidity: -0.3 = dry — the steep ridge sheds moisture quickly,
+# and the dark rock absorbs heat that evaporates any rainfall.
+humidity = -0.3
+
+# continentalness: 0.7 = firmly inland — the ridge is a major
+# geological feature deep within the volcanic complex.
+continentalness = 0.7
+
+# erosion: -0.5 = very low erosion — the polished blackstone is
+# extremely resistant to weathering, maintaining the ridge's
+# steep, imposing profile over geological time.
+erosion = -0.5
+
+# weirdness: 0.2 = slightly unusual — the blackstone ridge is a
+# distinctive but natural volcanic feature, standing out from the
+# basalt and obsidian terrain around it.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 30 = very elevated. The ridge rises dramatically
+# above the surrounding terrain, forming a dark wall visible from
+# great distance.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 30
+
+# height-variation: 20 = extreme variation. The ridge is narrow
+# and steep — the crest rises sharply above the flanks, creating
+# dramatic relief.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 20
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Polished blackstone — the ridge surface is smooth and
+# dark, worn to a polish by millennia of wind and volcanic grit.
+top-block = "minecraft:polished_blackstone"
+
+# filler-block: Blackstone — beneath the polished surface, the raw
+# volcanic intrusion rock is rough but equally dense and dark.
+filler-block = "minecraft:blackstone"
+
+# filler-depth: 6 = deep volcanic rock. The dike extends far below
+# the surface — the entire ridge is a solid mass of blackstone.
+# Range: 1 to 8.
+filler-depth = 6
+
+# underwater-block: Blackstone — rare water features at the base
+# of the ridge sit on the same dark volcanic rock.
+underwater-block = "minecraft:blackstone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No trees grow on the barren blackstone ridge.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.0 = no vegetation on the dense volcanic rock.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Gilded blackstone veins are the primary feature
+# of interest, along with polished blackstone formations.
+extra-features = [
+    { feature = "gilded_blackstone_vein", density = 3.0 },
+    { feature = "polished_blackstone_formation", density = 2.0 },
+    { feature = "gravel_patch", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Piglins are the signature mob of the blackstone ridge — drawn
+# from the nether by the gilded blackstone that mirrors their
+# home dimension. They are hostile to unprotected players.
+
+# piglin: The dominant mob — they patrol the ridge in armed groups.
+# weight: 18 makes them the most common encounter.
+# min-group/max-group: Squads of 2-4.
+piglin = { weight = 18, min-group = 2, max-group = 4 }
+
+# piglin_brute: Rare elite piglins with gold axes that deal heavy
+# damage. Always hostile regardless of gold armor.
+# weight: 4 for a rare but devastating encounter.
+piglin_brute = { weight = 4, min-group = 1, max-group = 1 }
+
+# hoglin: Hoglins accompany piglin patrols — aggressive and tough,
+# they charge at players on sight.
+# weight: 6 for an occasional heavy melee threat.
+hoglin = { weight = 6, min-group = 1, max-group = 2 }

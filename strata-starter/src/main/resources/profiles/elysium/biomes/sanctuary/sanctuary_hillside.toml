@@ -1,0 +1,165 @@
+# ============================================================
+#  Biome: Sanctuary Hillside — Sanctuary Zone
+# ============================================================
+# Gentle grassy slopes with patches of exposed stone breaking through
+# the surface. Sheep dot the hillsides and the elevated terrain offers
+# panoramic views over the surrounding meadows and groves. A natural
+# lookout point near spawn.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal generator reference.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_hillside"
+
+# display-name: Human-readable name shown in F3 debug, /strata info,
+# and zone-entry messages.
+display-name = "Sanctuary Hillside"
+
+# category: PLAINS. Despite the elevation, the open grassy character
+# fits plains better than mountain. Plains ambient sounds apply.
+# The terrain itself provides the elevated feel.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "PLAINS"
+
+# zone: Generates only within the sanctuary zone (0-1500 blocks
+# from spawn).
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate. Lower humidity and erosion than other
+# sanctuary biomes pushes this toward drier, hillier terrain.
+[biome.climate]
+# temperature: 0.5 = warm. Hilltops can be breezy but the sanctuary
+# zone maintains a uniformly pleasant temperature.
+temperature = 0.5
+
+# humidity: 0.35 = drier than average. Hillsides drain moisture
+# downhill, leaving the upper slopes slightly arid. This is the
+# driest sanctuary biome, which prevents tree overgrowth on the
+# exposed slopes.
+humidity = 0.35
+
+# continentalness: 0.35 = slightly more inland than the standard
+# 0.3. Hills tend to form further from water in real topography.
+# The shift is subtle — just enough to bias placement slightly
+# inland.
+continentalness = 0.35
+
+# erosion: 0.5 = the lowest erosion in the sanctuary zone. Lower
+# erosion = hillier terrain. 0.5 creates noticeable hills that are
+# still gentle enough for new players to climb without frustration.
+# Compare: meadow=0.7, farmland=0.9.
+erosion = 0.5
+
+# weirdness: 0.0 = standard variant. The hillside is a normal,
+# expected terrain feature — not a weird mutation.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 12.0 = significantly above sea level. The highest
+# terrain in the sanctuary zone. From the hilltop, players can see
+# across the meadow to the pond and grove — providing orientation
+# for new players exploring the spawn area.
+# Range: -64.0 to 256.0
+base-height = 12.0
+
+# height-variation: 6.0 = moderate hills. Creates rolling elevation
+# changes that make climbing interesting without being punishing.
+# The variation produces ridges and gentle summits.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 6.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block on most of the hillside. Green grass on
+# slopes creates the classic rolling-hills look.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt beneath the grass, transitioning to stone
+# where the slope is steep. The surface rules system (rules.toml)
+# handles the stone exposure on steeper faces.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 2 = thin soil. Hillsides have thinner topsoil than
+# flat areas due to erosion. This allows stone to peek through on
+# slopes where the terrain generator carves into the hill.
+# Range: 1 to 8
+filler-depth = 2
+
+# underwater-block: Gravel. Any water contact on the hillside
+# (unlikely but possible at biome edges) uses gravel to suggest
+# rocky terrain.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Very few trees on the exposed hillside. Sparse placement
+# creates the open, windswept look while providing occasional shade
+# and wood.
+#   density: 0.5 = rare. Most of the hillside is open grass,
+#            preserving the panoramic views.
+trees = { types = ["oak"], density = 0.5 }
+
+# grass-density: 6.0 = moderate grass coverage. Shorter grass on
+# the exposed slopes, with taller patches in sheltered hollows.
+grass-density = 6.0
+
+# flower-density: 2.0 = sparse wildflowers on the slopes. A few
+# hardy flowers that tolerate the exposed, drier conditions.
+flower-density = 2.0
+
+# flower-types: Wind-tolerant flowers. Dandelions and cornflowers
+# are hardy enough for exposed hilltops.
+flower-types = ["dandelion", "cornflower", "oxeye_daisy"]
+
+# stone-patches: Exposed stone breaking through the thin topsoil
+# on steeper sections. Creates visual texture and provides cobble
+# without mining.
+#   density: 4.0 = noticeable stone outcrops. Enough to define the
+#            hillside character without making it look barren.
+#   block: Regular stone. Players mine it for cobblestone, a
+#          critical early building material.
+stone-patches = { block = "minecraft:stone", density = 4.0 }
+
+# gravel-patches: Small gravel deposits on slopes where soil has
+# eroded. Provides flint (from gravel) for early arrows.
+#   density: 2.0 = occasional patches.
+gravel-patches = { density = 2.0 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Hillsides are classic sheep country. Large flocks graze the open
+# slopes, visible from a distance.
+
+# sheep: The dominant mob. Very high weight and large groups create
+# the quintessential hillside flock. Wool is essential for early
+# beds, and the hillside is where players come to find it.
+sheep = { weight = 20, min-group = 4, max-group = 6 }
+
+# cow: A few cows on the lower slopes.
+cow = { weight = 6, min-group = 1, max-group = 2 }
+
+# chicken: Sparse. Chickens prefer flatter ground but a few wander
+# up the hillside.
+chicken = { weight = 4, min-group = 1, max-group = 2 }
+
+# rabbit: Hill rabbits. Moderate presence — they use the stone
+# outcrops for shelter.
+rabbit = { weight = 6, min-group = 2, max-group = 3 }

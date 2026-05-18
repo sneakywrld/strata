@@ -1,0 +1,125 @@
+# ============================================================
+#  Biome: Outer End Crater — Outer Islands
+# ============================================================
+# An impact crater punched into the surface of a large outer
+# island. The rim rises above the surrounding terrain while
+# the center sinks well below it, creating a natural bowl
+# shape. The crater walls are rough and fractured, with
+# exposed end stone layers visible in cross-section. The
+# deepest point sits significantly below the island surface,
+# and in the largest craters, the floor approaches the void
+# threshold. Whatever struck this island — a fallen end
+# crystal, a dragon fireball from eons past, or some unknown
+# cosmic impact — left a permanent scar.
+#
+# Gameplay notes:
+#   - Bowl-shaped terrain with raised rim and sunken center.
+#   - Natural amphitheater — good for player events.
+#   - Deepest point may be close to void level.
+#   - Crater walls expose layered end stone for mining.
+#   - Chorus plants grow on the crater rim, not the floor.
+#   - Good defensive position — the rim provides cover.
+#   - Pairs with outer_end_island (surrounding terrain) and
+#     outer_scattered_rocks (ejecta debris nearby).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the impact crater
+# biome on outer End islands.
+id = "strata:outer_end_crater"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Outer End Crater"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Outer Islands region.
+region = "outer"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly warm — the impact event (or its
+# residual energy) leaves trace warmth in the crater
+# walls. 0.1 = faintly warmer than surrounding islands.
+temperature = 0.1
+
+# humidity: Dry. 0.0 = standard End aridity. The crater
+# collects no moisture.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.3 = moderately weird. Impact craters are
+# uncommon formations that generate in unusual noise
+# pockets, making each one a notable discovery.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 55 — below standard island height (60).
+# The crater center sits in a depression, pulling the
+# average elevation down. The rim rises above this, and
+# the center sinks below it, creating the bowl shape.
+base-height = 55
+
+# height-variation: 8 = moderate-to-high variation. The
+# difference between crater rim (high) and crater floor
+# (low) requires significant terrain oscillation. The
+# variation creates the characteristic bowl profile.
+height-variation = 8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — the crater is carved from the
+# same material as the rest of the island.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone beneath. The crater walls
+# expose layers of the same end stone substrate.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 3 = slightly reduced. The impact thinned
+# the island material in the crater center.
+# Range: 1 to 8.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Chorus plants grow along the crater rim where the
+# terrain is level enough. The crater floor is barren.
+[biome.features]
+# end-specific: Sparse chorus on the raised rim. The
+# crater floor is too unstable (in lore) for chorus
+# root systems to take hold.
+trees = { types = ["chorus_tree"], density = 1.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen patrol the crater rim and occasionally descend
+# into the bowl. The enclosed terrain makes it harder to
+# escape aggro without climbing the crater walls.
+[biome.spawning]
+# enderman: Standard presence. The crater's enclosed
+# nature makes encounters more threatening — endermen
+# can see players from the rim while players are trapped
+# in the bowl.
+enderman = { weight = 30, min-group = 1, max-group = 3 }

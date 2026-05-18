@@ -1,0 +1,186 @@
+# ============================================================
+#  Biome: Frozen Descent — Transition Zone
+# ============================================================
+# The boundary where the Frostfang Peaks give way to the
+# Shadowmire Swamps below. Snow is melting into thin, icy
+# streams that feed murky bog pools. Dead spruce trees stand
+# with their lower trunks submerged in freezing water, their
+# branches stripped bare by frost and rot in equal measure.
+# The ground is a patchwork of thawing permafrost and wet
+# podzol, unstable and treacherous underfoot. Patches of ice
+# cling stubbornly to north-facing slopes while the south-
+# facing banks are already churned to cold mud. The air smells
+# of pine resin and decay — two zones colliding.
+#
+# Gameplay notes:
+#   - Unstable terrain: mix of ice, water, podzol, and mud
+#     makes movement unpredictable.
+#   - Dead spruce provides wood but watch for ice patches
+#     near the base of each tree.
+#   - Freezing water pools deal freeze damage without armor.
+#   - Good landmark: when the spruce start dying, you are
+#     leaving Frostfang territory.
+#   - Strays from Frostfang mix with slimes from Shadowmire
+#     for a dangerous dual-threat encounter.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Transition biomes use the
+# "transition_" prefix to mark them as boundary biomes between
+# two major zones.
+id = "strata:transition_frozen_descent"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Frozen Descent"
+
+# category: TAIGA — the spruce-dominated character of this
+# transition zone aligns with taiga mechanics. TAIGA enables
+# spruce-specific ambient sounds, wolf spawning rules, and
+# the cold-biome grass tint that signals fading warmth.
+category = "TAIGA"
+
+# zone: "transition" — sits between Frostfang and Shadowmire,
+# blending their characteristics into a gradual shift from
+# frozen peaks to murky swamp.
+zone = "transition"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Tuned to sit at the boundary between Frostfang (cold, dry)
+# and Shadowmire (warm, humid). The moderate values represent
+# the collision point where ice meets swamp.
+[biome.climate]
+# temperature: 0.0 = freezing point. Right at the threshold
+# where ice melts to water — the defining characteristic of
+# this transition. Some surfaces freeze, others thaw, creating
+# the chaotic mix of ice and mud.
+temperature = 0.0
+
+# humidity: 0.6 = elevated moisture. Snowmelt from the peaks
+# above saturates the ground, feeding the bog pools that mark
+# the beginning of Shadowmire's influence. Damper than
+# Frostfang (0.2-0.4) but drier than Shadowmire (0.8-0.9).
+humidity = 0.6
+
+# continentalness: 0.6 = inland. Both Frostfang and Shadowmire
+# are interior zones, and their transition occurs in the
+# continental midlands at the foot of the mountain range.
+continentalness = 0.6
+
+# erosion: 0.5 = moderate. The thawing permafrost is actively
+# eroding, creating unstable gullies and slumping banks. More
+# erosion than Frostfang's frozen peaks but less than
+# Shadowmire's flat waterlogged plains.
+erosion = 0.5
+
+# weirdness: -0.1 = near-normal. This is a natural, expected
+# transition that should generate wherever the two zones meet.
+# The slight negative weirdness creates smooth, predictable
+# boundary terrain.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = slightly elevated. The terrain descends
+# from Frostfang's peaks but has not yet reached Shadowmire's
+# near-sea-level swamp. A gentle downhill grade characterizes
+# the entire biome.
+# Range: -64.0 to 256.0
+base-height = 3
+
+# height-variation: 5 = moderate undulation. Thaw-slump
+# features create uneven terrain — hummocks of frozen ground
+# next to collapsed bog pits where permafrost has melted.
+# Range: 0.0 to 30.0
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Podzol — the acidic, needle-covered soil of a dying spruce
+# forest. Represents the transition from Frostfang's snow
+# to Shadowmire's mud.
+[biome.surface]
+# top-block: Podzol — the dark, acidic surface created by
+# decomposing spruce needles. Podzol is the signature block
+# of dying taiga biomes and signals the transition from
+# frozen to waterlogged terrain.
+top-block = "minecraft:podzol"
+
+# filler-block: Dirt beneath the podzol. The acidic needle
+# layer only penetrates the top block; below is standard
+# thawing soil mixed with ice-melt water.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. The topsoil is neither
+# particularly deep nor shallow — a normal soil profile for
+# a degrading taiga environment.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Ice on the bottom of the freezing pools
+# and meltwater channels — the water is barely above freezing.
+underwater-block = "minecraft:ice"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Dead and dying spruce dominate. The trees are losing their
+# needles as the warming temperatures and waterlogged soil
+# kill them from the roots up.
+[biome.features]
+# trees: Mostly dead spruce with occasional surviving trees.
+#   types: "dead_spruce" for the stripped, dying trunks;
+#          "spruce" for the few survivors still clinging to
+#          life on drier hummocks.
+#   density: 3.0 = moderate. Enough dead trunks to create
+#            a graveyard atmosphere without blocking movement.
+#            Range: 0.0 to 30.0+
+trees = { types = ["spruce", "dead_spruce"], density = 3.0 }
+
+# grass-density: Sparse, yellowing grass on the podzol.
+# The acidic soil supports only the hardiest grass species.
+# Range: 0.0 to 100.0
+grass-density = 8.0
+
+# flower-density: Zero. No flowers survive the acid soil
+# and freezing-thawing cycle.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Ice patches, mushrooms on the decaying
+# wood, and dead bushes fill out the dying-forest aesthetic.
+extra-features = [
+    # Dead bush clusters on the barren podzol patches.
+    { feature = "dead_bush", density = 3.0 },
+    # Brown mushrooms on the decaying spruce stumps.
+    { feature = "brown_mushroom", density = 2.0 },
+    # Sweet berry bushes — one of the few living plants.
+    { feature = "sweet_berry_bush", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# A collision of two zones' threats. Strays from Frostfang
+# overlap with wolves from the taiga and early slime spawns
+# signaling Shadowmire's approach.
+[biome.spawning]
+# Stray: Frozen skeleton variant from the Frostfang side.
+# Their slowness arrows are devastating on the icy patches.
+stray = { weight = 10, min-group = 1, max-group = 2 }
+
+# Wolf: Taiga wolf packs hunting in the dying forest. More
+# aggressive than Verdant wolves — these are survivors.
+wolf = { weight = 6, min-group = 2, max-group = 4 }
+
+# Slime: Small slimes beginning to appear in the waterlogged
+# patches — harbingers of the Shadowmire ahead.
+slime = { weight = 5, min-group = 1, max-group = 2 }

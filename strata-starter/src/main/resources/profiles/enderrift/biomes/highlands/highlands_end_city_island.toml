@@ -1,0 +1,155 @@
+# ============================================================
+#  Biome: Highlands End City Island — End Highlands
+# ============================================================
+# The crown jewels of the End dimension. These massive,
+# elevated islands are the exclusive home of end cities —
+# sprawling purpur-and-end-stone-brick complexes that tower
+# above the island surface. The terrain is broad and elevated,
+# providing the large flat footprint that end city generation
+# requires. Purpur accents streak the end stone surface where
+# the city's influence bleeds into the natural terrain, and
+# shulker shells litter the ground near city entrances. End
+# rods from the city structures cast pools of light across the
+# otherwise dark landscape. This is the endgame destination —
+# where elytra, shulker shells, and the best End loot await.
+#
+# Gameplay notes:
+#   - Primary end city generation biome.
+#   - Elytra found in end ships attached to cities.
+#   - Shulker boxes and shells are the main loot draw.
+#   - Purpur surface accents near city foundations.
+#   - Large flat surface supports full city generation.
+#   - End rod lighting from city structures.
+#   - High shulker population around city perimeters.
+#   - Pairs with highlands_purpur_ridge (adjacent terrain)
+#     and highlands_shulker_nest (dense shulker zones).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the large islands
+# that host end city structures in the highlands.
+id = "strata:highlands_end_city_island"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "End City Island"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Highlands — the elevated island chain where
+# end cities and advanced structures generate.
+region = "highlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly warm — end city structures and
+# purpur blocks retain trace thermal energy from whatever
+# process created them. 0.15 = subtly warmer than raw
+# End terrain.
+temperature = 0.15
+
+# humidity: Slightly elevated — the large island mass and
+# chorus plant coverage introduce minor moisture.
+# 0.2 = enough to support dense chorus growth around
+# city perimeters.
+humidity = 0.2
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.0 = standard variant. End city islands are
+# the default, expected highland biome — the reason
+# players explore the highlands.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 75 — significantly elevated above outer
+# islands (60). The highlands live up to their name with
+# terrain that rises above the standard End plane. This
+# height provides a dramatic foundation for end city
+# towers that can reach Y 120+.
+base-height = 75
+
+# height-variation: 10 = moderate variation. The surface
+# is generally flat (cities need level ground) but with
+# enough contour to create natural plazas and terraces
+# around city bases. Rolling terrain between cities adds
+# visual interest.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The surface transitions between end stone and purpur
+# near city foundations.
+[biome.surface]
+# top-block: End stone — the primary surface material.
+# Purpur accents are feature-placed near city boundaries,
+# not the default surface block.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — solid island core beneath
+# the surface. The end cities rest on this foundation.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 5 = thick island body. The large mass
+# needs structural depth to support the weight (visual
+# impression) of the end city structures above.
+# Range: 1 to 8.
+filler-depth = 5
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Dense chorus forests surround end cities, with purpur
+# accents near city foundations and end rod lighting from
+# the structures themselves.
+[biome.features]
+# end-specific: Dense chorus forests and purpur surface
+# accents. Chorus plants grow thickly around end city
+# perimeters, creating a natural "garden" buffer between
+# the structured city and wild End terrain.
+trees = { types = ["chorus_tree"], density = 5.0 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: City-adjacent decorations.
+#   purpur_accent — patches of purpur blocks embedded in
+#       the end stone surface near city foundations.
+#   end_rod_cluster — groups of end rods providing
+#       ambient lighting around city perimeters.
+#   chorus_cluster — dense chorus groves between cities.
+extra-features = [
+    { feature = "purpur_accent", density = 3.0 },
+    { feature = "end_rod_cluster", density = 2.0 },
+    { feature = "chorus_cluster", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen and shulkers dominate. Shulkers guard the city
+# entrances while endermen roam the surrounding terrain.
+[biome.spawning]
+# enderman: High presence in the open areas between
+# cities. Players approaching a city must navigate past
+# endermen before reaching the shulker-guarded entrances.
+enderman = { weight = 35, min-group = 1, max-group = 4 }
+
+# shulker: Present around city foundations and in the
+# surrounding terrain. These are "overflow" shulkers from
+# the city proper — the structure generator places more
+# inside the city itself.
+shulker = { weight = 10, min-group = 1, max-group = 2 }

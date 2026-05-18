@@ -1,0 +1,151 @@
+# ============================================================
+#  Biome: Basalt Blackstone Ridge — Basalt Deltas
+# ============================================================
+# A dramatic ridgeline where the dark basalt transitions to
+# blackstone — the nether's equivalent of cobblestone. The ridge
+# rises above the surrounding basalt delta as a long, elevated
+# spine of blackstone with exposed veins of gilded blackstone
+# glinting gold in the lava light below. The blackstone surface
+# is smoother and more uniform than the jagged basalt, creating
+# a walkable ridge that serves as a natural highway through the
+# otherwise impassable delta terrain. Piglin brutes and piglins
+# are drawn to the gilded blackstone deposits, aggressively
+# defending the gold-bearing stone. The ridge provides excellent
+# vantage points over the surrounding basalt delta and is a
+# critical resource biome — blackstone crafts into stone-tier
+# tools, and gilded blackstone has a chance to drop gold nuggets.
+#
+# Gameplay notes:
+#   - Blackstone harvesting — nether stone tools without mining.
+#   - Gilded blackstone drops gold nuggets (10% chance).
+#   - Piglin brute encounters — they guard gilded deposits.
+#   - Natural elevated highway through the basalt delta.
+#   - Polished blackstone variants for decorative building.
+#   - Vantage point for scouting surrounding terrain.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The blackstone ridge is a
+# resource-rich elevated variant of basalt delta terrain.
+id = "strata:basalt_blackstone_ridge"
+
+# display-name: Human-readable name for player displays.
+display-name = "Blackstone Ridge"
+
+# category: NETHER — nether environment transitioning from
+# basalt to blackstone with gold-bearing stone deposits.
+category = "NETHER"
+
+# zone: Part of the basalt zone — an elevated ridge providing
+# resources and navigation through the delta.
+zone = "basalt"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Hot — elevated above the basalt floor but still
+# in the volcanic heat zone.
+#   0.8 = hot volcanic terrain, slightly cooler than delta floor.
+temperature = 0.8
+
+# humidity: Dry — blackstone and basalt retain no moisture.
+#   -0.3 = dry volcanic ridge conditions.
+humidity = -0.3
+
+# continentalness: Positive — the ridge is elevated terrain
+# rising above the surrounding basalt delta.
+#   0.5 = elevated ridge above the delta floor.
+continentalness = 0.5
+
+# erosion: Low — the blackstone ridge is a solid geological
+# formation with defined edges.
+#   0.2 = solid ridge terrain with clear structure.
+erosion = 0.2
+
+# weirdness: Moderate — the blackstone-basalt transition is
+# a natural geological boundary.
+#   0.3 = moderately unusual material transition.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Elevated — the ridge rises above the standard
+# basalt delta floor level.
+#   55 = significantly above standard floor, elevated ridge.
+base-height = 55
+
+# height-variation: Moderate — the ridge has a defined spine
+# with sloping sides.
+#   6.0 = moderate variation along the ridge profile.
+height-variation = 6.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Blackstone — the nether's stone equivalent, dark
+# and smooth. Craftable into stone tools, polished variants,
+# and furnaces. The transition from basalt to blackstone is
+# the biome's geological identity.
+top-block = "minecraft:blackstone"
+
+# filler-block: Netherrack beneath the blackstone surface.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical blackstone surface layer.
+filler-depth = 4
+
+# underwater-block: Magma blocks at any lava-level boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation on the volcanic ridge.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on blackstone.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Blackstone ridge specific features.
+#   gilded_blackstone_vein — gold-bearing blackstone deposits,
+#     the primary resource draw of this biome.
+#   basalt_column — basalt pillars at the ridge base where
+#     the material transitions.
+#   blackstone_rubble — loose blackstone at ridge edges.
+#   magma_block_field — rare magma blocks at ridge base.
+extra-features = [
+    { feature = "gilded_blackstone_vein", density = 6.0 },
+    { feature = "basalt_column", density = 3.0 },
+    { feature = "blackstone_rubble", density = 4.0 },
+    { feature = "magma_block_field", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Piglins and piglin brutes guard the gilded blackstone deposits.
+[biome.spawning]
+# piglin_brute: Aggressive guards of the gilded blackstone —
+# they attack on sight regardless of gold armor. High damage
+# output makes them extremely dangerous.
+piglin_brute = { weight = 10, min-group = 1, max-group = 2 }
+
+# piglin: Standard piglins patrol alongside brutes, attracted
+# to the gold deposits. They barter if wearing gold armor.
+piglin = { weight = 12, min-group = 2, max-group = 4 }
+
+# magma_cube: Present at the ridge base where basalt meets
+# the delta floor.
+magma_cube = { weight = 8, min-group = 1, max-group = 3 }

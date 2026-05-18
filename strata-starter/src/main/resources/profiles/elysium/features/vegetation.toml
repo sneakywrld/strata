@@ -1,0 +1,193 @@
+# ============================================================
+#  Vegetation Configuration — Elysium Overworld
+# ============================================================
+# Controls grass, flowers, bushes, cacti, bamboo, and other
+# vegetation placed during feature decoration.
+#
+# Biomes reference these definitions and specify their own density.
+# ============================================================
+
+# -------------------------------------------------------
+# Grass Types
+# -------------------------------------------------------
+[vegetation.short_grass]
+block = "minecraft:short_grass"
+# spread: How many blocks of grass per placement attempt.
+spread = 32
+# chance: Probability per valid position.
+chance = 0.6
+
+[vegetation.tall_grass]
+block = "minecraft:tall_grass"
+spread = 16
+chance = 0.3
+
+[vegetation.fern]
+block = "minecraft:fern"
+spread = 16
+chance = 0.4
+
+[vegetation.large_fern]
+block = "minecraft:large_fern"
+spread = 8
+chance = 0.2
+
+# -------------------------------------------------------
+# Flowers
+# -------------------------------------------------------
+# Flowers are placed as mixed patches. Each flower has a weight
+# that determines how often it appears relative to others.
+
+[vegetation.flowers.poppy]
+block = "minecraft:poppy"
+weight = 10
+
+[vegetation.flowers.dandelion]
+block = "minecraft:dandelion"
+weight = 10
+
+[vegetation.flowers.cornflower]
+block = "minecraft:cornflower"
+weight = 5
+
+[vegetation.flowers.allium]
+block = "minecraft:allium"
+weight = 3
+
+[vegetation.flowers.azure_bluet]
+block = "minecraft:azure_bluet"
+weight = 5
+
+[vegetation.flowers.oxeye_daisy]
+block = "minecraft:oxeye_daisy"
+weight = 5
+
+[vegetation.flowers.lily_of_the_valley]
+block = "minecraft:lily_of_the_valley"
+weight = 3
+
+[vegetation.flowers.blue_orchid]
+block = "minecraft:blue_orchid"
+weight = 2
+
+[vegetation.flowers.tulip_red]
+block = "minecraft:red_tulip"
+weight = 3
+
+[vegetation.flowers.tulip_orange]
+block = "minecraft:orange_tulip"
+weight = 2
+
+[vegetation.flowers.tulip_white]
+block = "minecraft:white_tulip"
+weight = 2
+
+[vegetation.flowers.tulip_pink]
+block = "minecraft:pink_tulip"
+weight = 2
+
+[vegetation.flowers.sunflower]
+block = "minecraft:sunflower"
+weight = 4
+
+[vegetation.flowers.lilac]
+block = "minecraft:lilac"
+weight = 3
+
+[vegetation.flowers.rose_bush]
+block = "minecraft:rose_bush"
+weight = 3
+
+[vegetation.flowers.peony]
+block = "minecraft:peony"
+weight = 3
+
+# -------------------------------------------------------
+# Mushrooms
+# -------------------------------------------------------
+[vegetation.brown_mushroom]
+block = "minecraft:brown_mushroom"
+# placement: Where mushrooms can generate.
+# "surface" = on grass/dirt in shade. "cave" = underground on stone.
+placement = ["surface", "cave"]
+spread = 4
+chance = 0.1
+
+[vegetation.red_mushroom]
+block = "minecraft:red_mushroom"
+placement = ["surface", "cave"]
+spread = 4
+chance = 0.05
+
+# -------------------------------------------------------
+# Special Vegetation
+# -------------------------------------------------------
+[vegetation.sugar_cane]
+block = "minecraft:sugar_cane"
+# max-height: Maximum stalk height.
+max-height = 3
+# placement: Requires water adjacency.
+requires-water = true
+
+[vegetation.cactus]
+block = "minecraft:cactus"
+max-height = 3
+# placement: Requires sand.
+requires-block-below = "minecraft:sand"
+
+[vegetation.bamboo]
+block = "minecraft:bamboo"
+max-height = 16
+# density: Bamboo is very dense in bamboo biomes.
+spread = 64
+
+[vegetation.sweet_berry_bush]
+block = "minecraft:sweet_berry_bush"
+spread = 8
+chance = 0.15
+
+[vegetation.pumpkin]
+block = "minecraft:pumpkin"
+spread = 1
+chance = 0.03
+
+[vegetation.melon]
+block = "minecraft:melon"
+spread = 1
+chance = 0.02
+
+# -------------------------------------------------------
+# Cave Vegetation
+# -------------------------------------------------------
+[vegetation.glow_berries]
+block = "minecraft:cave_vines"
+# placement: Hangs from cave ceilings.
+placement = ["cave_ceiling"]
+max-length = 10
+chance = 0.15
+
+[vegetation.glow_lichen]
+block = "minecraft:glow_lichen"
+placement = ["cave_wall", "cave_ceiling"]
+spread = 8
+chance = 0.1
+
+[vegetation.moss_carpet]
+block = "minecraft:moss_carpet"
+placement = ["cave_floor"]
+spread = 16
+chance = 0.2
+
+[vegetation.dripleaf]
+block = "minecraft:big_dripleaf"
+placement = ["cave_floor"]
+# requires-water: Dripleaf needs nearby water.
+requires-water = true
+spread = 4
+chance = 0.1
+
+[vegetation.spore_blossom]
+block = "minecraft:spore_blossom"
+placement = ["cave_ceiling"]
+spread = 1
+chance = 0.05

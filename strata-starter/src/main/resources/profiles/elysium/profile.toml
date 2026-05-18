@@ -1,0 +1,155 @@
+# ============================================================
+#  STRATA WORLD PROFILE — "Elysium" (MMORPG Survival Overworld)
+# ============================================================
+# The flagship overworld profile for Strata. A massive, explorable world
+# with MMORPG-style zone tiering, stunning landscapes, rivers that flow
+# to oceans, deep multi-layered cave systems, and MythicMobs-ready zones.
+#
+# Author: SneakyWrld
+# Environment: NORMAL (Overworld)
+# Biome Count: 191
+#
+# This profile is survival-focused: diamonds and rare ores are harder to
+# find, saplings respect biome rules, villages are 2-3x larger than
+# vanilla, and difficulty scales outward from spawn.
+#
+# To use this profile:
+#   /strata create myworld elysium
+#
+# To customize, copy this entire directory and modify. See /strata guide profiles.
+# ============================================================
+
+# -------------------------------------------------------
+# Profile Metadata
+# -------------------------------------------------------
+# name: Display name shown in /strata profiles and /strata info.
+name = "Elysium"
+
+# description: One-line summary. Shown in profile listings.
+description = "MMORPG survival overworld — 10 themed zones, 191 biomes, drainage-basin rivers, deep caves"
+
+# author: Who created this profile. Shown in /strata info.
+author = "SneakyWrld"
+
+# version: Profile version string. Bump when you make changes.
+version = "1.0.0"
+
+# environment: Which dimension this profile targets.
+# Valid values: "NORMAL", "NETHER", "END", "CUSTOM"
+environment = "NORMAL"
+
+# -------------------------------------------------------
+# World Bounds
+# -------------------------------------------------------
+[world]
+# min-y: Lowest Y coordinate in the world. Standard is -64 (1.18+).
+# On pre-1.18 servers, Strata clamps this to 0 automatically.
+min-y = -64
+
+# max-y: Highest Y coordinate. Standard is 320 (1.18+).
+# On pre-1.18 servers, Strata clamps this to 256.
+max-y = 320
+
+# sea-level: The Y level of ocean surfaces. Affects river/lake fill,
+# surface rule transitions, and ocean biome generation.
+sea-level = 63
+
+# spawn-radius: Radius around world spawn (in blocks) where the
+# Sanctuary zone applies. Players start here.
+spawn-radius = 1500
+
+# -------------------------------------------------------
+# Zone System (MMORPG Difficulty Tiering)
+# -------------------------------------------------------
+# Strata's zone system creates concentric rings of increasing difficulty
+# radiating outward from spawn. Each zone has its own biome palette,
+# terrain character, and mob spawning rules.
+#
+# Zone definitions are in zones/*.toml files.
+# Set enabled = false to disable zone tiering entirely (all biomes
+# become available everywhere based on climate noise alone).
+[zones]
+enabled = true
+
+# zone-config-dir: Directory containing zone definition files.
+# Relative to this profile directory.
+config-dir = "zones"
+
+# -------------------------------------------------------
+# Terrain Generation
+# -------------------------------------------------------
+[terrain]
+# config-dir: Directory containing terrain configuration files.
+# density.toml, splines.toml, and continents.toml live here.
+config-dir = "terrain"
+
+# -------------------------------------------------------
+# Noise Functions
+# -------------------------------------------------------
+[noise]
+# config-dir: Directory containing noise function definitions.
+# Each .toml file defines one or more named noise functions that
+# can be referenced by biomes, terrain, water, and other systems.
+config-dir = "noise"
+
+# -------------------------------------------------------
+# Surface Rules
+# -------------------------------------------------------
+[surface]
+# config-dir: Directory containing surface rule definitions.
+# Surface rules control what blocks appear on the surface (grass,
+# sand, gravel, etc.) based on biome, depth, slope, and noise.
+config-dir = "surface"
+
+# -------------------------------------------------------
+# Cave & Ravine Carvers
+# -------------------------------------------------------
+[carvers]
+# config-dir: Directory containing carver configurations.
+# Defines cheese caves, spaghetti tunnels, noodle crevices, and ravines.
+config-dir = "carvers"
+
+# -------------------------------------------------------
+# Water Systems
+# -------------------------------------------------------
+[water]
+# config-dir: Directory containing water system configurations.
+# Strata's water is a marquee feature: drainage-basin rivers that
+# flow naturally downhill to oceans, waterfalls, lakes, and aquifers.
+config-dir = "water"
+
+# -------------------------------------------------------
+# Features (Ores, Trees, Vegetation)
+# -------------------------------------------------------
+[features]
+# config-dir: Directory containing feature definitions.
+# Ores, trees, vegetation, springs, and snow/ice placement.
+config-dir = "features"
+
+# -------------------------------------------------------
+# Structures
+# -------------------------------------------------------
+[structures]
+# config-dir: Directory containing structure definitions.
+# Villages (2-3x larger), temples, monuments, etc.
+config-dir = "structures"
+
+# -------------------------------------------------------
+# Entity Spawning
+# -------------------------------------------------------
+[entities]
+# config-dir: Directory containing entity spawn rules.
+# Per-biome and per-zone mob spawning tables.
+config-dir = "entities"
+
+# -------------------------------------------------------
+# Biomes
+# -------------------------------------------------------
+[biomes]
+# config-dir: Directory containing biome definitions.
+# Each .toml file defines a biome with climate parameters,
+# surface rules, features, and spawning overrides.
+config-dir = "biomes"
+
+# total-count: Expected biome count (used for validation only).
+total-count = 183

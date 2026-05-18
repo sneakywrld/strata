@@ -1,0 +1,147 @@
+# ============================================================
+#  Biome: Warped Glade — Warped Domain
+# ============================================================
+# A tranquil open space within the warped forest where the huge
+# fungi thin out to reveal a broad nylium meadow dotted with
+# small warped fungi and nether sprouts. By nether standards,
+# this is the closest thing to peaceful — the teal-blue glow
+# of the surrounding warped fungi provides gentle illumination,
+# enderman density is lower than the dense forest, and the
+# open sightlines give advance warning of any approach. The
+# warped spore particles drift lazily through the open air,
+# and the ambient soundscape is muted to a soft, almost meditative
+# hum. Twisting vines grow in isolated spirals like garden
+# decorations. Players often establish temporary camps in warped
+# glades, taking advantage of the relative safety and good
+# visibility to organize their nether expeditions.
+#
+# Gameplay notes:
+#   - Safest area in the nether — low mob density, open space.
+#   - Excellent campsite location — good sightlines.
+#   - Warped fungus harvesting and bone meal cultivation.
+#   - Nether sprout collection for decoration.
+#   - Lower enderman density than surrounding forest.
+#   - Strategic staging area for nether expeditions.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The warped glade is the
+# most peaceful biome in the entire Netherveil profile.
+id = "strata:warped_glade"
+
+# display-name: Human-readable name for player displays.
+display-name = "Warped Glade"
+
+# category: NETHER — nether environment with reduced mob density
+# and open, well-lit terrain.
+category = "NETHER"
+
+# zone: Part of the warped zone — the most tranquil pocket
+# within the warped domain.
+zone = "warped"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cool — the open space and sparse vegetation
+# allow the warped forest's chill to settle.
+#   0.3 = cool, calm nether environment.
+temperature = 0.3
+
+# humidity: Moderate — less fungal density than the dense
+# forest, but nylium and sprouts maintain organic presence.
+#   0.4 = moderate organic humidity in the open glade.
+humidity = 0.4
+
+# continentalness: Neutral — glades appear within standard
+# warped forest regions.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: High — the terrain is open and smooth, defining
+# the glade's meadow-like character.
+#   0.8 = very open, smooth terrain.
+erosion = 0.8
+
+# weirdness: Low — the glade is a natural clearing, less
+# exotic than the surrounding warped terrain.
+#   0.2 = mildly unusual, mostly natural.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the glade sits at the
+# same level as the surrounding warped forest.
+#   40 = standard nether floor level.
+base-height = 40
+
+# height-variation: Very low — the glade is notably flat and
+# smooth, contributing to its meadow character.
+#   2.0 = gentle, meadow-like terrain.
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Warped nylium — the teal-blue surface supporting
+# small fungi and nether sprouts.
+top-block = "minecraft:warped_nylium"
+
+# filler-block: Netherrack beneath the nylium.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Sparse huge fungi — the glade is defined by their
+# relative absence, with a few at the edges.
+#   1.5 = sparse fungi framing the open space.
+trees = { types = ["warped_fungus_huge"], density = 1.5 }
+
+# grass-density: Moderate nether sprouts and warped roots
+# across the open nylium meadow.
+#   0.5 = scattered ground vegetation.
+grass-density = 0.5
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Glade-specific features.
+#   nether_sprouts — dense teal sprout coverage on the meadow.
+#   warped_fungus_small — small fungi dotting the nylium.
+#   twisting_vines — isolated vine spirals in the open space.
+#   shroomlight_cluster — gentle ambient lighting from fungi.
+extra-features = [
+    { feature = "nether_sprouts", density = 10.0 },
+    { feature = "warped_fungus_small", density = 4.0 },
+    { feature = "twisting_vines", density = 2.0 },
+    { feature = "shroomlight_cluster", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Minimal mob presence — the glade is the safest spot in the nether.
+[biome.spawning]
+# enderman: Reduced density compared to the forest — the open
+# terrain is less appealing to endermen who prefer the cover
+# of dense fungal structures.
+enderman = { weight = 10, min-group = 1, max-group = 2 }
+
+# strider: Occasional strider near any lava pools.
+strider = { weight = 3, min-group = 1, max-group = 1 }

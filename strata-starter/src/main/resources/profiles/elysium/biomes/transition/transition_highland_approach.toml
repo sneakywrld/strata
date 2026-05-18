@@ -1,0 +1,174 @@
+# ============================================================
+#  Biome: Highland Approach — Transition Zone
+# ============================================================
+# The terrain rises steadily as the Verdant Expanse gives way
+# to the Frostfang Peaks. Oak and birch trees thin out and are
+# gradually replaced by hardier spruce, their dark silhouettes
+# standing against an increasingly grey sky. Patches of snow
+# appear on north-facing slopes and in shaded hollows, while
+# the grass takes on a muted blue-green tint from the cold.
+# The wind picks up and the temperature drops noticeably with
+# each step uphill. This is the last comfortable biome before
+# the mountain cold sets in.
+#
+# Gameplay notes:
+#   - Rising terrain provides natural vantage points for
+#     scouting the Frostfang range ahead.
+#   - Mixed wood types: spruce begins replacing oak/birch,
+#     useful for dark-wood builds.
+#   - First snow patches signal the need for cold-weather
+#     gear and food supplies.
+#   - Sweet berries and foxes appear among the spruce.
+#   - Good basecamp location for mountain expeditions.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Transition biomes use the
+# "transition_" prefix to mark boundary biomes between zones.
+id = "strata:transition_highland_approach"
+
+# display-name: Human-readable name shown in F3 debug, minimaps,
+# and /strata biome info commands.
+display-name = "Highland Approach"
+
+# category: TAIGA — spruce trees are becoming the dominant
+# species, and the colder conditions match taiga climate.
+# TAIGA enables appropriate foliage tinting (blue-green),
+# ambient sounds, and structure rules for cold conifer forests.
+category = "TAIGA"
+
+# zone: "transition" — bridging Verdant Expanse and Frostfang
+# Peaks, representing the altitudinal vegetation gradient.
+zone = "transition"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Positioned between Verdant (warm, moderate) and Frostfang
+# (cold, high altitude). Temperature drops sharply while
+# continentalness and elevation increase.
+[biome.climate]
+# temperature: Cold — a dramatic drop from Verdant's 0.5.
+# 0.1 = near-freezing conditions where breath fogs and the
+# first ice forms on puddles overnight. Snow survives in shade.
+temperature = 0.1
+
+# humidity: Moderate — mountain air carries some moisture from
+# orographic lift. 0.4 = enough precipitation for spruce growth
+# and the occasional snow flurry, though drier than the lush
+# Verdant lowlands.
+humidity = 0.4
+
+# continentalness: Elevated — further inland and higher than
+# Verdant. 0.6 = deep continental positioning where mountain
+# foothills begin to dominate the landscape.
+continentalness = 0.6
+
+# erosion: Low — the rising terrain resists erosion. 0.1 =
+# the hillsides are solid and steep, with exposed rock faces
+# appearing where the thin soil has been washed away by
+# snowmelt.
+erosion = 0.1
+
+# weirdness: Neutral — highland approaches are a natural
+# feature wherever lowlands meet mountains. 0.0 = standard
+# generation behavior with no unusual terrain quirks.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Elevated — the terrain is climbing toward the
+# peaks. 15 = noticeably above sea level, a clear transition
+# from the low Verdant plains (3) toward Frostfang's heights
+# (60-100). Players feel the ascent.
+# Range: -64.0 to 256.0
+base-height = 15
+
+# height-variation: Significant — the foothills are uneven with
+# ridges, slopes, and small ravines cut by snowmelt streams.
+# 10 = varied enough to make the climb interesting without
+# creating impassable cliffs.
+# Range: 0.0 to 30.0
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Forest floor transitioning from temperate to subalpine.
+# Grass still grows but it's thinner and tougher.
+[biome.surface]
+# top-block: Grass block — still viable at this altitude but
+# with the blue-green taiga tint from the TAIGA category.
+top-block = "minecraft:grass_block"
+
+# filler-block: Standard dirt beneath the grass. Rocky
+# substrate begins closer to the surface than in lowland biomes.
+filler-block = "minecraft:dirt"
+
+# filler-depth: Thinner than lowland biomes — the hillside
+# soil is shallow. 2 = limited topsoil before hitting stone,
+# reflecting the steep terrain's inability to hold deep soil.
+# Range: 1 to 8.
+filler-depth = 2
+
+# underwater-block: Gravel — mountain streams and snowmelt
+# channels have gravel beds typical of highland waterways.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# The treeline transition. Spruce takes over from oak as the
+# dominant tree, with birch disappearing first. The undergrowth
+# shifts from grass and flowers to ferns and sweet berry bushes.
+[biome.features]
+# trees: Mixed conifer transition — spruce is now dominant,
+# but scattered oaks survive in sheltered spots at lower
+# elevations within the biome. The canopy is moderate density.
+#   density: 5.0 = medium coverage, thinning compared to
+#   dense forests but still meaningful woodland.
+trees = { types = ["spruce", "oak"], density = 5.0 }
+
+# grass-density: Moderate — grass grows but is shorter and
+# sparser than in the Verdant lowlands. 15.0 = patchy ground
+# cover interspersed with exposed dirt and rock.
+# Range: 0.0 to 100.0
+grass-density = 15.0
+
+# flower-density: Low — few flowers survive the cold. Only
+# the hardiest alpine varieties persist. 1.0 = rare patches
+# of cornflowers and alliums in sheltered spots.
+# Range: 0.0 to 15.0
+flower-density = 1.0
+
+# extra-features: Sweet berry bushes (taiga vegetation) and
+# snow patches that foreshadow the Frostfang zone.
+extra-features = [
+    { feature = "sweet_berry_bush", density = 2.0 },
+    { feature = "snow_patch", density = 1.5 },
+    { feature = "fern", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Mountain fauna begins replacing lowland species. Foxes and
+# wolves inhabit the spruce forests, while passive lowland
+# mobs become scarce.
+[biome.spawning]
+# Foxes: Taiga foxes thrive in the spruce undergrowth and
+# sweet berry patches. They hunt rabbits and chickens.
+fox = { weight = 6, min-group = 1, max-group = 3 }
+
+# Wolves: Mountain wolves patrol in small packs. They are
+# neutral unless provoked and hunt nearby sheep.
+wolf = { weight = 5, min-group = 2, max-group = 4 }
+
+# Rabbits: Alpine rabbits with white-and-brown coloring
+# survive among the rocks and berry bushes.
+rabbit = { weight = 4, min-group = 2, max-group = 3 }

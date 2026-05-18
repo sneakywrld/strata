@@ -1,0 +1,11 @@
+id: PLAINS
+vanilla: minecraft:plains
+noise-equation: "base + noise2"
+palette:
+  - PLAINS_SURFACE: 0
+tags:
+  - LAND
+  - OVERWORLD_SURFACE
+climate:
+  temperature: 0.8
+  humidity: 0.4

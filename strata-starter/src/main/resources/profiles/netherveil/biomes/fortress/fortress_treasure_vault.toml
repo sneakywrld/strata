@@ -1,0 +1,157 @@
+# ============================================================
+#  Biome: Fortress Treasure Vault — Fortress Domain
+# ============================================================
+# A heavily fortified area deep within the fortress domain where
+# gold block deposits are embedded in polished blackstone walls,
+# guarded by the most dangerous mob combination in the nether.
+# The polished blackstone surfaces gleam with a dark mirror
+# finish, and exposed gold block veins catch the light of soul
+# lanterns mounted on the walls. The architecture here is
+# deliberate and refined — this is not natural terrain but a
+# constructed vault, with polished blackstone brick walls, gilded
+# blackstone accents, and gold block pillars supporting the
+# ceiling. Piglin brutes patrol in tight formations, attacking
+# anything that enters on sight — no gold armor diplomacy works
+# with brutes. The vault is the highest-risk, highest-reward
+# location in the fortress domain — the gold deposits are
+# substantial, but the brute defense is overwhelming.
+#
+# Gameplay notes:
+#   - Gold block deposits — highest gold concentration in nether.
+#   - Piglin brute guards attack on sight regardless of armor.
+#   - Polished blackstone collection for decorative building.
+#   - Gilded blackstone with gold nugget drops.
+#   - Vault architecture — constructed, not natural terrain.
+#   - Endgame loot potential from bastion-style chests.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The treasure vault is the
+# most reward-rich and most defended fortress biome.
+id = "strata:fortress_treasure_vault"
+
+# display-name: Human-readable name for player displays.
+display-name = "Treasure Vault"
+
+# category: NETHER — constructed nether vault with polished
+# blackstone architecture and gold deposits.
+category = "NETHER"
+
+# zone: Part of the fortress zone — the most heavily defended
+# and reward-rich area in the fortress domain.
+zone = "fortress"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Moderate — the enclosed vault maintains stable
+# temperature behind polished blackstone walls.
+#   0.4 = moderate, climate-controlled vault space.
+temperature = 0.4
+
+# humidity: Dry — polished blackstone and gold are completely
+# inorganic and retain no moisture.
+#   -0.2 = dry vault conditions.
+humidity = -0.2
+
+# continentalness: Neutral — vaults form within fortress
+# structures at standard elevation.
+#   0.1 = slight inland tendency.
+continentalness = 0.1
+
+# erosion: Low — the constructed vault has defined architecture
+# with walls, pillars, and corridors.
+#   0.2 = structured interior with architectural features.
+erosion = 0.2
+
+# weirdness: Very high — a polished blackstone vault with gold
+# deposits is an extremely unusual and clearly artificial biome.
+#   0.8 = highly unusual, clearly constructed space.
+weirdness = 0.8
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Slightly elevated — the vault sits within the
+# fortress structure, above standard floor level.
+#   44 = elevated within the fortress architecture.
+base-height = 44
+
+# height-variation: Low — the vault interior is architecturally
+# defined with flat floors and consistent ceiling height.
+#   2.0 = flat, constructed interior.
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Polished blackstone — the refined, mirror-finish
+# surface of the vault floor. Crafted from blackstone, it
+# represents the pinnacle of nether construction.
+top-block = "minecraft:polished_blackstone"
+
+# filler-block: Netherrack beneath the vault construction.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth beneath vault flooring.
+#   4 = vault floor construction over netherrack.
+filler-depth = 4
+
+# underwater-block: Magma blocks — rare lava presence within
+# the vault.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the constructed vault.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on polished blackstone.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Treasure vault specific features.
+#   gold_block_deposit — exposed gold block veins in walls
+#     and pillars, the primary treasure of the vault.
+#   gilded_blackstone_vein — gold-bearing blackstone with
+#     nugget drop chance.
+#   polished_blackstone_pillar — architectural support columns.
+#   soul_lantern — mounted illumination fixtures providing
+#     blue light throughout the vault.
+#   bastion_chest — loot chests with valuable contents.
+extra-features = [
+    { feature = "gold_block_deposit", density = 5.0 },
+    { feature = "gilded_blackstone_vein", density = 4.0 },
+    { feature = "polished_blackstone_pillar", density = 3.0 },
+    { feature = "soul_lantern", density = 4.0 },
+    { feature = "bastion_chest", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Piglin brutes are the primary defense — they cannot be
+# pacified with gold armor and always attack on sight.
+[biome.spawning]
+# piglin_brute: The vault's elite guards. Unlike regular piglins,
+# brutes ALWAYS attack on sight regardless of gold armor. They
+# deal extreme melee damage and have high health. The highest
+# brute density in the Netherveil profile.
+piglin_brute = { weight = 20, min-group = 2, max-group = 4 }
+
+# piglin: Regular piglins supporting the brutes. They respect
+# gold armor but will attack if you mine gold blocks.
+piglin = { weight = 10, min-group = 2, max-group = 3 }
+
+# zombified_piglin: Occasional undead piglins in the vault.
+zombified_piglin = { weight = 3, min-group = 1, max-group = 2 }

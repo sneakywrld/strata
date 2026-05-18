@@ -1,0 +1,177 @@
+# ============================================================
+#  Biome: Sun-Baked Flats — Scorched Badlands
+# ============================================================
+# An utterly flat expanse of hardened clay stretching to every
+# horizon. The surface is cracked into hexagonal patterns by
+# relentless sun. Heat mirages shimmer in the distance, making
+# navigation by landmark almost impossible. This is the most
+# featureless biome in the scorched zone — no trees, no rocks,
+# no shelter. Extreme heat and total exposure make crossing these
+# flats a test of endurance and preparation.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_sun_baked_flats"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Sun-Baked Flats"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# DESERT activates the warm haze and dry ambient sounds. The flat,
+# featureless terrain evokes dry lake beds and salt flats.
+category = "DESERT"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.95 = near-maximum heat — the flat,
+# exposed clay absorbs and re-radiates solar energy with no shade
+# or elevation to provide relief.
+temperature = 0.95
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.8 = the driest biome in the scorched
+# zone. Whatever lake once occupied these flats evaporated long ago,
+# leaving only baked clay behind.
+humidity = -0.8
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, in the most
+# arid core of the continental interior.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 1.0 = maximum erosion,
+# producing the perfectly flat surface of a dry lake bed. This is
+# the flattest possible terrain value.
+erosion = 1.0
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.0 = the standard variant. Despite its harsh conditions,
+# this is a geologically normal formation — dry lake beds are common
+# in arid continental interiors.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 3.0 places the flats
+# barely above sea level, consistent with a former lake bed that
+# once sat at the local water table.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 3.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 0.5 produces an almost perfectly flat surface with only the most
+# subtle elevation changes — less than a single block of variation
+# across most of the biome. This extreme flatness is the defining
+# characteristic.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 0.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Terracotta (hardened clay) represents the sun-baked lake bed
+# surface, cracked and bleached by centuries of exposure.
+top-block = "minecraft:terracotta"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. More terracotta — the former lake deposited thick
+# clay layers that hardened uniformly throughout.
+filler-block = "minecraft:terracotta"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 6 provides a deep clay layer reflecting the thick
+# sedimentary deposits of the ancient lake.
+# Range: 1 to 8.
+filler-depth = 6
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Terracotta continues
+# the baked clay theme even in the rare case of water pooling here.
+underwater-block = "minecraft:terracotta"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.0 = absolutely no trees. The flats are defined by
+#            their total emptiness — nothing breaks the horizon line.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.0 = no grass. The baked clay surface is
+# too hard and dry for any root system to penetrate.
+grass-density = 0.0
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = nothing grows on these flats.
+flower-density = 0.0
+
+# dead-bush-density: Dead bush features per chunk. Even dead bushes
+# are rare here — the clay surface offers no purchase for roots.
+# 0.3 places only the rarest, most tenacious dried shrubs.
+dead-bush-density = 0.3
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The flat, exposed terrain offers zero cover. Players can see mobs
+# approaching from extreme range, but mobs can also see players
+# equally far. Husks are the primary threat — their sunlight
+# immunity means they can spawn and persist at any hour.
+
+# husk: The dominant hostile mob. On the open flats, husks approach
+# from all directions with nowhere for players to hide or funnel
+# them. Large group sizes reflect the pack-hunting behavior enabled
+# by the open terrain.
+# weight: 20 for heavy hostile presence on the exposed flats.
+husk = { weight = 20, min-group = 3, max-group = 6 }
+
+# skeleton: Ranged attackers with perfect sight lines in every
+# direction. The flat terrain means arrows can reach players from
+# maximum range with no obstacles to block line-of-sight.
+# weight: 10 for a significant ranged threat.
+skeleton = { weight = 10, min-group = 1, max-group = 3 }

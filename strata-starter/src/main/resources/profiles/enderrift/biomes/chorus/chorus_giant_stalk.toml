@@ -1,0 +1,177 @@
+# ============================================================
+#  Biome: Chorus Giant Stalk — Chorus Domain
+# ============================================================
+# Extraordinarily tall chorus plants reaching 40+ blocks into
+# the End sky, creating a vertical biome unlike anything else
+# in the dimension. These ancient, overgrown stalks form natural
+# towers that players can climb by breaking and placing blocks
+# against their trunks. The ground level is sparse — all the
+# growth energy goes upward into these colossal purple spires.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:chorus_giant_stalk"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Giant Stalk"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "chorus"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. 0.0 = neutral — the giant stalks reach high
+# enough that temperature varies by altitude.
+temperature = 0.0
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. 0.3 = mildly humid, the enormous chorus mass
+# creates a more hospitable micro-environment.
+humidity = 0.3
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.7 = deep inland — giant stalks require
+# the most stable, deep-rooted terrain to support their height.
+continentalness = 0.7
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. 0.4 = moderate terrain, the base
+# terrain is unremarkable but the vertical chorus creates an
+# imposing overhead landscape.
+erosion = 0.4
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.5 = notably weird — 40-block-tall chorus plants are extraordinary
+# even in the alien End.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 60 is moderate —
+# the base terrain is unremarkable; the vertical interest comes
+# from the chorus plants themselves.
+# Range: 0 to 256
+base-height = 60
+
+# height-variation: Controls terrain undulation. 5 — gentle terrain
+# at ground level. The dramatic height comes from chorus features,
+# not terrain geometry.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — standard End ground beneath the towering stalks.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Solid end stone, providing a deep root base for
+# the massive chorus plants.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 6 is deeper than standard — the giant stalks need
+# deep foundations.
+# Range: 1 to 8
+filler-depth = 6
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 4.0 — moderate density. The giant stalks are fewer in number
+# than dense forest but each one is massively tall, dominating
+# the vertical space.
+chorus-density = 4.0
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.25 — low flowering rate. The energy goes into vertical growth
+# rather than reproduction; flowers appear only at the very top.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.25
+
+# chorus-height-min: Minimum height for chorus plants in this biome.
+# 25 — even the shortest stalks are impressive towers.
+# Range: 3 to 15 (overridden to 25 for this biome)
+chorus-height-min = 25
+
+# chorus-height-max: Maximum height for chorus plants.
+# 45 — the tallest chorus plants in Enderrift, reaching
+# extraordinary heights that create the "vertical biome" experience.
+# Range: 10 to 50 (overridden for this biome)
+chorus-height-max = 45
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.005 — end rods appear at various heights along the stalks,
+# marking the ascent like runway lights.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.005
+
+# purpur-density: Purpur growth formations per chunk.
+# 0.06 — purpur formations cluster at stalk bases where roots
+# meet the ground.
+# Range: 0.0 to 0.3
+purpur-density = 0.06
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.0 — no crystals among the giant stalks.
+# Range: 0.0 to 0.1
+crystal-chance = 0.0
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — no obsidian; pure chorus environment.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Standard presence. Endermen teleport between stalk
+# tops and the ground, creating surreal vertical traffic.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 90, min-group = 1, max-group = 3 }
+
+# shulker: No shulkers — natural chorus, not a structure.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Low presence at ground level.
+endermite = { weight = 2, min-group = 1, max-group = 1 }

@@ -1,0 +1,163 @@
+# ============================================================
+#  Biome: Ender Grove — The Shattered Reach
+# ============================================================
+# A rare pocket of eerie tranquility within the Shattered Reach.
+# Chorus trees grow in orderly clusters, their purple stems reaching
+# skyward like alien willows. End rods sprout from the ground and
+# hang from chorus branches like lanterns, casting a warm, steady
+# glow across the end-stone floor. The air is still and clean —
+# none of the void fog or dimensional static that plagues the
+# surrounding biomes reaches here. The Grove is a sanctuary, or
+# perhaps a garden tended by something unseen. Players may rest
+# here, but they should not mistake peace for safety.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier for generator cross-references, region
+# maps, and transition definitions.
+id = "strata:shattered_ender_grove"
+
+# Human-readable name for debug screens and admin commands.
+display-name = "Ender Grove"
+
+# CUSTOM category — bespoke chorus-tree placement and end-rod
+# lighting system. No vanilla biome equivalent.
+category = "CUSTOM"
+
+# Part of the Shattered Reach endgame zone. The Ender Grove serves
+# as a contrast biome — a moment of calm that makes the surrounding
+# danger feel sharper by comparison.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.1, cool but not hostile. The grove maintains a
+# mild microclimate, sheltered from the extremes of the surrounding
+# Shattered Reach. Comfortable enough to linger.
+temperature = 0.1
+
+# Humidity — 0.4, the highest in the Shattered Reach. The chorus
+# trees transpire a faint purple moisture that keeps the air soft
+# and breathable. Almost pleasant.
+humidity = 0.4
+
+# Continentalness — 0.5, interior landmass. The grove forms in
+# sheltered pockets of stable terrain, protected from the worst
+# dimensional distortions by the surrounding landscape.
+continentalness = 0.5
+
+# Erosion — 0.5, moderate. The terrain is gently shaped — low
+# hills and shallow depressions created by chorus root systems
+# working the soil over time.
+erosion = 0.5
+
+# Weirdness — 0.6, the lowest in the Shattered Reach. The grove
+# is alien but recognizably "forest-like," which makes it feel
+# less disorienting than its neighbors. The relative normality
+# is itself unsettling in context.
+weirdness = 0.6
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — 8 blocks above sea level. Gently elevated, like a
+# sheltered meadow or garden terrace. Not dramatic — the grove is
+# a place of rest, not spectacle.
+base-height = 8
+
+# Height variation — 5 blocks. Softly rolling ground with no harsh
+# drops or cliffs. The terrain invites exploration rather than
+# demanding caution.
+height-variation = 5
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — end_stone. The alien substrate is present but polished
+# smooth, almost marble-like. The chorus trees seem to thrive in it.
+top-block = "minecraft:end_stone"
+
+# Filler block — end_stone continues below, but shot through with
+# chorus-root networks that the feature layer generates. The soil
+# is end stone through and through, yet it feels cultivated.
+filler-block = "minecraft:end_stone"
+
+# Filler depth — 4 blocks of end stone before default underground
+# generation. Shallow root zone — chorus trees do not need deep soil.
+filler-depth = 4
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Chorus tree groves — clusters of chorus_plant and chorus_flower
+# blocks arranged in organic groupings, taller and more orderly
+# than wild End chorus plants. These feel deliberately planted.
+chorus-trees = true
+
+# End rod lanterns — end_rod blocks placed at the base of chorus
+# trees, on low purpur_pillar stands between trees, and hanging
+# from horizontal chorus branches. The primary light source, giving
+# the grove its warm, welcoming glow.
+end-rod-lanterns = true
+
+# Purpur garden paths — narrow strips of purpur_block running
+# between tree clusters, like walking paths in a formal garden.
+# Reinforces the "tended garden" atmosphere.
+purpur-paths = true
+
+# Chorus flower beds — small patches of chorus_flower at ground
+# level, surrounded by rings of purpur_slab. Decorative and
+# harvestable.
+chorus-flower-beds = true
+
+# End stone benches — simple end_stone_brick_slab arrangements
+# between trees, as if someone placed seating for contemplation.
+# Empty, of course. Whoever sat here is long gone.
+stone-benches = true
+
+# Ambient glow particles — soft, warm-toned particles (end_rod
+# type) drifting gently through the canopy. Peaceful and inviting.
+glow-particles = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Endermen roam peacefully among the chorus trees. Lower density
+# than most shattered biomes — they seem calmer here, less
+# agitated. They will still aggro if provoked, of course.
+enderman = 30
+
+# Shulkers sit quietly on purpur path edges and tree bases,
+# closed and dormant. They attack if approached too closely,
+# but their lower weight means encounters are less frequent.
+shulker = 10
+
+# Allays — the grove's relative peace attracts these gentle mobs.
+# They drift between chorus trees carrying chorus fruit. A rare
+# friendly presence in the Shattered Reach.
+allay = 15
+
+# Phantoms are notably scarce. The grove's ambient light and
+# calm suppress their spawning — players can rest here without
+# constant aerial harassment.
+phantom = 5
+
+# Silverfish nest in the end stone ground, the only real ambush
+# threat. Mining the floor may release them, punishing greed in
+# a place meant for rest.
+silverfish = 10

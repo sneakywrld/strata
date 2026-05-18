@@ -1,0 +1,133 @@
+# ============================================================
+#  Biome: Outer End Plateau — Outer Islands
+# ============================================================
+# The largest flat-topped islands in the outer End. These
+# expansive plateaus stretch hundreds of blocks across,
+# offering ample space for player construction, chorus
+# farming, and long-distance elytra runways. The surface is
+# remarkably level — a natural tabletop of end stone that
+# rises above the surrounding void with sheer cliff faces on
+# all sides. Chorus plants grow in well-spaced groves rather
+# than dense forest, leaving broad open areas between them.
+# These plateaus are prime real estate for player bases in
+# the End dimension.
+#
+# Gameplay notes:
+#   - Largest flat surface area of any outer island biome.
+#   - Excellent for player bases, farms, and mob grinders.
+#   - Wide enough for elytra takeoff and landing strips.
+#   - Chorus plants grow in spaced groves, not dense forest.
+#   - End cities generate more frequently on plateaus due
+#     to the large available surface area.
+#   - Sheer cliff edges — fall protection recommended.
+#   - Pairs with outer_end_island (smaller variant) and
+#     outer_end_shelf (thin extension from plateaus).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the large flat
+# plateau islands in the outer End.
+id = "strata:outer_end_plateau"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Outer End Plateau"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Outer Islands region.
+region = "outer"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Neutral — large mass retains the baseline
+# End temperature. 0.0 = standard.
+temperature = 0.0
+
+# humidity: Slightly higher than standard — the large
+# surface area supports more chorus growth, which adds
+# trace moisture. 0.15 = barely above neutral.
+humidity = 0.15
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: -0.1 = very slightly below neutral. Plateaus
+# are the "normal" large island — predictable, stable,
+# and common. Low weirdness reflects their reliability.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 65 — elevated to match central platform
+# height. Plateaus are tall, commanding formations that
+# rise above typical outer islands (60). The flat top
+# at this height provides excellent visibility.
+base-height = 65
+
+# height-variation: 3 = very flat. The defining feature
+# of plateaus is their level surface. Minimal variation
+# keeps the tabletop effect intact while allowing subtle
+# natural contours.
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — standard End surface.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone throughout. Plateaus are thick,
+# solid masses of end stone.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 5 = thicker than standard islands. The
+# large mass has more structural depth, reflecting the
+# geological stability that allows such a wide formation.
+# Range: 1 to 8.
+filler-depth = 5
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Chorus plants grow in well-spaced groves with open
+# clearings between them. The spacious layout highlights
+# the plateau's vast surface area.
+[biome.features]
+# end-specific: Chorus groves — spaced clusters of chorus
+# plants with open ground between them. Lower density
+# than standard islands to emphasize the plateau's
+# openness and building potential.
+trees = { types = ["chorus_tree"], density = 2.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Scattered chorus clusters in natural
+# grove formations.
+extra-features = [
+    { feature = "chorus_cluster", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Large flat surface supports high enderman density.
+# Players building on plateaus should light the area
+# or use spawn-proofing techniques.
+[biome.spawning]
+# enderman: Very high presence — the large flat area
+# provides abundant spawn surface. Endermen gather in
+# larger groups on plateaus due to the available space.
+enderman = { weight = 40, min-group = 1, max-group = 4 }

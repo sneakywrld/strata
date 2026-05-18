@@ -1,0 +1,178 @@
+# ============================================================
+#  Biome: Dried Riverbed — Scorched Badlands
+# ============================================================
+# A former river channel long since abandoned by water. The cracked
+# sand surface tells the story of gradual desiccation over centuries.
+# Bleached dead trees line the banks like sentinels of a forgotten
+# age. Clay deposits in the exposed banks hint at the water that
+# once flowed here. Occasional patches of gravel and smooth stone
+# mark the old streambed center.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_dried_riverbed"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Dried Riverbed"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# DESERT reflects the fully arid condition of this once-watery
+# channel — no moisture remains to justify a river or plains category.
+category = "DESERT"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.85 = very hot, the exposed sand and clay
+# absorb and radiate heat throughout the day.
+temperature = 0.85
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.6 = extremely dry — any trace moisture
+# evaporates almost instantly from the sun-baked channel.
+humidity = -0.6
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, where rivers dry
+# up as rainfall diminishes far from maritime influence.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.7 = high erosion has
+# worn the terrain nearly flat, exactly what you would expect from a
+# former waterway that smoothed its bed over millennia of flow.
+erosion = 0.7
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. -0.1 = nearly standard, a natural geological remnant
+# rather than an exotic formation.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 0.0 places the riverbed
+# at sea level, sitting in the low ground between higher mesa
+# formations where water naturally collected.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 0.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 2.0 creates a nearly flat channel with subtle dips and rises from
+# deposited sediment — smooth enough to walk along easily.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Sand represents the dried-out riverbed surface — cracked, pale,
+# and littered with the remnants of evaporated water.
+top-block = "minecraft:sand"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Clay sits beneath the sand, deposited by the river
+# over its active lifetime. Provides a useful resource for players
+# who dig into the riverbed.
+filler-block = "minecraft:clay"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 3 reflects the moderate depth of river sediment
+# deposits before hitting the underlying stone.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Sand matches the
+# dominant surface material of the dried channel.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#          "dead_oak" = bleached dead oak tree skeletons that once
+#          lined the riverbanks when water still flowed.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.3 places occasional dead trees along the old banks,
+#            creating a haunting reminder of the former waterway.
+trees = { types = ["dead_oak"], density = 0.3 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.1 = almost none; only the most resilient
+# grass blades poke through cracks in the dried mud.
+grass-density = 0.1
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = no flowers survive in the bone-dry
+# former riverbed.
+flower-density = 0.0
+
+# dead-bush-density: Dead bush features per chunk. Dry brush that
+# once grew along the water's edge, now bleached and brittle.
+# 2.5 lines the old banks with enough dead vegetation to read as
+# a former riparian zone.
+dead-bush-density = 2.5
+
+# clay-patch-density: Exposed clay deposit patches per chunk.
+# These represent places where the sandy top layer has eroded away,
+# revealing the clay sediment below. 2.0 gives players a renewable
+# reason to explore the riverbed.
+clay-patch-density = 2.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The dried riverbed draws creatures seeking the last traces of
+# subsurface moisture. Husks shamble along the old channel, and
+# rabbits dig burrows in the sandy banks.
+
+# husk: Desert undead wandering the dry channel, drawn by the
+# memory of water. Inflicts Hunger on hit.
+# weight: 10 makes them a regular but not overwhelming threat.
+husk = { weight = 10, min-group = 1, max-group = 3 }
+
+# rabbit: Burrow in the soft sand banks of the former river.
+# weight: 8 reflects slightly more passive life than the open mesa,
+# as the subsurface clay retains trace moisture.
+rabbit = { weight = 8, min-group = 2, max-group = 4 }

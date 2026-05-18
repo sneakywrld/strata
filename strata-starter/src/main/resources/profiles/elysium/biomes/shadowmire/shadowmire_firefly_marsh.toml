@@ -1,0 +1,174 @@
+# ============================================================
+#  Biome: Firefly Marsh — Shadowmire Swamps
+# ============================================================
+# A rare pocket of tranquility within the oppressive Shadowmire.
+# Warm-toned glow lichen clings to every tree and rock, casting
+# soft amber light across the shallow water. Firefly-like warm
+# light particles drift lazily through the air, creating a gentle,
+# inviting atmosphere that stands in stark contrast to the hostile
+# swamp surrounding it. The marsh is shallow and easy to traverse,
+# the vegetation is lush rather than decaying, and the ambient
+# sounds shift from ominous croaking to peaceful cricket chirps.
+# This is the Shadowmire's hidden sanctuary — a brief respite
+# before the next stretch of dangerous terrain.
+#
+# Gameplay Notes:
+#   - Reduced hostile mob spawns — a safe place to rest and regroup.
+#   - Glow lichen provides harvestable light sources.
+#   - The peaceful atmosphere is the reward for deep Shadowmire exploration.
+#   - Small enough to feel precious — don't take the safety for granted.
+#   - Good location for a forward operating base in the swamp.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_firefly_marsh"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Firefly Marsh"
+
+# category: The broad Minecraft biome category this belongs to.
+# SWAMP maintains the zone's ambient sounds and water tinting,
+# but the reduced hostility makes this feel distinctly different.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.6 = mild warmth — the glow lichen and warm light
+# particles create a cozy microclimate within the cold swamp.
+temperature = 0.6
+
+# humidity: 0.85 = very high moisture — still a marsh, with shallow
+# standing water and saturated air.
+humidity = 0.85
+
+# continentalness: 0.6 = moderately inland — the firefly marsh
+# forms in secluded hollows within the broader swamp basin.
+continentalness = 0.6
+
+# erosion: 0.7 = heavily eroded — the terrain is flat and shallow,
+# consistent with a calm, undisturbed marsh environment.
+erosion = 0.7
+
+# weirdness: -0.3 = notably below normal — the negative weirdness
+# value ensures the firefly marsh generates in the "calmest"
+# climate pockets, far from the unusual and dangerous variants.
+# This makes it a natural oasis of normalcy within the weird swamp.
+weirdness = -0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 0 = at sea level. The marsh sits right at the
+# waterline — shallow enough to wade through comfortably without
+# the oppressive depth of the murky swamp or sunken ruins.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 0
+
+# height-variation: 2 = slight variation. Gentle hummocks of dry
+# ground provide places to stand, camp, and build, interspersed
+# with shallow water channels.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block — unlike most of the Shadowmire, the
+# firefly marsh has living, healthy grass. The glow lichen provides
+# enough light for photosynthesis even at night.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt — standard healthy soil beneath the grass,
+# signaling that this pocket of swamp is genuinely different from
+# the mud and soul sand that dominates elsewhere.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. Normal, healthy soil all the
+# way down to stone.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Clay — the calm, clear water has settled fine
+# sediment on the marsh floor, which is visible through the
+# relatively clean shallow water.
+underwater-block = "minecraft:clay"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Moderate tree cover — healthy oaks and birches with full
+# canopies, decorated with glow lichen on their trunks.
+#   types: Tree definition keys from features/trees.toml.
+#   density: 3.0 = moderate spacing — open enough to see the sky
+#            but enough trees to host glow lichen and vine growth.
+trees = { types = ["oak", "birch"], density = 3.0 }
+
+# grass-density: 10.0 = lush ground cover — tall grass and ferns
+# fill the spaces between trees, giving the marsh a vibrant,
+# living feel unlike the sparse vegetation elsewhere in Shadowmire.
+# Range: 0.0 to 100.0.
+grass-density = 10.0
+
+# flower-density: 3.0 = moderate — wildflowers grow here where
+# the glow lichen provides supplemental light. Blue orchids and
+# alliums add color to the warm amber glow.
+# Range: 0.0 to 15.0.
+flower-density = 3.0
+
+# extra-features: Glow lichen is the signature feature, along with
+# warm light particle emitters and lily pads on the water.
+extra-features = [
+    { feature = "glow_lichen_patch", density = 8.0 },
+    { feature = "warm_light_particle", density = 5.0 },
+    { feature = "lily_pad", density = 4.0 },
+    { feature = "dripleaf", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The firefly marsh is a safe haven. Hostile spawns are greatly
+# reduced, and peaceful passive mobs fill the soundscape instead.
+# The glow lichen ambient light helps suppress hostile spawns.
+
+# hostile-density-multiplier: Greatly reduced hostile mob spawns.
+# The ambient light from glow lichen and the peaceful microclimate
+# suppress hostile mob generation.
+hostile-density-multiplier = 0.3
+
+# frog: Frogs croak peacefully from the lily pads and hummocks.
+# weight: 15 for a dominant, peaceful ambient presence.
+frog = { weight = 15, min-group = 2, max-group = 4 }
+
+# firefly_ambient: Represented by allay particles — these gentle
+# light sources drift through the air at all hours.
+# (Allays don't naturally spawn but the particle system mimics them.)
+
+# rabbit: Small rabbits forage in the healthy grass — one of the
+# few places in Shadowmire with enough vegetation to support them.
+# weight: 8 for occasional passive mob sightings.
+rabbit = { weight = 8, min-group = 2, max-group = 3 }
+
+# sheep: Sheep graze on the rare healthy grass of the marsh,
+# making this the only Shadowmire biome where wool is available.
+# weight: 5 for a scarce but welcome presence.
+sheep = { weight = 5, min-group = 2, max-group = 3 }

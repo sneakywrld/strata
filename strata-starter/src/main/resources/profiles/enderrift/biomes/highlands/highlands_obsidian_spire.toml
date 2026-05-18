@@ -1,0 +1,143 @@
+# ============================================================
+#  Biome: Highlands Obsidian Spire — End Highlands
+# ============================================================
+# Towering spires of obsidian pierce the End sky, their dark
+# surfaces absorbing light and creating imposing silhouettes
+# against the dim star field. These are not the obsidian
+# pillars of the central island — they are far taller, more
+# irregular, and crowned with end crystal formations that
+# pulse with a cold blue light. The spires rise from end stone
+# bases, their obsidian composition making them virtually
+# indestructible without diamond tools and considerable
+# patience. The terrain around the spire bases is littered
+# with obsidian fragments and end stone rubble, suggesting
+# the spires are still growing — or were recently shattered
+# and are reforming.
+#
+# Gameplay notes:
+#   - EXTREME vertical terrain (base 65, variation 35).
+#   - Spires can reach Y 100+ — visible from vast distances.
+#   - Obsidian surface is blast-proof and slow to mine.
+#   - End crystals on spire tips (decorative, non-healing).
+#   - Elytra strongly recommended for navigation.
+#   - Obsidian is harvestable but time-consuming.
+#   - Good landmark biome for navigation.
+#   - Pairs with highlands_crystal_peak (similar height)
+#     and highlands_purpur_ridge (elevated terrain).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the tall obsidian
+# spire formations in the End highlands.
+id = "strata:highlands_obsidian_spire"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Obsidian Spire"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Highlands region.
+region = "highlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Warm — obsidian retains thermal energy
+# from its formation process. 0.3 = noticeably warm,
+# the hottest biome in the End highlands.
+temperature = 0.3
+
+# humidity: Dry — obsidian does not absorb or release
+# moisture. 0.0 = standard End aridity.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.6 = high weirdness. Obsidian spires are
+# rare, dramatic formations that only generate in the
+# most extreme noise conditions. Finding one is a
+# significant exploration milestone.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 65 — moderate base, but the extreme
+# height-variation is what creates the spires. The base
+# represents the terrain between spires; the spires
+# themselves shoot far above this.
+base-height = 65
+
+# height-variation: 35 = EXTREME variation. The terrain
+# alternates between low ground (Y ~30) and towering
+# spire peaks (Y ~100). This extreme oscillation creates
+# the needle-like spire geometry when combined with the
+# noise generator's column mode.
+height-variation = 35
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Obsidian dominates the spire surfaces.
+[biome.surface]
+# top-block: Obsidian — the spires and surrounding
+# terrain are coated in dark, glassy obsidian. The
+# surface contrasts dramatically with adjacent end
+# stone biomes.
+top-block = "minecraft:obsidian"
+
+# filler-block: End stone beneath the obsidian shell.
+# The spires have an obsidian exterior over an end stone
+# core — they are not solid obsidian.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard depth. The end stone core
+# beneath the obsidian coating.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# End crystals on spire tips and obsidian rubble at
+# the bases. No vegetation grows on obsidian.
+[biome.features]
+# end-specific: End crystals atop spires and obsidian
+# debris around the bases. No chorus plants — obsidian
+# surfaces cannot support chorus root systems.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation on obsidian surfaces.
+grass-density = 0.0
+
+# extra-features: Spire-specific decorations.
+#   end_crystal_decorative — floating end crystals near
+#       spire tips, pulsing with cold blue light.
+#   obsidian_rubble — scattered obsidian fragments at
+#       spire bases, suggesting ongoing formation.
+extra-features = [
+    { feature = "end_crystal_decorative", density = 1.5 },
+    { feature = "obsidian_rubble", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen are sparse — the obsidian surfaces and extreme
+# vertical terrain limit valid spawn locations.
+[biome.spawning]
+# enderman: Low-to-moderate presence. The obsidian
+# surface and steep terrain reduce available spawn area.
+# Encounters near spire bases can be dangerous due to
+# tight spaces between spires.
+enderman = { weight = 18, min-group = 1, max-group = 2 }

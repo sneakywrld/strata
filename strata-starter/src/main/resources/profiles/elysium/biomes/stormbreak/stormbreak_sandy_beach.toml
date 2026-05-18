@@ -1,0 +1,83 @@
+# ============================================================
+#  Biome: Stormbreak Sandy Beach — Stormbreak Coast
+# ============================================================
+# A classic golden sand beach stretching along the warmer
+# reaches of the Stormbreak coast. Tall palm-like trees
+# (jungle saplings grown to full size) line the upper beach,
+# providing shade and coconut-like aesthetics. Sea turtles
+# crawl ashore to lay eggs in the warm sand, and the gentle
+# lapping of waves makes this the most peaceful biome in the
+# otherwise dramatic Stormbreak zone.
+#
+# Gameplay notes:
+#   - Turtle egg farming — protect nests from zombie trampling.
+#   - Jungle-style trees provide wood and a tropical feel.
+#   - Flat, open terrain ideal for beachfront base building.
+#   - Transitions into stormbreak_driftwood_shore, coral_cove,
+#     or windswept_dunes depending on adjacent climate values.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_sandy_beach"         # Unique registry ID
+display-name = "Stormbreak Sandy Beach"      # Shown in F3 debug & maps
+category = "BEACH"                           # Standard beach classification
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Warmer than most Stormbreak biomes — this is the sun-kissed
+# stretch of coast. Moderate humidity from proximity to water
+# but drier than swamp-adjacent biomes.
+[biome.climate]
+temperature = 0.6           # Warm — sun-exposed sand absorbs heat
+humidity = 0.4              # Moderate — sea breeze, not swampy
+continentalness = -0.05     # Right at the shoreline
+erosion = 0.5               # High erosion — flat, wave-smoothed sand
+weirdness = 0.0             # Neutral — classic beach terrain
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# Nearly flat, just barely above sea level. The gentlest
+# terrain profile in the Stormbreak zone.
+[biome.terrain]
+base-height = 1             # Just above the waterline
+height-variation = 1        # Almost perfectly flat sand
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Deep sand all the way down, as you would expect from a
+# proper sandy beach. Sandstone forms naturally below.
+[biome.surface]
+top-block = "minecraft:sand"             # Golden sand surface
+filler-block = "minecraft:sandstone"     # Compacted sandstone beneath
+filler-depth = 3                         # 3 blocks of sand/sandstone
+underwater-block = "minecraft:sand"      # Sand extends into the shallows
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Palm trees are represented by jungle trees — they provide
+# the tropical canopy expected on a warm sandy beach. Grass
+# is moderate where the sand meets the vegetation line.
+[biome.features]
+trees = { types = ["jungle"], density = 0.3 }   # Sparse palm-style jungle trees
+grass-density = 0.2                              # Some beach grass at treeline
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Sea turtles are the signature passive mob. They lay eggs
+# on the sand, which players must protect from zombies.
+# Parrots may appear near jungle trees for extra tropical
+# flavour.
+[biome.spawning]
+# Turtles spawn on sand near water — egg-laying behaviour.
+# Protect eggs from zombie trampling at night.
+# Parrots near jungle trees add colour and ambient sound.
+# Standard hostile mobs at night on the open beach.

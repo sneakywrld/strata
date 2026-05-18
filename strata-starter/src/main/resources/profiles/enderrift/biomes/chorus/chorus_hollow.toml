@@ -1,0 +1,172 @@
+# ============================================================
+#  Biome: Chorus Hollow — Chorus Domain
+# ============================================================
+# A natural depression in the terrain surrounded on all sides
+# by towering walls of chorus plants. The hollow forms a
+# bowl-shaped arena with a flat end stone floor and chorus
+# walls rising 15-20 blocks above the rim. The enclosed space
+# creates a natural arena — ideal for mob encounters or player
+# camps. Sound echoes strangely off the chorus walls.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:chorus_hollow"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Chorus Hollow"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "chorus"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. 0.1 = slightly warm, the enclosed hollow traps
+# ambient heat from the surrounding chorus mass.
+temperature = 0.1
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. 0.1 = slightly moist, the sheltered depression
+# retains trace humidity better than exposed terrain.
+humidity = 0.1
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.4 = moderately inland, the hollow forms
+# in a stable interior position.
+continentalness = 0.4
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. 0.6 = mostly flat within the
+# hollow bowl — the interior floor is smooth and level.
+erosion = 0.6
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.3 = mildly unusual — the natural arena shape is distinctive
+# but not extreme.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 55 is depressed
+# below the surrounding chorus biomes — this is a sunken bowl
+# that players descend into from the rim.
+# Range: 0 to 256
+base-height = 55
+
+# height-variation: Controls terrain undulation. 3 is low —
+# the interior floor is smooth and flat, designed as an arena
+# or gathering space.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — the clean arena floor.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Solid end stone.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 4 is standard depth.
+# Range: 1 to 8
+filler-depth = 4
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 6.0 — high density concentrated at the rim/edges of the hollow.
+# The interior floor is mostly clear, but the surrounding walls
+# are thick with chorus growth.
+chorus-density = 6.0
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.3 — standard flowering rate on the wall chorus.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.3
+
+# chorus-height-min: Minimum height for chorus plants.
+# 10 — the wall chorus must be tall to form enclosing walls.
+# Range: 3 to 15
+chorus-height-min = 10
+
+# chorus-height-max: Maximum height for chorus plants.
+# 22 — tall enough to create an imposing bowl enclosure.
+# Range: 10 to 30
+chorus-height-max = 22
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.004 — scattered rods on the hollow floor, providing sparse
+# illumination within the enclosed space.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.004
+
+# purpur-density: Purpur growth formations per chunk.
+# 0.04 — some purpur at the base of the chorus walls.
+# Range: 0.0 to 0.3
+purpur-density = 0.04
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.0 — no crystals in the hollow.
+# Range: 0.0 to 0.1
+crystal-chance = 0.0
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — clean arena floor, no obstructions.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Elevated presence. Endermen congregate in the hollow's
+# sheltered interior, making encounters here more likely and
+# more intense — the enclosed space limits escape routes.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 110, min-group = 2, max-group = 4 }
+
+# shulker: No shulkers in the natural hollow.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Moderate presence on the arena floor.
+endermite = { weight = 3, min-group = 1, max-group = 2 }

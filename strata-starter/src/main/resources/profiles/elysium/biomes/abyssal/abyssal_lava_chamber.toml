@@ -1,0 +1,152 @@
+# ============================================================
+#  Biome: Abyssal Lava Chamber — Abyssal Depths
+# ============================================================
+# A vast subterranean chamber dominated by a churning lava lake
+# that casts everything in a hellish orange-red glow. Magma
+# blocks line the shore, their surfaces cracking and bubbling
+# with escaping gases. The heat is intense — standing too close
+# to the lava's edge causes fire damage. Rare ore veins are
+# exposed in the chamber walls where the extreme heat has
+# metamorphosed the surrounding stone, concentrating diamonds,
+# gold, and ancient debris in thin seams visible from the shore.
+# Obsidian crusts form where water seepage meets the lava edge.
+#
+# Gameplay notes:
+#   - Fire Resistance potions essential for exploration.
+#   - Rare ores visible in exposed wall veins (diamond, gold, debris).
+#   - Magma blocks deal damage — Frost Walker boots recommended.
+#   - Obsidian farming at the lava-water boundary.
+#   - Magma cubes spawn heavily — bouncing fireballs of death.
+#   - Extreme heat ambient effect — fire particle overlay.
+#   - Pairs with abyssal_ore_vein for deep mining expeditions.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The lava chamber is the
+# most thermally extreme biome in the Abyssal zone.
+id = "strata:abyssal_lava_chamber"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Lava Chamber"
+
+# category: CAVE — deep underground biome. Despite the heat,
+# this is an overworld cave, not a Nether biome.
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Extreme heat and very low humidity from the lava lake's
+# evaporative effect on surrounding moisture.
+[biome.climate]
+# temperature: Very hot — the lava lake radiates intense
+# heat throughout the entire chamber.
+# 0.8 = near-maximum overworld temperature for a cave.
+temperature = 0.8
+
+# humidity: Negative — the extreme heat drives all moisture
+# from the air. The chamber is bone-dry except at the
+# water-lava boundary.
+# -0.3 = arid conditions despite being underground.
+humidity = -0.3
+
+# continentalness: Neutral — lava chambers form deep
+# underground regardless of surface terrain.
+# 0.5 = no continental bias.
+continentalness = 0.5
+
+# erosion: Balanced — the lava has carved its own chamber
+# through thermal erosion over geological time.
+# 0.5 = standard cave profile shaped by heat.
+erosion = 0.5
+
+# weirdness: Slightly elevated — lava chambers are less
+# common than standard cave biomes.
+# 0.2 = uncommon but not extremely rare.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Very deep — lava lakes form near the bottom
+# of the world where magma pressure is highest.
+# -55 = close to bedrock, deep in the Abyssal zone.
+base-height = -55
+
+# height-variation: Low — the lava lake surface is flat by
+# nature, and the chamber walls are smoothed by thermal erosion.
+# 10 = gentle undulation of the shoreline and ceiling.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The chamber floor transitions from magma blocks near the
+# lava to blackstone further from the heat source.
+[biome.surface]
+# top-block: Magma blocks — the cave floor nearest the lava
+# lake. Deals damage to players without Frost Walker.
+top-block = "minecraft:magma_block"
+
+# filler-block: Blackstone — heat-transformed deepslate that
+# forms the bulk of the chamber walls and floor.
+filler-block = "minecraft:blackstone"
+
+# filler-depth: Thick blackstone layer — the heat has
+# metamorphosed a substantial depth of surrounding rock.
+# 4 = deep thermal transformation zone.
+filler-depth = 4
+
+# underwater-block: Magma blocks line the bottom of the lava
+# lake itself (visible where obsidian crust forms).
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Lava, magma, and exposed ore veins dominate the features.
+[biome.features]
+# trees: No vegetation survives the extreme heat.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Nothing grows on magma.
+grass-density = 0.0
+
+# flower-density: No flowers survive.
+flower-density = 0.0
+
+# extra-features: Volcanic and mining features.
+#   lava_lake — the central lava body filling the chamber.
+#   magma_block_cluster — additional magma along the shoreline.
+#   obsidian_crust — where water meets lava at the edges.
+#   exposed_ore_vein — rare ores visible in chamber walls.
+extra-features = [
+    { feature = "lava_lake", density = 1.0 },
+    { feature = "magma_block_cluster", density = 8.0 },
+    { feature = "obsidian_crust", density = 4.0 },
+    { feature = "exposed_ore_vein", density = 6.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Heat-adapted hostile mobs dominate. No passive life survives.
+[biome.spawning]
+# magma_cube: The signature mob — bouncing magma creatures
+# that split into smaller cubes when killed. High weight
+# ensures they are the dominant threat.
+magma_cube = { weight = 20, min-group = 2, max-group = 4 }
+
+# zombie: Heat-resistant undead occasionally found in cooler
+# pockets along the chamber edges.
+zombie = { weight = 5, min-group = 1, max-group = 2 }
+
+# No passive mobs survive the extreme heat.
+passive-density-multiplier = 0.0

@@ -1,0 +1,155 @@
+# ============================================================
+#  Biome: Verdant Old-Growth Oak — Verdant Expanse
+# ============================================================
+# An ancient forest of massive 2x2 oak trees with thick trunk
+# systems and sprawling root networks. Canopy gaps allow shafts
+# of light to illuminate a mossy forest floor. These trees are
+# the oldest living things in the Verdant Expanse — their trunks
+# are wide enough to carve homes inside.
+#
+# Gameplay: Massive trees yield huge amounts of oak wood per tree.
+# The thick canopy creates darker conditions where hostile mobs
+# can persist during the day in shadowed areas. Root networks
+# form natural terrain features. Mossy cobblestone boulders
+# generate on the forest floor — free moss and cobblestone.
+# Excellent for treehouse builds using the massive canopy.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "old_growth_oak" indicates
+# mature, oversized oak trees — the Verdant equivalent of
+# vanilla's old_growth_spruce biome concept.
+id = "strata:verdant_old_growth_oak"
+
+# display-name: Player-facing name emphasizing the ancient,
+# large-scale nature of the trees.
+display-name = "Verdant Old-Growth Oak"
+
+# category: FOREST — this is a forest biome, albeit an unusually
+# dense and ancient one. FOREST category enables wolves, forest
+# ambient sounds, and woodland mansion eligibility.
+category = "FOREST"
+
+# zone: Verdant Expanse (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.5 = standard temperate. Old-growth oak forests
+# maintain stable internal temperatures due to their massive
+# canopy acting as thermal insulation.
+temperature = 0.5
+
+# humidity: 0.55 = moderately humid. The thick canopy and deep
+# leaf litter trap moisture, creating a consistently damp
+# microclimate. Matches verdant_oak_woodland's humidity.
+humidity = 0.55
+
+# continentalness: 0.4 = moderately inland. Old-growth forests
+# survive in stable inland climates sheltered from coastal storms.
+continentalness = 0.4
+
+# erosion: 0.5 = moderate erosion. The terrain has gentle contours
+# shaped by centuries of root growth and leaf decomposition.
+# Not flat, but not hilly — the ancient roots have stabilized
+# the soil against further erosion.
+erosion = 0.5
+
+# weirdness: 0.35 = notably unusual. Old-growth biomes are rare
+# and special — the high weirdness ensures they generate in
+# small, distinctive pockets. Finding one should feel like
+# discovering an ancient grove.
+weirdness = 0.35
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 6 = slightly elevated. Old-growth forests sit
+# on stable, well-drained terrain that has supported tree growth
+# for centuries. Higher than standard forest (5) due to
+# accumulated organic matter.
+base-height = 6
+
+# height-variation: 2.0 = moderate undulation. Root networks
+# and fallen ancient trunks create terrain bumps. The forest
+# floor is uneven but navigable.
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. Despite the dense canopy, enough light
+# filters through canopy gaps to support grass. Moss carpet
+# features supplement the ground cover.
+top-block = "minecraft:grass_block"
+
+# filler-block: Coarse dirt. Centuries of root growth and leaf
+# decomposition have created a rough, organic soil layer
+# distinct from standard smooth dirt.
+filler-block = "minecraft:coarse_dirt"
+
+# filler-depth: 4 = deep organic soil. Centuries of leaf litter
+# decomposition have built up thick layers of organic material
+# above the stone bedrock.
+filler-depth = 4
+
+# underwater-block: Dirt for small forest pools and streams.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Massive oaks are the centerpiece. "fancy_oak" generates
+# the large, spreading canopy trees. Regular "oak" fills in the
+# understory layer.
+#   density 6.0 = moderate overall count, but each tree is
+#   MUCH larger than in other forests. The visual density is
+#   high because each fancy_oak occupies a large footprint.
+trees = { types = ["fancy_oak", "oak"], density = 6.0 }
+
+# grass-density: 15.0 = sparse grass. The deep shade under the
+# ancient canopy limits ground-level grass growth. Ferns and
+# moss replace grass as the dominant ground cover.
+grass-density = 15.0
+
+# flower-density: 0.5 = very sparse flowers. Almost no sunlight
+# reaches the forest floor — only shade-tolerant species survive.
+flower-density = 0.5
+
+# extra-features: Ancient forest floor features.
+extra-features = [
+    # Moss carpet simulates the green, mossy forest floor.
+    { feature = "moss_carpet", density = 8.0 },
+    # Mossy cobblestone boulders on the forest floor — ancient,
+    # moss-covered rocks that add atmosphere and free resources.
+    { feature = "mossy_boulder", density = 3.0 },
+    # Ferns in the understory — shade-tolerant ground cover.
+    { feature = "fern", density = 12.0 },
+    { feature = "large_fern", density = 5.0 },
+    # Fallen logs from ancient trees that have finally toppled.
+    { feature = "fallen_log", density = 3.0 },
+    # Brown mushrooms thrive in the deep shade and decomposing wood.
+    { feature = "brown_mushroom", density = 5.0 },
+    { feature = "red_mushroom", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Ancient forest supports a diverse, dense wildlife population.
+[biome.spawning]
+# Wolves in large packs — the old-growth provides excellent
+# hunting territory with abundant prey and cover.
+wolf = { weight = 8, min-group = 3, max-group = 5 }
+# Foxes den in the root hollows of ancient trees.
+fox = { weight = 5, min-group = 1, max-group = 2 }
+# Spiders are more common — the dark canopy favors them.
+spider = { weight = 20, min-group = 1, max-group = 3 }

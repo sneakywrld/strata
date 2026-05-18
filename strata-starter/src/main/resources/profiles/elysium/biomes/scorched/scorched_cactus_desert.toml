@@ -1,0 +1,185 @@
+# ============================================================
+#  Biome: Cactus Desert — Scorched Badlands
+# ============================================================
+# An expansive sandy desert bristling with tall cacti of various
+# heights. The rolling dunes are dotted with dead bushes and the
+# occasional rabbit darting between the spiny columns. This is the
+# scorched zone's classic hot desert — punishing during the day with
+# relentless sun, and dangerous at night when husks emerge from
+# behind every cactus.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_cactus_desert"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Cactus Desert"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# DESERT activates the warm haze, sandy ambient sounds, and
+# desert-specific mob spawning behavior.
+category = "DESERT"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.95 = near maximum heat — this is one of
+# the hottest biomes in the scorched zone, with sand reaching
+# searing temperatures under direct sunlight.
+temperature = 0.95
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.7 = extremely dry, with virtually no
+# rainfall. Only cacti can extract enough moisture from deep
+# underground to survive.
+humidity = -0.7
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, far from any
+# moderating maritime influence.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.8 = highly eroded,
+# producing the gently rolling dune-like terrain characteristic
+# of sandy deserts.
+erosion = 0.8
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.0 = the standard variant, making this the default
+# desert biome that generates most frequently in the scorched zone.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 3.0 keeps the desert
+# just above sea level — low-lying sandy terrain between the higher
+# mesa formations.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 3.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 4.0 creates gentle rolling dunes — enough topography to feel
+# natural without creating obstacles for navigation.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 4.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Sand is the defining surface material of any classic desert —
+# fine-grained, shifting, and blinding under the sun.
+top-block = "minecraft:sand"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Sandstone forms naturally beneath sand deposits,
+# compacted over geological time into solid rock.
+filler-block = "minecraft:sandstone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 4 provides a thick sandstone layer that transitions
+# into normal stone generation below.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Sand continues the
+# desert palette for any rare water features.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.0 = no trees at all; cacti are the only tall features.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.0 = no grass survives the extreme heat
+# and total lack of soil moisture.
+grass-density = 0.0
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = far too hot and dry for any flowers.
+flower-density = 0.0
+
+# cactus-density: Cactus features per chunk. The defining
+# vegetation of this biome — tall columnar cacti in various heights
+# (1-3 blocks) that store water internally. 6.0 creates a dense
+# cactus field that gives the biome its name and forces players
+# to navigate carefully to avoid contact damage.
+cactus-density = 6.0
+
+# dead-bush-density: Dead bush features per chunk. Dry shrubs
+# scattered between the cacti, adding visual variety to the sand.
+# 2.0 provides moderate coverage without competing with the cacti.
+dead-bush-density = 2.0
+
+# sugar-cane-density: Sugar cane reeds per chunk. Extremely rare
+# in the desert, growing only where underground water seeps close
+# to the surface. 0.1 makes finding sugar cane a notable event.
+sugar-cane-density = 0.1
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The cactus desert supports a small ecosystem adapted to extreme
+# heat. Rabbits shelter in the shade of cacti during the day, while
+# husks emerge in force at night.
+
+# husk: The primary hostile threat, perfectly adapted to desert
+# conditions. They do not burn in sunlight and inflict Hunger.
+# weight: 18 reflects the husk's dominance in open desert terrain.
+husk = { weight = 18, min-group = 2, max-group = 5 }
+
+# rabbit: Desert rabbits that feed on cactus moisture and dead
+# brush. The gold coat variant is most common here.
+# weight: 10 makes rabbits the most visible passive mob.
+rabbit = { weight = 10, min-group = 2, max-group = 4 }
+
+# spider: Large spiders that hunt among the cacti at night.
+# The open terrain gives them clear paths to leap at players.
+# weight: 8 adds variety to the hostile spawn pool.
+spider = { weight = 8, min-group = 1, max-group = 2 }

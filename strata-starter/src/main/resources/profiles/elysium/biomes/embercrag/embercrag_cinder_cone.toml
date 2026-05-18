@@ -1,0 +1,155 @@
+# ============================================================
+#  Biome: Cinder Cone — Embercrag Volcanic
+# ============================================================
+# A small, steep-sided conical volcano with a lava-filled vent at
+# its peak. The slopes are composed entirely of loose scoria
+# (blackstone) fragments that shift and slide underfoot, making
+# ascent treacherous. The cone's symmetry is striking — a near-
+# perfect geometric form rising sharply from the surrounding
+# terrain. At the summit, a small lava pool bubbles and spits,
+# occasionally throwing embers into the sky. Cinder cones are
+# secondary volcanic features — parasitic vents on the flanks of
+# the larger volcanic complex. They are smaller than the main
+# crater but still formidable obstacles.
+#
+# Gameplay Notes:
+#   - The steep scoria slopes cause sliding — climbing requires patience.
+#   - The summit lava pool is small but deadly.
+#   - Blackstone (scoria) can be harvested in bulk on the slopes.
+#   - The cone provides excellent vantage points for surveying terrain.
+#   - Multiple cinder cones create a visually dramatic skyline.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_cinder_cone"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Cinder Cone"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.95 = extremely hot — the active lava vent at the
+# summit radiates intense heat down the cone's flanks.
+temperature = 0.95
+
+# humidity: -0.5 = very dry — the steep slopes shed all moisture,
+# and the volcanic heat prevents any accumulation.
+humidity = -0.5
+
+# continentalness: 0.7 = firmly inland — cinder cones form on the
+# flanks of larger volcanic structures deep in the interior.
+continentalness = 0.7
+
+# erosion: -0.3 = low erosion — the cone's steep, conical form is
+# maintained by ongoing volcanic deposition that adds material
+# faster than erosion removes it.
+erosion = -0.3
+
+# weirdness: 0.6 = notably unusual — cinder cones are distinctive
+# volcanic features that stand out from the surrounding terrain.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 25 = significantly elevated. The cinder cone rises
+# well above the surrounding volcanic plain, its conical form
+# creating a natural landmark.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 25
+
+# height-variation: 15 = high variation. The steep cone slopes
+# create dramatic relief from the base to the summit, with the
+# peak rising 15+ blocks above the base elevation.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Blackstone — representing the loose scoria fragments
+# that make up the cone's slopes. The dark, rough texture conveys
+# the cinder-like volcanic debris.
+top-block = "minecraft:blackstone"
+
+# filler-block: Polished blackstone — deeper in the cone, the
+# scoria has been compressed and fused by heat into denser,
+# smoother volcanic rock.
+filler-block = "minecraft:polished_blackstone"
+
+# filler-depth: 5 = deep volcanic layers. The cone is solid
+# volcanic material all the way through.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Magma block — the summit vent contains active
+# magma, and any liquid pools sit on magma substrate.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation on the steep, hot scoria slopes.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.0 = barren volcanic debris.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Summit lava vents, ember particle effects, and
+# loose scoria debris on the slopes.
+extra-features = [
+    { feature = "lava_pool", density = 1.0 },
+    { feature = "ember_particle_vent", density = 3.0 },
+    { feature = "magma_vein", density = 2.0 },
+    { feature = "blackstone_debris", density = 4.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The cinder cone's steep slopes and active vent make it hostile
+# territory. Magma cubes dominate the summit, while blazes patrol
+# the airspace above the lava vent.
+
+# magma_cube: Dominant on the upper slopes near the lava vent.
+# weight: 18 for a common presence around the summit.
+# min-group/max-group: Groups of 1-3.
+magma_cube = { weight = 18, min-group = 1, max-group = 3 }
+
+# blaze: Blazes hover above the summit vent, their fireballs
+# raining down on players attempting to climb.
+# weight: 8 for a consistent aerial threat.
+blaze = { weight = 8, min-group = 1, max-group = 2 }
+
+# skeleton: Skeleton archers patrol the lower slopes where they
+# have line-of-sight on approaching players.
+# weight: 6 for a secondary ranged threat.
+skeleton = { weight = 6, min-group = 1, max-group = 2 }

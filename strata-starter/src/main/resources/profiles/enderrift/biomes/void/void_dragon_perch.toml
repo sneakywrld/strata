@@ -1,0 +1,167 @@
+# ============================================================
+#  Biome: Void Dragon Perch — Void Islands
+# ============================================================
+# A massive end stone formation shaped like a crouching dragon,
+# rising high above the surrounding void. Whether carved by
+# wind, magic, or some ancient intelligence, the formation's
+# silhouette is unmistakably draconic — a long neck, folded
+# wings, and a crested head. This is a lore landmark, hinting
+# at the dragon's ancient dominion over the End. The extreme
+# height variation creates the dragon's vertical profile.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:void_dragon_perch"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Dragon Perch"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "void"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. -0.2 = slightly cold, the elevated perch is
+# exposed to void winds but retains a whisper of draconic warmth.
+temperature = -0.2
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. -0.5 = dry, the high altitude and exposed
+# position keep the formation arid.
+humidity = -0.5
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.4 = moderate, the formation has a solid
+# base but much of its height extends into open air.
+continentalness = 0.4
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. -0.7 = very rough, the dragon
+# shape requires extreme terrain variation with steep cliffs
+# and sharp ridges.
+erosion = -0.7
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 1.0 = maximum weirdness — a dragon-shaped natural formation is
+# the most bizarre geological feature in Enderrift.
+weirdness = 1.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 80 is very high —
+# the dragon perch towers above all surrounding terrain, making
+# it visible as a landmark from extreme distances.
+# Range: 0 to 256
+base-height = 80
+
+# height-variation: Controls terrain undulation. 25 is extreme —
+# the dragon's "head" rises far above the "body" base, creating
+# the dramatic silhouette that defines this formation.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 25
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — the natural material of the dragon formation.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Solid end stone throughout the formation.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 8 — maximum depth for this massive formation.
+# Range: 1 to 8
+filler-depth = 8
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 0.4 — sparse chorus clinging to the dragon's "scales," adding
+# organic detail to the stone formation.
+chorus-density = 0.4
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.3 — moderate flowering on the few exposed plants.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.3
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.008 — end rods appear at key points on the formation,
+# particularly around the "head" and "wing tips," giving the
+# dragon an ethereal glow.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.008
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.02 — crystals cluster around the "eyes" and "chest" area of
+# the dragon formation, suggesting draconic energy.
+# Range: 0.0 to 0.1
+crystal-chance = 0.02
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.5 — obsidian deposits appear at the base and along "claw"
+# formations, as if the dragon's influence darkened the stone.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.5
+
+# purpur-density: Purpur growth formations per chunk.
+# 0.03 — sparse purpur formations like old dragon scales.
+# Range: 0.0 to 0.3
+purpur-density = 0.03
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Heavily elevated. Endermen congregate on the dragon
+# perch in large numbers, as if drawn to the draconic lore energy.
+# The formation serves as a natural enderman gathering point.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 140, min-group = 2, max-group = 5 }
+
+# shulker: Rare presence. A few shulkers cling to the dragon's
+# "wings" and "neck," guarding the formation like sentinels.
+shulker = { weight = 3, min-group = 1, max-group = 1 }
+
+# endermite: Moderate presence at the base of the formation.
+endermite = { weight = 4, min-group = 1, max-group = 2 }

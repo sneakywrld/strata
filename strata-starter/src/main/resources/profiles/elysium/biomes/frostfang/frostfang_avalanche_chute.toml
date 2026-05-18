@@ -1,0 +1,114 @@
+# ============================================================
+#  Biome: Frostfang Avalanche Chute — Frostfang Peaks
+# ============================================================
+# A steep, narrow channel scarred down the mountainside
+# where avalanches regularly thunder through. The chute
+# is a chaotic mix of loose snow, gravel, broken stone,
+# and shattered timber — debris from previous slides that
+# stripped the slope bare. Fresh snow accumulates on the
+# upper slopes above the chute, promising future slides.
+# The terrain is dangerously unstable; gravel shifts
+# underfoot, and the steep grade makes controlled descent
+# nearly impossible. Splintered spruce trunks, snapped
+# like matchsticks by the force of past avalanches, litter
+# the debris field at the chute's base.
+#
+# Gameplay notes:
+#   - The most dangerous traversal biome in the Frostfang
+#     zone. The steep grade (height-variation=35) and loose
+#     surface create constant fall risk.
+#   - Gravel surface shifts when mined — sand/gravel
+#     physics can trigger cascades that bury players.
+#   - The debris field at the base contains scattered
+#     resources (wood from shattered trees, gravel for
+#     flint) but navigating to them is risky.
+#   - Faster to descend than climb — natural one-way
+#     route down the mountain, but hard to reverse.
+#   - The chute channels sound, making it hard to hear
+#     mob approaches over the noise of shifting debris.
+#   - Pairs with frostfang_snowy_peak above and
+#     frostfang_spruce_slope / frostfang_glacial_valley below.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_avalanche_chute"      # Unique registry ID
+display-name = "Frostfang Avalanche Chute"   # Shown in F3 debug & maps
+category = "MOUNTAIN"                        # Steep mountain hazard terrain
+zone = "frostfang"                           # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The moderate negative erosion creates
+# the steep slope. The slight positive weirdness places
+# the chute in unusual terrain folds — the narrow channel
+# shape requires specific terrain conditions. Medium
+# humidity feeds the snow accumulation that triggers
+# future avalanches.
+[biome.climate]
+temperature = -0.5          # Cold — snow accumulates on upper slopes
+humidity = 0.35             # Moderate moisture feeds snow buildup
+continentalness = 0.8       # Deep inland mountain face
+erosion = -0.5              # Low erosion — steep, uneroded chute walls
+weirdness = 0.2             # Slightly unusual — channeled terrain
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 40 places the chute at mid-mountain
+# elevation — it spans from the upper slopes down toward
+# the valleys. The very high height-variation of 35
+# creates the extreme steepness that defines the biome.
+# The top of the chute approaches 75 blocks above sea
+# level, while the debris fan at the base sits around 5.
+# This is the steepest terrain in the Frostfang zone.
+[biome.terrain]
+base-height = 40            # Mid-mountain — chute spans high to low
+height-variation = 35       # +/-35 blocks — extremely steep grade
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# The chute surface is gravel — loose, unstable debris
+# from previous avalanches. Below the gravel, cobblestone
+# represents the shattered rock base exposed by repeated
+# slides. The deep filler reflects the thick layer of
+# accumulated debris deposited by many avalanche cycles.
+[biome.surface]
+top-block = "minecraft:gravel"           # Loose avalanche debris surface
+filler-block = "minecraft:cobblestone"   # Shattered rock beneath debris
+filler-depth = 5                         # Deep debris accumulation
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Vegetation is sparse and damaged. The avalanche path
+# is too frequently scoured to support mature trees. A
+# few dead bushes and broken saplings cling to the chute
+# margins. The debris field at the base may contain
+# scattered spruce logs from trees destroyed by slides.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No standing trees — avalanches destroy them
+grass-density = 0.05                     # Trace vegetation on chute margins
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# The unstable terrain discourages most mob spawning.
+# Silverfish may emerge from the exposed stone in the
+# chute walls — a surprise threat when mining debris.
+# Standard hostile mobs spawn in the darkness of the
+# debris field where gravel overhangs create shadows.
+# No passive mobs — the terrain is too dangerous and
+# barren to support wildlife.
+[biome.spawning]
+# Silverfish in exposed stone — surprise mining hazard.
+# Standard hostile mobs in shadowed debris overhangs.
+# The steep terrain makes skeleton arrows especially
+# dangerous — they fire from above while players struggle
+# to climb the loose gravel slope.
+# No passive mobs — terrain too unstable.

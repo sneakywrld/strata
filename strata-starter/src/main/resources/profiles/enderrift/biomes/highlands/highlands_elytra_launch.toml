@@ -1,0 +1,143 @@
+# ============================================================
+#  Biome: Highlands Elytra Launch — End Highlands
+# ============================================================
+# The highest-altitude island in the entire End dimension —
+# a broad, elevated platform specifically suited for elytra
+# flight launches. The island rises well above the surrounding
+# highlands, its flat top providing a natural runway. End rods
+# mark the launch edge, their lights visible from below as
+# beacons guiding elytra pilots home. The void below stretches
+# for hundreds of blocks, giving launched players ample
+# altitude to glide to distant islands, end cities, and
+# unexplored regions. Firework rockets scattered in small
+# caches around the launch area suggest this location has
+# been used by many adventurers before.
+#
+# Gameplay notes:
+#   - HIGHEST base elevation in the entire End (base 100).
+#   - Natural elytra launch pad — maximum glide distance.
+#   - End rod edge markers for safe orientation.
+#   - Flat top serves as runway/landing strip.
+#   - Firework rocket caches for powered elytra flight.
+#   - Spectacular panoramic views of the End dimension.
+#   - Good waypoint marker visible from lower elevations.
+#   - Pairs with highlands_crystal_peak (high neighbor)
+#     and all other biomes (glide destination).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the high-altitude
+# elytra launch platform in the End highlands.
+id = "strata:highlands_elytra_launch"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Elytra Launch"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Highlands region.
+region = "highlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cold — the extreme altitude exposes the
+# island to the full chill of the void. -0.4 = the
+# coldest biome in the End highlands, reflecting the
+# thin atmosphere (or lack thereof) at this elevation.
+temperature = -0.4
+
+# humidity: Bone-dry — nothing at this altitude retains
+# moisture. 0.0 = absolutely arid.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.2 = slightly weird. The extreme elevation
+# is unusual but the island itself is straightforward —
+# a flat platform at high altitude. Not bizarre, just
+# remarkably high.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 100 — the HIGHEST terrain in the End
+# dimension. This extreme elevation gives elytra users
+# maximum potential energy for long-distance glides.
+# A launch from Y 100 can reach islands hundreds of
+# blocks away.
+base-height = 100
+
+# height-variation: 10 = moderate variation. The launch
+# platform itself is relatively flat, but the island
+# slopes on the sides create dramatic cliffs. The
+# variation ensures the top is usable while the edges
+# provide the altitude drop needed for launches.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — standard End surface. The
+# launch platform is unadorned end stone, providing a
+# clean runway.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — solid mass supporting the
+# elevated platform.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 5 = thick island body. The extreme
+# elevation requires substantial mass to look natural.
+# Range: 1 to 8.
+filler-depth = 5
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# End rod edge markers and sparse chorus plants. The
+# launch surface is kept mostly clear for takeoff runs.
+[biome.features]
+# end-specific: End rod edge markers and minimal
+# vegetation. The flat top must remain clear for elytra
+# launches — features are concentrated around the
+# perimeter rather than on the runway surface.
+trees = { types = ["chorus_tree"], density = 0.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Launch-specific decorations.
+#   end_rod_line — end rods along the island edges,
+#       marking the launch boundary and serving as
+#       visibility beacons for returning pilots.
+#   end_rod_lamppost — taller end rod structures at
+#       corners of the launch platform.
+extra-features = [
+    { feature = "end_rod_line", density = 3.0 },
+    { feature = "end_rod_lamppost", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Minimal mob presence — the extreme altitude and
+# end rod lighting reduce spawn rates.
+[biome.spawning]
+# enderman: Low presence — the combination of high
+# altitude, exposed terrain, and end rod lighting makes
+# this an unappealing spawn location. Players can
+# prepare for flights in relative safety.
+enderman = { weight = 15, min-group = 1, max-group = 2 }

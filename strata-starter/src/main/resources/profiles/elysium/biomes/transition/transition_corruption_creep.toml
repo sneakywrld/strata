@@ -1,0 +1,188 @@
+# ============================================================
+#  Biome: Corruption Creep — Transition Zone
+# ============================================================
+# The unsettling boundary where normal Overworld terrain begins
+# to succumb to the influence of the Shattered Expanse. End
+# stone patches erupt through the grass like tumors, their pale
+# yellow surfaces alien against the green. Fragments of chorus
+# plants — just stems, never fully grown — jut from cracks in
+# the ground. Purple particles drift lazily through the air,
+# and the skybox takes on a faint violet tint at the horizon.
+# The grass itself looks sickly, its texture dulled as if the
+# life is being drained from the earth. Players feel a growing
+# sense of wrongness as the corruption thickens — the Shattered
+# Expanse is reaching out, claiming new territory block by block.
+#
+# Gameplay notes:
+#   - End stone patches provide Ender-themed building material
+#     without entering the End dimension.
+#   - Chorus plant fragments cannot be harvested — decorative.
+#   - Purple particles are atmospheric — no gameplay effect.
+#   - Endermen spawn at elevated rates — Ender pearl farming.
+#   - Escalating difficulty: the deeper into the corruption,
+#     the more end stone and the more endermen.
+#   - Strong landmark: end stone patches visible from distance
+#     signal the Shattered zone boundary.
+#   - Gravity may feel unstable near large end stone patches.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Transition biomes use the
+# "transition_" prefix to mark them as boundary biomes.
+id = "strata:transition_corruption_creep"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Corruption Creep"
+
+# category: CUSTOM — no standard Minecraft biome category
+# accurately represents this alien corruption zone. CUSTOM
+# allows the biome to define its own rules for sky color,
+# ambient sounds, and mob spawning without inheriting
+# assumptions from any vanilla biome type.
+category = "CUSTOM"
+
+# zone: "transition" — sits between normal Overworld terrain
+# and the Shattered Expanse, representing the corruption's
+# advancing edge.
+zone = "transition"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# The corruption distorts normal climate readings. Temperature
+# and humidity are suppressed — the End's influence drains
+# vitality from the environment. High weirdness ensures this
+# biome only appears at the most anomalous noise coordinates.
+[biome.climate]
+# temperature: 0.1 = cool, lifeless. The End's influence
+# saps warmth from the terrain. The air feels still and cold,
+# as if the sun's heat cannot fully penetrate the corruption.
+temperature = 0.1
+
+# humidity: 0.2 = dry. Moisture is being pulled from the soil
+# as the corruption spreads. The sickly grass is dehydrated,
+# and no dew forms on surfaces within the corrupted zone.
+humidity = 0.2
+
+# continentalness: 0.4 = moderately inland. The corruption
+# can spread from any direction, but the Shattered Expanse
+# is typically positioned in the interior of the world map.
+continentalness = 0.4
+
+# erosion: 0.5 = moderate. The ground is cracking and
+# destabilizing as end stone pushes up from below. The normal
+# erosion patterns are disrupted by the alien material.
+erosion = 0.5
+
+# weirdness: 0.75 = very high. The corruption is an anomaly —
+# it should only appear in areas with strongly aberrant noise
+# values. This high weirdness restricts generation to rare
+# boundary zones where the Shattered Expanse's influence leaks.
+weirdness = 0.75
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5 = slightly elevated. The end stone intrusions
+# push the terrain upward slightly, creating subtle humps and
+# ridges where the alien material breaches the surface.
+# Range: -64.0 to 256.0
+base-height = 5
+
+# height-variation: 8 = significant variation. The terrain is
+# disrupted and uneven — end stone patches create raised
+# platforms while the surrounding normal ground sinks into
+# cracks and fissures. The landscape feels broken.
+# Range: 0.0 to 30.0
+height-variation = 8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# A mix of grass block and end stone. The top-block is still
+# grass, but extra-features overlay end stone patches to
+# represent the encroaching corruption.
+[biome.surface]
+# top-block: Grass block — still the primary surface, but
+# sickly and pale. The CUSTOM category prevents the normal
+# green tint, making the grass look drained and lifeless.
+# End stone patches are placed via extra-features.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt beneath the weakened grass. The soil is
+# normal below the surface — the corruption has not yet
+# penetrated deeply.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. The corruption is a
+# surface phenomenon so far — the deeper layers remain
+# unchanged.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: End stone lines any pools within the
+# corrupted zone — the water sits in alien stone basins.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# The defining features are end stone patches and chorus plant
+# fragments erupting through the otherwise normal terrain.
+[biome.features]
+# trees: Sparse, dying trees. The corruption kills trees
+# slowly — the canopy thins and leaves fall until only bare
+# trunks remain.
+#   types: "dead_oak" — leafless oak skeletons.
+#   density: 1.5 = sparse. Most trees have already died;
+#            only a few stripped trunks remain standing.
+#            Range: 0.0 to 30.0+
+trees = { types = ["dead_oak"], density = 1.5 }
+
+# grass-density: Reduced. The sickly grass is patchy and
+# thinning as the corruption advances.
+# Range: 0.0 to 100.0
+grass-density = 8.0
+
+# flower-density: Minimal. A few wilting flowers persist in
+# the least-corrupted areas.
+# Range: 0.0 to 15.0
+flower-density = 0.3
+
+# extra-features: End stone patches and chorus fragments are
+# the signature features that signal the Shattered Expanse's
+# proximity.
+extra-features = [
+    # End stone patches — alien material breaking through the surface.
+    { feature = "end_stone_patch", density = 5.0 },
+    # Chorus plant fragments — broken stems jutting from cracks.
+    { feature = "chorus_fragment", density = 2.0 },
+    # Dead bush clusters where the corruption has killed vegetation.
+    { feature = "dead_bush", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen are the dominant mob — their numbers increase as
+# the corruption thickens. Normal hostile mobs still appear
+# but are less common than in adjacent biomes.
+[biome.spawning]
+# Enderman: The signature mob of the corruption zone. They
+# appear at much higher rates than in normal biomes, drawn
+# by the End's influence bleeding into the Overworld.
+enderman = { weight = 20, min-group = 1, max-group = 3 }
+
+# Phantom: Circling above the corrupted zone at night, drawn
+# by the dimensional disturbance. They dive-bomb players who
+# have not slept.
+phantom = { weight = 6, min-group = 1, max-group = 2 }
+
+# Skeleton: Standard hostile mob — reduced compared to normal
+# biomes as the End's influence suppresses other undead types.
+skeleton = { weight = 5, min-group = 1, max-group = 2 }

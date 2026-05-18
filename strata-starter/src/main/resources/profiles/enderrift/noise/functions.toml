@@ -1,0 +1,95 @@
+# ============================================================
+#  Noise Functions — Enderrift (End)
+# ============================================================
+# End-specific noise functions for island placement, terrain
+# shape, and biome distribution.
+# ============================================================
+
+# -------------------------------------------------------
+# Island Placement
+# -------------------------------------------------------
+
+# Primary island placement noise. Determines where islands exist.
+[functions."strata:end_island"]
+type = "simplex"
+# Low frequency = large island clusters with wide void gaps.
+frequency = 0.002
+seed-offset = 9000
+[functions."strata:end_island".fractal]
+octaves = 4
+lacunarity = 2.0
+gain = 0.5
+
+# Island shape noise: 3D detail for island terrain surfaces.
+[functions."strata:end_shape"]
+type = "open_simplex_2"
+frequency = 0.02
+seed-offset = 9010
+[functions."strata:end_shape".fractal]
+octaves = 3
+lacunarity = 2.5
+gain = 0.4
+
+# -------------------------------------------------------
+# Biome Noises
+# -------------------------------------------------------
+
+# End temperature: biome variation across end islands.
+[functions."strata:end_temperature"]
+type = "simplex"
+frequency = 0.001
+seed-offset = 9100
+[functions."strata:end_temperature".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.5
+
+# End humidity: controls chorus density and vegetation.
+[functions."strata:end_humidity"]
+type = "simplex"
+frequency = 0.0012
+seed-offset = 9110
+[functions."strata:end_humidity".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.5
+
+# End weirdness: exotic biome selection.
+[functions."strata:end_weirdness"]
+type = "simplex"
+frequency = 0.0008
+seed-offset = 9120
+[functions."strata:end_weirdness".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.55
+
+# -------------------------------------------------------
+# Feature Noises
+# -------------------------------------------------------
+
+# Chorus placement noise.
+[functions."strata:chorus_density"]
+type = "simplex"
+frequency = 0.01
+seed-offset = 9200
+[functions."strata:chorus_density".fractal]
+octaves = 2
+lacunarity = 2.0
+gain = 0.5
+
+# Crystal formation noise.
+[functions."strata:end_crystal"]
+type = "cellular"
+frequency = 0.008
+seed-offset = 9210
+
+# End pillar noise: tall end stone formations.
+[functions."strata:end_pillar"]
+type = "ridged_multi"
+frequency = 0.005
+seed-offset = 9220
+[functions."strata:end_pillar".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.5

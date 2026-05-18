@@ -1,0 +1,170 @@
+# ============================================================
+#  Biome: Barrens Dark Monolith — Barrens Zone
+# ============================================================
+# A lone obsidian monolith rises from an otherwise barren end
+# stone island. The towering black spire dominates the skyline,
+# visible from vast distances across the void. Its origin is
+# unknown — volcanic remnant, ancient marker, or dimensional
+# scar. The surrounding terrain is flat and featureless, making
+# the monolith all the more imposing. High variation reflects
+# the spire's extreme vertical reach.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:barrens_dark_monolith"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Dark Monolith"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "barrens"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. -0.5 = notably cold, the obsidian monolith
+# seems to radiate a deep chill that suppresses ambient temperature.
+temperature = -0.5
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. -0.7 = very dry, standard barrens aridity.
+humidity = -0.7
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.5 = well inland — the monolith stands
+# at the center of its island, the stable core around which the
+# flat barrens extend.
+continentalness = 0.5
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate, 1.0 = flat. -0.4 = rough due to the monolith
+# itself — the flat base terrain contrasts sharply with the
+# towering vertical spire.
+erosion = -0.4
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.8 = very weird — a lone obsidian tower on a flat end stone
+# plain is one of the strangest sights in the barrens.
+weirdness = 0.8
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 55 is standard
+# barrens height for the flat base around the monolith.
+# Range: 0 to 256
+base-height = 55
+
+# height-variation: Controls terrain undulation. 25 is extremely
+# high — the monolith itself can reach 25+ blocks above the base
+# terrain, creating a single dramatic peak rising from flat ground.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 25
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Obsidian — the monolith's material dominates the surface. The
+# flat surrounding area is still end stone, but the generator uses
+# the terrain peaks (the monolith) as the primary surface, which
+# should be obsidian.
+top-block = "minecraft:obsidian"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. End stone beneath the obsidian cap — the monolith
+# is obsidian on the outside with end stone core, transitioning
+# to pure end stone at the base level.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 4 gives a reasonable transition depth.
+# Range: 1 to 8
+filler-depth = 4
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 0.0 — no chorus near the monolith. The obsidian presence and
+# whatever force created the spire suppress all plant growth.
+chorus-density = 0.0
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.0 — no chorus, no flowers.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.0
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.004 — sparse end rods near the monolith base, resembling
+# votive offerings or dimensional discharge points.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.004
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 1.5 — significant obsidian presence surrounding the monolith,
+# as if the same volcanic force that created the spire left
+# obsidian deposits across the surrounding terrain.
+# Range: 0.0 to 2.0
+obsidian-patches = 1.5
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.01 — occasional crystals where obsidian meets end stone,
+# formed by the same geological event that created the monolith.
+# Range: 0.0 to 0.1
+crystal-chance = 0.01
+
+# purpur-density: Purpur growth formations per chunk.
+# 0.0 — no purpur grows in the shadow of the dark monolith.
+# Range: 0.0 to 0.3
+purpur-density = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Elevated presence. Endermen seem drawn to the monolith,
+# congregating around its base as if in reverence or curiosity.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 120, min-group = 2, max-group = 4 }
+
+# shulker: No shulkers — the monolith is natural, not a structure.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Moderate presence. Endermites skitter around the
+# obsidian base.
+endermite = { weight = 3, min-group = 1, max-group = 2 }

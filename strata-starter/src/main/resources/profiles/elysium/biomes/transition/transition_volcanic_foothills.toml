@@ -1,0 +1,175 @@
+# ============================================================
+#  Biome: Volcanic Foothills — Transition Zone
+# ============================================================
+# The Scorched Badlands' terracotta layers fracture and darken
+# as the Embercrag Volcanic zone draws near. Red and orange
+# terracotta gives way to patches of blackstone and basalt.
+# Thin cracks in the ground glow faintly orange where lava
+# seeps close to the surface. The air shimmers with heat haze
+# and carries a faint sulfurous tang. Sparse, charred vegetation
+# clings to the remaining terracotta patches — everything else
+# has been baked away by volcanic heat. Occasional steam vents
+# hiss from fissures in the darkening rock.
+#
+# Gameplay notes:
+#   - Lava cracks pose a fire/fall hazard — watch your step.
+#   - Blackstone and basalt availability for building materials.
+#   - Magma blocks appear on the surface — bring boots.
+#   - Fire resistance potions recommended before proceeding
+#     into the Embercrag zone proper.
+#   - Gold ore spawns at elevated rates in the volcanic rock.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Transition biomes use the
+# "transition_" prefix to mark boundary biomes between zones.
+id = "strata:transition_volcanic_foothills"
+
+# display-name: Human-readable name shown in F3 debug, minimaps,
+# and /strata biome info commands.
+display-name = "Volcanic Foothills"
+
+# category: BADLANDS — the terracotta base and warm amber sky
+# tint from the Scorched zone persist, though darkening. BADLANDS
+# preserves the arid atmosphere and warm color palette that
+# defines this region.
+category = "BADLANDS"
+
+# zone: "transition" — bridging Scorched Badlands and Embercrag
+# Volcanic zone, representing the geological gradient from
+# sedimentary terracotta to igneous volcanic rock.
+zone = "transition"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Positioned between Scorched (very hot, very dry) and Embercrag
+# (extreme heat, volcanic). Temperature is near-maximum and
+# humidity remains deeply negative.
+[biome.climate]
+# temperature: Very hot — approaching volcanic levels. 0.85 =
+# almost as intense as the Scorched zone (0.9), with radiant
+# heat from the underground magma adding to the surface
+# temperature.
+temperature = 0.85
+
+# humidity: Extremely dry — any moisture evaporates instantly
+# near the volcanic vents. -0.35 = parched conditions typical
+# of the interface between badlands and active volcanic terrain.
+humidity = -0.35
+
+# continentalness: Inland — volcanic zones form deep in
+# continental interiors. 0.65 = firmly inland, consistent with
+# the geological setting of a volcanic field.
+continentalness = 0.65
+
+# erosion: Low-moderate — the blackstone and basalt resist
+# erosion better than terracotta. 0.3 = some weathering from
+# thermal cycling (rapid heating and cooling cracks rock) but
+# the igneous base is tougher than sedimentary badlands.
+erosion = 0.3
+
+# weirdness: Slightly elevated — volcanic transitions are less
+# common than other boundary biomes. 0.15 = mildly unusual
+# terrain features like steam vents and lava cracks.
+weirdness = 0.15
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Rising terrain — the foothills climb from the
+# flat badlands toward the volcanic peaks. 10 = moderate
+# elevation, the beginning of the upward climb into Embercrag.
+# Range: -64.0 to 256.0
+base-height = 10
+
+# height-variation: Significant — the transition between rock
+# types creates an uneven, broken landscape. 10 = substantial
+# variation with ridges of blackstone jutting through eroding
+# terracotta, and collapsed lava tubes creating depressions.
+# Range: 0.0 to 30.0
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The surface is transitioning from terracotta to blackstone.
+# The top layer is still badlands terracotta but darkened and
+# cracked.
+[biome.surface]
+# top-block: Brown terracotta — darker than the red/orange of
+# the Scorched zone, representing the scorching effect of
+# proximity to volcanic activity. The surface is heat-darkened.
+top-block = "minecraft:brown_terracotta"
+
+# filler-block: Blackstone — volcanic rock is replacing the
+# sedimentary layers. Below the terracotta veneer, the geology
+# has shifted to igneous material.
+filler-block = "minecraft:blackstone"
+
+# filler-depth: Deep — the volcanic rock extends well below
+# the surface. 4 = a thick basaltic layer has intruded beneath
+# the surviving terracotta cap.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Magma block — any water that collects in
+# depressions sits atop magma, bubbling and hissing. Players
+# take damage from stepping on submerged magma blocks.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Almost completely barren. The volcanic heat has sterilized
+# most of the surface. Only the hardiest dead vegetation and
+# volcanic features remain.
+[biome.features]
+# trees: None — nothing grows this close to the volcanic zone.
+# The heat is too intense for any living wood.
+trees = { types = [], density = 0.0 }
+
+# grass-density: None — the baked ground supports no grass.
+# 0.0 = completely barren surface.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: None — no flowering plants survive.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# dead-bush-density: Sparse charred remnants — the last traces
+# of vegetation, blackened and brittle. 2.0 = scattered across
+# the terracotta patches.
+dead-bush-density = 2.0
+
+# extra-features: Volcanic surface features — lava cracks,
+# magma blocks, and basalt columns emerging from the ground.
+extra-features = [
+    { feature = "lava_crack", density = 2.0 },
+    { feature = "magma_patch", density = 1.5 },
+    { feature = "basalt_column", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The volcanic heat drives away most life. Only heat-adapted
+# hostile mobs thrive here. Magma cubes begin appearing as a
+# preview of the Embercrag zone's dangers.
+[biome.spawning]
+# Husks: Desert undead that survive the extreme heat. They
+# continue from the Scorched zone.
+husk = { weight = 12, min-group = 1, max-group = 3 }
+
+# Magma cubes: Small magma cubes emerge from lava cracks.
+# A preview of the Embercrag zone's magma cube swarms.
+magma_cube = { weight = 6, min-group = 1, max-group = 2 }
+
+# No passive mobs — the volcanic environment is inhospitable
+# to all normal wildlife.
+passive-density-multiplier = 0.0

@@ -1,0 +1,146 @@
+# ============================================================
+#  Biome: Verdant Cherry Blossom — Verdant Expanse
+# ============================================================
+# Ethereal cherry trees with soft pink canopies and delicate
+# petal particles drifting on the breeze. The ground is carpeted
+# in soft grass with pink petals scattered across it. The overall
+# atmosphere is romantic and serene — warm light filtering through
+# translucent pink leaves.
+#
+# Gameplay: Cherry wood is a unique pink-toned building material.
+# Cherry leaves produce petal particles, adding ambient beauty.
+# The biome's gentle terrain and warm palette make it a popular
+# location for decorative builds, gardens, and player homes.
+# Bees are attracted to the cherry blossoms. This is the rarest
+# and most visually distinctive biome in the Verdant zone.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "cherry_blossom" uses the
+# vanilla cherry tree feature introduced in Minecraft 1.20.
+id = "strata:verdant_cherry_blossom"
+
+# display-name: Player-facing name evoking Japanese sakura groves.
+display-name = "Verdant Cherry Blossom"
+
+# category: FOREST — cherry groves are a forest subcategory.
+# FOREST enables wolf spawning, forest ambient sounds, and
+# structure generation rules.
+category = "FOREST"
+
+# zone: Verdant Expanse (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.55 = warm. Cherry blossoms bloom in warm spring
+# conditions. The slight warmth creates a "perpetual spring"
+# atmosphere in the biome.
+temperature = 0.55
+
+# humidity: 0.45 = moderate moisture. Cherry trees need adequate
+# water but well-drained soil. Not too wet, not too dry —
+# the Goldilocks zone for blossom production.
+humidity = 0.45
+
+# continentalness: 0.4 = moderately inland. Cherry groves form
+# in sheltered inland areas with stable spring-like weather.
+continentalness = 0.4
+
+# erosion: 0.65 = moderately high erosion. The terrain is gently
+# rolling — soft hills and shallow valleys that complement the
+# romantic aesthetic. Not perfectly flat, not dramatically hilly.
+erosion = 0.65
+
+# weirdness: 0.4 = high weirdness. Cherry blossom biomes are the
+# RAREST in the Verdant zone. The high weirdness value ensures
+# they only generate in very specific, uncommon noise pockets.
+# Finding a cherry grove should feel special and memorable.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 8 = moderately elevated. Cherry groves sit on
+# gentle hillsides, elevated enough for scenic views but not
+# so high as to feel mountainous. The elevation adds to the
+# ethereal, elevated-garden aesthetic.
+base-height = 8
+
+# height-variation: 2.0 = gentle rolling terrain. Soft hills
+# create varied sightlines through the pink canopy, with
+# natural amphitheaters and overlook points.
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The green grass provides contrast
+# against the pink cherry canopy above. Pink petal ground
+# cover is handled by the cherry tree feature's particle system.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt — standard fertile soil supporting the
+# cherry tree root systems.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard topsoil depth. Cherry trees have
+# moderate root systems.
+filler-depth = 3
+
+# underwater-block: Dirt for any small ornamental-looking ponds
+# within the grove.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Cherry trees are the exclusive tree type.
+#   "cherry" = vanilla cherry trees (1.20+) with pink leaves
+#   and petal particle effects. Defined in features/trees.toml.
+#   density 8.0 = moderately dense. Thick enough to create a
+#   continuous pink canopy overhead, but spaced enough to walk
+#   between trunks and appreciate individual trees.
+trees = { types = ["cherry"], density = 8.0 }
+
+# grass-density: 30.0 = moderate grass coverage. The partially
+# open cherry canopy allows good light penetration for grass.
+grass-density = 30.0
+
+# flower-density: 5.0 = moderate flower coverage. Pink-toned
+# flowers complement the cherry blossom color palette.
+flower-density = 5.0
+
+# extra-features: Cherry grove atmosphere and complementary flora.
+extra-features = [
+    # Pink tulips match the cherry blossom color scheme.
+    { feature = "pink_tulip", density = 3.0 },
+    # Peonies add larger pink flower accents at ground level.
+    { feature = "peony", density = 2.0 },
+    # Bee nests in cherry trees — bees love the blossoms.
+    # Higher density because cherry trees have 5% nest chance
+    # (defined in trees.toml) plus this additional placement.
+    { feature = "bee_nest", density = 2.0 },
+    # Pink petals on the ground (cherry_leaves ground scatter).
+    { feature = "pink_petals", density = 6.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Gentle fauna matching the serene atmosphere.
+[biome.spawning]
+# Bees are abundant — cherry blossoms are excellent nectar sources.
+bee = { weight = 12, min-group = 2, max-group = 4 }
+# Rabbits hop through the petal-strewn grass.
+rabbit = { weight = 8, min-group = 2, max-group = 3 }
+# Sheep graze peacefully beneath the pink canopy.
+sheep = { weight = 8, min-group = 2, max-group = 4 }

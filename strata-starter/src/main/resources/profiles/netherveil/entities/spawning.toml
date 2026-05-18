@@ -1,0 +1,96 @@
+# ============================================================
+#  Nether Entity Spawning — Netherveil
+# ============================================================
+# Default mob spawning rules for the nether dimension.
+# Individual biomes can override these tables.
+# ============================================================
+
+# -------------------------------------------------------
+# Hostile Mobs (dominant in nether)
+# -------------------------------------------------------
+
+[[spawns]]
+mob = "minecraft:zombified_piglin"
+weight = 100
+min-group = 2
+max-group = 4
+category = "HOSTILE"
+
+[[spawns]]
+mob = "minecraft:ghast"
+weight = 50
+min-group = 1
+max-group = 1
+category = "HOSTILE"
+[spawns.conditions]
+# Ghasts need open space to spawn.
+min-space-above = 4
+
+[[spawns]]
+mob = "minecraft:magma_cube"
+weight = 20
+min-group = 1
+max-group = 4
+category = "HOSTILE"
+
+[[spawns]]
+mob = "minecraft:blaze"
+weight = 10
+min-group = 1
+max-group = 2
+category = "HOSTILE"
+[spawns.conditions]
+# Blazes primarily spawn in fortress biomes (overridden per-biome).
+min-light = 0
+
+[[spawns]]
+mob = "minecraft:wither_skeleton"
+weight = 5
+min-group = 1
+max-group = 3
+category = "HOSTILE"
+[spawns.conditions]
+# Wither skeletons primarily in fortress biomes.
+max-light = 7
+
+[[spawns]]
+mob = "minecraft:hoglin"
+weight = 15
+min-group = 2
+max-group = 4
+category = "HOSTILE"
+
+[[spawns]]
+mob = "minecraft:piglin"
+weight = 30
+min-group = 2
+max-group = 4
+category = "HOSTILE"
+
+[[spawns]]
+mob = "minecraft:piglin_brute"
+weight = 2
+min-group = 1
+max-group = 1
+category = "HOSTILE"
+
+[[spawns]]
+mob = "minecraft:enderman"
+weight = 5
+min-group = 1
+max-group = 2
+category = "HOSTILE"
+
+# -------------------------------------------------------
+# Passive Mobs (very few in nether)
+# -------------------------------------------------------
+
+[[spawns]]
+mob = "minecraft:strider"
+weight = 60
+min-group = 1
+max-group = 2
+category = "PASSIVE"
+[spawns.conditions]
+# Striders spawn on lava surfaces.
+requires-lava = true

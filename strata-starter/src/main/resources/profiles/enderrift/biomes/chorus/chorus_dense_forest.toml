@@ -1,0 +1,177 @@
+# ============================================================
+#  Biome: Chorus Dense Forest — Chorus Domain
+# ============================================================
+# Maximum-density chorus plant growth creating a towering,
+# maze-like forest of purple stems. Navigation requires
+# breaking through chorus stalks or finding narrow gaps between
+# trunks. The canopy above blocks the End sky, casting deep
+# shadows on the end stone floor. Chorus fruit is abundant
+# but the dense growth makes combat and orientation difficult.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:chorus_dense_forest"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Dense Chorus Forest"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "chorus"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. 0.1 = slightly warm, the dense chorus mass
+# traps a pocket of slightly elevated temperature.
+temperature = 0.1
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. 0.2 = slightly moist for the End, the dense
+# chorus growth creates a micro-environment with trace humidity.
+humidity = 0.2
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.6 = deep inland, the densest chorus
+# growth occurs in the stable, protected interior of islands.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. 0.5 = moderately flat, the terrain
+# beneath the forest is gently rolling but the chorus makes it
+# feel more complex to traverse.
+erosion = 0.5
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.0 = the standard chorus biome — dense growth is the expected
+# state of mature chorus forests.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 62 is moderate —
+# the chorus domain sits at comfortable island altitude.
+# Range: 0 to 256
+base-height = 62
+
+# height-variation: Controls terrain undulation. 5 produces gentle
+# rolling beneath the chorus canopy — the forest floor has subtle
+# elevation changes but no dramatic drops.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — the standard forest floor beneath the chorus canopy.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Solid end stone.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 4 is standard depth.
+# Range: 1 to 8
+filler-depth = 4
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 10.0 — maximum density. This is the densest chorus biome in
+# Enderrift, creating an impenetrable wall of purple stems that
+# players must hack through or navigate around.
+chorus-density = 10.0
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.35 — moderate flowering. The competition for light means not
+# every plant can sustain a flower, but the sheer number of plants
+# ensures flowers are still plentiful overall.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.35
+
+# chorus-height-min: Minimum height for chorus plants in this biome.
+# 8 — taller minimum than global default, the dense competition
+# forces plants to grow tall to reach light.
+# Range: 3 to 15
+chorus-height-min = 8
+
+# chorus-height-max: Maximum height for chorus plants.
+# 22 — full global maximum, the largest plants tower overhead.
+# Range: 10 to 30
+chorus-height-max = 22
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.003 — sparse rods hidden among the chorus trunks, barely
+# visible in the dense growth.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.003
+
+# purpur-density: Purpur growth formations per chunk.
+# 0.08 — moderate purpur growths appear at the base of chorus
+# clusters, a symbiotic formation.
+# Range: 0.0 to 0.3
+purpur-density = 0.08
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.0 — no crystals in the dense forest.
+# Range: 0.0 to 0.1
+crystal-chance = 0.0
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — no obsidian under the chorus canopy.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Standard presence but the dense chorus makes
+# teleportation unpredictable — endermen frequently teleport
+# into chorus stems and destroy them.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 100, min-group = 1, max-group = 4 }
+
+# shulker: No shulkers — natural biome, not a structure.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Low presence; the dense chorus makes movement
+# difficult even for small mobs.
+endermite = { weight = 2, min-group = 1, max-group = 1 }

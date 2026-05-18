@@ -1,0 +1,109 @@
+# ============================================================
+#  Biome: Frostfang Hot Spring — Frostfang Peaks
+# ============================================================
+# A startling pocket of warmth in the frozen wilderness.
+# Geothermally heated water bubbles up through cracks in
+# the rock, forming steaming pools that never freeze despite
+# the surrounding cold. The heat supports an oasis of lush
+# vegetation — ferns, grass, and even flowers grow around
+# the spring edges where warm mist keeps the air above
+# freezing. Steam rises constantly from the water surface,
+# creating a fog that contrasts dramatically with the snow-
+# covered terrain just metres away. The boundary between
+# green and white is sharp and surreal.
+#
+# Gameplay notes:
+#   - The only warm biome in the Frostfang zone. Standing
+#     near the springs removes Slowness and freezing effects
+#     from adjacent biomes — a natural rest stop.
+#   - Lush vegetation provides food resources (sweet berries,
+#     crops can grow) unavailable elsewhere in the zone.
+#   - The warm water can be used for farming — sugar cane
+#     and wheat are viable near the spring edges.
+#   - Steam fog reduces visibility, creating ambush risk
+#     despite the otherwise hospitable terrain.
+#   - High weirdness (0.8) makes hot springs very rare —
+#     finding one is a significant discovery.
+#   - Pairs with frostfang_snowfield and frostfang_spruce_slope
+#     surrounding the spring in stark contrast.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_hot_spring"           # Unique registry ID
+display-name = "Frostfang Hot Spring"        # Shown in F3 debug & maps
+category = "MOUNTAIN"                        # Mountain geothermal feature
+zone = "frostfang"                           # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The positive temperature is unique in
+# the Frostfang zone — geothermal heat creates a warm
+# micro-climate. Very high humidity reflects the constant
+# steam. The high weirdness value (0.8) ensures these
+# springs are rare and feel like a genuine discovery.
+[biome.climate]
+temperature = 0.1           # Above freezing — geothermal warmth
+humidity = 0.7              # Very humid — constant steam from springs
+continentalness = 0.7       # Inland mountain setting
+erosion = 0.5               # Moderate erosion — water-carved basin
+weirdness = 0.8             # Very high weirdness — extremely rare
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 8 places the springs at moderate low
+# elevation — geothermal vents tend to form in valleys
+# and depressions where fault lines reach the surface.
+# The low height-variation of 3 creates gentle terrain
+# around the pools, making this biome easy to navigate
+# and build in.
+[biome.terrain]
+base-height = 8             # Low depression — geothermal basin
+height-variation = 3        # +/-3 blocks — gentle terrain around pools
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Grass grows right up to the spring edges — a shocking
+# sight in the frozen Frostfang zone. Below the grass,
+# normal dirt (not coarse) provides fertile soil enriched
+# by mineral-rich geothermal water. The moderate filler
+# depth reflects the warm, moist soil conditions.
+[biome.surface]
+top-block = "minecraft:grass_block"      # Lush grass — unique in Frostfang
+filler-block = "minecraft:dirt"          # Fertile mineral-enriched soil
+filler-depth = 4                         # Deep warm soil around springs
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# The hot spring supports the densest vegetation in the
+# Frostfang zone. Oak and birch trees grow near the
+# springs where warmth and moisture are sufficient — the
+# only non-spruce trees in the entire zone. Dense grass
+# and ferns carpet the ground between the pools.
+[biome.features]
+trees = { types = ["oak", "birch"], density = 0.3 }  # Warm-climate trees — rare here
+grass-density = 0.7                      # Dense grass and ferns near springs
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# The warmth attracts wildlife from surrounding biomes.
+# Sheep, cows, and pigs spawn here — the only place in
+# the Frostfang zone where standard passive mobs appear.
+# This makes the hot spring a critical resource node for
+# food and materials. Frogs may inhabit the warm pools.
+# Hostile mobs follow standard rules but are less common
+# due to the open, well-lit terrain.
+[biome.spawning]
+# Passive mobs (sheep, cows, pigs) spawn here — unique
+# in the Frostfang zone and critically valuable.
+# Frogs may inhabit warm water pools.
+# Standard hostile mobs at night — reduced by light.
+# The steam fog can hide creeper approaches.

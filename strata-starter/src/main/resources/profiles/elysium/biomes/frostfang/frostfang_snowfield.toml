@@ -1,0 +1,104 @@
+# ============================================================
+#  Biome: Frostfang Snowfield — Frostfang Peaks
+# ============================================================
+# A vast, flat expanse of deep snow stretching to the
+# horizon. The terrain is featureless save for occasional
+# lone spruce trees standing as dark sentinels against the
+# white. Blizzard-like particle effects sweep across the
+# surface, reducing visibility and creating a sense of
+# isolation. The snow is deep enough to slow movement,
+# and navigation without landmarks is genuinely difficult.
+# Strays emerge from the whiteout without warning, their
+# frozen arrows striking before players can pinpoint the
+# source.
+#
+# Gameplay notes:
+#   - The most disorienting biome in the Frostfang zone.
+#     Without a compass or coordinates, players can easily
+#     become lost in the featureless white.
+#   - Blizzard particles reduce visibility significantly.
+#   - Strays are the primary threat — they blend into the
+#     white landscape and attack from range.
+#   - The flat terrain makes this biome easy to traverse
+#     but exposed to threats from every direction.
+#   - Lone spruce trees serve as critical navigation aids
+#     and emergency wood sources.
+#   - Pairs with frostfang_spruce_slope at the edges and
+#     frostfang_frozen_lake in depressions.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_snowfield"            # Unique registry ID
+display-name = "Frostfang Snowfield"         # Shown in F3 debug & maps
+category = "TAIGA"                           # Snowy biome classification
+zone = "frostfang"                           # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The high erosion value creates the flat,
+# featureless terrain. The cold temperature and lower
+# humidity produce the dry, powdery snow conditions.
+# Neutral weirdness means snowfields generate commonly
+# throughout the zone at appropriate elevations.
+[biome.climate]
+temperature = -0.6          # Very cold — snow never melts
+humidity = 0.3              # Dry air — fine powdery snow
+continentalness = 0.7       # Inland mountain region
+erosion = 0.7               # Very high erosion — flat, wind-scoured
+weirdness = 0.0             # Neutral — common formation
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 5 places the snowfield at low elevation
+# — these are the flat lowlands of the Frostfang zone,
+# filling the spaces between mountain formations. The
+# minimal height-variation of 2 creates the flat, table-
+# like surface that defines the biome's character.
+[biome.terrain]
+base-height = 5             # Low-lying flat terrain
+height-variation = 2        # +/-2 blocks — almost perfectly flat
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Deep snow covers everything. The snow block surface sits
+# atop packed snow (represented by more snow blocks as
+# filler) before reaching the frozen dirt beneath. The
+# generous filler depth reflects millennia of snow
+# accumulation on this wind-sheltered flat.
+[biome.surface]
+top-block = "minecraft:snow_block"       # Deep snow surface
+filler-block = "minecraft:snow_block"    # Compacted snow layers beneath
+filler-depth = 4                         # Deep snow accumulation
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Sparse lone spruce trees are the only vertical features
+# in the snowfield. They generate at very low density —
+# each one is a significant landmark. Minimal grass pokes
+# through the snow in rare sheltered spots near tree bases.
+[biome.features]
+trees = { types = ["spruce"], density = 0.02 }   # Rare lone sentinel spruce
+grass-density = 0.02                     # Trace grass near tree bases only
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Strays are the defining hostile mob — they spawn more
+# frequently here than in other Frostfang biomes and
+# blend into the white landscape. Rabbits (white variant)
+# provide the only passive mob presence, camouflaged
+# against the snow. The open terrain means encounters
+# start at long range — good for archery, bad for melee.
+[biome.spawning]
+# Strays spawn at elevated rates — the signature threat.
+# White rabbits are camouflaged in the snow.
+# Standard hostile mobs in darkness.
+# No other passive mobs — too exposed and barren.

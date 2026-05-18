@@ -1,0 +1,134 @@
+# ============================================================
+#  Biome: Whispering Ancient Woods — Whispering Woodlands
+# ============================================================
+# A primeval forest of towering giant trees — 2x2 mega spruce
+# and massive oaks whose trunks are wider than houses. Hanging
+# vines drape from every branch, mossy cobblestone boulders litter
+# the forest floor, and crumbling stone ruins hint at a forgotten
+# civilization. The air feels thick with age and mystery.
+#
+# Gameplay Notes:
+#   - Giant trees provide excellent wood yields per harvest.
+#   - Mossy boulders can be mined for mossy cobblestone.
+#   - Ruins may contain loot chests and mob spawners.
+#   - Podzol spawns naturally under mega spruce trees.
+#   - The uneven root systems create natural parkour.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_ancient_woods"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Ancient Woods"
+
+# category: Broad classification used for biome grouping and feature selection.
+# FOREST — old-growth variant within the Whispering zone.
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Slightly cool — ancient forests retain moisture and shade.
+temperature = 0.45
+# humidity: High — centuries of decomposing leaves create rich damp soil.
+humidity = 0.7
+# continentalness: Mid-inland — typical inland forest positioning.
+continentalness = 0.5
+# erosion: Slightly lower than neutral — mildly undulating terrain with
+# gentle hills and dips carved by ages of root growth and erosion.
+erosion = 0.45
+# weirdness: Slightly positive — the ancient trees and ruins mark this
+# as a subtly unusual variant of the default woodland.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Moderately elevated forest floor. The ancient root systems
+# and accumulated leaf litter have raised the ground over millennia.
+base-height = 70
+
+# height-variation: Gentle rolling terrain. The massive root networks
+# create small hillocks and depressions across the forest floor.
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Podzol — the natural surface under old-growth coniferous forests.
+# Formed by centuries of acidic needle and leaf decomposition.
+top-block = "minecraft:podzol"
+
+# filler-block: Coarse dirt — compacted, root-tangled soil beneath podzol.
+filler-block = "minecraft:coarse_dirt"
+
+# filler-depth: Standard 3-block depth before hitting stone.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Mix of 2x2 mega spruce and large fancy oaks.
+# Mega spruce provides the towering canopy pillars.
+# Fancy oaks fill mid-story gaps with spreading branches.
+# density 10 is high but not as extreme as the dark forest — ancient
+# trees are huge and spaced farther apart.
+trees = { types = ["mega_spruce", "fancy_oak"], density = 10 }
+
+# grass-density: Moderate ground cover — some sunlight filters through
+# the irregular canopy gaps between the giant trunks.
+grass-density = 4
+
+# flower-density: Very low — the podzol and shade suppress flowering plants.
+flower-density = 1.0
+
+# mushrooms: Thrive in the damp shade and rich decomposing organic matter.
+mushrooms = { brown = 6, red = 3 }
+
+# vines: Hanging vines drape from branches and trunks. High density
+# creates the overgrown, ancient atmosphere.
+vines = { enabled = true, density = 8 }
+
+# boulders: Mossy cobblestone boulders scattered on the forest floor.
+# These are 2-4 block clusters of mossy_cobblestone.
+boulders = { block = "minecraft:mossy_cobblestone", density = 3 }
+
+# ruins: Small stone brick structures partially buried and overgrown.
+# These reference structure templates — see structures/structures.toml.
+ruins = { enabled = true, density = 1 }
+
+# fallen-logs: Giant decaying trunks add horizontal obstacles.
+fallen-logs = { enabled = true, density = 3 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Moderate hostile increase — the canopy provides partial shade, but
+# the ancient woods are not as oppressively dark as the dark forest.
+hostile-density-multiplier = 1.1
+
+# Wolves roam the ancient woods in larger packs.
+wolf-weight-bonus = 20
+
+# Passive mobs graze in the clearings between giant trunks.
+passive-density-multiplier = 0.7

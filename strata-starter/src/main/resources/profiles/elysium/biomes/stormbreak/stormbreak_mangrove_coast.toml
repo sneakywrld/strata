@@ -1,0 +1,90 @@
+# ============================================================
+#  Biome: Stormbreak Mangrove Coast — Stormbreak Coast
+# ============================================================
+# The boundary where swampland meets the open sea. Tangled
+# mangrove roots arch above brackish water, creating a dense,
+# labyrinthine network of waterways and mud flats. The canopy
+# is thick and low, filtering sunlight into a greenish haze.
+# Mud blocks and mangrove roots dominate the terrain, and the
+# water is shallow but murky — hiding both treasure and danger
+# beneath the surface.
+#
+# Gameplay notes:
+#   - Mangrove wood and propagules are the primary resources.
+#   - Mud blocks can be converted to clay with pointed
+#     dripstone — valuable renewable resource.
+#   - Dense root systems create natural cover for PvP or
+#     mob-avoidance strategies.
+#   - Transitions from stormbreak_sandy_beach or coral_cove
+#     into inland swamp biomes.
+#   - Frogs and slimes spawn here, providing froglight and
+#     slimeball farming opportunities.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_mangrove_coast"      # Unique registry ID
+display-name = "Stormbreak Mangrove Coast"   # Shown in F3 debug & maps
+category = "SWAMP"                           # Swamp category — wetland biome
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Warm and very humid — the most moisture-heavy biome in the
+# Stormbreak zone. The positive weirdness helps it appear
+# in specific transitional pockets where swamp meets coast.
+[biome.climate]
+temperature = 0.65          # Warm — tropical swampland
+humidity = 0.75             # Very humid — standing water everywhere
+continentalness = -0.05     # Coastal edge — where land meets sea
+erosion = 0.3               # Moderate erosion — muddy, soft ground
+weirdness = 0.2             # Unusual — rare transitional biome
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# At sea level with minimal variation. The terrain is mostly
+# flat mud flats and shallow water channels between root
+# systems.
+[biome.terrain]
+base-height = 0             # At sea level — tidal mangrove zone
+height-variation = 2        # Gentle undulation — mud mounds, channels
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Mud is the primary surface block, replacing dirt/grass.
+# Mangrove roots extend from mud into the water. Beneath
+# the mud sits clay, then stone.
+[biome.surface]
+top-block = "minecraft:mud"              # Thick coastal mud surface
+filler-block = "minecraft:clay"          # Clay deposits under the mud
+filler-depth = 3                         # 3 blocks of mud/clay
+underwater-block = "minecraft:mud"       # Muddy waterway bottoms
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Dense mangrove trees with propagating roots are the
+# signature feature. Thick ground-level vegetation including
+# moss carpets and lily pads on the water surface.
+[biome.features]
+trees = { types = ["mangrove"], density = 0.7 }  # Dense mangrove forest
+grass-density = 0.5                               # Thick undergrowth and ferns
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Frogs are the signature passive mob — warm froglight variant
+# if temperature supports it. Slimes spawn at higher rates
+# in the swamp-like conditions. Tropical fish in the brackish
+# channels.
+[biome.spawning]
+# Frogs spawn on mud near water — warm variant (pearlescent froglight).
+# Slimes spawn at elevated rates in swamp conditions.
+# Tropical fish in shallow brackish waterways.
+# Witches may spawn at night — swamp-style hostile behaviour.
+# Drowned in deeper channels beneath the mangrove canopy.

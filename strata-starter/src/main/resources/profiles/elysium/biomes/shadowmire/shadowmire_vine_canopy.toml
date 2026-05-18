@@ -1,0 +1,171 @@
+# ============================================================
+#  Biome: Vine Canopy — Shadowmire Swamps
+# ============================================================
+# An elevated swamp forest where the trees grow tall enough to form
+# a continuous canopy 15-20 blocks above the ground. Every branch,
+# trunk, and leaf cluster trails dense curtains of vines that hang
+# all the way to the forest floor, creating an impenetrable green
+# curtain in every direction. The undergrowth is perpetually dark —
+# so dark that hostile mobs spawn around the clock beneath the vine
+# cover. Cave spiders have colonized the upper canopy, spinning
+# webs between the vine curtains and dropping on unsuspecting
+# travelers below. Moving through this biome means constantly
+# breaking or pushing through vine walls.
+#
+# Gameplay Notes:
+#   - Vine curtains block visibility and movement — bring shears.
+#   - Cave spiders inflict poison — bring milk or antidotes.
+#   - The canopy creates 24/7 hostile mob spawns at ground level.
+#   - Vines can be climbed for canopy-level escape routes.
+#   - Elevated terrain provides drier ground than lowland swamp.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_vine_canopy"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Vine Canopy"
+
+# category: The broad Minecraft biome category this belongs to.
+# SWAMP maintains the zone's murky atmosphere and ambient sounds.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.6 = mild warmth — the dense canopy traps heat
+# beneath it, creating a humid greenhouse effect at ground level.
+temperature = 0.6
+
+# humidity: 0.9 = near-saturated — the vine curtains trap moisture,
+# and transpiration from the dense vegetation keeps the air thick
+# with water vapor at all times.
+humidity = 0.9
+
+# continentalness: 0.6 = moderately inland — the vine canopy grows
+# on slightly elevated ground within the swamp basin.
+continentalness = 0.6
+
+# erosion: 0.55 = moderate erosion — the elevated terrain and dense
+# root systems resist erosion better than the lowland swamp, creating
+# gentle hills beneath the canopy.
+erosion = 0.55
+
+# weirdness: 0.25 = slightly unusual — the vine canopy is a natural
+# variant that generates where the terrain is elevated enough to
+# support tall forest growth within the swamp.
+weirdness = 0.25
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 2 = two blocks above sea level. The vine canopy
+# occupies the slightly higher ground within the swamp, where the
+# soil is firm enough to support tall trees with deep root systems.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 2
+
+# height-variation: 4 = moderate-to-significant variation. The
+# terrain has rolling hills beneath the canopy, with depressions
+# that collect water and elevated ridges where the largest trees
+# anchor their roots.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 4
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Moss block — the dense canopy and constant moisture
+# have created a thick carpet of moss over the entire forest floor.
+# This gives the undergrowth a lush, overgrown appearance.
+top-block = "minecraft:moss_block"
+
+# filler-block: Rooted dirt — the massive tree root systems permeate
+# the soil for several blocks below the mossy surface.
+filler-block = "minecraft:rooted_dirt"
+
+# filler-depth: 3 = moderate root zone depth. The roots of the
+# canopy trees are extensive but not as deep as the bayou cypress.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Mud at the bottom of any pools that form in
+# the depressions between tree root systems.
+underwater-block = "minecraft:mud"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Dense, tall trees with extensive vine growth. Dark oak and
+# jungle-style trees create the high canopy, while smaller oaks
+# fill the understory.
+#   types: Tree definition keys from features/trees.toml.
+#   density: 12.0 = very dense canopy — the interlocking crowns
+#            create the signature light-blocking effect.
+trees = { types = ["vine_dark_oak", "vine_jungle", "vine_oak"], density = 12.0 }
+
+# grass-density: 1.0 = almost none — the ground is too dark for
+# grass. Only ferns and moss survive beneath the vine curtains.
+# Range: 0.0 to 100.0.
+grass-density = 1.0
+
+# flower-density: 0.0 = no flowers — zero sunlight reaches the
+# forest floor.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Dense vine curtains are the defining feature, with
+# cobweb clusters from cave spiders and moss carpets on every surface.
+extra-features = [
+    { feature = "hanging_vine", density = 15.0 },
+    { feature = "cobweb_cluster", density = 3.0 },
+    { feature = "moss_carpet", density = 5.0 },
+    { feature = "hanging_roots", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The vine canopy is one of the most dangerous biomes in the
+# Shadowmire. Cave spiders drop from the canopy, standard hostile
+# mobs spawn 24/7 in the permanent darkness, and the vine curtains
+# make it impossible to see threats coming.
+
+# cave_spider: The signature threat — they nest in the upper canopy
+# and drop down on players, inflicting poison.
+# weight: 18 makes them the most common hostile encounter.
+# min-group/max-group: Nests produce groups of 2-4.
+cave_spider = { weight = 18, min-group = 2, max-group = 4 }
+
+# zombie: Standard undead thrive in the perpetual darkness beneath
+# the canopy.
+# weight: 10 for a consistent melee threat.
+zombie = { weight = 10, min-group = 1, max-group = 3 }
+
+# creeper: Creepers are nearly invisible among the vine curtains —
+# their approach is masked by the dense vegetation.
+# weight: 8 for a devastating surprise threat.
+creeper = { weight = 8, min-group = 1, max-group = 1 }
+
+# hostile-density-multiplier: The permanent darkness beneath the
+# canopy allows hostile mobs to spawn at all hours. This multiplier
+# increases the overall hostile spawn rate to reflect that.
+hostile-density-multiplier = 1.5

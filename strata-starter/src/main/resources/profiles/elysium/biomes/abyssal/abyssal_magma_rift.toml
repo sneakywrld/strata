@@ -1,0 +1,171 @@
+# ============================================================
+#  Biome: Abyssal Magma Rift — Abyssal Depths
+# ============================================================
+# A deep, jagged crack torn through the bedrock where magma
+# seeps up from below the world. The rift is narrow and
+# vertically oriented — a slash wound in the earth's crust
+# that glows hellish orange from the lava pooling at its base.
+# Magma blocks line the walls, their surfaces pulsing with
+# heat, and lava drips from the ceiling in searing streams
+# that hiss as they hit standing pools. Blackstone and basalt
+# mix with the deepslate walls, and rare ancient debris —
+# the remnants of a Nether bleedthrough — can be found
+# embedded in the hottest zones near the lava line. The heat
+# is overwhelming: fire damage ticks near magma surfaces,
+# and the air shimmers with convection currents.
+#
+# Gameplay notes:
+#   - Most dangerous Abyssal biome — fire, lava, and falls.
+#   - Ancient debris is the primary high-value resource.
+#   - Fire Resistance potions are strongly recommended.
+#   - Magma blocks deal contact damage; water bucket essential.
+#   - Vertical rift geometry means fall damage is a constant
+#     threat — bridges and scaffolding required.
+#   - Pairs with abyssal_lava_chamber for volcanic themes and
+#     abyssal_deepslate_labyrinth for deep-zone progression.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal registry.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:abyssal_magma_rift"
+
+# display-name: Human-readable name shown in F3 debug overlay,
+# minimap plugins, and /strata biome info commands.
+display-name = "Magma Rift"
+
+# category: CAVE — underground biome with cave ambient sounds,
+# no sky light, and cave-specific feature placement.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "CAVE"
+
+# zone: Parent zone key from zones/zones.toml. The abyssal zone
+# is Y-based (Y -64 to 63) rather than distance-based, so this
+# biome generates underground regardless of distance from spawn.
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values position this biome within the multi-noise
+# climate system. The magma rift has extreme temperature and
+# inverted humidity — scorching dry heat from below.
+[biome.climate]
+# temperature: Near-maximum heat from magma exposure. The
+# rift radiates furnace-level warmth into surrounding stone.
+# 0.9 = scorching; fire damage zones near magma surfaces.
+temperature = 0.9
+
+# humidity: Negative — the extreme heat evaporates all
+# moisture. The air is parched and crackling dry.
+# -0.4 = arid volcanic environment, zero condensation.
+humidity = -0.4
+
+# continentalness: Neutral — magma rifts form as deep
+# geological fractures independent of surface geography.
+# 0.5 = mid-range, no continental placement bias.
+continentalness = 0.5
+
+# erosion: Negative — the rift walls are hard volcanic
+# rock, basalt, and blackstone — resistant to erosion.
+# -0.3 = very erosion-resistant, jagged but stable walls.
+erosion = -0.3
+
+# weirdness: Moderate positive — magma rifts are uncommon
+# but not exceedingly rare; volcanic geology occurs in
+# clusters throughout the deep underground.
+# 0.55 = moderately unusual, a notable discovery.
+weirdness = 0.55
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Average Y-level of the rift floor.
+# -58 = near-bedrock depth, the deepest biome floor in the
+# Abyssal zone. Lava pools sit just above the void.
+base-height = -58
+
+# height-variation: Minimal — the rift is a narrow vertical
+# slash, not a wide cavern. Height variation is constrained
+# by the crack-like geometry.
+# 8 = tight vertical range for the rift floor; the walls
+# extend far above.
+height-variation = 8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Volcanic materials dominate — magma blocks, blackstone,
+# and basalt replace the usual stone and deepslate.
+[biome.surface]
+# top-block: Magma block floor — the rift's defining
+# surface. Deals contact damage and emits dim orange light.
+top-block = "minecraft:magma_block"
+
+# filler-block: Blackstone beneath the magma — Nether-
+# adjacent volcanic rock, darker and harder than deepslate.
+filler-block = "minecraft:blackstone"
+
+# filler-depth: Thick volcanic layer — the magma rift has
+# deeply altered the surrounding geology.
+# 4 = substantial volcanic rock replacement zone.
+filler-depth = 4
+
+# underwater-block: Lava replaces water in the rift's pools.
+# Obsidian forms where rare water contact occurs at edges.
+underwater-block = "minecraft:obsidian"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# The rift's features are volcanic hazards and rare rewards —
+# lava flows, magma deposits, and precious ancient debris.
+[biome.features]
+# trees: No vegetation survives near magma.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Nothing grows in the volcanic heat.
+grass-density = 0.0
+
+# flower-density: No flowers survive the extreme temperature.
+flower-density = 0.0
+
+# extra-features: Magma rift volcanic features.
+#   lava_drip — streams of lava dripping from the ceiling,
+#     creating searing curtains across the rift width.
+#   magma_cluster — dense magma block deposits on walls and
+#     ledges, glowing orange and dealing contact damage.
+#   ancient_debris — extremely rare Nether-origin ore found
+#     only in the hottest zones; the biome's ultimate reward.
+#   basalt_column — volcanic basalt pillars rising from the
+#     lava pools, serving as precarious stepping stones.
+extra-features = [
+    { feature = "lava_drip", density = 10.0 },
+    { feature = "magma_cluster", density = 8.0 },
+    { feature = "ancient_debris", density = 1.5 },
+    { feature = "basalt_column", density = 6.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The magma rift spawns fire-resistant mobs that thrive in
+# the volcanic heat. Hostile and dangerous.
+[biome.spawning]
+# magma_cube: Native lava-dwelling slimes that bounce
+# across magma surfaces, splitting into smaller cubes.
+magma_cube = { weight = 20, min-group = 1, max-group = 3 }
+
+# blaze: Rare surface-world blaze spawns near the hottest
+# zones — evidence of the Nether bleedthrough.
+blaze = { weight = 5, min-group = 1, max-group = 1 }
+
+# skeleton: Wither skeletons' non-Nether cousins — standard
+# skeletons adapted to the heat, patrolling basalt ledges.
+skeleton = { weight = 10, min-group = 1, max-group = 2 }

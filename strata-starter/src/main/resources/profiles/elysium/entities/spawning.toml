@@ -1,0 +1,194 @@
+# ============================================================
+#  Entity Spawning Configuration — Elysium Overworld
+# ============================================================
+# Default mob spawning rules. These apply globally; individual
+# biomes and zones can override these with their own tables.
+#
+# Each spawn rule specifies:
+#   - mob: The entity type (minecraft:namespace)
+#   - weight: Relative spawn chance (higher = more common)
+#   - min-group / max-group: Pack size range
+#   - category: PASSIVE, HOSTILE, WATER_CREATURE, WATER_AMBIENT, AMBIENT
+#   - conditions: Light level, block type, Y range, time of day
+# ============================================================
+
+# -------------------------------------------------------
+# Passive Mobs
+# -------------------------------------------------------
+
+[[spawns]]
+mob = "minecraft:cow"
+weight = 8
+min-group = 2
+max-group = 4
+category = "PASSIVE"
+[spawns.conditions]
+# surface: Must spawn on the surface (not in caves).
+surface = true
+# light-level: Minimum light for spawning.
+min-light = 9
+
+[[spawns]]
+mob = "minecraft:sheep"
+weight = 12
+min-group = 2
+max-group = 4
+category = "PASSIVE"
+[spawns.conditions]
+surface = true
+min-light = 9
+
+[[spawns]]
+mob = "minecraft:pig"
+weight = 10
+min-group = 2
+max-group = 4
+category = "PASSIVE"
+[spawns.conditions]
+surface = true
+min-light = 9
+
+[[spawns]]
+mob = "minecraft:chicken"
+weight = 10
+min-group = 2
+max-group = 4
+category = "PASSIVE"
+[spawns.conditions]
+surface = true
+min-light = 9
+
+[[spawns]]
+mob = "minecraft:rabbit"
+weight = 4
+min-group = 2
+max-group = 3
+category = "PASSIVE"
+[spawns.conditions]
+surface = true
+min-light = 9
+
+# -------------------------------------------------------
+# Hostile Mobs
+# -------------------------------------------------------
+
+[[spawns]]
+mob = "minecraft:zombie"
+weight = 100
+min-group = 1
+max-group = 4
+category = "HOSTILE"
+[spawns.conditions]
+# max-light: Hostile mobs need darkness.
+max-light = 0
+
+[[spawns]]
+mob = "minecraft:skeleton"
+weight = 80
+min-group = 1
+max-group = 4
+category = "HOSTILE"
+[spawns.conditions]
+max-light = 0
+
+[[spawns]]
+mob = "minecraft:creeper"
+weight = 100
+min-group = 1
+max-group = 2
+category = "HOSTILE"
+[spawns.conditions]
+max-light = 0
+
+[[spawns]]
+mob = "minecraft:spider"
+weight = 100
+min-group = 1
+max-group = 3
+category = "HOSTILE"
+[spawns.conditions]
+max-light = 0
+
+[[spawns]]
+mob = "minecraft:enderman"
+weight = 10
+min-group = 1
+max-group = 2
+category = "HOSTILE"
+[spawns.conditions]
+max-light = 0
+
+[[spawns]]
+mob = "minecraft:witch"
+weight = 5
+min-group = 1
+max-group = 1
+category = "HOSTILE"
+[spawns.conditions]
+max-light = 0
+
+[[spawns]]
+mob = "minecraft:slime"
+weight = 10
+min-group = 1
+max-group = 2
+category = "HOSTILE"
+[spawns.conditions]
+# Slimes spawn below Y=40 in specific chunks, or in swamp biomes.
+max-y = 40
+
+# -------------------------------------------------------
+# Ambient Mobs
+# -------------------------------------------------------
+
+[[spawns]]
+mob = "minecraft:bat"
+weight = 10
+min-group = 1
+max-group = 3
+category = "AMBIENT"
+[spawns.conditions]
+# Bats only spawn underground.
+max-y = 60
+max-light = 3
+
+# -------------------------------------------------------
+# Water Mobs
+# -------------------------------------------------------
+
+[[spawns]]
+mob = "minecraft:squid"
+weight = 10
+min-group = 1
+max-group = 4
+category = "WATER_CREATURE"
+
+[[spawns]]
+mob = "minecraft:cod"
+weight = 15
+min-group = 3
+max-group = 6
+category = "WATER_CREATURE"
+
+[[spawns]]
+mob = "minecraft:salmon"
+weight = 15
+min-group = 1
+max-group = 5
+category = "WATER_CREATURE"
+
+[[spawns]]
+mob = "minecraft:tropical_fish"
+weight = 25
+min-group = 3
+max-group = 8
+category = "WATER_AMBIENT"
+
+[[spawns]]
+mob = "minecraft:glow_squid"
+weight = 5
+min-group = 1
+max-group = 2
+category = "WATER_CREATURE"
+[spawns.conditions]
+max-y = 30

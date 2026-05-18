@@ -1,0 +1,149 @@
+# ============================================================
+#  Biome: Warped Heights — Warped Domain
+# ============================================================
+# A vertically stretched variant of the warped forest where the
+# huge fungi have grown to extraordinary heights, their stems
+# reaching from floor to ceiling in unbroken columns of warped
+# wood. The canopy merges with the nether ceiling itself,
+# creating a seamless transition from fungal growth to bedrock.
+# Twisting vines spiral along the full height of these colossal
+# stems, providing a dizzying vertical highway from ground to
+# ceiling. The vertical scale is breathtaking — looking up
+# from the nylium floor, the fungi disappear into the blue-green
+# particle haze far above. Shroomlight clusters are scattered
+# along the stems at various heights, creating a pillar of
+# glowing dots ascending into the darkness. The endermen here
+# exploit the full vertical space, teleporting to any elevation.
+#
+# Gameplay notes:
+#   - Extreme vertical traversal via twisting vines.
+#   - Ceiling access without pillaring — ride vines up.
+#   - Endermen teleport to any height — hard to escape.
+#   - Warped wood harvesting from floor to ceiling columns.
+#   - Fall damage risk from vine climbing — bring Feather Falling.
+#   - Strategic base location — build platforms on tall stems.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The warped heights is the
+# tallest warped variant, with fungi reaching the nether ceiling.
+id = "strata:warped_heights"
+
+# display-name: Human-readable name for player displays.
+display-name = "Warped Heights"
+
+# category: NETHER — nether environment with extreme vertical
+# fungal growth filling the entire cavern height.
+category = "NETHER"
+
+# zone: Part of the warped zone — the most vertically dramatic
+# area within the warped domain.
+zone = "warped"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cool — the towering fungi create significant
+# updrafts that circulate cooler air from the ceiling.
+#   0.25 = cool nether environment from vertical air circulation.
+temperature = 0.25
+
+# humidity: Very high — the massive surface area of floor-to-
+# ceiling fungi produces extreme organic material output.
+#   0.85 = very high humidity from towering fungal biomass.
+humidity = 0.85
+
+# continentalness: Positive — the heights biome spans the full
+# vertical range, favoring tall cavern spaces.
+#   0.5 = elevated terrain preference for maximum height.
+continentalness = 0.5
+
+# erosion: Low — the dense vertical stems create cluttered
+# terrain at every elevation.
+#   0.2 = obstructed vertical space with fungal columns.
+erosion = 0.2
+
+# weirdness: High — floor-to-ceiling fungal growth is an
+# extreme and visually striking formation.
+#   0.6 = highly unusual vertical fungal structures.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard floor — the impressiveness is in
+# what grows upward, not the ground elevation.
+#   40 = standard nether floor level.
+base-height = 40
+
+# height-variation: Low at ground level — the floor is
+# relatively even, with vertical complexity above.
+#   3.0 = gentle ground undulation beneath the tall stems.
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Warped nylium — the root base for the enormous
+# floor-to-ceiling fungi.
+top-block = "minecraft:warped_nylium"
+
+# filler-block: Netherrack beneath the nylium.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Extremely tall warped fungi reaching the nether ceiling.
+# These are the tallest organic structures in the Netherveil.
+#   8.0 = high density of colossal, ceiling-reaching fungi.
+trees = { types = ["warped_fungus_huge", "warped_fungus_colossal"], density = 8.0 }
+
+# grass-density: Warped roots and sprouts at the base of
+# the towering stems.
+#   0.5 = moderate ground cover beneath the columns.
+grass-density = 0.5
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Heights-specific features emphasizing vertical scale.
+#   twisting_vines — extremely long vines spiraling up the full
+#     height of floor-to-ceiling stems.
+#   shroomlight_cluster — scattered along stems at all heights.
+#   warped_fungus_small — small fungi on the ground floor.
+#   nether_sprouts — teal vegetation around stem bases.
+extra-features = [
+    { feature = "twisting_vines", density = 14.0 },
+    { feature = "shroomlight_cluster", density = 4.0 },
+    { feature = "warped_fungus_small", density = 4.0 },
+    { feature = "nether_sprouts", density = 5.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen exploit the vertical space, teleporting freely
+# across all elevations.
+[biome.spawning]
+# enderman: High density across all vertical levels. The tall
+# structures give endermen maximum teleportation range, making
+# them extremely difficult to escape or farm.
+enderman = { weight = 22, min-group = 1, max-group = 4 }
+
+# strider: Rare striders near ground-level lava.
+strider = { weight = 2, min-group = 1, max-group = 1 }

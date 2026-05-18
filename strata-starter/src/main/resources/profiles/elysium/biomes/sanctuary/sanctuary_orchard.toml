@@ -1,0 +1,155 @@
+# ============================================================
+#  Biome: Sanctuary Orchard — Sanctuary Zone
+# ============================================================
+# Neat rows of oak and cherry trees on gentle slopes, their canopies
+# buzzing with bees. Flower beds grow between the rows. A cultivated,
+# idyllic landscape that rewards exploration with honey and fruit.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal generator reference.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_orchard"
+
+# display-name: Human-readable name shown in F3 debug, /strata info,
+# and zone-entry messages.
+display-name = "Sanctuary Orchard"
+
+# category: FOREST because the tree density is high enough to
+# qualify as light woodland. Enables forest ambient sounds (birdsong,
+# rustling) that suit the orchard atmosphere.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "FOREST"
+
+# zone: Generates only within the sanctuary zone (0-1500 blocks
+# from spawn).
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate. Moderate humidity and erosion place the
+# orchard on gently sloped, well-watered land.
+[biome.climate]
+# temperature: 0.5 = warm. Ideal fruit-growing weather. Matches
+# the sanctuary zone's consistent temperate feel.
+temperature = 0.5
+
+# humidity: 0.5 = moderate moisture. Trees need adequate water.
+# Same as the grove, which the orchard resembles thematically.
+humidity = 0.5
+
+# continentalness: 0.3 = inland. Consistent with the rest of the
+# sanctuary zone for natural edge blending.
+continentalness = 0.3
+
+# erosion: 0.7 = gently rolling. The same as the meadow, giving
+# soft slopes that the orderly tree rows drape over. Not flat
+# enough to compete with farmland for placement.
+erosion = 0.7
+
+# weirdness: 0.15 = slight variant. Enough offset from the meadow
+# (0.0) and grove (0.1) to carve out its own climate niche without
+# being too "weird" for a calm biome.
+weirdness = 0.15
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5.0 = slightly elevated above the meadow. Orchards
+# on gentle hillsides benefit from drainage — a real-world practice
+# that prevents root rot.
+# Range: -64.0 to 256.0
+base-height = 5.0
+
+# height-variation: 2.0 = soft rolling terrain. Gentle enough for
+# easy navigation but with enough contour to create scenic hillside
+# orchards.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The orchard floor is maintained grass,
+# like a well-tended grove.
+top-block = "minecraft:grass_block"
+
+# filler-block: Rich dirt represents the fertile orchard soil.
+# Standard dirt keeps compatibility with tree growth mechanics.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 4 = deeper soil than default. Represents the
+# well-cultivated, deep-rooted orchard earth that has been enriched
+# over time.
+# Range: 1 to 8
+filler-depth = 4
+
+# underwater-block: Sand for any small irrigation pools at the
+# orchard's edge.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: A mix of oak and cherry trees — the orchard's hallmark.
+# Cherry trees provide pink petals and visual variety. Oak trees
+# can have apples (via sapling/loot mechanics) and bee nests.
+#   types: "oak" = standard fruit-bearing oak, "cherry" = cherry
+#          blossom tree with pink leaves and petals.
+#   density: 5.0 = well-spaced orchard rows. Dense enough to feel
+#            cultivated but with clear ground between trees for
+#            walking and gathering.
+#   spacing: Minimum blocks between trees. 4 creates the illusion
+#            of planted rows rather than random forest growth.
+trees = { types = ["oak", "cherry"], density = 5.0, spacing = 4 }
+
+# grass-density: 4.0 = moderate lawn-like grass beneath the trees.
+# Trimmed and tidy compared to wild meadow grass.
+grass-density = 4.0
+
+# flower-density: 4.0 = generous flower beds between tree rows.
+# Flowers attract bees to pollinate the orchard, making this a
+# functional ecosystem as well as a pretty one.
+flower-density = 4.0
+
+# flower-types: Bee-attracting flowers. Poppies, dandelions, and
+# tulips are bright and colorful, complementing the pink cherry
+# blossoms overhead.
+flower-types = ["poppy", "dandelion", "tulip_pink", "tulip_red", "oxeye_daisy"]
+
+# bee-nest-bonus: Multiplier applied to the tree config's
+# bee-nest-chance for trees in this biome. 3.0 triples the base
+# chance, making bee nests very common in orchard trees.
+# Range: 0.0 (no nests) to 5.0 (very dense nesting)
+bee-nest-bonus = 3.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The orchard is a bee-rich biome. Passive mobs graze between rows.
+
+# bee: The signature mob of the orchard. Very high weight and groups
+# produce visible swarms buzzing between flowers and nests.
+# Bee nests in trees provide honey and honeycomb.
+bee = { weight = 15, min-group = 2, max-group = 4 }
+
+# rabbit: Rabbits hop between rows nibbling on fallen petals.
+# Moderate presence adds life without dominating.
+rabbit = { weight = 6, min-group = 2, max-group = 3 }
+
+# sheep: Small flocks graze the orchard grass. Lower weight because
+# the orchard focus is bees and trees, not livestock.
+sheep = { weight = 6, min-group = 2, max-group = 3 }
+
+# cow: A few cows wandering the orchard for a pastoral touch.
+cow = { weight = 5, min-group = 1, max-group = 2 }

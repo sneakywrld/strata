@@ -1,0 +1,157 @@
+# ============================================================
+#  Biome: Crystal Spires — The Shattered Reach
+# ============================================================
+# Towering formations of amethyst and purple-hued crystal erupt from
+# the ground like the bones of some buried titan. The spires resonate
+# with a deep, harmonic hum that players can feel in their chest —
+# the sound of dimensional energy crystallized into solid form. Light
+# refracts through the translucent pillars, casting prismatic purple
+# patterns across the landscape. The crystals are beautiful, but they
+# are not passive: proximity triggers resonance effects, and the
+# creatures drawn to them are fiercely territorial.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier for generator lookups, region maps,
+# and biome-transition definitions.
+id = "strata:shattered_crystal_spires"
+
+# Human-readable display name for debug overlays and admin tools.
+display-name = "Crystal Spires"
+
+# CUSTOM category — bespoke generation with tall crystal structure
+# placement. No vanilla biome equivalent.
+category = "CUSTOM"
+
+# Part of the Shattered Reach endgame zone. The Crystal Spires
+# represent crystallized dimensional energy — corruption made solid.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.1, cold. The crystals absorb ambient heat, leaving
+# the surrounding air sharp and frigid. Breath mists in the purple
+# half-light.
+temperature = 0.1
+
+# Humidity — 0.3, moderate. Condensation forms on crystal surfaces,
+# creating a perpetual sheen of moisture that catches and scatters
+# light.
+humidity = 0.3
+
+# Continentalness — 0.5, interior landmass. Crystal Spires form in
+# geologically stable areas where the dimensional energy had time
+# to crystallize rather than shatter the terrain.
+continentalness = 0.5
+
+# Erosion — -0.6, notably negative. The crystals themselves resist
+# erosion, but the surrounding terrain has been carved away by
+# resonance vibrations, creating deep grooves and exposed surfaces
+# around each spire base.
+erosion = -0.6
+
+# Weirdness — 0.7, high but not maximum. The biome is alien and
+# beautiful rather than reality-breaking. It reads as "wrong" but
+# in an awe-inspiring way rather than a terrifying one.
+weirdness = 0.7
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — 20 blocks above sea level. The ground sits at a
+# moderate elevation; the drama comes from the spires reaching far
+# above, not from the base terrain itself.
+base-height = 20
+
+# Height variation — 40 blocks. The spires themselves account for
+# most of this variation, reaching 30-40 blocks above the ground
+# floor while valleys between them dip down significantly.
+height-variation = 40
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — amethyst_block. The ground is a solid sheet of
+# crystallized dimensional energy. Walking on it produces a faint
+# chiming sound (handled by the biome's ambient audio layer).
+top-block = "minecraft:amethyst_block"
+
+# Filler block — end_stone beneath the amethyst crust. The crystal
+# growth sits atop the same ender substrate found throughout the
+# Shattered Reach.
+filler-block = "minecraft:end_stone"
+
+# Filler depth — 3 blocks of end_stone. The amethyst layer is a
+# surface phenomenon; dig past it and you hit the ender foundation.
+filler-depth = 3
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Crystal spires — the defining feature. Tall (20-40 block) columns
+# of amethyst_block, amethyst_cluster, and budding_amethyst, tapering
+# to points. Generated with randomized lean angles for organic feel.
+crystal-spires = true
+
+# Amethyst geode pockets — smaller, hollow crystal formations at
+# ground level containing budding amethyst and amethyst clusters.
+# Serve as harvestable resource nodes.
+geode-pockets = true
+
+# Resonance hum particles — ambient note particles and vibration
+# effects radiating outward from each spire, intensifying near the
+# tips. Visual representation of the dimensional harmonic.
+resonance-particles = true
+
+# Prismatic light beams — columns of tinted light projected through
+# the translucent crystal surfaces, casting purple and violet
+# patterns on the ground. Decorative but atmospheric.
+prismatic-light = true
+
+# Purpur vein networks — thin lines of purpur_block running through
+# the amethyst ground like veins, connecting spires in a root-like
+# underground network.
+purpur-veins = true
+
+# Scattered tinted glass fragments — broken translucent blocks on
+# the ground near spire bases, as if older crystals shattered and
+# left debris.
+crystal-debris = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Endermen are drawn to the resonance — they pace around spire
+# bases and teleport between crystal tips. Moderately high density.
+enderman = 55
+
+# Shulkers attach to spire surfaces, camouflaged against the
+# purple crystal and firing levitation bolts at approaching players.
+shulker = 25
+
+# Silverfish nest inside the crystal formations, erupting when
+# players mine or damage the spires. Thematic guardian behavior.
+silverfish = 30
+
+# Phantoms glide between spire tops in the high airspace, swooping
+# down on players who climb exposed crystal columns.
+phantom = 20
+
+# Evokers — rare spawns near the largest spires, drawn by the
+# concentrated dimensional energy. Dangerous but rewarding targets.
+evoker = 5

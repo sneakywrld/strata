@@ -1,0 +1,181 @@
+# ============================================================
+#  Biome: Scorched Thaw — Transition Zone
+# ============================================================
+# The dramatic collision zone where the Scorched Badlands meet
+# the Frostfang Peaks. An extreme temperature contrast plays
+# out across a few hundred blocks — baked red clay gives way to
+# snow-dusted stone, and streams of meltwater carve channels
+# through dried terracotta banks. The terrain is visually
+# striking: warm red and orange tones on one side fade into
+# cool greys and whites on the other. Thermal updrafts create
+# constant wind, and the rapid temperature swings shatter
+# exposed rock into coarse gravel and broken stone. Nothing
+# thrives here — the environment is too unstable for either
+# desert or alpine ecosystems to establish.
+#
+# Gameplay notes:
+#   - Dramatic visual contrast — great screenshot biome.
+#   - Coarse dirt and broken stone provide easy resources.
+#   - Temperature extremes mean no consistent mob spawning
+#     pattern — anything from husks to strays may appear.
+#   - Meltwater channels offer intermittent water supply.
+#   - Good landmark: the color shift marks the boundary
+#     between two major zones.
+#   - Thermal stress shatters blocks — gravel falls are
+#     a hazard near cliff faces.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Transition biomes use the
+# "transition_" prefix to mark them as boundary biomes.
+id = "strata:transition_scorched_thaw"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Scorched Thaw"
+
+# category: PLAINS — the barren, open terrain lacks the
+# features of any specialized biome category. PLAINS provides
+# the most neutral behavior for this no-man's-land between
+# two extreme climate zones.
+category = "PLAINS"
+
+# zone: "transition" — sits between Scorched Badlands and
+# Frostfang Peaks, blending their extreme characteristics.
+zone = "transition"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# A midpoint between Scorched (hot, dry) and Frostfang (cold,
+# moderate). The values represent the unstable, fluctuating
+# conditions at the collision zone.
+[biome.climate]
+# temperature: 0.4 = cool-temperate. Averaged between the
+# Scorched zone's extreme heat (0.9) and Frostfang's freezing
+# cold (-0.5). The actual temperature fluctuates wildly, but
+# the noise system sees this midpoint value.
+temperature = 0.4
+
+# humidity: 0.1 = dry. Both the Scorched Badlands and the
+# wind-scoured mountain foothills are arid environments. The
+# meltwater channels are the only moisture source.
+humidity = 0.1
+
+# continentalness: 0.6 = inland. Both Scorched and Frostfang
+# are deep interior zones, and their transition occurs far
+# from any coastline.
+continentalness = 0.6
+
+# erosion: 0.4 = moderate. Thermal stress fractures rock but
+# the hard underlying stone resists complete erosion. The
+# surface is broken and crumbling but the overall landform
+# persists.
+erosion = 0.4
+
+# weirdness: 0.1 = near-normal. The Scorched-Frostfang
+# boundary is a natural geological transition. The slight
+# positive weirdness reflects the unusual visual contrast.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 12 = elevated. The transition sits in the
+# mountain foothills — higher than the Scorched desert floor
+# but lower than the Frostfang peaks. The terrain tilts
+# upward toward the mountains.
+# Range: -64.0 to 256.0
+base-height = 12
+
+# height-variation: 8 = significant undulation. Thermal
+# fracturing has created broken terrain — shattered ridges,
+# gravel slides, and meltwater gullies carve the surface
+# into a rough, uneven landscape.
+# Range: 0.0 to 30.0
+height-variation = 8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Coarse dirt — the ground is too disturbed for grass and too
+# unstable for the terracotta of the Scorched zone to persist.
+# Broken, gritty soil covers everything.
+[biome.surface]
+# top-block: Coarse dirt — the rough, infertile soil that
+# forms when thermal stress breaks down rock faster than
+# organic matter can accumulate. Coarse dirt cannot grow
+# grass, reinforcing the barren, inhospitable character.
+top-block = "minecraft:coarse_dirt"
+
+# filler-block: Gravel beneath the coarse dirt. Thermal
+# fracturing has shattered the underlying stone into loose
+# gravel that shifts and slides underfoot.
+filler-block = "minecraft:gravel"
+
+# filler-depth: 3 = moderate depth. The broken surface
+# material sits atop more stable stone below.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Gravel in the meltwater channels — loose
+# pebbles deposited by the intermittent streams.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Barren landscape. Dead bushes and occasional gravel piles
+# are the only surface features. No trees survive the
+# temperature extremes.
+[biome.features]
+# trees: No trees. The thermal shock kills any sapling that
+# attempts to establish. The biome is open and exposed.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Very sparse. Only the toughest dry grass
+# survives, and even that is patchy and brown.
+# Range: 0.0 to 100.0
+grass-density = 2.0
+
+# flower-density: Zero. No flowers survive the temperature
+# extremes and dry, infertile soil.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# dead-bush-density: Moderate. Dead bushes are the only
+# visible vegetation — dried remnants of plants that tried
+# and failed to establish in the hostile conditions.
+dead-bush-density = 2.5
+
+# extra-features: Gravel piles from thermal fracturing and
+# exposed stone patches where the coarse dirt has eroded away.
+extra-features = [
+    # Exposed stone patches — bedrock showing through.
+    { feature = "exposed_stone", density = 3.0 },
+    # Gravel piles from thermal fracturing of cliff faces.
+    { feature = "gravel_pile", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# An unpredictable mix of threats from both adjacent zones.
+# Husks from the Scorched side encounter strays from the
+# Frostfang side — a uniquely dangerous combination.
+[biome.spawning]
+# Husk: Desert-adapted undead wandering in from the Scorched
+# zone. Inflict Hunger on hit.
+husk = { weight = 8, min-group = 1, max-group = 2 }
+
+# Stray: Frozen skeletons drifting down from the Frostfang
+# peaks. Fire slowness arrows from range.
+stray = { weight = 8, min-group = 1, max-group = 2 }
+
+# Rabbit: The only passive mob hardy enough to survive here.
+# Desert-gold variant from the Scorched side.
+rabbit = { weight = 4, min-group = 1, max-group = 2 }

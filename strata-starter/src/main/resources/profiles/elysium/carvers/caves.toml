@@ -1,0 +1,91 @@
+# ============================================================
+#  Cave Carver Configuration — Elysium Overworld
+# ============================================================
+# Strata uses multiple carver types layered together:
+#   - Cheese caves: Large open chambers
+#   - Spaghetti caves: Long winding tunnels
+#   - Noodle caves: Thin narrow crevices
+#
+# Each carver type uses different noise functions and parameters
+# to create a varied, natural-feeling cave system.
+# ============================================================
+
+# -------------------------------------------------------
+# Cheese Caves — Large Open Chambers
+# -------------------------------------------------------
+[carvers.cheese]
+# enabled: Enable cheese cave generation.
+enabled = true
+
+# noise: 3D noise function defining chamber shapes.
+noise = "strata:cheese_cave"
+
+# threshold: Noise threshold for carving. Lower = larger chambers.
+# Default: -0.5. Range: -1.0 to 0.0
+threshold = -0.5
+
+# y-range: Y-level range where cheese caves generate.
+# Default: [-56, 40]. Deep underground to slightly below surface.
+y-range = [-56, 40]
+
+# max-height: Maximum vertical extent of a single chamber (in blocks).
+# Default: 30. Range: 5 to 60
+max-height = 30
+
+# floor-level: Y-level where caves transition to flooded/lava-filled.
+# Below this, cave floors may contain water or lava.
+# Default: -10
+floor-level = -10
+
+# aquifer-interaction: Whether cheese caves interact with the aquifer system.
+# If true, cave chambers below water table get flooded.
+aquifer-interaction = true
+
+# -------------------------------------------------------
+# Spaghetti Caves — Long Winding Tunnels
+# -------------------------------------------------------
+[carvers.spaghetti]
+enabled = true
+
+noise = "strata:spaghetti_cave"
+
+# threshold: Noise threshold for tunnel creation.
+# Default: -0.6. Range: -1.0 to 0.0
+threshold = -0.6
+
+# y-range: Y-level range for spaghetti tunnels.
+# Default: [-56, 50]. From deep underground up to moderate height.
+y-range = [-56, 50]
+
+# width-range: Min and max tunnel width (in blocks).
+# Default: [2, 5]
+width-range = [2, 5]
+
+# vertical-stretch: How much tunnels stretch vertically vs. horizontally.
+# 1.0 = equal. Values > 1 = taller tunnels. < 1 = flatter tunnels.
+# Default: 0.8 (slightly flattened)
+vertical-stretch = 0.8
+
+# -------------------------------------------------------
+# Noodle Caves — Thin Crevices
+# -------------------------------------------------------
+[carvers.noodle]
+enabled = true
+
+noise = "strata:noodle_cave"
+
+# threshold: Noise threshold. Lower = more noodle caves.
+# Default: -0.65. Range: -1.0 to 0.0
+threshold = -0.65
+
+# y-range: Y-level range for noodle crevices.
+# Default: [-56, 30]
+y-range = [-56, 30]
+
+# width-range: Noodle caves are thin — 1-2 blocks wide.
+# Default: [1, 2]
+width-range = [1, 2]
+
+# vertical-stretch: Noodle caves tend to be tall and thin.
+# Default: 2.0
+vertical-stretch = 2.0

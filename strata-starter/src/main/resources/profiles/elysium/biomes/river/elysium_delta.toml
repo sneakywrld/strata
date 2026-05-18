@@ -1,0 +1,177 @@
+# ============================================================
+#  Biome: Delta — Elysium Rivers
+# ============================================================
+# The place where a major river meets the ocean. The single
+# channel splits into dozens of braided fingers, each weaving
+# between flat sand bars and muddy islets. The water here is
+# brackish — a mix of fresh river water and salt ocean — and
+# the color shifts from brown to blue-green depending on the
+# tides. Sand banks exposed at low water stretch for hundreds
+# of blocks, dotted with wading birds and stranded fish. The
+# delta is a critical ecological zone: rich in nutrients, teeming
+# with life, and one of the best fishing grounds in Elysium.
+#
+# Gameplay notes:
+#   - Excellent fishing — highest fish density of any biome.
+#   - Sand bar islands for easy temporary camps.
+#   - Brackish water — both freshwater and ocean fish spawn.
+#   - Very shallow in most channels — wade across easily.
+#   - Rich clay deposits in the riverbed bends.
+#   - Natural border between river and ocean biomes.
+#   - Sugarcane and kelp both grow here — unique dual crop zone.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. River biomes use the
+# "elysium_" prefix as cross-zone water features.
+id = "strata:elysium_delta"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Delta"
+
+# category: RIVER — the delta is the terminal section of a
+# river system. RIVER category enables freshwater spawning
+# rules while the coastal position allows some ocean mob
+# crossover.
+category = "RIVER"
+
+# zone: "river" — river biomes are cross-zone features. The
+# delta sits at the boundary between river and ocean zones.
+zone = "river"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Temperate, moderately humid, and heavily eroded — the delta
+# is flat, wet, and nutrient-rich.
+[biome.climate]
+# temperature: 0.5 = temperate. The ocean moderates the
+# river's temperature, and the shallow water warms quickly
+# in sunlight.
+temperature = 0.5
+
+# humidity: 0.6 = elevated moisture. The mixing of river and
+# ocean water creates constant evaporation, keeping the air
+# humid and the sand banks damp.
+humidity = 0.6
+
+# continentalness: -0.1 = near-coastal. The delta sits right
+# at the land-sea boundary where the river meets the ocean.
+# This negative-leaning value places it at the continent's
+# edge.
+continentalness = -0.1
+
+# erosion: 0.8 = extremely eroded. The delta is the most
+# heavily eroded river section — millennia of sediment
+# deposition have created an utterly flat, featureless
+# landscape of sand bars and braided channels.
+erosion = 0.8
+
+# weirdness: 0.0 = completely normal. River deltas are a
+# natural feature where rivers meet oceans. Zero weirdness
+# ensures they generate wherever conditions are appropriate.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -3 = below sea level. The delta channels sit
+# below the waterline, with sand bars barely breaking the
+# surface. The terrain is largely underwater with only the
+# highest sand banks exposed.
+# Range: -64.0 to 256.0
+base-height = -3
+
+# height-variation: 2 = minimal undulation. The delta is
+# overwhelmingly flat — sand bars and channels at nearly
+# the same elevation. The slight variation creates the
+# exposed-at-low-water sand bar effect.
+# Range: 0.0 to 30.0
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Sand — the delta is built from river-deposited sediment.
+# Thick sand deposits cover everything.
+[biome.surface]
+# top-block: Sand — the fine alluvial sand deposited by the
+# river as it loses velocity entering the ocean. Clean, fine-
+# grained sand stretches across every exposed surface.
+top-block = "minecraft:sand"
+
+# filler-block: Sand continues to depth. The entire delta is
+# a sediment deposit — sand all the way down to the bedrock
+# far below.
+filler-block = "minecraft:sand"
+
+# filler-depth: 5 = very deep sand deposits. The delta has
+# accumulated the thickest sediment layer of any river section,
+# built from everything the river has carried downstream.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Sand on the channel floors — consistent
+# sandy bottom across the entire delta system.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Minimal land vegetation on the exposed sand bars. Aquatic
+# features dominate — kelp, seagrass, and sugarcane at the
+# freshwater-saltwater boundary.
+[biome.features]
+# trees: No trees. The sand bars are too low, too exposed,
+# and too frequently flooded to support tree growth.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Sparse beach grass on the higher sand bars.
+# Range: 0.0 to 100.0
+grass-density = 3.0
+
+# flower-density: Zero. Sandy substrate prevents flowering.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: The delta's unique position supports both
+# freshwater and saltwater vegetation. Sugarcane grows on
+# the river side, kelp on the ocean side.
+extra-features = [
+    # Sugarcane on the freshwater sand bars — tall stands.
+    { feature = "sugarcane", density = 4.0 },
+    # Kelp in the deeper ocean-facing channels.
+    { feature = "kelp", density = 3.0 },
+    # Seagrass in the shallow brackish channels.
+    { feature = "seagrass", density = 4.0 },
+    # Clay deposits throughout the delta sediment.
+    { feature = "clay", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The richest fishing ground in Elysium. Both river and ocean
+# fish species spawn in the brackish water. Herons (chickens
+# reskinned) wade the shallows.
+[biome.spawning]
+# Cod: Freshwater cod from the river system. Abundant in the
+# deeper channels.
+cod = { weight = 15, min-group = 3, max-group = 6 }
+
+# Salmon: River salmon arriving at the delta. Large schools
+# congregate before entering the ocean.
+salmon = { weight = 12, min-group = 2, max-group = 5 }
+
+# Tropical fish: Ocean species that venture into the warm
+# brackish shallows of the delta.
+tropical_fish = { weight = 8, min-group = 2, max-group = 4 }
+
+# Squid: Common in the deeper channels where fresh and salt
+# water mix.
+squid = { weight = 6, min-group = 1, max-group = 3 }

@@ -1,0 +1,83 @@
+# ============================================================
+#  Biome: Stormbreak Sea Cliffs — Stormbreak Coast
+# ============================================================
+# Towering sheer cliffs that rise 40-60 blocks above the
+# crashing ocean below. Wind-battered stone faces are streaked
+# with gravel and coarse dirt where sparse vegetation clings to
+# narrow ledges. Seabird colonies (chicken spawns) nest on
+# sheltered outcrops, and the constant roar of waves echoes up
+# the cliff walls. Fallen boulders and foam churn at the base,
+# making approach by water both dangerous and dramatic.
+#
+# Gameplay notes:
+#   - Cliffs provide natural fortification and vantage points.
+#   - Players can harvest eggs from seabird nests on ledges.
+#   - Falling hazard is the primary environmental threat.
+#   - Pairs well with stormbreak_cliff_forest above and
+#     stormbreak_rocky_beach or stormbreak_tidal_caves below.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_sea_cliffs"          # Unique registry ID
+display-name = "Stormbreak Sea Cliffs"       # Shown in F3 debug & maps
+category = "BEACH"                           # Categorised as coastal/beach
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. Together they determine where this biome
+# can generate relative to other biomes in the zone.
+[biome.climate]
+temperature = 0.4           # Cool — exposed to ocean winds
+humidity = 0.5              # Moderate moisture from sea spray
+continentalness = -0.1      # Slightly oceanic (near coast edge)
+erosion = -0.5              # Very low erosion — steep, uneroded faces
+weirdness = 0.0             # Neutral weirdness — common coastal feature
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height sets the midpoint elevation (in blocks above sea
+# level). height-variation controls the amplitude of noise on
+# top of that, producing the jagged cliff-face profile.
+[biome.terrain]
+base-height = 40            # Cliff midpoint ~40 blocks above ocean
+height-variation = 20       # +/-20 blocks — peaks near 60, bases near 20
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# The cliff face is primarily stone with a thin layer of coarse
+# dirt on flat ledges. Gravel fills crevices and the cliff base
+# where debris accumulates from weathering.
+[biome.surface]
+top-block = "minecraft:stone"            # Exposed rock face dominates
+filler-block = "minecraft:gravel"        # Loose gravel beneath thin soil
+filler-depth = 3                         # 3 blocks of filler before stone
+underwater-block = "minecraft:gravel"    # Gravel seabed at cliff base
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Vegetation is sparse — only the hardiest shrubs survive on
+# windswept ledges. No significant tree cover.
+[biome.features]
+trees = { types = [], density = 0.0 }   # No trees on sheer cliff faces
+grass-density = 0.1                      # Minimal grass on rare ledges
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Seabird colonies are represented by chicken spawns on cliff
+# ledges. Standard hostile mobs spawn in caves within the
+# cliff interior at night.
+[biome.spawning]
+# Chickens stand in for seabirds — they nest on ledges and
+# provide eggs for early-game food. Higher weight and larger
+# packs than normal to simulate colonial nesting behavior.
+# Hostile mobs use default rules (caves / night surface).

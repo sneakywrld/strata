@@ -1,0 +1,132 @@
+# ============================================================
+#  Biome: Whispering Spider Nest — Whispering Woodlands
+# ============================================================
+# A nightmarish thicket where cobwebs blanket every surface —
+# strung between trunks, draped from branches, and clogging gaps
+# between roots. Cave spider spawners sit dangerously close to
+# the surface, and regular spiders patrol the web-choked canopy.
+# The ground crunches with discarded string, and cocooned remains
+# hang from overhead webs. Not for the arachnophobic.
+#
+# Gameplay Notes:
+#   - Cobwebs drastically slow movement — carry shears or a sword.
+#   - Cave spider spawners within 3-8 blocks of the surface.
+#   - String is abundant loot (bows, fishing rods, wool, tripwires).
+#   - Spider eyes drop rate is elevated — brewing ingredient source.
+#   - The webs can be harvested with shears (silk touch equivalent).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_spider_nest"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Spider Nest"
+
+# category: FOREST — a spider-infested forest variant.
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Moderate — spiders are temperature-indifferent.
+temperature = 0.5
+# humidity: Slightly lower — webs don't form well in very wet conditions;
+# the silk adheres better in moderate humidity.
+humidity = 0.65
+# continentalness: Mid-inland — deep within the forest zone.
+continentalness = 0.5
+# erosion: Moderate — standard forest terrain, unremarkable underfoot.
+# The horror is all above and around you, not in the terrain shape.
+erosion = 0.5
+# weirdness: High positive (0.6) — this is a strongly unusual variant.
+# The web-choked forest is visually and mechanically distinct.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard forest elevation. The spider nest is at
+# the same level as the surrounding dark forest.
+base-height = 67
+
+# height-variation: Low — flat terrain allows webs to span greater
+# distances between trees and creates consistent spawner depth.
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Coarse dirt — the forest floor is barren. Nothing
+# grows well here; the webs block light and the spiders kill
+# any seedlings that try to establish.
+top-block = "minecraft:coarse_dirt"
+
+# filler-block: Dirt — standard sub-surface beneath the barren floor.
+filler-block = "minecraft:dirt"
+
+# filler-depth: Standard 3-block depth.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Moderate density. The trees serve as web anchor points.
+# Dark oak provides the wide canopy spiders use as highway networks.
+trees = { types = ["dark_oak", "oak"], density = 9 }
+
+# grass-density: Very low — almost nothing grows on the barren floor.
+grass-density = 1
+
+# flower-density: Zero — no flowers survive the web coverage.
+flower-density = 0.0
+
+# cobwebs: The signature feature. Dense cobweb placement between trees,
+# on branches, along the ground, and in hollow trunks.
+# density is placement attempts per chunk — very high.
+cobwebs = { enabled = true, density = 20, min-y = 60, max-y = 80 }
+
+# string-litter: Loose string blocks scattered on the ground.
+# Represents discarded web material and prey wrappings.
+string-litter = { enabled = true, density = 8 }
+
+# cave-spider-spawners: Near-surface spawner blocks in small
+# cobweb-filled chambers. These are the nest's breeding core.
+cave-spider-dens = { enabled = true, density = 4, min-y = 55, max-y = 68 }
+
+# mushrooms: Some mushrooms grow in the darker corners.
+mushrooms = { brown = 2, red = 1 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Very high hostile spawning — this is a combat-oriented biome.
+hostile-density-multiplier = 1.5
+
+# Spiders are the dominant mob by a massive margin.
+spider-weight-bonus = 80
+
+# Cave spiders spawn on the surface here, not just underground.
+cave-spider-weight-bonus = 60
+
+# No passive mobs — everything that wanders in gets cocooned.
+passive-density-multiplier = 0.0

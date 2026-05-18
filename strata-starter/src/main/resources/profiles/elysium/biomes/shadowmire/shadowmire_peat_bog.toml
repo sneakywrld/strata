@@ -1,0 +1,164 @@
+# ============================================================
+#  Biome: Peat Bog — Shadowmire Swamps
+# ============================================================
+# A waterlogged expanse of spongy, compacted organic matter that
+# has been accumulating for millennia. The ground squelches with
+# every step, and patches of soul soil mark where ancient plant
+# matter has compressed into something darker and stranger. Exposed
+# fossil fragments (bone blocks) jut from the peat layers where
+# erosion has uncovered the remains of creatures that died in the
+# bog long ago. The terrain is slightly elevated compared to the
+# surrounding swamp — peat accumulates rather than erodes — but
+# the footing is deceptive. What looks solid may give way suddenly.
+#
+# Gameplay Notes:
+#   - Soul soil patches slow movement — navigate around them.
+#   - Bone blocks (fossils) can be mined for bone meal.
+#   - Peat (coarse dirt) burns slowly and can fuel furnaces.
+#   - The slightly elevated terrain provides drier ground for camps.
+#   - Fossils hint at the biome's deep geological history.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_peat_bog"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Peat Bog"
+
+# category: The broad Minecraft biome category this belongs to.
+# SWAMP maintains the zone's murky atmosphere and ambient sounds.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.55 = mild — slightly cool due to the elevated
+# terrain and the evaporative cooling from the saturated peat.
+temperature = 0.55
+
+# humidity: 0.8 = high moisture — the peat holds water like a
+# sponge, releasing it slowly into the air as a constant
+# background dampness.
+humidity = 0.8
+
+# continentalness: 0.6 = moderately inland — peat bogs form in
+# enclosed basins where water input exceeds drainage.
+continentalness = 0.6
+
+# erosion: 0.7 = heavily eroded — the terrain is mostly flat, but
+# the peat accumulation has raised the surface slightly above the
+# surrounding swamp over geological time.
+erosion = 0.7
+
+# weirdness: 0.4 = moderately unusual — the presence of soul soil
+# and fossils makes this an atypical swamp variant found only where
+# the weirdness noise is elevated.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 1 = one block above sea level. The accumulated peat
+# has raised the surface just above the waterline — still soggy,
+# but not standing-water territory like the lowland swamp.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 1
+
+# height-variation: 2 = slight variation. The peat surface has
+# gentle undulations where different layers have compressed at
+# different rates, creating subtle ridges and depressions.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Coarse dirt — representing compacted peat. The rough
+# texture conveys the spongy, fibrous surface that characterizes
+# peat bogs. Unlike normal dirt, it cannot be tilled.
+top-block = "minecraft:coarse_dirt"
+
+# filler-block: Soul soil — deeper in the peat layers, the organic
+# matter has compressed into this darker, stranger material that
+# slows movement. Represents the ancient, partially fossilized
+# lower peat strata.
+filler-block = "minecraft:soul_soil"
+
+# filler-depth: 4 = deep peat layers reflecting millennia of
+# organic accumulation before reaching the mineral substrate.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Mud at the bottom of any pools that form in
+# depressions between the peat hummocks.
+underwater-block = "minecraft:mud"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Sparse, stunted trees grow in the peat — their roots
+# cannot penetrate deeply into the compressed organic matter.
+#   types: Tree definition keys from features/trees.toml.
+#   density: 1.5 = very sparse — most of the bog is open and
+#            treeless, with only a few hardy specimens.
+trees = { types = ["dead_oak", "sparse_spruce"], density = 1.5 }
+
+# grass-density: 4.0 = moderate — tough sedges and bog grasses
+# grow well in the acidic peat substrate.
+# Range: 0.0 to 100.0.
+grass-density = 4.0
+
+# flower-density: 0.5 = rare — only specialized bog flowers
+# survive in the acidic conditions.
+# Range: 0.0 to 15.0.
+flower-density = 0.5
+
+# extra-features: Fossil fragments (bone blocks), soul soil patches,
+# and dead bushes define the bog's character.
+extra-features = [
+    { feature = "fossil_fragment", density = 2.0 },
+    { feature = "soul_soil_patch", density = 3.0 },
+    { feature = "dead_bush", density = 2.0 },
+    { feature = "podzol_patch", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The peat bog is quiet and eerie. Skeletons emerge from the peat
+# — perhaps the same ancient creatures whose fossils litter the
+# landscape. Strays occasionally spawn where soul soil is exposed.
+
+# skeleton: The dominant hostile mob — they seem to rise from the
+# fossil-rich peat layers themselves.
+# weight: 15 makes skeletons the primary threat.
+# min-group/max-group: Small packs of 1-3.
+skeleton = { weight = 15, min-group = 1, max-group = 3 }
+
+# stray: Rare cold-variant skeleton spawns near soul soil patches,
+# adding a dangerous slow-effect ranged threat.
+# weight: 5 for an uncommon but memorable encounter.
+stray = { weight = 5, min-group = 1, max-group = 1 }
+
+# rabbit: Small brown rabbits forage among the bog grasses — one of
+# the few passive mobs hardy enough for the peat.
+# weight: 6 for occasional ambient life.
+rabbit = { weight = 6, min-group = 2, max-group = 3 }

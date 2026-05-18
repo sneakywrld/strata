@@ -1,0 +1,143 @@
+# ============================================================
+#  Biome: Central Obsidian Ring — Central Island
+# ============================================================
+# A concentric ring of obsidian formations encircling the
+# exit portal area. Towering obsidian columns, natural arches,
+# and smooth obsidian slabs create a dark, imposing barrier
+# between the dragon arena's inner sanctum and the outer
+# platform. The obsidian here is not player-placed — it is a
+# primordial geological feature of the End, formed by unknown
+# forces long before any player set foot in the dimension.
+# The dark, glassy surfaces reflect the eerie End sky and
+# create dramatic silhouettes against the star field.
+#
+# Gameplay notes:
+#   - Obsidian surface is blast-resistant — dragon fireballs
+#     cannot destroy the ring.
+#   - Natural cover during the dragon fight for players who
+#     retreat from the open platform.
+#   - The obsidian columns are separate from the crystal
+#     pillars — they do not host end crystals.
+#   - Mining obsidian here is viable but slow (vanilla rules).
+#   - Tight spaces between formations can trap players.
+#   - Pairs with central_platform (inner) and central_edge
+#     (outer).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the obsidian ring
+# that surrounds the exit portal zone.
+id = "strata:central_obsidian_ring"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Obsidian Ring"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Central Island region. The obsidian ring sits
+# between the main platform and the eroded edge.
+region = "central"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly warm — obsidian retains heat from
+# whatever volcanic-equivalent forces created it. 0.1 =
+# marginally warmer than the neutral platform.
+temperature = 0.1
+
+# humidity: Dry as all End biomes. 0.0 = no moisture.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.2 = slightly weird, reflecting the unusual
+# presence of natural obsidian formations. Not bizarre
+# enough to be a rare variant, but distinct from vanilla.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 65 — same elevation as the main platform,
+# maintaining a flush surface. The obsidian formations
+# rise above this base, not below it.
+base-height = 65
+
+# height-variation: 2 = very flat base surface. The
+# obsidian columns are feature-placed decorations, not
+# terrain-level height changes. The ring itself is a
+# smooth, walkable surface.
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The obsidian ring has a distinctive dark surface that
+# contrasts sharply with the surrounding end stone.
+[biome.surface]
+# top-block: Obsidian — the defining visual feature of
+# this biome. The glassy black surface is unmistakable
+# and signals to players they are near the portal zone.
+top-block = "minecraft:obsidian"
+
+# filler-block: End stone beneath the obsidian veneer.
+# The obsidian is a surface coating over the standard
+# end stone island core, not solid obsidian all the way
+# through.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 3 = standard depth. The end stone
+# substrate supports the obsidian surface layer.
+# Range: 1 to 8.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Obsidian columns and arches dominate the visual
+# landscape. These are end-specific features unique to
+# this biome.
+[biome.features]
+# end-specific: Natural obsidian columns and arches.
+# These formations provide cover during the dragon fight
+# and create a dramatic visual perimeter around the
+# portal zone. No chorus plants grow on obsidian.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation on obsidian surfaces.
+grass-density = 0.0
+
+# extra-features: Obsidian pillars and natural arches
+# that define the ring's silhouette.
+#   obsidian_column — tall narrow obsidian pillars, 5-15
+#       blocks high, scattered around the ring.
+#   obsidian_arch — natural obsidian arches connecting
+#       adjacent columns, creating doorway-like openings.
+extra-features = [
+    { feature = "obsidian_column", density = 4.0 },
+    { feature = "obsidian_arch", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen congregate among the obsidian formations,
+# using the columns as visual anchors. Their dark skin
+# blends with the obsidian, making them harder to spot.
+[biome.spawning]
+# enderman: Standard high presence. The obsidian columns
+# provide visual cover that makes accidental eye contact
+# more likely — players rounding a corner may lock eyes
+# with an enderman unexpectedly.
+enderman = { weight = 35, min-group = 1, max-group = 4 }

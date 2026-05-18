@@ -1,0 +1,154 @@
+# ============================================================
+#  Biome: Obsidian Field — Embercrag Volcanic
+# ============================================================
+# A vast expanse of cooled lava that has solidified into a dark,
+# glassy plain. The obsidian surface stretches to the horizon,
+# broken only by the occasional ridge where one flow cooled atop
+# another. Rare patches of crying obsidian weep purple tears where
+# ancient nether energies have seeped into the volcanic glass.
+# The terrain is flat and exposed, with nowhere to hide from the
+# wind that howls across the featureless plain. Mining obsidian
+# here is efficient but time-consuming — bring diamond pickaxes
+# and patience.
+#
+# Gameplay Notes:
+#   - Obsidian can be mined here in large quantities (diamond pick required).
+#   - Crying obsidian is a rare and valuable find for respawn anchors.
+#   - The flat, open terrain provides no cover from hostile mobs.
+#   - Strong winds make elytra flight unpredictable.
+#   - The reflective obsidian surface creates disorienting visuals at night.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_obsidian_field"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Obsidian Field"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint appropriate for the
+# volcanic region.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.85 = very hot — the dark obsidian absorbs and
+# radiates solar heat aggressively, making the surface scorching
+# during the day.
+temperature = 0.85
+
+# humidity: -0.4 = dry — the glassy surface sheds water completely,
+# and no moisture is retained in the terrain.
+humidity = -0.4
+
+# continentalness: 0.7 = firmly inland — the obsidian field formed
+# from a massive inland lava flow.
+continentalness = 0.7
+
+# erosion: 0.5 = moderate erosion — obsidian is extremely hard and
+# resists weathering, but the flow field is relatively flat due to
+# how the original lava pooled and leveled before cooling.
+erosion = 0.5
+
+# weirdness: 0.1 = very slightly unusual — obsidian fields are an
+# expected feature of volcanic regions but not the most common.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5 = slightly above sea level. The cooled lava flow
+# sits on the volcanic plateau, forming a relatively flat plain
+# at moderate elevation.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 5
+
+# height-variation: 3 = slight variation. The obsidian field is
+# mostly flat — lava naturally levels as it pools — with occasional
+# ridges where successive flows overlapped.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Obsidian — the defining surface of this biome. The
+# glassy black volcanic rock creates a stark, reflective plain.
+top-block = "minecraft:obsidian"
+
+# filler-block: Basalt — beneath the thin obsidian crust, denser
+# volcanic rock forms the bulk of the cooled lava flow.
+filler-block = "minecraft:basalt"
+
+# filler-depth: 3 = moderate depth. The obsidian layer is
+# relatively thin — most of the flow's interior cooled more slowly
+# and formed basalt rather than obsidian.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Blackstone — any rare water pools that form
+# on the obsidian field sit on dark volcanic rock.
+underwater-block = "minecraft:blackstone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No trees grow on the obsidian surface — there is no soil.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.0 = no vegetation on the glassy volcanic surface.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Crying obsidian deposits and obsidian ridges are
+# the primary features of interest.
+extra-features = [
+    { feature = "crying_obsidian_deposit", density = 0.5 },
+    { feature = "obsidian_ridge", density = 2.0 },
+    { feature = "magma_vein", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The featureless obsidian plain offers no shelter — hostile mobs
+# spawn freely at night on the flat surface, and there is nowhere
+# to hide. Endermen are drawn to the dark, reflective surface.
+
+# enderman: Endermen are common on the obsidian field — the dark
+# surface and open terrain suit their behavior.
+# weight: 15 makes them a dominant presence.
+# min-group/max-group: Pairs occasionally.
+enderman = { weight = 15, min-group = 1, max-group = 2 }
+
+# skeleton: Skeleton archers have clear sightlines across the flat
+# field — there is no cover for players to hide behind.
+# weight: 12 for a consistent ranged threat.
+skeleton = { weight = 12, min-group = 1, max-group = 3 }
+
+# husk: Husks replace standard zombies in the hot, dry conditions.
+# weight: 8 for a secondary melee threat.
+husk = { weight = 8, min-group = 1, max-group = 2 }

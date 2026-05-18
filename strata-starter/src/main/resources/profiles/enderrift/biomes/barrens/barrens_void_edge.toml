@@ -1,0 +1,164 @@
+# ============================================================
+#  Biome: Barrens Void Edge — Barrens Zone
+# ============================================================
+# The crumbling perimeter of a barrens island, where solid end
+# stone dissolves into scattered fragments hanging over the void.
+# Terrain is unstable and irregular — blocks are missing from
+# the surface, narrow bridges span gaps of nothing, and the
+# constant threat of falling into the void keeps players alert.
+# One of the most dangerous traversal biomes in Enderrift.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:barrens_void_edge"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Void Edge"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "barrens"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. -0.4 = cold, the proximity to open void brings
+# an extra chill compared to interior barrens biomes.
+temperature = -0.4
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. -0.9 = extremely dry, void exposure strips away
+# any trace of moisture.
+humidity = -0.9
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. -0.4 = well past the edge, this biome exists
+# where island transitions to void — fragmentary land at best.
+continentalness = -0.4
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. -0.3 = rough and broken terrain,
+# the crumbling edge creates sharp drops and jagged surfaces.
+erosion = -0.3
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.3 = somewhat unusual — the disintegrating terrain creates
+# eerie, gap-riddled formations.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 45 is very low —
+# the void edge sits at a depressed altitude where the island is
+# already thinning and breaking apart.
+# Range: 0 to 256
+base-height = 45
+
+# height-variation: Controls terrain undulation. 10 is high — the
+# terrain is wildly uneven with sudden drops to void, raised
+# fragments, and narrow bridges at varying heights.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — standard, though much of the surface is missing.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. End stone, though the thin terrain means filler
+# often ends in void rather than deeper stone.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 2 is very thin — the crumbling edge barely holds
+# together, with minimal depth before void.
+# Range: 1 to 8
+filler-depth = 2
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 0.0 — nothing grows on the crumbling void edge. Any plant that
+# tried to root here would fall into the void.
+chorus-density = 0.0
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.0 — no chorus means no flowers.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.0
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.0 — no decoration on this hazardous terrain.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.0
+
+# erosion-chance: Per-surface-block probability of end stone erosion.
+# 0.15 — extreme erosion. Large portions of the surface are missing,
+# creating the characteristic gap-riddled terrain of the void edge.
+# Range: 0.0 to 0.2
+erosion-chance = 0.15
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.0 — no crystals on this crumbling terrain.
+# Range: 0.0 to 0.1
+crystal-chance = 0.0
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — no obsidian on the disintegrating edge.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Moderate presence. Endermen can teleport to safety
+# when the ground crumbles, so they tolerate the void edge better
+# than players do.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 70, min-group = 1, max-group = 3 }
+
+# shulker: No shulkers — no structures.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Slightly elevated. Endermites are drawn to the
+# dimensional instability at the void edge.
+endermite = { weight = 5, min-group = 1, max-group = 2 }

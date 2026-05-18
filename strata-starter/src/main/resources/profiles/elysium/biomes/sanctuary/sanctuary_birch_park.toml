@@ -1,0 +1,156 @@
+# ============================================================
+#  Biome: Sanctuary Birch Park — Sanctuary Zone
+# ============================================================
+# An open birch woodland with generous spacing between white-barked
+# trees. Coarse dirt paths wind through tall grass, and the canopy is
+# light enough to let sun through. Feels like a public park — tidy,
+# peaceful, and easy to navigate.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal generator reference.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_birch_park"
+
+# display-name: Human-readable name shown in F3 debug, /strata info,
+# and zone-entry messages.
+display-name = "Sanctuary Birch Park"
+
+# category: FOREST because birch trees form a woodland, even though
+# the spacing is open. Forest ambient sounds (birdsong) suit the
+# park atmosphere.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "FOREST"
+
+# zone: Generates only within the sanctuary zone (0-1500 blocks
+# from spawn).
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate. Slightly cooler than other sanctuary biomes
+# to give birch trees a reason to dominate over oak.
+[biome.climate]
+# temperature: 0.45 = cool-warm. Just below the sanctuary standard
+# of 0.5 to favor birch (which in Minecraft generates in cooler
+# forests). The difference is subtle enough for smooth transitions.
+temperature = 0.45
+
+# humidity: 0.45 = moderate. Not too wet, not too dry. Birch parks
+# have a clean, airy character that moderate humidity supports.
+humidity = 0.45
+
+# continentalness: 0.3 = inland. Standard sanctuary placement for
+# seamless biome blending.
+continentalness = 0.3
+
+# erosion: 0.65 = moderately rolling. Between the hillside (0.5) and
+# the meadow (0.7) — enough terrain variation for the park to have
+# pleasant topography without steep climbs.
+erosion = 0.65
+
+# weirdness: 0.1 = slight variant. Same as the grove, but the
+# temperature difference (0.45 vs 0.5) ensures the two biomes
+# generate in different noise regions.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5.0 = gently elevated. Matches the grove height so
+# birch park and grove can border each other at similar elevations,
+# creating natural woodland transitions.
+# Range: -64.0 to 256.0
+base-height = 5.0
+
+# height-variation: 2.5 = gentle undulation. Enough contour for
+# interesting sightlines between birch trunks without creating
+# obstacles.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 2.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The park floor is maintained grass, giving
+# a clean, manicured woodland aesthetic.
+top-block = "minecraft:grass_block"
+
+# filler-block: Coarse dirt. Represents well-trodden paths through
+# the park. When exposed by terrain variation, coarse dirt creates
+# natural-looking dirt paths without player intervention.
+filler-block = "minecraft:coarse_dirt"
+
+# filler-depth: 2 = shallow coarse dirt layer. Just enough to show
+# on slopes and small excavations, reinforcing the "path" motif.
+# Range: 1 to 8
+filler-depth = 2
+
+# underwater-block: Gravel for any small puddles. The coarse dirt
+# and gravel palette keeps the park naturalistic.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Exclusively birch with wide spacing. The uniformity of
+# birch trees — white bark, light leaves — creates the signature
+# park-like aesthetic. Including tall birch for occasional variety.
+#   types: "birch" = standard 5-8 block, "tall_birch" = 10-15 block.
+#   density: 4.0 = open woodland. Generous spacing lets sunlight
+#            through and gives clear sightlines — the opposite of
+#            a dense, claustrophobic forest.
+#   spacing: 5 = minimum 5 blocks between trunks, enforcing the
+#            park-like regularity.
+trees = { types = ["birch", "tall_birch"], density = 4.0, spacing = 5 }
+
+# grass-density: 7.0 = lush tall grass. The park's signature ground
+# cover. Tall grass sways in the breeze between the birch trunks,
+# creating a meadow-in-the-woods feel.
+grass-density = 7.0
+
+# flower-density: 1.5 = sparse, tasteful flowers. Parks have some
+# flowers but they are not the focus — the birch trees and grass
+# dominate the visual palette.
+flower-density = 1.5
+
+# flower-types: Delicate, shade-friendly flowers that complement
+# birch bark's white color. Lily of the valley and azure bluets
+# are pale and understated.
+flower-types = ["lily_of_the_valley", "azure_bluet"]
+
+# coarse-dirt-patches: Exposed coarse dirt on the surface to create
+# natural-looking walking paths between trees.
+#   density: 3.0 = moderate path coverage. Enough to guide player
+#            movement without overwhelming the grass.
+coarse-dirt-patches = { density = 3.0 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The birch park has a balanced mix of passive mobs strolling
+# through the open woodland. No single mob dominates.
+
+# rabbit: Common. Rabbits suit the park atmosphere, darting between
+# birch trunks and tall grass.
+rabbit = { weight = 10, min-group = 2, max-group = 4 }
+
+# sheep: Grazing flocks among the birch trees. The white wool
+# echoes the white birch bark — a nice visual pairing.
+sheep = { weight = 10, min-group = 2, max-group = 3 }
+
+# chicken: Moderate. Chickens peck at seeds in the tall grass.
+chicken = { weight = 8, min-group = 2, max-group = 3 }
+
+# cow: A few cows for early leather and food.
+cow = { weight = 6, min-group = 1, max-group = 2 }

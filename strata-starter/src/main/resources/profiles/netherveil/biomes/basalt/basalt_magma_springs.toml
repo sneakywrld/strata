@@ -1,0 +1,154 @@
+# ============================================================
+#  Biome: Basalt Magma Springs — Basalt Deltas
+# ============================================================
+# A geothermally active zone where magma blocks dominate the
+# terrain, creating a landscape of glowing orange hot springs
+# bubbling with volcanic gases. Lava pools are fed from below
+# by magma block vents, and bubble columns rise from submerged
+# magma blocks in the deeper pools. The entire area radiates
+# intense heat — standing on any surface deals contact damage,
+# and the orange glow of the magma blocks creates a uniform
+# warm illumination that eliminates shadows entirely. Striders
+# congregate at the springs in unusual numbers, drawn to the
+# warm lava pools like animals at a watering hole. The terrain
+# is a patchwork of magma blocks, lava pools, and narrow basalt
+# ridges providing the only safe footing. This is the basalt
+# delta's most thermally extreme area — a literal hot springs
+# zone in the nether.
+#
+# Gameplay notes:
+#   - Magma block contact damage everywhere — Frost Walker or jump.
+#   - Strider riding hub — highest strider density in the profile.
+#   - Lava collection for fuel (buckets).
+#   - Magma block harvesting for magma cream and builds.
+#   - Bubble columns in deep pools — drowning/pulling hazard.
+#   - Fire Resistance potions recommended.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The magma springs are the
+# most thermally active area in the basalt deltas.
+id = "strata:basalt_magma_springs"
+
+# display-name: Human-readable name for player displays.
+display-name = "Magma Springs"
+
+# category: NETHER — nether environment dominated by magma block
+# hot springs and geothermal lava vents.
+category = "NETHER"
+
+# zone: Part of the basalt zone — the most thermally extreme
+# area within the basalt deltas.
+zone = "basalt"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Near-maximum — the concentrated magma block
+# surface radiates intense heat from every direction.
+#   0.95 = near-maximum heat from magma block saturation.
+temperature = 0.95
+
+# humidity: Very dry — the extreme heat evaporates everything.
+#   -0.5 = bone-dry volcanic conditions.
+humidity = -0.5
+
+# continentalness: Negative — the springs sit in low terrain
+# where lava and magma accumulate.
+#   -0.3 = low-lying geothermal basin.
+continentalness = -0.3
+
+# erosion: High — the magma has melted the terrain into a
+# smooth basin of pools and flats.
+#   0.7 = smooth, eroded geothermal basin.
+erosion = 0.7
+
+# weirdness: Moderate to high — the concentration of magma
+# blocks and hot springs is unusual.
+#   0.5 = notably unusual geothermal activity.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Low — the springs sit in a basin, slightly
+# above lava level.
+#   34 = low-lying basin terrain, near lava level.
+base-height = 34
+
+# height-variation: Low — the magma springs form a relatively
+# flat basin with shallow pool depressions.
+#   2.5 = gentle variation between pools and ridges.
+height-variation = 2.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Magma block — the signature block of this biome.
+# Deals 1 heart of contact damage per half-second, emits light
+# level 3, and creates bubble columns in lava/water above.
+top-block = "minecraft:magma_block"
+
+# filler-block: Netherrack beneath the magma block surface.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   3 = moderate magma/netherrack depth.
+filler-depth = 3
+
+# underwater-block: Magma blocks — continuous magma surface
+# extends beneath the lava pools.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the magma field.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on magma blocks.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Magma springs specific features.
+#   lava_pool — shallow and deep lava pools fed by magma vents.
+#   basalt_ridge — narrow basalt ridges providing safe footing
+#     between the magma block fields.
+#   bubble_column_vent — submerged magma blocks creating
+#     dangerous bubble columns in deeper pools.
+#   strider_spawn_point — strider congregation areas at the
+#     warm lava pools.
+extra-features = [
+    { feature = "lava_pool", density = 8.0 },
+    { feature = "basalt_ridge", density = 4.0 },
+    { feature = "bubble_column_vent", density = 5.0 },
+    { feature = "strider_spawn_point", density = 4.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Striders congregate at the hot springs. Magma cubes thrive
+# in the thermal environment.
+[biome.spawning]
+# strider: Maximum strider density — they congregate at the
+# warm lava pools like animals at a watering hole. The best
+# location for finding and saddling striders.
+strider = { weight = 20, min-group = 2, max-group = 4 }
+
+# magma_cube: Abundant — magma cubes blend perfectly with the
+# magma block surface, ambushing unwary players.
+magma_cube = { weight = 18, min-group = 2, max-group = 5 }
+
+# ghast: Occasional overhead presence — fireballs splash lava
+# from the pools, expanding the hazard area.
+ghast = { weight = 5, min-group = 1, max-group = 1 }

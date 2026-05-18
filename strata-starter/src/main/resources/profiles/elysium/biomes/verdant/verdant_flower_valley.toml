@@ -1,0 +1,143 @@
+# ============================================================
+#  Biome: Verdant Flower Valley — Verdant Expanse
+# ============================================================
+# A sheltered valley overflowing with dense, mixed wildflowers
+# of every color. Beehives hang from scattered trees, and the
+# air is thick with pollen and buzzing bees. The valley walls
+# funnel warm air inward, creating a microclimate perfect for
+# year-round blooming.
+#
+# Gameplay: The highest flower density in the Verdant zone.
+# Ideal for dye farming (every vanilla flower type can be found
+# here) and honey production. Beehives are abundant. The
+# sheltered valley provides natural wind protection for builds.
+# Excellent for decorative gardens and bee farms.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "flower_valley" combines
+# the dominant feature (flowers) with terrain type (valley).
+id = "strata:verdant_flower_valley"
+
+# display-name: Shown in debug screen and player-facing UI.
+display-name = "Verdant Flower Valley"
+
+# category: PLAINS — the valley floor is essentially flat
+# grassland, just with extraordinary flower coverage. PLAINS
+# category preserves standard plains mechanics and sounds.
+category = "PLAINS"
+
+# zone: Verdant Expanse (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.55 = warm. The sheltered valley traps heat,
+# creating a microclimate warmer than surrounding terrain.
+# Warm conditions promote dense flower growth.
+temperature = 0.55
+
+# humidity: 0.5 = moderate. Adequate moisture from rainfall
+# that collects in the valley bottom. Not so wet that flowers
+# are replaced by marsh vegetation.
+humidity = 0.5
+
+# continentalness: 0.4 = moderately inland. Flower valleys
+# need stable, predictable weather patterns found inland.
+continentalness = 0.4
+
+# erosion: 0.7 = heavily eroded. The valley floor is flat and
+# low-lying — erosion has carved the valley and deposited rich
+# alluvial soil ideal for flower growth.
+erosion = 0.7
+
+# weirdness: 0.15 = slightly unusual. The modest positive
+# weirdness separates flower valleys from standard plains and
+# sunflower fields in the climate noise space.
+weirdness = 0.15
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 4 = slightly above sea level. Valley floors sit
+# low relative to surrounding biomes, creating the enclosed
+# valley feel when bordered by hills or forests.
+base-height = 4
+
+# height-variation: 1.0 = gentle rolling within the valley.
+# The valley floor is not perfectly flat — slight undulation
+# adds visual interest among the flowers.
+height-variation = 1.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The flowers are placed as features
+# on top of the grass surface during decoration.
+top-block = "minecraft:grass_block"
+
+# filler-block: Rich dirt — the alluvial soil deposited in
+# the valley is nutrient-dense, supporting dense vegetation.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 4 = slightly deeper topsoil than standard.
+# Rich alluvial deposits from erosion runoff create deep,
+# fertile soil layers in the valley.
+filler-depth = 4
+
+# underwater-block: Dirt for any small ponds or seeps in
+# the valley floor.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Very sparse trees, mainly serving as beehive hosts.
+#   "oak" and "birch" provide bee nest attachment points.
+#   density 0.5 = minimal tree presence. The valley is about
+#   flowers, not forest. Trees are functional (bee homes) rather
+#   than decorative.
+trees = { types = ["oak", "birch"], density = 0.5 }
+
+# grass-density: 25.0 = moderate. Grass is present but heavily
+# competed with by the dense flower population. Flowers are
+# the dominant ground cover here.
+grass-density = 25.0
+
+# flower-density: 25.0 = extremely dense. This is the highest
+# flower density in the entire Verdant zone. The valley floor
+# should be a solid carpet of mixed colors.
+flower-density = 25.0
+
+# extra-features: Beekeeping infrastructure and bonus flower types.
+extra-features = [
+    # Bee nests on trees — more common than any other biome.
+    { feature = "bee_nest", density = 3.0 },
+    # Rose bushes add vertical flower variety (2-block tall).
+    { feature = "rose_bush", density = 4.0 },
+    # Peonies provide pink accents in the flower mix.
+    { feature = "peony", density = 3.0 },
+    # Lilac adds purple tones to the palette.
+    { feature = "lilac", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The flower valley is a pollinator paradise.
+[biome.spawning]
+# Bees are extremely common — the dense flowers support many hives.
+bee = { weight = 20, min-group = 3, max-group = 6 }
+# Rabbits hop between flower patches, eating fallen petals.
+rabbit = { weight = 8, min-group = 2, max-group = 4 }
+# Butterflies / parrots add visual life (parrots as proxy for
+# colorful flying creatures).
+parrot = { weight = 3, min-group = 1, max-group = 2 }

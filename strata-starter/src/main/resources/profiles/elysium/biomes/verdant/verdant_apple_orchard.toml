@@ -1,0 +1,140 @@
+# ============================================================
+#  Biome: Verdant Apple Orchard — Verdant Expanse
+# ============================================================
+# Dense rows of oak trees on flat ground, evoking a cultivated
+# apple orchard. The trees are spaced regularly enough to walk
+# between, with grass paths forming natural corridors. The
+# harvest theme is reinforced by the abundance of oak trees
+# (which drop apples in Minecraft) and the orderly, almost
+# farm-like layout.
+#
+# Gameplay: Reliable apple food source from breaking oak leaves.
+# Dense oak wood supply in an organized layout. The flat terrain
+# and tree spacing make excellent shelter — mobs have trouble
+# navigating the grid. A natural location for tree farms and
+# orchard-themed builds. Golden apples become more accessible
+# with the steady apple supply.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "apple_orchard" conveys
+# the cultivated, harvest-oriented character.
+id = "strata:verdant_apple_orchard"
+
+# display-name: Shown in F3 debug, minimaps, and commands.
+display-name = "Verdant Apple Orchard"
+
+# category: FOREST — the dense tree coverage qualifies this as
+# forest. Enables forest-specific wolf spawning and ambient
+# sounds (birdsong filtering through leaves).
+category = "FOREST"
+
+# zone: Verdant Expanse (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.5 = temperate. Apple trees (oaks) thrive in
+# moderate climates with distinct warm and cool periods.
+temperature = 0.5
+
+# humidity: 0.45 = moderate moisture. Adequate rainfall for
+# fruit-bearing trees without excess dampness. Slightly less
+# humid than dense forest (0.55) because the open spacing
+# allows air circulation.
+humidity = 0.45
+
+# continentalness: 0.4 = moderately inland. Orchards form in
+# stable inland climates away from coastal storms.
+continentalness = 0.4
+
+# erosion: 0.75 = high erosion (flat). Orchards need flat ground
+# for regular tree spacing. Real-world orchards are planted on
+# flat or gently sloping terrain.
+erosion = 0.75
+
+# weirdness: 0.2 = slightly unusual. The orchard-like regularity
+# is uncommon in nature — the weirdness value places it in
+# distinctive pockets rather than alongside normal forests.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 4 = slightly above sea level. Flat ground
+# consistent with agricultural terrain. Close to plains height.
+base-height = 4
+
+# height-variation: 0.5 = very slight variation. Nearly flat
+# with just enough micro-terrain to avoid feeling artificial.
+height-variation = 0.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. Clean green grass between the
+# orchard rows, forming natural walking paths.
+top-block = "minecraft:grass_block"
+
+# filler-block: Rich dirt subsoil — fertile orchard soil
+# supporting deep tree root systems.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 4 = slightly deeper than standard. Orchard soil
+# is deep and well-cultivated, with extensive root networks
+# from the dense tree population.
+filler-depth = 4
+
+# underwater-block: Dirt for any irrigation channels or small
+# ponds within the orchard.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Dense oak trees in orchard formation. The key design
+# decision is tree type and density.
+#   "oak" = standard oaks that drop apples from their leaves.
+#   "fancy_oak" = larger spreading oaks for visual variety and
+#   increased leaf volume (more apple drops per tree).
+#   density 10.0 = dense but navigable. Trees are close enough
+#   to feel like an orchard grid, but spaced enough to walk
+#   between them without getting stuck.
+trees = { types = ["oak", "fancy_oak"], density = 10.0 }
+
+# grass-density: 20.0 = moderate ground grass. The dense canopy
+# reduces light for ground vegetation, and the orchard "paths"
+# between trees are relatively bare.
+grass-density = 20.0
+
+# flower-density: 3.0 = moderate. Wildflowers grow in sunlit
+# gaps between tree canopies, adding color to the orchard floor.
+flower-density = 3.0
+
+# extra-features: Orchard-specific ground features.
+extra-features = [
+    # Bee nests in orchard trees — bees pollinate the "apple trees".
+    # Higher density than standard forests to reinforce the
+    # orchard/pollinator theme.
+    { feature = "bee_nest", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Orchard fauna — animals that would inhabit a fruit grove.
+[biome.spawning]
+# Bees pollinate the orchard trees — essential for the theme.
+bee = { weight = 10, min-group = 2, max-group = 4 }
+# Pigs forage for fallen apples beneath the trees.
+pig = { weight = 8, min-group = 2, max-group = 3 }
+# Foxes are drawn to orchards for fallen fruit.
+fox = { weight = 4, min-group = 1, max-group = 2 }

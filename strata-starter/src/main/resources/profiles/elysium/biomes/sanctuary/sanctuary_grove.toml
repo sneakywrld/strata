@@ -1,0 +1,160 @@
+# ============================================================
+#  Biome: Sanctuary Grove — Sanctuary Zone
+# ============================================================
+# A cozy copse of oak and birch trees with dappled sunlight filtering
+# through the canopy. Berry bushes line the edges and rabbits dart
+# between the trunks. A natural first stop for gathering wood.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal generator reference.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_grove"
+
+# display-name: Human-readable name shown in F3 debug screen,
+# /strata info, and zone-entry notifications.
+display-name = "Sanctuary Grove"
+
+# category: Broad Minecraft biome category. FOREST enables forest
+# ambient sounds (birdsong, rustling leaves) and adjusts sky tint.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "FOREST"
+
+# zone: Which zone this biome generates in. Must match a key from
+# zones/zones.toml. "sanctuary" restricts this to 0-1500 blocks
+# from spawn.
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate controlling placement. The generator picks
+# the biome whose climate point is nearest to local noise values.
+# Each axis: -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.5 = warm and pleasant. Identical to the meadow so
+# the grove blends naturally along its edges. Forest canopy provides
+# shade, keeping the in-game feel cooler despite same temperature.
+temperature = 0.5
+
+# humidity: 0.5 = moderate moisture. Slightly wetter than the meadow
+# (0.4) which allows berry bushes and denser undergrowth. The extra
+# moisture differentiates the grove from drier meadows during biome
+# selection.
+humidity = 0.5
+
+# continentalness: 0.3 = solidly inland. Matches the meadow for
+# seamless transitions between the two biomes.
+continentalness = 0.3
+
+# erosion: 0.6 = gently rolling terrain with slightly more contour
+# than the meadow (0.7). Gives the grove a subtle hilly character
+# with small rises for trees to crown.
+erosion = 0.6
+
+# weirdness: 0.1 = very slight variant offset. Separates this from
+# the weirdness=0.0 meadow in climate space so both can coexist
+# nearby without competing for the same exact noise values.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). 5.0 places the
+# grove slightly higher than the meadow (4.0), creating gentle
+# rises where forest begins — natural-looking terrain transitions.
+# Range: -64.0 to 256.0
+base-height = 5.0
+
+# height-variation: How much terrain undulates. 3.0 adds mild
+# hilliness for interesting tree placement on small knolls.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block is the standard forest floor. Fallen
+# leaves are handled by the vegetation system, not surface rules.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt sub-surface. Standard for all grass biomes.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 4 blocks of dirt (one more than default 3). The
+# deeper soil represents richer forest earth from accumulated
+# organic matter. Also prevents stone peeking through on slopes.
+filler-depth = 4
+
+# underwater-block: Gravel for any small forest pools. Gives a
+# naturalistic look as if leaf litter and pebbles settled.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Oak and birch in roughly equal measure, creating a mixed
+# deciduous grove. The mix provides visual variety and gives new
+# players access to two wood colors right away.
+#   types: "oak" = small oak (4-7 blocks), "birch" = small birch (5-8).
+#   density: 7.0 = moderate woodland. Not so dense that movement is
+#            impeded, but enough canopy to feel sheltered. Vanilla
+#            forests use ~10; this is deliberately lighter for a
+#            park-like, welcoming feel.
+trees = { types = ["oak", "birch"], density = 7.0 }
+
+# grass-density: 6.0 = moderate ground cover. Slightly less than
+# the open meadow because tree shade limits grass growth. Still
+# enough to look lush.
+grass-density = 6.0
+
+# flower-density: 2.0 = sparse flowers growing in sunlit gaps
+# between trees. Less than the meadow because the canopy limits
+# direct sunlight for flower growth.
+flower-density = 2.0
+
+# flower-types: Forest-edge flowers that thrive in partial shade.
+# Lily of the valley and azure bluet are shade-tolerant, while
+# dandelions catch the light in clearings.
+flower-types = ["lily_of_the_valley", "azure_bluet", "dandelion"]
+
+# berry-bushes: Sweet berry bush patches around the grove perimeter.
+#   density: Patches per chunk. 3.0 places clusters at grove edges
+#            where players naturally walk, making food easy to find.
+#   Range: 0.0 to 10.0
+berry-bushes = { density = 3.0 }
+
+# mushrooms: Small brown mushroom patches under the densest canopy.
+#   density: 1.0 = very sparse, only in the shadiest spots.
+mushrooms = { types = ["brown_mushroom"], density = 1.0 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The grove is a safe woodland teeming with small passive life.
+# Rabbits are the signature mob here — abundant and endearing.
+
+# rabbit: Elevated weight makes rabbits common in the grove.
+# They dart between bushes and trees, adding life to the forest.
+# Global default is 4; tripled here to make them a defining feature.
+rabbit = { weight = 12, min-group = 2, max-group = 4 }
+
+# chicken: Slightly boosted. Chickens scratch around in forest
+# clearings — a reliable early food source.
+chicken = { weight = 12, min-group = 2, max-group = 4 }
+
+# sheep: Moderate presence. Sheep graze in the lighter gaps.
+sheep = { weight = 8, min-group = 2, max-group = 3 }
+
+# bee: Modest bee presence. Fewer flowers means fewer bees than
+# the meadow, but birch and oak trees still host some nests.
+bee = { weight = 3, min-group = 1, max-group = 2 }

@@ -1,0 +1,135 @@
+# ============================================================
+#  Biome: Outer Void Overlook — Outer Islands
+# ============================================================
+# The dramatic edge of a large outer island where the terrain
+# rises to a high point before dropping away into infinite
+# void. Standing on the overlook, players look out across an
+# endless expanse of darkness punctuated by distant glowing
+# islands. The view is breathtaking — and vertigo-inducing.
+# The overlook's elevated position makes it a natural lookout
+# for spotting distant end cities, elytra-equipped players,
+# and the faint glow of end gateways. End rods placed along
+# the edge serve as natural lighting, their soft glow
+# contrasting with the absolute darkness of the void below.
+#
+# Gameplay notes:
+#   - Highest point on outer islands (base-height 70).
+#   - Spectacular void views — screenshot-worthy location.
+#   - Natural lookout for scouting distant structures.
+#   - End rods provide ambient lighting along the edge.
+#   - Popular elytra launch point for long-distance flight.
+#   - Fall from the overlook edge is lethal (void death).
+#   - Pairs with outer_end_shelf (lower edge nearby) and
+#     outer_end_plateau (the island body below).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the elevated void
+# viewing points on outer End islands.
+id = "strata:outer_void_overlook"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Void Overlook"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Outer Islands region.
+region = "outer"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cool — the elevated, exposed position
+# loses heat to the void more readily. -0.1 = slightly
+# cooler than sheltered island surfaces.
+temperature = -0.1
+
+# humidity: Dry. 0.0 = standard End aridity. The exposed
+# overlook has no moisture source.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.15 = very slightly weird. Overlooks are
+# elevated island edges — somewhat uncommon but not
+# bizarre. They generate where noise creates a high
+# point near an island boundary.
+weirdness = 0.15
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 70 — the highest elevation in the outer
+# islands region. The overlook rises 10 blocks above
+# standard islands (60), creating a commanding vantage
+# point. The elevation makes these points visible from
+# great distances.
+base-height = 70
+
+# height-variation: 5 = moderate variation. The overlook
+# surface is relatively stable with a gradual slope
+# toward the void edge. Not flat enough to be boring,
+# not rough enough to impede the view.
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — standard End surface material.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone beneath the overlook surface.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard depth. The overlook is a
+# solid elevated formation, not a thin ledge.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# End rods line the void edge, creating a natural
+# lighting feature. Sparse chorus plants grow back from
+# the edge on more protected terrain.
+[biome.features]
+# end-specific: End rods along the overlook edge provide
+# ambient lighting and mark the boundary between solid
+# ground and void. Chorus plants grow further inland
+# where conditions are more sheltered.
+trees = { types = ["chorus_tree"], density = 1.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: End rod edge lighting and sparse
+# chorus decoration.
+#   end_rod_line — end rods placed along the void edge
+#       in an irregular line, marking the boundary.
+extra-features = [
+    { feature = "end_rod_line", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen silhouetted against the void are an iconic
+# End sight. Their presence on the overlook is slightly
+# reduced by the end rod lighting.
+[biome.spawning]
+# enderman: Moderate presence. The end rod lighting along
+# the edge slightly discourages spawning, but endermen
+# still patrol the overlook surface. Encounters here are
+# dangerous due to the nearby void edge.
+enderman = { weight = 28, min-group = 1, max-group = 3 }

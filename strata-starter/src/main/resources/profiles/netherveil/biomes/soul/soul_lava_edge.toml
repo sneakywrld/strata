@@ -1,0 +1,153 @@
+# ============================================================
+#  Biome: Soul Lava Edge — Soul Regions
+# ============================================================
+# The treacherous boundary where the soul sand valley meets the
+# nether lava ocean — a crumbling coastline of soul sand eroding
+# into molten rock. The soul sand undercuts and collapses at the
+# lava boundary, creating an unstable, shifting shoreline where
+# the ground can give way without warning. Lava seeps into soul
+# sand pockets, creating dangerous hidden lava traps beneath a
+# thin crust of seemingly solid ground. Soul fire burns at the
+# very edge where soul sand meets the lava's glow, the blue
+# flames mixing with the orange lava light to create an eerie
+# purple ambience. Striders wade through the shallows, and
+# ghasts circle overhead, drawn to the open space above the
+# lava ocean. This is one of the most dangerous transitional
+# biomes — the combination of slow movement, unstable ground,
+# and adjacent lava makes every step a gamble.
+#
+# Gameplay notes:
+#   - Extremely dangerous — lava traps under soul sand crust.
+#   - Soul sand movement penalty + adjacent lava = lethal falls.
+#   - Fire Resistance potions strongly recommended.
+#   - Strider riding access point for lava ocean crossing.
+#   - Ghast fireballs knock players into the lava ocean.
+#   - Soul Speed enchantment essential for quick retreat.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The lava edge is the most
+# dangerous transitional biome in the soul regions.
+id = "strata:soul_lava_edge"
+
+# display-name: Human-readable name for player displays.
+display-name = "Soul Lava Edge"
+
+# category: NETHER — nether environment at the soul sand
+# valley's lava ocean boundary.
+category = "NETHER"
+
+# zone: Part of the soul zone — the coastal edge where soul
+# terrain meets the lava sea.
+zone = "soul"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Mixed — the cool soul sand meets the intense
+# lava heat, creating a temperature conflict zone.
+#   0.4 = warmer than interior soul terrain from lava proximity.
+temperature = 0.4
+
+# humidity: Dry — neither soul sand nor lava promotes moisture.
+#   -0.3 = dry coastal conditions.
+humidity = -0.3
+
+# continentalness: Strongly negative — this biome generates at
+# the boundary between land and lava ocean.
+#   -0.6 = coastal placement at the lava sea edge.
+continentalness = -0.6
+
+# erosion: High — the lava has eroded the soul sand coastline,
+# creating a crumbling, unstable shore.
+#   0.8 = heavily eroded, unstable coastal terrain.
+erosion = 0.8
+
+# weirdness: Moderate — the soul sand-lava boundary is an
+# unusual but logical transition zone.
+#   0.3 = moderately unusual transitional terrain.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Very low — the shore sits just above lava level,
+# with sections dipping into the lava ocean.
+#   32 = barely above lava ocean level (Y=31).
+base-height = 32
+
+# height-variation: Low — the shore is relatively flat, sloping
+# gently into the lava. The danger is below, not above.
+#   2.0 = gentle slope into the lava ocean.
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Soul sand — the crumbling soul sand coastline
+# that erodes into the adjacent lava ocean.
+top-block = "minecraft:soul_sand"
+
+# filler-block: Netherrack beneath the thin soul sand crust.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Thin — the soul sand layer is shallow near the
+# lava boundary, creating collapse-prone thin crusts.
+#   2 = dangerously thin soul sand over lava pockets.
+filler-depth = 2
+
+# underwater-block: Magma blocks — where soul sand meets the
+# lava ocean, magma blocks line the underwater surface.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation on the crumbling lava shore.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life at the lava boundary.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Lava edge specific features.
+#   soul_fire — blue fire at the soul sand-lava boundary.
+#   lava_trap — hidden lava pockets under thin soul sand.
+#   magma_block_shore — magma blocks at the waterline.
+#   strider_spawn_point — strider congregation area.
+extra-features = [
+    { feature = "soul_fire", density = 4.0 },
+    { feature = "lava_trap", density = 5.0 },
+    { feature = "magma_block_shore", density = 6.0 },
+    { feature = "strider_spawn_point", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Ghasts and striders dominate the lava edge — open lava
+# space for ghasts, shallow lava for striders.
+[biome.spawning]
+# ghast: High presence over the open lava — fireballs are
+# especially dangerous as they knock players into the lava.
+ghast = { weight = 12, min-group = 1, max-group = 2 }
+
+# strider: Frequent striders in the shallow lava — the
+# primary passive mob for lava ocean travel.
+strider = { weight = 15, min-group = 1, max-group = 3 }
+
+# skeleton: Patrolling the soul sand shore, firing arrows
+# at players navigating the dangerous coastline.
+skeleton = { weight = 8, min-group = 1, max-group = 3 }
+
+# magma_cube: Bouncing near the magma block shoreline.
+magma_cube = { weight = 6, min-group = 1, max-group = 2 }

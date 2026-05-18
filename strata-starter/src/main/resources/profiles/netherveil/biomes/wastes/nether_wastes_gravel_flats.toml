@@ -1,0 +1,141 @@
+# ============================================================
+#  Biome: Nether Wastes Gravel Flats — Nether Wastes Region
+# ============================================================
+# A broad, unusually flat expanse where netherrack gives way to
+# large patches of gravel — remnants of ancient geological
+# upheaval that shattered the nether stone into loose aggregate.
+# The flat terrain offers clear sightlines in every direction,
+# making it one of the few nether biomes where you can see
+# threats coming from afar. Exposed nether quartz ore veins
+# glitter in the walls where the gravel has eroded away the
+# surrounding netherrack. The loose footing makes running
+# treacherous — gravel shifts and collapses under weight,
+# occasionally revealing hidden lava pockets beneath.
+#
+# Gameplay notes:
+#   - Excellent nether quartz farming location.
+#   - Gravel harvesting for flint production (arrows).
+#   - Gravity block hazard — gravel collapses can be lethal.
+#   - Good visibility makes this safer for nether travel.
+#   - Flat terrain ideal for nether highway construction.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The gravel flats are a
+# terrain variant of the standard nether wastes.
+id = "strata:nether_wastes_gravel_flats"
+
+# display-name: Human-readable name for player displays.
+display-name = "Nether Wastes Gravel Flats"
+
+# category: NETHER — standard nether ambient environment.
+category = "NETHER"
+
+# zone: Part of the wastes region — a terrain variant within
+# the standard nether wasteland.
+zone = "wastes"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Standard nether warmth — same as base wastes.
+#   0.5 = baseline nether temperature, no additional heat sources.
+temperature = 0.5
+
+# humidity: Slightly dry — the loose gravel retains no moisture.
+#   -0.1 = marginally drier than the standard wastes.
+humidity = -0.1
+
+# continentalness: Neutral — gravel flats appear throughout
+# the mid-level nether terrain without coastal bias.
+#   0.2 = slightly inland, away from lava ocean edges.
+continentalness = 0.2
+
+# erosion: Very high — the terrain is heavily eroded and flat,
+# which is what created the gravel deposits in the first place.
+#   0.9 = extremely flat, heavily weathered terrain.
+erosion = 0.9
+
+# weirdness: Low — flat gravel plains are unremarkable terrain.
+#   -0.1 = slightly below average weirdness, mundane landscape.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor level.
+#   38 = slightly below typical wastes height, settled lower
+#   due to the loose, compacted gravel substrate.
+base-height = 38
+
+# height-variation: Very low — the defining feature of this
+# biome is its flatness. The gravel has settled into a level plane.
+#   1.5 = nearly flat with only minor undulation.
+height-variation = 1.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Netherrack remains the primary surface, but the
+# gravel patches are placed as features on top. The base
+# terrain is still netherrack.
+top-block = "minecraft:netherrack"
+
+# filler-block: Gravel substrate beneath the surface —
+# the loose aggregate that defines this biome's geology.
+filler-block = "minecraft:gravel"
+
+# filler-depth: Deep gravel deposits extending well below
+# the surface. Mining downward hits gravel before stone.
+#   5 = thick gravel layer, prone to gravity collapses.
+filler-depth = 5
+
+# underwater-block: Gravel on submerged surfaces — loose
+# aggregate extends into any lava-adjacent areas.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation on the barren gravel flats.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on loose gravel.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Gravel flats specific features.
+#   gravel_patch — large gravel surface patches on netherrack.
+#   nether_quartz_ore — exposed quartz veins in eroded walls.
+#   lava_pool — hidden lava pockets beneath the gravel.
+extra-features = [
+    { feature = "gravel_patch", density = 10.0 },
+    { feature = "nether_quartz_ore", density = 8.0 },
+    { feature = "lava_pool", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# zombified_piglin: Standard herd presence, slightly smaller
+# groups due to the open terrain offering less congregation points.
+zombified_piglin = { weight = 20, min-group = 3, max-group = 6 }
+
+# ghast: The open flat terrain is prime ghast territory —
+# no obstructions for their flight paths or fireball trajectories.
+# Slightly elevated weight due to the open sightlines.
+ghast = { weight = 10, min-group = 1, max-group = 1 }
+
+# magma_cube: Occasional magma cubes near lava pockets hidden
+# beneath the gravel surface.
+magma_cube = { weight = 4, min-group = 1, max-group = 2 }

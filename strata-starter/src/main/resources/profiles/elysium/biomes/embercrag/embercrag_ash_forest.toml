@@ -1,0 +1,168 @@
+# ============================================================
+#  Biome: Ash Forest — Embercrag Volcanic
+# ============================================================
+# The skeletal remains of a forest buried in volcanic ash. Dead
+# trees stand coated in a thick layer of gray concrete powder that
+# simulates volcanic ash — their trunks are pale ghosts against
+# the gray sky, and their bare branches reach upward like grasping
+# hands. The ground is a uniform gray carpet of ash (concrete
+# powder) that kicks up in clouds with every step. Sparse, eerie,
+# and deeply unsettling, the ash forest is what happens when a
+# pyroclastic flow sweeps through a living ecosystem. Nothing
+# survived. The silence is deafening.
+#
+# Gameplay Notes:
+#   - Ash (gray concrete powder) turns to concrete when it contacts water.
+#   - Dead trees provide wood but the ash makes navigation disorienting.
+#   - The uniform gray terrain makes it easy to get lost.
+#   - Visibility is poor — ash particles reduce draw distance.
+#   - This biome transitions between lower volcanic terrain and peaks.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_ash_forest"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Ash Forest"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint and dry atmosphere.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.75 = hot — the ash retains heat from the original
+# eruption and continues to radiate warmth, though less intensely
+# than the active volcanic biomes.
+temperature = 0.75
+
+# humidity: -0.2 = moderately dry — the ash absorbs some moisture
+# but the overall environment is arid. Occasional rain turns ash
+# patches into concrete.
+humidity = -0.2
+
+# continentalness: 0.7 = firmly inland — the ash forest sits on
+# the volcanic plateau's flanks.
+continentalness = 0.7
+
+# erosion: 0.4 = moderate erosion — the ash layer is soft and
+# erodes easily, creating gently rolling terrain with shallow
+# depressions where ash has accumulated more deeply.
+erosion = 0.4
+
+# weirdness: 0.3 = moderately unusual — the ash forest is a
+# distinctive volcanic variant that generates in the transition
+# zone between active volcanic terrain and surrounding biomes.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 8 = moderately elevated. The ash forest sits on
+# the mid-slopes of the volcanic region, above the lava flows but
+# below the peaks and craters.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 8
+
+# height-variation: 8 = significant undulation. The terrain rolls
+# gently beneath the ash layer, with some steeper sections where
+# the original forest grew on hillsides.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Light gray concrete powder — simulates volcanic ash.
+# The fine, powdery surface shifts underfoot and turns to solid
+# concrete when water touches it, creating an interesting
+# interaction during rain.
+top-block = "minecraft:light_gray_concrete_powder"
+
+# filler-block: Gray concrete powder — deeper ash deposits are
+# more compressed and slightly darker, but still powdery.
+filler-block = "minecraft:gray_concrete_powder"
+
+# filler-depth: 4 = deep ash layer. The pyroclastic deposits
+# buried the original terrain several blocks deep.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Gravel — the heavier volcanic particles settle
+# at the bottom of any water features, while the lighter ash
+# is washed away.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Dead, ash-coated trees. Stripped spruce logs stand as pale
+# trunks, and the occasional dead bush represents a collapsed shrub.
+#   types: Tree definition keys from features/trees.toml.
+#   density: 4.0 = moderate — the original forest was dense, but
+#            many trees collapsed under the weight of ash, leaving
+#            only the strongest trunks standing.
+trees = { types = ["ash_dead_spruce", "stripped_spruce"], density = 4.0 }
+
+# grass-density: 0.0 = no living grass — everything is buried
+# under ash.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers survive in the ash.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# dead-bush-density: 2.0 = scattered dead bushes poking through
+# the ash layer — remnants of the original undergrowth.
+dead-bush-density = 2.0
+
+# extra-features: Ash drifts, exposed charred logs, and occasional
+# magma block vents beneath the ash.
+extra-features = [
+    { feature = "ash_drift", density = 3.0 },
+    { feature = "charred_log", density = 2.0 },
+    { feature = "magma_vein", density = 0.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The ash forest is a graveyard — silent and mostly empty. Strays
+# wander the gray landscape like restless spirits, and husks emerge
+# from the ash drifts at night.
+
+# stray: Strays are the dominant hostile mob — their pale appearance
+# blends into the gray ash, making them difficult to spot.
+# weight: 15 for a consistent, camouflaged threat.
+# min-group/max-group: Small packs of 1-2.
+stray = { weight = 15, min-group = 1, max-group = 2 }
+
+# husk: Husks push through the ash layer at night, covered in gray
+# powder that camouflages them against the terrain.
+# weight: 10 for a secondary melee threat.
+husk = { weight = 10, min-group = 1, max-group = 2 }
+
+# phantom: Phantoms circle above the dead forest, visible against
+# the gray sky. The open canopy gives them clear dive lanes.
+# weight: 5 for an occasional aerial threat.
+phantom = { weight = 5, min-group = 1, max-group = 2 }

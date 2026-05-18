@@ -1,0 +1,161 @@
+# ============================================================
+#  Biome: Abyssal Cheese Chamber — Abyssal Depths
+# ============================================================
+# Massive open cavern reminiscent of the "cheese" cave noise
+# pattern — vast hollow chambers with towering ceilings that
+# vanish into darkness. An underground lake dominates the floor,
+# its still black water reflecting faint bioluminescent glow
+# from lichen clinging to the ceiling. Stalagmites rise from
+# the lake bed like petrified columns, some breaching the
+# surface to form stepping-stone platforms. The air is damp
+# and echoing — every footstep reverberates for seconds.
+#
+# Gameplay notes:
+#   - Largest open cave room in the Abyssal zone.
+#   - Underground lake requires boats or bridging to cross.
+#   - Bioluminescent lichen provides dim ambient light (level 3).
+#   - Stalagmites serve as natural platforms and cover.
+#   - Glow squid and axolotls spawn in the lake.
+#   - Excellent source of clay and pointed dripstone.
+#   - Pairs with abyssal_drip_cave and abyssal_underground_river
+#     in the same Y-band.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal registry.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:abyssal_cheese_chamber"
+
+# display-name: Human-readable name shown in F3 debug overlay,
+# minimap plugins, and /strata biome info commands.
+display-name = "Cheese Chamber"
+
+# category: Broad Minecraft biome classification. CAVE enables
+# underground ambient sounds, removes sky light calculations,
+# and flags the biome for cave-specific feature placement.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "CAVE"
+
+# zone: Parent zone key from zones/zones.toml. The abyssal zone
+# is Y-based (Y -64 to 0) rather than distance-based, so this
+# biome generates underground regardless of distance from spawn.
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values position this biome within the multi-noise
+# climate system. For underground biomes, temperature and
+# humidity are derived from the surface above, while
+# continentalness and erosion control cave shape. Weirdness
+# near 0.0 produces the most common cave types.
+[biome.climate]
+# temperature: Subterranean coolness — deep caves maintain a
+# constant temperature well below surface ambient.
+# 0.3 = cool but not freezing; water remains liquid.
+temperature = 0.3
+
+# humidity: Elevated moisture from the underground lake and
+# constant seepage through the ceiling rock.
+# 0.6 = damp air; condensation drips from stalactites.
+humidity = 0.6
+
+# continentalness: Neutral — cheese chambers can form under
+# any continental position. 0.5 = mid-range, no coastal bias.
+continentalness = 0.5
+
+# erosion: Neutral erosion produces the wide, hollow voids
+# characteristic of cheese caves. 0.5 = balanced cave profiles.
+erosion = 0.5
+
+# weirdness: 0.0 = standard cave variant. Cheese chambers are
+# the "default" large cave type, not exotic or unusual.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Average Y-level of the cave floor.
+# -30 = roughly 30 blocks below sea level, placing this in the
+# upper-middle range of the Abyssal zone (Y -64 to 0).
+# The cave ceiling is determined by variation above this point.
+base-height = -30
+
+# height-variation: How much the cave floor and ceiling undulate.
+# 20 = significant variation — deep pools, raised platforms, and
+# towering stalagmite columns up to 20 blocks tall.
+height-variation = 20
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# For cave biomes, "surface" refers to the cave floor, walls,
+# and ceiling materials rather than the overworld surface.
+[biome.surface]
+# top-block: The cave floor surface. Stone with moss and clay
+# patches near the waterline. Calcite represents the mineral
+# deposits left by dripping water over millennia.
+top-block = "minecraft:calcite"
+
+# filler-block: Below the calcite surface, standard stone
+# transitions to the host rock of the cave system.
+filler-block = "minecraft:stone"
+
+# filler-depth: Thin calcite crust — the cave floor is mostly
+# exposed bedrock with a mineral veneer.
+# 2 = shallow mineral layer before hitting solid stone.
+filler-depth = 2
+
+# underwater-block: The lake bed material. Clay accumulates
+# in the still water of underground lakes over centuries.
+underwater-block = "minecraft:clay"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Cave features replace surface vegetation. These control
+# stalactite/stalagmite placement, bioluminescence, water
+# features, and mineral deposits.
+[biome.features]
+# trees: No trees underground — this is a cave biome.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No grass grows in the deep underground.
+grass-density = 0.0
+
+# flower-density: No flowers in the deep dark.
+flower-density = 0.0
+
+# extra-features: Cave-specific decorations.
+#   glow_lichen — bioluminescent patches on ceiling and walls.
+#   pointed_dripstone — stalactites hang from ceiling, stalagmites
+#     rise from floor, creating the chamber's signature pillars.
+#   underground_lake — large still-water body on the cave floor.
+extra-features = [
+    { feature = "glow_lichen", density = 12.0 },
+    { feature = "pointed_dripstone", density = 8.0 },
+    { feature = "underground_lake", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The cheese chamber's open spaces and underground lake support
+# a unique mix of aquatic and cave-dwelling creatures.
+[biome.spawning]
+# glow_squid: Bioluminescent squid in the underground lake.
+# High weight — they are the signature mob of this biome.
+glow_squid = { weight = 15, min-group = 2, max-group = 4 }
+
+# axolotl: Rare amphibians in the lake shallows. Prized by
+# players for their combat utility against drowned.
+axolotl = { weight = 5, min-group = 1, max-group = 3 }
+
+# bat: Common in the upper reaches of the vast chamber.
+bat = { weight = 10, min-group = 1, max-group = 3 }

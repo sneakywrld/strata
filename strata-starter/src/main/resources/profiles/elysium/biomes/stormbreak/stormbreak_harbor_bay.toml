@@ -1,0 +1,85 @@
+# ============================================================
+#  Biome: Stormbreak Harbor Bay — Stormbreak Coast
+# ============================================================
+# A natural harbor formed by enclosing headlands and a gently
+# sloping seabed. The water is calm, sheltered from the open
+# ocean's fury, and shallow enough for easy dock construction.
+# This is the ideal location for players to build a port,
+# fishing village, or naval base. The bay floor is sandy and
+# relatively flat, with scattered kelp and the occasional
+# cod or salmon swimming through.
+#
+# Gameplay notes:
+#   - Best biome in Stormbreak for base building near water.
+#   - Calm, shallow water makes dock construction trivial.
+#   - Good fishing yields — cod, salmon, and treasure loot.
+#   - Kelp farms can be established on the bay floor.
+#   - Naturally connects to stormbreak_sandy_beach at the
+#     waterline and stormbreak_lighthouse_point on headlands.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_harbor_bay"          # Unique registry ID
+display-name = "Stormbreak Harbor Bay"       # Shown in F3 debug & maps
+category = "OCEAN"                           # Classified as sheltered ocean
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Moderate temperature and humidity — sheltered from extremes.
+# Negative weirdness helps distinguish this from open ocean
+# and ensures it generates in protected, concave coastline.
+[biome.climate]
+temperature = 0.5           # Mild — sheltered from cold winds
+humidity = 0.5              # Moderate — balanced moisture
+continentalness = -0.1      # Slightly oceanic — submerged bay
+erosion = 0.4               # High erosion — smooth, worn bay floor
+weirdness = -0.1            # Slightly unusual — sheltered formation
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# A few blocks below sea level with minimal variation — a
+# gently sloping, almost flat bay floor perfect for building.
+[biome.terrain]
+base-height = -3            # 3 blocks below sea level — shallow bay
+height-variation = 2        # Very gentle slopes — easy to build on
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Sandy bay floor, clean and uniform. No gravel or rock
+# intrusions — this is a well-protected, depositional
+# environment.
+[biome.surface]
+top-block = "minecraft:sand"             # Clean sand bay floor
+filler-block = "minecraft:sand"          # Deep sand deposits
+filler-depth = 3                         # 3 blocks of sand
+underwater-block = "minecraft:sand"      # Uniform sandy seabed
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Kelp forests grow on the bay floor, providing a renewable
+# food source (dried kelp) and fuel (dried kelp blocks).
+# Seagrass fills the shallower margins.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees — underwater biome
+grass-density = 0.4                      # Moderate seagrass and kelp coverage
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Cod and salmon are abundant — best fishing biome in the
+# Stormbreak zone. Squid provide ink sacs. The sheltered
+# water has fewer hostile aquatic mobs than open ocean.
+[biome.spawning]
+# Cod spawn in schools — primary food fish for the bay.
+# Salmon also present — slightly rarer than cod.
+# Squid provide ink sacs for book-and-quill and banners.
+# Hostile mobs suppressed by shallow, well-lit water.
+# Glow squid may appear in deeper pockets at the bay centre.

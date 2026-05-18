@@ -1,0 +1,160 @@
+# ============================================================
+#  Biome: Gravity Well — The Shattered Reach
+# ============================================================
+# Physics itself has broken down here. Massive chunks of terrain
+# hang inverted in the sky, their undersides covered in grass that
+# grows downward. Floating islands rotate lazily around invisible
+# gravitational anchors. Levitation particles stream upward from
+# every surface, and players who fall off a platform may find
+# themselves drifting rather than plummeting. The Gravity Well is
+# the Shattered Reach at its most reality-defying — a place where
+# "up" and "down" are suggestions, not rules.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier for generator references, region maps,
+# and biome transition definitions.
+id = "strata:shattered_gravity_well"
+
+# Human-readable name shown on debug screens and admin commands.
+display-name = "Gravity Well"
+
+# CUSTOM category — completely bespoke generation with no vanilla
+# biome equivalent. Requires custom terrain carvers and feature
+# placement rules.
+category = "CUSTOM"
+
+# Part of the Shattered Reach endgame zone, representing the most
+# extreme dimensional instability in the region.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.0, absolute cold. Gravitational distortion strips
+# thermal energy from the air; the biome feels weightless and frozen.
+temperature = 0.0
+
+# Humidity — 0.2, low moisture. Water cannot pool when gravity is
+# unreliable — any moisture hangs as suspended droplets or drifts
+# away as mist.
+humidity = 0.2
+
+# Continentalness — 0.4, slightly off-center. Gravity Wells form
+# where dimensional stress is highest, often at the boundaries
+# between stable and unstable landmasses.
+continentalness = 0.4
+
+# Erosion — -0.9, extremely negative. The terrain is not just eroded
+# but *inverted* — carved apart and suspended by anti-gravitational
+# forces. Maximum structural disruption.
+erosion = -0.9
+
+# Weirdness — 1.0, the absolute maximum. Inverted terrain and broken
+# physics make this the single most alien biome the generator can
+# produce. Nothing about this biome obeys normal rules.
+weirdness = 1.0
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — 40 blocks above sea level. The "ground floor" of the
+# Gravity Well sits high up; most of the interesting terrain floats
+# above and around this baseline.
+base-height = 40
+
+# Height variation — 60 blocks, the most extreme in the Shattered
+# Reach. Floating islands can appear from near-void level all the
+# way up to the build limit, creating a massive vertical play space.
+height-variation = 60
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — end_stone. The gravitational anomaly has fully exposed
+# the dimensional substrate. End stone is the only material stable
+# enough to hold together under inverted gravity.
+top-block = "minecraft:end_stone"
+
+# Filler block — end_stone continues beneath. The entire floating
+# mass is end stone through and through, with no dirt or normal
+# geology remaining.
+filler-block = "minecraft:end_stone"
+
+# Filler depth — 5 blocks. Floating islands are relatively thin —
+# solid end stone shells rather than deep landmasses.
+filler-depth = 5
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Inverted terrain islands — large chunks of terrain generated
+# upside-down, with their flat side facing the sky and jagged roots
+# hanging below. Core defining feature of the biome.
+inverted-islands = true
+
+# Levitation particle columns — vertical streams of white/purple
+# particles rising from the ground and falling from inverted islands,
+# visually marking the anti-gravity zones.
+levitation-particles = true
+
+# Gravity anchor crystals — clusters of crying obsidian and amethyst
+# that mark the center of each gravitational anomaly. These serve as
+# navigation landmarks and potential loot locations.
+gravity-anchors = true
+
+# Floating water orbs — small spheres of water suspended in mid-air
+# between islands, defying normal fluid physics. Decorative and
+# atmospheric.
+floating-water = true
+
+# End rod arrays — grids of end rods projecting from floating island
+# undersides, glowing softly and creating an eerie light pattern on
+# the ground below.
+end-rod-arrays = true
+
+# Connecting chains — iron chain blocks stretching between nearby
+# floating islands, hinting that someone once tried to tether the
+# drifting landmasses together.
+chain-bridges = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Endermen are native to this unstable dimensional space. They
+# teleport freely between floating islands, making them especially
+# difficult to track.
+enderman = 70
+
+# Shulkers cling to the undersides of inverted islands, firing
+# levitation bolts that are doubly dangerous in a biome where
+# falling distances can be lethal.
+shulker = 30
+
+# Phantoms exploit the vast vertical space, diving between island
+# layers to attack players on exposed platforms.
+phantom = 35
+
+# Vex phase through solid island cores, emerging without warning.
+# Their flight ability makes them a natural fit for the floating
+# terrain.
+vex = 20
+
+# Blazes — the gravitational distortion occasionally pulls Nether
+# entities through; blazes hover among the floating islands,
+# adding ranged fire pressure.
+blaze = 10

@@ -1,0 +1,157 @@
+# ============================================================
+#  Biome: Fortress Collapsed Hall — Fortress Domain
+# ============================================================
+# The ruins of what was once a grand fortress hall, now broken
+# and collapsed into a treacherous maze of fallen nether brick
+# walls, shattered pillars, and rubble-choked corridors. The
+# original architecture is still visible in fragments — arched
+# doorways leading nowhere, staircases ending in open air, and
+# decorative nether brick fence patterns half-buried in debris.
+# The collapse has created a multi-level terrain of rubble piles,
+# exposed foundations, and hidden voids beneath fallen walls
+# where treasure chests lie buried. The structural instability
+# is palpable — sections of ceiling still hang precariously, and
+# the rubble shifts underfoot. Fortress mobs navigate the ruins
+# from memory, using hidden passages through the debris that
+# players must discover. This is an exploration and looting biome
+# — the rewards are buried in the rubble for those patient and
+# brave enough to dig.
+#
+# Gameplay notes:
+#   - Hidden loot chests beneath rubble — excavation rewards.
+#   - Multi-level ruins create complex 3D navigation.
+#   - Nether brick and nether brick fence harvesting.
+#   - Fortress mobs know hidden paths — ambush risk.
+#   - Structural instability visual theme (decorative).
+#   - Endgame exploration content — dig for buried treasure.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The collapsed hall is an
+# exploration-focused ruin biome within the fortress domain.
+id = "strata:fortress_collapsed_hall"
+
+# display-name: Human-readable name for player displays.
+display-name = "Collapsed Hall"
+
+# category: NETHER — nether environment of destroyed fortress
+# architecture creating a rubble maze.
+category = "NETHER"
+
+# zone: Part of the fortress zone — the most ruined and
+# exploration-rich area in the fortress domain.
+zone = "fortress"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Standard — the rubble provides neither insulation
+# nor exposure beyond normal nether conditions.
+#   0.5 = baseline nether temperature amid the ruins.
+temperature = 0.5
+
+# humidity: Dry — nether brick rubble retains no moisture.
+#   -0.1 = slightly dry, inorganic rubble terrain.
+humidity = -0.1
+
+# continentalness: Neutral — collapsed halls form at standard
+# fortress elevations.
+#   0.1 = slight inland tendency within fortress area.
+continentalness = 0.1
+
+# erosion: Very low — the rubble creates extremely cluttered,
+# maze-like terrain with constant obstructions.
+#   0.15 = very rough, rubble-choked terrain.
+erosion = 0.15
+
+# weirdness: High — the collapsed architecture creates unusual
+# and unpredictable terrain formations.
+#   0.6 = highly unusual ruined architecture.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard fortress floor — the collapse has
+# created multi-level terrain above and below the original floor.
+#   40 = original floor level, with rubble above and below.
+base-height = 40
+
+# height-variation: Very high — rubble piles, exposed upper
+# floors, and collapsed sections create extreme variation.
+#   8.0 = dramatic variation from structural collapse.
+height-variation = 8.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Nether bricks — the collapsed fortress material
+# forms the primary surface throughout the ruins.
+top-block = "minecraft:nether_bricks"
+
+# filler-block: Netherrack beneath the nether brick rubble.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical depth beneath the fortress rubble.
+filler-depth = 4
+
+# underwater-block: Magma blocks at any lava pockets within
+# the collapsed structure.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the fortress ruins.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on nether bricks.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Collapsed hall specific features.
+#   nether_brick_rubble — dense fallen nether brick debris,
+#     the defining visual element of the ruin.
+#   cracked_nether_brick_pile — deteriorated brick formations.
+#   nether_brick_fence_remnant — broken decorative fencing.
+#   buried_chest — hidden loot beneath rubble piles,
+#     containing fortress-tier loot.
+#   fallen_pillar — collapsed structural columns creating
+#     bridges and ramps in the rubble.
+extra-features = [
+    { feature = "nether_brick_rubble", density = 12.0 },
+    { feature = "cracked_nether_brick_pile", density = 6.0 },
+    { feature = "nether_brick_fence_remnant", density = 4.0 },
+    { feature = "buried_chest", density = 2.0 },
+    { feature = "fallen_pillar", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Fortress mobs use the ruins as ambush terrain — they know
+# the hidden paths through the rubble.
+[biome.spawning]
+# wither_skeleton: Patrol the ruins using hidden corridors,
+# appearing from behind rubble piles for surprise melee attacks.
+wither_skeleton = { weight = 15, min-group = 1, max-group = 3 }
+
+# blaze: Blazes hover above the rubble, firing down into the
+# maze where players are navigating the debris.
+blaze = { weight = 8, min-group = 1, max-group = 2 }
+
+# skeleton: Standard skeletons firing arrows through rubble gaps.
+skeleton = { weight = 8, min-group = 1, max-group = 3 }
+
+# zombified_piglin: Wandering undead trapped in the ruins.
+zombified_piglin = { weight = 5, min-group = 1, max-group = 2 }

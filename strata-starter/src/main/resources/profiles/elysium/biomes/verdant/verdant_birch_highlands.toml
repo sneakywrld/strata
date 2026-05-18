@@ -1,0 +1,135 @@
+# ============================================================
+#  Biome: Verdant Birch Highlands — Verdant Expanse
+# ============================================================
+# Tall, slender birch trees stand on elevated terrain, their
+# white bark glowing in abundant sunlight. The canopy is open
+# and airy, allowing light to pour through and illuminate
+# carpets of wildflowers below. The elevated position gives
+# sweeping views across the Verdant Expanse.
+#
+# Gameplay: Birch wood is visually appealing for builds. The
+# light canopy means few daytime mob spawns. Elevated terrain
+# provides natural defenses and scenic overlook positions. The
+# abundance of wildflowers supports dye crafting and beekeeping.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "birch_highlands" combines
+# the tree type with the terrain character.
+id = "strata:verdant_birch_highlands"
+
+# display-name: Human-readable name for player-facing UI.
+display-name = "Verdant Birch Highlands"
+
+# category: FOREST — birch forests are a forest subcategory.
+# Enables wolf spawning and forest ambient audio, though the
+# open canopy gives a lighter feel than dense oak woods.
+category = "FOREST"
+
+# zone: Verdant Expanse zone (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.45 = slightly cooler than standard temperate.
+# Higher elevation brings marginally cooler air. Birch trees
+# prefer cooler conditions than oak.
+temperature = 0.45
+
+# humidity: 0.4 = moderate moisture. The elevated terrain
+# receives adequate rainfall but good drainage prevents
+# waterlogging. Slightly drier than lowland forests.
+humidity = 0.4
+
+# continentalness: 0.45 = moderately-to-deeply inland. Highland
+# terrain forms further from coasts, overlapping with the same
+# continental band as rolling_hills.
+continentalness = 0.45
+
+# erosion: 0.45 = moderate-low erosion. Less eroded than plains
+# or forests, creating genuine elevation. The terrain has not
+# been worn flat, retaining elevated ridgelines and slopes.
+erosion = 0.45
+
+# weirdness: 0.1 = slightly unusual. Just enough offset from
+# standard forests (0.0) to create distinct placement zones.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 15 = notably elevated. Higher than rolling hills
+# (12), these highlands are among the tallest terrain in the
+# Verdant zone. The birch trees amplify the vertical feel.
+base-height = 15
+
+# height-variation: 3.0 = moderate variation. The terrain
+# undulates between ridges and saddles, but less aggressively
+# than rolling_hills. The birch trees soften the perceived slopes.
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Standard grass block. The bright green grass
+# contrasts beautifully with white birch bark.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt beneath the grass, with thinner coverage
+# on steeper slopes.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard topsoil depth.
+filler-depth = 3
+
+# underwater-block: Dirt for any small highland pools or
+# springs that form in depressions.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Exclusively birch, including tall birch variants.
+#   "birch" = standard birch (5-8 blocks tall).
+#   "tall_birch" = towering birch (10-15 blocks tall), creating
+#   the signature vertical silhouette of the highlands.
+#   density 7.0 = moderate forest density. Open enough for
+#   sunlight but clearly forested. Less dense than oak_woodland.
+trees = { types = ["birch", "tall_birch"], density = 7.0 }
+
+# grass-density: 35.0 = healthy grass coverage. The open canopy
+# allows plenty of light for ground vegetation.
+grass-density = 35.0
+
+# flower-density: 6.0 = abundant wildflowers. The open, light
+# canopy supports a rich flower carpet — one of the highest
+# flower densities in the Verdant zone.
+flower-density = 6.0
+
+# extra-features: Highland-specific wildflower mix.
+extra-features = [
+    # Lilac bushes thrive in the dappled highland light.
+    { feature = "lilac", density = 2.0 },
+    # Lily of the valley carpets shaded spots between birches.
+    { feature = "lily_of_the_valley", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Highland fauna includes lighter, more agile species.
+[biome.spawning]
+# Rabbits are common in the open, flower-rich undergrowth.
+rabbit = { weight = 8, min-group = 2, max-group = 4 }
+# Foxes forage for berries and small prey on the highland slopes.
+fox = { weight = 4, min-group = 1, max-group = 2 }
+# Wolves in small packs patrolling the birch ridges.
+wolf = { weight = 4, min-group = 1, max-group = 3 }

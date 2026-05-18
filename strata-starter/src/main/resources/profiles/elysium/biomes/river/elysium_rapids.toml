@@ -1,0 +1,161 @@
+# ============================================================
+#  Biome: Rapids — Elysium Rivers
+# ============================================================
+# A turbulent stretch of river where the channel narrows and
+# the gradient steepens, forcing the water through a gauntlet
+# of boulders and rocky outcrops. White water explodes around
+# every obstacle, and the roar of the current is deafening.
+# The rocks are dark and wet, polished smooth by millennia of
+# abrasion. Salmon leap against the current in dramatic arcs,
+# fighting upstream to spawn. Navigation by boat is impossible
+# here — the rocks would shatter any hull. Players must
+# portage around this section or risk being swept downstream
+# and dashed against the boulders.
+#
+# Gameplay notes:
+#   - Strong current pushes entities downstream — dangerous.
+#   - Boat travel is impossible; entities take damage from
+#     collision with boulders.
+#   - Salmon jumping the rapids — visual spectacle and food.
+#   - Stone surface provides immediate cobblestone access.
+#   - Natural defensive barrier — hard to cross without a
+#     bridge, making it a strategic chokepoint.
+#   - Connects mountain stream sections to calmer downstream.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. River biomes use the
+# "elysium_" prefix as cross-zone water features.
+id = "strata:elysium_rapids"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Rapids"
+
+# category: RIVER — enables river-specific generation and
+# aquatic spawning rules. The rapids are a specialized
+# river section with unique terrain characteristics.
+category = "RIVER"
+
+# zone: "river" — river biomes are cross-zone features that
+# follow noise-determined paths through the landscape.
+zone = "river"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Cool and moderately moist. The rapids form where the river
+# gradient increases — typically in the transition between
+# mountains and lowlands.
+[biome.climate]
+# temperature: 0.3 = cool. The fast-moving water and spray
+# cool the surrounding air. The rapids sit at a higher
+# elevation than lowland rivers, where temperatures are lower.
+temperature = 0.3
+
+# humidity: 0.5 = moderate. The violent spray adds humidity
+# to the immediate area, but the fast-moving air prevents
+# buildup.
+humidity = 0.5
+
+# continentalness: 0.5 = moderately inland. Rapids form in
+# the mid-elevation transition zone between mountains and
+# lowlands.
+continentalness = 0.5
+
+# erosion: 0.2 = low erosion. The hard rock that creates the
+# rapids resists erosion — if it eroded easily, the gradient
+# would smooth out and the rapids would disappear. This
+# resistance is what makes rapids persist over time.
+erosion = 0.2
+
+# weirdness: 0.1 = near-normal with a slight twist. Rapids
+# are natural river features but less common than gentle
+# stretches. The small weirdness offset reflects this.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -1 = just below sea level. The rapids sit
+# slightly lower than the surrounding terrain but higher than
+# the calmer downstream sections. The gradient drop creates
+# the fast current.
+# Range: -64.0 to 256.0
+base-height = -1
+
+# height-variation: 3 = noticeable undulation. Boulders and
+# rock ledges create significant local elevation changes
+# within the river channel — drops, pools, and raised rock
+# platforms.
+# Range: 0.0 to 30.0
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Bare stone — the rapids have scoured away all sediment,
+# exposing the underlying bedrock.
+[biome.surface]
+# top-block: Stone — raw, water-polished bedrock exposed by
+# the violent current. No soil or gravel can accumulate in
+# the rushing water.
+top-block = "minecraft:stone"
+
+# filler-block: Stone continues below the surface. The entire
+# rapids section is solid rock — the resistant stratum that
+# created the rapids in the first place.
+filler-block = "minecraft:stone"
+
+# filler-depth: 3 = solid stone through and through. The
+# rapids are carved from a hard rock formation that resists
+# the water's erosive force.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Stone on the riverbed — bare rock swept
+# clean by the constant violent current.
+underwater-block = "minecraft:stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# No vegetation in the rapids proper — the violent water
+# strips everything away. Boulders are the only features.
+[biome.features]
+# trees: No trees. The rocky channel and constant spray
+# prevent any plant establishment.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Zero. Bare stone surface with no soil.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: Zero. No flowers survive the violent spray
+# and lack of soil.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Boulders dominating the channel are the
+# defining feature of the rapids biome.
+extra-features = [
+    # Large boulders creating the white-water obstacles.
+    { feature = "boulder", density = 6.0 },
+    # Moss patches on rocks above the splash zone.
+    { feature = "moss_carpet", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Salmon leaping the rapids are the signature mob. Few other
+# creatures can handle the violent current.
+[biome.spawning]
+# Salmon: Fight upstream through the rapids, leaping over
+# boulders in dramatic arcs. The rapids are a salmon spawning
+# ground — the fast, oxygenated water is ideal for eggs.
+salmon = { weight = 18, min-group = 3, max-group = 6 }

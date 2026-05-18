@@ -1,0 +1,143 @@
+# ============================================================
+#  Biome: Ender Wastes — The Shattered Reach
+# ============================================================
+# A vast, bleak expanse where the End dimension has almost fully
+# consumed the overworld. End stone dominates the surface with only
+# stubborn patches of grass clinging to existence. The sky is a
+# permanent deep purple-black, and endermen wander in staggering
+# numbers — more than any other biome in the Shattered Reach. This
+# is their territory. Trespassers are noticed. Every step risks
+# locking eyes with a dozen teleporting sentinels. The Ender Wastes
+# are not subtle about their hostility.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier for generator cross-references,
+# region maps, and biome transition definitions.
+id = "strata:shattered_ender_wastes"
+
+# Human-readable display name for debug screens and admin tools.
+display-name = "Ender Wastes"
+
+# CUSTOM category — no vanilla biome equivalent. Fully bespoke
+# generation rules and mob tables.
+category = "CUSTOM"
+
+# Belongs to the Shattered Reach, the ender-corrupted endgame zone.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.1, near-freezing. The dimensional bleed-through
+# drains ambient heat; the air has a static, lifeless chill.
+temperature = 0.1
+
+# Humidity — 0.1, almost completely arid. End stone does not retain
+# moisture, and no weather system reaches this deep into the
+# Shattered Reach.
+humidity = 0.1
+
+# Continentalness — 0.5, interior landmass. The Ender Wastes span
+# broad, unbroken plains in the heart of the zone.
+continentalness = 0.5
+
+# Erosion — 0.6, moderately eroded. The terrain is worn flat by
+# dimensional forces, with shallow depressions and cracked ground
+# but no dramatic cliffs.
+erosion = 0.6
+
+# Weirdness — 0.9, extremely high. A landscape of end stone under
+# an alien sky saturated with endermen pushes this biome to the far
+# end of the weirdness spectrum.
+weirdness = 0.9
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — 5 blocks above sea level. The wastes are low-lying
+# and flat, emphasising the oppressive emptiness of the landscape.
+base-height = 5
+
+# Height variation — 8 blocks. Gentle undulations and shallow
+# craters break the monotony slightly, but the wastes remain
+# overwhelmingly level.
+height-variation = 8
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — end_stone. The dimensional takeover is nearly complete;
+# end stone is the dominant surface. Sparse grass_block patches are
+# injected via the feature layer to show the last traces of the
+# overworld fighting back.
+top-block = "minecraft:end_stone"
+
+# Filler block — end_stone continues unbroken below the surface.
+# The corruption has fully replaced native geology.
+filler-block = "minecraft:end_stone"
+
+# Filler depth — 8 blocks. Deep end-stone substrate before the
+# generator transitions to default underground materials.
+filler-depth = 8
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Surviving grass patches — small, scattered clusters of grass_block
+# surrounded by end stone, like islands of normality in an alien sea.
+grass-patches = true
+
+# End stone craters — shallow, bowl-shaped depressions in the
+# terrain as if chunks of reality were scooped away by teleportation.
+end-stone-craters = true
+
+# Obsidian spikes — thin, tall obsidian pillars reminiscent of End
+# spike remnants, scattered across the wastes as navigation landmarks.
+obsidian-spikes = true
+
+# Ender pearl dust — ambient particle effect (portal particles at
+# ground level) giving the air a shimmering, unsettling quality.
+ender-pearl-dust = true
+
+# Occasional chorus plant clusters growing directly from end stone,
+# providing a rare harvestable resource in otherwise barren terrain.
+chorus-clusters = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Endermen — the defining mob of this biome. Spawn weight of 120
+# (far above default) ensures massive packs roam the wastes at all
+# times. This is the single highest enderman density in the world.
+enderman = 120
+
+# Shulkers dot the obsidian spikes, providing ranged levitation
+# attacks that are especially dangerous in open terrain.
+shulker = 15
+
+# Skeletons add long-range pressure, forcing players to manage
+# multiple threat vectors simultaneously.
+skeleton = 20
+
+# Strays — the cold, lifeless climate justifies frozen-arrow
+# skeletons spawning alongside regular ones.
+stray = 15
+
+# Phantoms sweep the open skies, punishing players who do not
+# find or build shelter quickly.
+phantom = 25

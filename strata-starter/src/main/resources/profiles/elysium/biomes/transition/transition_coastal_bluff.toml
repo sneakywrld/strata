@@ -1,0 +1,162 @@
+# ============================================================
+#  Biome: Coastal Bluff — Transition Zone
+# ============================================================
+# Where the rolling green Verdant Expanse meets the Stormbreak
+# Coast. Grassy cliff tops rise 15-35 blocks above the ocean,
+# their edges crumbling into sheer drops. Windswept trees lean
+# permanently inland, their branches sculpted by the relentless
+# sea breeze. The grass here is shorter and tougher than inland
+# varieties, clinging to thin topsoil over stone. On clear days
+# the ocean stretches to the horizon; during storms, waves crash
+# against the bluff face and spray reaches the top.
+#
+# Gameplay notes:
+#   - Dramatic cliff edges — fall damage is a real threat.
+#   - Wind-bent trees provide limited wood; bring supplies.
+#   - Excellent vantage point for spotting ocean monuments
+#     and shipwrecks in the Stormbreak zone below.
+#   - Thin soil means mining downward reaches stone quickly.
+#   - Coastal villages may generate on wider bluff sections.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Transition biomes bridge
+# two major zones and use the "transition_" prefix.
+id = "strata:transition_coastal_bluff"
+
+# display-name: Human-readable name shown in F3 debug, minimaps,
+# and /strata biome info commands.
+display-name = "Coastal Bluff"
+
+# category: PLAINS — the bluff top is essentially open grassland,
+# though elevated. PLAINS enables the correct grass tinting,
+# ambient sounds, and structure rules for an open terrain biome.
+category = "PLAINS"
+
+# zone: "transition" — sits between the Verdant interior and the
+# Stormbreak coastal zone, blending their characteristics.
+zone = "transition"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Tuned to place this biome at the boundary between Verdant
+# (inland, warm) and Stormbreak (coastal, wet, windy). The low
+# continentalness pulls it toward the coast while temperature
+# and humidity stay moderate.
+[biome.climate]
+# temperature: Slightly cool — coastal winds moderate the
+# Verdant zone's warmth. 0.45 = mild but with a constant chill
+# from the sea breeze that keeps summer temperatures in check.
+temperature = 0.45
+
+# humidity: Moderate — not as dry as inland Verdant but not as
+# salt-sprayed as the Stormbreak beaches below. 0.45 = balanced
+# moisture, enough for grass but not lush vegetation.
+humidity = 0.45
+
+# continentalness: Low — near the coastline. 0.1 = right at the
+# land-sea boundary, which is exactly where bluffs form. This
+# places the biome at the continent's edge.
+continentalness = 0.1
+
+# erosion: Negative — the cliff faces resist erosion, maintaining
+# steep drops. -0.2 = moderate resistance that preserves the
+# dramatic bluff edges while allowing some rounded cliff tops.
+erosion = -0.2
+
+# weirdness: Neutral — coastal bluffs are a natural landform that
+# should generate wherever the Verdant-Stormbreak boundary meets
+# appropriate elevation conditions. 0.0 = normal generation.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Elevated — the bluff rises significantly above
+# sea level. 20 = the cliff top sits roughly 20 blocks above the
+# water line, creating dramatic overlooks. This is the key
+# terrain feature that defines the biome's visual identity.
+# Range: -64.0 to 256.0
+base-height = 20
+
+# height-variation: High — the bluff edge is irregular, with
+# promontories jutting out and coves cut back into the land.
+# 15 = significant variation creates a jagged, natural-looking
+# cliff line rather than a uniform wall.
+# Range: 0.0 to 30.0
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Thin grassland over stone — the bluff's soil layer is shallow
+# because wind and wave erosion constantly strip the surface.
+[biome.surface]
+# top-block: Hardy grass clinging to the windswept cliff top.
+# The PLAINS category gives it a natural green tint.
+top-block = "minecraft:grass_block"
+
+# filler-block: Thin layer of dirt before hitting stone. The
+# bluff is mostly solid rock with only a thin soil mantle.
+filler-block = "minecraft:dirt"
+
+# filler-depth: Shallow — only 2 blocks of topsoil before stone.
+# The constant wind erosion prevents deep soil accumulation.
+# Range: 1 to 8.
+filler-depth = 2
+
+# underwater-block: Gravel lines the base of the bluffs where
+# waves have ground the fallen rock into pebbles.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Sparse vegetation — the constant wind stunts tree growth and
+# the thin soil limits what can take root. This is a bleak,
+# exposed landscape with dramatic views but little shelter.
+[biome.features]
+# trees: Scattered wind-bent oaks, permanently leaning inland.
+# These are small, gnarled trees that have adapted to the
+# constant coastal wind. Very sparse placement.
+#   density: 0.5 = occasional lone trees dotting the bluff top,
+#   each one a landmark visible from the sea below.
+trees = { types = ["windswept_oak"], density = 0.5 }
+
+# grass-density: Short, tough grass covers the bluff top.
+# 25.0 = good ground cover but shorter and sparser than the
+# lush inland Verdant plains.
+# Range: 0.0 to 100.0
+grass-density = 25.0
+
+# flower-density: A few hardy wildflowers survive the wind.
+# 1.5 = sparse patches of sea-pinks and daisies clinging to
+# sheltered spots behind rocks.
+# Range: 0.0 to 15.0
+flower-density = 1.5
+
+# extra-features: Exposed stone patches where the thin soil
+# has been blown away, revealing the rock beneath.
+extra-features = [
+    { feature = "exposed_stone", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Limited wildlife on the exposed bluff tops. The wind and
+# lack of shelter deter most animals. Seagull-like ambient
+# mobs (parrots reskinned) and the occasional rabbit.
+[biome.spawning]
+# Rabbits: Hardy enough to survive on the windswept bluffs.
+# They shelter in small burrows among the grass tufts.
+rabbit = { weight = 6, min-group = 2, max-group = 4 }
+
+# Goats: Sure-footed animals comfortable on the cliff edges.
+# They graze on the tough bluff grass.
+goat = { weight = 4, min-group = 1, max-group = 3 }

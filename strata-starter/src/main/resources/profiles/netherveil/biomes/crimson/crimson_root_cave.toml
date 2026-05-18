@@ -1,0 +1,153 @@
+# ============================================================
+#  Biome: Crimson Root Cave — Crimson Domain
+# ============================================================
+# An enclosed cavern beneath the crimson forest canopy, where
+# massive crimson root structures hang from the ceiling like
+# organic stalactites. Weeping vines dangle from every root
+# cluster, creating a dense curtain of red tendrils that sway
+# gently in the still air. The cave walls are coated in crimson
+# nylium that glows faintly, and scattered shroomlight blocks
+# embedded in the root structures provide dim amber illumination.
+# The enclosed space concentrates the crimson spore particles
+# into a thick haze, and the humidity is palpable. The roots
+# themselves are made of crimson stem blocks and nether wart
+# blocks, representing the underground root network of the huge
+# crimson fungi that tower on the surface above. Players entering
+# from cliff cave mouths find themselves in a tangled organic
+# labyrinth.
+#
+# Gameplay notes:
+#   - Enclosed space — claustrophobic with limited exits.
+#   - Weeping vine descent from ceiling roots to floor.
+#   - Crimson stem and nether wart block harvesting.
+#   - Shroomlight collection from root structures.
+#   - Connected to cliff cave mouths in crimson cliff biome.
+#   - Mob encounters in tight spaces — shield recommended.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The root cave is an
+# underground variant of crimson terrain.
+id = "strata:crimson_root_cave"
+
+# display-name: Human-readable name for player displays.
+display-name = "Crimson Root Cave"
+
+# category: NETHER — enclosed nether cavern with dense organic
+# root structures and concentrated spore particles.
+category = "NETHER"
+
+# zone: Part of the crimson zone — the underground layer of
+# the crimson domain's fungal ecosystem.
+zone = "crimson"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Warm — the enclosed cave traps heat from the
+# surrounding netherrack, creating a humid pocket.
+#   0.6 = warm enclosed space, consistent with crimson domain.
+temperature = 0.6
+
+# humidity: Very high — the enclosed space concentrates moisture
+# and spore particles. The air feels thick and damp.
+#   0.85 = high humidity from enclosed fungal respiration.
+humidity = 0.85
+
+# continentalness: Negative — root caves generate below the
+# standard surface level, embedded in cliff structures.
+#   -0.3 = below standard terrain level, cave placement.
+continentalness = -0.3
+
+# erosion: Low — the cave interior is cluttered with root
+# structures, leaving limited open space.
+#   0.2 = enclosed and cluttered with organic formations.
+erosion = 0.2
+
+# weirdness: Moderately elevated — underground crimson root
+# networks are an unusual terrain feature.
+#   0.5 = notably unusual underground organic formation.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Below standard — root caves sit beneath the
+# surface forest, often accessed from cliff mouths.
+#   32 = below standard floor, near lava level.
+base-height = 32
+
+# height-variation: Moderate — the cave ceiling varies in height
+# with root clusters hanging at different levels.
+#   5.0 = varied cave ceiling creating varied headroom.
+height-variation = 5.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Crimson nylium — the cave floor and walls are
+# coated in the living fungal surface block.
+top-block = "minecraft:crimson_nylium"
+
+# filler-block: Netherrack forming the cave structure.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate beneath nylium coating.
+filler-depth = 4
+
+# underwater-block: Magma blocks in any lava pools within
+# the cave system.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No huge fungi — the cave ceiling is too low for full
+# growth. The root structures serve as the "canopy."
+trees = { types = [], density = 0.0 }
+
+# grass-density: Dense crimson roots on the cave floor.
+#   0.7 = high root coverage in the enclosed space.
+grass-density = 0.7
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Root cave specific features.
+#   weeping_vines — dense vines hanging from ceiling roots,
+#     the primary visual element of the cave.
+#   crimson_root_cluster — massive root formations on ceiling.
+#   crimson_fungus_small — small fungi on the cave floor.
+#   shroomlight_cluster — embedded in root structures for
+#     dim illumination throughout the cave.
+extra-features = [
+    { feature = "weeping_vines", density = 14.0 },
+    { feature = "crimson_root_cluster", density = 8.0 },
+    { feature = "crimson_fungus_small", density = 6.0 },
+    { feature = "shroomlight_cluster", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Enclosed cave spaces make mob encounters intense.
+[biome.spawning]
+# hoglin: Dangerous in the confined cave — charges bounce
+# players off walls and into root structures.
+hoglin = { weight = 12, min-group = 2, max-group = 4 }
+
+# piglin: Hunting parties venture into root caves to pursue
+# hoglins through the root network.
+piglin = { weight = 8, min-group = 2, max-group = 3 }
+
+# zombified_piglin: Occasional undead piglins wandering the
+# dark cave passages.
+zombified_piglin = { weight = 5, min-group = 1, max-group = 2 }

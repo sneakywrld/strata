@@ -1,0 +1,162 @@
+# ============================================================
+#  Biome: Obsidian Citadel — The Shattered Reach
+# ============================================================
+# Massive, imposing structures of obsidian and crying obsidian rise
+# from the landscape like the ruins of a fortress built by titans.
+# These are the remnants of End Cities that were pulled into the
+# overworld during the dimensional collapse — warped, fused with
+# obsidian, and half-buried in corrupted terrain. Purple tears of
+# crying obsidian streak down the walls like frozen grief. The
+# architecture is alien, angular, and enormous. Whatever built these
+# structures was not human, and whatever guards them still is not.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier used by the world generator for biome
+# placement, region maps, and transition logic.
+id = "strata:shattered_obsidian_citadel"
+
+# Human-readable name for debug screens and admin commands.
+display-name = "Obsidian Citadel"
+
+# CUSTOM category — requires bespoke structure generation for the
+# citadel ruins. No vanilla biome equivalent.
+category = "CUSTOM"
+
+# Part of the Shattered Reach endgame zone. The Citadel represents
+# the architectural remnants of the End bleeding into the overworld.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.2, cool. The obsidian mass retains some geothermal
+# warmth, making this marginally warmer than the barren wastes
+# surrounding it.
+temperature = 0.2
+
+# Humidity — 0.2, low. The crying obsidian weeps moisture but it
+# evaporates quickly in the dimensional static. Damp walls, dry air.
+humidity = 0.2
+
+# Continentalness — 0.5, inland. The Citadels appeared in stable
+# terrain where the dimensional rift was strong enough to pull
+# structures through but not strong enough to shatter the ground.
+continentalness = 0.5
+
+# Erosion — 0.2, lightly eroded. Obsidian resists erosion — the
+# structures are remarkably intact despite the chaos around them.
+# The surrounding terrain shows more wear than the citadels.
+erosion = 0.2
+
+# Weirdness — 0.95, near-maximum. Alien architecture fused with
+# overworld terrain is deeply surreal. Only the most physics-defying
+# biomes score higher.
+weirdness = 0.95
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — 15 blocks above sea level. The citadel foundations
+# sit on raised ground, but the real height comes from the generated
+# structures reaching far above the base terrain.
+base-height = 15
+
+# Height variation — 25 blocks. The terrain around the citadels is
+# uneven — rubble piles, collapsed walls, and elevated platforms
+# create significant vertical variety.
+height-variation = 25
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — obsidian. The ground itself is a sheet of cooled
+# obsidian, as if the entire area was flooded with lava and quenched
+# during the dimensional event. Dark, reflective, and oppressive.
+top-block = "minecraft:obsidian"
+
+# Filler block — end_stone beneath the obsidian crust. The ender
+# substrate lurks just below, visible wherever the obsidian has
+# cracked or been mined away.
+filler-block = "minecraft:end_stone"
+
+# Filler depth — 5 blocks of end stone before transitioning to
+# default underground generation. The dimensional contamination
+# runs deep but not infinitely so.
+filler-depth = 5
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Citadel ruins — large procedural structures made of obsidian,
+# crying_obsidian, purpur_block, and purpur_pillar. Based on End
+# City architecture but warped and partially collapsed. Contains
+# rooms, corridors, and rooftop platforms.
+citadel-ruins = true
+
+# Crying obsidian veins — streaks of crying_obsidian running down
+# walls and pooling at structure bases. Emit purple drip particles
+# and a faint ambient light (level 10).
+crying-obsidian-veins = true
+
+# End City remnant fragments — smaller, recognizable pieces of
+# vanilla End City architecture (ship prows, tower tops) embedded
+# in the ground or fused into citadel walls.
+end-city-fragments = true
+
+# Obsidian rubble piles — mounds of obsidian blocks and slabs
+# around citadel bases, as if walls collapsed outward during the
+# dimensional transition.
+obsidian-rubble = true
+
+# End rod chandeliers — hanging arrays of end rods inside citadel
+# rooms, providing cold purple-white light in the oppressive
+# interiors.
+end-rod-chandeliers = true
+
+# Dragon head trophies — rare dragon_head blocks mounted on
+# purpur pillars inside the largest citadel rooms. Decorative
+# and deeply ominous.
+dragon-head-trophies = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Shulkers guard the citadel interiors, attached to walls, ceilings,
+# and doorways. They are the primary threat inside the structures.
+shulker = 45
+
+# Endermen patrol the grounds around the citadels, drawn to the
+# concentrated dimensional energy of the fused architecture.
+enderman = 50
+
+# Wither skeletons — the obsidian and dimensional energy attracts
+# Nether-adjacent entities. They patrol citadel corridors with
+# stone swords.
+wither_skeleton = 20
+
+# Evokers inhabit the deepest citadel chambers, acting as mini-boss
+# encounters guarding the most valuable loot rooms.
+evoker = 8
+
+# Vindicators accompany the evokers, providing melee pressure in
+# the tight corridors of the citadel interiors.
+vindicator = 12
+
+# Phantoms circle above the citadel towers, diving on players who
+# climb to exposed rooftop platforms.
+phantom = 20

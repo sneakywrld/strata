@@ -1,0 +1,136 @@
+# ============================================================
+#  Biome: Verdant Clover Field — Verdant Expanse
+# ============================================================
+# Short, dense grassland with heavy flower ground cover that
+# carpets the terrain in green and white. The grass here is
+# noticeably shorter than in plains, and the ground cover is
+# thick enough to make the terrain look like a living carpet.
+# Rabbits are abundant, darting between the low vegetation.
+#
+# Gameplay: Dense flower coverage for dye farming. Rabbits
+# provide rabbit hide (for bundles) and rabbit stew ingredients.
+# The short vegetation means excellent sight lines — you can
+# spot mobs and structures from far away. Good for pastoral
+# builds and animal pen construction.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "clover_field" suggests
+# dense, low ground cover — a meadow rather than tall grassland.
+id = "strata:verdant_clover_field"
+
+# display-name: Player-facing name for all UI elements.
+display-name = "Verdant Clover Field"
+
+# category: PLAINS — open flat terrain with grass cover.
+# Standard plains mechanics: village spawns, horse spawns,
+# and plains ambient audio.
+category = "PLAINS"
+
+# zone: Verdant Expanse (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.5 = standard temperate. Clover thrives in
+# mild conditions without extreme heat or cold.
+temperature = 0.5
+
+# humidity: 0.4 = moderate moisture. Slightly more humid than
+# dry plains (0.3) because the dense ground cover retains
+# morning dew and light rainfall.
+humidity = 0.4
+
+# continentalness: 0.4 = moderately inland. Clover fields form
+# in the same continental band as other Verdant plains variants.
+continentalness = 0.4
+
+# erosion: 0.8 = very flat. High erosion creates the smooth,
+# level terrain that defines open meadow landscapes. The dense
+# root mat of clover also prevents further erosion.
+erosion = 0.8
+
+# weirdness: 0.1 = slightly unusual. Just enough to separate
+# clover fields from base verdant_plains (0.0) in the noise
+# space, ensuring both biomes can coexist.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = at standard plains elevation, just above
+# sea level. Flat meadow terrain.
+base-height = 3
+
+# height-variation: 0.4 = very flat. Flatter than standard
+# plains (0.5) — the dense root mat creates an even surface.
+height-variation = 0.4
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The "clover" appearance is achieved
+# through extremely dense short grass and flower feature
+# placement rather than a custom block.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt beneath the dense clover root mat.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard topsoil depth. The clover root
+# system is shallow but extensive horizontally.
+filler-depth = 3
+
+# underwater-block: Dirt for any small puddles or low spots
+# in the field.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Almost no trees. Clover fields are wide-open meadows
+# with unobstructed sky. An occasional lone tree provides
+# a landmark and shade spot.
+#   density 0.1 = extremely sparse — roughly one tree per
+#   10 chunks.
+trees = { types = ["oak"], density = 0.1 }
+
+# grass-density: 70.0 = extremely dense short grass. This is
+# the densest ground vegetation in the Verdant zone, creating
+# the "living carpet" effect. The grass is primarily short_grass
+# variety (placement handled by vegetation system).
+grass-density = 70.0
+
+# flower-density: 8.0 = heavy flower coverage. Dense white
+# flowers (azure bluet, oxeye daisy) simulate clover blooms
+# mixed into the grass carpet.
+flower-density = 8.0
+
+# extra-features: Dense ground-level flora.
+extra-features = [
+    # Azure bluet simulates white clover flowers in the dense carpet.
+    { feature = "azure_bluet", density = 5.0 },
+    # Oxeye daisies add white accents throughout the field.
+    { feature = "oxeye_daisy", density = 4.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Rabbit-dominated fauna in the low, dense ground cover.
+[biome.spawning]
+# Rabbits are the signature mob — very high spawn rates.
+# Large groups of rabbits are visible hopping through the clover.
+rabbit = { weight = 20, min-group = 3, max-group = 6 }
+# Sheep graze the short clover grass in moderate numbers.
+sheep = { weight = 10, min-group = 2, max-group = 4 }
+# Foxes hunt the abundant rabbits — natural predator-prey dynamic.
+fox = { weight = 4, min-group = 1, max-group = 2 }

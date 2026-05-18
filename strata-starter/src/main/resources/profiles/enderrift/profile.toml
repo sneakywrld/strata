@@ -1,0 +1,87 @@
+# ============================================================
+#  STRATA WORLD PROFILE — "Enderrift" (Enhanced End)
+# ============================================================
+# An expanded End dimension with diverse island biomes, new
+# terrain formations, and richer exploration content.
+# 55 unique end biomes organized into 7 thematic regions.
+#
+# Author: SneakyWrld
+# Environment: END
+# Biome Count: 55
+#
+# Key features:
+#   - 7 distinct end regions radiating from the central island
+#   - Expanded end city generation with new structure variants
+#   - Chorus forests with biome-dependent variants
+#   - Void islands with unique crystal/obsidian formations
+#   - Enhanced dragon fight arena on the central island
+#   - Progressive difficulty: central → outer → void edge
+#
+# To use: /strata create my_end enderrift
+# ============================================================
+
+# -------------------------------------------------------
+# Profile Metadata
+# -------------------------------------------------------
+name = "Enderrift"
+description = "Enhanced end dimension — 55 biomes, 7 regions, expanded end cities, crystal formations"
+author = "SneakyWrld"
+version = "1.0.0"
+environment = "END"
+
+# -------------------------------------------------------
+# World Bounds
+# -------------------------------------------------------
+[world]
+# min-y: End dimension Y bounds. End islands float in void.
+min-y = 0
+# max-y: Maximum build height in the end.
+max-y = 256
+# sea-level: Not applicable for end (void below islands).
+# Set to 0 to indicate no sea level.
+sea-level = 0
+# void-y: Y-level below which is pure void (instant death zone).
+void-y = 0
+# central-island-radius: Radius of the main dragon fight island.
+# Default: 200 blocks (vanilla-like)
+central-island-radius = 200
+# outer-islands-start: Distance from center where outer islands begin.
+# Default: 1000 blocks (vanilla-like gap between central and outer)
+outer-islands-start = 1000
+
+# -------------------------------------------------------
+# Terrain Generation
+# -------------------------------------------------------
+[terrain]
+config-dir = "terrain"
+
+# -------------------------------------------------------
+# Noise Functions
+# -------------------------------------------------------
+[noise]
+config-dir = "noise"
+
+# -------------------------------------------------------
+# Features
+# -------------------------------------------------------
+[features]
+config-dir = "features"
+
+# -------------------------------------------------------
+# Structures
+# -------------------------------------------------------
+[structures]
+config-dir = "structures"
+
+# -------------------------------------------------------
+# Entity Spawning
+# -------------------------------------------------------
+[entities]
+config-dir = "entities"
+
+# -------------------------------------------------------
+# Biomes
+# -------------------------------------------------------
+[biomes]
+config-dir = "biomes"
+total-count = 55

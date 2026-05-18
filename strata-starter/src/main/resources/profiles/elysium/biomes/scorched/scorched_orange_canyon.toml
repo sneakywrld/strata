@@ -1,0 +1,181 @@
+# ============================================================
+#  Biome: Orange Canyon — Scorched Badlands
+# ============================================================
+# A deep, narrow canyon carved between towering mesa walls. Bands
+# of orange terracotta dominate the cliff faces, streaked with white
+# and brown strata. Exposed abandoned mineshaft timbers jut from the
+# rock at various heights. The canyon floor sits well below sea level,
+# casting long shadows that keep the ground cool relative to the
+# blistering plateau above.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_orange_canyon"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Orange Canyon"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# BADLANDS gives the amber sky and warm ambient sounds fitting for
+# a deep terracotta canyon.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.9 = very hot, though the canyon floor
+# receives shade from the towering walls for parts of the day.
+temperature = 0.9
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.5 = very dry, but occasional flash floods
+# carved this canyon over millennia.
+humidity = -0.5
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, consistent with
+# the arid interior where canyon systems form.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.2 = moderate erosion
+# has carved the canyon but left the walls intact, creating the deep
+# channel between mesa plateaus.
+erosion = 0.2
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. -0.2 = a slight shift toward "normal" terrain, ensuring
+# the canyon reads as a natural geological feature rather than an
+# anomalous formation.
+weirdness = -0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. -10.0 drops the canyon
+# floor well below the surrounding mesa plateaus, creating the deep
+# gorge effect. Players descending from adjacent mesas will experience
+# a dramatic elevation change.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = -10.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 3.0 keeps the canyon floor relatively even with gentle rubble
+# mounds and sediment deposits — navigable but not perfectly flat.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Orange terracotta defines the canyon's dominant color band and
+# distinguishes it visually from the red mesa plateau above.
+top-block = "minecraft:orange_terracotta"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Plain terracotta continues the layered banding
+# effect visible in the exposed canyon walls.
+filler-block = "minecraft:terracotta"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 6 provides deep terracotta layers that remain visible
+# even where the canyon floor has been eroded, maintaining the
+# striped cliff aesthetic.
+# Range: 1 to 8.
+filler-depth = 6
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Red sand accumulates
+# at the base of flash-flood channels and ephemeral pools.
+underwater-block = "minecraft:red_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#          "dead_bush_large" = skeletal dead tree remnants.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.05 places only rare dead tree skeletons — most
+#            vegetation has been washed away by flash floods.
+trees = { types = ["dead_bush_large"], density = 0.05 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.2 scatters only the hardiest grass that
+# took root in sediment deposits on the canyon floor.
+grass-density = 0.2
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = no flowers in this harsh, shaded gorge.
+flower-density = 0.0
+
+# dead-bush-density: Dead bush features per chunk. Dry brush that
+# washed down from the plateau and lodged in the canyon.
+# 1.5 provides light scattering without cluttering the narrow floor.
+dead-bush-density = 1.5
+
+# mineshaft-exposed: Whether abandoned mineshaft timbers can generate
+# partially exposed in canyon walls. true enables this atmospheric
+# detail, hinting at the mining history of the region and giving
+# players a visual clue that ores may be nearby.
+mineshaft-exposed = true
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The shaded canyon floor provides cover for hostile mobs during
+# the day. Husks patrol the shadows, and cave spiders emerge from
+# exposed mineshaft segments in the walls.
+
+# husk: Desert undead that thrive in the canyon shadows. They can
+# persist longer here due to reduced direct sunlight.
+# weight: 12 makes them the primary threat on the canyon floor.
+husk = { weight = 12, min-group = 2, max-group = 4 }
+
+# cave_spider: Emerges from exposed mineshaft sections in the walls.
+# Poisonous bite makes them a serious hazard in the tight canyon.
+# weight: 5 for occasional but memorable encounters.
+cave_spider = { weight = 5, min-group = 1, max-group = 2 }
+
+# bat: Roosts in the shaded overhangs and crevices of the canyon.
+# weight: 8 adds ambient life to the dark recesses.
+bat = { weight = 8, min-group = 2, max-group = 4 }

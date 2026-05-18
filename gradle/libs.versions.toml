@@ -1,0 +1,57 @@
+[versions]
+# Minecraft / Paper
+paper-api = "1.21.4-R0.1-SNAPSHOT"
+
+# Libraries
+night-config = "3.8.2"
+jackson = "2.18.2"
+caffeine = "3.1.8"
+adventure = "4.18.0"
+bstats = "3.1.0"
+snakeyaml = "2.3"
+
+# Testing
+junit = "5.11.4"
+mockito = "5.14.2"
+
+# Build
+shadow = "8.3.5"
+
+[libraries]
+# Paper API
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper-api" }
+
+# TOML parsing
+night-config-toml = { module = "com.electronwill.night-config:toml", version.ref = "night-config" }
+
+# JSON
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jackson" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+
+# Caching
+caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }
+
+# Adventure (text components for in-game guide)
+adventure-api = { module = "net.kyori:adventure-api", version.ref = "adventure" }
+adventure-minimessage = { module = "net.kyori:adventure-text-minimessage", version.ref = "adventure" }
+
+# bStats
+bstats-bukkit = { module = "org.bstats:bstats-bukkit", version.ref = "bstats" }
+
+# YAML parsing (for Terra migration)
+snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+
+# Testing
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+junit-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-junit = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+
+[bundles]
+jackson = ["jackson-core", "jackson-databind"]
+junit = ["junit-api", "junit-engine", "junit-params"]
+mockito = ["mockito-core", "mockito-junit"]
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }

@@ -1,0 +1,130 @@
+# ============================================================
+#  Biome: Outer End Pillar — Outer Islands
+# ============================================================
+# Dramatic spindly towers of end stone that shoot upward from
+# the void like skeletal fingers. These narrow pillars can
+# reach heights of 40+ blocks while remaining only a few
+# blocks wide at their peak. The formations are reminiscent
+# of sea stacks in terrestrial geology — remnants of larger
+# islands that have eroded away, leaving only the hardest
+# vertical cores standing. Some pillars lean at precarious
+# angles, their bases undercut by whatever force hollows the
+# End. Chorus plants cling to the upper reaches where narrow
+# ledges provide just enough foothold.
+#
+# Gameplay notes:
+#   - EXTREME height variation — pillars reach Y 90+.
+#   - Very little walkable surface — parkour territory.
+#   - Chorus plants on upper ledges require climbing.
+#   - Elytra is almost required for efficient traversal.
+#   - Fall damage (or void death) is a constant threat.
+#   - No end cities — not enough surface for structures.
+#   - Excellent landmark biome — pillars are visible from
+#     great distances across the void.
+#   - Pairs with outer_end_bridge (connections between
+#     pillars) and outer_scattered_rocks (smaller debris).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the tall narrow
+# pillar formations in the outer End.
+id = "strata:outer_end_pillar"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Outer End Pillar"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Outer Islands region.
+region = "outer"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly cold — the narrow pillars have
+# no thermal mass and lose heat to the void quickly.
+# -0.1 = marginally cooler than standard outer islands.
+temperature = -0.1
+
+# humidity: Dry — minimal surface area means almost no
+# chorus growth and thus no biological moisture.
+# 0.0 = baseline End aridity.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.4 = elevated weirdness. Pillar formations
+# are unusual and visually striking — they generate in
+# weirder noise pockets of the outer End, making them
+# relatively uncommon and exciting to discover.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 50 — the base of the pillars sits lower
+# than standard islands. The pillar height comes from
+# the extreme height-variation, not the base elevation.
+# This creates the illusion of towers rising from deep
+# in the void.
+base-height = 50
+
+# height-variation: 40 = EXTREME variation. This is the
+# defining characteristic — terrain oscillates wildly
+# between the base (Y ~10) and peaks (Y ~90). The noise
+# generates narrow vertical columns rather than rolling
+# hills at this extreme setting.
+height-variation = 40
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — standard End surface on the
+# pillar faces and narrow ledges.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone throughout. The pillars are
+# solid end stone columns.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 3 = slightly thin. The narrow formations
+# have less bulk than wider islands.
+# Range: 1 to 8.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Sparse chorus plants cling to upper ledges. Most of
+# the pillar surface is too vertical for vegetation.
+[biome.features]
+# end-specific: Rare chorus plants on narrow ledges.
+# Very low density — only the widest pillar tops have
+# enough surface for chorus to root.
+trees = { types = ["chorus_tree"], density = 0.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen balance on the narrow pillar tops with ease —
+# they can teleport if they slip. Players cannot.
+[biome.spawning]
+# enderman: Moderate presence — limited spawn surface on
+# the narrow pillar tops. Encounters here are dangerous
+# because enderman knockback can send players off the
+# edge into the void.
+enderman = { weight = 25, min-group = 1, max-group = 2 }

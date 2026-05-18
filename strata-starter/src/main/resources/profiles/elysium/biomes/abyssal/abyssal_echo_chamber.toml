@@ -1,0 +1,165 @@
+# ============================================================
+#  Biome: Abyssal Echo Chamber — Abyssal Depths
+# ============================================================
+# A massive, roughly spherical void deep underground — one of
+# the largest single-room caves in the Abyssal zone. The walls
+# curve upward into a domed ceiling lost in darkness, and every
+# sound reverberates endlessly through the empty space. Sculk
+# sensors dot the floor and walls, triggering chain reactions
+# of vibration when disturbed. The chamber's acoustics amplify
+# footsteps, block breaks, and mob sounds into disorienting
+# echoes. Sculk shriekers hidden among the sensor networks can
+# summon the Warden if players are careless with noise. The
+# floor is smooth deepslate, polished by ancient water flow
+# into a flat, featureless expanse that offers no cover.
+#
+# Gameplay notes:
+#   - Sound-based trap biome — move silently or face the Warden.
+#   - Sculk sensors create chain-reaction detection networks.
+#   - Massive open space with no natural cover or obstacles.
+#   - Wool and sneaking are essential survival tools here.
+#   - High-risk, high-reward: sculk drops are valuable.
+#   - Pairs with abyssal_deep_dark and abyssal_sculk_cavern
+#     for the sculk-horror progression.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal registry.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:abyssal_echo_chamber"
+
+# display-name: Human-readable name shown in F3 debug overlay,
+# minimap plugins, and /strata biome info commands.
+display-name = "Echo Chamber"
+
+# category: CAVE — underground biome with cave ambient sounds,
+# no sky light, and cave-specific feature placement.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "CAVE"
+
+# zone: Parent zone key from zones/zones.toml. The abyssal zone
+# is Y-based (Y -64 to 63) rather than distance-based, so this
+# biome generates underground regardless of distance from spawn.
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values position this biome within the multi-noise
+# climate system. The echo chamber's extreme weirdness value
+# ensures it is a rare and memorable discovery.
+[biome.climate]
+# temperature: Cold void air — the enormous empty space
+# loses heat rapidly through convection.
+# 0.2 = chilly, borderline freezing; breath would fog.
+temperature = 0.2
+
+# humidity: Moderate — some moisture condenses on the
+# curved walls, but the vast air volume stays dry overall.
+# 0.4 = slightly below average underground humidity.
+humidity = 0.4
+
+# continentalness: Neutral — echo chambers form under any
+# continental position as geological anomalies.
+# 0.5 = mid-range, no horizontal placement bias.
+continentalness = 0.5
+
+# erosion: Lower erosion — the chamber walls are ancient
+# and structurally stable despite the enormous void.
+# 0.4 = resistant to further cave expansion.
+erosion = 0.4
+
+# weirdness: Very high — this is one of the most unusual
+# and rare cave biomes in the Abyssal zone. Players will
+# encounter it only in extreme noise conditions.
+# 0.9 = near-maximum weirdness, exceedingly rare.
+weirdness = 0.9
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Average Y-level of the chamber floor.
+# -40 = deep in the Abyssal zone, firmly in sculk territory.
+# The spherical void extends both above and below this point.
+base-height = -40
+
+# height-variation: Very large — the spherical chamber has
+# extreme vertical extent from floor to domed ceiling.
+# 20 = up to 40 blocks floor-to-ceiling in places.
+height-variation = 20
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The echo chamber's surfaces are unnervingly smooth —
+# ancient water erosion polished the deepslate into a
+# featureless dark plane.
+[biome.surface]
+# top-block: Polished deepslate — water-smoothed floor that
+# offers no texture or visual reference points. Disorienting
+# in the vast dark space.
+top-block = "minecraft:polished_deepslate"
+
+# filler-block: Standard deepslate beneath the polished
+# surface layer — the native rock at this depth.
+filler-block = "minecraft:deepslate"
+
+# filler-depth: Thin polished veneer over raw deepslate.
+# 2 = shallow erosion layer before hitting unworked stone.
+filler-depth = 2
+
+# underwater-block: Rare puddles on the smooth floor have
+# sculk-encrusted beds where vibrations concentrate.
+underwater-block = "minecraft:sculk"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# The echo chamber is defined by emptiness and sculk sensor
+# networks — minimal decoration, maximum tension.
+[biome.features]
+# trees: No vegetation in the void.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Nothing grows on polished deepslate.
+grass-density = 0.0
+
+# flower-density: No flowers in the sculk-infested dark.
+flower-density = 0.0
+
+# extra-features: Echo chamber sculk network.
+#   sculk_sensor — vibration detectors scattered across floor
+#     and walls, forming chain-reaction alert networks.
+#   sculk_shrieker — hidden among sensors; triggers Warden
+#     summon when activated by careless movement.
+#   sculk_vein — thin sculk tendrils spreading across surfaces,
+#     marking the chamber as deep-dark adjacent territory.
+#   sculk_catalyst — rare blocks that spread sculk on mob death,
+#     slowly expanding the sensor network over time.
+extra-features = [
+    { feature = "sculk_sensor", density = 10.0 },
+    { feature = "sculk_shrieker", density = 3.0 },
+    { feature = "sculk_vein", density = 8.0 },
+    { feature = "sculk_catalyst", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The echo chamber is hauntingly empty — minimal spawns
+# to preserve the eerie silence. The Warden is the true
+# threat, summoned by shriekers rather than natural spawning.
+[biome.spawning]
+# bat: Rare bats whose flapping triggers sculk sensors,
+# creating false alarms and ambient tension.
+bat = { weight = 5, min-group = 1, max-group = 2 }
+
+# endermite: Tiny mobs that scuttle across the smooth floor,
+# their movement triggering sculk sensors in chain reactions.
+endermite = { weight = 3, min-group = 1, max-group = 1 }

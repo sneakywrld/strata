@@ -1,0 +1,167 @@
+# ============================================================
+#  Biome: Abyssal Bone Crypt — Abyssal Depths
+# ============================================================
+# A macabre ossuary carved into the deep underground where
+# ancient skeletal remains have calcified into the very walls.
+# Bone block deposits jut from the stone like petrified ribs,
+# and colossal fossils — partial ribcages and vertebral columns
+# — arch overhead, half-embedded in the ceiling rock. Skull-
+# shaped formations of dripstone and bone crown alcoves along
+# the perimeter. The air is dry, dusty, and faintly rattling
+# as skeleton spawners churn out undead guardians from hidden
+# alcoves. Cobwebs drape the narrower passages and soul-sand
+# patches muffle footsteps.
+#
+# Gameplay notes:
+#   - Multiple skeleton spawner locations make this a dangerous
+#     but rewarding biome for XP farms.
+#   - Bone block deposits are a renewable bone meal source.
+#   - Fossils contain bone blocks and occasionally coal ore.
+#   - Soul sand valleys slow movement — plan escape routes.
+#   - Pairs with abyssal_deepslate_labyrinth for claustrophobic
+#     tunnel exploration and abyssal_sculk_cavern for deep-dark
+#     horror themes.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal registry.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:abyssal_bone_crypt"
+
+# display-name: Human-readable name shown in F3 debug overlay,
+# minimap plugins, and /strata biome info commands.
+display-name = "Bone Crypt"
+
+# category: CAVE — underground biome with cave ambient sounds,
+# no sky light, and cave-specific feature placement.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "CAVE"
+
+# zone: Parent zone key from zones/zones.toml. The abyssal zone
+# is Y-based (Y -64 to 63) rather than distance-based, so this
+# biome generates underground regardless of distance from spawn.
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values position this biome within the multi-noise
+# climate system. For underground biomes, temperature and
+# humidity are derived from the surface above, while
+# continentalness and erosion control cave shape. Weirdness
+# pushes the biome toward rarer placement slots.
+[biome.climate]
+# temperature: Cold and dry crypt air. Skeletal remains
+# preserved by the constant chill — no organic decay.
+# 0.3 = cool subterranean temperature; water stays liquid.
+temperature = 0.3
+
+# humidity: Very dry — the crypt's desiccated atmosphere
+# prevents moisture accumulation, preserving bone deposits.
+# 0.3 = arid underground, minimal drip or seepage.
+humidity = 0.3
+
+# continentalness: Neutral — bone crypts form under any
+# continental position without coastal bias.
+# 0.5 = mid-range, no horizontal placement preference.
+continentalness = 0.5
+
+# erosion: Balanced erosion — the crypt corridors are
+# neither freshly carved nor fully collapsed.
+# 0.5 = moderate cave profile stability.
+erosion = 0.5
+
+# weirdness: High positive weirdness marks this as an
+# uncommon and unsettling cave variant — crypts are rare
+# discoveries, not routine caverns.
+# 0.85 = very unusual, found only in fringe noise slots.
+weirdness = 0.85
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Average Y-level of the crypt floor.
+# -35 = solidly within the mid-Abyssal zone, deep enough
+# to feel oppressive but above the deepslate transition.
+base-height = -35
+
+# height-variation: Moderate undulation — the crypt has
+# low arched ceilings in corridors and taller burial chambers.
+# 10 = controlled variation; tight spaces dominate.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Crypt surfaces mix skeletal remains with eroded stone,
+# giving the biome its characteristic bone-white palette.
+[biome.surface]
+# top-block: Bone block floor — compacted skeletal sediment
+# forms the primary walking surface throughout the crypt.
+top-block = "minecraft:bone_block"
+
+# filler-block: Below the bone layer, coarse dirt mixed
+# with ancient burial material transitions to host rock.
+filler-block = "minecraft:coarse_dirt"
+
+# filler-depth: Shallow bone crust over packed earth.
+# 3 = the ossuary layer before hitting natural stone.
+filler-depth = 3
+
+# underwater-block: Rare stagnant pools have soul sand
+# beds — the remains of the interred seeping into still water.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Crypt features emphasize skeletal remains, spawners,
+# and the unsettling atmosphere of an ancient burial site.
+[biome.features]
+# trees: No trees grow in the deep crypt.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation in the bone-dry crypt.
+grass-density = 0.0
+
+# flower-density: No flowers in the underground ossuary.
+flower-density = 0.0
+
+# extra-features: Crypt-specific decorations.
+#   fossil — large bone structures partially embedded in walls
+#     and ceilings; the crypt's defining geological feature.
+#   skeleton_spawner — mob spawner cages hidden in alcoves,
+#     producing the crypt's undead guardians.
+#   cobweb — draped across narrow passages and spawner rooms.
+#   soul_sand_patch — patches of soul sand that slow movement,
+#     creating tactical hazards near spawner clusters.
+extra-features = [
+    { feature = "fossil", density = 6.0 },
+    { feature = "skeleton_spawner", density = 2.0 },
+    { feature = "cobweb", density = 5.0 },
+    { feature = "soul_sand_patch", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The bone crypt is dominated by undead — skeletons patrol
+# the corridors, reinforced by spawner output.
+[biome.spawning]
+# skeleton: Primary hostile mob. High weight and group size
+# reflect the crypt's role as a skeleton stronghold.
+skeleton = { weight = 25, min-group = 2, max-group = 5 }
+
+# stray: Cold-variant skeleton occasionally mixed in among
+# the standard skeletons, adding projectile variety.
+stray = { weight = 8, min-group = 1, max-group = 2 }
+
+# bat: Bats roost in the upper reaches of burial chambers,
+# disturbed by intruders passing below.
+bat = { weight = 10, min-group = 1, max-group = 3 }

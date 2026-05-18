@@ -1,0 +1,162 @@
+# ============================================================
+#  Biome: Ruined Portal Field — Embercrag Volcanic
+# ============================================================
+# A haunting expanse littered with the shattered remains of dozens
+# of nether portals. Obsidian frames stand at jagged angles —
+# some intact but inactive, others broken and scattered across the
+# scorched ground. Netherrack patches and crying obsidian deposits
+# bleed through where the barrier between dimensions has worn thin.
+# Obsidian towers rise like dark obelisks, and the air crackles
+# with residual interdimensional energy. Something tore open many
+# portals here simultaneously, and the catastrophic failure left
+# the landscape permanently scarred with nether contamination.
+#
+# Gameplay Notes:
+#   - Obsidian and crying obsidian are abundant for portal building.
+#   - Netherrack patches can sustain eternal fires.
+#   - Ruined portal loot chests contain gold and nether materials.
+#   - The nether contamination occasionally spawns nether mobs.
+#   - This biome is thematically connected to the lore of the zone.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_ruined_portal_field"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Ruined Portal Field"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.9 = very hot — residual nether energy keeps the
+# area superheated, and the netherrack patches burn eternally.
+temperature = 0.9
+
+# humidity: -0.4 = dry — the nether contamination has dessicated
+# the terrain, and the perpetual fires eliminate any moisture.
+humidity = -0.4
+
+# continentalness: 0.7 = firmly inland — the portal field sits
+# deep within the volcanic complex where nether energies are
+# strongest.
+continentalness = 0.7
+
+# erosion: 0.4 = moderate erosion — the terrain has been heavily
+# disrupted by the portal failures, creating uneven ground with
+# craters and debris fields.
+erosion = 0.4
+
+# weirdness: 0.8 = very unusual — the ruined portal field is one
+# of the rarest and strangest biomes in the Embercrag, generating
+# only where the weirdness noise is at its highest.
+weirdness = 0.8
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 8 = moderately elevated. The portal field sits on
+# the volcanic plateau at a middling elevation, scarred by the
+# dimensional disruption.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 8
+
+# height-variation: 5 = moderate variation. Obsidian towers and
+# portal frames create vertical features, while craters from
+# portal failures create depressions.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Netherrack — the nether contamination has transformed
+# the surface rock into this otherworldly material. It can be set
+# on fire permanently.
+top-block = "minecraft:netherrack"
+
+# filler-block: Blackstone — beneath the netherrack surface, the
+# volcanic substrate has been partially transformed by nether
+# energies into this dark, dense rock.
+filler-block = "minecraft:blackstone"
+
+# filler-depth: 4 = moderate contamination depth. The nether
+# transformation extends several blocks below the surface.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Soul sand — the nether contamination has
+# transformed any underwater surfaces into this soul-trapping
+# material.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No natural trees — the nether contamination prevents
+# plant growth entirely.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.0 = no vegetation on the contaminated terrain.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers in the nether-scarred landscape.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Ruined portal frames, obsidian towers, crying
+# obsidian deposits, and netherrack fire patches.
+extra-features = [
+    { feature = "ruined_portal", density = 1.5 },
+    { feature = "obsidian_tower", density = 1.0 },
+    { feature = "crying_obsidian_deposit", density = 1.5 },
+    { feature = "netherrack_fire", density = 3.0 },
+    { feature = "gold_block_debris", density = 0.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The dimensional contamination causes nether mobs to occasionally
+# spawn in the overworld. Zombified piglins wander the portal field
+# alongside standard overworld hostiles.
+
+# zombified_piglin: The signature mob — they stumble through the
+# ruined portals, confused and passive unless attacked.
+# weight: 15 for a consistent nether-mob presence.
+# min-group/max-group: Groups of 2-4.
+zombified_piglin = { weight = 15, min-group = 2, max-group = 4 }
+
+# piglin: Piglins occasionally cross through the weakened barriers.
+# weight: 8 for a meaningful hostile presence (hostile in overworld).
+piglin = { weight = 8, min-group = 1, max-group = 2 }
+
+# enderman: Endermen are attracted to the dimensional instability.
+# weight: 6 for an additional interdimensional threat.
+enderman = { weight = 6, min-group = 1, max-group = 2 }
+
+# skeleton: Standard skeletons patrol the field at night.
+# weight: 8 for a consistent ranged threat.
+skeleton = { weight = 8, min-group = 1, max-group = 2 }

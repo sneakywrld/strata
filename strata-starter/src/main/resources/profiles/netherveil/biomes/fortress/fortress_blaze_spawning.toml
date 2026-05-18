@@ -1,0 +1,151 @@
+# ============================================================
+#  Biome: Fortress Blaze Spawning — Fortress Domain
+# ============================================================
+# A superheated zone within the fortress domain where blazes
+# concentrate in terrifying numbers. The air shimmers with heat
+# distortion, and fire charges streak through the darkness like
+# tracer rounds. The netherrack surface glows faintly from
+# the accumulated heat of dozens of blazes hovering in formation,
+# their spinning rod bodies creating a wall of fire and light.
+# Natural blaze spawning reinforcements supplement the fortress
+# spawner blazes, creating a density that overwhelms unprepared
+# players. The ground is scorched and perpetually ablaze, with
+# fire covering every netherrack surface in a carpet of flickering
+# orange flame. Fire charges litter the ground — dropped by
+# blazes in previous encounters and usable as ammunition for
+# dispensers or fire starting. This is the premier blaze rod
+# farming location.
+#
+# Gameplay notes:
+#   - Maximum blaze density — blaze rod farming at peak efficiency.
+#   - Fire Resistance potions absolutely mandatory.
+#   - Shield blocks blaze fireballs — essential equipment.
+#   - Looting III sword maximizes blaze rod drops.
+#   - Fire charges harvestable from the ground.
+#   - Snowballs deal 3 damage to blazes — budget weapon.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The blaze spawning ground
+# is the most fire-hazardous fortress biome.
+id = "strata:fortress_blaze_spawning"
+
+# display-name: Human-readable name for player displays.
+display-name = "Blaze Spawning Ground"
+
+# category: NETHER — nether environment with extreme blaze
+# density and fire saturation.
+category = "NETHER"
+
+# zone: Part of the fortress zone — the most thermally
+# extreme area within the fortress domain.
+zone = "fortress"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Extreme heat — the concentrated blaze presence
+# raises ambient temperature to near-maximum levels.
+#   0.9 = near-maximum heat from concentrated blaze fire.
+temperature = 0.9
+
+# humidity: Extremely dry — the intense blaze fire removes
+# all moisture from the environment.
+#   -0.5 = bone-dry from extreme fire density.
+humidity = -0.5
+
+# continentalness: Neutral — blaze grounds form at standard
+# fortress elevation.
+#   0.1 = slight inland tendency.
+continentalness = 0.1
+
+# erosion: Moderate — the terrain is partially open to allow
+# blaze hovering and fireball trajectories.
+#   0.5 = moderate openness for blaze flight patterns.
+erosion = 0.5
+
+# weirdness: Moderate — concentrated blaze spawning is unusual
+# but expected near fortress structures.
+#   0.4 = moderately unusual mob concentration.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard fortress floor — blazes hover above
+# the standard terrain level.
+#   42 = slightly elevated fortress terrain.
+base-height = 42
+
+# height-variation: Low — the terrain is relatively flat,
+# scorched smooth by constant fire.
+#   3.0 = gentle variation, fire-smoothed surface.
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Netherrack — the fire-sustaining surface, perpetually
+# ablaze from blaze fire charges.
+top-block = "minecraft:netherrack"
+
+# filler-block: Netherrack throughout — uniform fire-sustaining
+# substrate.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical netherrack substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation — everything organic has burned away.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life in the blaze zone.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Blaze spawning specific features.
+#   fire_patch — dense fire coverage from blaze activity.
+#   blaze_spawner_natural — natural blaze spawning points
+#     supplementing fortress spawners.
+#   nether_brick_rubble — fortress debris in the scorched zone.
+#   fire_charge_drop — harvestable fire charge items.
+extra-features = [
+    { feature = "fire_patch", density = 12.0 },
+    { feature = "blaze_spawner_natural", density = 2.0 },
+    { feature = "nether_brick_rubble", density = 3.0 },
+    { feature = "fire_charge_drop", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Maximum blaze density — this is THE blaze rod farming biome.
+[biome.spawning]
+# blaze: The defining mob at extreme density. Blazes hover in
+# overlapping groups, firing volleys of fire charges that create
+# a wall of projectiles. Their blaze rod drops are essential for
+# brewing stands and end portal activation.
+blaze = { weight = 30, min-group = 2, max-group = 5 }
+
+# wither_skeleton: Wither skeletons patrol beneath the blazes,
+# adding melee threat to the ranged blaze onslaught.
+wither_skeleton = { weight = 10, min-group = 1, max-group = 3 }
+
+# magma_cube: Fire-resistant cubes bouncing through the flames.
+magma_cube = { weight = 5, min-group = 1, max-group = 2 }

@@ -1,0 +1,270 @@
+# ============================================================
+#  Ore Generation Configuration — Elysium Overworld
+# ============================================================
+# Controls ore vein placement throughout the world.
+#
+# IMPORTANT: Elysium makes diamonds and rare ores HARDER to find
+# than vanilla Minecraft. This is intentional — it creates a more
+# rewarding progression and makes rare finds feel special.
+#
+# Each ore definition specifies:
+#   - block: The ore block to place
+#   - size: Vein size (number of blocks per vein)
+#   - count: Veins per chunk
+#   - y-range: Height range for generation
+#   - discard-chance: Probability of skipping exposed surfaces
+#     (higher = ores hidden deeper in walls)
+# ============================================================
+
+# -------------------------------------------------------
+# Coal Ore — Abundant, found everywhere
+# -------------------------------------------------------
+[[ores]]
+# id: Unique identifier for this ore definition.
+id = "coal"
+# block: The ore block to place. Automatically uses deepslate variant below Y=0.
+block = "minecraft:coal_ore"
+deepslate-block = "minecraft:deepslate_coal_ore"
+# size: Number of blocks per vein. Coal veins are large.
+size = 17
+# count: Number of veins attempted per chunk. Coal is very common.
+count = 20
+# y-range: Height range. Coal generates from Y=0 to Y=192.
+y-range = [0, 192]
+# distribution: How veins are distributed within the Y range.
+# "uniform" = equal chance at all heights.
+# "triangle" = most common in the middle of the range, rare at edges.
+# "trapezoid" = common in middle band, tapers at top and bottom.
+distribution = "triangle"
+# discard-chance: Chance to skip placing ore if it would be exposed to air.
+# 0.0 = always place. 0.5 = skip half of exposed veins.
+# Default: 0.0 (coal is easy to find).
+discard-chance = 0.0
+
+# -------------------------------------------------------
+# Iron Ore — Common, peaks around Y=16 and Y=232
+# -------------------------------------------------------
+# Iron has two generation passes (low and high) like vanilla.
+
+[[ores]]
+id = "iron_low"
+block = "minecraft:iron_ore"
+deepslate-block = "minecraft:deepslate_iron_ore"
+size = 9
+count = 10
+y-range = [-24, 56]
+distribution = "triangle"
+discard-chance = 0.0
+
+[[ores]]
+id = "iron_high"
+block = "minecraft:iron_ore"
+deepslate-block = "minecraft:deepslate_iron_ore"
+size = 9
+count = 10
+y-range = [80, 320]
+distribution = "triangle"
+discard-chance = 0.0
+
+# -------------------------------------------------------
+# Copper Ore — Common in mid-heights
+# -------------------------------------------------------
+[[ores]]
+id = "copper"
+block = "minecraft:copper_ore"
+deepslate-block = "minecraft:deepslate_copper_ore"
+size = 10
+count = 16
+y-range = [-16, 112]
+distribution = "triangle"
+discard-chance = 0.0
+
+# -------------------------------------------------------
+# Gold Ore — Uncommon, deep and badlands-boosted
+# -------------------------------------------------------
+[[ores]]
+id = "gold"
+block = "minecraft:gold_ore"
+deepslate-block = "minecraft:deepslate_gold_ore"
+# size: Slightly smaller veins than vanilla.
+size = 8
+# count: Fewer veins than vanilla (vanilla is 4, we use 3).
+count = 3
+y-range = [-64, 32]
+distribution = "triangle"
+discard-chance = 0.2
+
+# Gold bonus in badlands/mesa biomes.
+[[ores]]
+id = "gold_badlands"
+block = "minecraft:gold_ore"
+deepslate-block = "minecraft:deepslate_gold_ore"
+size = 9
+count = 8
+y-range = [32, 256]
+distribution = "uniform"
+discard-chance = 0.0
+# biome-filter: Only generates in these biome tags.
+biome-filter = ["scorched"]
+
+# -------------------------------------------------------
+# Redstone Ore — Moderate, deep
+# -------------------------------------------------------
+[[ores]]
+id = "redstone"
+block = "minecraft:redstone_ore"
+deepslate-block = "minecraft:deepslate_redstone_ore"
+size = 8
+count = 4
+y-range = [-64, 16]
+distribution = "uniform"
+discard-chance = 0.0
+
+# -------------------------------------------------------
+# Lapis Lazuli — Uncommon, concentrated around Y=0
+# -------------------------------------------------------
+[[ores]]
+id = "lapis"
+block = "minecraft:lapis_ore"
+deepslate-block = "minecraft:deepslate_lapis_ore"
+size = 7
+# count: Fewer than vanilla.
+count = 1
+y-range = [-32, 32]
+distribution = "triangle"
+# discard-chance: Lapis is partially hidden — 50% skip exposed surfaces.
+discard-chance = 0.5
+
+# -------------------------------------------------------
+# Diamond Ore — RARE (harder than vanilla!)
+# -------------------------------------------------------
+# Elysium intentionally makes diamonds scarce. Finding them
+# should feel like a genuine achievement.
+[[ores]]
+id = "diamond"
+block = "minecraft:diamond_ore"
+deepslate-block = "minecraft:deepslate_diamond_ore"
+# size: Smaller veins than vanilla (vanilla is 4-8, we use 3-5).
+size = 4
+# count: Significantly fewer veins (vanilla is ~7 total, we use 2).
+count = 2
+y-range = [-64, 16]
+distribution = "triangle"
+# discard-chance: High — diamonds are almost never exposed to air.
+# You have to mine deep into walls to find them.
+discard-chance = 0.7
+
+# A rare large diamond vein, very deep, very hidden.
+[[ores]]
+id = "diamond_large"
+block = "minecraft:diamond_ore"
+deepslate-block = "minecraft:deepslate_diamond_ore"
+size = 12
+# count: Extremely rare — roughly 1 in 6 chunks.
+count = 0.17
+y-range = [-64, -40]
+distribution = "uniform"
+# discard-chance: Nearly always hidden. True buried treasure.
+discard-chance = 0.9
+
+# -------------------------------------------------------
+# Emerald Ore — Very rare, mountain-only
+# -------------------------------------------------------
+[[ores]]
+id = "emerald"
+block = "minecraft:emerald_ore"
+deepslate-block = "minecraft:deepslate_emerald_ore"
+# size: Single block veins (like vanilla).
+size = 1
+count = 2
+y-range = [-16, 256]
+distribution = "triangle"
+discard-chance = 0.3
+# biome-filter: Only in mountain biomes.
+biome-filter = ["frostfang"]
+
+# -------------------------------------------------------
+# Ancient Debris (Netherite) — Does NOT generate in overworld
+# -------------------------------------------------------
+# Ancient debris is exclusive to the Netherveil (nether) profile.
+# If you want it in the overworld, uncomment below:
+# [[ores]]
+# id = "ancient_debris"
+# block = "minecraft:ancient_debris"
+# size = 2
+# count = 0.5
+# y-range = [-64, -40]
+# distribution = "uniform"
+# discard-chance = 1.0
+
+# -------------------------------------------------------
+# Infested Stone — Silverfish blocks in mountain biomes
+# -------------------------------------------------------
+[[ores]]
+id = "infested_stone"
+block = "minecraft:infested_stone"
+deepslate-block = "minecraft:infested_deepslate"
+size = 8
+count = 7
+y-range = [-64, 64]
+distribution = "uniform"
+discard-chance = 0.0
+biome-filter = ["frostfang"]
+
+# -------------------------------------------------------
+# Non-Metal Ores (Decorative/Utility)
+# -------------------------------------------------------
+
+[[ores]]
+id = "dirt"
+block = "minecraft:dirt"
+size = 33
+count = 7
+y-range = [0, 256]
+distribution = "uniform"
+discard-chance = 0.0
+
+[[ores]]
+id = "gravel"
+block = "minecraft:gravel"
+size = 33
+count = 8
+y-range = [-64, 320]
+distribution = "uniform"
+discard-chance = 0.0
+
+[[ores]]
+id = "granite"
+block = "minecraft:granite"
+size = 64
+count = 2
+y-range = [0, 80]
+distribution = "uniform"
+discard-chance = 0.0
+
+[[ores]]
+id = "diorite"
+block = "minecraft:diorite"
+size = 64
+count = 2
+y-range = [0, 80]
+distribution = "uniform"
+discard-chance = 0.0
+
+[[ores]]
+id = "andesite"
+block = "minecraft:andesite"
+size = 64
+count = 2
+y-range = [0, 80]
+distribution = "uniform"
+discard-chance = 0.0
+
+[[ores]]
+id = "tuff"
+block = "minecraft:tuff"
+size = 64
+count = 2
+y-range = [-64, 16]
+distribution = "uniform"
+discard-chance = 0.0

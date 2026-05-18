@@ -1,0 +1,189 @@
+# ============================================================
+#  Biome: Ember Wastes — Scorched Badlands
+# ============================================================
+# A hellish expanse of scorched earth where subterranean magma seeps
+# close to the surface. Patches of magma blocks glow ominously
+# between cracked basalt and blackened dirt. Wisps of smoke rise
+# from fissures, and all vegetation has been reduced to charred
+# stumps. This is the most hostile surface biome in the scorched
+# zone — a place where the ground itself can kill you.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_ember_wastes"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Ember Wastes"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# BADLANDS for the warm amber sky, amplified by the orange glow
+# of surface magma to create an oppressive, overheated atmosphere.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 1.0 = maximum heat — the magma seepage
+# pushes surface temperatures to the absolute extreme. Standing
+# still here feels like standing near an open furnace.
+temperature = 1.0
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.7 = bone dry; any moisture evaporates
+# instantly from the superheated ground.
+humidity = -0.7
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, in the heart of
+# the scorched zone where volcanic activity is most concentrated.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.5 = moderately
+# eroded, the ground cracked and fractured by thermal expansion
+# but not deeply carved.
+erosion = 0.5
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.6 = significantly unusual, reflecting the abnormal
+# volcanic activity that makes this biome feel otherworldly and
+# threatening.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 5.0 places the wastes
+# slightly above sea level on a low volcanic shelf, not elevated
+# like the mesa plateaus but raised above the desert floor.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 5.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 5.0 creates uneven terrain with small rises, fissures, and
+# collapsed ground — hazardous to navigate at speed.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 5.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Blackstone represents the volcanic rock dominating the surface,
+# darkened by extreme heat and chemical alteration.
+top-block = "minecraft:blackstone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Basalt forms the volcanic substrate, connecting
+# the surface to the magma channels below.
+filler-block = "minecraft:basalt"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 5 provides a thick volcanic layer before transitioning
+# to normal stone, reflecting the depth of volcanic intrusion.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Magma blocks sit at the
+# bottom of any liquid pools, creating bubbling lava-heated water
+# that damages players who touch the bottom.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#          "charred_stump" = burned tree remnants, blackened trunks.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.2 scatters charred stumps as evidence that trees
+#            once grew here before the volcanic activity began.
+trees = { types = ["charred_stump"], density = 0.2 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.0 = all vegetation has been incinerated
+# by the heat radiating from the ground.
+grass-density = 0.0
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = nothing living grows here.
+flower-density = 0.0
+
+# magma-patch-density: Patches of magma blocks per chunk. These
+# glowing pools of semi-molten rock deal damage to players who
+# step on them without Frost Walker or fire resistance.
+# 4.0 creates frequent hazards that demand constant attention.
+magma-patch-density = 4.0
+
+# fire-patch-density: Patches of fire on netherrack or soul sand
+# per chunk. Adds flickering light and visual danger throughout
+# the wastes. 2.0 keeps fire present without overwhelming the
+# blackstone palette.
+fire-patch-density = 2.0
+
+# smoke-particle-density: Decorative smoke particle emitters per
+# chunk, rising from fissures in the ground. 3.0 creates a hazy,
+# oppressive atmosphere throughout the biome.
+smoke-particle-density = 3.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The ember wastes are the most dangerous surface biome in the zone.
+# Only fire-resistant or undead creatures can survive here. No
+# passive mobs spawn at all.
+
+# husk: Heat-hardened undead that are unbothered by the scorching
+# ground. Their Hunger debuff compounds the difficulty of surviving
+# in a biome with no natural food sources.
+# weight: 20 makes husks the overwhelming hostile presence.
+husk = { weight = 20, min-group = 3, max-group = 6 }
+
+# skeleton: Skeletal archers positioned among the smoke and fire.
+# Difficult to spot through the haze until their arrows arrive.
+# weight: 12 for a significant ranged threat.
+skeleton = { weight = 12, min-group = 1, max-group = 3 }
+
+# magma_cube: Small magma cubes that spawn near magma block patches.
+# They blend in with the terrain and surprise unwary players.
+# weight: 8 for occasional but thematic spawns.
+magma_cube = { weight = 8, min-group = 1, max-group = 2 }

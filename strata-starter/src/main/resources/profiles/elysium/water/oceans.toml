@@ -1,0 +1,130 @@
+# ============================================================
+#  Ocean Configuration — Elysium Overworld
+# ============================================================
+# Controls ocean floor terrain, coral reef generation, kelp forests,
+# and ocean biome features. Oceans in Strata have realistic
+# continental shelves, slopes, abyssal plains, and trenches.
+# ============================================================
+
+[oceans]
+# -------------------------------------------------------
+# Enable/Disable
+# -------------------------------------------------------
+enabled = true
+
+# -------------------------------------------------------
+# Depth Configuration
+# -------------------------------------------------------
+# base-depth: Average ocean floor depth below sea level (in blocks).
+# Default: 40. Range: 10 to 100
+base-depth = 40
+
+# shelf-depth: Depth of the continental shelf (shallow ocean near coast).
+# Default: 12. Range: 5 to 30
+shelf-depth = 12
+
+# shelf-width: How far the continental shelf extends from coast (in blocks).
+# Default: 300. Range: 50 to 1000
+shelf-width = 300
+
+# slope-gradient: Steepness of the continental slope (shelf → deep ocean).
+# Higher = steeper drop-off. Lower = gradual slope.
+# Default: 0.4. Range: 0.1 to 1.0
+slope-gradient = 0.4
+
+# -------------------------------------------------------
+# Ocean Floor Features
+# -------------------------------------------------------
+# floor-noise: Noise function for ocean floor variation.
+floor-noise = "strata:ocean_floor"
+
+# floor-variation: How much the floor varies (in blocks).
+# Default: 8. Range: 0 to 30
+floor-variation = 8
+
+# -------------------------------------------------------
+# Ridges & Trenches
+# -------------------------------------------------------
+# ridge-enabled: Generate mid-ocean ridges (raised volcanic features).
+ridge-enabled = true
+
+# ridge-height: Height of ridges above the ocean floor (in blocks).
+# Default: 20. Range: 5 to 50
+ridge-height = 20
+
+# ridge-frequency: How often ridges appear. Lower = more spread out.
+# Default: 0.0005. Range: 0.0001 to 0.005
+ridge-frequency = 0.0005
+
+# trench-enabled: Generate deep ocean trenches.
+trench-enabled = true
+
+# trench-depth: Additional depth below the ocean floor (in blocks).
+# Default: 30. Range: 10 to 60
+trench-depth = 30
+
+# trench-frequency: How often trenches appear.
+# Default: 0.0003. Range: 0.0001 to 0.003
+trench-frequency = 0.0003
+
+# -------------------------------------------------------
+# Magma Vents
+# -------------------------------------------------------
+# Underwater volcanic vents that emit magma blocks and bubble columns.
+
+# magma-vents: Enable magma vent placement on ocean floor.
+magma-vents = true
+
+# vent-frequency: How often vents appear (0.0 to 1.0).
+# Default: 0.05
+vent-frequency = 0.05
+
+# -------------------------------------------------------
+# Coral Reefs
+# -------------------------------------------------------
+# Coral generates in warm/lukewarm ocean biomes at shallow depths.
+
+# coral-enabled: Enable coral reef generation.
+coral-enabled = true
+
+# coral-min-depth: Minimum water depth for coral (in blocks from surface).
+# Default: 3. Range: 1 to 10
+coral-min-depth = 3
+
+# coral-max-depth: Maximum water depth for coral.
+# Default: 20. Range: 5 to 40
+coral-max-depth = 20
+
+# coral-density: How dense coral clusters are (0.0 to 1.0).
+# Default: 0.6
+coral-density = 0.6
+
+# -------------------------------------------------------
+# Kelp Forests
+# -------------------------------------------------------
+# Kelp grows in cold/temperate ocean biomes.
+
+# kelp-enabled: Enable kelp forest generation.
+kelp-enabled = true
+
+# kelp-min-depth: Minimum water depth for kelp.
+# Default: 5. Range: 3 to 15
+kelp-min-depth = 5
+
+# kelp-max-height: Maximum kelp stalk height (in blocks).
+# Default: 20. Range: 5 to 40
+kelp-max-height = 20
+
+# kelp-density: How dense kelp forests are (0.0 to 1.0).
+# Default: 0.4
+kelp-density = 0.4
+
+# -------------------------------------------------------
+# Seagrass
+# -------------------------------------------------------
+# seagrass-enabled: Enable seagrass on the ocean floor.
+seagrass-enabled = true
+
+# seagrass-density: How dense seagrass coverage is (0.0 to 1.0).
+# Default: 0.3
+seagrass-density = 0.3

@@ -1,0 +1,68 @@
+# ============================================================
+#  Lake Configuration — Elysium Overworld
+# ============================================================
+# Lakes form in terrain depressions. Strata detects local minima
+# in the heightmap and fills them with water using a basin-filling
+# algorithm with overflow detection.
+# ============================================================
+
+[lakes]
+# -------------------------------------------------------
+# Enable/Disable
+# -------------------------------------------------------
+enabled = true
+
+# -------------------------------------------------------
+# Size
+# -------------------------------------------------------
+# min-size: Minimum lake radius (in blocks).
+# Default: 5. Range: 2 to 20
+min-size = 5
+
+# max-size: Maximum lake radius (in blocks).
+# Default: 40. Range: 10 to 100
+max-size = 40
+
+# -------------------------------------------------------
+# Depth
+# -------------------------------------------------------
+# min-depth: Minimum lake depth (in blocks).
+# Default: 3. Range: 1 to 10
+min-depth = 3
+
+# max-depth: Maximum lake depth (in blocks).
+# Default: 8. Range: 3 to 30
+max-depth = 8
+
+# -------------------------------------------------------
+# Frequency
+# -------------------------------------------------------
+# frequency: How often lakes appear per 256x256 region.
+# Default: 2. Range: 0 to 10
+frequency = 2
+
+# -------------------------------------------------------
+# Bed Material
+# -------------------------------------------------------
+# bed-material: Block lining the lake bottom.
+# Default: "minecraft:clay"
+bed-material = "minecraft:clay"
+
+# shore-material: Block around the lake shore.
+# Default: "minecraft:sand"
+shore-material = "minecraft:sand"
+
+# -------------------------------------------------------
+# Vegetation
+# -------------------------------------------------------
+# lily-pads: Place lily pads on lake surfaces.
+lily-pads = true
+
+# lily-pad-density: Density of lily pads (0.0 to 1.0).
+lily-pad-density = 0.25
+
+# reeds: Place sugar cane around lake edges.
+reeds = true
+
+# dripleaf: Place dripleaf in shallow lake edges.
+dripleaf = false

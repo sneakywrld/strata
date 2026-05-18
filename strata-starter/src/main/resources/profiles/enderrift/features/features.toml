@@ -1,0 +1,75 @@
+# ============================================================
+#  End Feature Configuration — Enderrift
+# ============================================================
+# Features specific to the End dimension: chorus plants,
+# end crystals, purpur formations, and decorative blocks.
+# ============================================================
+
+# -------------------------------------------------------
+# Chorus Plants
+# -------------------------------------------------------
+[features.chorus_plant]
+# enabled: Generate chorus plants on end stone surfaces.
+enabled = true
+# density-noise: Noise controlling chorus plant density.
+density-noise = "strata:chorus_density"
+# min-height: Minimum chorus plant height (in blocks).
+min-height = 5
+# max-height: Maximum chorus plant height.
+max-height = 22
+# spacing: Minimum distance between chorus plant bases.
+spacing = 4
+# flower-chance: Probability of chorus flower at the top.
+flower-chance = 0.3
+
+# -------------------------------------------------------
+# End Rods (Decorative)
+# -------------------------------------------------------
+[features.end_rod]
+# enabled: Place decorative end rods on end stone surfaces.
+enabled = true
+# chance: Per-position chance.
+chance = 0.005
+# height-range: How tall end rod clusters can be.
+height-range = [1, 3]
+
+# -------------------------------------------------------
+# Purpur Growth (Custom Strata Feature)
+# -------------------------------------------------------
+# Natural purpur block formations that grow on end stone.
+[features.purpur_growth]
+enabled = true
+# density: How often purpur formations appear (0.0 to 1.0).
+density = 0.05
+# max-size: Maximum formation size (blocks).
+max-size = 15
+
+# -------------------------------------------------------
+# Crystal Formations
+# -------------------------------------------------------
+[features.crystal_formation]
+# enabled: Generate amethyst crystal clusters on end stone.
+enabled = true
+# density-noise: Noise controlling placement.
+density-noise = "strata:end_crystal"
+# chance: Per-valid-position probability.
+chance = 0.02
+
+# -------------------------------------------------------
+# End Stone Erosion
+# -------------------------------------------------------
+# Creates worn, eroded end stone surfaces for visual variety.
+[features.end_erosion]
+enabled = true
+# chance: Probability of eroding a surface block to air.
+chance = 0.03
+
+# -------------------------------------------------------
+# Obsidian Patches
+# -------------------------------------------------------
+[features.obsidian_patch]
+enabled = true
+# size: Average patch size (blocks).
+size = 8
+# count: Patches per chunk.
+count = 0.5

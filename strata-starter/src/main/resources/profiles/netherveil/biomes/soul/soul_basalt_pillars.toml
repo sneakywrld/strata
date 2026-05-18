@@ -1,0 +1,152 @@
+# ============================================================
+#  Biome: Soul Basalt Pillars — Soul Regions
+# ============================================================
+# A transitional landscape where dark basalt columns erupt from
+# the soul sand floor, creating a hybrid terrain that blends the
+# cold desolation of the soul regions with the volcanic geology
+# of the basalt deltas. The basalt pillars rise like dark fingers
+# from the pale soul sand, their smooth surfaces contrasting
+# starkly with the grainy soul material at their bases. Soul
+# fire flickers blue at the junctions where soul sand meets
+# basalt, and soul particles drift upward along the pillar faces.
+# The combination creates a terrain of alternating textures —
+# soft soul sand between hard basalt columns — that is both
+# visually striking and mechanically challenging. The soul sand
+# slows movement while the basalt pillars block sightlines,
+# creating a confusing labyrinth.
+#
+# Gameplay notes:
+#   - Mixed terrain — soul sand movement penalty between basalt.
+#   - Basalt harvesting alongside soul sand collection.
+#   - Pillar maze blocks ghast fireballs but limits sightlines.
+#   - Soul Speed enchantment strongly recommended.
+#   - Transitional biome between soul regions and basalt deltas.
+#   - Mixed mob spawns from both soul and basalt populations.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The basalt pillars biome
+# is a transitional zone mixing soul and basalt terrain.
+id = "strata:soul_basalt_pillars"
+
+# display-name: Human-readable name for player displays.
+display-name = "Soul Basalt Pillars"
+
+# category: NETHER — nether environment blending soul region
+# aesthetics with basalt geological formations.
+category = "NETHER"
+
+# zone: Part of the soul zone — a transitional area at the
+# boundary between soul regions and basalt deltas.
+zone = "soul"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Moderate — warmer than pure soul terrain due to
+# the volcanic basalt influence, but cooler than basalt deltas.
+#   0.3 = transitional temperature between soul and basalt.
+temperature = 0.3
+
+# humidity: Very dry — both soul sand and basalt are moisture-
+# free materials creating an arid environment.
+#   -0.4 = dry conditions from both terrain types.
+humidity = -0.4
+
+# continentalness: Neutral — basalt pillars form at standard
+# elevations within the soul sand terrain.
+#   0.1 = slight inland tendency.
+continentalness = 0.1
+
+# erosion: Low — the basalt pillars obstruct terrain heavily,
+# creating a cluttered, maze-like environment.
+#   0.25 = rough terrain with basalt obstructions.
+erosion = 0.25
+
+# weirdness: Moderate to high — the combination of soul sand
+# and basalt columns is an unusual geological pairing.
+#   0.5 = notably unusual mixed terrain.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Valley floor elevation — consistent with the
+# surrounding soul sand valley terrain.
+#   36 = soul valley floor level.
+base-height = 36
+
+# height-variation: High — the basalt pillars create dramatic
+# vertical elements rising from the flat soul sand floor.
+#   8.0 = significant height variation from basalt columns.
+height-variation = 8.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Soul sand — the primary surface between the basalt
+# pillar formations, maintaining soul region identity.
+top-block = "minecraft:soul_sand"
+
+# filler-block: Netherrack beneath the soul sand.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard soul sand depth.
+#   4 = moderate soul sand accumulation.
+filler-depth = 4
+
+# underwater-block: Soul sand at lava boundaries.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation — barren soul and basalt terrain.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on soul sand or basalt.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Soul basalt pillars specific features.
+#   basalt_pillar — the defining feature, dense basalt columns
+#     erupting from the soul sand floor.
+#   soul_fire — blue fire at basalt-soul sand junctions.
+#   soul_soil_patch — soul soil patches among the soul sand.
+#   magma_block_vein — rare magma blocks at basalt bases,
+#     hinting at the volcanic origin of the pillars.
+extra-features = [
+    { feature = "basalt_pillar", density = 10.0 },
+    { feature = "soul_fire", density = 4.0 },
+    { feature = "soul_soil_patch", density = 2.0 },
+    { feature = "magma_block_vein", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Mixed spawning from both soul and basalt mob pools.
+[biome.spawning]
+# skeleton: Soul region skeletons patrol between the basalt
+# columns, using them as cover for ranged attacks.
+skeleton = { weight = 10, min-group = 2, max-group = 3 }
+
+# ghast: Reduced overhead presence — basalt pillars block
+# some ghast flight paths and fireball trajectories.
+ghast = { weight = 8, min-group = 1, max-group = 1 }
+
+# magma_cube: Basalt influence brings magma cubes to the
+# pillar bases where magma blocks occur.
+magma_cube = { weight = 6, min-group = 1, max-group = 3 }
+
+# enderman: Occasional enderman between the pillars.
+enderman = { weight = 3, min-group = 1, max-group = 1 }

@@ -1,0 +1,165 @@
+# ============================================================
+#  Biome: Sunken Ruins — Shadowmire Swamps
+# ============================================================
+# Partially submerged stone brick structures emerge from the murky
+# water like broken teeth — the remnants of a civilization that
+# once thrived here before the swamp reclaimed the land. Crumbling
+# walls and collapsed arches create a maze of half-flooded chambers
+# and corridors. Mossy stone bricks and cracked stone bricks
+# dominate the architecture, and the occasional chest or trapped
+# chest rewards explorers who brave the drowned guardians that
+# patrol the flooded ruins. Vines and lily pads have colonized
+# every exposed surface above the waterline.
+#
+# Gameplay Notes:
+#   - Ruins contain loot chests with rare treasure.
+#   - Drowned spawn at greatly elevated rates — bring a trident.
+#   - Submerged sections require water breathing or careful air management.
+#   - Stone bricks can be salvaged for building material.
+#   - Exploration rewards are highest in the deepest flooded chambers.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_sunken_ruins"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Sunken Ruins"
+
+# category: The broad Minecraft biome category this belongs to.
+# SWAMP enables the murky green water tint — essential for the
+# atmospheric flooded ruins experience.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.6 = mild warmth — the submerged stone structures
+# retain heat from the water, maintaining a steady temperature.
+temperature = 0.6
+
+# humidity: 0.85 = very high moisture — the ruins are partially
+# to fully submerged, keeping the air saturated.
+humidity = 0.85
+
+# continentalness: 0.6 = moderately inland — these ruins predate
+# the current swamp and sit in what was once dry inland terrain.
+continentalness = 0.6
+
+# erosion: 0.65 = moderately eroded — the ruins have partially
+# collapsed but still create significant terrain features that
+# resist the swamp's flattening tendency.
+erosion = 0.65
+
+# weirdness: 0.7 = notably unusual — the sunken ruins are a rare
+# discovery biome that only generates where the weirdness noise
+# is high, making them a sought-after exploration target.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -2 = two blocks below sea level. The ruins sit in
+# a depression that has flooded — the original settlement was at
+# a lower elevation, and rising water levels submerged it.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = -2
+
+# height-variation: 3 = moderate variation. The ruined structures
+# create significant elevation differences — intact walls rise
+# above the waterline while collapsed sections are fully submerged.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Mossy stone bricks — the ruins' original flooring,
+# now covered in moss and algae from centuries of submersion.
+# This gives the terrain a distinctly artificial, constructed feel.
+top-block = "minecraft:mossy_stone_bricks"
+
+# filler-block: Stone bricks — the structural foundation of the
+# original buildings, now serving as the substrate beneath the
+# mossy surface layer.
+filler-block = "minecraft:stone_bricks"
+
+# filler-depth: 4 = deep structural layers — the ruins had
+# substantial foundations that extend well below the current
+# surface level.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Gravel — sediment has accumulated on the
+# submerged floors of the ruins, burying the original stone
+# under a layer of river-deposited debris.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Very sparse — only a few vines and small trees have
+# colonized the exposed walls. Most vegetation is aquatic.
+#   density: 0.3 = extremely sparse — the stone surfaces resist
+#            tree root penetration.
+trees = { types = ["swamp_oak"], density = 0.3 }
+
+# grass-density: 1.0 = minimal — grass grows only on the few
+# dirt patches between stone surfaces.
+# Range: 0.0 to 100.0.
+grass-density = 1.0
+
+# flower-density: 0.0 = no flowers — the stone substrate and
+# permanent flooding prevent flower establishment.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Crumbling wall segments, loot chests, vine growth,
+# and seagrass in the flooded sections define the ruins.
+extra-features = [
+    { feature = "ruin_wall_segment", density = 3.0 },
+    { feature = "loot_chest", density = 0.3 },
+    { feature = "hanging_vine", density = 4.0 },
+    { feature = "seagrass", density = 5.0 },
+    { feature = "lily_pad", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The sunken ruins are drowned territory. These waterlogged undead
+# patrol the flooded corridors and guard the remaining treasure.
+# The occasional guardian adds a ranged threat in deeper water.
+
+# drowned: The dominant hostile mob — they emerge from every
+# flooded chamber and corridor, often wielding tridents.
+# weight: 25 makes drowned the overwhelming primary threat.
+# min-group/max-group: Groups of 2-4 patrol together.
+drowned = { weight = 25, min-group = 2, max-group = 4 }
+
+# zombie: Standard zombies wander the exposed upper levels of
+# the ruins where the stone is above the waterline.
+# weight: 8 for a secondary threat on dry ground.
+zombie = { weight = 8, min-group = 1, max-group = 2 }
+
+# guardian: Rare guardian spawns in the deepest flooded sections,
+# adding a powerful ranged beam attack to the underwater threat.
+# weight: 3 for a rare but dangerous encounter.
+guardian = { weight = 3, min-group = 1, max-group = 1 }

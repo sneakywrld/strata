@@ -1,0 +1,145 @@
+# ============================================================
+#  Biome: Warped Spore Cavern — Warped Domain
+# ============================================================
+# An enclosed underground chamber saturated with warped spore
+# particles so dense they form a visible teal fog. The cavern
+# walls are lined with warped nylium, and small warped fungi
+# cover every horizontal surface, each one contributing to the
+# overwhelming particle output. The air itself glows faintly
+# blue-green from the concentration of bioluminescent spores,
+# creating an alien underwater effect — as though the cavern
+# is submerged in a teal ocean. Visibility is severely limited
+# despite the ambient glow, with objects beyond a dozen blocks
+# fading into the particle haze. The enclosed space amplifies
+# every sound — the soft pop of spore release, the faint hum
+# of warped nylium, and the terrifyingly close teleportation
+# sounds of endermen moving through the fog unseen.
+#
+# Gameplay notes:
+#   - Severely limited visibility from spore particle density.
+#   - Enderman encounters in fog are extremely dangerous.
+#   - Enclosed space — limited escape routes.
+#   - Warped fungus collection at high efficiency.
+#   - Atmospheric experience — unique visual and audio.
+#   - Pumpkin helmet strongly recommended for enderman safety.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The spore cavern is an
+# enclosed, particle-dense variant of warped terrain.
+id = "strata:warped_spore_cavern"
+
+# display-name: Human-readable name for player displays.
+display-name = "Warped Spore Cavern"
+
+# category: NETHER — enclosed nether cavern with extreme warped
+# spore particle density and reduced visibility.
+category = "NETHER"
+
+# zone: Part of the warped zone — a subterranean pocket of
+# concentrated warped fungal growth.
+zone = "warped"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cool — the enclosed cavern and dense organic
+# matter absorb heat effectively.
+#   0.2 = noticeably cool for the nether, cave chill.
+temperature = 0.2
+
+# humidity: Maximum — the enclosed space concentrates spore
+# particles to their absolute peak density.
+#   1.0 = saturated atmospheric particle density.
+humidity = 1.0
+
+# continentalness: Negative — spore caverns form below the
+# standard surface level as enclosed underground chambers.
+#   -0.3 = below standard terrain, cave placement.
+continentalness = -0.3
+
+# erosion: Low — the cavern interior is cluttered with
+# fungal growth on every surface.
+#   0.2 = enclosed space filled with organic material.
+erosion = 0.2
+
+# weirdness: High — the extreme spore concentration creates
+# a genuinely alien, otherworldly environment.
+#   0.7 = highly unusual atmospheric phenomenon.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Below standard — the cavern sits beneath the
+# surface warped forest.
+#   33 = below standard floor, underground chamber.
+base-height = 33
+
+# height-variation: Moderate — varied ceiling height creates
+# pockets of concentrated and diffuse spore fog.
+#   4.5 = moderate variation creating fog density differences.
+height-variation = 4.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Warped nylium coating all cave surfaces, actively
+# releasing the dense spore particles that define this biome.
+top-block = "minecraft:warped_nylium"
+
+# filler-block: Netherrack forming the cavern structure.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate beneath nylium coating.
+filler-depth = 4
+
+# underwater-block: Magma blocks in any lava pools within
+# the cavern system.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No huge fungi — the cavern ceiling is too low for
+# full fungal growth. Small fungi dominate instead.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Dense warped roots and sprouts on every surface.
+#   0.8 = heavy ground cover in the enclosed space.
+grass-density = 0.8
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Spore cavern specific features.
+#   warped_fungus_small — extremely dense small fungi, the
+#     primary spore particle source in the cavern.
+#   warped_spore_emitter — concentrated particle generators.
+#   nether_sprouts — dense teal vegetation on the floor.
+#   twisting_vines — vines reaching from floor to cave ceiling.
+extra-features = [
+    { feature = "warped_fungus_small", density = 14.0 },
+    { feature = "warped_spore_emitter", density = 10.0 },
+    { feature = "nether_sprouts", density = 8.0 },
+    { feature = "twisting_vines", density = 5.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen in the fog-filled cavern are a unique hazard —
+# they teleport unseen and eye contact is nearly unavoidable.
+[biome.spawning]
+# enderman: Moderate density — the enclosed space makes each
+# encounter intense. They appear from the fog without warning,
+# and the tight quarters make avoiding eye contact difficult.
+enderman = { weight = 15, min-group = 1, max-group = 3 }

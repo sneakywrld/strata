@@ -1,0 +1,179 @@
+# ============================================================
+#  Biome: Crystal Springs — Rare Biomes
+# ============================================================
+# A cluster of geothermal hot springs bubbling up through a
+# lush, moss-covered landscape. The water is crystal-clear and
+# warm, with a faint turquoise tint from dissolved minerals.
+# Amethyst clusters grow along the spring edges and on
+# submerged rocks, their purple facets catching the light in
+# prismatic displays. The warmth from the springs creates a
+# microclimate of extraordinary fertility — moss blocks, azalea
+# bushes, and dripleaf plants grow in profusion, and the air
+# shimmers with heat haze. Fireflies drift above the warm
+# water at dusk, and the entire scene radiates a sense of
+# ancient, undisturbed natural beauty.
+#
+# Gameplay notes:
+#   - Amethyst clusters — amethyst shard supply without mining
+#     a geode underground.
+#   - Moss blocks in abundance — composting and decoration.
+#   - Warm water pools for safe swimming — no freeze damage.
+#   - Lush cave vegetation (azalea, dripleaf) on the surface.
+#   - Excellent base location — beautiful, resource-rich, and
+#     relatively safe.
+#   - Axolotl spawning in the warm spring water.
+#   - Very rare: weirdness 0.92 ensures scarcity.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Rare biomes use the
+# "rare_" prefix to signal exceptional scarcity.
+id = "strata:rare_crystal_springs"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Crystal Springs"
+
+# category: PLAINS — the open, gentle terrain is closest to
+# plains behavior. PLAINS provides the neutral base for the
+# lush-cave-style vegetation that defines this biome.
+category = "PLAINS"
+
+# zone: "rare" — rare biomes generate wherever their extreme
+# weirdness threshold is met, regardless of zone.
+zone = "rare"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Warm and humid — the geothermal springs heat the air and
+# saturate it with moisture, creating greenhouse conditions.
+[biome.climate]
+# temperature: 0.6 = warm. The geothermal heat radiates from
+# the spring water, warming the surrounding air to comfortable
+# subtropical temperatures even in otherwise cold terrain.
+temperature = 0.6
+
+# humidity: 0.7 = humid. Constant evaporation from the warm
+# springs saturates the air. Condensation drips from every
+# surface, and the moss stays permanently wet.
+humidity = 0.7
+
+# continentalness: 0.5 = moderately inland. Hot springs
+# form where geothermal activity meets groundwater — typically
+# in the interior near volcanic or tectonic features.
+continentalness = 0.5
+
+# erosion: 0.6 = well-eroded. The warm water dissolves rock
+# over time, creating smooth, rounded pools and channels.
+# The spring terraces have a sculpted, organic appearance.
+erosion = 0.6
+
+# weirdness: 0.92 = very rare. Crystal springs are a
+# remarkable natural wonder. This high weirdness ensures
+# they generate only in unusual noise anomalies.
+weirdness = 0.92
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = slightly above sea level. The springs
+# emerge from a gentle rise, with warm water cascading down
+# natural terraces to form pools at multiple levels.
+# Range: -64.0 to 256.0
+base-height = 3
+
+# height-variation: 3 = gentle. The terraced pools create
+# subtle elevation changes — each pool sits slightly lower
+# than the one above, forming a natural staircase of warm
+# water basins.
+# Range: 0.0 to 30.0
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Moss block — the signature surface of this lush biome.
+# Everything is coated in a thick, healthy layer of green moss.
+[biome.surface]
+# top-block: Moss block — the entire surface is blanketed in
+# thick, lush moss sustained by the constant warmth and
+# humidity from the springs. The green carpet extends from the
+# spring edges to the biome boundaries.
+top-block = "minecraft:moss_block"
+
+# filler-block: Dirt beneath the moss. The geothermal warmth
+# penetrates the soil, keeping it warm and moist for deep
+# root systems.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. Normal soil conditions
+# beneath the moss blanket.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Moss block on the spring pool bottoms —
+# the warm, mineral-rich water supports moss growth even
+# underwater.
+underwater-block = "minecraft:moss_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Lush cave vegetation on the surface, amethyst clusters
+# along the spring edges, and abundant greenery everywhere.
+[biome.features]
+# trees: Azalea trees — the flowering variety found in lush
+# caves, transplanted to the surface by the geothermal warmth.
+#   types: "azalea" — flowering azalea trees with pink blooms.
+#   density: 2.0 = scattered. Enough to provide canopy shade
+#            without obscuring the spring pools.
+#            Range: 0.0 to 30.0+
+trees = { types = ["azalea"], density = 2.0 }
+
+# grass-density: Dense ground cover. Moss and grass compete
+# for every available surface.
+# Range: 0.0 to 100.0
+grass-density = 20.0
+
+# flower-density: High. The warm, humid conditions support
+# abundant flowering — azaleas, spore blossoms, and
+# wildflowers thrive here.
+# Range: 0.0 to 15.0
+flower-density = 5.0
+
+# extra-features: Amethyst clusters, dripleaf plants, and
+# lush cave vegetation define this biome's unique character.
+extra-features = [
+    # Amethyst clusters along spring edges — the signature mineral.
+    { feature = "amethyst_cluster", density = 4.0 },
+    # Big dripleaf plants around the pool edges.
+    { feature = "big_dripleaf", density = 3.0 },
+    # Small dripleaf as ground cover.
+    { feature = "small_dripleaf", density = 2.0 },
+    # Glow lichen on rocks near the springs — bioluminescent.
+    { feature = "glow_lichen", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Peaceful, lush environment. Axolotls thrive in the warm
+# springs, and bees pollinate the azalea blossoms.
+[biome.spawning]
+# Axolotl: Thrive in the warm, mineral-rich spring water.
+# Multiple color variants spawn here. Can be captured in
+# buckets for aquariums or combat assistance.
+axolotl = { weight = 12, min-group = 1, max-group = 3 }
+
+# Bee: Pollinate the flowering azalea trees and wildflowers.
+# Produce honey in nests throughout the canopy.
+bee = { weight = 8, min-group = 1, max-group = 3 }
+
+# Frog: Sit on the moss blocks around the springs, enjoying
+# the warmth. Warm-water variant with white coloring.
+frog = { weight = 6, min-group = 1, max-group = 2 }

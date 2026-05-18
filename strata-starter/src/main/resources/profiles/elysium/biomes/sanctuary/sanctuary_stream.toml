@@ -1,0 +1,168 @@
+# ============================================================
+#  Biome: Sanctuary Stream — Sanctuary Zone
+# ============================================================
+# A narrow, shallow brook with a sand-and-gravel bed, stepping stones
+# of mossy cobblestone, and sweet berry bushes along the banks. The
+# stream provides a gentle water feature that connects ponds and
+# meadows while offering food and building materials.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal generator reference.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_stream"
+
+# display-name: Human-readable name shown in F3 debug, /strata info,
+# and zone-entry messages.
+display-name = "Sanctuary Stream"
+
+# category: RIVER. Even though this is a small brook, the RIVER
+# category enables water-related ambient sounds (babbling water)
+# and allows aquatic mob spawning.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "RIVER"
+
+# zone: Generates only within the sanctuary zone (0-1500 blocks
+# from spawn).
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate. Moderate humidity and negative weirdness
+# create a "normal water feature" signature in climate space.
+[biome.climate]
+# temperature: 0.5 = warm. The shallow stream is warmed by sunlight,
+# keeping it inviting rather than cold and forbidding.
+temperature = 0.5
+
+# humidity: 0.55 = moderately moist. Wetter than the meadow (0.4)
+# but drier than the pond (0.6). Streams carry water through the
+# landscape without being standing-water marshes.
+humidity = 0.55
+
+# continentalness: 0.3 = inland. Standard sanctuary positioning.
+# Streams naturally occur inland, connecting water features.
+continentalness = 0.3
+
+# erosion: 0.7 = gently rolling. Streams need some terrain variation
+# to establish a flow direction, but nothing steep. The same erosion
+# as the meadow allows the stream to cut through meadowland.
+erosion = 0.7
+
+# weirdness: -0.1 = slightly "normal." Negative weirdness is the
+# first in the sanctuary zone — this distinguishes the stream from
+# the positive-weirdness biomes (wildflower, lavender, mushroom)
+# and places it in the more conventional noise regions.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 0.0 = at sea level. The stream sits at the lowest
+# terrain in the sanctuary zone (aside from the pond). Water
+# naturally fills the shallow channel.
+# Range: -64.0 to 256.0
+base-height = 0.0
+
+# height-variation: 1.5 = low. The stream channel is narrow and
+# shallow. Some variation creates gentle bends and bank slopes but
+# nothing dramatic.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 1.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block on the exposed banks above waterline.
+# The banks are grassy and inviting for walking along.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt beneath the grass. Standard for grass-topped
+# terrain.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. Banks are natural, unworked soil.
+# Range: 1 to 8
+filler-depth = 3
+
+# underwater-block: A mix of sand and gravel forms the streambed.
+# Sand is the primary block; gravel patches are added as features.
+# This creates the classic shallow-brook look with a visible sandy
+# bottom through clear water.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Sparse bank-side trees. A few oaks lean over the stream
+# providing shade and visual framing for the water.
+#   density: 1.0 = occasional. Trees accent the stream rather than
+#            dominate it.
+trees = { types = ["oak"], density = 1.0 }
+
+# grass-density: 5.0 = moderate bank grass. Lush on the exposed
+# banks but naturally absent in the water channel.
+grass-density = 5.0
+
+# flower-density: 2.0 = sparse streamside flowers. Blue orchids
+# thrive near water in vanilla Minecraft.
+flower-density = 2.0
+
+# flower-types: Water-loving flowers that suit the stream banks.
+# Blue orchid is the signature waterside flower.
+flower-types = ["blue_orchid", "dandelion", "oxeye_daisy"]
+
+# berry-bushes: Sweet berry bushes along the stream banks. Provides
+# a convenient food source for players following the waterway.
+#   density: 3.5 = noticeable clusters along the banks.
+#   Range: 0.0 to 10.0
+berry-bushes = { density = 3.5 }
+
+# gravel-patches: Gravel deposits in and near the streambed, mixed
+# with the sand underwater-block. Creates a natural brook-bottom
+# look with varied textures.
+#   density: 4.0 = frequent patches in the stream channel.
+gravel-patches = { density = 4.0 }
+
+# stepping-stones: Mossy cobblestone blocks placed in the shallow
+# stream, allowing players to cross without swimming. These are
+# scattered single blocks at water level.
+#   density: 2.0 = enough stones to hop across without being a
+#            continuous bridge.
+#   block: Mossy cobblestone for a weathered, natural appearance.
+stepping-stones = { block = "minecraft:mossy_cobblestone", density = 2.0 }
+
+# sugar-cane: Small stands of sugar cane along the water's edge.
+# Less dense than the pond — the stream is narrower.
+#   density: 2.0 = occasional stands.
+sugar-cane = { density = 2.0 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The stream supports a mix of aquatic and bank-dwelling creatures.
+
+# salmon: The signature stream mob. Salmon naturally swim upstream
+# in Minecraft, and their presence makes the brook feel alive.
+# Higher weight than global to make them common and visible.
+salmon = { weight = 12, min-group = 2, max-group = 4 }
+
+# frog: Frogs sit on stream banks and stepping stones. They add
+# sound and life to the waterway.
+frog = { weight = 8, min-group = 1, max-group = 3 }
+
+# rabbit: Rabbits drink at the stream edge. Modest presence.
+rabbit = { weight = 6, min-group = 1, max-group = 2 }
+
+# chicken: A few chickens near the water. Low presence.
+chicken = { weight = 5, min-group = 1, max-group = 2 }

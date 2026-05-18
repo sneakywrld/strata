@@ -1,0 +1,200 @@
+# ============================================================
+#  Biome: Oasis — Scorched Badlands
+# ============================================================
+# A small, miraculous pocket of lush green life in the heart of the
+# scorched zone. Fed by an underground spring, a clear pond sits at
+# the center, ringed by palm-like jungle trees, sugar cane, and tall
+# grass. This is a sanctuary within the badlands — a place to rest,
+# resupply on food and water, and enjoy a brief respite from the
+# punishing heat. Passive mobs gather here, and hostile spawns are
+# suppressed. Finding an oasis is a memorable survival moment.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_oasis"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Oasis"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# PLAINS enables the lush green ambient sounds and standard sky
+# color, providing immediate audio-visual relief when entering
+# from the surrounding badlands.
+category = "PLAINS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.7 = warm but not scorching — the
+# evaporating water and tree shade bring the local temperature down
+# noticeably from the surrounding desert.
+temperature = 0.7
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. 0.3 = moist by scorched-zone standards,
+# reflecting the underground spring that sustains this green pocket.
+# The dramatic humidity jump from the surrounding -0.5 to -0.7
+# biomes ensures the oasis only generates in specific noise pockets.
+humidity = 0.3
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, matching the
+# scorched zone's continental placement while the spring water
+# provides local moisture independent of maritime influence.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.7 = highly eroded,
+# producing a shallow depression where spring water naturally
+# pools into the central pond.
+erosion = 0.7
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.4 = moderately unusual, making the oasis a rare
+# discovery that generates infrequently within the scorched zone.
+# Players who find one will remember the moment.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 2.0 places the oasis
+# in a slight depression, just above sea level — low enough for
+# the spring water to pool naturally at the surface.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 2.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 2.0 creates a gently scooped basin — smooth terrain that slopes
+# slightly toward the central pond, making the oasis feel cupped
+# and sheltered.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Grass block marks the oasis as a green haven — the only place
+# in the entire scorched zone where living grass grows.
+top-block = "minecraft:grass_block"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Dirt supports the root systems of the trees,
+# grass, and sugar cane thriving on the spring water.
+filler-block = "minecraft:dirt"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 3 provides sufficient soil depth for the vegetation,
+# standard for a grass biome.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Sand gives the oasis
+# pond a clean, inviting appearance — clear water over a sandy
+# bottom.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#          "jungle_small" = compact palm-like trees with wide canopy
+#          that provide crucial shade over the oasis.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            2.0 clusters several trees around the pond without
+#            making the small oasis feel like a full forest.
+trees = { types = ["jungle_small"], density = 2.0 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 6.0 creates lush green coverage around the
+# water source — a striking contrast to the barren desert. The
+# visual impact of green grass after miles of sand is intentional.
+grass-density = 6.0
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 2.0 adds subtle color accents to the green
+# without overwhelming the grass. Blue orchids suit the watery
+# setting.
+flower-density = 2.0
+
+# flower-types: Which flowers are eligible to generate in this biome.
+# Overrides the global weighted list for biome-specific palettes.
+# Blue orchids and alliums thrive in the moist oasis soil.
+flower-types = ["blue_orchid", "allium"]
+
+# sugar-cane-density: Sugar cane reeds per chunk. Tall reeds grow
+# along the pond edge, providing a valuable crafting resource and
+# visually framing the water feature. 3.0 creates a noticeable
+# reed border.
+sugar-cane-density = 3.0
+
+# lily-pad-density: Lily pad features per chunk on the pond surface.
+# 2.0 adds a few lily pads to the oasis pond, enhancing the
+# tranquil atmosphere.
+lily-pad-density = 2.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The oasis is a refuge. Passive mobs congregate around the water
+# source, drawn by the only green vegetation in the scorched zone.
+# Hostile spawns are reduced to make this feel like a safe haven.
+
+# cow: Desert cattle gathering at the only water source.
+# weight: 10 for a reliable presence around the pond.
+cow = { weight = 10, min-group = 2, max-group = 4 }
+
+# sheep: Grazing on the oasis grass, one of the few places in the
+# scorched zone where wool can be obtained.
+# weight: 8 for regular passive spawns.
+sheep = { weight = 8, min-group = 2, max-group = 3 }
+
+# rabbit: Abundant at the oasis where food and water are plentiful.
+# weight: 10 for a thriving rabbit population.
+rabbit = { weight = 10, min-group = 2, max-group = 4 }
+
+# frog: Warm-climate frogs that inhabit the pond. Adds life to the
+# water feature.
+# weight: 4 for occasional aquatic ambiance.
+frog = { weight = 4, min-group = 1, max-group = 2 }

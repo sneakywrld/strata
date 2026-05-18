@@ -1,0 +1,166 @@
+# ============================================================
+#  Biome: Verdant Plains — Verdant Expanse
+# ============================================================
+# Wide, open grasslands stretching to the horizon. Scattered
+# sunflowers sway in gentle breezes, and herds of cows and
+# sheep graze across the flat terrain. This is the quintessential
+# farming biome — flat enough for large crop fields, with fertile
+# soil and ample sunlight. The easiest biome in the Verdant zone
+# for base-building and agriculture.
+#
+# Gameplay: Ideal for first farms, animal husbandry, and windmill
+# builds. Flat terrain makes mob spawning predictable at night.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique identifier for this biome. Namespaced with "strata:" to
+# avoid collisions with vanilla or other plugin biomes.
+# Format: "strata:<zone>_<name>" — must be lowercase, underscores only.
+id = "strata:verdant_plains"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# minimaps, and /strata biome info commands.
+display-name = "Verdant Plains"
+
+# category: The vanilla biome category this biome belongs to.
+# Used by Minecraft for ambient sound selection, grass/foliage coloring,
+# and structure placement rules. Must be one of:
+# NONE, TAIGA, EXTREME_HILLS, JUNGLE, MESA, PLAINS, SAVANNA,
+# ICY, THE_END, BEACH, FOREST, OCEAN, DESERT, RIVER, SWAMP, MUSHROOM, NETHER
+category = "PLAINS"
+
+# zone: Which Elysium zone this biome belongs to.
+# Must match a zone key defined in zones/zones.toml.
+# The zone controls distance-from-spawn placement, difficulty scaling,
+# and mob density multipliers for this biome.
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine WHERE this biome generates in the world.
+# Strata uses a 5-axis climate system (based on Minecraft 1.18+
+# multi-noise) to place biomes. Each axis ranges from -1.0 to 1.0.
+# The biome is placed where the world's noise values best match
+# these target values. Closer matches = higher priority.
+[biome.climate]
+# temperature: How warm/cold the biome is.
+#   -1.0 = frozen tundra, 0.0 = temperate, 1.0 = scorching desert.
+#   0.5 = mild warmth, suitable for grasslands with long growing seasons.
+temperature = 0.5
+
+# humidity: How wet/dry the biome is.
+#   -1.0 = parched desert, 0.0 = average, 1.0 = tropical rainforest.
+#   0.3 = slightly dry — open grasslands don't retain much moisture.
+humidity = 0.3
+
+# continentalness: How far inland this biome generates.
+#   -1.0 = deep ocean, 0.0 = coastline, 1.0 = deep inland.
+#   0.4 = moderately inland, away from coasts but not mountain-locked.
+continentalness = 0.4
+
+# erosion: How eroded/flat the terrain is.
+#   0.0 = jagged peaks (no erosion), 1.0 = perfectly flat (fully eroded).
+#   0.8 = very flat terrain, appropriate for wide open plains.
+erosion = 0.8
+
+# weirdness: Controls unusual terrain features and biome variants.
+#   -1.0 to 1.0. Values near 0.0 produce "normal" biomes.
+#   0.0 = standard plains, nothing unusual or exotic.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The average Y-level of the terrain surface.
+# Measured in blocks above sea level (Y=63). Strata adds this to
+# the sea level to determine the terrain baseline.
+#   0 = at sea level, 10 = gentle hills, 30+ = mountains.
+#   3 = just slightly above sea level, classic flat plains.
+base-height = 3
+
+# height-variation: How much the terrain undulates around base-height.
+# Higher values create hillier terrain within the biome.
+#   0.0 = perfectly flat, 1.0 = gentle rolls, 5.0+ = hilly.
+#   0.5 = very slight variation — mostly flat with tiny bumps.
+height-variation = 0.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Surface rules define the block palette painted onto the terrain.
+# These override the global surface rules (surface/rules.toml)
+# for this specific biome.
+[biome.surface]
+# top-block: The single-block-thick surface layer.
+# This is what players see and walk on.
+top-block = "minecraft:grass_block"
+
+# filler-block: The block placed beneath the top block, down to
+# filler-depth. Simulates topsoil before reaching stone.
+filler-block = "minecraft:dirt"
+
+# filler-depth: How many blocks deep the filler extends below
+# the top block. Range: 1-7. Standard is 3.
+#   3 = standard topsoil depth for plains biomes.
+filler-depth = 3
+
+# underwater-block: Block used for terrain surfaces that are
+# submerged below sea level (river bottoms, lake beds).
+#   "minecraft:dirt" = natural look for ponds in grasslands.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features are world-gen elements placed after terrain shaping.
+# References tree types defined in features/trees.toml and
+# vegetation in features/vegetation.toml. Density values control
+# how many placement attempts occur per chunk (16x16 area).
+[biome.features]
+# trees: Tree types and their placement density.
+#   types: Array of tree definition keys from features/trees.toml.
+#   density: Placement attempts per chunk. Range: 0.0 to 50.0.
+#     0.3 = very sparse, just a few lone trees dotting the plains.
+trees = { types = ["oak", "birch"], density = 0.3 }
+
+# grass-density: Short grass and tall grass placement attempts per chunk.
+#   Range: 0.0 to 100.0.
+#   60.0 = very dense grass cover — plains should feel lush and green.
+grass-density = 60.0
+
+# flower-density: Flower patch placement attempts per chunk.
+#   Range: 0.0 to 30.0.
+#   4.0 = moderate flower coverage with occasional sunflower clusters.
+flower-density = 4.0
+
+# extra-features: Additional feature placements specific to this biome.
+# Each entry names a vegetation key from features/vegetation.toml
+# with an optional density override.
+extra-features = [
+    { feature = "sunflower", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that override or supplement the global
+# spawn table defined in entities/spawning.toml. Only mobs listed
+# here are modified; all others use global defaults.
+#
+# Each entry can use:
+#   mob: Entity type (minecraft:namespace)
+#   weight: Relative spawn weight (higher = more common)
+#   min-group / max-group: Pack size range
+#   category: PASSIVE, HOSTILE, WATER_CREATURE, WATER_AMBIENT, AMBIENT
+[biome.spawning]
+# Cow herds are larger and more common on plains — prime grazing land.
+cow = { weight = 15, min-group = 3, max-group = 6 }
+# Sheep thrive in open grasslands with large flocks.
+sheep = { weight = 15, min-group = 3, max-group = 5 }
+# Horses spawn naturally on open plains.
+horse = { weight = 5, min-group = 2, max-group = 4 }

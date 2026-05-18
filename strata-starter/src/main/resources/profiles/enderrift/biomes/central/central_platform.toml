@@ -1,0 +1,156 @@
+# ============================================================
+#  Biome: Central Platform — Central Island
+# ============================================================
+# The dragon fight arena — the heart of the End dimension.
+# A broad, roughly circular platform of end stone dominates
+# the center, ringed by tall obsidian pillars crowned with
+# end crystals. The exit portal sits at the exact center,
+# dormant until the Ender Dragon is slain. Bedrock pillars
+# anchor the portal frame, and a carpet of end stone stretches
+# in every direction beneath the dragon's flight path. This
+# is where every player's End journey begins and where the
+# dragon makes its final stand.
+#
+# Gameplay notes:
+#   - The Ender Dragon fight takes place here.
+#   - Obsidian pillars with end crystals heal the dragon.
+#   - Exit portal activates on dragon death.
+#   - Dragon egg spawns atop the portal after first kill.
+#   - Flat terrain is intentional — the arena needs clear
+#     line-of-sight for the fight mechanics.
+#   - End gateways spawn on the perimeter after victory.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the dragon fight
+# arena. This is the canonical spawn point of the End.
+# Format: "strata:<region>_<biome_name>"
+id = "strata:central_platform"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and region-entry messages.
+display-name = "Central Platform"
+
+# category: END — this is an End dimension biome.
+# Affects ambient rendering, sky color (black), and
+# star visibility.
+category = "END"
+
+# region: Which region this biome belongs to. Must match
+# a region key in the Enderrift profile configuration.
+# Biomes only generate within their assigned region.
+region = "central"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate coordinates position this biome within the
+# multi-noise selection system. The End uses a simplified
+# climate model: temperature and humidity distinguish
+# biomes within a region, while continentalness and
+# erosion are fixed at 0.0 (no ocean/land axis or
+# weathering axis in the void). Weirdness separates
+# standard and variant biomes.
+[biome.climate]
+# temperature: Thermal axis. The central platform is
+# neutral — neither hot nor cold. The End's ambient
+# temperature is uniform near the dragon's domain.
+# 0.0 = perfectly neutral, baseline End temperature.
+temperature = 0.0
+
+# humidity: Moisture axis. The End is bone-dry — there
+# is no water cycle in the void. 0.0 = no moisture,
+# standard for core End biomes.
+humidity = 0.0
+
+# continentalness: Land-mass axis. Not meaningful in the
+# End dimension — all terrain floats in void. Fixed at
+# 0.0 for all End biomes.
+continentalness = 0.0
+
+# erosion: Terrain roughness axis. Not applicable in the
+# End — the central island is shaped by dragon mechanics,
+# not erosion. Fixed at 0.0.
+erosion = 0.0
+
+# weirdness: Variant axis. 0.0 = the default, standard
+# central platform. No mutations or alternate versions
+# of the dragon arena.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level of the platform surface. 65 puts
+# the arena slightly above vanilla End height (64),
+# providing a solid stage for the dragon fight. The
+# flat surface ensures unobstructed combat.
+# Range for End biomes: 0 to 256 (below 0 is void).
+base-height = 65
+
+# height-variation: How much the terrain undulates.
+# 3 = nearly flat with only minor surface irregularity.
+# The arena must be traversable during the fight — no
+# steep drops or spikes to trap players.
+# Range: 0.0 (glass-flat) to 50.0 (extreme variation).
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — the canonical surface of the
+# End dimension. Every block the player walks on is the
+# pale yellow end stone.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone continues beneath the surface.
+# The entire island is solid end stone down to the void.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: Depth of end stone beneath the surface
+# before transitioning to the base terrain generator.
+# 4 = standard End island thickness. Keeps the island
+# feeling solid without wasting generation budget.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# The central platform is deliberately sparse. The dragon
+# fight requires clear sightlines and minimal clutter.
+# Obsidian pillars and end crystals are structure-level
+# features handled by the structure generator, not the
+# biome feature system.
+[biome.features]
+# end-specific: Obsidian pillars with end crystals are
+# placed by the dragon fight structure generator, not
+# biome features. The exit portal is also structural.
+# No chorus plants grow on the central island — the
+# dragon's presence prevents chorus propagation.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation on the central platform.
+# The End has no grass or plant life near the dragon.
+grass-density = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen dominate the End. During the dragon fight,
+# the Ender Dragon itself is a boss entity managed by
+# the fight controller, not the biome spawn table.
+[biome.spawning]
+# enderman: The signature mob of the End. High spawn
+# weight reflects their overwhelming presence on the
+# central platform. Players must avoid eye contact
+# during the dragon fight or risk aggro from multiple
+# endermen simultaneously.
+# weight: Very high — endermen are everywhere.
+# min-group/max-group: Endermen roam in loose groups.
+enderman = { weight = 40, min-group = 1, max-group = 4 }

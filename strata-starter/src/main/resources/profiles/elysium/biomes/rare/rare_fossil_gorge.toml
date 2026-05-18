@@ -1,0 +1,176 @@
+# ============================================================
+#  Biome: Fossil Gorge — Rare Biomes
+# ============================================================
+# A deep, narrow canyon whose walls expose a massive fossil
+# embedded in the sandstone strata. The skeleton — perhaps a
+# prehistoric creature 30+ blocks long — is partially visible
+# in the cliff face, its bone blocks contrasting sharply
+# against the layered red and yellow sandstone. The gorge
+# floor is littered with fallen sandstone blocks and bone
+# fragments that have eroded from the walls over millennia.
+# A thin stream trickles along the canyon bottom, and the
+# narrow slot-canyon geometry creates dramatic lighting — shafts
+# of sunlight reaching the floor only at midday. Treasure
+# chests are hidden in alcoves behind the fossil bones.
+#
+# Gameplay notes:
+#   - Bone blocks from the fossil — massive bone meal supply.
+#   - Exposed sandstone layers for decorative building blocks.
+#   - Treasure chests hidden behind/within the fossil.
+#   - Narrow canyon geometry — chokepoint combat encounters.
+#   - Dramatic lighting at midday when sun reaches the floor.
+#   - Stream at the bottom provides water supply.
+#   - Very rare: weirdness 0.96 restricts generation.
+#   - Excellent archaeology/paleontology themed build site.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Rare biomes use the
+# "rare_" prefix to signal exceptional scarcity.
+id = "strata:rare_fossil_gorge"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Fossil Gorge"
+
+# category: BADLANDS — the sandstone canyon walls and arid
+# conditions align with badlands terrain. BADLANDS enables the
+# warm amber sky tint and terracotta palette that complement
+# the exposed sedimentary layers.
+category = "BADLANDS"
+
+# zone: "rare" — rare biomes generate wherever their extreme
+# weirdness threshold is met, regardless of zone.
+zone = "rare"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Warm and arid — the sandstone gorge is a dry, desert-like
+# environment where erosion has exposed ancient fossil beds.
+[biome.climate]
+# temperature: 0.6 = warm. The narrow canyon traps heat during
+# the day, and the sandstone walls re-radiate it at night.
+# The gorge is warmer than the surrounding terrain.
+temperature = 0.6
+
+# humidity: 0.2 = dry. Arid conditions are essential — the
+# fossil was preserved because the dry climate prevented
+# decomposition, and the same dryness persists today.
+humidity = 0.2
+
+# continentalness: 0.5 = moderately inland. Gorges and canyons
+# form in the continental interior where river erosion carves
+# through sedimentary formations.
+continentalness = 0.5
+
+# erosion: -0.2 = moderate resistance. The canyon walls are
+# resistant enough to maintain the steep, narrow profile. The
+# gorge was carved by water over millions of years but the
+# hard sandstone prevents the walls from collapsing.
+erosion = -0.2
+
+# weirdness: 0.96 = extremely rare. A gorge with an exposed
+# fossil is an extraordinary geological feature. This high
+# weirdness ensures only one or two exist per world.
+weirdness = 0.96
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -10 = deep canyon. The gorge floor sits well
+# below the surrounding terrain, creating the narrow slot-
+# canyon that exposes the fossil in the cliff walls. The
+# negative height is essential for the canyon geometry.
+# Range: -64.0 to 256.0
+base-height = -10
+
+# height-variation: 15 = extreme. The terrain swings between
+# the deep canyon floor and the high canyon rim. This creates
+# the steep, sheer walls that contain the exposed fossil.
+# Range: 0.0 to 30.0
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Sandstone — layered sedimentary rock that tells the
+# geological story of the fossil's burial and exposure.
+[biome.surface]
+# top-block: Sandstone — the layered sedimentary surface that
+# forms the canyon walls and floor. The exposed strata create
+# visible horizontal banding in the cliff faces.
+top-block = "minecraft:sandstone"
+
+# filler-block: Sandstone continues below. The entire formation
+# is sedimentary rock — layer after layer of ancient deposits
+# compressed into stone.
+filler-block = "minecraft:sandstone"
+
+# filler-depth: 6 = deep sedimentary layers. The thick
+# sandstone formation contains the fossil at various depths,
+# with different colored layers marking different geological
+# periods.
+# Range: 1 to 8.
+filler-depth = 6
+
+# underwater-block: Sand in the stream at the gorge bottom —
+# fine sediment washed from the sandstone walls.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Bone blocks from the fossil and dead vegetation. The gorge
+# is arid with minimal plant life.
+[biome.features]
+# trees: No trees in the narrow gorge. The canyon walls are
+# too steep and the floor too narrow for tree growth. A few
+# dead bushes cling to ledges.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Very sparse. A few tufts of dry grass in
+# cracks where moisture collects.
+# Range: 0.0 to 100.0
+grass-density = 1.0
+
+# flower-density: Zero. The arid conditions prevent flowering.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# dead-bush-density: Moderate. Dead bushes on the gorge floor
+# and canyon ledges — the only visible vegetation.
+dead-bush-density = 2.0
+
+# extra-features: Bone blocks from the exposed fossil and
+# fallen sandstone debris define the gorge's character.
+extra-features = [
+    # Bone block clusters — exposed sections of the fossil
+    # protruding from the canyon walls and scattered on the floor.
+    { feature = "bone_block", density = 5.0 },
+    # Fallen sandstone blocks — debris from the eroding walls.
+    { feature = "sandstone_rubble", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The narrow gorge creates dangerous combat encounters. Mobs
+# can only approach from two directions, but players cannot
+# easily dodge in the tight space.
+[biome.spawning]
+# Husk: Desert-adapted undead that patrol the arid gorge.
+# Inflict Hunger on hit — dangerous in the enclosed space.
+husk = { weight = 12, min-group = 1, max-group = 3 }
+
+# Spider: Climb the canyon walls and drop on players from
+# above. The vertical walls are perfect spider terrain.
+spider = { weight = 8, min-group = 1, max-group = 2 }
+
+# Bat: Flutter in the canyon shadows and cave alcoves. Their
+# sudden movement startles players in the enclosed space.
+bat = { weight = 10, min-group = 2, max-group = 5 }

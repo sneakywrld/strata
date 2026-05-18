@@ -1,0 +1,135 @@
+# ============================================================
+#  Biome: Central Edge — Central Island
+# ============================================================
+# The crumbling perimeter of the central island where end
+# stone tapers into the infinite void. Dramatic cliffs drop
+# away into nothingness, their faces streaked with fracture
+# lines and overhanging ledges that threaten to break off at
+# any moment. The terrain slopes downward from the main
+# platform, becoming progressively thinner and more eroded
+# until it terminates in jagged fingers of stone reaching
+# into empty space. Vertigo-inducing drops make this zone
+# treacherous for distracted players.
+#
+# Gameplay notes:
+#   - High fall risk — void is directly below the cliffs.
+#   - Terrain slopes downward from the central platform.
+#   - Natural chokepoints where the edge narrows.
+#   - Endermen are particularly dangerous here — their
+#     teleportation can strand players on isolated ledges.
+#   - Good elytra launch points for brave players.
+#   - Pairs with central_platform (inward) and the void
+#     gap separating central from outer islands.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the eroded edge
+# ring surrounding the central platform.
+id = "strata:central_edge"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Central Edge"
+
+# category: END — End dimension biome with void below.
+category = "END"
+
+# region: Central Island — the dragon fight region.
+# The edge forms the outermost ring of this region.
+region = "central"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly colder than the main platform.
+# The edge is exposed to the void on all sides, and the
+# thinning terrain loses ambient heat faster. -0.2 =
+# noticeably cooler than the sheltered platform center.
+temperature = -0.2
+
+# humidity: Bone-dry like all End biomes. The void
+# absorbs any trace moisture. 0.0 = arid.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes —
+# no land-mass axis in the void dimension.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 — End terrain shaping is
+# handled by the island generation system, not the
+# erosion noise layer.
+erosion = 0.0
+
+# weirdness: Slight negative weirdness (-0.3) to
+# distinguish this from the main platform. The eroded
+# edge has a more alien, unstable character that the
+# weirdness axis captures.
+weirdness = -0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 55 — notably lower than the central
+# platform (65). The edge slopes downward, creating the
+# visual impression of an island that is crumbling away
+# into the void. The 10-block drop from platform to edge
+# produces natural cliffs at the transition.
+base-height = 55
+
+# height-variation: 10 = significant variation, creating
+# jagged cliff faces, narrow peninsulas, and isolated
+# pillars of stone. The high variation combined with low
+# base height means some areas dip dangerously close to
+# the void threshold.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — continuous with the central
+# platform's surface material.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone throughout. The edge is the
+# same geological material as the platform, just thinner
+# and more fractured.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 3 — slightly thinner than the central
+# platform. The edge is eroding, so less material
+# remains between surface and void.
+# Range: 1 to 8.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# The edge is barren — wind and erosion (conceptual for
+# the End) have stripped away any features. Occasional
+# loose end stone blocks suggest ongoing decay.
+[biome.features]
+# No chorus plants — too close to the dragon's domain
+# and too exposed to sustain growth.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation. The eroded edge supports
+# nothing.
+grass-density = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen still patrol the edge but in lower numbers —
+# the narrow terrain limits spawn area. The void proximity
+# makes encounters here especially dangerous.
+[biome.spawning]
+# enderman: Reduced weight compared to the platform.
+# Fewer flat surfaces means fewer valid spawn locations.
+# Encounters on the edge are more lethal due to knockback
+# risk into the void.
+enderman = { weight = 30, min-group = 1, max-group = 3 }

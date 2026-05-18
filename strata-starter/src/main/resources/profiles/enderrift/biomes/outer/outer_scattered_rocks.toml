@@ -1,0 +1,125 @@
+# ============================================================
+#  Biome: Outer Scattered Rocks — Outer Islands
+# ============================================================
+# A field of small floating rock fragments scattered across
+# the void like stepping stones. No single fragment is large
+# enough to be called an island — most are 3-10 blocks across,
+# hovering at varying altitudes with gaps of 5-15 blocks
+# between them. Players must jump, bridge, or fly between
+# these fragments to traverse the area. The rocks appear to
+# be debris from a shattered larger island, their fractured
+# faces fitting together like pieces of a broken puzzle. Some
+# fragments slowly rotate (visual effect only) in the
+# stillness of the void.
+#
+# Gameplay notes:
+#   - PARKOUR territory — jumping between small platforms.
+#   - Fragments at varying heights require vertical movement.
+#   - Bridging between fragments is a viable strategy.
+#   - Elytra makes traversal trivial but is not required.
+#   - Very little flat surface — minimal spawn area.
+#   - No chorus plants — fragments too small to support them.
+#   - Falling between fragments leads to void death.
+#   - Pairs with outer_end_crater (potential debris source)
+#     and outer_end_pillar (similar verticality).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the scattered rock
+# fragment field in the outer End.
+id = "strata:outer_scattered_rocks"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Scattered Rocks"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Outer Islands region.
+region = "outer"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cold — the tiny fragments have negligible
+# thermal mass and are fully exposed to void on all sides.
+# -0.2 = noticeably colder than solid islands.
+temperature = -0.2
+
+# humidity: Dry. 0.0 = no moisture. Nothing grows on
+# fragments this small.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.5 = high weirdness. Scattered rock fields
+# are unusual formations that generate in the strangest
+# noise pockets, making them rare and memorable.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 60 — mid-range for outer islands. The
+# fragments hover around this altitude but the high
+# variation scatters them across a wide vertical band.
+base-height = 60
+
+# height-variation: 15 = high variation. The fragments
+# float at many different altitudes, from Y 45 to Y 75.
+# This creates the scattered, chaotic debris field
+# appearance. The noise generates isolated peaks at this
+# variation level, which become individual fragments.
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — the fragments are chunks of
+# standard End island material.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — solid fragments, no layering.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 2 = very thin. The fragments are small
+# and lack the depth of proper islands. Most are only
+# a few blocks thick.
+# Range: 1 to 8.
+filler-depth = 2
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# No vegetation — the fragments are too small and exposed
+# to support any growth, even chorus plants.
+[biome.features]
+# end-specific: No features. The fragments are bare end
+# stone with no decoration. Their small size is the
+# visual identity.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation on rock fragments.
+grass-density = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Very few endermen — the tiny fragments provide almost
+# no valid spawn surface. When one does spawn on a
+# fragment, the encounter is extremely tight.
+[biome.spawning]
+# enderman: Low weight — almost no spawn surface. Rare
+# encounters, but deadly when they happen since there is
+# nowhere to maneuver on a 3-block-wide platform.
+enderman = { weight = 10, min-group = 1, max-group = 1 }

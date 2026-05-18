@@ -1,0 +1,164 @@
+# ============================================================
+#  Biome: Void Rift — Void Islands
+# ============================================================
+# A deep, gaping crack in the fabric of an end stone island
+# that exposes the void below. The rift runs through the
+# terrain like a wound, splitting the island with a chasm
+# too wide to jump across in most places. Players must build
+# bridges, use ender pearls, or find narrow crossing points.
+# The void is clearly visible at the bottom, and falling in
+# means death. Terrain along the rift edge is unstable.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:void_rift"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Void Rift"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "void"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. -0.5 = cold, the exposed void below the rift
+# draws heat away from the surrounding terrain.
+temperature = -0.5
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. -0.8 = extremely dry, the rift exposes the
+# terrain to void winds that strip away all moisture.
+humidity = -0.8
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.0 = effectively edge terrain — the rift
+# creates void exposure even in the island interior.
+continentalness = 0.0
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. -0.3 = rough, the rift edges are
+# jagged and the terrain slopes toward the chasm.
+erosion = -0.3
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.5 = notably weird — a void-exposing rift is a dramatic
+# geological feature.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 60 is moderate —
+# the terrain on either side of the rift sits at normal height,
+# with the rift cutting down to void below.
+# Range: 0 to 256
+base-height = 60
+
+# height-variation: Controls terrain undulation. 8 creates moderate
+# variation — the rift edges undulate and the terrain slopes
+# toward the chasm.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — standard surface on either side of the rift.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. End stone, visible in the exposed rift walls.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 3 — moderate depth before the rift opens to void.
+# Range: 1 to 8
+filler-depth = 3
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 0.3 — minimal chorus. A few plants cling to the rift edges,
+# their roots dangling over the void.
+chorus-density = 0.3
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.2 — low flowering in the harsh rift environment.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.2
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.004 — sparse rods along the rift edge, marking the boundary
+# between solid ground and void drop-off.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.004
+
+# erosion-chance: Per-surface-block probability of end stone erosion.
+# 0.1 — heavy erosion at the rift edges where the terrain is
+# actively crumbling into the void.
+# Range: 0.0 to 0.2
+erosion-chance = 0.1
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.01 — occasional crystals exposed in the rift walls, visible
+# as players peer down into the chasm.
+# Range: 0.0 to 0.1
+crystal-chance = 0.01
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.2 — sparse obsidian veins visible in the rift wall cross-sections.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.2
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Standard presence. Endermen cross the rift by
+# teleporting, making them no less common here than elsewhere.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 95, min-group = 1, max-group = 3 }
+
+# shulker: No shulkers near the rift.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Moderate presence. The dimensional instability
+# at the rift attracts endermites.
+endermite = { weight = 5, min-group = 1, max-group = 2 }

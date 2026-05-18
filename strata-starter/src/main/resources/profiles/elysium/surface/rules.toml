@@ -1,0 +1,139 @@
+# ============================================================
+#  Surface Rule Configuration — Elysium Overworld
+# ============================================================
+# Surface rules determine what blocks appear on the terrain surface.
+# Rules are evaluated in order — the first matching rule wins.
+#
+# Each rule has:
+#   - conditions: When this rule applies (biome, depth, Y-level, slope, noise)
+#   - block: What block to place when conditions match
+#
+# Most biomes use the default rules here. Individual biomes can
+# override these with biome-specific surface rules in their TOML.
+# ============================================================
+
+# -------------------------------------------------------
+# Default Surface Rules (applied when no biome override exists)
+# -------------------------------------------------------
+
+# Top layer: Grass block on the very surface
+[[rules]]
+# name: Human-readable label for this rule (for debugging/reports).
+name = "default_surface_grass"
+# conditions: This rule applies at depth 0 (the topmost block).
+[rules.conditions]
+depth = 0
+# min-y: Only above water level.
+min-y = 63
+[rules.output]
+block = "minecraft:grass_block"
+
+# Sub-surface: Dirt for the next 3 blocks below surface
+[[rules]]
+name = "default_subsurface_dirt"
+[rules.conditions]
+min-depth = 1
+max-depth = 3
+min-y = 60
+[rules.output]
+block = "minecraft:dirt"
+
+# Underwater surface: Gravel
+[[rules]]
+name = "default_underwater_gravel"
+[rules.conditions]
+depth = 0
+max-y = 62
+# underwater: Block is below sea level and has water above.
+underwater = true
+[rules.output]
+block = "minecraft:gravel"
+
+# Underwater sub-surface: Sand
+[[rules]]
+name = "default_underwater_sand"
+[rules.conditions]
+min-depth = 1
+max-depth = 2
+max-y = 62
+underwater = true
+[rules.output]
+block = "minecraft:sand"
+
+# Beach: Sand near water level on gentle slopes
+[[rules]]
+name = "default_beach_sand"
+[rules.conditions]
+depth = 0
+min-y = 62
+max-y = 66
+# max-slope: Only on gentle terrain. Steep slopes keep stone/dirt.
+# Slope is measured in degrees. 30 = gentle. 60 = steep.
+max-slope = 25.0
+# coastal-proximity: Within this many blocks of ocean/river.
+coastal-proximity = 10
+[rules.output]
+block = "minecraft:sand"
+
+# Beach sub-surface: Sandstone below beach sand
+[[rules]]
+name = "default_beach_sandstone"
+[rules.conditions]
+min-depth = 1
+max-depth = 4
+min-y = 58
+max-y = 66
+coastal-proximity = 10
+[rules.output]
+block = "minecraft:sandstone"
+
+# Steep slopes: Exposed stone on steep terrain
+[[rules]]
+name = "default_steep_stone"
+[rules.conditions]
+depth = 0
+# min-slope: Only on steep terrain.
+min-slope = 55.0
+[rules.output]
+block = "minecraft:stone"
+
+# Cave surface: Stone (no special treatment by default)
+[[rules]]
+name = "default_cave_floor"
+[rules.conditions]
+depth = 0
+max-y = -1
+[rules.output]
+block = "minecraft:stone"
+
+# Deep underground: Deepslate below Y=0
+[[rules]]
+name = "default_deepslate"
+[rules.conditions]
+max-y = 0
+[rules.output]
+block = "minecraft:deepslate"
+
+# Deepslate transition: Mix of stone and deepslate between Y=-8 and Y=8
+[[rules]]
+name = "default_deepslate_transition"
+[rules.conditions]
+min-y = -8
+max-y = 8
+# noise-threshold: Use surface noise to create a patchy transition.
+noise = "strata:surface_noise"
+noise-threshold = 0.0
+[rules.output]
+block = "minecraft:deepslate"
+
+# Bedrock: Bottom of the world
+[[rules]]
+name = "default_bedrock"
+[rules.conditions]
+max-y = -60
+# bedrock-noise: Strata uses noise for irregular bedrock instead of flat.
+# This creates a jagged bedrock layer 1-4 blocks thick.
+noise = "strata:surface_noise"
+noise-threshold = -0.3
+[rules.output]
+block = "minecraft:bedrock"

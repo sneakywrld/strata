@@ -1,0 +1,163 @@
+# ============================================================
+#  Biome: Sanctuary Pond — Sanctuary Zone
+# ============================================================
+# A tranquil freshwater pond rimmed with reeds and lily pads. Clay
+# deposits line the bottom and sugar cane grows along the banks. A
+# peaceful fishing and clay-gathering spot for new players.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the generator.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_pond"
+
+# display-name: Human-readable name shown in F3 debug, /strata info,
+# and zone-entry messages.
+display-name = "Sanctuary Pond"
+
+# category: PLAINS rather than RIVER or OCEAN because this is a small
+# inland water body embedded in grassland, not a flowing waterway.
+# Uses plains ambient sounds with the addition of water splashing.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "PLAINS"
+
+# zone: Generates only within the sanctuary zone (0-1500 blocks
+# from spawn).
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate. Higher humidity distinguishes this from
+# drier biomes and causes it to generate near water features.
+[biome.climate]
+# temperature: 0.5 = warm and pleasant. Consistent with the rest
+# of the sanctuary zone for seamless transitions.
+temperature = 0.5
+
+# humidity: 0.6 = notably moist. The highest humidity of the basic
+# sanctuary biomes. This pulls the pond toward wetter noise regions,
+# naturally placing it in low-lying areas where water collects.
+humidity = 0.6
+
+# continentalness: 0.3 = inland. Same as adjacent biomes so the
+# pond embeds naturally among meadows and groves.
+continentalness = 0.3
+
+# erosion: 0.8 = very flat. Ponds form in flat terrain where water
+# naturally pools. High erosion keeps the banks low and accessible.
+erosion = 0.8
+
+# weirdness: 0.0 = standard variant. The default, most common pond
+# type with no unusual features.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -2.0 = slightly below sea level. This depression
+# allows the generator's water fill to create a natural pond.
+# Combined with sea-level=63, terrain here sits around Y=61,
+# letting 1-2 blocks of water form above the surface.
+# Range: -64.0 to 256.0
+base-height = -2.0
+
+# height-variation: 0.5 = nearly flat. Ponds need minimal
+# variation so the water surface is calm and uniform. Small
+# undulations create gentle mud banks at the edges.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 0.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass on the exposed banks surrounding the pond.
+# The actual pond bottom is controlled by underwater-block.
+top-block = "minecraft:grass_block"
+
+# filler-block: Clay sits beneath the surface, giving players
+# a reason to explore and dig near the water — clay is useful for
+# bricks and decorated pots.
+filler-block = "minecraft:clay"
+
+# filler-depth: 3 blocks of clay below the surface. Provides a
+# generous deposit without making it seem inexhaustible.
+# Range: 1 to 8
+filler-depth = 3
+
+# underwater-block: Clay on the pond floor. Visible through the
+# shallow water as a pale grey bed, signaling to players that
+# clay can be mined here.
+underwater-block = "minecraft:clay"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Very sparse willowy trees along the pond banks. Only
+# small oaks to avoid blocking the pond view.
+#   density: 0.3 = barely any trees — the focus is the water.
+trees = { types = ["oak"], density = 0.3 }
+
+# grass-density: 4.0 = moderate grass on the banks. Less than
+# the open meadow because much of this biome is water.
+grass-density = 4.0
+
+# flower-density: 2.0 = sparse flowers around the pond edge.
+# Blue orchids and azure bluets complement the water theme.
+flower-density = 2.0
+
+# flower-types: Water-adjacent flowers. Blue orchid naturally
+# grows near water in vanilla. Azure bluets and oxeye daisies
+# complete the pond-side palette.
+flower-types = ["blue_orchid", "azure_bluet", "oxeye_daisy"]
+
+# lily-pads: Floating lily pad coverage on the pond surface.
+#   density: Pads per chunk of water surface. 6.0 places generous
+#            coverage that looks lush without completely choking
+#            the water. Players can still fish between pads.
+#   Range: 0.0 to 15.0
+lily-pads = { density = 6.0 }
+
+# sugar-cane: Tall sugar cane reeds along the water's edge.
+#   density: Clusters per chunk. 4.0 creates visible stands of
+#            cane along the banks, giving new players easy access
+#            to paper (for maps) and sugar.
+#   Range: 0.0 to 10.0
+sugar-cane = { density = 4.0 }
+
+# seagrass: Underwater vegetation in the pond. Adds visual
+# interest when looking into the water.
+#   density: 3.0 = moderate submerged grass.
+seagrass = { density = 3.0 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The pond attracts water-loving and bank-dwelling creatures.
+# Frogs and fish make this feel like a real freshwater ecosystem.
+
+# frog: Frogs are the signature pond mob. They sit on lily pads,
+# croak, and eat small slimes — adding charm and ambiance.
+# High weight to make them common and visible.
+frog = { weight = 10, min-group = 2, max-group = 4 }
+
+# chicken: Chickens wander near water in many real ecosystems.
+# Moderate presence on the banks.
+chicken = { weight = 8, min-group = 2, max-group = 3 }
+
+# squid: Small squid in the pond water. Provides ink sacs and
+# makes the water feel alive.
+squid = { weight = 6, min-group = 1, max-group = 2 }
+
+# cod: A few fish in the deeper parts of the pond. Rewards
+# players who craft an early fishing rod.
+cod = { weight = 8, min-group = 2, max-group = 4 }

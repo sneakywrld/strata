@@ -1,0 +1,176 @@
+# ============================================================
+#  Biome: Waterfall Pool — Elysium Rivers
+# ============================================================
+# A deep, circular plunge pool at the base of a major
+# waterfall. The water crashes down from a cliff above,
+# churning the pool into a constant froth of white water and
+# mist. The pool itself is surprisingly deep — 8+ blocks at
+# the center — gouged out by millennia of falling water
+# impact. Fine mist hangs permanently in the air, keeping
+# everything within 20 blocks perpetually damp. Moss and ferns
+# coat every rock face, and rainbows flash in the spray when
+# sunlight hits the mist at the right angle. The roar of the
+# falls drowns out all other sound, making this both
+# breathtaking and dangerous — you cannot hear mobs approach.
+#
+# Gameplay notes:
+#   - Very deep water at center — drowning risk without
+#     water breathing.
+#   - Mist particles reduce visibility near the falls.
+#   - Sound of the waterfall masks mob noises — stay alert.
+#   - Excellent hidden base location behind the waterfall.
+#   - Stone walls provide immediate building material.
+#   - Rich moss and fern growth for composting.
+#   - Pairs with mountain stream upstream and forest river
+#     downstream.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. River biomes use the
+# "elysium_" prefix as cross-zone water features.
+id = "strata:elysium_waterfall_pool"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Waterfall Pool"
+
+# category: RIVER — the pool is part of the river system,
+# formed where a river drops over a cliff edge. RIVER
+# enables aquatic spawning and water-surface ambient sounds.
+category = "RIVER"
+
+# zone: "river" — river biomes are cross-zone features. The
+# waterfall pool forms at elevation transitions where rivers
+# drop sharply.
+zone = "river"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Cool and humid — the constant spray saturates the air and
+# chills the immediate area. The low erosion value creates
+# the sharp cliff that forms the waterfall.
+[biome.climate]
+# temperature: 0.4 = cool. The constant spray evaporates
+# and cools the air around the pool. The sheltered basin
+# stays notably cooler than surrounding terrain.
+temperature = 0.4
+
+# humidity: 0.6 = elevated. The waterfall generates a
+# permanent mist cloud that saturates the air within the
+# pool basin. Everything is damp.
+humidity = 0.6
+
+# continentalness: 0.5 = moderately inland. Waterfall pools
+# form in the transition between mountain headwaters and
+# lowland rivers — the interior of the continent.
+continentalness = 0.5
+
+# erosion: -0.3 = resistant. The cliff face that creates the
+# waterfall is hard rock that resists erosion, maintaining
+# the vertical drop. The pool below is the exception — carved
+# deep by the water's constant impact.
+erosion = -0.3
+
+# weirdness: 0.2 = slight offset. Waterfall pools are natural
+# features but less common than ordinary river stretches.
+# The mild weirdness reflects their occasional but not rare
+# generation.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -5 = well below surrounding terrain. The plunge
+# pool is a deep basin gouged into the rock by the falling
+# water. The negative height creates the deep water at the
+# pool's center — the deepest point in any river biome.
+# Range: -64.0 to 256.0
+base-height = -5
+
+# height-variation: 3 = moderate variation. The pool basin has
+# a bowl shape — deep at the center directly below the falls,
+# shallower at the edges where the rock shelves up. The rim of
+# the pool is higher than the center.
+# Range: 0.0 to 30.0
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Bare stone — the constant water impact has stripped away all
+# sediment, exposing the hard rock beneath.
+[biome.surface]
+# top-block: Stone — water-polished bedrock at the pool's rim
+# and the cliff face. The falling water keeps the stone clean
+# and bare, with only moss managing to cling above the splash.
+top-block = "minecraft:stone"
+
+# filler-block: Stone through and through. The plunge pool is
+# carved from solid rock — no sediment layer exists.
+filler-block = "minecraft:stone"
+
+# filler-depth: 3 = solid rock. The pool basin is pure stone
+# shaped by water erosion into a smooth bowl.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Stone on the pool floor — bare, polished
+# rock swept clean by the constant churning current.
+underwater-block = "minecraft:stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Lush moss and fern growth on every damp surface above the
+# splash zone. The mist sustains luxuriant vegetation on the
+# cliff walls and pool rim.
+[biome.features]
+# trees: No trees in the pool basin proper. The constant mist
+# and lack of soil prevent tree establishment in the immediate
+# waterfall area.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Minimal grass. The stone surface supports
+# moss rather than grass.
+# Range: 0.0 to 100.0
+grass-density = 2.0
+
+# flower-density: Zero. The constant spray and stone surface
+# prevent flowering plants from establishing.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Moss and ferns thrive in the constant mist,
+# coating every surface above the splash zone in green.
+extra-features = [
+    # Moss carpet on the damp stone surfaces — lush green.
+    { feature = "moss_carpet", density = 5.0 },
+    # Fern clusters on the pool rim and cliff ledges.
+    { feature = "fern", density = 4.0 },
+    # Glow lichen in the overhang behind the waterfall.
+    { feature = "glow_lichen", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Aquatic mobs in the deep pool. The churning water attracts
+# fish, and the constant noise masks mob sounds — creating
+# dangerous encounters for inattentive players.
+[biome.spawning]
+# Salmon: Congregate in the deep pool, resting before
+# attempting to leap up the waterfall.
+salmon = { weight = 12, min-group = 2, max-group = 4 }
+
+# Axolotl: Thrive in the deep, sheltered pool. The waterfall
+# provides oxygenated water that axolotls prefer.
+axolotl = { weight = 8, min-group = 1, max-group = 3 }
+
+# Drowned: The deep water and noise cover allow drowned to
+# ambush players who swim in the pool without caution.
+drowned = { weight = 6, min-group = 1, max-group = 2 }

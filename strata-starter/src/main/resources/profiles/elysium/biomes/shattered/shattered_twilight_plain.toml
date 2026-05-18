@@ -1,0 +1,149 @@
+# ============================================================
+#  Biome: Twilight Plain — The Shattered Reach
+# ============================================================
+# An eerily flat expanse of end stone and purpur tile stretching to
+# every horizon under a sky locked in permanent dusk. The sun never
+# fully sets and never fully rises — it hangs at the edge of the
+# world, casting long, static shadows that never move. Shulker shells
+# litter the ground like shed carapaces, and the occasional shulker
+# box sits abandoned in the open, hinting at a civilisation that
+# once existed here. The Twilight Plain is quiet, oppressively so,
+# broken only by the click-hiss of shulkers opening their shells.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier for the world generator, region maps,
+# and cross-biome transition logic.
+id = "strata:shattered_twilight_plain"
+
+# Human-readable name for debug screens and admin commands.
+display-name = "Twilight Plain"
+
+# CUSTOM — no vanilla biome mapping. Uses fixed-light-level rendering
+# and bespoke surface rules.
+category = "CUSTOM"
+
+# Shattered Reach endgame zone. The Twilight Plain is the "calm
+# before the storm" — deceptively peaceful until the shulkers open
+# fire.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.0, lifeless cold. The frozen twilight admits no
+# warmth; the air is perfectly still and bitingly cold.
+temperature = 0.0
+
+# Humidity — 0.1, bone-dry. The flat end-stone surface retains no
+# moisture. There is no rain in permanent dusk.
+humidity = 0.1
+
+# Continentalness — 0.5, central landmass. The Twilight Plain
+# occupies stable, level ground in the interior of the zone.
+continentalness = 0.5
+
+# Erosion — 0.8, heavily eroded. The terrain has been ground almost
+# perfectly flat by eons of dimensional wind, leaving a featureless
+# plain of polished end stone.
+erosion = 0.8
+
+# Weirdness — 0.85, very high. The perpetual dusk, alien surface,
+# and silent atmosphere are deeply unsettling despite the lack of
+# dramatic terrain features.
+weirdness = 0.85
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — 5 blocks above sea level. The plain is low and
+# level, barely above the water table (if water existed here).
+base-height = 5
+
+# Height variation — 2 blocks. Almost perfectly flat. The occasional
+# 1-2 block bump is the only terrain feature — this biome's threat
+# comes from its inhabitants, not its geography.
+height-variation = 2
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — end_stone. The dominant surface, polished smooth by
+# dimensional erosion. Purpur_block patches are mixed in via the
+# feature layer to create a tiled-floor effect.
+top-block = "minecraft:end_stone"
+
+# Filler block — purpur_block beneath the end stone, creating a
+# layered effect that recalls End City architecture buried just
+# below the surface.
+filler-block = "minecraft:purpur_block"
+
+# Filler depth — 4 blocks of purpur. The architectural substrate
+# runs several blocks deep before giving way to raw end stone.
+filler-depth = 4
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Purpur tile patches — rectangular sections of purpur_block set
+# flush with the end_stone surface, like remnants of a vast paved
+# plaza or ruined floor plan.
+purpur-tile-patches = true
+
+# Shulker shell litter — individual shulker_shell items scattered
+# on the ground as decorative entities, implying a mass die-off
+# or moulting event.
+shulker-shell-litter = true
+
+# Abandoned shulker boxes — closed shulker boxes (various colors)
+# placed on the surface at rare intervals. Some contain minor loot;
+# others are empty. A haunting remnant of lost civilisation.
+abandoned-shulker-boxes = true
+
+# End rod lamp posts — single end rods on purpur pillar bases,
+# spaced evenly across the plain like street lights for a city
+# that no longer exists. Primary light source.
+end-rod-lamp-posts = true
+
+# Static shadow overlay — a fixed-angle ambient shadow effect
+# applied to all blocks, reinforcing the perpetual-dusk lighting.
+# Handled by the biome's sky renderer config.
+static-shadows = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Shulkers are the dominant mob. They sit on the flat ground or
+# atop lamp posts, blending with the purpur surface until a player
+# comes within range. High weight — they are everywhere.
+shulker = 50
+
+# Endermen wander the plain in small groups, their tall silhouettes
+# visible for hundreds of blocks across the flat terrain.
+enderman = 40
+
+# Phantoms patrol the dusk sky. The permanent twilight keeps them
+# active at all times — there is never "daytime" to banish them.
+phantom = 30
+
+# Skeletons — the long sight lines make skeleton archers especially
+# dangerous on the open plain. Moderate presence.
+skeleton = 20
+
+# Strays — the cold, dim environment justifies frozen-arrow variants
+# alongside regular skeletons.
+stray = 15

@@ -1,0 +1,93 @@
+# ============================================================
+#  Biome: Stormbreak Cliff Forest — Stormbreak Coast
+# ============================================================
+# A dense mixed forest of oak and spruce growing right to the
+# edge of dramatic coastal cliffs. Tree roots grip the cliff
+# rim, some exposed and dangling over the drop where erosion
+# has undercut the forest floor. The canopy is thick inland
+# but thins at the cliff edge, where wind-bent trees lean
+# away from the prevailing ocean gales. Looking down from the
+# treeline reveals a dizzying drop to the crashing waves below
+# — looking up from the sea shows a dark wall of forest
+# crowning the stone cliffs.
+#
+# Gameplay notes:
+#   - Abundant oak and spruce wood — primary lumber biome
+#     for the Stormbreak zone.
+#   - The cliff edge creates a natural barrier and dramatic
+#     build platform for clifftop castles and watchtowers.
+#   - Falling hazard at the forest edge adds environmental
+#     danger during tree harvesting.
+#   - Wolves and foxes spawn under the canopy.
+#   - Transitions from stormbreak_sea_cliffs below to inland
+#     forest biomes above.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_cliff_forest"        # Unique registry ID
+display-name = "Stormbreak Cliff Forest"     # Shown in F3 debug & maps
+category = "FOREST"                          # Forest category — wooded biome
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Cool and moderately humid — the forest canopy retains
+# moisture from sea fog. Low erosion preserves the steep
+# cliff terrain beneath the forest.
+[biome.climate]
+temperature = 0.45          # Cool — ocean wind through the canopy
+humidity = 0.5              # Moderate — sea fog trapped by trees
+continentalness = -0.05     # Coastal edge — forest meets cliff drop
+erosion = -0.4              # Low erosion — steep cliffs, not gentle slopes
+weirdness = 0.1             # Slightly unusual — cliff-edge forests are rare
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# High base elevation matching the cliff tops, with moderate
+# variation from the undulating forest floor and cliff-edge
+# drops.
+[biome.terrain]
+base-height = 35            # Clifftop level — matches sea_cliffs peaks
+height-variation = 15       # Forest undulation plus cliff-edge drops
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Standard forest soil — grass over dirt. Near the cliff edge,
+# coarse dirt and exposed stone appear where erosion has
+# stripped the topsoil.
+[biome.surface]
+top-block = "minecraft:grass_block"      # Forest floor with full grass cover
+filler-block = "minecraft:dirt"          # Standard dirt beneath grass
+filler-depth = 3                         # 3 blocks of soil before stone
+underwater-block = "minecraft:gravel"    # Gravel in rare forest streams
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Dense mixed forest of oak and spruce. Oak dominates the
+# more sheltered inland areas; spruce appears at the exposed
+# cliff edge where conditions are harsher. Fallen leaves and
+# ferns cover the forest floor.
+[biome.features]
+trees = { types = ["oak", "spruce"], density = 0.7 }  # Dense mixed canopy
+grass-density = 0.5                                     # Thick undergrowth and ferns
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Wolves and foxes are the signature forest mobs. Standard
+# passive spawns (pigs, cows, sheep) under the canopy.
+# Hostile mobs at night — the dense canopy blocks light,
+# creating daytime dark spots where mobs can linger.
+[biome.spawning]
+# Wolves in packs — tameable, useful for cliff-edge patrols.
+# Foxes spawn at night — they carry items and are elusive.
+# Standard passive mobs: pigs, cows, sheep, chickens.
+# Dense canopy creates dark zones — hostile mobs may persist
+# into daytime under thick tree cover. Exercise caution.

@@ -1,0 +1,185 @@
+# ============================================================
+#  Biome: Enchanted Glade — Rare Biomes
+# ============================================================
+# A supernaturally beautiful forest clearing where every flower
+# in Minecraft grows in perfect, harmonious abundance. The light
+# here has a golden-hour quality — warm and soft at all times
+# of day, as if the sun is perpetually setting. Every tree is
+# perfectly shaped, every surface is carpeted in flowers, and
+# the air is thick with bee activity and drifting petals. The
+# glade feels enchanted — almost too beautiful to be natural.
+# Animals gather here in unusual numbers, and hostile mobs
+# refuse to spawn even at night (functionally, via very low
+# hostile spawn weight). A place of peace, wonder, and
+# exceptional photogenic potential.
+#
+# Gameplay notes:
+#   - Every flower type generates here — complete collection
+#     in a single biome.
+#   - Extremely high bee density — honey and honeycomb farm.
+#   - Reduced hostile spawns — near-safe at night.
+#   - Golden-hour light effect (via category and sky color).
+#   - Excellent source of dye materials from flower variety.
+#   - All passive mobs spawn at elevated rates.
+#   - Very rare: weirdness 0.93 restricts generation.
+#   - The most beautiful biome in Elysium by design.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Rare biomes use the
+# "rare_" prefix to signal exceptional scarcity.
+id = "strata:rare_enchanted_glade"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Enchanted Glade"
+
+# category: FOREST — the glade is a specialized forest clearing
+# with abundant tree coverage at the edges. FOREST enables
+# the leaf particle effects and forest ambient sounds that
+# enhance the magical atmosphere.
+category = "FOREST"
+
+# zone: "rare" — rare biomes generate wherever their extreme
+# weirdness threshold is met, regardless of zone.
+zone = "rare"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Warm, moderate, and perfectly balanced — ideal growing
+# conditions for every plant type simultaneously.
+[biome.climate]
+# temperature: 0.6 = warm. The glade maintains perfect late-
+# spring warmth — warm enough for tropical flowers, mild enough
+# for temperate species. An impossible but beautiful balance.
+temperature = 0.6
+
+# humidity: 0.5 = perfectly moderate. Balanced humidity
+# supports both dry-loving and moisture-loving flower species
+# side by side. The air is comfortable and fresh.
+humidity = 0.5
+
+# continentalness: 0.4 = moderately inland. The glade is
+# sheltered from coastal extremes, sitting in protected
+# interior terrain where conditions are naturally stable.
+continentalness = 0.4
+
+# erosion: 0.7 = well-eroded. The flat, gentle terrain of the
+# clearing creates the open space needed for the flower meadow.
+# No steep slopes or rough terrain breaks the garden aesthetic.
+erosion = 0.7
+
+# weirdness: 0.93 = very rare. The enchanted glade is a
+# special discovery — common enough that most dedicated
+# explorers will eventually find one, rare enough that it
+# always feels magical.
+weirdness = 0.93
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = gently elevated. The glade sits on a
+# slight rise — a natural amphitheater shape with the flower
+# meadow at the center and the tree line surrounding it.
+# Range: -64.0 to 256.0
+base-height = 3
+
+# height-variation: 2 = very gentle. The meadow is smooth
+# and level, with only the subtlest undulation. Every surface
+# is covered in flowers, and the flat terrain displays them
+# like a manicured garden.
+# Range: 0.0 to 30.0
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Lush grass — the richest, greenest grass in Elysium,
+# completely hidden beneath the dense flower carpet.
+[biome.surface]
+# top-block: Grass block — the base surface beneath the
+# flower carpet. The FOREST category gives it a rich, deep
+# green tint that complements every flower color.
+top-block = "minecraft:grass_block"
+
+# filler-block: Rich, dark dirt. The soil is incredibly
+# fertile — whatever magical force sustains this glade has
+# enriched the earth to an impossible degree.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 4 = deep, rich topsoil. Centuries of floral
+# growth and decomposition have built up an exceptionally
+# fertile soil layer.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Dirt in any small ponds — clear water
+# with a natural dirt bottom, surrounded by flowers.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Maximum flower density with every type represented.
+# Perfect trees ring the clearing, and bees are everywhere.
+[biome.features]
+# trees: Beautiful, perfectly-shaped trees ring the glade.
+# Cherry and birch for their aesthetics — pink and white
+# canopies framing the colorful meadow below.
+#   types: "cherry" and "birch" — the most beautiful tree types.
+#   density: 3.0 = moderate ring around the clearing, dense
+#            enough for canopy but open enough for the meadow.
+#            Range: 0.0 to 30.0+
+trees = { types = ["cherry", "birch"], density = 3.0 }
+
+# grass-density: Dense, lush grass beneath and between the
+# flowers. The ground cover is thick and healthy.
+# Range: 0.0 to 100.0
+grass-density = 25.0
+
+# flower-density: Maximum. Every available flower type spawns
+# here in abundance. This is the highest flower density of
+# any biome in Elysium.
+# Range: 0.0 to 15.0
+flower-density = 15.0
+
+# extra-features: Bee nests, pink petals, and special flower
+# types that do not generate via standard flower-density.
+extra-features = [
+    # Bee nests in every tree — the glade hums with activity.
+    { feature = "bee_nest", density = 4.0 },
+    # Pink petals carpeting the ground beneath cherry trees.
+    { feature = "pink_petals", density = 5.0 },
+    # Sunflower patches facing the light — tall and golden.
+    { feature = "sunflower", density = 3.0 },
+    # Rose bushes — tall, thorny, and beautiful.
+    { feature = "rose_bush", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Peaceful paradise. Passive mobs spawn at elevated rates.
+# Hostile spawn weights are minimal — the glade's magic
+# repels the undead.
+[biome.spawning]
+# Bee: The dominant mob — enormous swarms pollinating the
+# flower fields. Produces honey at incredible rates.
+bee = { weight = 20, min-group = 2, max-group = 4 }
+
+# Rabbit: Hop through the flower fields in large groups.
+# Multiple color variants.
+rabbit = { weight = 12, min-group = 3, max-group = 5 }
+
+# Fox: Nap among the flowers during the day. Peaceful and
+# photogenic.
+fox = { weight = 6, min-group = 1, max-group = 2 }
+
+# Allay: The magical mob of the glade — they drift among
+# the flowers, collecting petals. Rare but fitting.
+allay = { weight = 3, min-group = 1, max-group = 2 }

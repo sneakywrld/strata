@@ -1,0 +1,139 @@
+# ============================================================
+#  Biome: Midlands Rolling End — End Midlands
+# ============================================================
+# Gently rolling hills of end stone stretching across mid-
+# altitude islands. This is the most common midlands biome —
+# the "plains" of the End dimension. The terrain undulates in
+# soft waves, creating a landscape of low ridges and shallow
+# valleys. Chorus plants dot the surface in moderate density,
+# their purple crowns swaying against the dark sky. The
+# rolling terrain is easy to traverse on foot but interesting
+# enough to avoid monotony. Players crossing the midlands
+# between outer islands and the highlands will spend most of
+# their time in this biome, making it the primary travel
+# corridor of the End dimension.
+#
+# Gameplay notes:
+#   - Most common midlands biome — generates frequently.
+#   - Easy traversal — gentle slopes, no hazardous drops.
+#   - Moderate chorus plant coverage for food/resources.
+#   - Primary travel corridor between outer and highlands.
+#   - Good for player paths, roads, and trail markers.
+#   - Standard enderman density — stay alert but not
+#     overwhelmed.
+#   - Pairs with midlands_end_grove (more chorus) and
+#     midlands_terraced_island (more vertical).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the standard
+# rolling terrain of the End midlands.
+id = "strata:midlands_rolling_end"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Rolling End"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Midlands — the transitional region between
+# the outer islands and the End highlands.
+region = "midlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Neutral — the midlands are the baseline
+# temperature zone of the End. 0.0 = standard End
+# temperature, neither warm nor cold.
+temperature = 0.0
+
+# humidity: Low-to-moderate — moderate chorus coverage
+# adds slight biological moisture. 0.1 = barely above
+# the End baseline.
+humidity = 0.1
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.0 = the default, standard midlands
+# terrain. This is the most common configuration —
+# the "normal" midlands experience.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 60 — mid-range elevation appropriate for
+# a transitional region. Higher than some outer islands
+# (55-58) but lower than the highlands (70-100). This
+# intermediate height positions the midlands as a natural
+# bridge between the two zones.
+base-height = 60
+
+# height-variation: 10 = moderate variation. The rolling
+# hills are the defining terrain feature — gentle enough
+# for comfortable travel but with enough contour to
+# create visual interest. Small ridges and shallow
+# valleys break up the landscape.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — standard End surface material.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — solid island body beneath
+# the rolling surface.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard depth. The midlands islands
+# are structurally solid, well-established terrain.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Moderate chorus plant density — present but not
+# overwhelming. The open spaces between chorus groves
+# provide clear sightlines for travel.
+[biome.features]
+# end-specific: Standard chorus plant distribution.
+# Moderate density allows players to harvest chorus fruit
+# while maintaining visibility for navigation and
+# enderman avoidance.
+trees = { types = ["chorus_tree"], density = 3.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Scattered chorus clusters.
+#   chorus_cluster — natural groupings of chorus plants
+#       in small groves dotting the rolling terrain.
+extra-features = [
+    { feature = "chorus_cluster", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Standard enderman density — the midlands are dangerous
+# but not overwhelmingly so. Players should maintain
+# awareness without needing to constantly fight.
+[biome.spawning]
+# enderman: Standard high presence. The open rolling
+# terrain provides ample spawn surface. Players can see
+# endermen from a distance thanks to the gentle terrain,
+# giving time to avert their gaze.
+enderman = { weight = 35, min-group = 1, max-group = 4 }

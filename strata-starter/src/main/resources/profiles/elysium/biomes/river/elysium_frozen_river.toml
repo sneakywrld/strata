@@ -1,0 +1,163 @@
+# ============================================================
+#  Biome: Frozen River — Elysium Rivers
+# ============================================================
+# A river sealed beneath a sheet of ice, its frozen surface
+# cracked and groaning with pressure changes. The ice varies
+# in thickness — thick white sections near the banks give way
+# to thinner, translucent patches near the center where dark
+# water is visible just below. Deliberate fishing holes have
+# been cut into the ice at intervals, their edges refreezing
+# into smooth lips. Snow dusts the ice surface unevenly, blown
+# into drifts against the frozen banks. The surrounding terrain
+# is locked in permafrost, with dead grass poking through the
+# snow cover. Strays patrol the frozen corridor at night, their
+# slowness arrows making the exposed ice surface deadly.
+#
+# Gameplay notes:
+#   - Fishing through ice holes — reliable food source in
+#     the frozen wilderness.
+#   - Ice surface supports fast boat travel (ice skating).
+#   - Thin ice patches near center can break — fall hazard.
+#   - Strays fire slowness arrows — dangerous on open ice.
+#   - Ice can be harvested with Silk Touch for ice highways.
+#   - Pairs with frostfang zone terrain.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. River biomes use the
+# "elysium_" prefix as cross-zone water features.
+id = "strata:elysium_frozen_river"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Frozen River"
+
+# category: RIVER — enables river-specific generation and
+# linear terrain carving. The cold temperature ensures ice
+# forms on the water surface.
+category = "RIVER"
+
+# zone: "river" — river biomes are cross-zone features that
+# follow noise-determined paths through the landscape.
+zone = "river"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Cold and moderately moist — the river is frozen solid but
+# feeds from snowmelt during brief thaw periods.
+[biome.climate]
+# temperature: -0.5 = well below freezing. Cold enough to
+# keep the river frozen year-round, with only the deepest
+# center channel maintaining liquid water beneath the ice.
+temperature = -0.5
+
+# humidity: 0.4 = moderate moisture. The frozen surface
+# reduces evaporation, but snowfall from the surrounding
+# frostfang terrain adds steady moisture.
+humidity = 0.4
+
+# continentalness: 0.5 = inland. Frozen rivers flow through
+# the cold interior regions, connecting frostfang peaks to
+# lower-elevation terrain before eventually thawing.
+continentalness = 0.5
+
+# erosion: 0.5 = moderately eroded. The river channel was
+# carved during warmer periods; now the ice preserves the
+# existing shape, preventing further erosion.
+erosion = 0.5
+
+# weirdness: 0.0 = completely normal. Frozen rivers are a
+# natural feature in cold biomes. Zero weirdness ensures
+# they generate wherever rivers cross frozen terrain.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -2 = slightly below surrounding terrain. The
+# river channel sits in a shallow depression, with the ice
+# surface close to the level of the surrounding snow-covered
+# banks.
+# Range: -64.0 to 256.0
+base-height = -2
+
+# height-variation: 1 = very flat. The ice surface is nearly
+# perfectly level — frozen water naturally finds its own level.
+# The uniformity is essential for the ice-skating mechanic.
+# Range: 0.0 to 30.0
+height-variation = 1
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Ice over frozen water. The ice layer is the defining
+# surface feature — a walkable frozen highway.
+[biome.surface]
+# top-block: Ice — regular ice that can be broken to access
+# the water below. Players can fish through broken ice patches
+# or harvest it with Silk Touch.
+top-block = "minecraft:ice"
+
+# filler-block: Packed ice beneath the regular ice surface.
+# The deeper layers are compressed into permanent packed ice
+# that does not melt near heat sources.
+filler-block = "minecraft:packed_ice"
+
+# filler-depth: 2 = moderate ice thickness. Thick enough to
+# walk on safely in most places, thin enough that breaking
+# through in places is plausible.
+# Range: 1 to 8.
+filler-depth = 2
+
+# underwater-block: Gravel on the riverbed beneath the ice.
+# The original streambed material, now hidden under the
+# frozen surface.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Barren frozen surface with snow drifts. No vegetation
+# grows on the ice — it is a stark, exposed corridor.
+[biome.features]
+# trees: No trees on the ice surface. The frozen river is
+# an open corridor with no shelter.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Zero. Ice and snow cover everything.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: Zero. Nothing grows on the frozen surface.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Snow drifts and ice formations on the
+# otherwise barren frozen surface.
+extra-features = [
+    # Snow drift formations along the banks.
+    { feature = "snow_drift", density = 3.0 },
+    # Packed ice chunks — pressure ridges from ice movement.
+    { feature = "ice_boulder", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Strays are the primary threat — their slowness arrows are
+# devastating on the open, exposed ice surface. Salmon
+# survive beneath the ice in the liquid water channel.
+[biome.spawning]
+# Stray: Frozen skeleton variant that fires slowness arrows.
+# Patrols the frozen river at night. The open ice provides
+# no cover, making their ranged attacks especially lethal.
+stray = { weight = 12, min-group = 1, max-group = 2 }
+
+# Salmon: Swim beneath the ice in the liquid water layer.
+# Accessible through fishing holes for food.
+salmon = { weight = 8, min-group = 2, max-group = 3 }

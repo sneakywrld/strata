@@ -1,0 +1,175 @@
+# ============================================================
+#  Biome: Crimson Forest — Crimson Domain
+# ============================================================
+# A dense fungal woodland of towering crimson fungi, their red
+# caps forming a canopy that blots out the nether ceiling above.
+# Weeping vines dangle from every surface like organic curtains,
+# their faint bioluminescence casting a dim crimson glow across
+# the nylium floor. The air is thick with crimson spore particles
+# that drift upward in lazy spirals. Hoglins crash through the
+# undergrowth in search of crimson fungus to eat, while piglins
+# patrol the edges of the forest in armed hunting parties, their
+# golden armor glinting through the vine curtains. This is the
+# signature biome of the Crimson Domain — a living, breathing
+# fungal ecosystem in the heart of the nether.
+#
+# Gameplay notes:
+#   - Hoglin farming for pork — primary nether food source.
+#   - Piglin bartering hub — bring gold ingots for trades.
+#   - Crimson wood is fire-resistant — excellent building material.
+#   - Weeping vines provide vertical traversal downward.
+#   - Crimson fungus + bone meal grows huge crimson fungi.
+#   - Shroomlight blocks harvestable from huge fungus canopies.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the crimson forest.
+# The primary biome of the Crimson Domain, defining the region's
+# character as a fungal woodland full of hostile wildlife.
+# Format: "strata:<region>_<biome_name>"
+id = "strata:crimson_forest"
+
+# display-name: Human-readable name shown in F3 debug screen,
+# minimap overlays, and /strata biome info commands.
+display-name = "Crimson Forest"
+
+# category: NETHER — nether environment with crimson-tinted fog,
+# nether ambient sounds, and fungal particle effects.
+category = "NETHER"
+
+# zone: Which Netherveil region this biome belongs to. Must
+# match a zone key defined in zones/zones.toml. The crimson
+# zone governs fungal density and hoglin/piglin spawn rates.
+zone = "crimson"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# In the nether, climate axes are repurposed from their
+# overworld meanings. Temperature maps to volcanic heat
+# intensity, humidity to fungal/organic density, and the
+# remaining axes control nether-specific terrain placement.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Warm but not extreme — the dense fungal canopy
+# insulates the forest floor, trapping heat in a humid pocket.
+#   0.6 = moderately warm, typical of organic nether biomes.
+temperature = 0.6
+
+# humidity: High fungal density — the defining trait of the
+# crimson forest. Dense crimson fungus, nylium, and spore
+# particles saturate the environment.
+#   0.8 = very high organic density, dense fungal growth.
+humidity = 0.8
+
+# continentalness: Neutral vertical placement — crimson forests
+# appear at standard mid-level nether terrain.
+#   0.0 = standard mid-level generation, no vertical bias.
+continentalness = 0.0
+
+# erosion: Low erosion — the terrain is cluttered with fungi
+# and root structures, creating dense, maze-like terrain.
+#   0.3 = rough terrain with frequent obstructions.
+erosion = 0.3
+
+# weirdness: Slightly unusual — fungal forests are distinctly
+# different from standard netherrack terrain.
+#   0.3 = moderately unusual organic terrain.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the crimson forest grows
+# on a typical nether surface with the fungi providing the
+# vertical complexity above ground level.
+#   40 = standard nether floor, well above lava level.
+base-height = 40
+
+# height-variation: Moderate — the nylium floor has gentle
+# undulations, but the real vertical complexity comes from
+# the huge fungi and vine structures above.
+#   4.0 = moderate ground variation beneath the fungal canopy.
+height-variation = 4.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Crimson nylium — the living fungal surface block
+# that sustains crimson fungus growth. Decays to netherrack if
+# the block above is opaque. The red-purple surface is the
+# visual signature of the crimson domain.
+top-block = "minecraft:crimson_nylium"
+
+# filler-block: Netherrack beneath the nylium surface layer.
+# The fungal growth only penetrates the top block.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard nether substrate depth beneath the
+# nylium surface.
+#   4 = typical depth before base stone generation.
+filler-depth = 4
+
+# underwater-block: Magma blocks where terrain meets lava.
+# Rare in the interior forest but present at boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Huge crimson fungi serve as the "trees" of this biome.
+# crimson_fungus_huge — towering crimson fungi with nether wart
+# block caps and shroomlight embedded in the canopy.
+trees = { types = ["crimson_fungus_huge"], density = 6.0 }
+
+# grass-density: Crimson roots serve as the "grass" equivalent,
+# providing ground-level fungal vegetation cover.
+#   0.6 = moderate root coverage across the nylium floor.
+grass-density = 0.6
+
+# flower-density: No flowers — nether fungi fill this niche.
+flower-density = 0.0
+
+# extra-features: Crimson forest specific features.
+#   weeping_vines — hanging vines from fungi and ceiling,
+#     the signature vertical element of crimson forests.
+#   crimson_fungus_small — small crimson fungi on the floor.
+#   shroomlight_cluster — shroomlight in fungus canopy.
+#   nether_wart_block_patch — nether wart block accumulations.
+extra-features = [
+    { feature = "weeping_vines", density = 8.0 },
+    { feature = "crimson_fungus_small", density = 5.0 },
+    { feature = "shroomlight_cluster", density = 2.0 },
+    { feature = "nether_wart_block_patch", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The crimson forest is the hoglin and piglin homeland. Both
+# mobs have significant gameplay interactions with the player.
+[biome.spawning]
+# hoglin: The primary hostile mob. Hoglins are aggressive beasts
+# that charge players on sight, dealing heavy knockback. They
+# drop raw porkchops — the best nether food source. Breed with
+# crimson fungus. They fear warped fungus.
+hoglin = { weight = 15, min-group = 3, max-group = 5 }
+
+# piglin: Armed neutral mobs that attack players not wearing
+# gold armor. They barter gold ingots for randomized loot —
+# a core nether trading mechanic. Hunt hoglins in packs.
+piglin = { weight = 12, min-group = 2, max-group = 4 }
+
+# zombified_piglin: Occasional undead piglins wander among
+# their living counterparts. Neutral unless attacked.
+zombified_piglin = { weight = 5, min-group = 1, max-group = 2 }
+
+# enderman: Rare enderman sightings — they teleport between
+# the dense fungi, creating brief unsettling encounters.
+enderman = { weight = 2, min-group = 1, max-group = 1 }

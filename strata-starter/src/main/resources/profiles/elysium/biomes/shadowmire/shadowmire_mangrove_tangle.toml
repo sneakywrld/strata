@@ -1,0 +1,157 @@
+# ============================================================
+#  Biome: Mangrove Tangle — Shadowmire Swamps
+# ============================================================
+# A labyrinthine wetland dominated by mangrove trees whose roots
+# arch above the waterline in tangled, interlocking networks.
+# Narrow water channels weave between the root masses, creating
+# a natural maze that is nearly impossible to navigate by boat.
+# Frogs chorus incessantly from the roots, and mud crabs scuttle
+# along the waterlogged banks. The canopy filters most sunlight,
+# casting the tangle in perpetual green-tinted twilight.
+#
+# Gameplay Notes:
+#   - Root networks block boat and foot travel equally.
+#   - Mangrove wood is a unique building material found here.
+#   - Frogs provide froglight drops when fed slimes.
+#   - Water channels can be followed to navigate — or get lost.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_mangrove_tangle"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Mangrove Tangle"
+
+# category: The broad Minecraft biome category this belongs to.
+# SWAMP enables murky water tinting and swamp ambient sounds.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.65 = warm subtropical — mangroves require consistent
+# warmth year-round to thrive, slightly warmer than the standard swamp.
+temperature = 0.65
+
+# humidity: 0.85 = very high moisture — the tangle is perpetually
+# waterlogged, with standing water between every root cluster.
+humidity = 0.85
+
+# continentalness: 0.6 = moderately inland — these mangroves grow
+# in freshwater basins rather than coastal saltwater flats.
+continentalness = 0.6
+
+# erosion: 0.6 = moderately eroded — the terrain is flat but the
+# root systems create micro-topography that resists further erosion.
+erosion = 0.6
+
+# weirdness: 0.1 = very slight deviation from normal — the tangle
+# is a natural variant of the swamp, just more densely vegetated.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 0 = at sea level. The mangrove tangle sits right at
+# the waterline — roots arch above the surface while the ground
+# beneath is completely submerged in shallow standing water.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 0
+
+# height-variation: 2 = very slight undulation. The terrain is
+# essentially flat waterlogged ground with only small mud banks
+# and root hummocks breaking the surface.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Mud is the natural surface in the mangrove tangle —
+# the perpetual waterlogging prevents grass from establishing.
+# Exposed mud patches alternate with shallow water pools.
+top-block = "minecraft:mud"
+
+# filler-block: Mud continues deep beneath the surface. The entire
+# substrate is saturated sediment deposited by centuries of slow
+# water flow through the root network.
+filler-block = "minecraft:mud"
+
+# filler-depth: 5 = deep mud layer reflecting the heavy sediment
+# deposition that mangrove root systems trap and accumulate.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Mud on the channel floors — the water is too
+# murky and slow-moving to sort sediment into sand or gravel.
+underwater-block = "minecraft:mud"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Dense mangrove trees with their signature arching root
+# systems. Occasional swamp oaks grow on the larger mud banks.
+#   types: Tree definition keys from features/trees.toml.
+#   density: 10.0 = very dense canopy — the tangle earns its name
+#            from the sheer number of interlocking root systems.
+trees = { types = ["mangrove", "swamp_oak"], density = 10.0 }
+
+# grass-density: 2.0 = minimal — only ferns and aquatic grass
+# survive in the perpetual shade and standing water.
+# Range: 0.0 to 100.0.
+grass-density = 2.0
+
+# flower-density: 0.0 = no flowers. The dense canopy blocks the
+# sunlight that flowering plants require.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Mangrove propagules, moss carpets, and lily pads
+# fill the spaces between root systems.
+extra-features = [
+    { feature = "mangrove_propagule", density = 4.0 },
+    { feature = "moss_carpet", density = 3.0 },
+    { feature = "lily_pad", density = 5.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The mangrove tangle is frog territory. Dense spawns of frogs
+# dominate the soundscape, while slimes provide froglight farming
+# opportunities. Tropical fish navigate the shallow channels.
+
+# frog: The dominant mob — frogs perch on every root and mud bank.
+# weight: 20 ensures frogs are the most common encounter by far.
+# min-group/max-group: Large choruses of 3-5.
+frog = { weight = 20, min-group = 3, max-group = 5 }
+
+# slime: Slimes spawn in the waterlogged terrain, providing food
+# for frogs and froglight drops for players.
+# weight: 10 for a steady supply without overwhelming the frogs.
+slime = { weight = 10, min-group = 1, max-group = 2 }
+
+# tropical_fish: Small colorful fish in the shallow channels add
+# life to the murky water.
+# weight: 8 for occasional sightings in the winding waterways.
+tropical_fish = { weight = 8, min-group = 3, max-group = 6 }

@@ -1,0 +1,147 @@
+# ============================================================
+#  Biome: Midlands Endermite Warren — End Midlands
+# ============================================================
+# A pockmarked island surface riddled with small tunnels and
+# burrows where endermites nest. The surface is pitted with
+# holes 1-3 blocks wide and 2-5 blocks deep, giving the
+# terrain a swiss-cheese appearance. Endermites swarm in and
+# around these burrows, their tiny silver bodies barely
+# visible against the end stone. The endermites have chewed
+# through the end stone surface, creating a network of
+# shallow tunnels that occasionally connect to form larger
+# chambers. Endermen actively hunt endermites here, creating
+# a natural predator-prey dynamic that keeps both populations
+# in check.
+#
+# Gameplay notes:
+#   - Surface covered in endermite burrow pits.
+#   - Highest endermite concentration in the End.
+#   - Endermen actively hunt endermites — dynamic combat.
+#   - Pitted terrain is treacherous to traverse quickly.
+#   - Falling into burrows causes minor damage.
+#   - Endermite XP farming potential (natural spawns).
+#   - Ender pearl usage may spawn more endermites.
+#   - Pairs with midlands_rolling_end (surrounding terrain)
+#     and midlands_terraced_island (similar roughness).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the endermite
+# nesting grounds in the End midlands.
+id = "strata:midlands_endermite_warren"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Endermite Warren"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Midlands region.
+region = "midlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly warm — the endermite colonies
+# generate faint heat from their constant burrowing
+# activity. 0.1 = subtle biological warmth.
+temperature = 0.1
+
+# humidity: Slightly elevated — endermite burrows trap
+# trace amounts of moisture from the surrounding End
+# atmosphere. 0.1 = marginally above baseline.
+humidity = 0.1
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.5 = high weirdness. Endermite warrens are
+# unusual formations — the biome's pockmarked surface is
+# visually striking and ecologically unique in the End.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 58 — slightly below standard midlands
+# elevation. The endermite burrowing has weakened the
+# island structure, causing slight subsidence.
+base-height = 58
+
+# height-variation: 7 = moderate variation. The pitted
+# surface creates constant small-scale height changes —
+# burrow openings, rubble mounds, and collapsed tunnel
+# roofs. The terrain is rough and uncomfortable to
+# traverse at speed.
+height-variation = 7
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — chewed and pitted by endermite
+# activity. The surface is recognizable as end stone but
+# has a rougher, more weathered appearance.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — the warren tunnels are carved
+# through solid end stone.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 3 = slightly reduced. The endermite
+# tunneling has compromised the structural integrity
+# of the upper layers, reducing effective filler depth.
+# Range: 1 to 8.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Endermite burrow pits and sparse chorus plants that
+# have survived the infestation.
+[biome.features]
+# end-specific: Burrow pit formations and surviving
+# chorus plants. The pits are the primary visual feature
+# — 1-3 block wide holes dotting the surface.
+trees = { types = ["chorus_tree"], density = 1.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Warren-specific terrain features.
+#   endermite_burrow — small pit formations (1-3 blocks
+#       wide, 2-5 blocks deep) scattered across the
+#       surface, serving as endermite spawn points.
+#   endermite_tunnel — shallow horizontal tunnels
+#       connecting adjacent burrows beneath the surface.
+extra-features = [
+    { feature = "endermite_burrow", density = 6.0 },
+    { feature = "endermite_tunnel", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermites and endermen coexist in hostile balance.
+# Endermen hunt endermites on sight, creating dynamic
+# combat encounters that players may stumble into.
+[biome.spawning]
+# enderman: High presence — drawn by the endermite
+# population. Endermen actively hunt endermites, creating
+# a predator-prey dynamic. Players may witness enderman
+# vs endermite battles.
+enderman = { weight = 35, min-group = 1, max-group = 4 }
+
+# endermite: High density — the warren is their home
+# territory. Endermites spawn from burrows and swarm
+# across the pitted surface. They are hostile to players
+# but individually weak.
+endermite = { weight = 25, min-group = 2, max-group = 6 }

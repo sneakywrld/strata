@@ -1,0 +1,150 @@
+# ============================================================
+#  Biome: Basalt Obsidian Flow — Basalt Deltas
+# ============================================================
+# A dramatic geological boundary where lava has met soul sand
+# and water-equivalent conditions, creating massive obsidian
+# formations that cut through the basalt terrain like dark glass
+# rivers. The obsidian flows are smooth, reflective surfaces
+# that wind between basalt columns and over magma block fields,
+# their dark purple-black surfaces contrasting sharply with the
+# gray basalt and orange lava. The obsidian is extremely dense
+# and slow to mine, but the formations are extensive enough to
+# justify the effort for players seeking portal material or
+# enchanting table bases. The terrain is a collision of geological
+# forces — hot lava, cold soul sand, and volcanic basalt creating
+# a complex, multi-material landscape where each step changes
+# the ground beneath. Magma cubes are attracted to the thermal
+# boundaries where lava meets cooled obsidian.
+#
+# Gameplay notes:
+#   - Obsidian harvesting — diamond pickaxe required (15s mine time).
+#   - Nether portal frame material without reaching overworld.
+#   - Enchanting table base material.
+#   - Complex multi-material terrain — basalt, obsidian, magma.
+#   - Thermal boundary creates unique mob concentrations.
+#   - Extremely durable building material collection.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The obsidian flow is a
+# resource-rich geological boundary biome.
+id = "strata:basalt_obsidian_flow"
+
+# display-name: Human-readable name for player displays.
+display-name = "Obsidian Flow"
+
+# category: NETHER — nether environment at a geological collision
+# zone creating obsidian formations.
+category = "NETHER"
+
+# zone: Part of the basalt zone — a thermal boundary zone
+# within the basalt deltas.
+zone = "basalt"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Mixed — the cooling obsidian creates temperature
+# gradients next to hot lava and basalt.
+#   0.6 = moderate-hot, cooling at obsidian surfaces.
+temperature = 0.6
+
+# humidity: Dry — the cooling process doesn't add moisture.
+#   -0.3 = dry conditions at the cooling boundary.
+humidity = -0.3
+
+# continentalness: Neutral — obsidian flows form at standard
+# basalt delta levels.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Moderate — the obsidian flows create defined channels
+# through the basalt terrain.
+#   0.4 = moderate terrain structure from flow channels.
+erosion = 0.4
+
+# weirdness: High — massive obsidian formations are a dramatic
+# and unusual geological feature.
+#   0.7 = highly unusual geological boundary formation.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard floor — the obsidian flows run at
+# typical basalt delta elevation.
+#   38 = slightly below standard, channel formations.
+base-height = 38
+
+# height-variation: Moderate — the flows create channel
+# depressions with basalt ridges on either side.
+#   5.0 = moderate variation from flow channels and ridges.
+height-variation = 5.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Obsidian — the dark, glassy volcanic rock formed
+# where lava cooled rapidly. Extremely slow to mine (15 seconds
+# with diamond pickaxe) but incredibly blast-resistant.
+top-block = "minecraft:obsidian"
+
+# filler-block: Netherrack beneath the obsidian flow.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Moderate — obsidian flows have some depth.
+#   3 = moderate obsidian thickness over netherrack.
+filler-depth = 3
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation on obsidian.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on the volcanic glass.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Obsidian flow specific features.
+#   basalt_column — basalt formations flanking the obsidian
+#     flows, marking the geological boundary.
+#   magma_block_field — magma blocks at flow edges where
+#     heat still radiates.
+#   lava_pool — lava pockets within the flow channels.
+#   soul_sand_patch — rare soul sand at obsidian formation
+#     edges where the cooling reaction occurred.
+extra-features = [
+    { feature = "basalt_column", density = 4.0 },
+    { feature = "magma_block_field", density = 6.0 },
+    { feature = "lava_pool", density = 4.0 },
+    { feature = "soul_sand_patch", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Magma cubes concentrated at the thermal boundary.
+[biome.spawning]
+# magma_cube: Drawn to the thermal gradient between hot lava
+# and cooled obsidian. High density at the flow edges.
+magma_cube = { weight = 18, min-group = 2, max-group = 4 }
+
+# strider: Striders in lava channels within the flow.
+strider = { weight = 8, min-group = 1, max-group = 2 }
+
+# ghast: Overhead presence — fireballs bounce off obsidian
+# harmlessly but can hit players standing on it.
+ghast = { weight = 6, min-group = 1, max-group = 1 }

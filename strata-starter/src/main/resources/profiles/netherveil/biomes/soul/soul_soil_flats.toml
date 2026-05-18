@@ -1,0 +1,149 @@
+# ============================================================
+#  Biome: Soul Soil Flats — Soul Regions
+# ============================================================
+# An endless flat expanse of soul soil stretching to the horizon,
+# broken only by scattered patches of soul fire burning blue in
+# the darkness. Unlike soul sand, soul soil doesn't slow movement,
+# but it still sustains soul fire and soul campfires. The terrain
+# is almost perfectly level — an unnerving flatness that provides
+# no cover and no landmarks. Ghasts patrol the open skies above,
+# their fireballs leaving craters in the soul soil plain. The
+# flatness makes this a ghast hunting ground — they can see
+# players from enormous distances, and there is nowhere to hide.
+# The blue glow of scattered soul fires creates pools of light
+# in an otherwise dark landscape, and the soul particle effects
+# rise from the soil in constant ghostly wisps.
+#
+# Gameplay notes:
+#   - No soul sand slowing — full movement speed on soul soil.
+#   - Zero cover from ghast fireballs — shield or bow mandatory.
+#   - Soul soil collection for soul campfires and decoration.
+#   - Soul fire placement for blue illumination.
+#   - Flat terrain ideal for large-scale nether building.
+#   - Soul Speed boots work on soul soil too.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The soul soil flats are a
+# flat, open variant of soul terrain focused on ghast encounters.
+id = "strata:soul_soil_flats"
+
+# display-name: Human-readable name for player displays.
+display-name = "Soul Soil Flats"
+
+# category: NETHER — nether environment with soul-themed
+# particles and open ghast hunting grounds.
+category = "NETHER"
+
+# zone: Part of the soul zone — the most exposed and
+# flat area within the soul regions.
+zone = "soul"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cool — soul soil absorbs heat similarly to
+# soul sand, maintaining the cold soul region microclimate.
+#   0.15 = cool for the nether, consistent with soul regions.
+temperature = 0.15
+
+# humidity: Very dry — the soul soil flats are completely barren
+# of any organic material or moisture.
+#   -0.4 = very dry, lifeless plains.
+humidity = -0.4
+
+# continentalness: Neutral — the flats occupy standard mid-level
+# terrain without significant vertical offset.
+#   0.0 = standard mid-level, flat terrain.
+continentalness = 0.0
+
+# erosion: Maximum — the terrain is perfectly flat and open,
+# with no terrain features to provide cover.
+#   0.9 = extremely smooth, open flatland.
+erosion = 0.9
+
+# weirdness: Low — flat terrain is unremarkable, though the
+# soul soil surface is thematically unusual.
+#   0.2 = mildly unusual surface material.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the flats sit at a
+# typical elevation with minimal variation.
+#   38 = slightly below standard, forming a broad flat basin.
+base-height = 38
+
+# height-variation: Minimal — the defining trait is the
+# oppressive, featureless flatness.
+#   1.0 = nearly perfectly flat terrain.
+height-variation = 1.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Soul soil — the brown-gray block that sustains
+# soul fire without the movement penalty of soul sand.
+top-block = "minecraft:soul_soil"
+
+# filler-block: Netherrack beneath the soul soil surface.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Moderate soul soil accumulation.
+#   4 = standard depth of soul soil before netherrack.
+filler-depth = 4
+
+# underwater-block: Soul sand at lava boundaries — the soul
+# materials dominate near any liquid contact.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation on the barren soul soil flats.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on soul soil.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Soul soil flats specific features.
+#   soul_fire — scattered soul fire patches providing blue
+#     illumination across the flat terrain.
+#   soul_sand_patch — patches of soul sand among the soul soil.
+#   basalt_pillar — rare basalt columns breaking the flatness.
+extra-features = [
+    { feature = "soul_fire", density = 6.0 },
+    { feature = "soul_sand_patch", density = 2.0 },
+    { feature = "basalt_pillar", density = 0.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Ghasts dominate the open skies. The flat, coverless terrain
+# makes every ghast encounter a fight-or-die situation.
+[biome.spawning]
+# ghast: The apex predator of the soul flats. With no cover
+# available, ghast fireballs are nearly impossible to avoid.
+# High weight and the possibility of pairs create overlapping
+# fireball attacks from multiple angles.
+ghast = { weight = 20, min-group = 1, max-group = 2 }
+
+# skeleton: Patrols across the open flats, firing arrows at
+# extreme range with clear line of sight.
+skeleton = { weight = 10, min-group = 2, max-group = 4 }
+
+# enderman: Occasional enderman standing alone on the flat
+# expanse — visible from far away.
+enderman = { weight = 3, min-group = 1, max-group = 1 }

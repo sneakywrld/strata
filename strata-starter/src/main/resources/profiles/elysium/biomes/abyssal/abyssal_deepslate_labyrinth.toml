@@ -1,0 +1,168 @@
+# ============================================================
+#  Biome: Abyssal Deepslate Labyrinth — Abyssal Depths
+# ============================================================
+# A claustrophobic maze of narrow, winding deepslate tunnels
+# that twist and branch unpredictably through the lowest
+# reaches of the Abyssal zone. Ceilings are low — barely
+# two blocks in many passages — and the dark grey deepslate
+# walls press in from every side. Dead-end corridors, looping
+# paths, and identical-looking intersections make navigation
+# disorienting without torches or maps. Redstone ore deposits
+# pulse with faint crimson light in the walls, the only natural
+# illumination in the oppressive dark. The tunnels feel
+# artificial, as if something bored them deliberately, yet no
+# builder is ever found.
+#
+# Gameplay notes:
+#   - Extremely disorienting — bring torches and mark your path.
+#   - Narrow tunnels (2-3 blocks wide) limit combat mobility.
+#   - Redstone ore is the primary resource reward.
+#   - Low ceilings prevent enderman spawns and limit elytra use.
+#   - High zombie and spider density in tight quarters.
+#   - Pairs with abyssal_bone_crypt for tight-quarters horror
+#     and abyssal_deep_dark for deepslate-zone progression.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal registry.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:abyssal_deepslate_labyrinth"
+
+# display-name: Human-readable name shown in F3 debug overlay,
+# minimap plugins, and /strata biome info commands.
+display-name = "Deepslate Labyrinth"
+
+# category: CAVE — underground biome with cave ambient sounds,
+# no sky light, and cave-specific feature placement.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "CAVE"
+
+# zone: Parent zone key from zones/zones.toml. The abyssal zone
+# is Y-based (Y -64 to 63) rather than distance-based, so this
+# biome generates underground regardless of distance from spawn.
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values position this biome within the multi-noise
+# climate system. The labyrinth's moderate weirdness makes it
+# an uncommon but not exceedingly rare encounter.
+[biome.climate]
+# temperature: Cold at this depth. The narrow tunnels trap
+# still, frigid air that chills to the bone.
+# 0.3 = standard deep-cave cold.
+temperature = 0.3
+
+# humidity: Low — the tight tunnels have minimal water
+# infiltration; deepslate is nearly impermeable.
+# 0.3 = dry, still air with no drip or seepage.
+humidity = 0.3
+
+# continentalness: Neutral — labyrinths form under any
+# continental position as deep geological fracture networks.
+# 0.5 = mid-range, no horizontal bias.
+continentalness = 0.5
+
+# erosion: Balanced — the tunnels are narrow but stable,
+# neither expanding nor collapsing.
+# 0.5 = structurally sound despite the maze-like complexity.
+erosion = 0.5
+
+# weirdness: Moderate positive — labyrinths are unusual
+# enough to feel special when found, but not so rare that
+# players never encounter them.
+# 0.45 = uncommon cave variant.
+weirdness = 0.45
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Average Y-level of the labyrinth floor.
+# -50 = deep in the Abyssal zone, well into the deepslate
+# layer. Near bedrock territory.
+base-height = -50
+
+# height-variation: Minimal — the defining feature is the
+# oppressively low ceilings. Passages rarely exceed 3 blocks
+# tall, creating a crawlspace atmosphere.
+# 8 = tight vertical range, claustrophobic proportions.
+height-variation = 8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Pure deepslate environment — the native rock at this depth
+# dominates every surface with its dark grey texture.
+[biome.surface]
+# top-block: Cobbled deepslate — the fractured tunnel floor,
+# rough and uneven from whatever process carved the maze.
+top-block = "minecraft:cobbled_deepslate"
+
+# filler-block: Solid deepslate beneath the cobbled surface.
+# The host rock is unbroken deepslate at this depth.
+filler-block = "minecraft:deepslate"
+
+# filler-depth: Thin cobbled layer over solid deepslate.
+# 2 = shallow fracture zone before hitting intact rock.
+filler-depth = 2
+
+# underwater-block: Rare stagnant puddles in dead-end
+# corridors have deepslate slab beds — water collects
+# in the lowest depressions.
+underwater-block = "minecraft:deepslate"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# The labyrinth is stark and utilitarian — redstone ore
+# provides both the reward and the only natural light source.
+[biome.features]
+# trees: No vegetation at this depth.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Nothing grows in the deepslate maze.
+grass-density = 0.0
+
+# flower-density: No flowers in the claustrophobic tunnels.
+flower-density = 0.0
+
+# extra-features: Labyrinth-specific features.
+#   redstone_ore — pulsing crimson veins in the walls, the
+#     primary resource and sole natural light source.
+#   deepslate_crack — narrow fissures in walls hinting at
+#     hidden passages or dead ends beyond.
+#   cobweb — accumulated webs in dead-end corridors where
+#     spiders have set ambush traps.
+#   gravel_pile — loose gravel accumulations at intersections,
+#     a navigation hazard that can collapse into lower tunnels.
+extra-features = [
+    { feature = "redstone_ore", density = 8.0 },
+    { feature = "deepslate_crack", density = 5.0 },
+    { feature = "cobweb", density = 6.0 },
+    { feature = "gravel_pile", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Narrow tunnels concentrate hostile mobs into dangerous
+# close-quarters encounters with limited escape routes.
+[biome.spawning]
+# zombie: Primary melee threat. Zombies shamble through the
+# maze, their groans echoing down branching corridors.
+zombie = { weight = 20, min-group = 1, max-group = 3 }
+
+# spider: Cave spiders fit the narrow tunnels perfectly,
+# their poison a serious threat in tight quarters.
+spider = { weight = 15, min-group = 1, max-group = 2 }
+
+# creeper: The most terrifying encounter in tight tunnels —
+# a creeper explosion in a 2-wide corridor is devastating.
+creeper = { weight = 8, min-group = 1, max-group = 1 }

@@ -1,0 +1,172 @@
+# ============================================================
+#  Biome: Swamp Creek — Elysium Rivers
+# ============================================================
+# A sluggish, dark watercourse oozing through swampland. The
+# water is nearly stagnant, stained brown-black by tannins
+# from decaying vegetation. Lily pads carpet the surface so
+# thickly that the water is barely visible, and tall reeds
+# crowd the banks, reducing visibility to arm's length. The
+# air hangs heavy with moisture and the smell of decomposition.
+# Frogs croak in relentless chorus, and the occasional bubble
+# rises from the murky depths — swamp gas or something worse.
+# The creek meanders endlessly, doubling back on itself in
+# oxbow loops that disorient travelers.
+#
+# Gameplay notes:
+#   - Lily pads everywhere — walk across the water surface.
+#   - Very slow or no current — easy to navigate but hard
+#     to determine direction of flow.
+#   - Dark water spawns drowned at night — trident source.
+#   - Frogs provide froglight — decorative light blocks.
+#   - Mud surface slows movement on the banks.
+#   - Disorienting maze-like channel — easy to get lost.
+#   - Pairs with shadowmire zone swamplands.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. River biomes use the
+# "elysium_" prefix as cross-zone water features.
+id = "strata:elysium_swamp_creek"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Swamp Creek"
+
+# category: RIVER — enables river-specific linear generation
+# while the climate and features give it swamp character.
+category = "RIVER"
+
+# zone: "river" — river biomes are cross-zone features that
+# follow noise-determined paths through the landscape.
+zone = "river"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Warm, humid, and heavily eroded — the creek is a product
+# of waterlogged, flat terrain with poor drainage.
+[biome.climate]
+# temperature: 0.6 = warm. The stagnant water and dense
+# vegetation trap heat, creating muggy, uncomfortable
+# conditions that accelerate decomposition.
+temperature = 0.6
+
+# humidity: 0.8 = very humid. Near-saturated air from the
+# stagnant water, dense reeds, and decomposing vegetation.
+# Fog forms here before anywhere else in the world.
+humidity = 0.8
+
+# continentalness: 0.5 = moderately inland. Swamp creeks
+# form in low-lying inland basins where water collects but
+# drains poorly.
+continentalness = 0.5
+
+# erosion: 0.7 = heavily eroded. The flat, waterlogged
+# terrain has been completely leveled by water over time.
+# The creek meanders through the softest available ground.
+erosion = 0.7
+
+# weirdness: -0.1 = slightly negative. The swamp creek is a
+# natural, predictable feature in swampy terrain. The slight
+# negative weirdness ensures smooth, regular channel shapes
+# that meander gently.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -1 = barely below surrounding swamp level.
+# The creek is only slightly lower than the waterlogged
+# terrain around it — in places, it is hard to tell where
+# the bank ends and the creek begins.
+# Range: -64.0 to 256.0
+base-height = -1
+
+# height-variation: 1 = nearly flat. The sluggish creek has
+# virtually no gradient — the water barely moves. The channel
+# floor is uniform mud with no drops or pools.
+# Range: 0.0 to 30.0
+height-variation = 1
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Mud — the banks and bed are uniformly waterlogged soil.
+[biome.surface]
+# top-block: Mud — the saturated soil of the swamp creek
+# banks. Players sink slightly and move slowly on mud,
+# adding to the difficulty of navigating the swamp.
+top-block = "minecraft:mud"
+
+# filler-block: Mud continues below the surface. There is
+# no solid soil here — just layers of saturated muck over
+# clay and stone far below.
+filler-block = "minecraft:mud"
+
+# filler-depth: 4 = deep mud layer. The creek has accumulated
+# thick deposits of organic mud over centuries of stagnation.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Mud on the creek bed — indistinguishable
+# from the banks. The entire environment is mud.
+underwater-block = "minecraft:mud"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Lily pads dominate the water surface. Reeds and dead bushes
+# crowd the banks. The biome is heavily vegetated but with
+# a decaying, unhealthy character.
+[biome.features]
+# trees: Swamp oaks with drooping canopies and vine-draped
+# trunks overhang the creek. Dead oaks stand as leafless
+# sentinels in the murkiest stretches.
+#   types: "swamp_oak" and "dead_oak" — waterlogged trees.
+#   density: 3.0 = moderate density along the banks.
+#            Range: 0.0 to 30.0+
+trees = { types = ["swamp_oak", "dead_oak"], density = 3.0 }
+
+# grass-density: Sparse grass on the few drier hummocks.
+# Most of the bank surface is bare mud.
+# Range: 0.0 to 100.0
+grass-density = 5.0
+
+# flower-density: Minimal — only blue orchids survive in
+# the perpetual shade and waterlogged soil.
+# Range: 0.0 to 15.0
+flower-density = 0.3
+
+# extra-features: Lily pads carpet the water, with reeds
+# and dead bushes crowding the banks.
+extra-features = [
+    # Lily pads covering the water surface — so thick you
+    # can practically walk across.
+    { feature = "lily_pad", density = 8.0 },
+    # Dead bush clusters on the muddy banks.
+    { feature = "dead_bush", density = 3.0 },
+    # Mushrooms on the decaying organic matter.
+    { feature = "brown_mushroom", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Frogs dominate the soundscape. Drowned lurk in the dark
+# water, and slimes bubble up from the mud at night.
+[biome.spawning]
+# Frog: The signature mob — relentless croaking from every
+# lily pad and mud bank. Produces froglight when eating
+# small magma cubes.
+frog = { weight = 15, min-group = 2, max-group = 5 }
+
+# Drowned: Waterlogged undead that patrol the dark creek
+# water. May carry tridents or nautilus shells.
+drowned = { weight = 10, min-group = 1, max-group = 2 }
+
+# Slime: Small slimes bubble up from the mud at night.
+slime = { weight = 8, min-group = 1, max-group = 2 }

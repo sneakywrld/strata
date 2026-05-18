@@ -1,0 +1,166 @@
+# ============================================================
+#  Biome: Void World Edge — Void Islands
+# ============================================================
+# The absolute boundary of Enderrift's generated world. Here,
+# terrain dissolves into scattered fragments that thin and
+# vanish into the infinite void. Islands become smaller, more
+# spread apart, and increasingly incomplete — as if the world
+# generator itself is running out of material. This is the End
+# at its most desolate and final: beyond here, there is nothing.
+# Terrain generation fades to pure void, and players who venture
+# too far will find no ground to stand on.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:void_world_edge"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "World Edge"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "void"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. -0.7 = very cold, the world edge is the most
+# exposed terrain in the End — pure void chill from all directions.
+temperature = -0.7
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. -1.0 = absolute minimum — zero moisture at the
+# edge of existence.
+humidity = -1.0
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. -0.8 = deep void territory — terrain barely
+# exists here, and what does exist is fragmentary.
+continentalness = -0.8
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. 0.0 = moderate — the dissolving
+# terrain has irregular edges but no dramatic features.
+erosion = 0.0
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# -0.5 = distinctly normal — the world edge is not weird, just
+# empty. It's the absence of features that defines it.
+weirdness = -0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 50 is low —
+# the world edge terrain sinks below typical End island height,
+# as if the generation energy is waning.
+# Range: 0 to 256
+base-height = 50
+
+# height-variation: Controls terrain undulation. 15 is high —
+# the dissolving terrain creates irregular fragments at various
+# heights, some quite elevated and others barely above void level.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — the last remnants of solid ground.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. End stone, though very thin at the world edge.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 1 — absolute minimum. The terrain fragments are
+# paper-thin, barely one block of solid ground over void.
+# Range: 1 to 8
+filler-depth = 1
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 0.0 — absolutely nothing grows at the world edge. Life has
+# retreated from this boundary of existence.
+chorus-density = 0.0
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.0 — no chorus, no flowers.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.0
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.0 — no decoration. The world edge is bare and final.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.0
+
+# erosion-chance: Per-surface-block probability of end stone erosion.
+# 0.18 — extreme erosion. The terrain is actively dissolving,
+# with blocks missing everywhere. This creates the "fading into
+# void" visual effect that defines the world edge.
+# Range: 0.0 to 0.2
+erosion-chance = 0.18
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.0 — no crystals at the edge of the world.
+# Range: 0.0 to 0.1
+crystal-chance = 0.0
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — no obsidian. Just dissolving end stone.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Heavily reduced. Even endermen avoid the world edge —
+# the fragmentary terrain offers little to stand on, and the void
+# exposure is extreme. The few that spawn here seem lost.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 25, min-group = 1, max-group = 1 }
+
+# shulker: No shulkers at the world edge.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Minimal. Even endermites cannot sustain in this
+# dissolving terrain.
+endermite = { weight = 1, min-group = 1, max-group = 1 }

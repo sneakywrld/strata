@@ -1,0 +1,169 @@
+# ============================================================
+#  Biome: Sanctuary Mushroom Hollow — Sanctuary Zone
+# ============================================================
+# A sheltered natural depression carpeted with brown and red mushrooms
+# growing on patches of mycelium. The low, bowl-shaped terrain stays
+# shaded and damp. Mooshrooms occasionally spawn here — the only
+# place in the sanctuary zone where they can be found.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal generator reference.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_mushroom_hollow"
+
+# display-name: Human-readable name shown in F3 debug, /strata info,
+# and zone-entry messages.
+display-name = "Sanctuary Mushroom Hollow"
+
+# category: MUSHROOM. Enables the special mushroom biome behavior:
+# hostile mobs do not naturally spawn on the surface (vanilla
+# mechanic). This makes the hollow a uniquely safe place even at
+# night — a deliberate reward for players who explore and find it.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "MUSHROOM"
+
+# zone: Generates only within the sanctuary zone (0-1500 blocks
+# from spawn).
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate. The highest weirdness in the sanctuary
+# zone, making this a rare and special discovery.
+[biome.climate]
+# temperature: 0.5 = warm. Mushrooms need warmth and moisture.
+# Consistent with the zone baseline.
+temperature = 0.5
+
+# humidity: 0.6 = moist. Same as the pond — the hollow traps
+# moisture in its bowl shape, creating the damp conditions
+# mushrooms need. This is the joint-wettest sanctuary biome.
+humidity = 0.6
+
+# continentalness: 0.3 = inland. Standard sanctuary positioning.
+continentalness = 0.3
+
+# erosion: 0.65 = moderately flat with some terrain variation.
+# The hollow needs enough contour to form a bowl shape but not
+# so much variation that it becomes mountainous.
+erosion = 0.65
+
+# weirdness: 0.4 = the highest weirdness in the sanctuary zone.
+# This makes the mushroom hollow the rarest sanctuary biome — a
+# special discovery for curious players who wander off the beaten
+# path. The high weirdness also makes thematic sense: a mycelium-
+# covered mushroom depression is the most "unusual" feature in an
+# otherwise conventional grassland zone.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 1.0 = barely above sea level. The hollow sits low
+# in the landscape, creating a natural bowl shape when surrounded
+# by the higher meadow (4.0) and hillside (12.0) biomes.
+# Range: -64.0 to 256.0
+base-height = 1.0
+
+# height-variation: 2.0 = gentle terrain within the hollow. The
+# bowl shape comes from the base-height differential with neighbors,
+# not from internal variation. Internal terrain is smooth.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Mycelium. The signature block of mushroom biomes.
+# Its purple-grey color immediately signals that this is a special
+# area. Mycelium spreads to adjacent dirt blocks, gradually
+# expanding the hollow's visual footprint.
+top-block = "minecraft:mycelium"
+
+# filler-block: Dirt beneath the mycelium. Mycelium only exists
+# as a surface block; the subsurface is normal dirt that the
+# mushroom network permeates.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. The hollow has normal soil
+# depth despite its unusual surface.
+# Range: 1 to 8
+filler-depth = 3
+
+# underwater-block: Clay. Any water pools in the hollow have a
+# clay bottom — damp clay in a mushroom-rich depression is
+# thematically fitting.
+underwater-block = "minecraft:clay"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No regular trees. The hollow is below the canopy line
+# of surrounding biomes, and the mycelium/shade environment
+# suppresses tree growth. The absence of trees makes the mushroom
+# carpet the visual focus.
+#   density: 0.0 = no trees at all.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 1.0 = very sparse. Mycelium does not support
+# normal grass growth. Only a few tufts survive at the edges
+# where mycelium transitions to grass block.
+grass-density = 1.0
+
+# flower-density: 0.5 = near zero. Flowers rarely grow on
+# mycelium. A stray dandelion at the hollow's rim is the most
+# players will see.
+flower-density = 0.5
+
+# flower-types: Only the hardiest flowers on the edges.
+flower-types = ["dandelion"]
+
+# mushrooms: The defining feature. Dense clusters of brown and
+# red mushrooms cover the mycelium surface.
+#   types: Both brown and red mushrooms. Brown is more common
+#          (safer food source). Red is rarer and more decorative.
+#   density: 10.0 = very dense coverage. Mushrooms should carpet
+#            the hollow floor, making it immediately recognizable.
+#   Range: 0.0 to 15.0
+mushrooms = { types = ["brown_mushroom", "red_mushroom"], density = 10.0 }
+
+# huge-mushrooms: Occasional giant mushroom structures (brown and
+# red). These tower over the small mushrooms and provide a canopy
+# that further shades the hollow.
+#   types: "huge_brown" = wide flat cap, "huge_red" = domed cap.
+#   density: 1.5 = a few per chunk. Enough to create a small
+#            mushroom "forest" without obscuring the ground.
+huge-mushrooms = { types = ["huge_brown", "huge_red"], density = 1.5 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The mushroom hollow is home to mooshrooms — the rarest passive
+# mob in the sanctuary zone. No hostile mobs spawn on the surface
+# due to the MUSHROOM category, making this a completely safe haven.
+
+# mooshroom: The signature mob. Mooshrooms are normally restricted
+# to vanilla mushroom islands — finding them near spawn in the
+# hollow is a special reward. They can be milked for mushroom stew
+# (infinite food source), making this biome strategically valuable.
+# High weight to ensure players who find the hollow see mooshrooms.
+mooshroom = { weight = 15, min-group = 2, max-group = 4 }
+
+# cow: A few normal cows at the hollow's edges where mycelium
+# meets grass. They provide a contrast to the exotic mooshrooms.
+cow = { weight = 4, min-group = 1, max-group = 2 }
+
+# chicken: Very sparse. A stray chicken might wander in from
+# adjacent biomes.
+chicken = { weight = 2, min-group = 1, max-group = 1 }

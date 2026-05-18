@@ -1,0 +1,64 @@
+# ============================================================
+#  Ravine Carver Configuration — Elysium Overworld
+# ============================================================
+# Ravines are deep, narrow cuts in the terrain surface that
+# expose stone layers and sometimes reach cave systems below.
+# ============================================================
+
+[carvers.ravine]
+# -------------------------------------------------------
+# Enable/Disable
+# -------------------------------------------------------
+enabled = true
+
+# -------------------------------------------------------
+# Frequency
+# -------------------------------------------------------
+# chance: Probability of a ravine starting in any given chunk.
+# Default: 0.02 (about 1 in 50 chunks). Range: 0.0 to 0.2
+chance = 0.02
+
+# -------------------------------------------------------
+# Dimensions
+# -------------------------------------------------------
+# y-range: Y-level range for ravine generation.
+# Ravines cut from the surface down to this minimum.
+# Default: [10, 72]
+y-range = [10, 72]
+
+# max-depth: Maximum depth the ravine carves below its starting Y.
+# Default: 40. Range: 10 to 80
+max-depth = 40
+
+# width-range: Min and max width at the top (in blocks).
+# Ravines are V-shaped — wider at top, narrow at bottom.
+# Default: [2, 8]
+width-range = [2, 8]
+
+# length-range: Min and max ravine length (in blocks).
+# Default: [50, 200]
+length-range = [50, 200]
+
+# -------------------------------------------------------
+# Shape
+# -------------------------------------------------------
+# taper: How quickly the ravine narrows toward the bottom.
+# 1.0 = straight walls. 2.0 = strong V-shape.
+# Default: 1.5. Range: 1.0 to 3.0
+taper = 1.5
+
+# branch-chance: Probability of a ravine splitting into branches.
+# Default: 0.1. Range: 0.0 to 0.5
+branch-chance = 0.1
+
+# -------------------------------------------------------
+# Water
+# -------------------------------------------------------
+# water-level: Y-level at which ravines fill with water.
+# Set to -64 to disable water in ravines.
+# Default: 10
+water-level = 10
+
+# lava-level: Y-level at which ravines fill with lava instead of water.
+# Default: -20
+lava-level = -20

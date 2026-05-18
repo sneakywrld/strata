@@ -1,0 +1,131 @@
+# ============================================================
+#  Biome: Whispering Twilight Canopy — Whispering Woodlands
+# ============================================================
+# The densest, darkest forest in the Whispering Woodlands. An
+# impenetrable canopy of interlocking dark oak and mega spruce
+# crowns blocks ALL sky light from reaching the ground. The
+# surface is in permanent midnight-level darkness, causing hostile
+# mobs to spawn relentlessly around the clock. Even at high noon
+# the light level on the forest floor reads 0.
+#
+# This is the most dangerous surface biome in the Whispering zone —
+# a gauntlet for experienced players and a death trap for the unwary.
+#
+# Gameplay Notes:
+#   - Light level 0 at ground — hostiles spawn 24/7.
+#   - Skeleton and spider ambushes are constant threats.
+#   - Torches and light sources are essential for safe travel.
+#   - Dense canopy makes elytra flight almost impossible.
+#   - Rich mushroom and rare mycelium patches as reward for braving danger.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_twilight_canopy"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Twilight Canopy"
+
+# category: Broad classification. FOREST — the darkest extreme of the zone.
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Moderate — the canopy insulates, trapping warmth below.
+temperature = 0.5
+# humidity: Very high — zero airflow under the canopy means moisture
+# never escapes. The air is oppressively humid.
+humidity = 0.75
+# continentalness: Mid-inland — deep within the woodland zone.
+continentalness = 0.5
+# erosion: Moderate — the terrain is unremarkable; all the drama is overhead.
+erosion = 0.5
+# weirdness: Positive (0.3) — this is a notably unusual terrain variant,
+# distinct from the standard dark forest in its extreme canopy density.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard forest elevation. The canopy, not the ground,
+# defines this biome's character.
+base-height = 68
+
+# height-variation: Very flat — the canopy prevents wind erosion, and
+# the root network stabilizes the soil into a uniform surface.
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block — technically alive but barely, receiving
+# almost no sunlight. The grass here has a visually darker tint
+# due to the biome's color mapping.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt — standard sub-surface in the permanent shade.
+filler-block = "minecraft:dirt"
+
+# filler-depth: Standard 3-block depth.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Maximum density. Dark oak and mega spruce together create
+# an absolutely impenetrable canopy. density 18 is the highest in
+# the entire Elysium profile — generating an extreme leaf ceiling.
+trees = { types = ["dark_oak", "mega_spruce"], density = 18 }
+
+# grass-density: Almost nothing survives without light.
+grass-density = 1
+
+# flower-density: Zero — no flowers can photosynthesize here.
+flower-density = 0.0
+
+# mushrooms: Extremely abundant — this is a mushroom paradise.
+# The permanent darkness creates ideal growing conditions.
+mushrooms = { brown = 12, red = 8 }
+
+# fallen-logs: Dense layer of dead wood on the forest floor.
+# Trunks of trees that lost the competition for canopy space.
+fallen-logs = { enabled = true, density = 5 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Maximum hostile multiplier for a surface biome. The permanent
+# darkness means full-rate hostile spawns occur day and night.
+hostile-density-multiplier = 1.8
+
+# Spiders are the signature mob — webs span between the trunks.
+spider-weight-bonus = 50
+
+# Skeletons lurk behind trunks with clear firing lines.
+skeleton-weight-bonus = 30
+
+# Zombies shamble through the permanent twilight.
+zombie-weight-bonus = 20
+
+# Passive mobs avoid this place entirely — no light, no grazing.
+passive-density-multiplier = 0.1

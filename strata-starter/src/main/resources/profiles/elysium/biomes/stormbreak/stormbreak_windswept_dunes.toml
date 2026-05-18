@@ -1,0 +1,89 @@
+# ============================================================
+#  Biome: Stormbreak Windswept Dunes — Stormbreak Coast
+# ============================================================
+# Rolling sand dunes sculpted by relentless coastal winds.
+# Tufts of beach grass crown the dune ridges, bending in the
+# constant breeze. Wind-carried sand particles create a hazy
+# atmosphere at ground level. Beneath the shifting sands lie
+# fragments of buried ruins — sandstone walls, scattered
+# terracotta, and the occasional loot chest peeking from an
+# eroded dune face. The dunes are higher and more dynamic
+# than a standard beach, creating a miniature desert by the
+# sea.
+#
+# Gameplay notes:
+#   - Buried ruins provide mid-game loot and building blocks.
+#   - Sand is abundant — fuel glass and TNT production.
+#   - Dune height (5-13 blocks) creates interesting terrain
+#     for combat and exploration.
+#   - Wind particles add atmospheric visual effects.
+#   - Transitions into stormbreak_sandy_beach at lower
+#     elevations and stormbreak_cliff_forest inland.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_windswept_dunes"     # Unique registry ID
+display-name = "Stormbreak Windswept Dunes"  # Shown in F3 debug & maps
+category = "BEACH"                           # Coastal dune system
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Warm and notably dry — the driest biome in the Stormbreak
+# zone. High erosion creates the smooth, rounded dune forms.
+# Moderate weirdness places this in transitional positions
+# between standard beach and inland terrain.
+[biome.climate]
+temperature = 0.55          # Warm — sun-baked sand
+humidity = 0.3              # Dry — wind removes moisture rapidly
+continentalness = -0.05     # Coastal — just above the beach line
+erosion = 0.6               # Very high erosion — wind-sculpted dunes
+weirdness = 0.25            # Moderately unusual — dune formations
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# Elevated above the beach with significant variation from
+# dune crests and troughs. The rolling profile is key to
+# this biome's identity.
+[biome.terrain]
+base-height = 5             # Dune base — elevated above beach level
+height-variation = 8        # Substantial dune ridges and valleys
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Sand all the way down — deep aeolian deposits. Sandstone
+# forms naturally at depth from compaction.
+[biome.surface]
+top-block = "minecraft:sand"             # Wind-blown sand surface
+filler-block = "minecraft:sandstone"     # Compacted sandstone beneath
+filler-depth = 3                         # Deep sand/sandstone layer
+underwater-block = "minecraft:sand"      # Sand in rare tidal pools
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# No trees — the dunes are too exposed and dry. Dead bushes
+# and sparse grass represent the tough beach grasses that
+# stabilise the dune crests. Sugar cane may appear in rare
+# wet depressions.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees — wind-blasted dunes
+grass-density = 0.25                     # Beach grass on dune crests
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Rabbits are the signature passive mob — they shelter in
+# dune hollows. Husks may replace some zombie spawns in the
+# dry, warm conditions. Standard hostile spawns at night.
+[biome.spawning]
+# Rabbits spawn in dune grass — desert-style variant.
+# Husks may replace standard zombie spawns — warm and dry.
+# Standard hostile mobs (skeletons, creepers) at night.
+# No aquatic spawns — terrain is above water level.

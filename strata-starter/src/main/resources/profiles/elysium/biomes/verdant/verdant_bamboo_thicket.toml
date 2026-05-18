@@ -1,0 +1,142 @@
+# ============================================================
+#  Biome: Verdant Bamboo Thicket — Verdant Expanse
+# ============================================================
+# A dense bamboo jungle rising from the warm, humid lowlands of
+# the Verdant Expanse. Towering bamboo stalks form a green wall
+# that filters light into an emerald glow. This is the most
+# tropical-feeling biome in the Verdant zone, with jungle-like
+# lushness compressed into bamboo-dominated groves.
+#
+# Gameplay: Bamboo is a fast-growing renewable fuel and scaffolding
+# material. Pandas spawn exclusively here — the only panda habitat
+# in the Verdant zone. Dense vegetation makes navigation challenging
+# but provides excellent cover. The jungle-adjacent climate supports
+# cocoa and melon growth nearby.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "bamboo_thicket" indicates
+# dense bamboo growth rather than a full jungle biome.
+id = "strata:verdant_bamboo_thicket"
+
+# display-name: Player-facing name for debug and UI elements.
+display-name = "Verdant Bamboo Thicket"
+
+# category: JUNGLE — bamboo forests are a jungle subcategory in
+# vanilla Minecraft. JUNGLE category enables ocelot spawning,
+# jungle temple structure eligibility, and tropical ambient sounds
+# (parrot calls, insect buzz).
+category = "JUNGLE"
+
+# zone: Verdant Expanse (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.7 = warm. Bamboo needs tropical-adjacent warmth
+# to thrive. This is the warmest biome in the Verdant zone,
+# creating a distinct microclimate pocket.
+temperature = 0.7
+
+# humidity: 0.7 = high moisture. Bamboo requires consistent
+# rainfall and humid air. This high humidity differentiates the
+# thicket from all other Verdant biomes.
+humidity = 0.7
+
+# continentalness: 0.4 = moderately inland. The thicket forms
+# in sheltered inland pockets where warm, humid air pools.
+continentalness = 0.4
+
+# erosion: 0.6 = moderate erosion. The terrain is gently
+# undulating — not flat plains, but not hilly either. Dense
+# bamboo root systems stabilize the soil against further erosion.
+erosion = 0.6
+
+# weirdness: 0.3 = noticeably unusual. The high weirdness value
+# ensures bamboo thickets only generate in specific, somewhat
+# rare pockets — they shouldn't dominate the zone.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 4 = slightly above sea level. Bamboo thickets
+# grow in lowland areas where warm humid air collects, but not
+# so low that they flood.
+base-height = 4
+
+# height-variation: 1.5 = gentle undulation. The terrain has
+# small hills and depressions hidden beneath the bamboo canopy.
+height-variation = 1.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. Podzol would be more jungle-like, but
+# this is a Verdant zone biome — the grass ties it visually to
+# the surrounding green landscape.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt with deep organic layer from decomposing
+# bamboo leaves.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. Bamboo roots are shallow
+# and spreading rather than deep.
+filler-depth = 3
+
+# underwater-block: Dirt for any pools or streams within the
+# thicket — murky water under the dense canopy.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Minimal traditional trees — bamboo is the dominant
+# vertical element. A few small jungle trees add variety.
+#   "jungle" = small jungle trees that complement the bamboo.
+#   density 2.0 = sparse. Bamboo does the heavy lifting for
+#   vertical green coverage.
+trees = { types = ["jungle"], density = 2.0 }
+
+# grass-density: 20.0 = moderate. Dense bamboo shades out much
+# of the ground-level grass, but some persists in gaps.
+grass-density = 20.0
+
+# flower-density: 1.0 = minimal. The dense bamboo canopy blocks
+# too much light for flowers. Only shade-tolerant species survive.
+flower-density = 1.0
+
+# extra-features: Bamboo is the star feature of this biome.
+extra-features = [
+    # Bamboo — extremely dense placement. This is the defining feature.
+    # density 25.0 = very thick, forming the "wall of green" effect.
+    { feature = "bamboo", density = 25.0 },
+    # Ferns in the undergrowth between bamboo stalks.
+    { feature = "fern", density = 8.0 },
+    # Large ferns add tropical atmosphere.
+    { feature = "large_fern", density = 4.0 },
+    # Melon patches occasionally generate in clearings.
+    { feature = "melon", density = 0.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Bamboo thickets are the exclusive panda habitat in the zone.
+[biome.spawning]
+# Pandas are the signature mob — rare and precious.
+# Low weight but decent group size when they do spawn.
+panda = { weight = 5, min-group = 1, max-group = 2 }
+# Parrots perch in the bamboo canopy — tropical vibes.
+parrot = { weight = 4, min-group = 1, max-group = 2 }
+# Ocelots slink through the dense vegetation — jungle category mob.
+ocelot = { weight = 3, min-group = 1, max-group = 1 }

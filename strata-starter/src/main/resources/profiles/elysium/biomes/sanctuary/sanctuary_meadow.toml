@@ -1,0 +1,176 @@
+# ============================================================
+#  Biome: Sanctuary Meadow — Sanctuary Zone
+# ============================================================
+# Soft rolling grasslands blanketed in wildflowers and bathed in warm
+# sunlight. Scattered apple-bearing oak trees dot the landscape. This
+# is the quintessential spawn biome — gentle, forgiving, and inviting.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_meadow"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Sanctuary Meadow"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "PLAINS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.5 = warm and pleasant, evoking a sunny
+# spring afternoon — perfect for the welcoming meadow.
+temperature = 0.5
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. 0.4 = slightly dry, keeping grass dominant
+# over dense vegetation while allowing scattered wildflowers.
+humidity = 0.4
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.3 = solidly inland but not far from
+# water features, placing the meadow within comfortable walking
+# distance of ponds and streams.
+continentalness = 0.3
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.7 = gently rolling
+# terrain — enough contour to be visually interesting without posing
+# navigation difficulty for new players.
+erosion = 0.7
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.0 = the default variant, making this the "standard"
+# meadow that generates most frequently.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 4.0 lifts the meadow
+# slightly above sea level so it sits comfortably above any nearby
+# water features without towering over them.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 4.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 2.5 produces soft, gentle rolling hills that are easy to traverse.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 2.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Grass block is the natural choice for a lush meadow.
+top-block = "minecraft:grass_block"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Dirt is standard for grass biomes.
+filler-block = "minecraft:dirt"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 3 is vanilla standard. Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Sand gives a clean,
+# inviting pond-bottom look.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#          "oak" = standard small oak, "fancy_oak" = large spreading oak.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.8 scatters a handful of shade trees across the meadow
+#            without crowding the open grassland feel.
+trees = { types = ["oak", "fancy_oak"], density = 0.8 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 8.0 gives lush coverage without obscuring
+# the ground — players can still see where they are walking.
+grass-density = 8.0
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 5.0 creates generous flower fields that
+# make the meadow feel vibrant and alive, and provides ample bee
+# forage for nearby hives.
+flower-density = 5.0
+
+# flower-types: Which flowers are eligible to generate in this biome.
+# Overrides the global weighted list for biome-specific palettes.
+# These are keys from vegetation.toml's [vegetation.flowers.*] table.
+# Poppies, dandelions, cornflowers, and oxeye daisies give a classic
+# wildflower meadow palette.
+flower-types = ["poppy", "dandelion", "cornflower", "oxeye_daisy"]
+
+# pumpkin-chance: Per-chunk probability of a pumpkin generating.
+# Range: 0.0 to 1.0. 0.03 = roughly 3% of chunks get one — a small
+# surprise for players exploring.
+pumpkin-chance = 0.03
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# Sanctuary meadow is a peaceful starting area. We boost passive
+# mob spawns so players can easily find food and companions.
+
+# cow: Boosted weight for cows in the meadow. Provides leather and
+# beef — essential early-game resources.
+# weight: Relative spawn chance (global default is 8).
+# min-group/max-group: How many spawn together.
+cow = { weight = 12, min-group = 3, max-group = 5 }
+
+# sheep: Slightly boosted. Wool is critical for a first bed.
+# Global default weight is 12; bumped to 15 here.
+sheep = { weight = 15, min-group = 3, max-group = 5 }
+
+# chicken: Standard spawn rates. Feathers and eggs are useful
+# but not critical in the meadow.
+chicken = { weight = 10, min-group = 2, max-group = 4 }
+
+# bee: Elevated presence to complement the wildflowers. Bee nests
+# generate in oak trees via the tree config's bee-nest-chance.
+# weight: 6 is notably higher than typical biomes (which have 0-2).
+bee = { weight = 6, min-group = 1, max-group = 3 }

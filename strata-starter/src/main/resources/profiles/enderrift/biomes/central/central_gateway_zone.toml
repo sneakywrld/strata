@@ -1,0 +1,130 @@
+# ============================================================
+#  Biome: Central Gateway Zone — Central Island
+# ============================================================
+# The outer perimeter of the central platform where end
+# gateways materialize after the Ender Dragon is defeated.
+# Each gateway is a small bedrock frame containing an End
+# gateway block that teleports players to distant outer
+# islands. Up to 20 gateways spawn on the platform edge,
+# appearing one at a time with each subsequent dragon kill.
+# The terrain here is flat and unobstructed, giving players
+# clear access to each gateway as it appears. Faint particle
+# trails from active gateways create an ethereal light show
+# visible from the main platform.
+#
+# Gameplay notes:
+#   - End gateways spawn here after each dragon defeat.
+#   - Gateways teleport players to random outer islands.
+#   - Players must throw an ender pearl into the gateway
+#     block to activate teleportation.
+#   - First gateway appears after the initial dragon kill;
+#     subsequent gateways with re-summoned dragon kills.
+#   - Gateway placement is structural, not biome-driven.
+#   - Good staging area before exploring outer islands.
+#   - Pairs with central_platform (inner) and central_edge
+#     (outer perimeter).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the gateway
+# spawning zone on the central island perimeter.
+id = "strata:central_gateway_zone"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Gateway Zone"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Central Island region. The gateway zone
+# occupies the outer ring of the main platform.
+region = "central"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Neutral — same ambient temperature as the
+# main platform. The gateways do not emit heat.
+# 0.0 = baseline End temperature.
+temperature = 0.0
+
+# humidity: Dry. 0.0 = standard End aridity.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.1 = very slightly weird. The presence of
+# gateway portals gives this zone a subtle otherworldly
+# quality beyond the baseline End.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 65 — level with the central platform.
+# Gateways need flat ground for their bedrock frames to
+# generate properly. Matching the platform height ensures
+# seamless terrain transitions.
+base-height = 65
+
+# height-variation: 3 = minimal undulation. The surface
+# must remain flat enough for gateway frames to sit
+# cleanly, but slight variation prevents the terrain
+# from looking artificially smooth.
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — continuous with the central
+# platform surface. The gateway bedrock frames sit on
+# top of the end stone.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone beneath the surface, standard
+# for all central island biomes.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard island thickness. Keeps the
+# terrain solid beneath the gateway structures.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Minimal features — the gateways themselves are the
+# visual focal point. Keeping the terrain clean ensures
+# gateways are visible and accessible.
+[biome.features]
+# end-specific: End gateways are structural features
+# placed by the dragon fight controller, not the biome
+# feature system. No decorative features compete with
+# the gateways for visual attention.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No vegetation near the gateways.
+grass-density = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen gather near the gateways, drawn by the portal
+# energy. Players preparing to enter a gateway must be
+# careful not to provoke nearby endermen.
+[biome.spawning]
+# enderman: High presence near gateways. Endermen seem
+# attracted to the dimensional energy of the gateway
+# blocks, clustering in this zone more than on the open
+# platform.
+enderman = { weight = 38, min-group = 1, max-group = 4 }

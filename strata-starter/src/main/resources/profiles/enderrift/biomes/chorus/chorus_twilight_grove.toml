@@ -1,0 +1,181 @@
+# ============================================================
+#  Biome: Chorus Twilight Grove — Chorus Domain
+# ============================================================
+# A serene, park-like chorus grove illuminated by end rods
+# placed like lanterns among the purple stems. The chorus plants
+# are well-spaced and medium-height, creating an open, walkable
+# forest bathed in the warm glow of end rod light. This is the
+# most peaceful biome in the chorus domain — a place of quiet
+# beauty in the alien End, where players might choose to build
+# a base or simply rest.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:chorus_twilight_grove"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Twilight Grove"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "chorus"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. 0.2 = pleasantly warm, the end rod illumination
+# and moderate chorus coverage create the warmest micro-environment
+# in the chorus domain.
+temperature = 0.2
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. 0.1 = slightly moist, a balanced and comfortable
+# atmosphere.
+humidity = 0.1
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.5 = moderately inland, the grove sits
+# in a protected, stable area.
+continentalness = 0.5
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. 0.7 = quite flat, the grove has
+# gentle, walkable terrain perfect for relaxed exploration.
+erosion = 0.7
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.2 = mildly unusual — the end rod "lanterns" give this grove
+# a designed, almost curated quality that feels slightly unnatural.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 63 is standard
+# height — comfortable and accessible.
+# Range: 0 to 256
+base-height = 63
+
+# height-variation: Controls terrain undulation. 3 is low — gentle
+# rolling terrain, easy to navigate in the soft end rod light.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# End stone — the clean grove floor, well-lit by end rods.
+top-block = "minecraft:end_stone"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Solid end stone.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 4 is standard depth.
+# Range: 1 to 8
+filler-depth = 4
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 3.5 — moderate, well-spaced density. Plants are distributed
+# evenly with comfortable walking gaps between them, creating
+# the open grove aesthetic.
+chorus-density = 3.5
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.5 — high flowering rate. The well-lit, uncrowded conditions
+# promote healthy flower development on most plants.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.5
+
+# chorus-height-min: Minimum height for chorus plants.
+# 5 — standard minimum for medium-height grove plants.
+# Range: 3 to 15
+chorus-height-min = 5
+
+# chorus-height-max: Maximum height for chorus plants.
+# 15 — moderate maximum. Tall enough to create an overhead
+# presence without forming a dense canopy.
+# Range: 10 to 30
+chorus-height-max = 15
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.02 — very high density, the defining feature. End rods are
+# placed as "lanterns" throughout the grove, creating warm pools
+# of light that make this the best-lit biome in the End.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.02
+
+# end-rod-height-range: Height range for end rod clusters.
+# [1, 4] — rods appear at various heights, some at ground level,
+# some elevated on small posts, mimicking lamp placement.
+end-rod-height-range = [1, 4]
+
+# purpur-density: Purpur growth formations per chunk.
+# 0.04 — occasional purpur formations add variety.
+# Range: 0.0 to 0.3
+purpur-density = 0.04
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.01 — sparse crystals add subtle sparkle to the grove,
+# catching the end rod light.
+# Range: 0.0 to 0.1
+crystal-chance = 0.01
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — no dark obsidian to disrupt the peaceful atmosphere.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Reduced presence. The bright end rod illumination
+# deters endermen, who prefer darker areas. This makes the grove
+# safer for players to inhabit.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 40, min-group = 1, max-group = 2 }
+
+# shulker: No shulkers in the natural grove.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Minimal presence in the well-lit grove.
+endermite = { weight = 1, min-group = 1, max-group = 1 }

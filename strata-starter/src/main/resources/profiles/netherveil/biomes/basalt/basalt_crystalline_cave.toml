@@ -1,0 +1,147 @@
+# ============================================================
+#  Biome: Basalt Crystalline Cave — Basalt Deltas
+# ============================================================
+# An enclosed basalt cavern where nether quartz crystal formations
+# grow from the walls, ceiling, and floor in dramatic geometric
+# clusters. The white-pink quartz crystals catch and reflect the
+# dim magma glow, creating a sparkling interior that contrasts
+# starkly with the dark basalt surfaces they sprout from. The
+# largest crystals are blocks tall, forming natural pillars and
+# chandeliers of crystalline quartz. The cave floor is basalt
+# with quartz veins running through it in visible seams, and the
+# air is still and quiet — the enclosed space blocks the volcanic
+# wind and ash particles of the exterior deltas. The crystalline
+# cave is both beautiful and valuable — the quartz density makes
+# it the premier location for nether quartz ore mining, yielding
+# experience and crafting material in abundance.
+#
+# Gameplay notes:
+#   - Premier nether quartz mining location — bring Fortune III.
+#   - Quartz ore yields XP — excellent experience farming.
+#   - Quartz for redstone components (comparators, observers).
+#   - Decorative quartz blocks for building.
+#   - Enclosed cave — protection from ghast fireballs.
+#   - Beautiful crystal formations for scenic screenshots.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The crystalline cave is a
+# resource-rich enclosed basalt variant.
+id = "strata:basalt_crystalline_cave"
+
+# display-name: Human-readable name for player displays.
+display-name = "Crystalline Cave"
+
+# category: NETHER — enclosed nether cavern with dense quartz
+# crystal formations and basalt geology.
+category = "NETHER"
+
+# zone: Part of the basalt zone — a subterranean pocket of
+# quartz-rich basalt terrain.
+zone = "basalt"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Moderate — the enclosed cave buffers temperature,
+# cooler than the exterior delta.
+#   0.6 = moderate heat, sheltered from external extremes.
+temperature = 0.6
+
+# humidity: Dry — basalt and quartz are anhydrous minerals.
+#   -0.3 = dry cave conditions.
+humidity = -0.3
+
+# continentalness: Negative — the cave forms below the standard
+# basalt delta surface.
+#   -0.3 = below standard level, cave placement.
+continentalness = -0.3
+
+# erosion: Low — the cave interior has crystal formations
+# obstructing movement between the basalt walls.
+#   0.3 = moderately cluttered with crystal formations.
+erosion = 0.3
+
+# weirdness: High — dense quartz crystal caves are a rare and
+# visually striking nether formation.
+#   0.7 = highly unusual crystal cave.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Below standard — the cave sits beneath the
+# basalt delta surface.
+#   34 = below standard floor, underground cave.
+base-height = 34
+
+# height-variation: Moderate — crystal formations create
+# varied floor and ceiling heights.
+#   4.0 = moderate variation from crystal growths.
+height-variation = 4.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Basalt — the cave floor and walls are basalt
+# with quartz crystals growing as feature overlays.
+top-block = "minecraft:basalt"
+
+# filler-block: Netherrack beneath the basalt cave structure.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical basalt substrate in the cave.
+filler-depth = 4
+
+# underwater-block: Magma blocks in any lava pools within
+# the cave system.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the crystal cave.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on basalt.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Crystalline cave specific features.
+#   nether_quartz_ore — extremely dense quartz ore veins,
+#     the primary resource draw of this biome.
+#   quartz_crystal_cluster — large decorative crystal formations
+#     growing from cave surfaces.
+#   quartz_pillar — floor-to-ceiling quartz crystal columns.
+#   magma_block_field — rare magma glow providing illumination
+#     that reflects off the crystal surfaces.
+extra-features = [
+    { feature = "nether_quartz_ore", density = 15.0 },
+    { feature = "quartz_crystal_cluster", density = 8.0 },
+    { feature = "quartz_pillar", density = 3.0 },
+    { feature = "magma_block_field", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Reduced mob presence in the enclosed cave — magma cubes
+# are the primary threat.
+[biome.spawning]
+# magma_cube: The primary mob — bouncing between crystal
+# formations in the enclosed cave space.
+magma_cube = { weight = 15, min-group = 1, max-group = 3 }
+
+# enderman: Occasional enderman drawn to the crystal formations.
+# They may pick up quartz blocks.
+enderman = { weight = 4, min-group = 1, max-group = 1 }

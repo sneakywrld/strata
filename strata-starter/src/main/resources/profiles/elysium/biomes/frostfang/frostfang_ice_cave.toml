@@ -1,0 +1,102 @@
+# ============================================================
+#  Biome: Frostfang Ice Cave — Frostfang Peaks
+# ============================================================
+# An exposed cave entrance carved into the mountainside,
+# its mouth framed by thick curtains of hanging icicles.
+# Inside, the ceiling is packed ice that glows faintly
+# with diffused light, and blue ice stalagmites rise from
+# the floor in twisted columns. The air inside is still
+# and bitterly cold — colder than the surface above. Pools
+# of frozen water dot the cave floor, and the walls are
+# slick with a thin glaze of ice that makes footing
+# treacherous. Deep within, the passages narrow and twist
+# into darkness where ancient ice has sealed older tunnels.
+#
+# Gameplay notes:
+#   - Rich source of blue ice and packed ice — the most
+#     efficient way to gather these resources in the zone.
+#   - The cave interior is perpetually dark, enabling
+#     hostile mob spawns around the clock.
+#   - Ice-covered floors create movement hazards similar
+#     to blue ice — players slide on the surface.
+#   - The cave may connect to deeper underground systems,
+#     providing an alternate route through the mountains.
+#   - Blue ice stalagmites serve as both obstacles and
+#     harvestable resource nodes.
+#   - Pairs with frostfang_frozen_waterfall outside the
+#     entrance and frostfang_rocky_ridge above.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_ice_cave"             # Unique registry ID
+display-name = "Frostfang Ice Cave"          # Shown in F3 debug & maps
+category = "CAVE"                            # Underground/cave biome type
+zone = "frostfang"                           # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The very low temperature ensures ice
+# formations persist. Higher humidity feeds the ice
+# growth through sublimation and refreezing cycles. The
+# moderate weirdness value places cave entrances in
+# unusual terrain folds where cliff faces are exposed.
+[biome.climate]
+temperature = -0.7          # Extremely cold — colder than the surface
+humidity = 0.5              # High moisture — ice sublimation and refreeze
+continentalness = 0.8       # Deep within the mountain mass
+erosion = -0.3              # Low erosion — cave preserves its structure
+weirdness = 0.4             # Unusual terrain — exposed cliff entrances
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 30 places the cave entrance at mid-
+# mountain elevation. The height-variation of 15 creates
+# the vaulted ceiling effect inside the cave — the
+# terrain undulates to form chambers and passages within
+# the packed ice structure.
+[biome.terrain]
+base-height = 30            # Mid-mountain cave entrance elevation
+height-variation = 15       # +/-15 blocks — vaulted chambers inside
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# The cave floor and walls are packed ice. Blue ice forms
+# the deeper structural elements — stalagmites, columns,
+# and sealed passages. The deep filler depth represents
+# the massive ice body that the cave is carved within.
+[biome.surface]
+top-block = "minecraft:packed_ice"       # Ice cave floor and walls
+filler-block = "minecraft:blue_ice"      # Dense ancient ice beneath
+filler-depth = 8                         # Very deep ice — cave runs far back
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# No vegetation inside the cave — only ice formations.
+# The cave is entirely mineral in nature. Blue ice
+# stalagmites and columns are the primary "features,"
+# generated as terrain rather than placed features.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees inside the cave
+grass-density = 0.0                      # No vegetation — pure ice
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# The permanent darkness inside the cave enables hostile
+# mob spawns at all hours. Strays are common, fitting the
+# ice theme. Bats roost on the packed ice ceiling. The
+# confined spaces make combat dangerous — players cannot
+# easily dodge projectiles in narrow passages.
+[biome.spawning]
+# Strays spawn constantly in the darkness — primary threat.
+# Bats hang from the ice ceiling in clusters.
+# Standard hostile mobs in darkness — 24/7 inside cave.
+# No passive mobs — too dark and cold for wildlife.

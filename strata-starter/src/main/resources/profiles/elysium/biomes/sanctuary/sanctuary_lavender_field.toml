@@ -1,0 +1,159 @@
+# ============================================================
+#  Biome: Sanctuary Lavender Field — Sanctuary Zone
+# ============================================================
+# Rolling hills blanketed in allium — Minecraft's closest analog to
+# real lavender. The purple fields stretch to the horizon, bees hover
+# above every bloom, and the atmosphere evokes the lavender farms of
+# Provence. A visually distinctive landmark near spawn.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal generator reference.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_lavender_field"
+
+# display-name: Human-readable name shown in F3 debug, /strata info,
+# and zone-entry messages.
+display-name = "Sanctuary Lavender Field"
+
+# category: PLAINS. Open grassland dominated by flowers rather than
+# trees. Plains ambient sounds with the addition of dense bee buzzing.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "PLAINS"
+
+# zone: Generates only within the sanctuary zone (0-1500 blocks
+# from spawn).
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate. Higher weirdness distinguishes this
+# thematic variant from the standard wildflower field.
+[biome.climate]
+# temperature: 0.5 = warm. Lavender thrives in warm, sunny climates.
+# Consistent with the sanctuary zone baseline.
+temperature = 0.5
+
+# humidity: 0.45 = moderate. Same as the wildflower field. Allium
+# does not need excessive moisture — moderate humidity keeps the
+# ground dry enough for the purple carpet look.
+humidity = 0.45
+
+# continentalness: 0.3 = inland. Standard sanctuary placement.
+continentalness = 0.3
+
+# erosion: 0.75 = gently rolling. Same as the wildflower field.
+# The rolling terrain lets the purple color wash over hills like
+# waves, creating dramatic visual lines.
+erosion = 0.75
+
+# weirdness: 0.3 = notably weird. Higher than any previous sanctuary
+# biome. This ensures the lavender field generates in distinct pockets
+# rather than blending into the wildflower field (0.2). The elevated
+# weirdness makes it rarer and more special when discovered.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5.0 = slightly elevated. Lavender fields on gentle
+# rises are visible from a distance, letting the purple color act
+# as a natural landmark for navigation.
+# Range: -64.0 to 256.0
+base-height = 5.0
+
+# height-variation: 2.5 = gentle undulation. The rolling contour
+# is key to the lavender field aesthetic — flat fields would look
+# like a texture glitch. The hills let the purple fade in and out
+# against green grass at biome edges.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 2.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The allium flowers grow on top of grass.
+# Green between the purple stalks provides color contrast.
+top-block = "minecraft:grass_block"
+
+# filler-block: Standard dirt beneath the grass. Fertile soil for
+# the abundant flowering.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard. No special soil treatment needed.
+# Range: 1 to 8
+filler-depth = 3
+
+# underwater-block: Sand for any water at biome edges.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: None to extremely rare. The lavender field is pure open
+# flower coverage. Trees would break the visual uniformity.
+#   density: 0.1 = essentially zero. A lone oak might appear once
+#            every 10 chunks as a photogenic accent.
+trees = { types = ["oak"], density = 0.1 }
+
+# grass-density: 3.0 = sparse grass. Less than usual because allium
+# dominates the ground cover. Grass fills the gaps between flower
+# clusters.
+grass-density = 3.0
+
+# flower-density: 14.0 = maximum density. Even denser than the
+# wildflower field (12.0). The goal is a near-solid carpet of
+# purple that defines the biome at a glance.
+# Range: 0.0 to 15.0
+flower-density = 14.0
+
+# flower-types: Allium is the overwhelming dominant flower.
+# Including it as the sole type creates the lavender-field effect.
+# A small amount of lily of the valley provides white accents
+# among the purple — like real lavender fields that have occasional
+# white lavender varieties.
+flower-types = ["allium", "lily_of_the_valley"]
+
+# flower-weights: Override the global flower weights for this biome
+# to make allium dominant. Allium gets 95% of placements, lily of
+# the valley gets 5%.
+#   allium: Weight 19 out of 20 total = 95% of flowers.
+#   lily_of_the_valley: Weight 1 out of 20 = 5% accent.
+flower-weights = { allium = 19, lily_of_the_valley = 1 }
+
+# bee-nest-bonus: 2.5 = high bee nest generation on the rare trees.
+# Dense allium means abundant pollen, so bees thrive here.
+bee-nest-bonus = 2.5
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# A bee-rich biome like the wildflower field, but with even more
+# emphasis on the monoculture allium-and-bee ecosystem.
+
+# bee: Very high density. The dense allium provides limitless
+# forage, so bees are everywhere. Their buzzing is the dominant
+# ambient sound.
+bee = { weight = 18, min-group = 2, max-group = 5 }
+
+# rabbit: Purple flowers provide cover for rabbits. Moderate
+# numbers among the allium stalks.
+rabbit = { weight = 8, min-group = 2, max-group = 3 }
+
+# sheep: A few sheep graze the edges of the field where grass
+# is thicker.
+sheep = { weight = 5, min-group = 1, max-group = 2 }
+
+# chicken: Sparse. Chickens have little to forage in the dense
+# flower coverage.
+chicken = { weight = 3, min-group = 1, max-group = 2 }

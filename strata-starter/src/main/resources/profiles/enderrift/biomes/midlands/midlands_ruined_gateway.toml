@@ -1,0 +1,144 @@
+# ============================================================
+#  Biome: Midlands Ruined Gateway — End Midlands
+# ============================================================
+# The shattered remains of ancient end gateways scattered
+# across a mid-altitude island. Unlike the functional gateways
+# near the central island, these are broken — their bedrock
+# frames cracked and incomplete, the gateway block long since
+# dissipated. The ruins suggest that the End once had a vast
+# portal network connecting distant islands, but whatever
+# maintained it has failed. Fragments of bedrock, obsidian,
+# and end stone litter the area around each ruin, and faint
+# particle traces occasionally flicker where the portal
+# energy once flowed. This biome has an archaeological
+# quality — a mystery waiting to be deciphered.
+#
+# Gameplay notes:
+#   - Broken end gateway remnants — non-functional.
+#   - Archaeological exploration theme.
+#   - Bedrock fragments are decorative (not mineable).
+#   - Faint particle effects hint at residual energy.
+#   - Lore-rich location for roleplay and storytelling.
+#   - Moderate chorus growth around the ruins.
+#   - Good base location for exploration expeditions.
+#   - Pairs with midlands_rolling_end (surrounding terrain)
+#     and highlands_gateway_plaza (functional gateways).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the ruined gateway
+# archaeological site in the End midlands.
+id = "strata:midlands_ruined_gateway"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Ruined Gateway"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Midlands region.
+region = "midlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly warm — residual dimensional
+# energy from the broken gateways still emits faint
+# heat. 0.15 = subtle warmth perceptible near the ruins.
+temperature = 0.15
+
+# humidity: Low — the ruins are exposed and dry. Whatever
+# energy the gateways once channeled has evaporated.
+# 0.05 = barely above baseline.
+humidity = 0.05
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.4 = elevated weirdness. The broken
+# gateways are anomalous — remnants of technology or
+# magic that no longer functions. The weirdness axis
+# captures this otherworldly residue.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 60 — standard midlands elevation. The
+# ruins sit on terrain that was once flat (like gateway
+# plazas) but has degraded over time, developing uneven
+# ground from structural collapse.
+base-height = 60
+
+# height-variation: 8 = moderate variation. The collapsed
+# gateway fragments and displaced terrain create an
+# uneven surface — rubble mounds, impact depressions,
+# and tilted stone slabs. More varied than the rolling
+# end but not extreme.
+height-variation = 8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — the degraded surface around the
+# ruins. Gateway fragments are feature-placed on top.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — standard midlands substrate.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard depth. The ruins sit on
+# solid midlands terrain.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Broken gateway fragments and scattered debris define
+# the visual identity. Moderate chorus growth reclaims
+# the ruins.
+[biome.features]
+# end-specific: Ruined gateway remnants and reclaiming
+# chorus vegetation. The combination of ancient debris
+# and new growth creates a post-apocalyptic aesthetic.
+trees = { types = ["chorus_tree"], density = 2.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Gateway ruin decorations.
+#   gateway_ruin — broken bedrock frame fragments,
+#       cracked and incomplete, placed as decorative
+#       structures around the biome.
+#   obsidian_rubble — scattered obsidian fragments from
+#       the gateway infrastructure.
+#   end_particle_remnant — faint particle effect markers
+#       where portal energy once flowed.
+extra-features = [
+    { feature = "gateway_ruin", density = 2.0 },
+    { feature = "obsidian_rubble", density = 1.5 },
+    { feature = "end_particle_remnant", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen seem drawn to the residual gateway energy,
+# congregating near the ruins in higher-than-normal
+# numbers.
+[biome.spawning]
+# enderman: Elevated presence — endermen are attracted
+# to dimensional energy, and the ruined gateways still
+# emit faint traces. Players exploring the ruins should
+# expect frequent enderman encounters.
+enderman = { weight = 38, min-group = 1, max-group = 4 }

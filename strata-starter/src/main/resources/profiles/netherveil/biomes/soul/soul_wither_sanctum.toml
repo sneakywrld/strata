@@ -1,0 +1,159 @@
+# ============================================================
+#  Biome: Soul Wither Sanctum — Soul Regions
+# ============================================================
+# A sacred and terrifying place where the soul sand forms natural
+# W-shaped altars — formations that unmistakably echo the wither
+# boss summoning pattern. Wither skeletons patrol these altars
+# in high concentrations, their dark forms moving with deliberate
+# purpose among the soul sand formations. The ground is littered
+# with wither roses — black flowers that inflict Wither effect
+# on contact, creating dead zones of withering damage between
+# the altar formations. Soul fire burns on every exposed soul
+# soil surface, and the ambient soul particle density is high
+# enough to create a faint blue haze. This is an endgame biome
+# — the wither skeleton density makes it the premier location
+# for farming wither skulls, the final component needed to
+# summon the Wither boss. The danger is proportional to the
+# reward.
+#
+# Gameplay notes:
+#   - Premier wither skeleton skull farming location.
+#   - Wither roses inflict Wither effect on contact — lethal.
+#   - Smite enchantment devastates wither skeletons.
+#   - Looting III maximizes skull drop chances.
+#   - Soul sand W-formations suggest wither summoning.
+#   - Endgame progression biome — leads to Wither boss fight.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The wither sanctum is the
+# endgame soul biome focused on wither skeleton farming.
+id = "strata:soul_wither_sanctum"
+
+# display-name: Human-readable name for player displays.
+display-name = "Soul Wither Sanctum"
+
+# category: NETHER — nether environment dominated by wither
+# skeletons, wither roses, and soul fire altars.
+category = "NETHER"
+
+# zone: Part of the soul zone — the most dangerous and
+# reward-rich area within the soul regions.
+zone = "soul"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cold — the Wither effect seems to drain heat
+# from the environment, creating a supernaturally cold zone.
+#   0.0 = coldest nether biome, unnatural chill.
+temperature = 0.0
+
+# humidity: Dry but with a sickly organic component from the
+# wither rose pollen and wither skeleton presence.
+#   -0.2 = slightly arid with a withered organic edge.
+humidity = -0.2
+
+# continentalness: Neutral — wither sanctums form within
+# standard soul sand terrain.
+#   0.1 = slight inland placement.
+continentalness = 0.1
+
+# erosion: Low to moderate — the altar formations and wither
+# rose fields create obstacle-rich terrain.
+#   0.35 = moderately cluttered with altars and roses.
+erosion = 0.35
+
+# weirdness: Very high — the natural W-shaped soul sand altars
+# and concentrated wither presence are profoundly unusual.
+#   0.9 = extremely unusual, almost supernatural terrain.
+weirdness = 0.9
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Valley floor — consistent with soul sand valley
+# elevation, with altar formations rising above.
+#   36 = soul valley floor with raised altar structures.
+base-height = 36
+
+# height-variation: Moderate — the altar formations create
+# raised platforms and the terrain between is uneven.
+#   5.0 = moderate variation from altar formations.
+height-variation = 5.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Soul sand — the essential material for wither
+# summoning, forming the altar bases and ground surface.
+top-block = "minecraft:soul_sand"
+
+# filler-block: Netherrack beneath the soul sand.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Deep soul sand — thick deposits around the
+# altar structures.
+#   5 = deep soul sand accumulation at altar bases.
+filler-depth = 5
+
+# underwater-block: Soul sand at lava boundaries.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation beyond wither roses.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No conventional plant life.
+grass-density = 0.0
+
+# flower-density: Wither roses serve as the "flowers" here,
+# but they are categorized as extra features due to their
+# damage mechanic.
+flower-density = 0.0
+
+# extra-features: Wither sanctum specific features.
+#   wither_rose_field — patches of wither roses that inflict
+#     Wither effect on contact, creating damage zones.
+#   soul_sand_altar — W-shaped soul sand formations echoing
+#     the wither summoning pattern.
+#   soul_fire — blue fire on soul soil altar surfaces.
+#   soul_soil_patch — soul soil around altar bases.
+#   bone_block_deposit — skeletal remains near wither activity.
+extra-features = [
+    { feature = "wither_rose_field", density = 8.0 },
+    { feature = "soul_sand_altar", density = 4.0 },
+    { feature = "soul_fire", density = 5.0 },
+    { feature = "soul_soil_patch", density = 3.0 },
+    { feature = "bone_block_deposit", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Maximum wither skeleton density — this is THE skull farming
+# biome. Supporting skeletons add ranged threat.
+[biome.spawning]
+# wither_skeleton: The defining mob of the sanctum. Extremely
+# high density — wither skeletons patrol the altars in large
+# groups, their stone swords inflicting Wither effect. They
+# drop wither skeleton skulls at a 2.5% base rate (5% with
+# Looting III), making this the best farming location.
+wither_skeleton = { weight = 30, min-group = 3, max-group = 6 }
+
+# skeleton: Standard skeletons accompany their wither brethren,
+# providing ranged support with bow attacks.
+skeleton = { weight = 10, min-group = 2, max-group = 4 }
+
+# ghast: Occasional ghast overhead — their fireballs can
+# knock players into wither rose fields.
+ghast = { weight = 5, min-group = 1, max-group = 1 }

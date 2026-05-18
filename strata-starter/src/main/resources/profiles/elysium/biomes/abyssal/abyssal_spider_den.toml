@@ -1,0 +1,156 @@
+# ============================================================
+#  Biome: Abyssal Spider Den — Abyssal Depths
+# ============================================================
+# A nightmarish tangle of cobwebs filling every corridor and
+# chamber. Thick web curtains block passage, forcing players
+# to hack through with swords while cave spiders swarm from
+# hidden spawner blocks embedded in the walls. String tripwires
+# stretch across the floor — step on them and nearby spiders
+# are alerted. The air is thick with particles of silk and
+# dust, visibility is poor, and the skittering of countless
+# legs echoes from every direction. Poison is the primary
+# threat — cave spider bites inflict Poison that can drain
+# health to critical levels in seconds.
+#
+# Gameplay notes:
+#   - DANGER: Cave spider Poison effect is lethal without milk/antidote.
+#   - Cobwebs slow movement dramatically — carry a sword or shears.
+#   - Cave spider spawners can be found and disabled/repurposed.
+#   - String is abundant — useful for wool, bows, and tripwires.
+#   - Spider eyes drop frequently — brewing ingredient.
+#   - Bring milk buckets or golden apples for Poison cure.
+#   - Fire Aspect weapons clear cobwebs and damage spiders.
+#   - Most claustrophobic Abyssal biome — tight corridors.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The spider den is the
+# most hostile non-sculk biome in the Abyssal zone.
+id = "strata:abyssal_spider_den"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Spider Den"
+
+# category: CAVE — underground biome infested with cave
+# spiders and dense cobweb networks.
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Standard underground conditions — spiders are adaptable
+# and thrive in any cave environment. High weirdness
+# reflects the unusual density of web coverage.
+[biome.climate]
+# temperature: Cool — standard cave temperature. Spiders
+# are cold-blooded and unaffected by temperature.
+# 0.3 = normal underground ambient.
+temperature = 0.3
+
+# humidity: Moderate — webs trap some moisture but the
+# overall humidity is average for caves.
+# 0.5 = balanced cave humidity.
+humidity = 0.5
+
+# continentalness: Neutral — spider dens form in any
+# deep cave system with abandoned mineshaft remnants.
+# 0.5 = no continental bias.
+continentalness = 0.5
+
+# erosion: Balanced — the cave tunnels are natural
+# formations that spiders have colonized.
+# 0.5 = standard cave erosion profile.
+erosion = 0.5
+
+# weirdness: Very high — spider dens are rare, specialized
+# biomes. Finding one is memorable (and terrifying).
+# 0.8 = one of the rarest Abyssal biome types.
+weirdness = 0.8
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Mid-depth — spider dens form in the middle
+# band of the Abyssal zone, often near abandoned mineshafts.
+# -30 = roughly 30 blocks below sea level.
+base-height = -30
+
+# height-variation: Low — the tunnels are narrow and
+# consistent, with tight corridors rather than open chambers.
+# 10 = minimal variation; claustrophobic passages.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Cobweb-covered stone with scattered string on the floor.
+[biome.surface]
+# top-block: Stone — the original cave surface, barely
+# visible beneath layers of cobweb.
+top-block = "minecraft:stone"
+
+# filler-block: Deepslate — the cave is deep enough for
+# the stone-deepslate transition.
+filler-block = "minecraft:deepslate"
+
+# filler-depth: Standard rock depth.
+# 3 = typical cave wall composition.
+filler-depth = 3
+
+# underwater-block: Gravel — any rare water pools have
+# simple gravel beds.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Cobwebs, string, and spawner-related features dominate.
+[biome.features]
+# trees: No vegetation in a spider-infested cave.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life survives the web coverage.
+grass-density = 0.0
+
+# flower-density: No flowers under cobwebs.
+flower-density = 0.0
+
+# extra-features: Spider infestation features.
+#   cobweb — dense web curtains blocking corridors and
+#     filling chambers. The defining visual of this biome.
+#   string_tripwire — string stretched across the floor.
+#   cave_spider_spawner — mob spawner blocks embedded in walls,
+#     continuously producing cave spiders.
+#   web_cocoon — decorative wrapped-prey structures hanging
+#     from ceilings and walls.
+extra-features = [
+    { feature = "cobweb", density = 20.0 },
+    { feature = "string_tripwire", density = 8.0 },
+    { feature = "cave_spider_spawner", density = 1.5 },
+    { feature = "web_cocoon", density = 5.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Extremely high spider density. Cave spiders are the
+# dominant mob, supplemented by regular spiders.
+[biome.spawning]
+# cave_spider: The signature threat — small, fast, and
+# venomous. Spawns from both spawner blocks and natural
+# spawning. High weight ensures overwhelming numbers.
+cave_spider = { weight = 25, min-group = 2, max-group = 5 }
+
+# spider: Regular spiders fill out the arachnid population.
+# Larger but less dangerous than cave spiders (no Poison).
+spider = { weight = 10, min-group = 1, max-group = 3 }
+
+# No passive mobs survive in the spider den.
+passive-density-multiplier = 0.0

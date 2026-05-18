@@ -1,0 +1,132 @@
+# ============================================================
+#  Biome: Outer End Island — Outer Islands
+# ============================================================
+# The quintessential outer End island — a flat-topped mass of
+# end stone floating in the void, crowned with clusters of
+# chorus plants. These are the bread-and-butter islands that
+# make up the bulk of the outer End: mid-sized platforms with
+# enough surface area to host chorus forests and the occasional
+# end city. Chorus plants grow in tall, branching columns,
+# their purple fruit providing a reliable (if unpredictable)
+# food source that teleports the eater to a random nearby
+# location. The flat tops make these islands natural landing
+# zones for elytra-equipped players.
+#
+# Gameplay notes:
+#   - Most common outer island type — generates frequently.
+#   - Chorus plants provide chorus fruit (teleport food).
+#   - Chorus flowers can be harvested and replanted.
+#   - Flat tops are good for player bases and farms.
+#   - End cities may generate on larger instances.
+#   - Elytra landing zones — wide enough to glide onto.
+#   - Pairs with outer_end_plateau (larger variant) and
+#     outer_end_bridge (connections between islands).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the standard outer
+# island — the most common biome in the outer End.
+id = "strata:outer_end_island"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Outer End Island"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Outer Islands — the ring of islands beyond the
+# void gap surrounding the central island.
+region = "outer"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Neutral — standard outer End temperature.
+# 0.0 = baseline, no thermal variation from the default.
+temperature = 0.0
+
+# humidity: Slightly elevated — chorus plants introduce
+# trace biological moisture to the otherwise arid End.
+# 0.1 = barely perceptible, but enough to support chorus.
+humidity = 0.1
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.0 = the default outer island variant.
+# This is the standard, most common configuration.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 60 — slightly below central platform
+# height (65). Outer islands float at varying altitudes;
+# 60 is the standard mid-range for generic islands.
+base-height = 60
+
+# height-variation: 10 = moderate variation. Islands have
+# gently rolling surfaces with occasional dips and rises.
+# Enough contour to be visually interesting without making
+# traversal difficult.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — the universal surface material
+# of all End islands.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone throughout the island body.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard island thickness. Provides
+# enough depth for chorus plant roots to anchor.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Chorus plants are the defining vegetation of the outer
+# islands. They grow in branching columns up to 22 blocks
+# tall, with purple chorus flowers at the branch tips.
+[biome.features]
+# end-specific: Chorus plant forests — the signature
+# vegetation of the outer End. These branching structures
+# grow from chorus flowers planted on end stone and can
+# be harvested for chorus fruit and replanted.
+trees = { types = ["chorus_tree"], density = 4.0 }
+
+# grass-density: No grass in the End — chorus plants are
+# the only vegetation.
+grass-density = 0.0
+
+# extra-features: Additional chorus-related decorations.
+#   chorus_cluster — dense groupings of chorus plants in
+#       natural-looking groves.
+extra-features = [
+    { feature = "chorus_cluster", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen roam among the chorus plants. The tall chorus
+# columns provide partial concealment, making encounters
+# more sudden and startling.
+[biome.spawning]
+# enderman: High presence — the outer islands are enderman
+# territory. Chorus plants do not deter them; endermen
+# weave between the columns freely.
+enderman = { weight = 35, min-group = 1, max-group = 4 }

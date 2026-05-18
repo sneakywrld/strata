@@ -1,0 +1,154 @@
+# ============================================================
+#  Biome: Crimson Hoglin Den — Crimson Domain
+# ============================================================
+# A churned and trampled expanse of crimson nylium scarred by
+# the constant passage of hoglin herds. The ground is gouged
+# with hoof marks and littered with stripped crimson fungus
+# stumps — the remains of the hoglins' voracious feeding. This
+# is a hoglin breeding and feeding ground, where the largest
+# herds in the crimson domain congregate around patches of their
+# preferred food source: crimson fungus. The density of hoglins
+# here is extreme — they charge in overlapping waves, their
+# combined knockback creating a deadly pinball effect. Adult
+# hoglins defend hoglin calves aggressively, and the constant
+# grunting and stomping creates an oppressive soundscape. Piglin
+# hunting parties circle the den's perimeter, picking off
+# isolated hoglins but avoiding the main herd.
+#
+# Gameplay notes:
+#   - Extremely dangerous — highest hoglin density anywhere.
+#   - Raw porkchop farming at maximum efficiency.
+#   - Multiple simultaneous hoglin charges = lethal knockback.
+#   - Warped fungus repels hoglins — essential escape tool.
+#   - Piglin hunting groups provide incidental assistance.
+#   - Hoglin breeding with crimson fungus possible at scale.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The hoglin den is the most
+# dangerous crimson biome, defined by extreme hoglin density.
+id = "strata:crimson_hoglin_den"
+
+# display-name: Human-readable name for player displays.
+display-name = "Crimson Hoglin Den"
+
+# category: NETHER — nether environment dominated by hoglin
+# herds and the destruction they cause.
+category = "NETHER"
+
+# zone: Part of the crimson zone — the hoglin heartland of
+# the crimson domain.
+zone = "crimson"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Elevated — the body heat of packed hoglin herds
+# raises the ambient temperature noticeably.
+#   0.65 = warm from concentrated animal body heat.
+temperature = 0.65
+
+# humidity: High — hoglin activity and trampled fungal matter
+# release moisture and organic material into the air.
+#   0.7 = high organic humidity from biological activity.
+humidity = 0.7
+
+# continentalness: Neutral — hoglin dens form in standard
+# mid-level crimson terrain.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Moderate — the terrain is somewhat open to support
+# hoglin herd movement but scarred and uneven from trampling.
+#   0.5 = moderately open, trampled terrain.
+erosion = 0.5
+
+# weirdness: Moderate — the extreme biological activity and
+# terrain scarring create an unusual landscape.
+#   0.4 = notably unusual from hoglin terraforming.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the den occupies typical
+# crimson terrain with surface damage from hoglin activity.
+#   40 = standard nether floor level.
+base-height = 40
+
+# height-variation: Moderate — the hoglin trampling creates
+# uneven terrain with gouges and small mounds.
+#   4.5 = rough, churned terrain from heavy animal traffic.
+height-variation = 4.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Crimson nylium — partially trampled and damaged
+# but still sustaining the fungus the hoglins feed on.
+top-block = "minecraft:crimson_nylium"
+
+# filler-block: Netherrack beneath the damaged nylium.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Reduced huge fungi — many have been stripped and
+# consumed by the hoglin herds. Survivors are battle-scarred.
+#   3.0 = reduced fungi, many consumed or damaged.
+trees = { types = ["crimson_fungus_huge"], density = 3.0 }
+
+# grass-density: Trampled crimson roots — sparse from heavy
+# hoglin foot traffic destroying ground cover.
+#   0.3 = reduced root coverage from trampling.
+grass-density = 0.3
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Hoglin den specific features.
+#   crimson_fungus_small — hoglin food source, heavily grazed.
+#   weeping_vines — vines from remaining fungi overhead.
+#   hoglin_nest — trampled nylium depressions where hoglins
+#     rest and breed, marking herd territory.
+#   nether_wart_block_patch — scattered remnants of consumed
+#     huge fungi caps littering the ground.
+extra-features = [
+    { feature = "crimson_fungus_small", density = 6.0 },
+    { feature = "weeping_vines", density = 4.0 },
+    { feature = "hoglin_nest", density = 3.0 },
+    { feature = "nether_wart_block_patch", density = 5.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The highest hoglin density in the entire Netherveil profile.
+# Piglins circle the perimeter hunting isolated hoglins.
+[biome.spawning]
+# hoglin: Maximum hoglin density — the defining mob of this
+# biome. Massive herds roam the den, charging anything that
+# moves. The overlapping knockback is devastating.
+hoglin = { weight = 30, min-group = 4, max-group = 8 }
+
+# piglin: Hunting parties at the den perimeter, equipped with
+# crossbows and golden swords. They target lone hoglins.
+piglin = { weight = 10, min-group = 2, max-group = 4 }
+
+# zombified_piglin: Occasional presence among the chaos.
+zombified_piglin = { weight = 3, min-group = 1, max-group = 2 }

@@ -1,0 +1,154 @@
+# ============================================================
+#  Biome: Soul Bone Forest — Soul Regions
+# ============================================================
+# A haunting landscape where nether fossil formations are so
+# dense and large they resemble a forest of bone. Massive bone
+# block pillars rise from the soul sand floor like the trunks
+# of skeletal trees, their tops branching into ribcage arches
+# that form a canopy of interlocking bone overhead. Smaller
+# fossil fragments litter the ground between the bone pillars,
+# creating an ossuary landscape of impossible scale. Soul fire
+# burns blue at the base of the bone columns where soul sand
+# has accumulated in the crevices, casting dancing blue shadows
+# up the white bone surfaces. The contrast of blue light on
+# white bone against the dark nether backdrop is striking and
+# deeply unsettling. Skeletons move among the bones as if
+# returning to their origins.
+#
+# Gameplay notes:
+#   - Massive bone block harvesting — bone meal at industrial scale.
+#   - Bone pillar maze — complex navigation between formations.
+#   - Skeleton and wither skeleton encounters among bone columns.
+#   - Soul fire illumination at bone pillar bases.
+#   - Bone arches provide overhead cover from ghast fireballs.
+#   - Nether fossil excavation for complete skeleton displays.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The bone forest features
+# fossil formations so dense they create a skeletal woodland.
+id = "strata:soul_bone_forest"
+
+# display-name: Human-readable name for player displays.
+display-name = "Soul Bone Forest"
+
+# category: NETHER — nether environment defined by massive bone
+# formations and soul-themed ambient effects.
+category = "NETHER"
+
+# zone: Part of the soul zone — the most visually striking
+# variant of soul terrain.
+zone = "soul"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cool — soul sand and bone block both absorb
+# heat, creating a cold, lifeless environment.
+#   0.1 = cold for the nether, bone-chilling atmosphere.
+temperature = 0.1
+
+# humidity: Very dry — bone and soul sand retain no moisture.
+#   -0.5 = completely arid, desiccated environment.
+humidity = -0.5
+
+# continentalness: Neutral — bone forests form within standard
+# soul sand valley terrain.
+#   0.1 = slight inland tendency.
+continentalness = 0.1
+
+# erosion: Low to moderate — the bone pillar formations create
+# cluttered terrain requiring navigation between columns.
+#   0.3 = moderately obstructed by bone formations.
+erosion = 0.3
+
+# weirdness: High — the tree-like bone formations are among
+# the most unusual structures in the nether.
+#   0.7 = highly unusual skeletal tree formations.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Valley floor — the bone forest sits in the
+# soul sand valley depression.
+#   36 = below standard floor, valley terrain.
+base-height = 36
+
+# height-variation: High — the bone pillar formations create
+# significant vertical complexity.
+#   7.0 = dramatic height variation from bone columns.
+height-variation = 7.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Soul sand — the standard soul region surface,
+# accumulating in drifts around the bone pillar bases.
+top-block = "minecraft:soul_sand"
+
+# filler-block: Netherrack beneath the soul sand.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Deep soul sand deposits.
+#   5 = thick soul sand layer in the bone forest.
+filler-depth = 5
+
+# underwater-block: Soul sand at lava boundaries.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation — only bone formations.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life among the bones.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Bone forest specific features.
+#   bone_pillar — tall bone block columns forming the "trees,"
+#     the defining feature of this biome.
+#   nether_fossil — complete fossil structures between pillars.
+#   soul_fire — blue fire at bone pillar bases, illumination.
+#   bone_block_deposit — ground-level bone accumulations.
+#   soul_soil_patch — soul soil around pillar roots.
+extra-features = [
+    { feature = "bone_pillar", density = 8.0 },
+    { feature = "nether_fossil", density = 3.0 },
+    { feature = "soul_fire", density = 4.0 },
+    { feature = "bone_block_deposit", density = 5.0 },
+    { feature = "soul_soil_patch", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Skeletons and wither skeletons among the bone formations.
+# Ghasts are partially blocked by the bone canopy overhead.
+[biome.spawning]
+# skeleton: The primary mob — skeletons patrol the bone forest
+# as if drawn to the skeletal formations. Their ranged attacks
+# weave between bone pillars.
+skeleton = { weight = 15, min-group = 2, max-group = 4 }
+
+# wither_skeleton: Wither skeletons among the bones, their dark
+# forms a stark contrast to the white bone pillars.
+wither_skeleton = { weight = 10, min-group = 1, max-group = 3 }
+
+# ghast: Reduced overhead presence — the bone canopy partially
+# blocks ghast flight paths and fireballs.
+ghast = { weight = 6, min-group = 1, max-group = 1 }
+
+# enderman: Occasional presence among the bone columns.
+enderman = { weight = 3, min-group = 1, max-group = 1 }

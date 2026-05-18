@@ -1,0 +1,164 @@
+# ============================================================
+#  Biome: Fortress Approach — Fortress Domain
+# ============================================================
+# The ominous transition zone surrounding nether fortresses, where
+# the netherrack terrain becomes littered with nether brick rubble
+# and fragments of collapsed fortress architecture. Scattered
+# nether brick blocks, cracked nether bricks, and nether brick
+# fences jut from the netherrack at odd angles, as if the fortress
+# has been slowly expanding and crumbling for millennia. The
+# density of rubble increases toward the fortress itself, creating
+# a gradient from open netherrack to a debris field of ancient
+# construction. Blaze rods glow faintly among the rubble, dropped
+# by blazes that patrol the perimeter. Wither skeletons stand
+# sentinel at intervals, their dark forms silhouetted against the
+# distant fortress silhouette. This biome serves as both a warning
+# and an invitation — the fortress is near, and its guardians
+# are already watching.
+#
+# Gameplay notes:
+#   - Increasing danger gradient toward fortress structures.
+#   - Nether brick collection from rubble (early fortress loot).
+#   - Wither skeleton and blaze encounters before the fortress.
+#   - Rubble provides partial cover for approach tactics.
+#   - Orientation aid — rubble density points toward fortress.
+#   - Preparation zone — assess gear before fortress entry.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the fortress approach.
+# The transition biome surrounding nether fortress structures,
+# marking the beginning of the fortress domain.
+# Format: "strata:<region>_<biome_name>"
+id = "strata:fortress_approach"
+
+# display-name: Human-readable name shown in F3 debug screen,
+# minimap overlays, and /strata biome info commands.
+display-name = "Fortress Approach"
+
+# category: NETHER — nether environment transitioning from
+# natural terrain to fortress architecture.
+category = "NETHER"
+
+# zone: Which Netherveil region this biome belongs to. Must
+# match a zone key defined in zones/zones.toml. The fortress
+# zone governs fortress mob density and structure generation.
+zone = "fortress"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# In the nether, climate axes are repurposed from their
+# overworld meanings. Temperature maps to volcanic heat
+# intensity, humidity to fungal/organic density, and the
+# remaining axes control nether-specific terrain placement.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Standard nether warmth — the fortress rubble
+# doesn't significantly alter the thermal environment.
+#   0.5 = baseline nether temperature.
+temperature = 0.5
+
+# humidity: Dry — the netherrack and nether brick rubble
+# retain no moisture.
+#   -0.1 = slightly dry, inorganic terrain.
+humidity = -0.1
+
+# continentalness: Neutral — fortress approaches form at
+# standard nether levels around fortress structures.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Moderate — the rubble creates uneven terrain but
+# maintains some open space for navigation.
+#   0.4 = moderately rough from scattered rubble.
+erosion = 0.4
+
+# weirdness: Moderate — the artificial rubble mixed with
+# natural terrain creates an unusual landscape.
+#   0.3 = moderately unusual artificial-natural mix.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the approach terrain
+# sits at typical elevation surrounding the fortress.
+#   40 = standard nether floor level.
+base-height = 40
+
+# height-variation: Moderate — rubble piles and collapsed
+# sections create uneven terrain.
+#   5.0 = moderate variation from rubble accumulation.
+height-variation = 5.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Netherrack — the natural surface remains, but
+# is heavily interrupted by nether brick rubble features.
+top-block = "minecraft:netherrack"
+
+# filler-block: Netherrack substrate.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical netherrack substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the fortress approach zone.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on netherrack rubble.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Fortress approach specific features.
+#   nether_brick_rubble — scattered nether brick blocks and
+#     fragments littering the terrain, density increasing
+#     toward the fortress.
+#   cracked_nether_brick_pile — deteriorated brick accumulations.
+#   nether_brick_fence_remnant — broken fence sections.
+#   fire_patch — fire on netherrack near fortress rubble.
+extra-features = [
+    { feature = "nether_brick_rubble", density = 8.0 },
+    { feature = "cracked_nether_brick_pile", density = 4.0 },
+    { feature = "nether_brick_fence_remnant", density = 2.0 },
+    { feature = "fire_patch", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Fortress perimeter guards — wither skeletons and blazes
+# patrol the approach zone.
+[biome.spawning]
+# wither_skeleton: Sentinel patrols around the fortress
+# perimeter. They stand guard at rubble formations, attacking
+# anything that approaches.
+wither_skeleton = { weight = 12, min-group = 1, max-group = 3 }
+
+# blaze: Perimeter blazes — their fire charges light up the
+# rubble field and provide early warning to the fortress.
+blaze = { weight = 8, min-group = 1, max-group = 2 }
+
+# zombified_piglin: Wandering zombie piglins caught in the
+# fortress influence zone.
+zombified_piglin = { weight = 8, min-group = 2, max-group = 4 }
+
+# skeleton: Standard skeletons supporting the fortress garrison.
+skeleton = { weight = 6, min-group = 1, max-group = 2 }

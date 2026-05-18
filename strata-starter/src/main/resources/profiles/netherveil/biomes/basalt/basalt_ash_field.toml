@@ -1,0 +1,149 @@
+# ============================================================
+#  Biome: Basalt Ash Field — Basalt Deltas
+# ============================================================
+# A desolate volcanic plain where gray concrete powder blankets
+# the basalt terrain like volcanic ash from a recent eruption.
+# The ash layer is soft and unstable — it shifts underfoot and
+# collapses into cavities below, creating sinkholes that swallow
+# unwary players. When disturbed, the ash particles billow up
+# in choking clouds before settling again. The gray monochrome
+# landscape is bleak and featureless, stretching in every
+# direction without landmarks or variation. Beneath the ash
+# layer, the basalt substrate is still hot — magma blocks lurk
+# under thin ash crusts, dealing damage when the ash collapses.
+# The ash muffles sound and creates an eerie quiet broken only
+# by the soft hiss of settling particles. This is the aftermath
+# of a nether volcanic event — a gray wasteland of recent
+# geological violence.
+#
+# Gameplay notes:
+#   - Ash sinkhole hazard — ground collapses into magma below.
+#   - Gray concrete powder collectable as building material.
+#   - Flat terrain but deceptively dangerous underfoot.
+#   - Featureless landscape — navigation by coordinates only.
+#   - Ash particles reduce visibility during disturbances.
+#   - Unique monochrome aesthetic for nether builds.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The ash field is a volcanic
+# aftermath biome with unique terrain hazards.
+id = "strata:basalt_ash_field"
+
+# display-name: Human-readable name for player displays.
+display-name = "Basalt Ash Field"
+
+# category: NETHER — nether environment defined by volcanic ash
+# deposits over basalt substrate.
+category = "NETHER"
+
+# zone: Part of the basalt zone — a desolate ash-covered area
+# within the volcanic basalt deltas.
+zone = "basalt"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Warm — the ash insulates residual volcanic heat
+# in the basalt substrate below.
+#   0.7 = warm from trapped volcanic heat beneath the ash.
+temperature = 0.7
+
+# humidity: Extremely dry — the ash absorbs all moisture.
+#   -0.5 = bone-dry volcanic ash field.
+humidity = -0.5
+
+# continentalness: Neutral — ash fields form at standard
+# basalt delta elevations.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Very high — the ash has settled into a flat,
+# featureless plain with no structural terrain.
+#   0.85 = very smooth, flat terrain.
+erosion = 0.85
+
+# weirdness: High — the concrete powder ash layer is a unique
+# terrain material for the nether.
+#   0.6 = highly unusual surface material.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the ash settles at
+# typical elevation.
+#   39 = slightly below standard, settled ash basin.
+base-height = 39
+
+# height-variation: Very low — the ash has settled into a
+# uniform flat layer.
+#   1.5 = nearly flat ash surface.
+height-variation = 1.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Gray concrete powder — representing volcanic ash.
+# Falls when unsupported (gravity block), creating sinkhole
+# mechanics when the block beneath is removed or absent.
+top-block = "minecraft:gray_concrete_powder"
+
+# filler-block: Netherrack beneath the ash and basalt layers.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Moderate — ash layer over basalt substrate.
+#   3 = ash depth before basalt/netherrack substrate.
+filler-depth = 3
+
+# underwater-block: Magma blocks — hidden beneath ash crusts
+# near lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the ash field.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on volcanic ash.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Ash field specific features.
+#   ash_sinkhole — unstable ash over cavities/magma that
+#     collapses when stepped on. Primary terrain hazard.
+#   magma_block_buried — magma blocks beneath thin ash crust.
+#   basalt_exposed — patches where basalt shows through ash.
+#   ash_particle_emitter — ambient ash particle effects.
+extra-features = [
+    { feature = "ash_sinkhole", density = 5.0 },
+    { feature = "magma_block_buried", density = 6.0 },
+    { feature = "basalt_exposed", density = 3.0 },
+    { feature = "ash_particle_emitter", density = 8.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Reduced mob variety — the ash field is a desolate zone.
+[biome.spawning]
+# magma_cube: Magma cubes emerge from beneath the ash layer,
+# their bouncing disturbing the settled surface.
+magma_cube = { weight = 15, min-group = 1, max-group = 3 }
+
+# ghast: Overhead presence in the open, flat terrain. Their
+# fireballs create ash craters and expose magma below.
+ghast = { weight = 8, min-group = 1, max-group = 1 }
+
+# strider: Rare striders near lava pockets at the field edges.
+strider = { weight = 3, min-group = 1, max-group = 1 }

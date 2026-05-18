@@ -1,0 +1,162 @@
+# ============================================================
+#  Biome: Soul Sand Valley — Soul Regions
+# ============================================================
+# A vast, haunted valley carved through the netherrack, its floor
+# blanketed in soul sand that pulls at every step. Massive nether
+# fossil formations — ribcages and skulls of impossible scale —
+# breach the soul sand surface like the bones of buried titans.
+# The air is thick with soul particles that drift upward in
+# ghostly spirals, and soul fire flickers blue on patches of
+# soul soil scattered among the sand. The oppressive silence is
+# broken only by the distant screams of ghasts echoing through
+# the valley, their white forms drifting between the fossil
+# arches high above. Skeletons patrol the bone formations in
+# disciplined ranks, their arrows singing across the open valley
+# floor. Movement through soul sand is agonizingly slow without
+# Soul Speed enchantment, making retreat from threats difficult.
+#
+# Gameplay notes:
+#   - Soul Speed boots essential — soul sand slows movement.
+#   - Ghast fireball threat in the open valley space.
+#   - Skeleton ranged attacks across open terrain.
+#   - Nether fossil bone block harvesting for bone meal.
+#   - Soul sand collection for wither building and bubble columns.
+#   - Soul fire provides blue illumination but deals extra damage.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the soul sand valley.
+# The primary biome of the Soul Regions — a haunted valley
+# of soul sand, fossils, and spectral mob encounters.
+# Format: "strata:<region>_<biome_name>"
+id = "strata:soul_sand_valley"
+
+# display-name: Human-readable name shown in F3 debug screen,
+# minimap overlays, and /strata biome info commands.
+display-name = "Soul Sand Valley"
+
+# category: NETHER — nether environment with soul-themed ambient
+# effects, blue fog tinting, and spectral particle generation.
+category = "NETHER"
+
+# zone: Which Netherveil region this biome belongs to. Must
+# match a zone key defined in zones/zones.toml. The soul zone
+# governs ghast/skeleton density and soul sand coverage.
+zone = "soul"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# In the nether, climate axes are repurposed from their
+# overworld meanings. Temperature maps to volcanic heat
+# intensity, humidity to fungal/organic density, and the
+# remaining axes control nether-specific terrain placement.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Cool for the nether — soul sand absorbs heat,
+# creating an unnaturally cold pocket in the dimension.
+#   0.1 = significantly cooler than standard nether.
+temperature = 0.1
+
+# humidity: Very low — the soul sand is bone-dry, and the
+# atmosphere is arid and lifeless. No organic growth at all.
+#   -0.5 = extremely dry, lifeless environment.
+humidity = -0.5
+
+# continentalness: Negative — soul sand valleys form in low-
+# lying depressions carved into the nether terrain.
+#   -0.3 = valley floor, below surrounding terrain.
+continentalness = -0.3
+
+# erosion: High — the valley is broad and open, providing
+# long sightlines and ghast flight corridors.
+#   0.7 = open, eroded valley terrain.
+erosion = 0.7
+
+# weirdness: Moderate — the soul sand valley is unusual but
+# a recognized nether biome type.
+#   0.3 = moderately unusual terrain.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Low — the valley sits below surrounding terrain,
+# carved as a depression in the nether landscape.
+#   35 = below standard floor, valley depression.
+base-height = 35
+
+# height-variation: Moderate — fossil formations create ridges
+# and the valley walls provide elevation at the boundaries.
+#   5.0 = moderate variation from fossil formations.
+height-variation = 5.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Soul sand — the signature block that slows movement
+# and has a ghostly screaming face texture. Sustains soul fire
+# and is required for wither boss construction.
+top-block = "minecraft:soul_sand"
+
+# filler-block: Netherrack beneath the soul sand layer.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Deep soul sand accumulation.
+#   5 = thick soul sand deposit before netherrack.
+filler-depth = 5
+
+# underwater-block: Soul sand extends beneath lava boundaries.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation — the soul sand valley is completely
+# barren of organic life.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant growth on soul sand.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Soul sand valley specific features.
+#   nether_fossil — massive fossil structures breaching the
+#     soul sand surface, the iconic valley landmark.
+#   soul_fire — blue fire on soul soil patches, providing
+#     eerie illumination and dealing extra damage.
+#   soul_soil_patch — patches of soul soil among the soul sand.
+#   basalt_pillar — occasional basalt columns in the valley.
+extra-features = [
+    { feature = "nether_fossil", density = 4.0 },
+    { feature = "soul_fire", density = 5.0 },
+    { feature = "soul_soil_patch", density = 3.0 },
+    { feature = "basalt_pillar", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The soul sand valley is dominated by ghasts and skeletons.
+# The open terrain makes ghast fireballs especially threatening.
+[biome.spawning]
+# ghast: The dominant airborne threat — ghasts drift through
+# the open valley, their fireballs devastating on the slow-
+# moving soul sand surface. High weight ensures frequent encounters.
+ghast = { weight = 15, min-group = 1, max-group = 2 }
+
+# skeleton: Ground-level ranged threat. Skeletons patrol the
+# fossil formations, firing arrows across the open valley.
+skeleton = { weight = 12, min-group = 2, max-group = 4 }
+
+# enderman: Moderate enderman presence — they stand motionless
+# among the fossils like additional monuments.
+enderman = { weight = 5, min-group = 1, max-group = 2 }

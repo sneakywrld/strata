@@ -1,0 +1,181 @@
+# ============================================================
+#  Biome: Giant Tree — Rare Biomes
+# ============================================================
+# A single, impossibly massive tree dominates the landscape.
+# Its trunk is 5-8 blocks in diameter, rising 40+ blocks
+# before the first branches spread outward into a canopy that
+# shades the entire biome. The root system is visible above
+# ground — thick wooden roots radiate outward like buttresses,
+# creating natural shelters and pathways beneath the tree. The
+# canopy is so dense that the ground below is in perpetual
+# shade, carpeted in moss and fallen leaves. Players who climb
+# the trunk discover a natural platform in the upper branches —
+# a perfect treehouse location with panoramic views of the
+# surrounding terrain.
+#
+# Gameplay notes:
+#   - Massive wood supply from a single tree — 200+ logs.
+#   - Natural treehouse platform in the upper canopy.
+#   - Roots create sheltered alcoves — instant starter base.
+#   - The canopy shades the ground enough for hostile mobs
+#     to spawn beneath by day — stay alert.
+#   - Climbing the trunk requires scaffolding, vines, or
+#     creative block placement.
+#   - The tree is visible from great distance — a landmark.
+#   - Extremely rare: weirdness 0.98 makes this one of the
+#     rarest features in Elysium.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Rare biomes use the
+# "rare_" prefix to signal their exceptional scarcity.
+id = "strata:rare_giant_tree"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Giant Tree"
+
+# category: FOREST — the biome is defined by its single
+# massive tree. FOREST enables tree-related ambient sounds,
+# leaf particle effects, and the dense-canopy shade mechanics
+# that allow hostile spawns beneath the canopy.
+category = "FOREST"
+
+# zone: "rare" — rare biomes generate wherever their extreme
+# weirdness threshold is met, regardless of zone.
+zone = "rare"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Temperate and moderately humid — conditions that support a
+# massive tree's growth. The extreme weirdness is the key
+# parameter controlling rarity.
+[biome.climate]
+# temperature: 0.5 = temperate. The giant tree thrives in
+# mild conditions — warm enough for year-round growth but
+# not so hot that it stresses the massive canopy.
+temperature = 0.5
+
+# humidity: 0.6 = moderately humid. The tree requires
+# significant moisture to sustain its enormous canopy. The
+# shade it creates traps humidity beneath, creating a damp
+# microclimate.
+humidity = 0.6
+
+# continentalness: 0.5 = moderately inland. The tree grows
+# in sheltered interior terrain, protected from coastal storms
+# that would damage its massive canopy.
+continentalness = 0.5
+
+# erosion: 0.5 = moderate. The root system stabilizes the
+# soil, preventing erosion directly beneath the tree while
+# the surrounding terrain maintains normal erosion patterns.
+erosion = 0.5
+
+# weirdness: 0.98 = almost maximum rarity. The giant tree is
+# one of the rarest features in Elysium — a true once-in-a-
+# world discovery. Players who find one have encountered
+# something genuinely special.
+weirdness = 0.98
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5 = slightly elevated. The tree stands on a
+# gentle rise, making it visible from even greater distances.
+# The raised mound is partially formed by the root system
+# pushing the earth upward.
+# Range: -64.0 to 256.0
+base-height = 5
+
+# height-variation: 3 = gentle. The root buttresses create
+# subtle elevation changes around the trunk, but the overall
+# terrain is smooth — a gentle mound centered on the tree.
+# Range: 0.0 to 30.0
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Lush grass under the canopy, with thick moss cover near
+# the trunk where shade is deepest.
+[biome.surface]
+# top-block: Grass block — lush, well-watered grass sustained
+# by the moisture trapped beneath the canopy. The shade gives
+# it a deep green, forest-floor character.
+top-block = "minecraft:grass_block"
+
+# filler-block: Rich dirt bound together by the tree's
+# extensive root network. Digging in this biome means cutting
+# through roots.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 4 = deep topsoil. Centuries of leaf fall have
+# built up a thick, fertile layer of forest humus.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Dirt in any root-hollow pools — small
+# pockets of water collected between the massive roots.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# The giant tree itself is the primary feature. The understory
+# is moss and fern with no competing trees — the canopy blocks
+# too much light for other trees to grow.
+[biome.features]
+# trees: The giant tree is placed as a single custom feature.
+# No standard trees grow beneath its canopy — they cannot
+# compete for light.
+#   types: "mega_oak" — custom giant tree definition.
+#   density: 0.1 = single tree per biome instance.
+trees = { types = ["mega_oak"], density = 0.1 }
+
+# grass-density: Moderate ground cover in the shade. The
+# canopy provides protection but limits light.
+# Range: 0.0 to 100.0
+grass-density = 15.0
+
+# flower-density: Low. Shade-tolerant flowers only — not
+# enough light for most species.
+# Range: 0.0 to 15.0
+flower-density = 1.0
+
+# extra-features: Moss, ferns, and fallen leaves carpet
+# the ground beneath the massive canopy.
+extra-features = [
+    # Moss carpet on the root buttresses and surrounding ground.
+    { feature = "moss_carpet", density = 5.0 },
+    # Fern clusters in the shade — lush understory.
+    { feature = "fern", density = 4.0 },
+    # Brown mushrooms thriving in the deep shade near the trunk.
+    { feature = "brown_mushroom", density = 2.0 },
+    # Bee nests high in the giant tree's branches.
+    { feature = "bee_nest", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The deep shade beneath the canopy allows hostile spawns
+# during the day. Peaceful forest mobs also inhabit the
+# sheltered understory.
+[biome.spawning]
+# Fox: Shelter in the root hollows, coming out to forage
+# at dawn and dusk.
+fox = { weight = 8, min-group = 1, max-group = 2 }
+
+# Bee: Inhabit nests in the upper canopy. Buzz between the
+# branches pollinating the massive tree's flowers.
+bee = { weight = 6, min-group = 1, max-group = 3 }
+
+# Spider: Spin webs between the root buttresses. The shade
+# allows daytime spawning near the trunk.
+spider = { weight = 8, min-group = 1, max-group = 2 }

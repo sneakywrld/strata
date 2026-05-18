@@ -1,0 +1,134 @@
+# ============================================================
+#  Biome: Verdant River Valley — Verdant Expanse
+# ============================================================
+# A wide, lush river valley carved through the Verdant Expanse.
+# Sandy banks slope gently down to clear water, with sugar cane
+# growing tall along the edges and lily pads dotting calm pools.
+# This biome forms naturally along Strata's drainage-basin river
+# systems, creating fertile corridors through the landscape.
+#
+# Gameplay: Sugar cane farming, fishing, clay gathering. Rivers
+# serve as natural highways for boat travel. Sandy banks provide
+# easy access to water. Lily pads indicate shallow, safe fording
+# points. Salmon and cod spawn abundantly here.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. River biomes in Strata can
+# interact with the water system (water/rivers.toml) for dynamic
+# flow placement.
+id = "strata:verdant_river_valley"
+
+# display-name: Shown in debug screen and minimap overlays.
+display-name = "Verdant River Valley"
+
+# category: RIVER category enables river-specific features:
+# salmon spawning, drowned mob spawning at night, sugar cane
+# placement near water edges, and river structure generation.
+category = "RIVER"
+
+# zone: Part of the Verdant Expanse zone (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.5 = mild. River valleys in temperate regions
+# have stable temperatures moderated by water mass.
+temperature = 0.5
+
+# humidity: 0.6 = elevated moisture. The river itself adds
+# local humidity, supporting denser vegetation on its banks.
+humidity = 0.6
+
+# continentalness: 0.4 = moderately inland. Rivers exist across
+# all continental positions, but this valley variant is inland.
+continentalness = 0.4
+
+# erosion: 0.7 = heavily eroded. Water erosion over time has
+# carved a wide, low-lying valley — flatter than forests but
+# not as perfectly flat as plains.
+erosion = 0.7
+
+# weirdness: -0.1 = very slightly unusual. The negative value
+# nudges this biome toward generating in natural low points
+# where rivers would realistically carve valleys.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 1 block above sea level. River valleys sit low
+# in the landscape, just barely above the water line. This
+# ensures the river channel itself cuts below sea level.
+base-height = 1
+
+# height-variation: 0.8 = gentle banks. The terrain slopes
+# gradually from the valley edges down to the river channel,
+# creating natural sandy beaches and wadeable shallows.
+height-variation = 0.8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass on the valley slopes above the waterline.
+top-block = "minecraft:grass_block"
+
+# filler-block: Sand subsoil — river sediment deposited over
+# geological time. Exposed on the banks near the waterline.
+filler-block = "minecraft:sand"
+
+# filler-depth: 4 blocks of sand. Deeper than standard dirt
+# fill because river sediment accumulates in valleys.
+filler-depth = 4
+
+# underwater-block: Sand for the river bed itself. Consistent
+# with the sandy bank theme and provides clay-hunting potential
+# (clay generates as patches within sand underwater).
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Sparse willowy trees along the bank. Oaks only —
+# birch prefers drier soil in this configuration.
+#   density 1.0 = very scattered, preserving the open valley feel.
+trees = { types = ["oak"], density = 1.0 }
+
+# grass-density: 25.0 = moderate grass on the upper banks.
+# Less than plains because sandy soil supports less growth.
+grass-density = 25.0
+
+# flower-density: 1.5 = sparse wildflowers on the banks.
+# Rivers are more about reeds and aquatic plants than flowers.
+flower-density = 1.5
+
+# extra-features: River-specific vegetation and aquatic plants.
+extra-features = [
+    # Sugar cane grows naturally along waterline — 3 blocks tall.
+    { feature = "sugar_cane", density = 8.0 },
+    # Lily pads on calm water surface — visual indicator of shallow areas.
+    { feature = "lily_pad", density = 5.0 },
+    # Clay patches generate in the river bed — useful for bricks.
+    { feature = "clay_deposit", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# River valleys have enhanced aquatic spawns and reduced
+# land-based spawns due to the narrow land area.
+[biome.spawning]
+# Salmon are the primary river fish — spawn in schools.
+salmon = { weight = 20, min-group = 2, max-group = 5 }
+# Frogs inhabit river banks, especially near lily pads.
+frog = { weight = 8, min-group = 2, max-group = 4 }
+# Drowned spawn at night in river water — the primary aquatic threat.
+drowned = { weight = 15, min-group = 1, max-group = 2 }

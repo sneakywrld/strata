@@ -1,0 +1,162 @@
+# ============================================================
+#  Biome: Rift Canyon — The Shattered Reach
+# ============================================================
+# A yawning chasm torn into the earth by dimensional forces, so deep
+# that bedrock walls are exposed on both sides. The canyon floor sits
+# far below sea level, shrouded in thick void fog that rises in lazy
+# coils. The walls are striated layers of deepslate, end stone, and
+# raw bedrock — a geological cross-section of reality itself being
+# pulled apart. Sound behaves strangely here: echoes arrive before
+# the original noise, and whispers seem to drift up from the fog.
+# The Rift Canyon is the wound in the world that started it all.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier for generator placement, region maps,
+# and biome-transition configurations.
+id = "strata:shattered_rift_canyon"
+
+# Human-readable name shown in debug screens and admin commands.
+display-name = "Rift Canyon"
+
+# CUSTOM category — bespoke canyon carver and negative-height terrain
+# generation. No vanilla equivalent.
+category = "CUSTOM"
+
+# Part of the Shattered Reach endgame zone. The Rift Canyon is the
+# origin point of the dimensional collapse — the literal crack
+# between worlds.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.0, freezing. Deep in the rift, no sunlight reaches
+# the floor. The air is cold, still, and heavy with dimensional
+# static.
+temperature = 0.0
+
+# Humidity — 0.0, utterly dry. The void fog is not moisture — it is
+# dimensional bleed. No water exists at these depths.
+humidity = 0.0
+
+# Continentalness — 0.3, toward the edge. The Rift Canyon forms
+# where the landmass is weakest, typically at tectonic or
+# dimensional stress boundaries.
+continentalness = 0.3
+
+# Erosion — -0.5, moderately negative. The canyon was carved by
+# dimensional force rather than water or wind — the walls are
+# fractured but not smoothed.
+erosion = -0.5
+
+# Weirdness — 0.9, extremely high. Exposed bedrock, void fog, and
+# reversed echoes push this biome deep into alien territory.
+weirdness = 0.9
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — -40, far below sea level. The canyon floor sits
+# deep underground, accessible only by descending the walls or
+# falling. This extreme negative height creates the chasm effect.
+base-height = -40
+
+# Height variation — 10 blocks. The canyon floor is relatively
+# level — the drama comes from the sheer depth, not from floor
+# undulation. Slight variation creates rubble piles and ledges.
+height-variation = 10
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — deepslate. At these depths, deepslate is the natural
+# surface material. The canyon floor is dark, dense, and oppressive.
+top-block = "minecraft:deepslate"
+
+# Filler block — deepslate continues below. Pockets of end_stone
+# and bedrock intrude via the feature layer, but the dominant
+# underground material is deep, compressed stone.
+filler-block = "minecraft:deepslate"
+
+# Filler depth — 10 blocks. Thick deepslate layer before the
+# generator transitions to bedrock-adjacent materials. The depth
+# justifies an unusually deep filler.
+filler-depth = 10
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Exposed bedrock walls — streaks of bedrock_block visible in the
+# canyon walls, normally hidden deep underground but exposed here
+# by the dimensional rift. Unmistakable visual signal of depth.
+exposed-bedrock = true
+
+# Void fog — thick, dark particle fog filling the canyon floor
+# and rising to about 20 blocks above it. Reduces visibility to
+# 8 blocks at floor level, creating claustrophobic tension.
+void-fog = true
+
+# End stone intrusions — veins and pockets of end_stone punching
+# through the deepslate walls, glowing faintly with dimensional
+# energy. The rift is where the End bleeds through most directly.
+end-stone-intrusions = true
+
+# Rift crystals — large, raw amethyst_cluster formations growing
+# from the canyon walls at regular intervals, resonating with the
+# dimensional energy. Serve as light sources in the fog.
+rift-crystals = true
+
+# Hanging chain formations — long vertical chains of chain_block
+# dangling from the canyon rim, some reaching nearly to the floor.
+# Origin unknown — possibly anchors for structures that fell.
+hanging-chains = true
+
+# Dimensional whisper particles — ambient reverse-echo sound
+# effects and soul-type particles drifting upward from the floor.
+# Pure atmosphere — no gameplay effect, maximum unease.
+whisper-particles = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Endermen congregate in the rift, drawn to the dimensional wound
+# like moths to a flame. They stand motionless in the fog until
+# disturbed.
+enderman = 65
+
+# Warden — the deep sculk-adjacent environment and vibration-rich
+# fog make the canyon a natural Warden habitat. Rare but terrifying.
+warden = 3
+
+# Cave spiders thrive in the crevices and rubble of the canyon
+# walls, adding poison damage to the already dangerous descent.
+cave_spider = 30
+
+# Phantoms swoop through the canyon airspace between the rims,
+# attacking players on exposed ledges during the climb down.
+phantom = 25
+
+# Skeletons occupy ledges along the canyon walls, firing down
+# at players on the floor — positional advantage makes them
+# especially lethal.
+skeleton = 25
+
+# Creepers lurk in the void fog at floor level, invisible until
+# they are already hissing. The fog makes them far more dangerous
+# than in any other biome.
+creeper = 20

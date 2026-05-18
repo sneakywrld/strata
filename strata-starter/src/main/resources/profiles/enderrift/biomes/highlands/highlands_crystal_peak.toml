@@ -1,0 +1,143 @@
+# ============================================================
+#  Biome: Highlands Crystal Peak — End Highlands
+# ============================================================
+# The tallest formations in the End highlands — jagged peaks
+# of end stone crowned with clusters of amethyst geodes and
+# end crystal-like formations. The crystal clusters catch and
+# refract the dim End light, creating prismatic glimmers
+# visible from great distances across the void. The peaks
+# themselves are steep and treacherous, their faces nearly
+# vertical in places. At the summit, exposed amethyst clusters
+# grow from geode cavities in the end stone, surrounded by
+# calcite and smooth basalt shells. End crystals (non-healing,
+# decorative variants) float near some peaks, their pulsing
+# beams adding to the ethereal light show.
+#
+# Gameplay notes:
+#   - TALLEST biome in the End highlands (base 90, var 20).
+#   - Peaks can reach Y 110+ — dramatic skyline features.
+#   - Amethyst clusters are harvestable for amethyst shards.
+#   - Amethyst geode cavities may contain budding amethyst.
+#   - Steep terrain — climbing gear or elytra recommended.
+#   - Decorative end crystals (non-functional, no healing).
+#   - Spectacular views from the summit.
+#   - Pairs with highlands_purpur_ridge (adjacent ridge) and
+#     highlands_obsidian_spire (similar verticality).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the crystal-capped
+# peaks in the End highlands.
+id = "strata:highlands_crystal_peak"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Crystal Peak"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Highlands region.
+region = "highlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cold — extreme altitude and exposure.
+# -0.3 = significantly colder than lowland End biomes.
+# The crystal formations seem to radiate cold.
+temperature = -0.3
+
+# humidity: Low — altitude strips moisture. 0.0 = bone-
+# dry at peak elevation.
+humidity = 0.0
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.5 = high weirdness. Crystal peaks are
+# rare, dramatic formations. The amethyst growths are
+# anomalous in the End, reflected in elevated weirdness
+# that limits generation frequency.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 90 — extremely elevated. The crystal peaks
+# are the tallest natural terrain in the highlands. With
+# height-variation of 20, peaks can reach Y 110 while
+# valleys between peaks dip to Y 70.
+base-height = 90
+
+# height-variation: 20 = very high variation. The terrain
+# is aggressively vertical — steep peaks, narrow saddles,
+# and deep notches. This creates the jagged skyline
+# silhouette that defines the biome from a distance.
+height-variation = 20
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — the base material. Crystal
+# formations are feature-placed on top of the surface,
+# not the surface itself.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone beneath the surface. Geode
+# cavities are carved by the feature generator, not
+# the surface system.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard depth. The peaks are solid
+# end stone with crystal features embedded on top.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Amethyst clusters, geode cavities, and decorative end
+# crystals define this biome's visual identity. Chorus
+# plants grow sparingly on lower slopes.
+[biome.features]
+# end-specific: Crystal formations are the star feature.
+# Amethyst geodes open on the surface, exposing clusters
+# of amethyst that can be harvested. Decorative end
+# crystals float near the summits.
+trees = { types = ["chorus_tree"], density = 1.0 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Crystal and amethyst formations.
+#   amethyst_surface_geode — open geode cavities exposing
+#       amethyst clusters, budding amethyst, and calcite.
+#   end_crystal_decorative — floating end crystals near
+#       peaks (non-functional, no dragon healing).
+#   amethyst_cluster_surface — loose amethyst cluster
+#       blocks growing directly on end stone.
+extra-features = [
+    { feature = "amethyst_surface_geode", density = 2.0 },
+    { feature = "end_crystal_decorative", density = 1.0 },
+    { feature = "amethyst_cluster_surface", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen are sparse at peak elevation — the steep
+# terrain limits valid spawn surfaces.
+[biome.spawning]
+# enderman: Reduced presence — the steep, narrow peaks
+# provide limited flat spawn surface. Endermen that do
+# spawn are typically on saddle terrain between peaks.
+enderman = { weight = 20, min-group = 1, max-group = 2 }

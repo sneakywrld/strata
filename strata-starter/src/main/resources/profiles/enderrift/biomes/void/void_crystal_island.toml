@@ -1,0 +1,165 @@
+# ============================================================
+#  Biome: Void Crystal Island — Void Islands
+# ============================================================
+# A spectacular floating island composed primarily of amethyst
+# blocks and end stone, glittering against the dark void. The
+# surface is a mosaic of purple crystal and pale stone, with
+# amethyst clusters bristling from every exposed face. The
+# island floats higher than most, catching whatever ambient
+# light the End provides and refracting it into prismatic
+# sparkles visible from great distances.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:void_crystal_island"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Crystal Island"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "END"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "void"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing, 0.0 = temperate,
+# 1.0 = scorching. -0.3 = cold, the crystal mass radiates a
+# sharp crystalline chill.
+temperature = -0.3
+
+# humidity: Moisture axis. -1.0 = parched, 0.0 = moderate,
+# 1.0 = soaking. -0.4 = dry, crystals do not retain moisture.
+humidity = -0.4
+
+# continentalness: Land-mass axis. -1.0 = deep void, 0.0 = island edge,
+# 1.0 = island center. 0.2 = small-to-medium island, the crystal
+# formation is compact but solid.
+continentalness = 0.2
+
+# erosion: Terrain roughness axis. -1.0 = steep cliffs,
+# 0.0 = moderate, 1.0 = flat. -0.2 = moderately rough, the
+# crystal formations create angular, faceted terrain.
+erosion = -0.2
+
+# weirdness: Variant axis. -1.0 = normal, 1.0 = bizarre mutation.
+# 0.8 = very weird — an island made primarily of amethyst is one
+# of the most exotic formations in Enderrift.
+weirdness = 0.8
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The Y-level of the island surface. 70 is elevated —
+# crystal islands float higher than typical void islands, giving
+# them a majestic, elevated presence.
+# Range: 0 to 256
+base-height = 70
+
+# height-variation: Controls terrain undulation. 15 is high —
+# the crystal formations create dramatic peaks and spires with
+# deep faceted valleys between them.
+# Range: 0 (flat) to 30 (extreme peaks)
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules for this biome specifically.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Amethyst block — the island's surface is crystalline, giving
+# it the distinctive purple appearance visible from afar.
+top-block = "minecraft:amethyst_block"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. End stone beneath the amethyst surface layer —
+# the crystal formation is a shell over an end stone core.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 5 — reasonable island depth.
+# Range: 1 to 8
+filler-depth = 5
+
+# underwater-block: Fallback block for any liquid body beds.
+# No water in the End; end_stone as defensive default.
+underwater-block = "minecraft:end_stone"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation.
+[biome.features]
+# chorus-density: Chorus plant placements per chunk.
+# Range: 0.0 to 10.0.
+# 0.5 — sparse chorus. A few hardy plants grow from cracks in the
+# crystal surface, their purple complementing the amethyst.
+chorus-density = 0.5
+
+# chorus-flower-chance: Probability of flower atop chorus plants.
+# 0.4 — moderate flowering on the few plants present.
+# Range: 0.0 to 1.0
+chorus-flower-chance = 0.4
+
+# crystal-chance: Per-position probability of amethyst clusters.
+# 0.1 — maximum crystal density. Every surface bristles with
+# amethyst clusters in all growth stages, making this the most
+# crystal-rich biome in Enderrift.
+# Range: 0.0 to 0.1
+crystal-chance = 0.1
+
+# crystal-types: Types of amethyst formations to generate.
+# All stages present for rich visual variety.
+crystal-types = ["minecraft:small_amethyst_bud", "minecraft:medium_amethyst_bud", "minecraft:large_amethyst_bud", "minecraft:amethyst_cluster"]
+
+# end-rod-chance: Per-position probability of decorative end rods.
+# 0.005 — moderate rods that look like crystallized light spires
+# among the amethyst formations.
+# Range: 0.0 to 0.05
+end-rod-chance = 0.005
+
+# obsidian-patches: Number of obsidian patches per chunk.
+# 0.0 — no obsidian on the crystal island; pure amethyst and end stone.
+# Range: 0.0 to 2.0
+obsidian-patches = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml.
+[biome.spawning]
+# enderman: Reduced presence. The crystal resonance creates a
+# frequency that endermen find uncomfortable, limiting their
+# time on the island.
+# weight: Relative spawn chance (global default is 100).
+enderman = { weight = 50, min-group = 1, max-group = 2 }
+
+# shulker: No shulkers on the natural crystal island.
+shulker = { weight = 0, min-group = 0, max-group = 0 }
+
+# endermite: Slightly elevated. Endermites seem attracted to the
+# crystal vibrations.
+endermite = { weight = 4, min-group = 1, max-group = 2 }

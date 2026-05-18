@@ -1,0 +1,106 @@
+# ============================================================
+#  Terrain Density Configuration — Elysium Overworld
+# ============================================================
+# Controls how 3D terrain shape is generated. The density function
+# determines where solid blocks (stone) exist vs. air/water.
+#
+# A positive density value = solid block. Negative = air.
+# The density function is evaluated at every (x, y, z) during terrain shaping.
+#
+# The overall formula is roughly:
+#   density(x,y,z) = base_density(y) + terrain_noise(x,z) * height_factor(y)
+#                    + 3d_variation(x,y,z) * variation_scale
+#
+# Tweaking these values changes the fundamental shape of your world.
+# ============================================================
+
+[density]
+# -------------------------------------------------------
+# Base Density Curve
+# -------------------------------------------------------
+# The base density determines the "default" solid/air threshold.
+# At sea level, density transitions from positive (solid) to negative (air).
+# Below sea level: strongly positive (always solid).
+# Above sea level: increasingly negative (usually air).
+
+# base-offset: Shifts the entire density curve up or down.
+# Positive values = more land above sea level.
+# Negative values = more water/caves.
+# Default: 0.0. Range: -1.0 to 1.0
+base-offset = 0.0
+
+# height-factor: How strongly Y-level affects density.
+# Higher values = sharper transition from solid to air.
+# Lower values = smoother, more gradual transitions (flatter terrain).
+# Default: 1.0. Range: 0.1 to 5.0
+height-factor = 1.0
+
+# y-scale: Vertical compression/stretching of the density function.
+# Values > 1.0 compress terrain vertically (shorter hills).
+# Values < 1.0 stretch terrain vertically (taller features).
+# Default: 1.0. Range: 0.25 to 4.0
+y-scale = 1.0
+
+# -------------------------------------------------------
+# 3D Variation (Overhangs & Caves)
+# -------------------------------------------------------
+# Adds 3D noise to create overhangs, arches, and natural-looking
+# terrain features. Without this, terrain would be a simple heightmap.
+
+# variation-scale: How much 3D noise affects the density.
+# 0.0 = pure heightmap (no overhangs). 1.0 = heavy 3D variation.
+# Default: 0.15. Range: 0.0 to 1.0
+variation-scale = 0.15
+
+# variation-noise: Which noise function to use for 3D variation.
+# References a function defined in noise/functions.toml.
+variation-noise = "strata:terrain_3d"
+
+# -------------------------------------------------------
+# Vertical Density Gradient
+# -------------------------------------------------------
+# Defines how density changes with Y-level. This creates the
+# fundamental "ground at sea level" effect.
+
+# gradient-start-y: Y-level where density starts transitioning.
+# Below this, density is always positive (solid).
+# Default: -64 (world bottom)
+gradient-start-y = -64
+
+# gradient-end-y: Y-level where density reaches its minimum.
+# Above this, density is always negative (air) unless terrain noise adds to it.
+# Default: 128
+gradient-end-y = 128
+
+# gradient-curve: Shape of the density gradient.
+# "linear" = even transition. "smooth" = smoothstep (more natural).
+# "steep" = sharp transition (creates plateaus).
+# Default: "smooth"
+gradient-curve = "smooth"
+
+# -------------------------------------------------------
+# Continental Influence
+# -------------------------------------------------------
+# How continental shape noise affects terrain density.
+# High continentalness = inland, raised terrain.
+# Low continentalness = ocean, depressed terrain.
+
+# continental-weight: How strongly continentalness affects base height.
+# Default: 0.8. Range: 0.0 to 2.0
+continental-weight = 0.8
+
+# continental-noise: Reference to the continentalness noise function.
+continental-noise = "strata:continentalness"
+
+# -------------------------------------------------------
+# Erosion Influence
+# -------------------------------------------------------
+# Erosion controls terrain roughness. High erosion = flat.
+# Low erosion = mountainous and rugged.
+
+# erosion-weight: How strongly erosion smooths terrain.
+# Default: 0.6. Range: 0.0 to 2.0
+erosion-weight = 0.6
+
+# erosion-noise: Reference to the erosion noise function.
+erosion-noise = "strata:erosion"

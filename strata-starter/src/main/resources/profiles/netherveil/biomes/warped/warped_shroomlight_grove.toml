@@ -1,0 +1,148 @@
+# ============================================================
+#  Biome: Warped Shroomlight Grove — Warped Domain
+# ============================================================
+# A brilliantly illuminated pocket of the warped forest where
+# shroomlight blocks are concentrated in extraordinary density.
+# Every huge warped fungus canopy blazes with embedded shroomlight,
+# and additional clusters hang from the nether ceiling above,
+# bathing the entire area in a warm amber-teal glow. The light
+# level is high enough to completely suppress hostile spawns on
+# the ground, making this one of the safest areas in the nether.
+# The warped nylium floor is fully visible for the first time —
+# its intricate teal patterns normally lost in the dim forest
+# glow are revealed in sharp detail. Nether sprouts glow softly
+# in the reflected light, and the warped spore particles catch
+# the illumination like floating embers. The grove has an almost
+# sacred quality — a luminous sanctuary in the hostile nether.
+#
+# Gameplay notes:
+#   - Premier shroomlight harvesting location — bring Silk Touch.
+#   - High light level suppresses hostile mob spawns.
+#   - Excellent visibility — safest exploration conditions.
+#   - Warped wood and shroomlight for building material.
+#   - Natural torch-free illumination for nearby builds.
+#   - Endermen still present but easier to spot and avoid.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The shroomlight grove is
+# the brightest and most resource-rich warped variant.
+id = "strata:warped_shroomlight_grove"
+
+# display-name: Human-readable name for player displays.
+display-name = "Warped Shroomlight Grove"
+
+# category: NETHER — nether environment with exceptional natural
+# illumination from dense shroomlight formations.
+category = "NETHER"
+
+# zone: Part of the warped zone — a luminous pocket within
+# the warped domain.
+zone = "warped"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly warm — the dense shroomlight emits
+# gentle heat that raises the ambient temperature slightly.
+#   0.35 = mild warmth from concentrated shroomlight.
+temperature = 0.35
+
+# humidity: Moderate to high — the well-lit fungal growth
+# maintains significant organic presence.
+#   0.6 = moderate-high organic density in the lit grove.
+humidity = 0.6
+
+# continentalness: Neutral — shroomlight groves appear within
+# standard warped forest terrain.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Moderate to high — the terrain is relatively open,
+# allowing the light to reach the floor.
+#   0.6 = open terrain beneath the glowing canopy.
+erosion = 0.6
+
+# weirdness: Moderate — the concentrated shroomlight creates
+# an unusually bright environment for the nether.
+#   0.4 = notably unusual illumination levels.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the grove sits at
+# typical elevation with the canopy providing the spectacle.
+#   40 = standard nether floor level.
+base-height = 40
+
+# height-variation: Low — the floor is relatively smooth,
+# fully illuminated and visible.
+#   2.5 = gentle terrain, clearly visible in the bright light.
+height-variation = 2.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Warped nylium — fully visible in the bright light,
+# its teal patterns clearly defined.
+top-block = "minecraft:warped_nylium"
+
+# filler-block: Netherrack beneath the nylium.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Dense huge warped fungi with maximum shroomlight
+# content in their canopies — the primary light source.
+#   7.0 = high density of shroomlight-rich fungi.
+trees = { types = ["warped_fungus_huge"], density = 7.0 }
+
+# grass-density: Dense nether sprouts and warped roots visible
+# in the full illumination.
+#   0.6 = moderate ground cover, fully visible.
+grass-density = 0.6
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Shroomlight grove specific features.
+#   shroomlight_cluster — extremely dense ceiling shroomlight,
+#     the defining feature of this biome. Maximum density.
+#   nether_sprouts — dense teal vegetation on the bright floor.
+#   twisting_vines — vines catching the light as they grow.
+#   warped_fungus_small — small fungi on the illuminated floor.
+extra-features = [
+    { feature = "shroomlight_cluster", density = 14.0 },
+    { feature = "nether_sprouts", density = 7.0 },
+    { feature = "twisting_vines", density = 4.0 },
+    { feature = "warped_fungus_small", density = 4.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# High light level suppresses most hostile spawns. Endermen
+# are easier to see and avoid in the brightness.
+[biome.spawning]
+# enderman: Reduced density — the bright light makes them
+# more visible but also slightly less likely to congregate.
+enderman = { weight = 12, min-group = 1, max-group = 2 }
+
+# strider: Occasional strider near lava pools.
+strider = { weight = 3, min-group = 1, max-group = 1 }

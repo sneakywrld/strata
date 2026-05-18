@@ -1,0 +1,174 @@
+# ============================================================
+#  Biome: Nether Wastes — Nether Wastes Region
+# ============================================================
+# The classic netherrack wasteland — an endless expanse of rough
+# red stone stretching in every direction, broken only by lava
+# pools and towering netherrack formations. Zombie piglins
+# wander in aimless herds, their grunts echoing through the
+# cavern, while the distant wails of ghasts drift down from
+# the ceiling far above. This is the default nether biome,
+# the baseline against which all other nether environments
+# are measured. Unremarkable but relentless in its hostility.
+#
+# Gameplay notes:
+#   - Starting nether biome — moderate difficulty.
+#   - Zombie piglin herds neutral unless provoked.
+#   - Ghasts patrol overhead — ranged fireball threat.
+#   - Lava pools are the primary terrain hazard.
+#   - Gold nugget drops from zombie piglins for bartering.
+#   - Nether quartz ore exposed in netherrack walls.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for this biome. The nether
+# wastes is the most common biome in the Netherveil profile,
+# serving as the baseline nether environment.
+# Format: "strata:<region>_<biome_name>"
+id = "strata:nether_wastes"
+
+# display-name: Human-readable name shown in F3 debug screen,
+# minimap overlays, and /strata biome info commands.
+display-name = "Nether Wastes"
+
+# category: The vanilla biome category. NETHER enables nether
+# ambient sounds (distant ghast cries, rumbling), red fog
+# coloring, and nether-specific mob spawning rules.
+category = "NETHER"
+
+# zone: Which Netherveil region this biome belongs to. Must
+# match a zone key defined in zones/zones.toml. Controls
+# regional difficulty scaling and mob density multipliers.
+zone = "wastes"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# In the nether, climate axes are repurposed from their
+# overworld meanings. Temperature maps to volcanic heat
+# intensity, humidity to fungal/organic density, and the
+# remaining axes control nether-specific terrain placement.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Volcanic heat intensity in the nether.
+#   -1.0 = cool soul sand regions, 0.0 = moderate, 1.0 = magma deltas.
+#   0.5 = standard nether warmth — hot but not extreme. The
+#   baseline temperature for the default nether wasteland.
+temperature = 0.5
+
+# humidity: Fungal and organic density in the nether.
+#   -1.0 = barren soul regions, 0.0 = sparse, 1.0 = dense fungal forest.
+#   0.0 = no significant organic presence. Bare netherrack with
+#   no fungal growth — just raw volcanic stone.
+humidity = 0.0
+
+# continentalness: Vertical layer placement in the nether.
+#   -1.0 = lava ocean floor, 0.0 = mid-level, 1.0 = ceiling.
+#   0.0 = standard mid-level generation, no vertical bias.
+continentalness = 0.0
+
+# erosion: Terrain roughness and openness.
+#   0.0 = jagged pillars, 1.0 = smooth open plains.
+#   0.5 = moderate terrain — open enough for ghast flight paths
+#   but varied enough to provide occasional cover.
+erosion = 0.5
+
+# weirdness: How exotic or unusual the terrain features are.
+#   -1.0 = completely standard, 1.0 = bizarre formations.
+#   0.0 = baseline nether terrain — nothing unusual.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: The average Y-level of the terrain surface.
+# In the nether, Y=31 is lava ocean level. Positive offsets
+# raise terrain above the lava sea.
+#   40 = standard nether floor, well above lava level, providing
+#   a comfortable walking surface with lava visible below in gaps.
+base-height = 40
+
+# height-variation: How much the terrain undulates.
+#   0.0 = perfectly flat, 10.0+ = dramatic nether pillars.
+#   5.0 = moderate variation creating small hills, cliffs, and
+#   pits in the netherrack — typical nether terrain roughness.
+height-variation = 5.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: The surface block players walk on. Netherrack is
+# the defining block of the nether wastes — rough, red, and
+# easily broken. It sustains fire indefinitely when lit.
+top-block = "minecraft:netherrack"
+
+# filler-block: Block placed beneath the surface down to
+# filler-depth. More netherrack — the wastes are netherrack
+# all the way through with no soil layer distinction.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: How many blocks deep the filler extends.
+#   4 = standard nether depth before transitioning to the
+#   base stone generation layer.
+filler-depth = 4
+
+# underwater-block: Block used for surfaces submerged in lava.
+# Magma blocks line lava shores, creating damage hazards and
+# the signature bubbling effect at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No trees grow in the barren nether wastes. The
+# environment is entirely inorganic — just netherrack and fire.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No grass or vegetation in the wastes.
+# The nether wastes are completely barren of plant life.
+grass-density = 0.0
+
+# flower-density: No flowers exist in the nether.
+flower-density = 0.0
+
+# extra-features: Nether-specific terrain features.
+#   lava_pool — small lava pockets in the netherrack surface.
+#   fire_patch — eternal fire on netherrack surfaces.
+#   glowstone_cluster — glowstone blobs on the ceiling above.
+#   nether_quartz_ore — quartz ore veins in netherrack walls.
+extra-features = [
+    { feature = "lava_pool", density = 2.0 },
+    { feature = "fire_patch", density = 1.5 },
+    { feature = "glowstone_cluster", density = 3.0 },
+    { feature = "nether_quartz_ore", density = 5.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The nether wastes are dominated by zombie piglins and ghasts.
+# No passive mobs — everything here is hostile or neutral.
+[biome.spawning]
+# zombified_piglin: The signature mob of the nether wastes.
+# Wander in herds, neutral unless attacked. Drop gold nuggets
+# and gold ingots, making them a resource for piglin bartering.
+# High weight and large groups create the iconic herd behavior.
+zombified_piglin = { weight = 25, min-group = 4, max-group = 8 }
+
+# ghast: Giant floating mobs that fire explosive fireballs.
+# Lower weight but devastating impact — their cries echo across
+# the wastes as an ambient warning. Require open space to spawn.
+ghast = { weight = 8, min-group = 1, max-group = 1 }
+
+# magma_cube: Small to medium magma cubes bouncing near lava
+# pools. Thematic filler mob that adds movement to the terrain.
+magma_cube = { weight = 5, min-group = 1, max-group = 3 }
+
+# enderman: Rare enderman sightings in the wastes. They teleport
+# away quickly, creating brief eerie encounters.
+enderman = { weight = 2, min-group = 1, max-group = 1 }

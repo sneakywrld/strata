@@ -1,0 +1,150 @@
+# ============================================================
+#  Biome: Crimson Clearing — Crimson Domain
+# ============================================================
+# A rare opening in the otherwise dense crimson forest, where
+# the huge fungi thin out to reveal a broad nylium meadow
+# beneath a spectacular shroomlight-studded ceiling. The canopy
+# of surrounding crimson fungi curves overhead but leaves this
+# pocket open, their shroomlight blocks casting a warm amber
+# glow across the clearing like lanterns hung from living
+# rafters. Crimson roots wave gently in the still air, and
+# small crimson fungi dot the nylium floor in neat clusters.
+# The relative openness makes this a natural gathering point
+# for piglin hunting parties preparing to venture into the
+# surrounding thickets. Players often use clearings as safe
+# camps — the light level suppresses some spawns and the open
+# sightlines give warning of approaching threats.
+#
+# Gameplay notes:
+#   - Natural campsite — good sightlines and lighting.
+#   - Shroomlight farming from the ceiling formations.
+#   - Piglin bartering outpost — frequent piglin groups.
+#   - Lower hoglin density than surrounding forest.
+#   - Crimson fungus + bone meal works well on open nylium.
+#   - Rest stop between dangerous thicket traversals.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The clearing is a rare
+# open pocket within the crimson forest canopy.
+id = "strata:crimson_clearing"
+
+# display-name: Human-readable name for player displays.
+display-name = "Crimson Clearing"
+
+# category: NETHER — nether environment with better visibility
+# and lighting than the surrounding dense forest.
+category = "NETHER"
+
+# zone: Part of the crimson zone — a rare open space within
+# the fungal domain.
+zone = "crimson"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Standard crimson warmth — the open space allows
+# some heat to dissipate compared to the dense forest.
+#   0.55 = slightly cooler than the enclosed forest.
+temperature = 0.55
+
+# humidity: Moderate — open air reduces the concentrated spore
+# density, but nylium still supports fungal growth.
+#   0.5 = moderate organic presence, less dense than forest.
+humidity = 0.5
+
+# continentalness: Neutral — clearings appear randomly within
+# crimson forest regions.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: High — the terrain is open and relatively flat,
+# with good sightlines across the clearing.
+#   0.7 = open, smooth terrain with minimal obstructions.
+erosion = 0.7
+
+# weirdness: Low — the clearing is a normal, natural opening
+# in the fungal canopy. Nothing unusual.
+#   0.1 = standard terrain variation.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the clearing sits at
+# the same level as the surrounding crimson forest.
+#   40 = standard nether floor level.
+base-height = 40
+
+# height-variation: Very low — the clearing is notably flat
+# compared to the rough forest floor around it.
+#   2.0 = smooth, open meadow-like surface.
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Crimson nylium — the same living surface as the
+# forest, supporting smaller fungi and roots.
+top-block = "minecraft:crimson_nylium"
+
+# filler-block: Netherrack beneath the nylium.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Sparse huge fungi — the clearing is defined by their
+# absence. A few at the edges frame the open space.
+#   1.5 = sparse fungi at the clearing edges only.
+trees = { types = ["crimson_fungus_huge"], density = 1.5 }
+
+# grass-density: Moderate crimson root coverage on the open floor.
+#   0.4 = scattered roots across the nylium meadow.
+grass-density = 0.4
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Clearing-specific features emphasizing light.
+#   shroomlight_cluster — dense ceiling shroomlight formations,
+#     the defining visual feature of the clearing.
+#   crimson_fungus_small — small fungi dotting the floor.
+#   weeping_vines — sparse vines from the ceiling edge.
+extra-features = [
+    { feature = "shroomlight_cluster", density = 8.0 },
+    { feature = "crimson_fungus_small", density = 3.0 },
+    { feature = "weeping_vines", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The well-lit clearing has reduced hostile spawns. Piglins
+# use it as a gathering point for hunting parties.
+[biome.spawning]
+# piglin: Frequent piglin groups congregate in the open space.
+# They organize hunting parties here before venturing into
+# the surrounding dense forest for hoglin hunts.
+piglin = { weight = 15, min-group = 3, max-group = 5 }
+
+# hoglin: Reduced presence — hoglins prefer the dense cover
+# of the surrounding forest and thickets.
+hoglin = { weight = 6, min-group = 1, max-group = 2 }
+
+# zombified_piglin: Occasional undead piglins in the clearing.
+zombified_piglin = { weight = 5, min-group = 1, max-group = 2 }

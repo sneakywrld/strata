@@ -1,0 +1,138 @@
+# ============================================================
+#  Biome: Highlands Gateway Plaza — End Highlands
+# ============================================================
+# Broad, intentionally flat areas surrounding end gateways in
+# the highlands. These plazas feel deliberately constructed —
+# their surfaces are smoother and more level than natural End
+# terrain, and end rods line the approaches like ancient lamp
+# posts. The gateways here connect the highlands to other
+# distant End regions, serving as fast-travel hubs for
+# experienced players. The flat terrain around each gateway
+# provides safe landing zones for players arriving via the
+# portal, preventing the disorientation of spawning on steep
+# terrain or near void edges.
+#
+# Gameplay notes:
+#   - End gateway fast-travel hub in the highlands.
+#   - Deliberately flat terrain for safe gateway arrivals.
+#   - End rod lighting along approach paths.
+#   - Good staging area for expeditions into harder biomes.
+#   - Flat surface is excellent for player infrastructure
+#     (ender pearl farms, storage, etc.).
+#   - Pairs with highlands_end_city_island (nearby cities)
+#     and highlands_floating_garden (decorative neighbor).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the flat gateway
+# hub areas in the End highlands.
+id = "strata:highlands_gateway_plaza"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Gateway Plaza"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Highlands region.
+region = "highlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Neutral — the plaza is sheltered by
+# surrounding highland terrain. 0.0 = baseline End
+# temperature.
+temperature = 0.0
+
+# humidity: Slightly elevated — end rods and gateway
+# energy create a subtle microclimate. 0.1 = barely
+# perceptible moisture.
+humidity = 0.1
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.1 = near-normal. Gateway plazas are
+# predictable, well-defined areas — the opposite of
+# chaotic terrain. Low weirdness reflects their order.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 75 — standard highlands elevation. The
+# plaza sits at the same level as surrounding highland
+# terrain for seamless transitions. No dramatic elevation
+# — the gateway is the focal point, not the terrain.
+base-height = 75
+
+# height-variation: 3 = very flat. The deliberately level
+# surface ensures safe gateway arrivals and easy
+# navigation. Minimal variation gives the plaza a
+# constructed, intentional quality.
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — standard End surface. The plaza
+# surface is smoother than surrounding terrain but uses
+# the same material.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone beneath the surface.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 5 = solid foundation. The plaza terrain
+# is thick and stable — no thin spots or void risks.
+# Range: 1 to 8.
+filler-depth = 5
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# End rod lighting lines the gateway approaches. Sparse
+# chorus plants provide some organic softness around the
+# plaza perimeter.
+[biome.features]
+# end-specific: End rod lamp posts and gateway pathway
+# markers. The lighting creates a welcoming atmosphere
+# (by End standards) and guides arriving players toward
+# safe paths.
+trees = { types = ["chorus_tree"], density = 1.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Gateway plaza decorations.
+#   end_rod_lamppost — tall end rod formations placed
+#       along approach paths, lighting the way to and
+#       from the gateway.
+#   end_rod_cluster — groups of end rods near the gateway
+#       itself, providing bright ambient light.
+extra-features = [
+    { feature = "end_rod_lamppost", density = 3.0 },
+    { feature = "end_rod_cluster", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Enderman presence is reduced by the end rod lighting.
+# Players can prepare relatively safely before venturing
+# into darker biomes.
+[biome.spawning]
+# enderman: Reduced presence — the abundant end rod
+# lighting discourages enderman congregation. This makes
+# the plaza a safer staging area for expeditions.
+enderman = { weight = 20, min-group = 1, max-group = 2 }

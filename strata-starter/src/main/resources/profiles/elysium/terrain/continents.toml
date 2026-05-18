@@ -1,0 +1,90 @@
+# ============================================================
+#  Continental Shape Configuration — Elysium Overworld
+# ============================================================
+# Controls the large-scale land/ocean distribution. Continentalness
+# noise determines where land masses, coastlines, and ocean basins
+# form at the macro scale.
+#
+# Think of this as the "world map" — it determines the overall shape
+# of continents before biomes, terrain details, or features are added.
+# ============================================================
+
+[continents]
+# -------------------------------------------------------
+# Land/Ocean Balance
+# -------------------------------------------------------
+# land-ratio: Approximate fraction of the world that is land vs. ocean.
+# 0.5 = half land, half ocean (Earth-like).
+# 0.7 = more land, less ocean (continental world).
+# 0.3 = archipelago world (mostly ocean with scattered islands).
+# Default: 0.55. Range: 0.1 to 0.9
+land-ratio = 0.55
+
+# coastal-width: Width of the coastal transition zone in blocks.
+# Wider = more gradual coast with beaches and shallows.
+# Narrower = sharper cliffs and abrupt ocean edges.
+# Default: 200. Range: 50 to 500
+coastal-width = 200
+
+# -------------------------------------------------------
+# Continental Scale
+# -------------------------------------------------------
+# continent-scale: Size of continents in blocks (approximate diameter).
+# Larger = fewer, bigger continents. Smaller = many small landmasses.
+# Default: 8000. Range: 2000 to 50000
+continent-scale = 8000
+
+# sub-continent-scale: Size of sub-continental features (peninsulas,
+# bays, large islands attached to continents).
+# Default: 3000. Range: 500 to 10000
+sub-continent-scale = 3000
+
+# detail-scale: Fine coastal detail (coves, headlands, sea stacks).
+# Default: 500. Range: 100 to 2000
+detail-scale = 500
+
+# -------------------------------------------------------
+# Ocean Configuration
+# -------------------------------------------------------
+# ocean-floor-depth: Average depth of the ocean floor below sea level.
+# Default: 40. Range: 10 to 100
+ocean-floor-depth = 40
+
+# trench-depth: Maximum depth of ocean trenches below the average floor.
+# Default: 30. Range: 0 to 60
+trench-depth = 30
+
+# shelf-width: Width of the continental shelf (shallow ocean near coast).
+# Default: 300. Range: 50 to 1000
+shelf-width = 300
+
+# -------------------------------------------------------
+# Island Generation
+# -------------------------------------------------------
+# island-frequency: How often islands appear in ocean areas.
+# 0.0 = no islands. 1.0 = very frequent islands.
+# Default: 0.3. Range: 0.0 to 1.0
+island-frequency = 0.3
+
+# island-size-range: Min and max island diameter in blocks.
+# Default: [50, 400]
+island-size-range = [50, 400]
+
+# volcanic-island-chance: Fraction of islands that are volcanic.
+# Default: 0.15. Range: 0.0 to 1.0
+volcanic-island-chance = 0.15
+
+# -------------------------------------------------------
+# Noise References
+# -------------------------------------------------------
+# These reference noise functions defined in noise/functions.toml.
+# You can swap in different noise functions to change continental shape.
+
+# primary-noise: Main continental shape noise.
+primary-noise = "strata:continentalness"
+
+# sub-noise: Sub-continental detail noise.
+sub-noise = "strata:sub_continentalness"
+
+# detail-noise: Fine coastal detail noise.
+detail-noise = "strata:coastal_detail"

@@ -1,0 +1,159 @@
+# ============================================================
+#  Biome: Lava River — Embercrag Volcanic
+# ============================================================
+# A river of molten lava flows between banks of blackstone, casting
+# an angry orange glow that illuminates the volcanic landscape for
+# dozens of blocks in every direction. Magma blocks line the river's
+# edges where the lava is beginning to cool, producing a shimmer
+# of heat haze and the occasional pop of a magma bubble. The
+# blackstone banks are scorched smooth by millennia of heat
+# exposure, and the air above the lava shimmers with convection
+# currents. Crossing a lava river is one of the defining challenges
+# of the Embercrag — bridges burn, boats melt, and a single misstep
+# means certain death.
+#
+# Gameplay Notes:
+#   - Lava deals rapid damage — fire resistance potions are essential.
+#   - Blackstone banks provide safe ground but are narrow.
+#   - Magma blocks deal damage when stood on without sneaking.
+#   - The lava glow prevents hostile spawns near the river itself.
+#   - Building bridges requires non-flammable materials.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:embercrag_lava_river"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Embercrag Lava River"
+
+# category: The broad Minecraft biome category this belongs to.
+# BADLANDS enables the warm amber sky tint appropriate for the
+# volcanic region.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "embercrag"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 1.0 = maximum heat — the river of molten lava
+# radiates extreme thermal energy, making this the hottest biome
+# in the Embercrag zone.
+temperature = 1.0
+
+# humidity: -0.5 = very dry — the extreme heat evaporates any
+# moisture instantly. The air above the lava is bone-dry.
+humidity = -0.5
+
+# continentalness: 0.7 = firmly inland — lava rivers flow from
+# volcanic vents deep in the continental interior.
+continentalness = 0.7
+
+# erosion: 0.3 = moderate erosion — the flowing lava has carved
+# a channel through the rock, creating a defined riverbed with
+# relatively smooth banks.
+erosion = 0.3
+
+# weirdness: 0.2 = slightly unusual — lava rivers are a dramatic
+# but not entirely rare feature of the volcanic landscape.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5 = slightly above sea level. The lava river flows
+# through a shallow channel carved into the volcanic plateau,
+# sitting below the surrounding terrain but above sea level.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 5
+
+# height-variation: 5 = moderate variation. The river banks rise
+# above the lava surface, creating a defined channel with walls
+# 3-7 blocks high on either side.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Blackstone — the banks of the lava river are heat-
+# forged blackstone, darkened and hardened by prolonged exposure
+# to extreme temperatures.
+top-block = "minecraft:blackstone"
+
+# filler-block: Basalt — beneath the blackstone surface, dense
+# volcanic rock forms the structural substrate of the river banks.
+filler-block = "minecraft:basalt"
+
+# filler-depth: 4 = moderate volcanic rock depth before reaching
+# standard stone.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Magma block — where lava meets the banks, a
+# crust of cooling magma forms. These blocks damage players and
+# create bubble columns in any water that contacts them.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No trees survive anywhere near the lava river — the heat
+# incinerates any organic material.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.0 = no vegetation. Nothing survives the heat.
+# Range: 0.0 to 100.0.
+grass-density = 0.0
+
+# flower-density: 0.0 = no flowers on the scorched volcanic banks.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# extra-features: Magma block patches, lava pools, and blackstone
+# debris along the river banks.
+extra-features = [
+    { feature = "magma_block_patch", density = 5.0 },
+    { feature = "lava_pool", density = 3.0 },
+    { feature = "blackstone_debris", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The lava river is dominated by fire-immune mobs. Magma cubes
+# bounce along the banks, and striders wade through the lava itself.
+# The intense light from the lava suppresses most standard hostile
+# spawns.
+
+# magma_cube: Magma cubes are the dominant mob — they bounce along
+# the river banks and occasionally into the lava itself.
+# weight: 20 makes them the most common encounter.
+# min-group/max-group: Groups of 1-3.
+magma_cube = { weight = 20, min-group = 1, max-group = 3 }
+
+# strider: Striders walk on the lava surface — the only mob that
+# can safely navigate the river itself. Players can saddle them.
+# weight: 8 for a valuable but uncommon resource.
+strider = { weight = 8, min-group = 1, max-group = 2 }
+
+# blaze: Blazes occasionally spawn above the lava, their fireballs
+# adding a ranged threat to the environmental hazard.
+# weight: 5 for a rare but dangerous encounter.
+blaze = { weight = 5, min-group = 1, max-group = 1 }

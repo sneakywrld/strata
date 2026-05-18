@@ -1,0 +1,157 @@
+# ============================================================
+#  Biome: Fortress Bastion Edge — Fortress Domain
+# ============================================================
+# The contested border where nether fortress territory meets
+# bastion remnant influence — a collision zone of nether brick
+# and blackstone architectures. The terrain is a chaotic mix of
+# both materials: nether brick walls crumbling into blackstone
+# foundations, and blackstone ramparts built over nether brick
+# rubble. This geological-cultural boundary creates a complex
+# terrain of overlapping architectural styles, with netherrack
+# filling the gaps between the two building traditions. Piglin
+# brutes from the bastion side clash with wither skeletons from
+# the fortress side, creating an active war zone where both
+# factions are hostile to each other AND to players. The conflict
+# between the two nether civilizations is palpable — the broken
+# walls and scattered weapons tell a story of endless territorial
+# warfare.
+#
+# Gameplay notes:
+#   - Active combat zone — piglin brutes vs wither skeletons.
+#   - Both factions hostile to players simultaneously.
+#   - Blackstone and nether brick harvesting from both sources.
+#   - Gilded blackstone from bastion-side deposits.
+#   - Use faction fighting as distraction for safe passage.
+#   - High-tier loot from both fortress and bastion contexts.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The bastion edge is a
+# conflict zone between fortress and bastion territories.
+id = "strata:fortress_bastion_edge"
+
+# display-name: Human-readable name for player displays.
+display-name = "Bastion Edge"
+
+# category: NETHER — nether environment at the territorial
+# boundary between fortress and bastion structures.
+category = "NETHER"
+
+# zone: Part of the fortress zone — the contested border
+# between fortress and bastion influence.
+zone = "fortress"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Standard — the conflict zone has no unusual
+# thermal properties.
+#   0.5 = baseline nether temperature.
+temperature = 0.5
+
+# humidity: Dry — both nether brick and blackstone are
+# inorganic construction materials.
+#   -0.1 = slightly dry, construction material terrain.
+humidity = -0.1
+
+# continentalness: Neutral — the bastion edge forms at
+# standard nether levels between structures.
+#   0.1 = slight inland tendency.
+continentalness = 0.1
+
+# erosion: Low — the mixed architectural rubble creates
+# cluttered, complex terrain.
+#   0.25 = rough terrain from overlapping construction.
+erosion = 0.25
+
+# weirdness: High — the collision of two architectural styles
+# and active factional combat is highly unusual.
+#   0.7 = highly unusual conflict zone.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard fortress elevation — the boundary
+# sits between the two structural territories.
+#   42 = slightly elevated, matching fortress terrain.
+base-height = 42
+
+# height-variation: High — collapsed walls, ramparts, and
+# rubble from both sides create dramatic terrain.
+#   7.0 = high variation from architectural debris.
+height-variation = 7.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Blackstone — the bastion influence pushes
+# blackstone to the surface in this transition zone.
+top-block = "minecraft:blackstone"
+
+# filler-block: Netherrack beneath the blackstone and nether
+# brick rubble layers.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical substrate beneath the rubble.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the war zone.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on blackstone and brick rubble.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Bastion edge specific features.
+#   nether_brick_rubble — fortress-side debris.
+#   blackstone_rubble — bastion-side debris.
+#   gilded_blackstone_vein — bastion gold deposits.
+#   nether_brick_fence_remnant — broken fortress fencing.
+#   fire_patch — fire in the conflict zone.
+extra-features = [
+    { feature = "nether_brick_rubble", density = 5.0 },
+    { feature = "blackstone_rubble", density = 5.0 },
+    { feature = "gilded_blackstone_vein", density = 2.0 },
+    { feature = "nether_brick_fence_remnant", density = 2.0 },
+    { feature = "fire_patch", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Both fortress and bastion factions patrol here, fighting
+# each other and any players who enter.
+[biome.spawning]
+# wither_skeleton: Fortress faction — patrolling the fortress
+# side of the boundary, hostile to piglins and players.
+wither_skeleton = { weight = 12, min-group = 2, max-group = 3 }
+
+# piglin_brute: Bastion faction — aggressive defenders of the
+# bastion territory, hostile to wither skeletons and players.
+piglin_brute = { weight = 10, min-group = 1, max-group = 2 }
+
+# piglin: Bastion faction — armed piglins supporting the brutes.
+piglin = { weight = 8, min-group = 2, max-group = 3 }
+
+# skeleton: Fortress faction — ranged support for wither skeletons.
+skeleton = { weight = 6, min-group = 1, max-group = 2 }
+
+# blaze: Fortress air support hovering over the conflict zone.
+blaze = { weight = 5, min-group = 1, max-group = 1 }

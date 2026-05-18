@@ -1,0 +1,115 @@
+# ============================================================
+#  River Configuration — Elysium Overworld
+# ============================================================
+# Strata's river system uses a drainage-basin algorithm:
+#   1. Generate a macro-scale heightmap
+#   2. Compute flow directions (water flows downhill)
+#   3. Accumulate flow to identify river paths
+#   4. Rivers naturally merge, widen, and flow to oceans
+#
+# The result: rivers that make geographic sense. They start as
+# narrow mountain streams, merge into wider rivers in valleys,
+# and empty into oceans at realistic coastal deltas.
+# ============================================================
+
+[rivers]
+# -------------------------------------------------------
+# Enable/Disable
+# -------------------------------------------------------
+# enabled: Set to false to disable river generation entirely.
+enabled = true
+
+# -------------------------------------------------------
+# Flow Accumulation Threshold
+# -------------------------------------------------------
+# flow-threshold: Minimum accumulated flow for a cell to become a river.
+# Lower values = more rivers (denser river network).
+# Higher values = fewer, larger rivers only.
+# Default: 150. Range: 50 to 500
+flow-threshold = 150
+
+# -------------------------------------------------------
+# River Width
+# -------------------------------------------------------
+# Width scales with accumulated flow — headwaters are narrow,
+# major rivers near the coast are wide.
+
+# min-width: Width of the narrowest streams (in blocks).
+# Default: 3. Range: 1 to 10
+min-width = 3
+
+# max-width: Width of the widest rivers (in blocks).
+# Default: 20. Range: 5 to 50
+max-width = 20
+
+# width-growth-rate: How quickly width increases with flow.
+# Higher = rivers widen faster. Lower = stay narrow longer.
+# Default: 0.3. Range: 0.1 to 1.0
+width-growth-rate = 0.3
+
+# -------------------------------------------------------
+# River Depth
+# -------------------------------------------------------
+# min-depth: Shallowest river depth (in blocks). Headwater streams.
+# Default: 2. Range: 1 to 5
+min-depth = 2
+
+# max-depth: Deepest river depth (in blocks). Major rivers.
+# Default: 6. Range: 3 to 15
+max-depth = 6
+
+# -------------------------------------------------------
+# Meander (Natural Curves)
+# -------------------------------------------------------
+# Rivers don't flow in straight lines. Meander noise adds
+# natural sinuous curves to the flow path.
+
+# meander-amplitude: How far the river curves from its direct path (in blocks).
+# Default: 30. Range: 0 to 100
+meander-amplitude = 30
+
+# meander-noise: Reference to the noise function used for meandering.
+meander-noise = "strata:river_meander"
+
+# -------------------------------------------------------
+# Bank Style
+# -------------------------------------------------------
+# bank-noise: Noise function for micro-variation along river edges.
+# Creates natural-looking irregular banks instead of smooth channels.
+bank-noise = "strata:river_bank"
+
+# bank-variation: How much the bank noise affects river edges (in blocks).
+# Default: 2.0. Range: 0.0 to 5.0
+bank-variation = 2.0
+
+# -------------------------------------------------------
+# Bed Material
+# -------------------------------------------------------
+# Materials that line the river bottom, from shallow to deep.
+
+# shallow-bed: Block used for shallow river bottoms (1-2 blocks deep).
+shallow-bed = "minecraft:sand"
+
+# deep-bed: Block used for deeper river bottoms.
+deep-bed = "minecraft:gravel"
+
+# clay-patches: Whether to place clay patches in riverbeds.
+clay-patches = true
+
+# clay-frequency: How often clay patches appear (0.0 to 1.0).
+clay-frequency = 0.3
+
+# -------------------------------------------------------
+# Vegetation
+# -------------------------------------------------------
+# sugar-cane: Place sugar cane along river banks.
+sugar-cane = true
+
+# lily-pads: Place lily pads on slow-moving river sections.
+lily-pads = true
+
+# lily-pad-density: How dense lily pads are (0.0 to 1.0).
+lily-pad-density = 0.15
+
+# seagrass: Place seagrass in deeper sections.
+seagrass = true

@@ -1,0 +1,106 @@
+# ============================================================
+#  Biome: Frostfang Frozen Lake — Frostfang Peaks
+# ============================================================
+# A large mountain lake sealed beneath a thick sheet of
+# ice. The frozen surface is smooth and wind-polished,
+# criss-crossed with pressure cracks that glow pale blue
+# in sunlight. Dark water is visible through thinner ice
+# patches near the center. Fishing holes — natural breaks
+# in the ice — dot the surface, and polar bears patrol
+# the perimeter searching for prey. Snow drifts accumulate
+# along the leeward shore, and the surrounding banks are
+# lined with gravel deposited by streams feeding the lake.
+#
+# Gameplay notes:
+#   - Fishing through ice holes provides a reliable food
+#     source in the otherwise harsh Frostfang zone.
+#   - The flat ice surface enables fast travel via ice
+#     skating mechanics (boats on ice).
+#   - Polar bears are neutral but become hostile if
+#     provoked or if cubs are nearby — a significant
+#     threat to careless players.
+#   - The ice is thick enough to walk on but thin patches
+#     near center risk breaking, dropping players into
+#     freezing water.
+#   - Negative base-height places the lake surface below
+#     surrounding terrain for natural basin formation.
+#   - Pairs with frostfang_glacial_valley upstream and
+#     frostfang_snowfield on the surrounding flats.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_frozen_lake"          # Unique registry ID
+display-name = "Frostfang Frozen Lake"       # Shown in F3 debug & maps
+category = "MOUNTAIN"                        # Mountain lake feature
+zone = "frostfang"                           # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The positive erosion creates the flat
+# basin where water collects. Moderate humidity reflects
+# the lake's moisture contribution to local climate. The
+# slightly negative weirdness produces smooth, regular
+# basin shapes rather than jagged terrain.
+[biome.climate]
+temperature = -0.5          # Cold enough to keep the lake frozen solid
+humidity = 0.4              # Moderate moisture — lake is a water source
+continentalness = 0.7       # Inland mountain setting
+erosion = 0.5               # High erosion — basin carved by water flow
+weirdness = -0.1            # Slightly negative — smooth, regular basin
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of -2 places the lake surface slightly below
+# sea level, creating a natural depression. The minimal
+# height-variation of 1 ensures the lake surface is almost
+# perfectly flat — essential for the frozen lake effect.
+# Surrounding biomes at higher elevation form the banks.
+[biome.terrain]
+base-height = -2            # Below surrounding terrain — natural basin
+height-variation = 1        # +/-1 block — nearly flat ice surface
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# The lake surface is ice (regular ice, not packed — it
+# can be broken to reach water below). Below the ice
+# layer, packed ice represents the deeper frozen water.
+# The shallow filler depth means players can break through
+# to water relatively quickly.
+[biome.surface]
+top-block = "minecraft:ice"              # Frozen lake surface — breakable
+filler-block = "minecraft:packed_ice"    # Deeper frozen water beneath
+filler-depth = 3                         # Ice thickness before open water
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# No vegetation on the frozen lake surface. The ice is
+# bare and wind-polished. Snow layers accumulate in drifts
+# along the edges but the central ice remains exposed.
+# No trees — the lake surface cannot support growth.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees on ice surface
+grass-density = 0.0                      # No vegetation on frozen lake
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Polar bears are the signature mob — they patrol the
+# lake perimeter and ice surface, hunting for fish.
+# They are neutral but become hostile when protecting
+# cubs. Strays may wander onto the ice from adjacent
+# biomes at night. The flat, open ice provides no cover
+# for either players or mobs.
+[biome.spawning]
+# Polar bears patrol the ice — neutral but dangerous.
+# Polar bear cubs accompany adults — triggering the
+# adults' protective aggression if approached.
+# Strays may wander from adjacent biomes at night.
+# No other passive mobs on the bare ice.

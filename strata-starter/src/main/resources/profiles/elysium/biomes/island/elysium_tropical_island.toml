@@ -1,0 +1,171 @@
+# ============================================================
+#  Biome: Tropical Island — Elysium Islands
+# ============================================================
+# A small, sun-drenched island ringed by white sand and lapped
+# by warm turquoise shallows. Leaning palm-like trees (jungle
+# saplings with custom trunks) shade patches of sugarcane and
+# wild melons growing in the fertile sand-over-dirt pockets.
+# Sea turtles haul out on the southern beaches to nest, and
+# parrots chatter from the few tall trees in the island's
+# interior. The shallow reef surrounding the island glitters
+# with tropical fish. A castaway's paradise — or prison.
+#
+# Gameplay notes:
+#   - Sugarcane and melons provide early food and trade goods.
+#   - Turtles drop scute for turtle helmets (water breathing).
+#   - Parrots can be tamed with seeds for shoulder companions.
+#   - Small footprint — typically 40-80 blocks across.
+#   - Buried treasure and shipwreck loot generate nearby.
+#   - Limited wood supply; plan carefully before felling trees.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to
+# reference this biome internally. Island biomes use the
+# "elysium_" prefix as they belong to the cross-zone island
+# category rather than a single specific zone.
+id = "strata:elysium_tropical_island"
+
+# display-name: Human-readable name shown to players in F3
+# debug, /strata info, and minimap overlays.
+display-name = "Tropical Island"
+
+# category: BEACH — the sandy shoreline character dominates
+# this small island. BEACH enables turtle nesting behavior,
+# sand-specific ambient sounds, and buried treasure placement.
+category = "BEACH"
+
+# zone: "island" — island biomes float in the ocean and are
+# not tied to any mainland zone. They generate wherever ocean
+# noise permits, governed by continentalness and weirdness.
+zone = "island"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where
+# this biome places in the world. The noise-based climate
+# system picks the biome whose climate point is closest to the
+# local climate values. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.8 = warm tropical climate. The high
+# temperature ensures coral can generate in nearby ocean
+# chunks and keeps the sand warm enough for turtle nesting.
+temperature = 0.8
+
+# humidity: 0.6 = moderately humid. Tropical island air
+# carries enough moisture for lush vegetation pockets but not
+# so much that the sand stays waterlogged.
+humidity = 0.6
+
+# continentalness: -0.3 = offshore. Negative values push this
+# biome away from the mainland into open ocean, creating the
+# isolated island feel. Not as far out as deep ocean (-0.8).
+continentalness = -0.3
+
+# erosion: 0.5 = moderately eroded. Wave action has smoothed
+# the island's profile into gentle sandy slopes rather than
+# dramatic cliffs. The sand shifts with each storm.
+erosion = 0.5
+
+# weirdness: 0.4 = somewhat unusual. Islands are special
+# features that should not blanket the ocean; the elevated
+# weirdness ensures they only appear in pockets of interesting
+# terrain noise.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = just above sea level. The island barely
+# rises from the water, with only a few blocks of dry land at
+# its highest point. This creates the classic low-lying
+# tropical island silhouette — a thin sliver of sand against
+# the ocean horizon.
+# Range: -64.0 to 256.0
+base-height = 3
+
+# height-variation: 5 = gentle undulation. Small dunes and a
+# slightly raised interior give the island subtle topography
+# without creating hills tall enough to block the ocean view.
+# Range: 0.0 to 30.0
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Pure sand island — typical of a small coral-sand cay built
+# up from reef debris and wave deposits.
+[biome.surface]
+# top-block: Sand — the defining surface of a tropical island.
+# Warm, sun-bleached sand stretches from waterline to interior.
+top-block = "minecraft:sand"
+
+# filler-block: Sand continues below the surface. The entire
+# island is essentially a sand pile sitting atop reef rock.
+filler-block = "minecraft:sand"
+
+# filler-depth: 4 = thick sand accumulation. Tropical islands
+# build up deep sand beds from millennia of coral erosion and
+# wave deposition. Players dig a while before hitting stone.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Sand on the shallow seafloor around the
+# island — consistent with the tropical sand-bottom aesthetic.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Sparse tropical vegetation — a few tall trees, sugarcane
+# along the waterline, and melons in the sandy interior.
+[biome.features]
+# trees: Jungle trees serve as stand-in palm trees. Very low
+# density because the island is small and mostly open beach.
+#   types: "jungle" = tall, single-trunk trees with bushy tops.
+#   density: 0.8 = a handful of trees per island at most.
+#            Range: 0.0 to 30.0+
+trees = { types = ["jungle"], density = 0.8 }
+
+# grass-density: Minimal grass — sand dominates. A few tufts
+# of beach grass cling to the interior.
+# Range: 0.0 to 100.0
+grass-density = 2.0
+
+# flower-density: No flowers — the sandy substrate and salt
+# spray prevent most flowering plants from establishing.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Sugarcane and melons are the island's
+# signature harvestable resources. Sugarcane lines the water's
+# edge and melons grow in small patches inland.
+extra-features = [
+    # Sugarcane along the waterline — the island's main crop.
+    { feature = "sugarcane", density = 3.0 },
+    # Wild melon patches in the sandy interior.
+    { feature = "melon", density = 1.5 },
+    # Seagrass in the shallow water surrounding the island.
+    { feature = "seagrass", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Peaceful tropical wildlife. Turtles are the signature mob,
+# nesting on the warm sand. Parrots add color and sound to
+# the treetops. No hostile mobs spawn naturally — this is a
+# sanctuary biome by day.
+[biome.spawning]
+# Turtles: Nest on the beach and swim in the shallows.
+# They are the defining passive mob of the tropical island.
+turtle = { weight = 15, min-group = 2, max-group = 5 }
+
+# Parrots: Colorful birds perched in the jungle trees.
+# Can be tamed with seeds for shoulder companions.
+parrot = { weight = 8, min-group = 1, max-group = 3 }

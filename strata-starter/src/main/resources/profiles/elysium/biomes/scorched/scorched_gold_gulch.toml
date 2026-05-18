@@ -1,0 +1,183 @@
+# ============================================================
+#  Biome: Gold Gulch — Scorched Badlands
+# ============================================================
+# A narrow canyon with walls glinting with exposed gold ore veins.
+# Remnants of old minecart tracks and support timbers line the
+# canyon floor, evidence of frenzied prospecting in ages past. The
+# promise of easy gold draws players into this tight gulch, but the
+# confined space and shadowed walls make it a perfect ambush site
+# for hostile mobs. Extra gold ore generation rewards the brave.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_gold_gulch"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Gold Gulch"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# BADLANDS fits the terracotta canyon setting and provides the warm
+# amber sky that makes exposed gold ore glint invitingly.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.85 = very hot, though the canyon walls
+# provide brief shade during parts of the day.
+temperature = 0.85
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.5 = very dry, consistent with the
+# surrounding badlands environment.
+humidity = -0.5
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, where mineral
+# deposits are exposed by erosion in the arid interior.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. 0.1 = low-moderate
+# erosion has carved the gulch but preserved the walls, exposing
+# ore veins in the process.
+erosion = 0.1
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.3 = somewhat unusual — gold-rich canyons are a rare
+# geological occurrence, making this a special find for explorers.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. -5.0 drops the gulch
+# floor below the surrounding terrain, creating a natural trough
+# that channels movement along its length.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = -5.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 3.0 keeps the gulch floor relatively even, with rubble piles and
+# abandoned mining debris creating gentle obstacles.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# Red sand covers the gulch floor — finer-grained than the mesa
+# terracotta walls, deposited by wind funneling through the canyon.
+top-block = "minecraft:red_sand"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Terracotta forms the canyon walls and floor
+# substrate, with gold ore veins embedded throughout.
+filler-block = "minecraft:terracotta"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 5 provides deep terracotta layers where gold ore can
+# generate visibly in exposed cliff faces.
+# Range: 1 to 8.
+filler-depth = 5
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Red sand with gold
+# flecks — any water here would be a prospector's sluicing site.
+underwater-block = "minecraft:red_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.0 = no trees in this narrow mining canyon.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.1 = trace grass in cracks between rails
+# and timbers on the canyon floor.
+grass-density = 0.1
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = no flowers in this industrial canyon.
+flower-density = 0.0
+
+# dead-bush-density: Dead bush features per chunk. Sparse dry
+# brush growing between abandoned mine infrastructure.
+# 1.0 provides light coverage without hiding the mining remnants.
+dead-bush-density = 1.0
+
+# gold-ore-bonus: Multiplier for gold ore vein generation within
+# this biome's underground. 3.0 triples the normal gold ore
+# frequency, making this canyon a prime mining destination and
+# rewarding players who brave the hostile mob spawns.
+gold-ore-bonus = 3.0
+
+# rail-remnants: Whether abandoned minecart rail segments generate
+# on the gulch floor. true places short sections of rail and
+# support timbers (fence posts), telling the story of historic
+# gold mining operations.
+rail-remnants = true
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The narrow gulch is a gauntlet — rich rewards but dense hostile
+# spawns in the shadows. The canyon walls trap players in tight
+# quarters with aggressive mobs.
+
+# husk: Desert undead lurking in the gulch shadows. The tight
+# canyon makes dodging their attacks extremely difficult.
+# weight: 14 ensures husks are an ever-present danger.
+husk = { weight = 14, min-group = 2, max-group = 4 }
+
+# cave_spider: Emerges from old mine timbers embedded in the walls.
+# Poison in the confined canyon space is especially punishing.
+# weight: 7 for regular but not overwhelming encounters.
+cave_spider = { weight = 7, min-group = 1, max-group = 3 }
+
+# zombie: Standard zombies supplement the husks in darker areas
+# of the gulch where sunlight cannot penetrate.
+# weight: 8 adds to the overall hostile density.
+zombie = { weight = 8, min-group = 1, max-group = 3 }

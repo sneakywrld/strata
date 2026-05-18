@@ -1,0 +1,164 @@
+# ============================================================
+#  Biome: Abyssal Fungal Hollow — Abyssal Depths
+# ============================================================
+# An enormous underground hollow dominated by giant mushrooms
+# that have grown to tree-sized proportions in the nutrient-
+# rich darkness. Brown and red mushroom caps form a canopy
+# 10-15 blocks overhead, their stems thick as oak trunks.
+# Shroomlight clusters embedded in the caps cast a warm amber
+# glow throughout the cavern, giving it a cozy, almost homey
+# atmosphere despite being deep underground. The floor is
+# carpeted in mycelium — a pale grey fungal mat that spreads
+# across every soil surface — and smaller mushrooms sprout
+# in dense patches between the giant stems.
+#
+# Gameplay notes:
+#   - Giant mushrooms provide wood-equivalent building material.
+#   - Shroomlights are renewable light sources (bone-meal fungi).
+#   - Mycelium floor supports mushroom farming at any light level.
+#   - Mooshrooms spawn here — exclusive mob for mushroom biomes.
+#   - Suspicious stew ingredients abundant (small mushrooms).
+#   - High weirdness value makes this a rare, memorable find.
+#   - Pairs with abyssal_moss_cavern for underground biodiversity.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The fungal hollow is
+# the mushroom island equivalent for the underground.
+id = "strata:abyssal_fungal_hollow"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Fungal Hollow"
+
+# category: CAVE — underground biome with mushroom-island-like
+# properties (mycelium floor, giant mushroom generation).
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Warm and humid — ideal conditions for fungal growth.
+# High weirdness reflects the unusual nature of this biome.
+[biome.climate]
+# temperature: Warm — fungal decomposition generates
+# metabolic heat, warming the cavern above typical
+# underground temperatures.
+# 0.4 = mild warmth supporting rapid mushroom growth.
+temperature = 0.4
+
+# humidity: High — mushrooms require constant moisture for
+# spore germination and mycelium expansion. The cavern
+# air is thick with spores and moisture.
+# 0.7 = very humid fungal environment.
+humidity = 0.7
+
+# continentalness: Neutral — fungal hollows can form
+# wherever nutrient-rich organic matter accumulates
+# underground.
+# 0.5 = no continental bias.
+continentalness = 0.5
+
+# erosion: Balanced — the mycelium network actually
+# stabilizes the cave structure while slowly decomposing
+# the organic components of the rock.
+# 0.5 = standard cave profile.
+erosion = 0.5
+
+# weirdness: High — giant underground mushroom caverns are
+# rare and exotic. Players should feel they've found
+# something truly special.
+# 0.7 = uncommon biome that rewards thorough exploration.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Upper Abyssal zone — the hollow needs enough
+# ceiling height for giant mushrooms to grow.
+# -20 = shallow enough for tall mushroom caps.
+base-height = -20
+
+# height-variation: Moderate — the cavern floor has gentle
+# hills and depressions where organic material accumulates.
+# 15 = enough variation for interesting mushroom placement.
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Mycelium and organic soil — the fungal network has
+# completely colonized the cave floor.
+[biome.surface]
+# top-block: Mycelium — the pale grey fungal mat that is
+# the foundation of the mushroom ecosystem. Allows mushroom
+# placement at any light level.
+top-block = "minecraft:mycelium"
+
+# filler-block: Dirt — rich organic soil beneath the
+# mycelium, full of decomposing organic matter.
+filler-block = "minecraft:dirt"
+
+# filler-depth: Deep organic soil layer built up from
+# centuries of mushroom decomposition cycles.
+# 4 = thick, nutrient-rich soil.
+filler-depth = 4
+
+# underwater-block: Dirt — organic sediment in any small
+# pools found in the fungal hollow.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Giant mushrooms and fungal vegetation dominate.
+[biome.features]
+# trees: Giant mushrooms serve as the "trees" of this biome.
+# Both brown and red varieties grow to full size.
+trees = { types = ["huge_brown_mushroom", "huge_red_mushroom"], density = 6.0 }
+
+# grass-density: No grass — mycelium and small mushrooms
+# cover the ground instead.
+grass-density = 0.0
+
+# flower-density: No flowers — fungi are not flowering plants.
+flower-density = 0.0
+
+# mushrooms: Dense small mushroom patches between the giants.
+# Both brown and red varieties thrive on the mycelium floor.
+mushrooms = { brown = 15, red = 10 }
+
+# extra-features: Fungal decorations and light sources.
+#   shroomlight — luminous fungal blocks in mushroom caps,
+#     providing the cavern's warm amber ambient lighting.
+#   mushroom_stem — decorative stem blocks and fallen logs.
+#   mycelium_patch — additional mycelium spread on walls.
+extra-features = [
+    { feature = "shroomlight", density = 8.0 },
+    { feature = "mushroom_stem", density = 4.0 },
+    { feature = "mycelium_patch", density = 6.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The fungal hollow is surprisingly peaceful. Mooshrooms
+# are the signature passive mob.
+[biome.spawning]
+# mooshroom: The exclusive mushroom-biome cow variant.
+# Shearing yields mushrooms; milking with a bowl yields
+# suspicious stew. Very valuable to players.
+mooshroom = { weight = 10, min-group = 2, max-group = 4 }
+
+# bat: Common in the upper reaches of the cavern.
+bat = { weight = 10, min-group = 2, max-group = 4 }
+
+# Hostile spawning is suppressed — similar to mushroom islands,
+# the fungal hollow is a safe haven underground.
+hostile-density-multiplier = 0.2

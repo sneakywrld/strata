@@ -1,0 +1,147 @@
+# ============================================================
+#  Biome: Corrupted Forest — The Shattered Reach
+# ============================================================
+# A once-verdant woodland twisted by ender corruption. The trees still
+# stand, but their canopies have been replaced with clusters of chorus
+# fruit, and their roots have calcified into end stone. A thick purple
+# fog hugs the forest floor, reducing visibility and muffling sound.
+# Patches of purpur blocks break through the soil like fungal growths.
+# The forest is alive — but it is no longer of this world.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier used by the generator and cross-referenced
+# in region maps and biome-transition configs.
+id = "strata:shattered_corrupted_forest"
+
+# Human-readable name displayed in debug overlays and admin commands.
+display-name = "Corrupted Forest"
+
+# CUSTOM — no vanilla equivalent; entirely bespoke generation logic.
+category = "CUSTOM"
+
+# Part of the Shattered Reach endgame zone, themed around ender
+# corruption bleeding into the overworld.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.2, cool but not frozen. The ender corruption
+# suppresses warmth without eliminating it entirely; the forest
+# retains a damp chill.
+temperature = 0.2
+
+# Humidity — 0.3, moderate moisture. The purple fog implies trapped
+# humidity, but the corruption prevents lush growth. Damp, not wet.
+humidity = 0.3
+
+# Continentalness — 0.5, solidly inland. The Corrupted Forest sits
+# in the interior of the Shattered Reach, not at its crumbling edges.
+continentalness = 0.5
+
+# Erosion — 0.3, mild erosion. The forest floor is relatively intact
+# compared to more devastated shattered biomes, though gullies and
+# root-upheaval create uneven ground.
+erosion = 0.3
+
+# Weirdness — 0.8, very high. Chorus-leaf trees and end-stone roots
+# are deeply alien, but the biome still reads as "forest" at a glance,
+# keeping it slightly below maximum weirdness.
+weirdness = 0.8
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — 10 blocks above sea level. The forest sits on gently
+# elevated ground, not extreme hills — the danger here is the fog and
+# the mobs, not the terrain itself.
+base-height = 10
+
+# Height variation — 15 blocks. Gentle rolling hills and shallow
+# ravines carved by corrupted root systems. Enough variation to
+# break sight lines without creating cliffs.
+height-variation = 15
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — grass_block. The surface still appears grassy, but the
+# grass has a sickly purple-green hue enforced by the biome's color
+# map. The corruption has not fully consumed the soil — yet.
+top-block = "minecraft:grass_block"
+
+# Filler block — dirt persists beneath the grass, though pockets of
+# end_stone intrude via the feature layer (see below). Standard dirt
+# keeps the "forest floor" feel before the alien substrate takes over.
+filler-block = "minecraft:dirt"
+
+# Filler depth — 4 blocks of dirt. Shallow enough that mining quickly
+# reveals the end-stone contamination lurking below.
+filler-depth = 4
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Corrupted trees — oak/dark-oak trunks with chorus-plant canopies
+# instead of leaves. The generator replaces leaf blocks with
+# chorus_plant and chorus_flower blocks.
+corrupted-trees = true
+
+# End stone root networks — the base of each tree fans out into
+# end_stone tendrils that replace dirt in a radius around the trunk.
+end-stone-roots = true
+
+# Purple fog — a dense, low-hanging particle fog using portal
+# particles, reducing visibility to roughly 16 blocks at ground level.
+purple-fog = true
+
+# Purpur outcrops — small mounds of purpur_block and purpur_pillar
+# that erupt from the ground like alien mushrooms.
+purpur-outcrops = true
+
+# Scattered chorus flowers growing directly from the ground between
+# trees, providing a harvestable but eerie resource.
+chorus-ground-patches = true
+
+# End rods embedded in tree trunks — faint, cold light sources that
+# cast an unsettling glow through the fog.
+end-rod-lights = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Endermen roam between the trees, teleporting through the fog.
+# Moderately high weight — they are drawn to the corruption but
+# do not dominate the forest the way they do in open wastes.
+enderman = 60
+
+# Shulkers attach to purpur outcrops and tree trunks, ambushing
+# players who brush past in the low visibility.
+shulker = 20
+
+# Spiders thrive in the dense canopy, dropping onto players from
+# corrupted branches. Enhanced spawn weight over vanilla forests.
+spider = 35
+
+# Creepers exploit the fog — players often hear the hiss before
+# they see the mob. Standard hostile pressure.
+creeper = 25
+
+# Witches lurk in the deeper groves, thematically fitting the
+# corrupted-magical atmosphere of the forest.
+witch = 15

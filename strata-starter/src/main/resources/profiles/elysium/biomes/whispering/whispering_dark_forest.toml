@@ -1,0 +1,135 @@
+# ============================================================
+#  Biome: Whispering Dark Forest — Whispering Woodlands
+# ============================================================
+# A suffocating old-growth dark oak forest where the canopy is so
+# dense that almost no sunlight reaches the ground. Massive dark
+# oak trees form an interlocking roof overhead, and the forest
+# floor is a carpet of mushrooms, dead leaves, and twisted roots.
+# Hostile mobs spawn around the clock due to the permanent shade.
+# Navigation is treacherous — every direction looks the same.
+#
+# Gameplay Notes:
+#   - Near-zero light at ground level means hostile mobs spawn 24/7.
+#   - Bring torches or night-vision potions.
+#   - Mushroom stew ingredients are abundant here.
+#   - The thick canopy makes elytra flight dangerous.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_dark_forest"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Dark Forest"
+
+# category: Broad classification used for biome grouping and feature selection.
+# Valid values: FOREST, PLAINS, DESERT, TAIGA, SWAMP, OCEAN, RIVER,
+#               MOUNTAIN, MUSHROOM, BEACH, CAVE, NETHER, END
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+# The zone controls distance-from-spawn placement and difficulty scaling.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+#
+# Biomes with similar climate values generate near each other,
+# creating smooth natural transitions.
+[biome.climate]
+# temperature: Moderate — a temperate forest, not hot and not cold.
+temperature = 0.5
+# humidity: High — damp, mossy environment. Supports mushroom growth.
+humidity = 0.7
+# continentalness: Mid-inland — not coastal, not deep continent interior.
+continentalness = 0.5
+# erosion: Moderate — gently rolling terrain, not flat and not mountainous.
+erosion = 0.5
+# weirdness: Neutral — this is the "baseline" dark forest variant.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+# Controls the vertical profile of the terrain before surface rules apply.
+[biome.terrain]
+# base-height: Average surface Y-level relative to sea level (63).
+# 68 = slightly elevated forest floor, ~5 blocks above sea level.
+base-height = 68
+
+# height-variation: How much the terrain undulates vertically.
+# Low value (3) creates a relatively flat, uniform forest floor,
+# which reinforces the feeling of being lost in an endless wood.
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+# Defines what blocks make up the ground surface and sub-layers.
+# These override the global surface rules in surface/rules.toml.
+[biome.surface]
+# top-block: The visible surface block. Grass block for a living forest.
+top-block = "minecraft:grass_block"
+
+# filler-block: Sub-surface material placed below the top block.
+# Standard dirt for a normal temperate forest floor.
+filler-block = "minecraft:dirt"
+
+# filler-depth: How many layers of filler-block below the top-block.
+# 3 is standard — deeper values delay stone exposure on slopes.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Controls trees, vegetation, and other generated features.
+# Tree "types" reference definitions in features/trees.toml.
+# Density is attempts per chunk (16x16 area).
+[biome.features]
+# trees: Dark oak dominates. A few large oaks break up uniformity.
+# density 14 is very dense — creates the signature canopy coverage.
+trees = { types = ["dark_oak", "fancy_oak"], density = 14 }
+
+# grass-density: Ground cover attempts per chunk.
+# Low (2) because minimal light reaches the ground — little grass survives.
+grass-density = 2
+
+# flower-density: Flower placement attempts per chunk.
+# Almost zero — flowers need sunlight and this canopy blocks nearly all of it.
+flower-density = 0.5
+
+# mushrooms: Abundant on the dark forest floor. Brown is more common.
+# This references definitions in features/vegetation.toml.
+mushrooms = { brown = 8, red = 4 }
+
+# fallen-logs: Decaying logs on the forest floor add atmosphere.
+# Density is placement attempts per chunk.
+fallen-logs = { enabled = true, density = 2 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Per-biome overrides to the global spawning rules in entities/spawning.toml.
+# Only entries listed here are changed — all other global spawns still apply.
+[biome.spawning]
+# Hostile mobs get a density boost because the canopy keeps light low.
+# This means zombies, skeletons, and spiders spawn even during the day.
+hostile-density-multiplier = 1.4
+
+# Spiders thrive in dense forests — webs are common between trunks.
+spider-weight-bonus = 30
+
+# Passive mobs are scarce — prey animals avoid the perpetual darkness.
+passive-density-multiplier = 0.5

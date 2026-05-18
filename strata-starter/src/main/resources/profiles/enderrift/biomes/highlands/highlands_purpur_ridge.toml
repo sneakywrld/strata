@@ -1,0 +1,143 @@
+# ============================================================
+#  Biome: Highlands Purpur Ridge — End Highlands
+# ============================================================
+# A dramatic ridgeline where natural purpur block formations
+# erupt from the end stone substrate. Unlike the manufactured
+# purpur of end cities, these formations appear geological —
+# veins of purpur block exposed by erosion, creating purple
+# streaks across the pale yellow end stone ridge. The ridge
+# itself is a long, narrow elevated formation connecting
+# larger highland islands, its spine rising 15+ blocks above
+# the surrounding terrain. The purpur veins follow the ridge
+# crest, suggesting a deeper layer of purpur beneath the
+# surface that only breaches where the terrain is thinnest.
+#
+# Gameplay notes:
+#   - Natural purpur block source — mineable without
+#     raiding end cities.
+#   - Elevated ridge terrain with steep side slopes.
+#   - Long, linear formation connecting larger islands.
+#   - Purpur blocks exposed along the ridge crest.
+#   - Good mining site for purpur-based building material.
+#   - Chorus plants grow on the ridge slopes.
+#   - Pairs with highlands_end_city_island (connected to)
+#     and highlands_crystal_peak (similar elevation).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the purpur-veined
+# ridgeline formations in the End highlands.
+id = "strata:highlands_purpur_ridge"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Purpur Ridge"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Highlands region.
+region = "highlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly warm — purpur formations retain
+# heat from whatever geological process created them.
+# 0.2 = noticeably warmer than raw end stone terrain,
+# suggesting geothermal-equivalent activity.
+temperature = 0.2
+
+# humidity: Low — the ridge is exposed and narrow, losing
+# moisture to the void winds. 0.05 = barely above zero.
+humidity = 0.05
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.3 = moderately weird. Natural purpur
+# formations are unusual — players expect purpur only in
+# end cities. Finding it in the wild is noteworthy.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 80 — elevated above standard highlands
+# (75). The ridge rises above the surrounding island
+# terrain, forming a prominent spine visible from
+# adjacent biomes.
+base-height = 80
+
+# height-variation: 15 = high variation. The ridge crest
+# is narrow and peaks sharply, while the slopes drop
+# steeply to meet adjacent biomes. This creates the
+# characteristic sharp ridgeline profile.
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Purpur blocks form the surface along the ridge crest,
+# replacing end stone where the geological layer breaches.
+[biome.surface]
+# top-block: Purpur block — the defining visual feature
+# of this biome. The purple surface is immediately
+# recognizable and signals to players that purpur can be
+# mined here in natural deposits.
+top-block = "minecraft:purpur_block"
+
+# filler-block: End stone beneath the purpur veneer. The
+# purpur layer is relatively thin; the ridge core is
+# standard end stone.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard depth. The purpur surface
+# sits atop a solid end stone foundation.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Chorus plants grow on the ridge slopes where end stone
+# is exposed. Purpur block outcrops decorate the crest.
+[biome.features]
+# end-specific: Chorus plants on lower slopes and purpur
+# boulder formations along the crest. The combination of
+# natural purpur and chorus creates a distinctly highland
+# aesthetic.
+trees = { types = ["chorus_tree"], density = 3.0 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Natural purpur formations.
+#   purpur_outcrop — large purpur block boulders and
+#       exposed veins along the ridge crest, mineable
+#       by players for building material.
+#   purpur_pillar_natural — vertical purpur pillar blocks
+#       emerging from the ridge like natural columns.
+extra-features = [
+    { feature = "purpur_outcrop", density = 4.0 },
+    { feature = "purpur_pillar_natural", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen patrol the ridge crest. The narrow terrain
+# makes encounters more dangerous than on flat islands.
+[biome.spawning]
+# enderman: Moderate-to-high presence. The ridge crest
+# is narrow, making enderman encounters unavoidable for
+# players traversing the ridgeline. Knockback is lethal
+# on the steep slopes.
+enderman = { weight = 30, min-group = 1, max-group = 3 }

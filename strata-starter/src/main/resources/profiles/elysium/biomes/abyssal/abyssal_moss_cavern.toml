@@ -1,0 +1,165 @@
+# ============================================================
+#  Biome: Abyssal Moss Cavern — Abyssal Depths
+# ============================================================
+# A lush cave overflowing with life — the underground oasis of
+# the Abyssal zone. Thick moss carpets the floor in vibrant
+# green, azalea bushes bloom in impossible underground gardens,
+# and glow berry vines cascade from the ceiling like luminous
+# curtains. Big dripleaf platforms create natural stepping
+# stones across pools of clear water, while cave vines dangle
+# from every available surface. Small dripleaf clusters line
+# the water's edge. This is the only Abyssal biome where
+# sunlight appears to penetrate — light shafts from cracks
+# above give the cavern an ethereal, almost surface-like feel.
+#
+# Gameplay notes:
+#   - Glow berries provide renewable food and ambient light.
+#   - Azalea trees mark the biome's location from the surface.
+#   - Big dripleaf platforms tilt when stood on — traversal puzzle.
+#   - Moss blocks can be bone-mealed for rapid expansion.
+#   - Rich clay deposits beneath the moss floor.
+#   - Axolotls breed here — best capture location.
+#   - Most welcoming Abyssal biome for underground base-building.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The moss cavern is the
+# lush cave variant in the Abyssal zone.
+id = "strata:abyssal_moss_cavern"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Moss Cavern"
+
+# category: CAVE — underground biome, despite its lush surface
+# appearance. Classified as cave for ambient sound selection.
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Warm and very humid — conditions that support the
+# extraordinary plant growth found in lush caves.
+[biome.climate]
+# temperature: Warm for a cave — the plant life generates
+# heat through decomposition, and light shafts from above
+# warm the cavern.
+# 0.4 = mild warmth supporting tropical-like vegetation.
+temperature = 0.4
+
+# humidity: Very high — the combination of water pools,
+# dense vegetation, and poor air circulation creates a
+# permanently humid environment.
+# 0.8 = near-tropical moisture levels underground.
+humidity = 0.8
+
+# continentalness: Neutral — lush caves form where surface
+# water and root systems penetrate deep enough.
+# 0.5 = no continental bias.
+continentalness = 0.5
+
+# erosion: Balanced — the moss and roots both stabilize and
+# slowly erode the surrounding stone.
+# 0.5 = standard cave erosion profile.
+erosion = 0.5
+
+# weirdness: Negative — lush caves are a recognized natural
+# phenomenon, not an exotic anomaly. They feel welcoming
+# rather than alien.
+# -0.2 = naturally occurring, familiar biome type.
+weirdness = -0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Shallow underground — lush caves need some
+# connection to the surface for light and root penetration.
+# -10 = just 10 blocks below sea level, the shallowest
+# Abyssal biome.
+base-height = -10
+
+# height-variation: High — the cavern has dramatic vertical
+# features: raised moss platforms, deep water pools, and
+# multi-level dripleaf terraces.
+# 20 = significant variation for interesting exploration.
+height-variation = 20
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Lush organic surfaces — moss, clay, and rooted dirt.
+[biome.surface]
+# top-block: Moss block — the signature lush cave floor
+# material. Vibrant green and bone-meal responsive.
+top-block = "minecraft:moss_block"
+
+# filler-block: Rooted dirt — tree and azalea roots have
+# penetrated the soil beneath the moss layer.
+filler-block = "minecraft:rooted_dirt"
+
+# filler-depth: Deep root penetration through rich soil.
+# 4 = thick organic soil layer before hitting stone.
+filler-depth = 4
+
+# underwater-block: Clay — rich alluvial deposits in the
+# cave pools, tinted by mineral-rich water.
+underwater-block = "minecraft:clay"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Dense, lush vegetation — this is the most feature-rich
+# biome in the Abyssal zone.
+[biome.features]
+# trees: Azalea trees — the signature lush cave tree with
+# flowering leaves that can be spotted from the surface.
+trees = { types = ["azalea"], density = 3.0 }
+
+# grass-density: Moderate — moss carpet dominates but some
+# grass tufts grow in well-lit areas near ceiling cracks.
+grass-density = 5.0
+
+# flower-density: Azalea bushes and spore blossoms provide
+# flower-like decoration throughout the cavern.
+flower-density = 3.0
+
+# extra-features: Lush cave vegetation and light features.
+#   glow_berries — cascading vines of luminous berries from ceiling.
+#   cave_vine — hanging vines on walls and ceiling edges.
+#   big_dripleaf — platform plants in and around water pools.
+#   small_dripleaf — decorative clusters at the water's edge.
+#   moss_carpet — additional moss layers on ledges and surfaces.
+#   spore_blossom — ceiling-hanging flowers that emit particles.
+extra-features = [
+    { feature = "glow_berries", density = 12.0 },
+    { feature = "cave_vine", density = 10.0 },
+    { feature = "big_dripleaf", density = 6.0 },
+    { feature = "small_dripleaf", density = 8.0 },
+    { feature = "moss_carpet", density = 7.0 },
+    { feature = "spore_blossom", density = 4.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The most life-rich Abyssal biome. Passive mobs are
+# unusually common for underground.
+[biome.spawning]
+# axolotl: Thriving population in the cave pools. This is
+# the best axolotl habitat in the world.
+axolotl = { weight = 15, min-group = 2, max-group = 5 }
+
+# glow_squid: Common in the larger cave pools.
+glow_squid = { weight = 10, min-group = 1, max-group = 3 }
+
+# bat: Abundant in the upper reaches of the cavern.
+bat = { weight = 10, min-group = 2, max-group = 4 }
+
+# Passive density is elevated — this cave supports real life.
+passive-density-multiplier = 0.5

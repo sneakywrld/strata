@@ -1,0 +1,37 @@
+# Build output
+build/
+out/
+*.class
+*.jar
+*.war
+
+# Gradle
+.gradle/
+buildSrc/.gradle/
+buildSrc/build/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.project
+.classpath
+.settings/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Tool config
+.claude/
+
+# Runtime
+logs/
+crash-reports/
+run/

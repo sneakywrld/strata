@@ -1,0 +1,151 @@
+# ============================================================
+#  Biome: Sanctuary Sunlit Clearing — Sanctuary Zone
+# ============================================================
+# A wide open clearing surrounded by a wall of trees on all sides.
+# Warm sunlight floods the flat center while campfire smoke particles
+# drift in the air. This is the perfect pre-made building plot — flat,
+# sheltered, and atmospheric.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal generator reference.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_sunlit_clearing"
+
+# display-name: Human-readable name shown in F3 debug, /strata info,
+# and zone-entry messages.
+display-name = "Sanctuary Sunlit Clearing"
+
+# category: PLAINS. The clearing itself is open grassland; the
+# surrounding trees belong to adjacent forest biomes. Plains ambient
+# sounds reflect the open-air character.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "PLAINS"
+
+# zone: Generates only within the sanctuary zone (0-1500 blocks
+# from spawn).
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate. High erosion and slight continentalness
+# shift place this in the flattest, most sheltered noise pockets.
+[biome.climate]
+# temperature: 0.5 = warm. Sun-drenched clearings are warmer than
+# shaded forests — consistent with the sanctuary baseline.
+temperature = 0.5
+
+# humidity: 0.4 = slightly dry. Open clearings lose moisture to
+# evaporation faster than sheltered forests. Matches the meadow.
+humidity = 0.4
+
+# continentalness: 0.35 = slightly further inland than most
+# sanctuary biomes (0.3). This subtle shift pushes the clearing
+# away from water features, placing it deeper in the landmass
+# where shelter from surrounding terrain is more likely.
+continentalness = 0.35
+
+# erosion: 0.85 = very flat. Nearly as flat as the farmland (0.9).
+# The clearing needs a level surface to be useful as a build site.
+erosion = 0.85
+
+# weirdness: 0.05 = barely offset from normal. The clearing is a
+# common, expected biome — not an unusual variant. The tiny offset
+# prevents exact collision with the meadow (0.0) in climate space.
+weirdness = 0.05
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 4.0 = same as the meadow. The clearing sits at the
+# same elevation as surrounding grassland, with the illusion of
+# shelter coming from adjacent higher-terrain forest biomes.
+# Range: -64.0 to 256.0
+base-height = 4.0
+
+# height-variation: 0.8 = nearly flat. Flatter than the meadow but
+# not as extreme as the farmland. Just enough micro-variation to
+# avoid looking artificially leveled.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 0.8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. The sun-drenched clearing has thick,
+# healthy grass fed by abundant sunlight.
+top-block = "minecraft:grass_block"
+
+# filler-block: Standard dirt. The clearing has natural, undisturbed
+# soil — not worked or coarse like the farmland.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard. No special soil characteristics.
+# Range: 1 to 8
+filler-depth = 3
+
+# underwater-block: Sand. Clean and neutral for any edge cases.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: A ring of trees at biome edges. The actual clearing center
+# is achieved by very low tree density combined with adjacent forest
+# biomes providing the visual "wall" of trees. A couple of lone
+# trees in the clearing add charm without obstructing.
+#   density: 0.4 = very sparse. The open center is the point.
+trees = { types = ["oak", "birch"], density = 0.4 }
+
+# grass-density: 6.0 = lush grass. The sunlight promotes thick
+# ground cover — less dense than the meadow's 8.0 because the
+# clearing is a build site where some open ground is useful.
+grass-density = 6.0
+
+# flower-density: 3.0 = moderate. A scattering of wildflowers
+# adds color without making the clearing feel like the wildflower
+# field.
+flower-density = 3.0
+
+# flower-types: Warm, sunny flowers that thrive in full light.
+# Sunflower adds height and visual impact in the wide-open space.
+flower-types = ["dandelion", "poppy", "cornflower", "oxeye_daisy"]
+
+# campfire-smoke: Particle effect that spawns a few smoke columns
+# in the clearing, as if a previous traveler left an extinguished
+# campfire. Purely atmospheric — no actual fire block, just particles.
+#   enabled: true activates the particle effect for this biome.
+#   columns: Number of smoke columns per chunk. 2 is subtle.
+#   Range: 1 to 5
+campfire-smoke = { enabled = true, columns = 2 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The sunlit clearing attracts grazing animals drawn to the open
+# sunlight and thick grass. A balanced, peaceful population.
+
+# cow: Common in the clearing. Cows graze in the open where they
+# are easy to spot and approach — good for new players learning
+# combat and farming.
+cow = { weight = 12, min-group = 2, max-group = 4 }
+
+# sheep: Moderate. Sheep flocks visible across the flat terrain.
+sheep = { weight = 10, min-group = 2, max-group = 4 }
+
+# pig: A few pigs rooting in the grass.
+pig = { weight = 8, min-group = 2, max-group = 3 }
+
+# chicken: Present but not dominant. Chickens scratch in the
+# shorter grass patches.
+chicken = { weight = 6, min-group = 2, max-group = 3 }

@@ -1,0 +1,183 @@
+# ============================================================
+#  Biome: Abandoned Village — Rare Biomes
+# ============================================================
+# The overgrown ruins of a village consumed by time and the
+# undead. Crumbling cobblestone walls poke through thick
+# vegetation, their windows dark and draped in cobwebs. Paths
+# that once connected houses are barely visible beneath
+# encroaching grass and ferns. The village well still holds
+# water, but its stone rim is cracked and moss-covered. At
+# night, zombie villagers emerge from the ruined buildings —
+# the former residents, still wearing fragments of their
+# profession clothing, shambling through streets they once
+# walked in life. Loot chests remain in the more intact
+# structures, their contents untouched since the village fell.
+#
+# Gameplay notes:
+#   - Zombie villagers can be cured — golden apple + weakness
+#     potion restores them to living villagers with discounts.
+#   - Loot chests in ruined buildings — tools, food, and armor.
+#   - Cobwebs provide string for bows and fishing rods.
+#   - Pre-built structures to repair for a starter base.
+#   - Village infrastructure (wells, roads) can be restored.
+#   - Elevated hostile spawns at night — dangerous to explore
+#     without preparation.
+#   - Very rare: weirdness 0.94 restricts generation.
+#   - Excellent storyline location for adventure maps.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Rare biomes use the
+# "rare_" prefix to signal exceptional scarcity.
+id = "strata:rare_abandoned_village"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Abandoned Village"
+
+# category: PLAINS — villages are built on plains. PLAINS
+# enables standard village structure generation rules and
+# the open-terrain mob spawning that lets zombies roam the
+# overgrown streets.
+category = "PLAINS"
+
+# zone: "rare" — rare biomes generate wherever their extreme
+# weirdness threshold is met, regardless of zone.
+zone = "rare"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Temperate and moderate — the village was built in hospitable
+# terrain. The climate has not changed; only the inhabitants
+# have.
+[biome.climate]
+# temperature: 0.5 = temperate. The village was founded in
+# comfortable conditions — the same mild climate that
+# attracted settlers still prevails.
+temperature = 0.5
+
+# humidity: 0.5 = moderate. Balanced moisture supports the
+# overgrowth that is consuming the structures — grass, ferns,
+# and vines slowly dismantle the buildings.
+humidity = 0.5
+
+# continentalness: 0.4 = moderately inland. Villages are built
+# in accessible, connected locations — not too remote, not
+# too coastal.
+continentalness = 0.4
+
+# erosion: 0.7 = heavily eroded. The flat terrain that made
+# this a good village site is now overgrown. The high erosion
+# creates the gentle, level ground appropriate for a former
+# settlement.
+erosion = 0.7
+
+# weirdness: 0.94 = very rare. Abandoned villages are uncommon
+# discoveries. This high weirdness ensures they generate
+# infrequently, making each one feel like a unique story
+# waiting to be uncovered.
+weirdness = 0.94
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = slightly above sea level. Villages are
+# built on dry, gently elevated ground. The modest height
+# keeps the ruins above the water table while remaining
+# accessible from all directions.
+# Range: -64.0 to 256.0
+base-height = 3
+
+# height-variation: 3 = gentle. The village site is relatively
+# flat — settlements require level ground for buildings.
+# Slight undulation from overgrowth mounds and collapsed
+# structures adds subtle terrain interest.
+# Range: 0.0 to 30.0
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Overgrown grass — the village's former dirt paths and
+# garden plots have been reclaimed by aggressive vegetation.
+[biome.surface]
+# top-block: Grass block — nature has reclaimed the village.
+# The grass grows thick and tall, swallowing former paths,
+# garden fences, and foundation stones.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt beneath the overgrown surface. Normal
+# village soil — once cultivated, now wild.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard depth. Normal soil conditions
+# beneath the reclaimed surface.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Dirt at the bottom of the village well
+# and any flooded basements.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Dense overgrowth mixed with cobweb-draped ruins. The
+# vegetation is reclaiming the structures aggressively.
+[biome.features]
+# trees: Opportunistic trees growing through collapsed roofs
+# and in former village squares. Oak and birch — the same
+# species the villagers once planted, now growing wild.
+#   types: "oak" and "birch" — unmanaged growth.
+#   density: 3.0 = moderate. Trees are establishing in the
+#            ruins but have not yet formed a closed canopy.
+#            Range: 0.0 to 30.0+
+trees = { types = ["oak", "birch"], density = 3.0 }
+
+# grass-density: Very dense overgrowth — tall grass and
+# ferns consuming every open surface.
+# Range: 0.0 to 100.0
+grass-density = 30.0
+
+# flower-density: Moderate. Flowers from former village
+# gardens have escaped and spread across the ruins.
+# Range: 0.0 to 15.0
+flower-density = 3.0
+
+# extra-features: Cobwebs, vines, and mushrooms mark the
+# decay of the abandoned structures.
+extra-features = [
+    # Cobweb clusters in ruined buildings and doorways.
+    { feature = "cobweb_cluster", density = 4.0 },
+    # Vine growth on remaining walls and structures.
+    { feature = "vine", density = 3.0 },
+    # Fern clusters in the shaded interior of ruins.
+    { feature = "fern", density = 3.0 },
+    # Brown mushrooms on decaying wood surfaces.
+    { feature = "brown_mushroom", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Zombie villagers are the signature mob — the former
+# residents, still recognizable in their profession clothing.
+# Cats have gone feral and spiders nest in the cobwebs.
+[biome.spawning]
+# Zombie villager: The former residents. Each retains their
+# profession appearance. Can be cured with golden apple and
+# weakness potion for significant trade discounts.
+zombie_villager = { weight = 20, min-group = 2, max-group = 4 }
+
+# Cat: Feral descendants of village cats. They hiss and flee
+# from players but can still be tamed with raw fish.
+cat = { weight = 8, min-group = 1, max-group = 3 }
+
+# Spider: Nest in the cobweb-filled buildings. They leap from
+# dark doorways and collapsed ceilings.
+spider = { weight = 10, min-group = 1, max-group = 2 }

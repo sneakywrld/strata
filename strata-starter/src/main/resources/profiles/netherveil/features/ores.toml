@@ -1,0 +1,127 @@
+# ============================================================
+#  Nether Ore Generation — Netherveil
+# ============================================================
+# Nether-specific ores. The key resource is Ancient Debris
+# (netherite), which is intentionally very scarce.
+#
+# Nether gold ore is more common than overworld gold but
+# drops nuggets, not ingots. Quartz is abundant.
+# ============================================================
+
+# -------------------------------------------------------
+# Nether Gold Ore — Common, nugget drops
+# -------------------------------------------------------
+[[ores]]
+id = "nether_gold"
+block = "minecraft:nether_gold_ore"
+# size: Nether gold veins are moderate.
+size = 10
+# count: Fairly common throughout nether.
+count = 10
+# y-range: Full nether height range.
+y-range = [10, 117]
+distribution = "uniform"
+discard-chance = 0.0
+
+# -------------------------------------------------------
+# Nether Quartz — Very common
+# -------------------------------------------------------
+[[ores]]
+id = "nether_quartz"
+block = "minecraft:nether_quartz_ore"
+size = 14
+count = 16
+y-range = [10, 117]
+distribution = "uniform"
+discard-chance = 0.0
+
+# -------------------------------------------------------
+# Ancient Debris — EXTREMELY RARE
+# -------------------------------------------------------
+# Netherite's source material. Intentionally very scarce.
+# Concentrated in specific biomes (basalt deltas, soul regions).
+
+[[ores]]
+id = "ancient_debris_low"
+block = "minecraft:ancient_debris"
+# size: Tiny veins — 1-3 blocks maximum.
+size = 2
+# count: Very few per chunk.
+count = 1
+y-range = [8, 24]
+distribution = "triangle"
+# discard-chance: High — almost always fully buried.
+discard-chance = 0.9
+
+[[ores]]
+id = "ancient_debris_high"
+block = "minecraft:ancient_debris"
+size = 1
+# count: Sub-1 means not every chunk gets one.
+count = 0.5
+y-range = [8, 119]
+distribution = "uniform"
+discard-chance = 0.95
+
+# -------------------------------------------------------
+# Blackstone — Found in basalt biomes
+# -------------------------------------------------------
+[[ores]]
+id = "blackstone"
+block = "minecraft:blackstone"
+size = 32
+count = 2
+y-range = [5, 40]
+distribution = "uniform"
+discard-chance = 0.0
+biome-filter = ["basalt"]
+
+# -------------------------------------------------------
+# Gilded Blackstone — Rare, in bastion biomes
+# -------------------------------------------------------
+[[ores]]
+id = "gilded_blackstone"
+block = "minecraft:gilded_blackstone"
+size = 5
+count = 1
+y-range = [15, 50]
+distribution = "uniform"
+discard-chance = 0.3
+biome-filter = ["basalt", "fortress"]
+
+# -------------------------------------------------------
+# Magma Blocks — Common near lava level
+# -------------------------------------------------------
+[[ores]]
+id = "magma_blocks"
+block = "minecraft:magma_block"
+size = 33
+count = 4
+y-range = [27, 37]
+distribution = "uniform"
+discard-chance = 0.0
+
+# -------------------------------------------------------
+# Gravel — Nether gravel patches
+# -------------------------------------------------------
+[[ores]]
+id = "nether_gravel"
+block = "minecraft:gravel"
+size = 32
+count = 2
+y-range = [5, 41]
+distribution = "uniform"
+discard-chance = 0.0
+
+# -------------------------------------------------------
+# Soul Sand/Soil Pockets — In appropriate biomes
+# -------------------------------------------------------
+[[ores]]
+id = "soul_sand_pocket"
+block = "minecraft:soul_sand"
+size = 24
+count = 3
+y-range = [5, 40]
+distribution = "uniform"
+discard-chance = 0.0
+biome-filter = ["soul"]

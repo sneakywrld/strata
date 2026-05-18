@@ -1,0 +1,157 @@
+# ============================================================
+#  Biome: Lily Marsh — Shadowmire Swamps
+# ============================================================
+# Shallow standing water stretches in every direction, its surface
+# almost completely obscured by a dense carpet of lily pads. Frogs
+# hop between the pads in lazy arcs, and dragonfly-like particles
+# shimmer above the water in the dappled sunlight that occasionally
+# breaks through the Shadowmire's perpetual overcast. This is one
+# of the calmer areas of the swamp — the water is only ankle-deep,
+# the footing is stable, and the open sky provides some measure of
+# safety from canopy-dwelling threats. But "calm" is relative in
+# the Shadowmire — the lily pads conceal what lurks beneath.
+#
+# Gameplay Notes:
+#   - Shallow water (1 block deep) — walkable but slow.
+#   - Dense lily pad coverage allows surface traversal by jumping.
+#   - Frogs are abundant for froglight farming.
+#   - Open sky means standard day/night hostile spawn cycles.
+#   - Lily pads can be harvested for decoration and boat docking.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_lily_marsh"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Lily Marsh"
+
+# category: The broad Minecraft biome category this belongs to.
+# SWAMP enables the green-tinted water and swamp ambient sounds.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.6 = mild warmth — warm enough to support the
+# dense aquatic vegetation and frog populations year-round.
+temperature = 0.6
+
+# humidity: 0.9 = near-saturated — the shallow standing water
+# keeps the air constantly humid, sustaining the lily pads.
+humidity = 0.9
+
+# continentalness: 0.6 = moderately inland — the marsh forms in
+# broad, shallow depressions within the swamp basin.
+continentalness = 0.6
+
+# erosion: 0.75 = heavily eroded — the terrain has been worn down
+# to a nearly uniform shallow basin that holds standing water.
+erosion = 0.75
+
+# weirdness: -0.1 = very slightly below normal — the lily marsh
+# is a common, natural swamp variant that generates frequently
+# wherever flat, shallow water collects.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -1 = one block below sea level. The marsh floor
+# sits just beneath the waterline, creating the signature shallow
+# standing water that defines this biome.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = -1
+
+# height-variation: 1 = extremely flat. The marsh is a uniform
+# shallow basin — any variation would create dry spots that break
+# the continuous lily pad carpet.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 1
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Clay — the fine sediment that settles in calm, shallow
+# water. Clay is visible through the water in patches between lily
+# pads and can be harvested for bricks.
+top-block = "minecraft:clay"
+
+# filler-block: Mud beneath the clay — the deeper substrate is
+# saturated organic matter typical of marsh environments.
+filler-block = "minecraft:mud"
+
+# filler-depth: 3 = moderate depth before reaching stone.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Clay continues on the underwater surface,
+# providing a consistent light-colored lakebed visible through
+# the shallow water.
+underwater-block = "minecraft:clay"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Very sparse — only occasional willow-style oaks grow on
+# the rare hummocks that rise above water level.
+#   density: 0.5 = extremely sparse, maintaining the open-water feel.
+trees = { types = ["swamp_oak"], density = 0.5 }
+
+# grass-density: 2.0 = minimal — seagrass and tall grass grow on
+# the few exposed mud banks.
+# Range: 0.0 to 100.0.
+grass-density = 2.0
+
+# flower-density: 1.0 = occasional blue orchids on exposed banks.
+# Range: 0.0 to 15.0.
+flower-density = 1.0
+
+# extra-features: Dense lily pad coverage is the defining feature,
+# supplemented by dripleaf plants and seagrass in deeper sections.
+extra-features = [
+    { feature = "lily_pad", density = 15.0 },
+    { feature = "dripleaf", density = 2.0 },
+    { feature = "seagrass", density = 4.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The lily marsh is frog paradise. Dense frog populations dominate,
+# with fish in the water and the occasional drowned lurking beneath
+# the lily pad carpet.
+
+# frog: Frogs are everywhere — hopping between lily pads, sitting
+# on mud banks, and croaking in enormous choruses.
+# weight: 25 makes frogs the dominant mob by a wide margin.
+# min-group/max-group: Large groups of 3-6.
+frog = { weight = 25, min-group = 3, max-group = 6 }
+
+# drowned: Drowned lurk beneath the lily pads in the shallow water,
+# grabbing at ankles when players wade through.
+# weight: 8 for an occasional aquatic threat.
+# min-group/max-group: Solitary ambush predators.
+drowned = { weight = 8, min-group = 1, max-group = 1 }
+
+# cod: Small fish dart between the lily pad stems in the clear
+# shallow water.
+# weight: 6 for ambient aquatic life.
+cod = { weight = 6, min-group = 2, max-group = 4 }

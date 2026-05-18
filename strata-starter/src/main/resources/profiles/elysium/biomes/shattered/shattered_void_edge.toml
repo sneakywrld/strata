@@ -1,0 +1,148 @@
+# ============================================================
+#  Biome: Void Edge — The Shattered Reach
+# ============================================================
+# The very edge of reality. The terrain fractures into isolated floating
+# fragments suspended over an infinite void. Patches of end stone jut
+# through the remaining grass like bones through skin, hinting at the
+# alien substrate beneath. Particles of void dust drift upward, and the
+# sky flickers between purple-black and absolute nothing. One misstep
+# sends the player tumbling into oblivion. Only the bold — or the
+# desperate — traverse the Void Edge.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier. Used by the world generator and in any
+# cross-references from other config files (e.g., region maps, transitions).
+id = "strata:shattered_void_edge"
+
+# Human-readable name shown in debug screens and admin commands.
+display-name = "Void Edge"
+
+# Category tag — CUSTOM means this biome does not map to any vanilla
+# Minecraft biome and uses entirely bespoke generation rules.
+category = "CUSTOM"
+
+# Zone grouping. All "shattered" biomes belong to the Shattered Reach,
+# the endgame area themed around ender corruption and dimensional decay.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+# Climate values drive biome placement on the world generator's
+# multi-dimensional noise grid. Together they define *where* this biome
+# can appear relative to others in the same zone.
+
+[biome.climate]
+# Temperature — 0.0 reflects the lifeless, frozen void. No warmth
+# survives this close to dimensional collapse.
+temperature = 0.0
+
+# Humidity — bone-dry; moisture cannot persist at the boundary of
+# nothingness. Any water here has long since evaporated or fallen
+# into the void below.
+humidity = 0.0
+
+# Continentalness — 0.3 places this biome toward the fringes of
+# landmass generation, appropriate for terrain that is literally
+# breaking apart at the world's edge.
+continentalness = 0.3
+
+# Erosion — strongly negative (-0.8) means the terrain is heavily
+# eroded and carved, producing the dramatic floating-fragment look
+# with sheer drops and overhangs.
+erosion = -0.8
+
+# Weirdness — 0.9, extremely high. The generator uses weirdness to
+# place alien, rule-breaking terrain. This biome is as weird as it gets.
+weirdness = 0.9
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — 60 blocks above sea level. The remaining solid ground
+# floats well above the void floor, reinforcing the "shattered sky
+# island" feeling.
+base-height = 60
+
+# Height variation — 50 blocks of swing. Some fragments soar far above
+# the base while others hang dangerously low. This extreme variation
+# produces the jagged, uneven skyline of broken land.
+height-variation = 50
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — end_stone. The alien substrate has punched through
+# whatever grass once covered this land. In practice the generator
+# mixes end_stone with sparse grass_block patches to show the last
+# vestiges of the natural world being consumed. (Mix logic is handled
+# by the surface-rule overlay; this sets the dominant block.)
+top-block = "minecraft:end_stone"
+
+# Filler block — end_stone continues below the surface, representing
+# the dimensional bleed-through that has replaced normal stone.
+filler-block = "minecraft:end_stone"
+
+# Filler depth — 6 blocks of end_stone beneath the top layer before
+# the generator falls back to default underground materials.
+filler-depth = 6
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Scattered grass_block patches survive on top of end_stone fragments,
+# clinging to existence at the border between dimensions.
+grass-patches = true
+
+# End stone pillar remnants — tall, narrow columns of end_stone that
+# once connected floating islands to the ground below, now broken
+# and jagged.
+end-stone-pillars = true
+
+# Void particles — ambient particle effect that drifts upward from
+# the edges of every fragment, signaling the abyss below.
+void-particles = true
+
+# Occasional end gateway frames — dormant, non-functional relics
+# hinting at the dimensional rift that caused this devastation.
+end-gateway-remnants = true
+
+# Sparse dead bushes and withered grass scattered across the
+# surviving grass patches, emphasising desolation.
+dead-vegetation = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Endermen are the primary inhabitants — drawn to the dimensional
+# instability. High spawn weight keeps them constantly present.
+enderman = 80
+
+# Phantoms circle the void gaps, hunting players who linger on
+# exposed fragments without shelter.
+phantom = 40
+
+# Shulkers cling to the undersides of floating islands, guarding
+# the remnants of whatever structures once stood here.
+shulker = 15
+
+# Skeletons patrol the barren stone — classic hostile presence to
+# keep pressure on the player alongside the ender-themed mobs.
+skeleton = 20
+
+# Vex occasionally phase through the fractured terrain, their
+# spectral nature fitting the unstable dimensional fabric.
+vex = 10

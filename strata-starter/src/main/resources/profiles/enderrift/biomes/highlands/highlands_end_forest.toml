@@ -1,0 +1,144 @@
+# ============================================================
+#  Biome: Highlands End Forest — End Highlands
+# ============================================================
+# A dense chorus plant forest blanketing a large highland
+# island. This is the thickest concentration of chorus
+# vegetation in the entire End — branching columns packed
+# so tightly that the canopy forms an almost continuous
+# purple ceiling overhead. The forest floor is dimly lit,
+# the chorus stems filtering the already-faint End light into
+# deep purple shadows. Chorus flowers bloom at every branch
+# tip, and fallen chorus fruit litters the ground. Navigating
+# through the forest requires constant weaving between stems,
+# and the limited visibility makes enderman encounters
+# sudden and terrifying.
+#
+# Gameplay notes:
+#   - DENSEST chorus plant concentration in the End.
+#   - Primary chorus fruit and flower farming location.
+#   - Very limited visibility inside the forest canopy.
+#   - Enderman encounters are close-range and frequent.
+#   - Chorus fruit teleportation can disorient players.
+#   - Breaking chorus stems topples the entire column.
+#   - Chorus flowers are the only renewable End vegetation.
+#   - Pairs with highlands_floating_garden (manicured
+#     variant) and highlands_end_city_island (nearby).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the dense chorus
+# plant forest in the End highlands.
+id = "strata:highlands_end_forest"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "End Forest"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Highlands region.
+region = "highlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Neutral-to-warm — the dense chorus canopy
+# traps ambient heat, creating a slightly warmer
+# microclimate. 0.1 = subtle warmth from biological
+# activity.
+temperature = 0.1
+
+# humidity: Highest in the End — the dense chorus growth
+# releases biological moisture into the enclosed space.
+# 0.3 = the most humid biome in the Enderrift profile.
+humidity = 0.3
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.1 = near-normal. Dense chorus forests are
+# a natural extension of the highland ecosystem —
+# expected, not surprising. Low weirdness means they
+# generate frequently.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 70 — moderate highlands elevation. The
+# forest floor sits slightly below the highest highlands
+# terrain, creating natural basins where chorus growth
+# concentrates.
+base-height = 70
+
+# height-variation: 8 = moderate variation. The forest
+# floor has gentle undulations — small hills and shallow
+# depressions that create pockets of denser growth. Not
+# enough variation to impede movement through the forest.
+height-variation = 8
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — the forest floor. Chorus plants
+# are feature-placed on top of this surface, not part of
+# the surface itself.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — solid island beneath the
+# forest floor.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 5 = thick island body. The large forest
+# island has substantial mass.
+# Range: 1 to 8.
+filler-depth = 5
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Chorus plants at maximum density. This is THE chorus
+# biome — everything else is secondary.
+[biome.features]
+# end-specific: Maximum chorus density. The forest is
+# defined by its overwhelming chorus plant coverage.
+# Trees use chorus_tree type at extreme density, creating
+# the signature packed canopy effect.
+trees = { types = ["chorus_tree"], density = 10.0 }
+
+# grass-density: No grass — the chorus canopy blocks any
+# theoretical undergrowth.
+grass-density = 0.0
+
+# extra-features: Dense chorus ground cover.
+#   chorus_cluster — overlapping chorus groves that merge
+#       into continuous forest canopy.
+#   chorus_fallen — fallen chorus fruit blocks on the
+#       forest floor, harvestable.
+extra-features = [
+    { feature = "chorus_cluster", density = 6.0 },
+    { feature = "chorus_fallen", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen are extremely common in the forest. The dense
+# chorus stems limit visibility, making accidental eye
+# contact nearly unavoidable.
+[biome.spawning]
+# enderman: Very high presence — the forest provides
+# ample spawn surface and endermen enjoy the cover. The
+# limited visibility means players will stumble into
+# endermen constantly. Bring a pumpkin helmet or prepare
+# for frequent combat.
+enderman = { weight = 45, min-group = 1, max-group = 4 }

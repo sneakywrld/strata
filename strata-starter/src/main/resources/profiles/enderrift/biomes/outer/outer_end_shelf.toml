@@ -1,0 +1,128 @@
+# ============================================================
+#  Biome: Outer End Shelf — Outer Islands
+# ============================================================
+# A wide, thin ledge of end stone extending horizontally from
+# a larger island like a geological shelf or continental
+# margin. The shelf is broad (30-60 blocks wide) but
+# remarkably thin — only a few blocks from top surface to
+# underside. Looking down from the shelf edge, players can
+# see the void through cracks and thin spots in the floor.
+# The shelf sags slightly under its own weight, creating a
+# barely perceptible downward slope toward the void edge.
+# Chorus plants grow sparsely along the shelf, their root
+# systems visible through the thin end stone from below.
+#
+# Gameplay notes:
+#   - Wide walkable surface but dangerously thin.
+#   - Players can see void through thin spots (1 block).
+#   - Gentle downward slope toward the shelf edge.
+#   - Mining the surface risks breaking through to void.
+#   - Good flat building area if reinforced from below.
+#   - Chorus plants present but sparse.
+#   - Pairs with outer_end_plateau (the island the shelf
+#     extends from) and outer_void_overlook (edge views).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the thin shelf
+# formations extending from outer End islands.
+id = "strata:outer_end_shelf"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Outer End Shelf"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: Outer Islands region.
+region = "outer"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Neutral — the shelf is connected to a
+# larger island and shares its thermal properties.
+# 0.0 = standard outer End temperature.
+temperature = 0.0
+
+# humidity: Very slightly elevated — the thin shelf
+# allows trace moisture from the void to seep through.
+# 0.05 = negligibly above baseline.
+humidity = 0.05
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.1 = very slightly weird. Shelves are
+# natural extensions of existing islands, common enough
+# to not be remarkable but distinct from the main island
+# biome.
+weirdness = 0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 58 — slightly below the standard island
+# height (60). The shelf sits a few blocks lower than the
+# island it extends from, creating a natural step down.
+base-height = 58
+
+# height-variation: 4 = low variation. The shelf is
+# characteristically flat — a smooth, thin extension
+# without significant terrain features. Minor undulation
+# creates the slight downward slope toward the edge.
+height-variation = 4
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — continuous with the parent
+# island's surface material.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — the shelf is a thin layer
+# of the same material.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 1 = minimum depth. The shelf is
+# dangerously thin — one block of surface, one block of
+# filler, then void. This is intentional: the fragility
+# is the biome's defining gameplay characteristic.
+# Range: 1 to 8.
+filler-depth = 1
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Sparse chorus plants — the thin surface barely supports
+# their root systems. Fewer than on standard islands.
+[biome.features]
+# end-specific: Sparse chorus growth. Only the thickest
+# sections of the shelf support chorus plant roots.
+# Most of the shelf is too thin for vegetation.
+trees = { types = ["chorus_tree"], density = 1.0 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen roam the shelf surface. Their teleportation
+# ability means they are unaffected by the thin terrain,
+# but players knocked off the edge face void death.
+[biome.spawning]
+# enderman: Moderate presence — the flat surface provides
+# decent spawn area. Encounters are dangerous because
+# the thin shelf floor cannot be easily reinforced, and
+# knockback may send players off the narrow edge.
+enderman = { weight = 28, min-group = 1, max-group = 3 }

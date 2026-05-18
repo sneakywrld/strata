@@ -1,0 +1,139 @@
+# ============================================================
+#  Biome: Nether Wastes Glowstone Grove — Nether Wastes Region
+# ============================================================
+# A rare pocket of the nether wastes where the ceiling above is
+# densely packed with glowstone clusters, casting a warm golden
+# light across the netherrack floor below. The concentration of
+# glowstone here is extraordinary — massive stalactite-like
+# formations drip from the ceiling, some large enough to mine
+# for hours. The bright illumination creates one of the few
+# well-lit areas in the nether, suppressing hostile mob spawns
+# on the ground and giving the space an almost serene quality.
+# The open floor beneath the glowing ceiling feels like standing
+# under a field of golden stars.
+#
+# Gameplay notes:
+#   - Premier glowstone farming biome — bring Silk Touch.
+#   - Well-lit floor suppresses ground-level hostile spawns.
+#   - Ceiling access requires pillar-jumping or scaffolding.
+#   - Ghasts still spawn in the upper space near the ceiling.
+#   - Falling glowstone dust particles create ambient sparkle.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The glowstone grove is a
+# rare, resource-rich variant of the nether wastes.
+id = "strata:nether_wastes_glowstone_grove"
+
+# display-name: Human-readable biome name for player displays.
+display-name = "Glowstone Grove"
+
+# category: NETHER — standard nether environment with notably
+# brighter ambient conditions due to glowstone density.
+category = "NETHER"
+
+# zone: Part of the wastes region — a luminous pocket within
+# the nether wasteland.
+zone = "wastes"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Standard nether warmth — the glowstone emits
+# light but doesn't significantly affect temperature.
+#   0.5 = baseline nether temperature.
+temperature = 0.5
+
+# humidity: Slightly positive — the enclosed, well-lit space
+# has marginally more moisture than open wastes.
+#   0.1 = very slightly more humid than the barren wastes.
+humidity = 0.1
+
+# continentalness: Neutral — glowstone groves form at standard
+# nether mid-levels without positional bias.
+#   0.0 = no continental preference.
+continentalness = 0.0
+
+# erosion: Moderate — the space is open but not perfectly flat.
+#   0.6 = open floor space beneath the glowstone ceiling.
+erosion = 0.6
+
+# weirdness: Slightly elevated — the dense glowstone ceiling
+# is an unusual geological formation.
+#   0.3 = moderately unusual terrain feature.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the ground level is
+# typical, with the ceiling formations being the notable feature.
+#   40 = standard wastes floor level.
+base-height = 40
+
+# height-variation: Low — the floor is relatively open and flat
+# to maximize the dramatic ceiling display above.
+#   3.0 = mostly flat floor with minor irregularities.
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Standard netherrack floor — the visual interest
+# is on the ceiling, not the ground.
+top-block = "minecraft:netherrack"
+
+# filler-block: Netherrack substrate — standard nether geology.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard nether fill depth.
+#   4 = typical netherrack depth before base generation.
+filler-depth = 4
+
+# underwater-block: Magma blocks in any lava-adjacent areas.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation in the wastes — even the well-lit
+# netherrack floor can't support plant growth.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life on netherrack.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Glowstone grove specific features.
+#   glowstone_cluster — dense ceiling glowstone formations,
+#     the defining feature of this biome. Very high density.
+#   glowstone_stalactite — large hanging glowstone pillars.
+#   fire_patch — scattered fire on the well-lit floor.
+extra-features = [
+    { feature = "glowstone_cluster", density = 15.0 },
+    { feature = "glowstone_stalactite", density = 5.0 },
+    { feature = "fire_patch", density = 0.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The bright lighting suppresses ground-level hostile spawns.
+# Ghasts still lurk in the upper darkness near the ceiling.
+[biome.spawning]
+# zombified_piglin: Reduced presence — the bright light
+# discourages large herds from congregating.
+zombified_piglin = { weight = 15, min-group = 2, max-group = 4 }
+
+# ghast: Still present near the ceiling, weaving between
+# glowstone formations. Their fireballs can shatter glowstone.
+ghast = { weight = 6, min-group = 1, max-group = 1 }

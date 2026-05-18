@@ -1,0 +1,163 @@
+# ============================================================
+#  Biome: Witch Bog — Shadowmire Swamps
+# ============================================================
+# An eerie pocket of swamp where the veil between the mundane and
+# the arcane feels thin. Witch huts rise on stilts above the murky
+# water, their interiors lit by the glow of brewing stands and
+# cauldrons. Giant mushrooms (both red and brown) tower above the
+# fog line, and smaller mushrooms carpet every surface. Purple
+# particles — like drifting potion residue — float through the air,
+# hinting at the alchemical experiments conducted here. The entire
+# area smells of nether wart and fermented spider eyes.
+#
+# Gameplay Notes:
+#   - Witch huts contain brewing stands, cauldrons, and ingredients.
+#   - Witches spawn at greatly elevated rates — come prepared.
+#   - Giant mushrooms provide mushroom blocks for building.
+#   - Purple particles can obscure vision at close range.
+#   - Rare potion ingredient drops make this a valuable destination.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_witch_bog"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Witch Bog"
+
+# category: The broad Minecraft biome category this belongs to.
+# SWAMP enables the murky green water tint and swamp ambient sounds.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.55 = mild — slightly cool, as if the potions
+# brewed here leach warmth from the surrounding air.
+temperature = 0.55
+
+# humidity: 0.85 = very high moisture — the steam from cauldrons
+# and potion brewing adds to the already saturated swamp air.
+humidity = 0.85
+
+# continentalness: 0.6 = moderately inland — the witch bog forms
+# in secluded pockets deep within the swamp, far from any coast.
+continentalness = 0.6
+
+# erosion: 0.65 = moderately eroded — flat enough for hut
+# construction but with slight depressions that collect water
+# around the stilted structures.
+erosion = 0.65
+
+# weirdness: 0.6 = notably unusual — the witch bog is a rare,
+# magical variant that only generates where the weirdness noise
+# is significantly elevated. Players must explore to find it.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 0 = at sea level. The bog sits right at the
+# waterline, with huts raised on stilts above the shallow water.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 0
+
+# height-variation: 2 = very slight variation. The terrain is
+# flat and featureless beneath the water — the visual interest
+# comes from the structures and mushrooms above.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Mycelium — the mushroom-heavy environment has
+# transformed the topsoil into a fungal mat. This is the only
+# non-MUSHROOM-category biome with mycelium, reflecting the
+# witch's cultivation of fungi for potion ingredients.
+top-block = "minecraft:mycelium"
+
+# filler-block: Mud beneath the mycelium — the bog is still
+# fundamentally a swamp, just one colonized by fungal growth.
+filler-block = "minecraft:mud"
+
+# filler-depth: 4 = deep mud layer beneath the thin mycelium
+# surface, consistent with the waterlogged swamp substrate.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Soul sand lines the underwater areas — the
+# witches' influence extends even beneath the surface, and the
+# soul sand provides nether wart growing substrate.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Giant mushrooms replace trees as the dominant tall
+# vegetation. A few dark oaks persist at the edges.
+#   types: Tree definition keys from features/trees.toml.
+#   density: 3.0 = moderate — giant mushrooms are large and don't
+#            need high density to fill the canopy.
+trees = { types = ["giant_brown_mushroom", "giant_red_mushroom", "dark_oak"], density = 3.0 }
+
+# grass-density: 1.0 = minimal — the mycelium surface supports
+# mushrooms rather than grass.
+# Range: 0.0 to 100.0.
+grass-density = 1.0
+
+# flower-density: 0.0 = no flowers. Mushrooms fill the floral
+# niche in this biome.
+# Range: 0.0 to 15.0.
+flower-density = 0.0
+
+# mushrooms: Extremely abundant — the witch's cultivation has
+# caused mushroom populations to explode.
+mushrooms = { brown = 12, red = 8 }
+
+# extra-features: Cauldrons, brewing stands, and purple particle
+# emitters create the witch territory atmosphere.
+extra-features = [
+    { feature = "witch_cauldron", density = 0.5 },
+    { feature = "purple_particle_emitter", density = 3.0 },
+    { feature = "lily_pad", density = 4.0 },
+    { feature = "mushroom_cluster", density = 5.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# This is witch territory. Witches spawn at extreme rates,
+# supported by their cat familiars and the ever-present slimes
+# that provide ingredients.
+
+# witch: The dominant hostile mob — this is their home turf.
+# weight: 30 makes witches the overwhelming primary threat.
+# min-group/max-group: Usually solitary but occasionally in pairs.
+witch = { weight = 30, min-group = 1, max-group = 2 }
+
+# cat: Black cats serve as witch familiars, spawning near huts.
+# weight: 10 for a consistent presence alongside their masters.
+# min-group/max-group: Solitary cats.
+cat = { weight = 10, min-group = 1, max-group = 1 }
+
+# slime: Slimes provide potion ingredients and spawn in the bog.
+# weight: 8 for a supporting presence.
+slime = { weight = 8, min-group = 1, max-group = 2 }

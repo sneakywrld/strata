@@ -1,0 +1,133 @@
+# ============================================================
+#  Biome: Lukewarm Ocean — Elysium Ocean
+# ============================================================
+# A transitional ocean zone where warm and temperate currents
+# mix. The water is a clear blue-green, deeper than the warm
+# ocean but still penetrated by ample sunlight. Scattered coral
+# outcrops dot the sandy floor — less dense than a full reef
+# but colourful enough to attract diverse fish. Beds of seagrass
+# ripple gently across the mid-depth terrain, sheltering small
+# schools of mixed species.
+#
+# Gameplay notes:
+#   - Moderate coral density — less than warm ocean but still
+#     harvestable with silk touch.
+#   - Mixed fish populations: tropical fish, cod, and salmon
+#     all appear in overlapping ranges.
+#   - Seagrass provides bone meal and composting material.
+#   - Depth of ~20 blocks requires some preparation for
+#     extended underwater exploration.
+#   - Transitions between elysium_warm_ocean (shallow/warm)
+#     and elysium_temperate_ocean (deeper/cooler).
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+# id: Unique namespaced identifier. Must be unique across the
+# entire profile. Format: "strata:<biome_name>".
+id = "strata:elysium_lukewarm_ocean"
+
+# display-name: Shown in F3 debug screen and minimap overlays.
+display-name = "Lukewarm Ocean"
+
+# category: OCEAN enables aquatic mob spawning, underwater ambient
+# sounds, and ocean structure generation rules.
+category = "OCEAN"
+
+# zone: Ocean biomes span all zones — they generate wherever
+# climate noise selects them regardless of distance from spawn.
+zone = "ocean"
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+[biome.climate]
+# temperature: 0.6 = warm but not tropical. Still warm enough
+# for some coral growth but cooler than the full warm ocean.
+temperature = 0.6
+
+# humidity: 0.5 = standard oceanic moisture level.
+humidity = 0.5
+
+# continentalness: -0.6 = offshore oceanic. Same continental
+# position as warm ocean — the temperature difference drives
+# biome selection between the two.
+continentalness = -0.6
+
+# erosion: 0.4 = moderate erosion. Slightly rougher floor than
+# the warm ocean, with more varied topography from mixed currents.
+erosion = 0.4
+
+# weirdness: 0.0 = the standard lukewarm variant.
+weirdness = 0.0
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+[biome.terrain]
+# base-height: -20 blocks below sea level. Noticeably deeper
+# than warm ocean (-10), requiring breath management for floor
+# exploration. Light still reaches the bottom during the day.
+base-height = -20
+
+# height-variation: 5 = moderate rolling terrain. The mixed
+# currents create more varied topography than the calm shallows.
+height-variation = 5
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+[biome.surface]
+# top-block: Sand floor, slightly coarser than warm ocean sand.
+top-block = "minecraft:sand"
+
+# filler-block: Sand continuing below the surface layer.
+filler-block = "minecraft:sand"
+
+# filler-depth: 3 blocks of sand before stone. Thinner than
+# warm ocean because stronger currents redistribute sediment.
+filler-depth = 3
+
+# underwater-block: Sand seabed consistent with the overall
+# lukewarm ocean appearance.
+underwater-block = "minecraft:sand"
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+[biome.features]
+# trees: No trees — fully submerged biome.
+trees = { types = [], density = 0.0 }
+
+# grass-density: 0.5 = moderate seagrass beds. Denser than warm
+# ocean because the moderate depth favours seagrass over coral.
+grass-density = 0.5
+
+# extra-features: Scattered coral and seagrass — the hallmarks
+# of the lukewarm transitional zone.
+extra-features = [
+    # Scattered coral outcrops — sparser than warm ocean reefs.
+    { feature = "coral_reef", density = 2.5 },
+    # Seagrass beds covering broad stretches of the floor.
+    { feature = "tall_seagrass", density = 5.0 },
+    # Kelp beginning to appear in the cooler water pockets.
+    { feature = "kelp", density = 1.5 },
+]
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Mixed species zone — tropical fish thin out while cod and
+# salmon begin appearing. Squid are more common here than in
+# the warmer shallows.
+[biome.spawning]
+# Tropical fish still present but in smaller schools.
+tropical_fish = { weight = 12, min-group = 2, max-group = 5 }
+# Cod schools moving through the mid-depth water.
+cod = { weight = 10, min-group = 3, max-group = 6 }
+# Squid more common at moderate depth.
+squid = { weight = 8, min-group = 1, max-group = 4 }
+# Occasional pufferfish near coral outcrops.
+pufferfish = { weight = 4, min-group = 1, max-group = 2 }

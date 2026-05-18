@@ -1,0 +1,169 @@
+# ============================================================
+#  Tree Generation Configuration — Elysium Overworld
+# ============================================================
+# Defines tree types, their variants, and placement rules.
+# Trees are placed per-biome during the feature decoration stage.
+#
+# Individual biomes reference these tree definitions and specify
+# their own density, mix ratios, and spacing.
+# ============================================================
+
+# -------------------------------------------------------
+# Oak Trees
+# -------------------------------------------------------
+[trees.oak]
+# type: Tree shape template.
+# Options: "small_oak", "large_oak", "fancy_oak", "swamp_oak"
+type = "small_oak"
+# trunk: Block used for the trunk.
+trunk = "minecraft:oak_log"
+# leaves: Block used for leaves.
+leaves = "minecraft:oak_leaves"
+# min-height: Minimum trunk height (in blocks).
+min-height = 4
+# max-height: Maximum trunk height.
+max-height = 7
+# bee-nest-chance: Probability of a bee nest in the leaves.
+# Default: 0.02 (2%). Flower-rich biomes may override this higher.
+bee-nest-chance = 0.02
+
+[trees.fancy_oak]
+type = "fancy_oak"
+trunk = "minecraft:oak_log"
+leaves = "minecraft:oak_leaves"
+min-height = 8
+max-height = 14
+bee-nest-chance = 0.05
+
+# -------------------------------------------------------
+# Birch Trees
+# -------------------------------------------------------
+[trees.birch]
+type = "small_birch"
+trunk = "minecraft:birch_log"
+leaves = "minecraft:birch_leaves"
+min-height = 5
+max-height = 8
+bee-nest-chance = 0.02
+
+[trees.tall_birch]
+type = "tall_birch"
+trunk = "minecraft:birch_log"
+leaves = "minecraft:birch_leaves"
+min-height = 10
+max-height = 15
+bee-nest-chance = 0.01
+
+# -------------------------------------------------------
+# Spruce Trees
+# -------------------------------------------------------
+[trees.spruce]
+type = "small_spruce"
+trunk = "minecraft:spruce_log"
+leaves = "minecraft:spruce_leaves"
+min-height = 5
+max-height = 9
+
+[trees.mega_spruce]
+# type: "mega_spruce" uses 2x2 trunk.
+type = "mega_spruce"
+trunk = "minecraft:spruce_log"
+leaves = "minecraft:spruce_leaves"
+min-height = 15
+max-height = 30
+# podzol: Place podzol under mega spruce trees.
+ground-cover = "minecraft:podzol"
+
+# -------------------------------------------------------
+# Dark Oak Trees
+# -------------------------------------------------------
+[trees.dark_oak]
+# type: "dark_oak" always uses 2x2 trunk with wide canopy.
+type = "dark_oak"
+trunk = "minecraft:dark_oak_log"
+leaves = "minecraft:dark_oak_leaves"
+min-height = 6
+max-height = 10
+
+# -------------------------------------------------------
+# Jungle Trees
+# -------------------------------------------------------
+[trees.jungle]
+type = "small_jungle"
+trunk = "minecraft:jungle_log"
+leaves = "minecraft:jungle_leaves"
+min-height = 4
+max-height = 10
+# vines: Grow vines on jungle tree trunks and leaves.
+vines = true
+
+[trees.mega_jungle]
+type = "mega_jungle"
+trunk = "minecraft:jungle_log"
+leaves = "minecraft:jungle_leaves"
+min-height = 20
+max-height = 35
+vines = true
+# cocoa-chance: Probability of cocoa pods on trunk.
+cocoa-chance = 0.1
+
+# -------------------------------------------------------
+# Acacia Trees
+# -------------------------------------------------------
+[trees.acacia]
+type = "acacia"
+trunk = "minecraft:acacia_log"
+leaves = "minecraft:acacia_leaves"
+min-height = 5
+max-height = 8
+
+# -------------------------------------------------------
+# Cherry Trees
+# -------------------------------------------------------
+[trees.cherry]
+type = "cherry"
+trunk = "minecraft:cherry_log"
+leaves = "minecraft:cherry_leaves"
+min-height = 5
+max-height = 9
+bee-nest-chance = 0.05
+
+# -------------------------------------------------------
+# Mangrove Trees
+# -------------------------------------------------------
+[trees.mangrove]
+type = "mangrove"
+trunk = "minecraft:mangrove_log"
+leaves = "minecraft:mangrove_leaves"
+min-height = 5
+max-height = 12
+# roots: Mangrove trees generate root blocks.
+roots = true
+# propagule-chance: Chance of hanging propagules.
+propagule-chance = 0.3
+
+# -------------------------------------------------------
+# Azalea Trees
+# -------------------------------------------------------
+[trees.azalea]
+type = "azalea"
+trunk = "minecraft:oak_log"
+leaves = "minecraft:azalea_leaves"
+# flowering-leaves: Mixed in with regular azalea leaves.
+flowering-leaves = "minecraft:flowering_azalea_leaves"
+flowering-ratio = 0.4
+min-height = 4
+max-height = 7
+# rooted-dirt: Place rooted dirt below azalea trees.
+ground-cover = "minecraft:rooted_dirt"
+
+# -------------------------------------------------------
+# Dead Trees (for badlands, volcanic, shattered biomes)
+# -------------------------------------------------------
+[trees.dead]
+type = "dead_tree"
+# trunk: Stripped logs for dead appearance.
+trunk = "minecraft:stripped_oak_log"
+# leaves: No leaves — dead trees are bare.
+min-height = 4
+max-height = 8

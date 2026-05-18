@@ -1,0 +1,100 @@
+# ============================================================
+#  Biome: Frostfang Ice Spires — Frostfang Peaks
+# ============================================================
+# Jagged columns of packed ice erupt from the mountainside
+# like frozen teeth, some reaching 50 blocks tall. Their
+# cores are dense blue ice — ancient glacial remnants
+# compressed over millennia. Sunlight refracts through the
+# translucent spires, casting pale blue light across the
+# surrounding snow. The formations creak and groan as
+# temperature shifts cause micro-fractures in the ice.
+#
+# Gameplay notes:
+#   - Ice spires create dramatic vertical terrain that
+#     rewards parkour-skilled players with vantage points.
+#   - Blue ice cores are a valuable resource (used for
+#     fast-travel ice roads) but are buried deep inside
+#     the packed ice columns.
+#   - Extreme height variation makes this biome dangerous
+#     — falls are common and often fatal.
+#   - The weirdness value of 0.5 ensures these formations
+#     only appear in unusual terrain noise regions.
+#   - Pairs with frostfang_snowy_peak above and
+#     frostfang_glacial_valley below.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_ice_spires"       # Unique registry ID
+display-name = "Frostfang Ice Spires"    # Shown in F3 debug & maps
+category = "MOUNTAIN"                    # Mountain-class ice formations
+zone = "frostfang"                       # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The high weirdness value restricts this
+# biome to unusual terrain regions, making the spire
+# formations a rare and memorable discovery. The very low
+# temperature ensures the ice structures persist without
+# melting.
+[biome.climate]
+temperature = -0.7          # Extremely cold — ice never thaws
+humidity = 0.4              # Moderate moisture feeds ice growth
+continentalness = 0.8       # Deep inland mountain range
+erosion = -0.8              # Very low erosion — steep, jagged terrain
+weirdness = 0.5             # High weirdness — unusual spire formations
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 80 places the spire bases high on the
+# mountainside. The extreme height-variation of 50 creates
+# the dramatic vertical spires — some columns reach 130
+# blocks above sea level, while gaps between them plunge
+# to 30. This is the most vertically varied biome in the
+# Frostfang zone.
+[biome.terrain]
+base-height = 80            # Spire bases sit high on the mountain
+height-variation = 50       # +/-50 blocks — extreme vertical contrast
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# The spires themselves are packed ice with blue ice cores.
+# The surface between spires is snow block with packed ice
+# filler. The deep filler depth represents the massive ice
+# foundations that support the towering columns.
+[biome.surface]
+top-block = "minecraft:packed_ice"       # Hard ice surface on spire faces
+filler-block = "minecraft:blue_ice"      # Dense ancient ice beneath
+filler-depth = 6                         # Thick ice layer — spires run deep
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# No vegetation at all — this is a landscape of pure ice
+# and stone. The only "features" are the spire formations
+# themselves, which are terrain-generated rather than
+# feature-placed.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees — solid ice landscape
+grass-density = 0.0                      # No vegetation on ice surfaces
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# The ice spires are hauntingly empty during the day.
+# At night, strays emerge from crevices between the
+# columns, using the narrow gaps as ambush corridors.
+# The tight spaces and vertical terrain make combat
+# especially dangerous here.
+# No passive mobs — the terrain is too hostile.
+[biome.spawning]
+# Strays are the primary threat — they spawn in the
+# shadows between spires where light levels drop.
+# Standard hostile mob rules apply in darkness.
+# No passive or neutral mobs spawn in this biome.

@@ -1,0 +1,180 @@
+# ============================================================
+#  Biome: Marsh Fringe — Transition Zone
+# ============================================================
+# The Whispering Woodlands' dense forest floor starts to
+# saturate as the Shadowmire Swamps' influence seeps in. The
+# ground turns increasingly soft and spongy underfoot. Puddles
+# appear between tree roots, and the first mud blocks replace
+# solid dirt. Cattails and reeds crowd the edges of standing
+# water. The dark oak canopy overhead thins slightly as the
+# waterlogged soil can no longer support the largest trees,
+# replaced by smaller swamp oaks with moss-draped branches.
+# The air smells of damp earth and decay.
+#
+# Gameplay notes:
+#   - Movement slows on mud blocks — plan your path.
+#   - Water pools are shallow but frequent, forcing detours.
+#   - Rich in clay and mud — useful crafting materials.
+#   - Slimes begin appearing among the puddles.
+#   - Last place to find decent timber before the Shadowmire's
+#     dead forests take over.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Transition biomes use the
+# "transition_" prefix to mark boundary biomes between zones.
+id = "strata:transition_marsh_fringe"
+
+# display-name: Human-readable name shown in F3 debug, minimaps,
+# and /strata biome info commands.
+display-name = "Marsh Fringe"
+
+# category: SWAMP — the waterlogged ground and murky atmosphere
+# match swamp characteristics. SWAMP enables the drab green
+# water tint, swamp grass coloring, and wetland ambient sounds
+# (frogs, crickets, buzzing insects).
+category = "SWAMP"
+
+# zone: "transition" — bridging Whispering Woodlands and
+# Shadowmire Swamps, representing the gradient from dense
+# forest to open wetland.
+zone = "transition"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Positioned between Whispering (warm, humid, forested) and
+# Shadowmire (warm, very humid, flat and swampy). Humidity
+# is high and erosion increases as the terrain flattens toward
+# the swamp basin.
+[biome.climate]
+# temperature: Mild warmth — the muggy conditions of both
+# neighboring zones persist. 0.55 = warm enough for rapid
+# organic decay and insect activity, matching the subtropical
+# feel of the Shadowmire zone.
+temperature = 0.55
+
+# humidity: High — moisture from the approaching swamp
+# saturates the air. 0.75 = between Whispering (0.7) and
+# Shadowmire (0.9), with visible condensation on leaves and
+# frequent morning fog.
+humidity = 0.75
+
+# continentalness: Moderate inland. 0.55 = consistent with
+# both neighboring zones, placing this in a low-lying inland
+# basin that collects runoff and groundwater.
+continentalness = 0.55
+
+# erosion: Elevated — the waterlogged terrain is soft and
+# easily shaped by water. 0.65 = heavily eroded flat ground
+# with shallow depressions that collect standing water.
+erosion = 0.65
+
+# weirdness: Slightly negative — the marsh fringe is a common,
+# natural transition. -0.05 = a very slight lean toward the
+# "mundane" end, making this biome reliably present wherever
+# the two zones share a border.
+weirdness = -0.05
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Very low — the terrain drops toward the swamp
+# basin. 1 = barely above sea level, with many patches at or
+# below the waterline. This creates the signature scattered
+# puddles and saturated ground.
+# Range: -64.0 to 256.0
+base-height = 1
+
+# height-variation: Minimal — the land is almost flat with
+# only slight hummocks rising above the waterline. 2 = very
+# gentle undulation, just enough to create islands of dry
+# ground between shallow pools.
+# Range: 0.0 to 30.0
+height-variation = 2
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The surface is transitioning from forest floor to swamp mud.
+# Grass still grows on raised patches but mud dominates the
+# lower areas.
+[biome.surface]
+# top-block: Grass block — still present on the slightly
+# elevated hummocks, though sickly and patchy under the swamp
+# tint. Much of the actual surface is underwater or mud.
+top-block = "minecraft:grass_block"
+
+# filler-block: Mud — the subsurface is thoroughly waterlogged.
+# Digging anywhere reveals saturated mud rather than dry dirt,
+# making excavation messy and slow.
+filler-block = "minecraft:mud"
+
+# filler-depth: Deep mud layer — the saturation extends well
+# below the surface. 4 = thick waterlogged substrate before
+# reaching stone, reflecting centuries of sediment buildup.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Mud at the bottom of all standing water.
+# The shallow pools are murky and opaque.
+underwater-block = "minecraft:mud"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Thinning dark forest canopy with swamp vegetation taking
+# over the understory. Lily pads cover pools and reeds line
+# the waterways.
+[biome.features]
+# trees: Small swamp oaks replace the massive dark oaks of the
+# Whispering zone. Occasional dark oaks still persist on higher
+# ground.
+#   density: 4.0 = moderate canopy, less oppressive than
+#   Whispering's 14.0 but still significantly wooded.
+trees = { types = ["swamp_oak", "dark_oak"], density = 4.0 }
+
+# grass-density: Low — most ground is too wet for grass. Only
+# the raised hummocks support thin grass cover. 8.0 = patchy
+# tufts on the few dry spots.
+# Range: 0.0 to 100.0
+grass-density = 8.0
+
+# flower-density: Very low — blue orchids are the only flowers
+# adapted to swamp-edge conditions. 0.5 = rare individual
+# specimens on the driest hummocks.
+# Range: 0.0 to 15.0
+flower-density = 0.5
+
+# extra-features: Wetland vegetation — lily pads, cattails,
+# and the first patches of dead bush where standing water has
+# killed the undergrowth.
+extra-features = [
+    { feature = "lily_pad", density = 4.0 },
+    { feature = "cattail", density = 3.0 },
+    { feature = "dead_bush", density = 1.0 },
+    { feature = "clay_patch", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Swamp fauna begins appearing. Slimes bubble up from the
+# waterlogged ground and frogs croak from the lily pads.
+# Forest wildlife is becoming scarce.
+[biome.spawning]
+# Slimes: Swamp slimes emerge from the muddy pools. Their
+# weight is moderate — not as intense as deep Shadowmire.
+slime = { weight = 10, min-group = 1, max-group = 2 }
+
+# Frogs: Amphibians thrive in the marsh conditions. They
+# sit on lily pads and catch small slimes.
+frog = { weight = 8, min-group = 2, max-group = 4 }
+
+# Zombies: The dense fog and shade enable daytime spawns.
+# A preview of Shadowmire's dangerous conditions.
+zombie = { weight = 8, min-group = 1, max-group = 3 }

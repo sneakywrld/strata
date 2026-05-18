@@ -1,0 +1,139 @@
+# ============================================================
+#  Biome: Midlands End Grove — End Midlands
+# ============================================================
+# Open clearings dotted with scattered chorus plant clusters,
+# creating a parkland-like landscape. Unlike the dense chorus
+# forests of the highlands, the grove biome features well-
+# spaced individual chorus plants and small clusters with
+# generous gaps between them. The clearings between chorus
+# groups are flat and open, creating natural gathering spaces.
+# Chorus flowers are more prominent here than in other biomes
+# — the plants seem to be in their prime growing stage, with
+# multiple blooming tips per plant. The grove feels curated
+# but is entirely natural — an optimal chorus habitat.
+#
+# Gameplay notes:
+#   - Chorus plants in well-spaced clusters.
+#   - Open clearings between clusters for building.
+#   - Chorus flowers especially prominent (prime growth).
+#   - Good chorus fruit farming — easy access between
+#     plants without dense forest obstruction.
+#   - Flat terrain in clearings for camp/base setup.
+#   - Better visibility than highland forests.
+#   - Pairs with midlands_rolling_end (surrounding terrain)
+#     and highlands_end_forest (dense variant).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the scattered
+# chorus grove clearings in the End midlands.
+id = "strata:midlands_end_grove"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "End Grove"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Midlands region.
+region = "midlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Slightly warm — the chorus plants in
+# their prime growth stage generate faint biological
+# warmth. 0.1 = subtly above neutral.
+temperature = 0.1
+
+# humidity: Elevated — healthy chorus plants release
+# more moisture than stressed or sparse populations.
+# 0.2 = noticeably more humid than the rolling end.
+humidity = 0.2
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: -0.1 = very slightly below neutral. Groves
+# are the "natural" chorus habitat — the expected biome
+# where chorus plants thrive. Low weirdness reflects
+# their ecological normality.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 62 — slightly above the rolling end (60),
+# creating subtle elevated clearings where chorus plants
+# preferentially grow. The height difference is minor but
+# positions groves as the slightly higher ground.
+base-height = 62
+
+# height-variation: 5 = low variation. The clearings are
+# flat and the terrain between clusters is smooth. The
+# grove's defining characteristic is open, walkable
+# ground between chorus groups.
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — standard End surface. The grove
+# floor is clean end stone between chorus clusters.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — solid midlands terrain.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard depth. Healthy chorus root
+# systems anchor in a solid end stone foundation.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Moderate chorus density in clustered groupings with
+# clear spaces between. The cluster pattern distinguishes
+# the grove from the continuous forest canopy of highlands.
+[biome.features]
+# end-specific: Chorus clusters in spaced formations.
+# Each cluster contains 3-6 chorus plants growing close
+# together, with 10-20 block gaps between clusters.
+# This creates the parkland aesthetic.
+trees = { types = ["chorus_tree"], density = 4.5 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Chorus grove features.
+#   chorus_cluster — the primary feature: tight groups
+#       of chorus plants forming natural groves.
+#   chorus_flower_display — individual blooming chorus
+#       flowers in the clearings between clusters.
+extra-features = [
+    { feature = "chorus_cluster", density = 3.0 },
+    { feature = "chorus_flower_display", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Standard enderman density. The open clearings provide
+# good visibility for spotting endermen before they are
+# too close.
+[biome.spawning]
+# enderman: Standard presence. The open clearings give
+# players advance warning of enderman proximity — better
+# visibility than dense forest biomes. Players can
+# navigate around endermen more easily here.
+enderman = { weight = 32, min-group = 1, max-group = 4 }

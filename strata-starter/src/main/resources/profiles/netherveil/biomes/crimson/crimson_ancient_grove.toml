@@ -1,0 +1,165 @@
+# ============================================================
+#  Biome: Crimson Ancient Grove — Crimson Domain
+# ============================================================
+# A cathedral of impossibly massive crimson fungi — ancient
+# specimens that have grown for millennia, their stems thicker
+# than fortress towers and their nether wart block canopies
+# stretching across entire cavern chambers. The scale is
+# staggering — each fungus is a landmark visible from hundreds
+# of blocks away, their canopies forming continuous crimson
+# ceilings studded with dense shroomlight formations that cast
+# the grove in a warm, perpetual amber glow. The ground between
+# these colossal stems is carpeted in thick crimson roots, and
+# younger fungi grow in the shadow of their elders. Weeping
+# vines hang from the canopy in curtains so long they touch the
+# ground, creating natural pillared halls. This is the oldest
+# and most majestic region of the crimson domain — a primordial
+# fungal forest of awe-inspiring scale.
+#
+# Gameplay notes:
+#   - Massive crimson wood yield per fungus — bring axes.
+#   - Shroomlight harvesting from the enormous canopies.
+#   - Nether wart block collection at unprecedented scale.
+#   - The colossal stems serve as natural defensive walls.
+#   - Ancient fungi canopies block ghast fireballs overhead.
+#   - Landmark navigation — the ancient fungi are visible far away.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The ancient grove holds the
+# largest and oldest crimson fungi in the Netherveil profile.
+id = "strata:crimson_ancient_grove"
+
+# display-name: Human-readable name for player displays.
+display-name = "Crimson Ancient Grove"
+
+# category: NETHER — nether environment defined by colossal
+# ancient crimson fungi and their amber shroomlight canopies.
+category = "NETHER"
+
+# zone: Part of the crimson zone — the oldest and most
+# majestic region of the crimson domain.
+zone = "crimson"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Warm — the massive canopy traps heat beneath it,
+# creating a stable warm microclimate on the grove floor.
+#   0.6 = warm, stable temperature under the ancient canopy.
+temperature = 0.6
+
+# humidity: Very high — the massive organic biomass of the
+# ancient fungi maintains high ambient moisture.
+#   0.85 = very high organic humidity from ancient biomass.
+humidity = 0.85
+
+# continentalness: Slightly positive — ancient groves tend to
+# form in larger cavern spaces with high ceilings.
+#   0.2 = preference for spacious cavern chambers.
+continentalness = 0.2
+
+# erosion: Low to moderate — the massive stems and root
+# networks create cluttered terrain at ground level.
+#   0.3 = obstructed terrain among colossal stems.
+erosion = 0.3
+
+# weirdness: Elevated — the sheer scale of the ancient fungi
+# is extraordinary, even by nether standards.
+#   0.6 = highly unusual colossal fungal formations.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the impressiveness comes
+# from what grows above, not the ground elevation.
+#   42 = slightly elevated base for the ancient grove floor.
+base-height = 42
+
+# height-variation: Low — the floor between ancient stems is
+# relatively smooth, with the root network stabilizing terrain.
+#   3.0 = gentle terrain beneath the towering fungi.
+height-variation = 3.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Crimson nylium — an ancient, well-established
+# fungal surface that has supported these giants for millennia.
+top-block = "minecraft:crimson_nylium"
+
+# filler-block: Netherrack beneath the ancient nylium.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Slightly deeper — the ancient root network
+# extends further into the substrate.
+#   5 = deep root penetration from ancient fungal growth.
+filler-depth = 5
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: The ancient fungi are the defining feature — huge
+# crimson fungi at maximum possible scale. Each one is massive.
+#   8.0 = high density of enormous ancient specimens.
+trees = { types = ["crimson_fungus_huge", "crimson_fungus_ancient"], density = 8.0 }
+
+# grass-density: Thick crimson root carpet beneath the ancient
+# canopy, fed by millennia of organic accumulation.
+#   0.8 = dense root mat on the grove floor.
+grass-density = 0.8
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Ancient grove specific features.
+#   weeping_vines — extremely long vines from high canopy to
+#     ground, creating natural curtain walls.
+#   shroomlight_cluster — dense shroomlight in the ancient
+#     canopies, providing warm ambient illumination.
+#   nether_wart_block_patch — massive wart block accumulations
+#     from the enormous canopies overhead.
+#   crimson_fungus_small — younger fungi growing in the shadow
+#     of the ancient specimens.
+extra-features = [
+    { feature = "weeping_vines", density = 10.0 },
+    { feature = "shroomlight_cluster", density = 6.0 },
+    { feature = "nether_wart_block_patch", density = 7.0 },
+    { feature = "crimson_fungus_small", density = 4.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The ancient grove supports a full crimson ecosystem with
+# balanced mob populations.
+[biome.spawning]
+# hoglin: Standard hoglin presence — the ancient grove provides
+# abundant crimson fungus for feeding.
+hoglin = { weight = 12, min-group = 2, max-group = 4 }
+
+# piglin: Larger piglin groups patrol the ancient grove, using
+# the massive stems as rally points and defensive positions.
+piglin = { weight = 14, min-group = 3, max-group = 5 }
+
+# piglin_brute: Rare brute piglins guard the ancient grove —
+# they treat it as sacred territory worth defending.
+piglin_brute = { weight = 3, min-group = 1, max-group = 1 }
+
+# zombified_piglin: Wandering undead among the ancient stems.
+zombified_piglin = { weight = 5, min-group = 1, max-group = 2 }
+
+# enderman: Occasional presence — endermen seem drawn to the
+# ancient fungi, perhaps sensing their age.
+enderman = { weight = 2, min-group = 1, max-group = 1 }

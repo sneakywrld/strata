@@ -1,0 +1,149 @@
+# ============================================================
+#  Biome: Nether Wastes Ancient Path — Nether Wastes Region
+# ============================================================
+# Crumbling remnants of an ancient nether brick road cut through
+# the netherrack wasteland, their weathered surfaces still
+# visible beneath centuries of neglect. These roads once connected
+# nether fortresses in a vast network — now they serve as
+# navigational landmarks for players exploring the wastes. The
+# path is lined with broken pillars and collapsed archways, and
+# the occasional intact section reveals masterful brickwork.
+# Following the road generally leads toward fortress structures,
+# making it a valuable exploration cue. Wither skeletons
+# sometimes patrol these ancient highways, remnants of the
+# garrison that once guarded them.
+#
+# Gameplay notes:
+#   - Following the path leads toward nether fortress structures.
+#   - Nether brick harvesting from road remnants.
+#   - Wither skeleton encounters — skull drop for Wither boss.
+#   - Good landmark system for nether navigation.
+#   - Connects to fortress_approach biome at road endpoints.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The ancient path is a
+# lore-rich transitional biome that connects wastes to fortresses.
+id = "strata:nether_wastes_ancient_path"
+
+# display-name: Human-readable name for player displays.
+display-name = "Ancient Nether Path"
+
+# category: NETHER — nether environment with ancient structural
+# remnants adding historical context.
+category = "NETHER"
+
+# zone: Part of the wastes region — a transitional path area
+# that connects the open wastes to fortress structures.
+zone = "wastes"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Standard nether warmth — the ancient road has
+# no thermal effect on the environment.
+#   0.5 = baseline nether temperature.
+temperature = 0.5
+
+# humidity: Neutral — no organic or moisture influence.
+#   0.0 = standard nether humidity.
+humidity = 0.0
+
+# continentalness: Slightly elevated — the paths tend to
+# generate in stable inland terrain.
+#   0.2 = moderate inland placement.
+continentalness = 0.2
+
+# erosion: High — the paths are relatively flat, following
+# ancient road grades cut through the terrain.
+#   0.7 = flat road surface with gradual inclines.
+erosion = 0.7
+
+# weirdness: Moderately unusual — the structured road remnants
+# are clearly artificial, breaking the natural terrain pattern.
+#   0.3 = artificial structures in natural terrain.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the road follows the
+# natural terrain grade for practical travel.
+#   40 = standard wastes floor level.
+base-height = 40
+
+# height-variation: Low — ancient roads were built for travel,
+# so the terrain follows gentle gradients.
+#   2.0 = gentle grades appropriate for a road surface.
+height-variation = 2.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Netherrack — the base terrain between road
+# sections. The nether brick road is placed as a feature.
+top-block = "minecraft:netherrack"
+
+# filler-block: Netherrack substrate beneath the road.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard nether depth.
+#   4 = typical nether substrate.
+filler-depth = 4
+
+# underwater-block: Magma blocks in lava-adjacent areas.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation along the ancient path.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant growth on netherrack or brick.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Ancient path specific features.
+#   nether_brick_road — the crumbling road surface segments.
+#   broken_pillar — collapsed support pillars along the path.
+#   collapsed_archway — fallen archway structures.
+#   fire_patch — scattered fire on exposed netherrack.
+extra-features = [
+    { feature = "nether_brick_road", density = 8.0 },
+    { feature = "broken_pillar", density = 2.0 },
+    { feature = "collapsed_archway", density = 1.0 },
+    { feature = "fire_patch", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Wither skeletons patrol the ancient roads. Piglins avoid this
+# area due to the wither skeleton presence.
+[biome.spawning]
+# wither_skeleton: Ancient garrison remnants still patrolling
+# the roads they once guarded. Valuable wither skeleton skull
+# drops make this a hunting ground for Wither boss summoners.
+wither_skeleton = { weight = 10, min-group = 1, max-group = 3 }
+
+# zombified_piglin: Reduced presence — the wither skeleton
+# patrols discourage piglin activity in the area.
+zombified_piglin = { weight = 12, min-group = 2, max-group = 4 }
+
+# skeleton: Standard skeletons accompanying wither skeleton
+# patrols along the ancient road.
+skeleton = { weight = 6, min-group = 1, max-group = 2 }
+
+# ghast: Occasional ghast overhead, using the road as a
+# corridor for their flight paths.
+ghast = { weight = 5, min-group = 1, max-group = 1 }

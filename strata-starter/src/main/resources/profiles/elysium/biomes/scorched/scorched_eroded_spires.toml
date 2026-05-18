@@ -1,0 +1,181 @@
+# ============================================================
+#  Biome: Eroded Spires — Scorched Badlands
+# ============================================================
+# A forest of tall, thin terracotta hoodoos rising like petrified
+# fingers from the desert floor. These eroded spires reach extreme
+# heights, with narrow passages and deep shadows winding between
+# them. The most dramatic vertical terrain in the scorched zone —
+# players must navigate a maze of towering columns with barely
+# enough room to pass between. Wind whistles through the gaps,
+# and the spires cast long, shifting shadows throughout the day.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:scorched_eroded_spires"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Eroded Spires"
+
+# category: The broad Minecraft biome category this belongs to.
+# Affects ambient sounds, sky color, and some mob behavior.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+# BADLANDS provides the warm sky tint that makes the terracotta
+# spires glow in sunset light — the biome's most iconic view.
+category = "BADLANDS"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml. Biomes only generate within their zone.
+zone = "scorched"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. The noise-based climate system picks the
+# biome whose climate point is closest to the local climate values.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Thermal axis. -1.0 = freezing tundra, 0.0 = temperate,
+# 1.0 = scorching desert. 0.9 = very hot at the base, though the
+# shadowed passages between spires offer brief thermal relief.
+temperature = 0.9
+
+# humidity: Moisture axis. -1.0 = parched arid, 0.0 = moderate,
+# 1.0 = soaking tropical. -0.5 = very dry, the narrow air channels
+# between spires accelerate evaporation.
+humidity = -0.5
+
+# continentalness: Land-mass axis. -1.0 = deep ocean, 0.0 = coast,
+# 1.0 = far inland continental. 0.6 = deep inland, consistent with
+# the arid interior where differential erosion creates hoodoos.
+continentalness = 0.6
+
+# erosion: Terrain roughness axis. -1.0 = steep mountains,
+# 0.0 = moderate hills, 1.0 = pancake flat. -0.4 = low erosion
+# preserves the tall, narrow spire formations. Harder caprock on
+# top protects the softer terracotta beneath from weathering away.
+erosion = -0.4
+
+# weirdness: Variant axis. -1.0 = completely normal, 1.0 = bizarre
+# mutation. 0.7 = very unusual, reflecting the alien, otherworldly
+# appearance of dense hoodoo formations that look almost impossible.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Y-level offset from sea level (63). Positive values
+# raise terrain, negative values lower it. 5.0 keeps the base floor
+# slightly above sea level, with the spires themselves towering far
+# above due to the extreme height variation.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 5.0
+
+# height-variation: Controls how much the terrain undulates within
+# this biome. Higher values create more dramatic elevation changes.
+# 35.0 is the highest in the scorched zone, producing needle-thin
+# columns that rise 30+ blocks above the ground. This extreme
+# variation creates the dramatic hoodoo landscape.
+# Range: 0.0 (glass-flat) to 30.0+ (extreme peaks)
+height-variation = 35.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# These override the global surface rules from surface/rules.toml
+# for this biome specifically. If omitted, global defaults apply.
+[biome.surface]
+# top-block: The block placed on the very top surface (depth 0).
+# White terracotta caps the spires, representing the harder
+# erosion-resistant layer that protects the column below — the
+# geological key to hoodoo formation.
+top-block = "minecraft:white_terracotta"
+
+# filler-block: The block placed below the top block down to
+# filler-depth. Brown terracotta forms the spire body, creating
+# a warm earthy tone distinct from the red mesa's palette and
+# providing visual banding as multiple colors layer up the column.
+filler-block = "minecraft:brown_terracotta"
+
+# filler-depth: How many blocks of filler-block sit beneath the
+# top-block. 8 (maximum) ensures the spires are terracotta from
+# top to bottom, maintaining the banded appearance throughout
+# their full height.
+# Range: 1 to 8.
+filler-depth = 8
+
+# underwater-block: Block placed on the bed of any water bodies
+# (ponds, rivers) that overlap this biome. Red sand at the base
+# of any rare pools collecting between the spire foundations.
+underwater-block = "minecraft:red_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Features control what vegetation, structures, and details are
+# placed on the terrain during world generation. Each entry
+# references tree/vegetation types defined in features/*.toml.
+[biome.features]
+# trees: Tree placement configuration for this biome.
+#   types: List of tree type keys from features/trees.toml to use.
+#   density: Trees per chunk (16x16 area). Lower = more open.
+#            Range: 0.0 (treeless) to 30.0+ (dense forest).
+#            0.0 = no trees; the spires themselves are the dominant
+#            vertical elements, and there is no soil for roots.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Patches of short and tall grass per chunk.
+# Range: 0.0 to 20.0. 0.1 = trace grass in the deepest shadows
+# where moisture occasionally condenses on the cool terracotta.
+grass-density = 0.1
+
+# flower-density: Mixed wildflower patches per chunk. Flowers are
+# picked from the weighted list in features/vegetation.toml.
+# Range: 0.0 to 15.0. 0.0 = no flowers in this harsh terrain.
+flower-density = 0.0
+
+# dead-bush-density: Dead bush features per chunk. Dry shrubs
+# wedged into cracks at the base of spires. 1.0 provides sparse
+# ground-level detail without distracting from the vertical drama.
+dead-bush-density = 1.0
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Biome-specific spawn rules that add to or override the global
+# spawning table in entities/spawning.toml. Only mobs listed here
+# are changed; all others use global defaults (scaled by the zone's
+# passive-density and hostile-density multipliers).
+[biome.spawning]
+# The narrow passages between towering spires create extremely
+# dangerous combat conditions. Players cannot easily retreat or
+# maneuver, and mobs can approach from blind corners.
+
+# husk: Desert undead funneled into the tight passages between
+# spires. In these corridors, even a single husk is a serious
+# threat because dodging is nearly impossible.
+# weight: 12 for consistent hostile presence in the passages.
+husk = { weight = 12, min-group = 1, max-group = 3 }
+
+# spider: Climb the spires and drop from above onto players
+# navigating the narrow gaps. The vertical terrain is ideal
+# spider habitat.
+# weight: 10 makes spiders a frequent and terrifying ambush threat.
+spider = { weight = 10, min-group = 1, max-group = 2 }
+
+# creeper: The most feared mob in the spires. An explosion in the
+# tight passages can knock players off ledges or trap them in
+# rubble. The narrow corridors also make creeper hiss detection
+# critical.
+# weight: 6 for occasional but high-stakes encounters.
+creeper = { weight = 6, min-group = 1, max-group = 1 }

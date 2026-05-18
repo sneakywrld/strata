@@ -1,0 +1,154 @@
+# ============================================================
+#  Biome: Sanctuary Farmland — Sanctuary Zone
+# ============================================================
+# Wide, flat terrain with rich soil and patches of coarse dirt — a
+# pre-cleared landscape practically begging for a first base. The
+# flatness and open sightlines make this the ideal location for
+# players to settle, farm, and build without any terraforming.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for internal generator reference.
+# Format: "strata:<zone>_<biome_name>"
+id = "strata:sanctuary_farmland"
+
+# display-name: Human-readable name shown in F3 debug, /strata info,
+# and zone-entry messages.
+display-name = "Sanctuary Farmland"
+
+# category: PLAINS is the natural category. The open, flat terrain
+# mirrors vanilla plains behavior with plains ambient sounds.
+# Valid values: NONE, PLAINS, FOREST, TAIGA, DESERT, SWAMP,
+#               SAVANNA, BADLANDS, JUNGLE, MOUNTAIN, OCEAN,
+#               RIVER, BEACH, CAVE, MUSHROOM, NETHER, END
+category = "PLAINS"
+
+# zone: Generates only within the sanctuary zone (0-1500 blocks
+# from spawn). This is the prime "settle here" biome.
+zone = "sanctuary"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# 5D climate coordinate. Very high erosion forces the generator to
+# place this in the flattest available terrain — perfect for farming.
+[biome.climate]
+# temperature: 0.5 = warm. Good growing season implied. Consistent
+# with the sanctuary zone's temperate character.
+temperature = 0.5
+
+# humidity: 0.4 = slightly dry. Farmable land benefits from moderate
+# dryness — not arid enough to prevent crops, but dry enough that
+# standing water does not interfere with flat terrain.
+humidity = 0.4
+
+# continentalness: 0.3 = inland. Near water sources (ponds, streams)
+# but solidly on land. Consistent with adjacent sanctuary biomes.
+continentalness = 0.3
+
+# erosion: 0.9 = extremely flat. The highest erosion in the sanctuary
+# zone. This is intentional — farmland needs to be flat so players
+# can lay out crop rows and buildings without fighting terrain.
+erosion = 0.9
+
+# weirdness: 0.0 = standard variant. No unusual features; this is
+# the straightforward, reliable farmland biome.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3.0 = just above sea level. Slightly lower than the
+# meadow (4.0) to sit in gentle valleys. High enough to avoid
+# waterlogging but low enough to feel like fertile lowland.
+# Range: -64.0 to 256.0
+base-height = 3.0
+
+# height-variation: 0.5 = essentially flat. The flatter the better
+# for building and farming. Minimal undulation ensures players get
+# large, usable building plots.
+# Range: 0.0 (flat) to 30.0 (extreme)
+height-variation = 0.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block surface. Players will hoe this into
+# farmland. The green grass signals fertility and suitability
+# for agriculture.
+top-block = "minecraft:grass_block"
+
+# filler-block: Coarse dirt represents the rich, worked soil
+# beneath the surface. Unlike regular dirt, coarse dirt does not
+# grow grass, visually suggesting plowed or disturbed earth.
+# This also provides a useful building material (coarse dirt
+# paths) without any mining required.
+filler-block = "minecraft:coarse_dirt"
+
+# filler-depth: 2 blocks of coarse dirt. Shallow enough that
+# digging down 3 blocks hits normal stone/dirt, but deep enough
+# to be visually distinct when excavating.
+# Range: 1 to 8
+filler-depth = 2
+
+# underwater-block: Sand for any incidental water contact at
+# biome edges. Clean and neutral.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Almost none. The farmland is deliberately open and clear.
+# A single lone oak per several chunks acts as a landmark without
+# obstructing builds.
+#   density: 0.1 = very rare. Most chunks will have zero trees.
+trees = { types = ["oak"], density = 0.1 }
+
+# grass-density: 3.0 = sparse grass. The cleared, worked-soil
+# character means less wild grass. Enough for seeds but not enough
+# to impede building.
+grass-density = 3.0
+
+# flower-density: 1.0 = minimal flowers. A few wildflowers along
+# the edges hint at the surrounding meadow, but the farmland
+# itself is mostly clear.
+flower-density = 1.0
+
+# flower-types: Simple field flowers that one might see along the
+# edge of a tilled field. Dandelions and poppies only.
+flower-types = ["dandelion", "poppy"]
+
+# pumpkin-chance: 0.08 = roughly 8% of chunks spawn a pumpkin.
+# Higher than the meadow — pumpkins "grow wild" on the rich soil,
+# giving players free pumpkin pie ingredients and carved pumpkins.
+pumpkin-chance = 0.08
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Farmland attracts livestock-type mobs. High passive mob density
+# gives the feeling of a pastoral landscape ready for settlement.
+
+# cow: Very common. Farmland is where you expect to see cattle
+# grazing. High weight and large groups for an early leather/food
+# supply.
+cow = { weight = 15, min-group = 3, max-group = 6 }
+
+# pig: Common. Pigs root around in the coarse dirt. Porkchops are
+# a staple early food source.
+pig = { weight = 12, min-group = 2, max-group = 4 }
+
+# chicken: Moderate. Chickens scratch the open ground for seeds.
+# Eggs and feathers are useful but not the farmland's focus.
+chicken = { weight = 10, min-group = 2, max-group = 4 }
+
+# sheep: Present in smaller numbers than cows. Wool is available
+# but the emphasis here is on food-producing livestock.
+sheep = { weight = 8, min-group = 2, max-group = 3 }

@@ -1,0 +1,163 @@
+# ============================================================
+#  Biome: Warped Forest — Warped Domain
+# ============================================================
+# An alien woodland of towering warped fungi, their cyan caps
+# casting an eerie blue-green glow across the nylium floor.
+# Twisting vines spiral upward from the ground like frozen
+# blue flames, and warped spore particles drift downward in
+# lazy spirals, filling the air with a teal haze. The atmosphere
+# is unsettlingly quiet compared to other nether biomes — no
+# hoglin grunts, no piglin chatter, just the faint ambient hum
+# and the occasional vwoop of an enderman teleporting between
+# the fungi. Endermen are the dominant presence here, their tall
+# dark silhouettes visible between the warped stems, watching
+# silently until eye contact triggers their rage. The warped
+# forest is the safest nether biome for careful players — no
+# hostile mobs spawn naturally — but the enderman population
+# makes careless eye contact lethal.
+#
+# Gameplay notes:
+#   - Safest nether biome — no naturally hostile mob spawns.
+#   - Enderman farming for ender pearls — bring a pumpkin head.
+#   - Warped wood is fire-resistant building material.
+#   - Twisting vines provide upward vertical traversal.
+#   - Warped fungus repels hoglins — carry it as protection.
+#   - Shroomlight blocks harvestable from huge warped fungi.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the warped forest.
+# The primary biome of the Warped Domain — an eerie fungal
+# woodland where endermen are the sole significant mob.
+# Format: "strata:<region>_<biome_name>"
+id = "strata:warped_forest"
+
+# display-name: Human-readable name shown in F3 debug screen,
+# minimap overlays, and /strata biome info commands.
+display-name = "Warped Forest"
+
+# category: NETHER — nether environment with cyan-tinted fog,
+# warped spore particles, and eerie ambient soundscape.
+category = "NETHER"
+
+# zone: Which Netherveil region this biome belongs to. Must
+# match a zone key defined in zones/zones.toml. The warped zone
+# governs enderman density and warped fungal generation.
+zone = "warped"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# In the nether, climate axes are repurposed from their
+# overworld meanings. Temperature maps to volcanic heat
+# intensity, humidity to fungal/organic density, and the
+# remaining axes control nether-specific terrain placement.
+# Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: Cool for the nether — the warped fungal growth
+# seems to absorb ambient heat, creating an unnaturally cool
+# pocket within the otherwise scorching dimension.
+#   0.3 = notably cool for the nether, eerie chill.
+temperature = 0.3
+
+# humidity: High fungal density — dense warped fungal growth
+# saturates the environment with organic material.
+#   0.7 = high organic density, dense warped fungal growth.
+humidity = 0.7
+
+# continentalness: Neutral — warped forests appear at standard
+# mid-level nether terrain without vertical preference.
+#   0.0 = standard mid-level generation, no vertical bias.
+continentalness = 0.0
+
+# erosion: Low to moderate — the warped fungi and twisting
+# vines create cluttered but navigable terrain.
+#   0.35 = moderately cluttered with fungal obstructions.
+erosion = 0.35
+
+# weirdness: Elevated — the warped forest is inherently strange,
+# with its alien blue palette and enderman-only ecology.
+#   0.5 = distinctly unusual, alien environment.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard nether floor — the warped forest grows
+# on typical nether terrain with fungi providing vertical interest.
+#   40 = standard nether floor, well above lava level.
+base-height = 40
+
+# height-variation: Moderate — gentle ground undulations beneath
+# the warped fungal canopy.
+#   4.0 = moderate terrain variation on the forest floor.
+height-variation = 4.0
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Warped nylium — the living fungal surface block
+# with a distinctive teal-blue color. Supports warped fungus
+# growth and emits warped spore particles. Decays to netherrack
+# if covered by an opaque block.
+top-block = "minecraft:warped_nylium"
+
+# filler-block: Netherrack beneath the warped nylium layer.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard nether substrate depth.
+#   4 = typical depth before base stone generation.
+filler-depth = 4
+
+# underwater-block: Magma blocks at lava boundaries.
+underwater-block = "minecraft:magma_block"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Huge warped fungi serve as the "trees" — towering
+# structures with warped wart block caps and shroomlight.
+trees = { types = ["warped_fungus_huge"], density = 6.0 }
+
+# grass-density: Warped roots and nether sprouts provide
+# ground-level vegetation cover on the nylium floor.
+#   0.6 = moderate ground cover of warped roots.
+grass-density = 0.6
+
+# flower-density: No flowers — nether sprouts fill this niche.
+flower-density = 0.0
+
+# extra-features: Warped forest specific features.
+#   twisting_vines — vines spiraling upward from the ground,
+#     the signature vertical element of warped forests.
+#   warped_fungus_small — small warped fungi on the floor.
+#   shroomlight_cluster — shroomlight in fungus canopy.
+#   nether_sprouts — teal grass-like vegetation on nylium.
+extra-features = [
+    { feature = "twisting_vines", density = 8.0 },
+    { feature = "warped_fungus_small", density = 5.0 },
+    { feature = "shroomlight_cluster", density = 2.0 },
+    { feature = "nether_sprouts", density = 6.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The warped forest is unique — no hostile mobs spawn naturally.
+# Endermen are the only significant mob presence.
+[biome.spawning]
+# enderman: The dominant and nearly sole mob of the warped forest.
+# They teleport between fungi, creating eerie encounters. Avoid
+# eye contact or wear a carved pumpkin. They drop ender pearls,
+# making the warped forest a key pearl farming location.
+enderman = { weight = 20, min-group = 1, max-group = 4 }
+
+# strider: Occasional strider near any lava pockets within
+# the warped forest boundaries.
+strider = { weight = 3, min-group = 1, max-group = 1 }

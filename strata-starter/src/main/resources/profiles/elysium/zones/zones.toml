@@ -1,0 +1,200 @@
+# ============================================================
+#  Zone System Configuration — Elysium Overworld
+# ============================================================
+# The MMORPG zone system creates concentric rings of increasing
+# difficulty radiating outward from spawn. Each zone has distinct
+# biome palettes, terrain character, and mob density scaling.
+#
+# Zones are defined by distance from world spawn (0,0).
+# Zone boundaries are softened by noise to avoid perfect circles.
+#
+# If MythicMobs is installed, zones can additionally reference
+# MythicMobs mob tables. This is purely optional — the plugin
+# is fully functional with vanilla mobs alone.
+# ============================================================
+
+# -------------------------------------------------------
+# Global Zone Settings
+# -------------------------------------------------------
+[settings]
+# edge-noise: Noise function that distorts zone boundaries.
+# Creates organic, natural-looking zone edges instead of circles.
+edge-noise = "strata:zone_edge"
+
+# edge-variation: How much the boundary wobbles (in blocks).
+# Default: 200. Range: 0 to 500
+edge-variation = 200
+
+# transition-width: Blending distance between zones (in blocks).
+# In the transition area, biomes from both zones may appear.
+# Default: 100. Range: 20 to 300
+transition-width = 100
+
+# -------------------------------------------------------
+# Zone 1: Sanctuary (Spawn Zone)
+# -------------------------------------------------------
+# Safe starting area. Gentle rolling plains, flower meadows,
+# shallow streams, scattered groves. Perfect for first bases.
+[zones.sanctuary]
+# display-name: Shown to players when entering the zone.
+display-name = "Sanctuary"
+
+# distance-range: Min and max distance from spawn (in blocks).
+# [0, 1500] means this zone covers 0 to 1500 blocks from spawn.
+distance-range = [0, 1500]
+
+# difficulty: Zone difficulty multiplier for mob spawning.
+# 0.3 = 30% of normal hostile mob spawn rates.
+difficulty = 0.3
+
+# color: Zone color for maps/displays (hex).
+color = "#7CFC00"
+
+# biome-dir: Subdirectory containing biome TOML files for this zone.
+# Relative to the biomes/ directory.
+biome-dir = "sanctuary"
+
+# mob-density-multiplier: Scales all mob spawning in this zone.
+# Values < 1.0 reduce spawns. > 1.0 increases spawns.
+passive-density = 1.5
+hostile-density = 0.3
+
+# mythicmobs-table: Optional MythicMobs mob table reference.
+# Only used if MythicMobs plugin is present. Ignored otherwise.
+# mythicmobs-table = "sanctuary_mobs"
+
+# -------------------------------------------------------
+# Zone 2: Verdant Expanse
+# -------------------------------------------------------
+# Lush forests, open meadows, river valleys. Classic survival.
+[zones.verdant]
+display-name = "Verdant Expanse"
+distance-range = [1500, 3500]
+difficulty = 0.6
+color = "#228B22"
+biome-dir = "verdant"
+passive-density = 1.2
+hostile-density = 0.6
+# mythicmobs-table = "verdant_mobs"
+
+# -------------------------------------------------------
+# Zone 3: Whispering Woodlands
+# -------------------------------------------------------
+# Dense old-growth forests, dark canopies, mossy ravines.
+# Higher spider/witch spawns. Atmospheric fog.
+[zones.whispering]
+display-name = "Whispering Woodlands"
+distance-range = [3500, 5500]
+difficulty = 0.8
+color = "#006400"
+biome-dir = "whispering"
+passive-density = 0.8
+hostile-density = 0.8
+# mythicmobs-table = "whispering_mobs"
+
+# -------------------------------------------------------
+# Zone 4: Stormbreak Coast
+# -------------------------------------------------------
+# Dramatic coastline: sea cliffs, tidal caves, coral coves.
+# Ocean monuments offshore. Drowned spawns.
+[zones.stormbreak]
+display-name = "Stormbreak Coast"
+distance-range = [5500, 8000]
+difficulty = 0.9
+color = "#4169E1"
+biome-dir = "stormbreak"
+passive-density = 0.7
+hostile-density = 0.9
+# mythicmobs-table = "stormbreak_mobs"
+
+# -------------------------------------------------------
+# Zone 5: Scorched Badlands
+# -------------------------------------------------------
+# Mesa plateaus, terracotta canyons, dried riverbeds.
+# Rich ore veins. Husk-heavy spawns.
+[zones.scorched]
+display-name = "Scorched Badlands"
+distance-range = [8000, 11000]
+difficulty = 1.0
+color = "#CD853F"
+biome-dir = "scorched"
+passive-density = 0.4
+hostile-density = 1.0
+# mythicmobs-table = "scorched_mobs"
+
+# -------------------------------------------------------
+# Zone 6: Frostfang Peaks
+# -------------------------------------------------------
+# Towering mountains, frozen waterfalls, alpine meadows.
+# Stray spawns, powdered snow traps.
+[zones.frostfang]
+display-name = "Frostfang Peaks"
+distance-range = [11000, 14000]
+difficulty = 1.2
+color = "#B0E0E6"
+biome-dir = "frostfang"
+passive-density = 0.5
+hostile-density = 1.2
+# mythicmobs-table = "frostfang_mobs"
+
+# -------------------------------------------------------
+# Zone 7: Shadowmire Swamps
+# -------------------------------------------------------
+# Murky swamps, mangrove tangles, eerie fog.
+# Witch huts, slimes, challenging terrain.
+[zones.shadowmire]
+display-name = "Shadowmire Swamps"
+distance-range = [14000, 17000]
+difficulty = 1.3
+color = "#556B2F"
+biome-dir = "shadowmire"
+passive-density = 0.4
+hostile-density = 1.3
+# mythicmobs-table = "shadowmire_mobs"
+
+# -------------------------------------------------------
+# Zone 8: Embercrag Volcanic
+# -------------------------------------------------------
+# Volcanic terrain: basalt columns, lava rivers, obsidian fields.
+# Magma cubes, high mob density.
+[zones.embercrag]
+display-name = "Embercrag Volcanic"
+distance-range = [17000, 21000]
+difficulty = 1.5
+color = "#B22222"
+biome-dir = "embercrag"
+passive-density = 0.2
+hostile-density = 1.5
+# mythicmobs-table = "embercrag_mobs"
+
+# -------------------------------------------------------
+# Zone 9: Abyssal Depths (Underground)
+# -------------------------------------------------------
+# Deep underground zone (Y -64 to 0). Massive cave networks,
+# sculk-infested deep dark, lava chambers. Warden territory.
+# NOTE: This zone is Y-based, not distance-based.
+[zones.abyssal]
+display-name = "Abyssal Depths"
+# y-range: This zone activates based on Y-level instead of distance.
+y-range = [-64, 0]
+difficulty = 1.6
+color = "#191970"
+biome-dir = "abyssal"
+passive-density = 0.1
+hostile-density = 1.6
+# mythicmobs-table = "abyssal_mobs"
+
+# -------------------------------------------------------
+# Zone 10: The Shattered Reach (Endgame)
+# -------------------------------------------------------
+# Endgame zone at the world's edge. Floating fragments,
+# ender-touched corruption. Most dangerous biomes.
+[zones.shattered]
+display-name = "The Shattered Reach"
+distance-range = [21000, 99999]
+difficulty = 2.0
+color = "#9400D3"
+biome-dir = "shattered"
+passive-density = 0.1
+hostile-density = 2.0
+# mythicmobs-table = "shattered_mobs"

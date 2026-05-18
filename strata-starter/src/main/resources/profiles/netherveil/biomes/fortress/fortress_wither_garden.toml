@@ -1,0 +1,151 @@
+# ============================================================
+#  Biome: Fortress Wither Garden — Fortress Domain
+# ============================================================
+# A macabre garden surrounding fortress structures where soul
+# sand and wither roses create a deadly obstacle course. The
+# soul sand surface slows all movement to a crawl while wither
+# roses inflict the Wither status effect on any creature that
+# touches them — a combination that turns retreat into a death
+# sentence. Wither skeletons patrol the garden paths between
+# rose patches, their stone swords adding Wither damage on top
+# of the environmental Wither from the roses. The blue glow of
+# soul fire illuminates the garden in eerie light, reflecting
+# off the dark petals of the wither roses. The garden feels
+# intentionally cultivated — as if the wither skeletons tend
+# these deadly flowers as a defensive perimeter around their
+# fortress home. Soul sand altar formations appear among the
+# roses, suggesting dark rituals.
+#
+# Gameplay notes:
+#   - Wither roses inflict Wither I on contact — 1 heart/2 sec.
+#   - Soul sand slows movement — can't flee through roses.
+#   - Smite V sword essential for wither skeleton combat.
+#   - Wither rose collection — used for black dye and mob traps.
+#   - Soul sand collection for wither boss summoning.
+#   - One of the most lethal environmental damage biomes.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The wither garden is a
+# deadly environmental hazard biome in the fortress domain.
+id = "strata:fortress_wither_garden"
+
+# display-name: Human-readable name for player displays.
+display-name = "Wither Garden"
+
+# category: NETHER — nether environment with soul sand terrain,
+# wither rose coverage, and wither skeleton patrols.
+category = "NETHER"
+
+# zone: Part of the fortress zone — a deadly garden perimeter
+# surrounding fortress structures.
+zone = "fortress"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cold — the Wither effect and soul sand create
+# an unnaturally cold zone around the fortress.
+#   0.1 = cold from concentrated Wither energy.
+temperature = 0.1
+
+# humidity: Low but not zero — the wither roses represent
+# minimal dark organic growth.
+#   -0.2 = mostly dry with slight organic presence.
+humidity = -0.2
+
+# continentalness: Neutral — gardens form at standard fortress
+# perimeter elevation.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Low to moderate — the soul sand terrain with rose
+# patches creates obstructed but navigable terrain.
+#   0.35 = moderately obstructed by rose patches.
+erosion = 0.35
+
+# weirdness: High — cultivated wither rose gardens are a
+# deeply unusual and unsettling formation.
+#   0.7 = highly unusual, seemingly intentional planting.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard fortress perimeter elevation.
+#   40 = standard nether floor level around fortress.
+base-height = 40
+
+# height-variation: Low — the garden is relatively flat,
+# designed for patrol routes between rose patches.
+#   2.5 = gentle terrain, garden-like layout.
+height-variation = 2.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Soul sand — the movement-slowing surface that
+# supports wither rose growth and completes the death trap.
+top-block = "minecraft:soul_sand"
+
+# filler-block: Netherrack beneath the soul sand garden.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical soul sand accumulation.
+filler-depth = 4
+
+# underwater-block: Soul sand at lava boundaries.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation beyond the wither roses.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No conventional plant life.
+grass-density = 0.0
+
+# flower-density: Wither roses handled as extra features due
+# to their damage mechanic.
+flower-density = 0.0
+
+# extra-features: Wither garden specific features.
+#   wither_rose_field — dense patches of wither roses, the
+#     primary environmental hazard.
+#   soul_fire — blue fire on soul soil patches for illumination.
+#   soul_sand_altar — ritual formations among the roses.
+#   nether_brick_rubble — fortress debris at garden edges.
+#   soul_soil_patch — soul soil supporting soul fire.
+extra-features = [
+    { feature = "wither_rose_field", density = 10.0 },
+    { feature = "soul_fire", density = 4.0 },
+    { feature = "soul_sand_altar", density = 2.0 },
+    { feature = "nether_brick_rubble", density = 3.0 },
+    { feature = "soul_soil_patch", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Wither skeleton dominance — they walk through the roses
+# and soul sand without penalty.
+[biome.spawning]
+# wither_skeleton: The garden's guardians — they patrol the
+# paths between wither rose patches, immune to the Wither effect
+# their domain inflicts on intruders. Maximum threat.
+wither_skeleton = { weight = 22, min-group = 2, max-group = 4 }
+
+# skeleton: Supporting archers firing from behind rose patches.
+skeleton = { weight = 8, min-group = 1, max-group = 3 }
+
+# zombified_piglin: Occasional wanderers caught in the garden.
+zombified_piglin = { weight = 4, min-group = 1, max-group = 2 }

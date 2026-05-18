@@ -1,0 +1,165 @@
+# ============================================================
+#  Biome: Mushroom Island — Elysium Islands
+# ============================================================
+# A surreal island blanketed in mycelium, where enormous red
+# and brown mushrooms tower above the purple-grey terrain like
+# alien trees. Mooshrooms — mushroom-covered cattle — graze
+# placidly on the mycelium, and not a single hostile mob spawns
+# naturally anywhere on the island. The air feels different
+# here: still, quiet, almost dreamlike. Spore particles drift
+# lazily in the perpetual twilight beneath the giant mushroom
+# canopies. This is Minecraft's classic safe haven, rendered
+# as an isolated oceanic sanctuary.
+#
+# Gameplay notes:
+#   - ZERO hostile mob spawns — the safest biome in the game.
+#   - Mooshrooms provide infinite mushroom stew via bowls.
+#   - Giant mushrooms yield huge amounts of mushroom blocks.
+#   - Mycelium spreads to dirt and enables mushroom placement
+#     in full sunlight — farm mushrooms on the surface.
+#   - Excellent base location for players who want security.
+#   - Rare biome — finding one is a significant achievement.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Island biomes use the
+# "elysium_" prefix as they are cross-zone ocean features.
+id = "strata:elysium_mushroom_island"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Mushroom Island"
+
+# category: MUSHROOM — the critical category that prevents
+# hostile mob spawning. MUSHROOM is the only category in
+# Minecraft that completely suppresses hostile spawns on the
+# surface, making this biome a true safe haven.
+category = "MUSHROOM"
+
+# zone: "island" — island biomes generate offshore,
+# independent of mainland zone boundaries.
+zone = "island"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Moderate climate values reflect the island's temperate,
+# sheltered conditions. The elevated weirdness ensures this
+# special biome only generates in unusual noise pockets.
+[biome.climate]
+# temperature: 0.5 = temperate. The mycelium island maintains
+# a mild, stable temperature year-round — neither hot nor cold,
+# with conditions perfect for fungal growth.
+temperature = 0.5
+
+# humidity: 0.5 = moderate moisture. Enough humidity to sustain
+# the mycelium carpet and giant mushrooms, but the island does
+# not feel swampy or oppressive.
+humidity = 0.5
+
+# continentalness: -0.3 = offshore. Placed in the ocean away
+# from the mainland, reinforcing the isolated sanctuary feel.
+continentalness = -0.3
+
+# erosion: 0.3 = gently eroded. The island has soft, rounded
+# terrain — no dramatic cliffs or sharp features. The mycelium
+# blanket creates a pillowy, organic landscape.
+erosion = 0.3
+
+# weirdness: 0.7 = high weirdness. Mushroom islands are among
+# the rarest biomes in any Minecraft world. The high weirdness
+# value ensures they only appear in rare noise anomalies,
+# making discovery a genuine event.
+weirdness = 0.7
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 5 = slightly above sea level. The island rises
+# gently from the water, with a broad, inviting profile. Not
+# as flat as the tropical island but not dramatically elevated
+# either — comfortable terrain for building.
+# Range: -64.0 to 256.0
+base-height = 5
+
+# height-variation: 10 = moderate undulation. Rounded hills
+# and shallow valleys create a pleasing landscape beneath the
+# giant mushroom canopy. Large enough for varied building sites.
+# Range: 0.0 to 30.0
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Mycelium — the signature block of mushroom islands. This
+# fungal mat covers every surface and enables unique mushroom
+# farming mechanics.
+[biome.surface]
+# top-block: Mycelium — the purple-grey fungal surface that
+# defines the biome. Allows mushrooms to be placed in full
+# sunlight, and spreads to adjacent dirt blocks.
+top-block = "minecraft:mycelium"
+
+# filler-block: Standard dirt beneath the mycelium layer.
+# The fungal network only penetrates the top block; below is
+# normal earth.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard topsoil depth. Normal soil
+# conditions beneath the mycelium surface.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Mycelium extends to the waterline, with
+# dirt beneath any shallow pools on the island surface.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Giant mushrooms dominate the landscape, replacing trees
+# entirely. The ground is covered in small mushrooms and
+# mycelium with no grass or flowers.
+[biome.features]
+# trees: Giant mushrooms serve as the island's "trees." Both
+# red and brown varieties generate, creating a surreal canopy.
+#   types: "huge_red_mushroom" and "huge_brown_mushroom" —
+#          the towering fungal structures.
+#   density: 3.0 = moderate coverage. Enough to create a
+#            canopy feel without overcrowding the island.
+trees = { types = ["huge_red_mushroom", "huge_brown_mushroom"], density = 3.0 }
+
+# grass-density: Zero. Mycelium suppresses grass growth;
+# the fungal surface is uniform and unbroken.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: Zero. No flowers grow on mycelium. The
+# biome's palette is exclusively purple, grey, red, and brown.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Small mushrooms carpet the ground between
+# the giants, reinforcing the fungal theme.
+extra-features = [
+    # Red mushrooms scattered across the mycelium surface.
+    { feature = "red_mushroom", density = 5.0 },
+    # Brown mushrooms in the shadier spots beneath giant caps.
+    { feature = "brown_mushroom", density = 5.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Mooshrooms are the only mob that spawns here. The MUSHROOM
+# category prevents ALL hostile mob spawning on the surface.
+# This is the safest place in the entire Elysium world.
+[biome.spawning]
+# Mooshroom: The signature mob of mushroom islands. Red
+# mushroom-covered cows that provide infinite mushroom stew
+# when milked with a bowl. They graze placidly on the mycelium.
+mooshroom = { weight = 20, min-group = 2, max-group = 4 }

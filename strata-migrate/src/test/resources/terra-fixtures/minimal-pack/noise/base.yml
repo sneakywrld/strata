@@ -1,0 +1,4 @@
+id: base
+type: OpenSimplex2
+frequency: 0.005
+dimensions: 2

@@ -1,0 +1,33 @@
+name: ${name}
+version: ${version}
+main: com.protectcord.strata.paper.StrataPlugin
+author: ${author}
+description: Strata - Modern World Generation Platform
+api-version: '1.21'
+load: STARTUP
+
+softdepend:
+  - MythicMobs
+
+commands:
+  strata:
+    description: Strata world generation commands
+    usage: /strata <subcommand>
+    aliases: [st]
+
+permissions:
+  strata.admin:
+    description: Full Strata administration access
+    default: op
+  strata.create:
+    description: Create Strata worlds
+    default: op
+  strata.reload:
+    description: Reload Strata configurations
+    default: op
+  strata.info:
+    description: View Strata information
+    default: true
+  strata.guide:
+    description: Access the in-game guide
+    default: true

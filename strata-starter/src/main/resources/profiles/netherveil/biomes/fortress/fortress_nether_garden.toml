@@ -1,0 +1,152 @@
+# ============================================================
+#  Biome: Fortress Nether Garden — Fortress Domain
+# ============================================================
+# An alchemical farming area within the fortress domain where
+# nether wart grows in organized rows on soul sand beds. This
+# is the nether's equivalent of a cultivated garden — rows of
+# dark red nether wart plants at various growth stages line
+# soul sand planting beds separated by nether brick walkways.
+# The organization is unmistakable — this was planted with
+# purpose. Nether wart is the foundation of nether brewing,
+# required for Awkward Potions that serve as the base for nearly
+# every useful potion. The garden is tended by wither skeletons
+# who patrol the rows like macabre farmers, and the soul sand
+# between the wart rows glows faintly with soul fire borders.
+# Glass bottles and brewing stand components can be found among
+# the garden structures, suggesting active alchemical work.
+#
+# Gameplay notes:
+#   - Nether wart farming — essential brewing ingredient.
+#   - Soul sand collection for wart cultivation elsewhere.
+#   - Brewing stand components findable in garden structures.
+#   - Nether wart + soul sand = portable brewing garden.
+#   - Moderate wither skeleton presence — manageable combat.
+#   - Organized layout makes navigation straightforward.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The nether garden is an
+# alchemical farming biome within the fortress domain.
+id = "strata:fortress_nether_garden"
+
+# display-name: Human-readable name for player displays.
+display-name = "Nether Garden"
+
+# category: NETHER — nether environment with organized nether
+# wart cultivation on soul sand beds.
+category = "NETHER"
+
+# zone: Part of the fortress zone — the alchemical farming
+# area supporting fortress potion production.
+zone = "fortress"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Cool — the soul sand beds absorb heat, creating
+# conditions favorable for nether wart growth.
+#   0.2 = cool growing conditions for nether wart.
+temperature = 0.2
+
+# humidity: Slightly elevated — the nether wart growth adds
+# minimal organic presence to the otherwise dry environment.
+#   0.1 = slight organic humidity from nether wart.
+humidity = 0.1
+
+# continentalness: Neutral — gardens form within fortress
+# structures at standard elevation.
+#   0.0 = standard mid-level generation.
+continentalness = 0.0
+
+# erosion: Moderate — the organized garden layout provides
+# structured walkways between planting beds.
+#   0.5 = structured, organized terrain.
+erosion = 0.5
+
+# weirdness: Moderate — organized farming in the nether is
+# unusual and clearly artificial.
+#   0.4 = notably unusual, clearly cultivated.
+weirdness = 0.4
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard fortress floor — the garden sits at
+# typical fortress interior elevation.
+#   40 = standard nether floor, fortress interior.
+base-height = 40
+
+# height-variation: Very low — the garden is flat and organized
+# with uniform planting bed heights.
+#   1.5 = very flat, organized garden layout.
+height-variation = 1.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Soul sand — the required growth medium for nether
+# wart cultivation. Organized into planting beds.
+top-block = "minecraft:soul_sand"
+
+# filler-block: Netherrack beneath the soul sand beds.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   3 = moderate soul sand bed depth.
+filler-depth = 3
+
+# underwater-block: Soul sand at any lava boundaries.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No tree-like vegetation in the garden.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No conventional grass — nether wart serves
+# as the crop vegetation.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Nether garden specific features.
+#   nether_wart_row — organized rows of nether wart at
+#     various growth stages on soul sand beds.
+#   nether_brick_walkway — brick paths between planting beds.
+#   soul_fire_border — soul fire lining the garden edges.
+#   brewing_stand_structure — alchemical stations within
+#     the garden for on-site potion brewing.
+#   nether_brick_rubble — minor fortress debris at edges.
+extra-features = [
+    { feature = "nether_wart_row", density = 10.0 },
+    { feature = "nether_brick_walkway", density = 4.0 },
+    { feature = "soul_fire_border", density = 3.0 },
+    { feature = "brewing_stand_structure", density = 1.0 },
+    { feature = "nether_brick_rubble", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Moderate wither skeleton presence — garden tenders rather
+# than aggressive patrols.
+[biome.spawning]
+# wither_skeleton: Garden patrol — wither skeletons walk the
+# rows like guards or tenders, less aggressive in posture
+# but equally deadly if provoked or if players are detected.
+wither_skeleton = { weight = 12, min-group = 1, max-group = 3 }
+
+# skeleton: Skeleton assistants patrolling garden perimeter.
+skeleton = { weight = 6, min-group = 1, max-group = 2 }
+
+# zombified_piglin: Occasional wanderers in the garden.
+zombified_piglin = { weight = 5, min-group = 1, max-group = 2 }

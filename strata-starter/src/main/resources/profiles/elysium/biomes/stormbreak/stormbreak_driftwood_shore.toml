@@ -1,0 +1,86 @@
+# ============================================================
+#  Biome: Stormbreak Driftwood Shore — Stormbreak Coast
+# ============================================================
+# A melancholy stretch of sandy beach littered with bleached
+# driftwood logs, tangled seagrass, and the occasional
+# nautilus shell half-buried in the sand. Dead oak and spruce
+# logs lie scattered at odd angles as if deposited by past
+# storms. The atmosphere is quieter and more weathered than
+# the sandy beach — a place where the ocean reclaims what the
+# land once held.
+#
+# Gameplay notes:
+#   - Driftwood logs provide early wood without needing an axe
+#     on living trees (pre-placed log blocks).
+#   - Nautilus shells can be found as ground loot — valuable
+#     for conduit crafting.
+#   - Atmospheric biome for builds with a shipwreck or
+#     castaway theme.
+#   - Borders stormbreak_sandy_beach and stormbreak_rocky_beach
+#     along the coastline.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:stormbreak_driftwood_shore"     # Unique registry ID
+display-name = "Stormbreak Driftwood Shore"  # Shown in F3 debug & maps
+category = "BEACH"                           # Coastal beach classification
+zone = "stormbreak"                          # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# Slightly cooler and drier than the sandy beach. The mild
+# positive weirdness helps this biome appear in transitional
+# stretches between warmer and cooler coastal zones.
+[biome.climate]
+temperature = 0.45          # Cool-moderate — overcast feel
+humidity = 0.4              # Moderate — drier than swampy areas
+continentalness = -0.05     # Right at the shoreline
+erosion = 0.4               # Moderate-high erosion — smooth, flat sand
+weirdness = 0.15            # Slightly unusual — transitional biome
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# Low and flat with gentle mounds where driftwood and sand
+# have piled up together over time.
+[biome.terrain]
+base-height = 1             # Just above the waterline
+height-variation = 2        # Minor mounds from debris accumulation
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# Sand dominates the surface, with patches of coarse dirt
+# where organic material (seaweed, driftwood bark) has
+# decomposed into the ground.
+[biome.surface]
+top-block = "minecraft:sand"             # Sandy beach surface
+filler-block = "minecraft:sand"          # Deep sand layer
+filler-depth = 3                         # 3 blocks of sand
+underwater-block = "minecraft:sand"      # Sand continues below water
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Dead logs (oak_log, spruce_log placed horizontally) are the
+# signature feature. No living trees grow here. Sparse dead
+# bushes and grass tufts between the driftwood.
+[biome.features]
+trees = { types = ["oak"], density = 0.05 }  # Rare stunted trees — mostly dead logs
+grass-density = 0.15                         # Sparse beach grass and dead bushes
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# Quiet biome with few mobs. The occasional stray cat or
+# rabbit may appear. Standard hostile spawns at night.
+# The real loot comes from nautilus shells and driftwood.
+[biome.spawning]
+# Minimal passive spawns — desolate shoreline feel.
+# Rabbits may spawn on sandy areas.
+# Standard hostile mobs (zombies, skeletons) at night.
+# Drowned occasionally wash ashore from adjacent ocean.

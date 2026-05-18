@@ -1,0 +1,165 @@
+# ============================================================
+#  Biome: Phantom Moor — The Shattered Reach
+# ============================================================
+# A dark, sodden moorland blanketed in perpetual mist and shadow.
+# The ground is soul soil — soft, clinging, and unsettling beneath
+# the feet. Soul lanterns are scattered across the moor like the
+# campfires of a ghostly army, their turquoise flames the only
+# light in the gloom. Phantoms do not obey the usual rules here:
+# they spawn during the day and night alike, swooping silently
+# through the fog. The moor whispers with the sound of phantom
+# wings and the faint, keening cry of souls trapped in the soil.
+# This is where the dead of the Shattered Reach ended up.
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  BIOME IDENTITY
+# ────────────────────────────────────────────────────────────
+
+[biome]
+# Unique internal identifier for generator placement, region maps,
+# and biome-transition configurations.
+id = "strata:shattered_phantom_moor"
+
+# Human-readable name for debug overlays and admin commands.
+display-name = "Phantom Moor"
+
+# CUSTOM category — bespoke generation with forced phantom spawning
+# regardless of time-of-day. No vanilla biome equivalent.
+category = "CUSTOM"
+
+# Part of the Shattered Reach endgame zone. The Phantom Moor is the
+# zone's "haunted" biome — death-themed, atmospheric, and relentless.
+zone = "shattered"
+
+# ────────────────────────────────────────────────────────────
+#  CLIMATE PARAMETERS
+# ────────────────────────────────────────────────────────────
+
+[biome.climate]
+# Temperature — 0.0, freezing cold. The moor has no warmth — the
+# soul soil seems to absorb heat, and the mist keeps the air
+# perpetually damp and frigid.
+temperature = 0.0
+
+# Humidity — 0.3, moderate. The mist is not true moisture but
+# soul-fog. It clings to everything, coats surfaces in a thin
+# film, and smells faintly of ozone and old stone.
+humidity = 0.3
+
+# Continentalness — 0.5, interior. The moor occupies low-lying
+# basins in the zone's interior, where soul energy pooled and
+# saturated the ground.
+continentalness = 0.5
+
+# Erosion — 0.7, heavily eroded. The soft soul soil compacts and
+# erodes easily, creating a flat, featureless landscape with
+# shallow depressions that collect fog.
+erosion = 0.7
+
+# Weirdness — 0.75, high. Phantoms spawning during the day and
+# soul soil as a surface block are deeply unusual, but the biome
+# still reads as "dark moorland" — weird, but recognizable.
+weirdness = 0.75
+
+# ────────────────────────────────────────────────────────────
+#  TERRAIN SHAPE
+# ────────────────────────────────────────────────────────────
+
+[biome.terrain]
+# Base height — 5 blocks above sea level. The moor is low and
+# flat, sitting in terrain depressions where dimensional death
+# energy settled like water.
+base-height = 5
+
+# Height variation — 3 blocks. Barely any relief. The moor is
+# oppressively flat, with only gentle swells and shallow puddle-
+# depressions to break the monotony. No cover, no high ground.
+height-variation = 3
+
+# ────────────────────────────────────────────────────────────
+#  SURFACE COMPOSITION
+# ────────────────────────────────────────────────────────────
+
+[biome.surface]
+# Top block — soul_soil. The defining surface material. Soft,
+# dark brown, and saturated with the essence of souls. Walking
+# on it produces muffled footsteps and faint soul-fire wisps.
+top-block = "minecraft:soul_soil"
+
+# Filler block — soul_sand beneath the soul soil. The deeper
+# layers are even more saturated with soul energy — slower to
+# traverse and harder to dig through.
+filler-block = "minecraft:soul_sand"
+
+# Filler depth — 5 blocks of soul sand. Thick enough that mining
+# down does not quickly escape the soul-touched substrate.
+filler-depth = 5
+
+# ────────────────────────────────────────────────────────────
+#  FEATURES — Biome-specific world-gen decorations
+# ────────────────────────────────────────────────────────────
+
+[biome.features]
+# Soul lanterns — soul_lantern blocks placed on short chains or
+# soul_sand mounds across the moor. Spaced every 20-30 blocks,
+# they provide dim turquoise light and serve as navigation beacons.
+soul-lanterns = true
+
+# Soul fire patches — small clusters of soul_fire on soul_soil
+# mounds, flickering blue-green. Provide light and ambient warmth
+# particles but deal fire damage on contact.
+soul-fire-patches = true
+
+# Fog layer — dense ground-level particle fog (campfire smoke
+# particles tinted grey-blue) filling the biome to about 6 blocks
+# high. Severely limits visibility at ground level.
+moor-fog = true
+
+# Withered trees — leafless dark_oak trunks (no canopy) scattered
+# across the moor like skeletal hands reaching upward. Purely
+# atmospheric — no drops, no function.
+withered-trees = true
+
+# Bone piles — small mounds of bone_block at the base of withered
+# trees and near lanterns, implying creatures that died on the moor
+# and were absorbed into the soul soil.
+bone-piles = true
+
+# Soul particle wisps — ambient soul-type particles drifting up
+# from the soil surface everywhere, giving the entire biome a
+# ghostly, shimmering quality.
+soul-wisps = true
+
+# ────────────────────────────────────────────────────────────
+#  MOB SPAWNING
+# ────────────────────────────────────────────────────────────
+
+[biome.spawning]
+# Phantoms are the signature mob. They spawn at ALL times — day
+# and night — thanks to the biome's custom spawn rules. The moor
+# is their hunting ground, and there is no escaping them by
+# waiting for dawn. Highest phantom weight in the world.
+phantom = 80
+
+# Endermen wade through the fog, their height making them visible
+# above the mist as dark silhouettes. Moderate density.
+enderman = 40
+
+# Skeletons lurk in the fog, firing arrows at sounds. The reduced
+# visibility makes them far more dangerous than usual.
+skeleton = 30
+
+# Strays — the freezing conditions spawn ice-arrow variants that
+# slow players already struggling with soul-sand terrain.
+stray = 20
+
+# Wither skeletons — drawn by the soul energy, they patrol the
+# moor's darker pockets with stone swords. Wither effect on hit
+# stacks with the biome's existing debuffs.
+wither_skeleton = 10
+
+# Ghast — very rare. A single ghast drifting through the fog,
+# its cry echoing across the flat moor, is pure atmospheric
+# terror. Fireball blasts are devastating on open ground.
+ghast = 2

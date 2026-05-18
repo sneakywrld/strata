@@ -1,0 +1,93 @@
+# ============================================================
+#  Biome: Frostfang Snowy Peak — Frostfang Peaks
+# ============================================================
+# The crown of the Frostfang range. Towering snow-capped
+# summits breach the clouds, their surfaces scoured by
+# relentless winds that pack the snow into iron-hard drifts.
+# Packed ice forms along exposed ridgelines where meltwater
+# refreezes nightly, and the thin air carries a constant
+# low howl that can be heard from neighbouring biomes.
+# Visibility drops sharply during frequent whiteout events.
+#
+# Gameplay notes:
+#   - Highest elevation biome in the Frostfang zone.
+#   - Packed ice and snow blocks make traversal slippery.
+#   - Wind howl ambient effect reinforces hostile atmosphere.
+#   - Minimal resources force players to prepare before
+#     ascending; this is an expedition destination, not a
+#     place to settle.
+#   - Pairs with frostfang_rocky_ridge below the summit and
+#     frostfang_spruce_slope further down the mountain.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_snowy_peak"       # Unique registry ID
+display-name = "Frostfang Snowy Peak"    # Shown in F3 debug & maps
+category = "MOUNTAIN"                    # High-altitude mountain summit
+zone = "frostfang"                       # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The extreme cold, high continentalness,
+# and very low erosion place this biome at the tallest,
+# most inland mountain peaks — rarely generated, always
+# dramatic when found.
+[biome.climate]
+temperature = -0.5          # Bitterly cold — well below freezing
+humidity = 0.3              # Dry air at extreme altitude
+continentalness = 0.8       # Deep inland — far from any ocean
+erosion = -0.9              # Almost no erosion — sheer vertical faces
+weirdness = 0.0             # Neutral weirdness — classic peak shape
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height sets the midpoint elevation (in blocks above sea
+# level). At 100 blocks, these are the highest points in the
+# world. The large height-variation of 40 creates dramatic
+# pinnacles and saddles across the summit.
+[biome.terrain]
+base-height = 100           # Summit midpoint ~100 blocks above sea level
+height-variation = 40       # +/-40 blocks — peaks near 140, saddles near 60
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# The surface is a thick mantle of compacted snow. Below the
+# snow layer, packed ice has formed over centuries of freeze-
+# thaw cycling. The filler depth is generous because wind
+# deposits snow in deep drifts across the summit.
+[biome.surface]
+top-block = "minecraft:snow_block"       # Deep packed snow covers everything
+filler-block = "minecraft:packed_ice"    # Centuries of compressed snow beneath
+filler-depth = 5                         # Thick ice layer before hitting stone
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Nothing grows at this altitude. The summit is entirely
+# barren — no trees, no grass, only snow and ice sculpted
+# by the wind. Occasional exposed stone outcrops are the
+# only break in the white expanse.
+[biome.features]
+trees = { types = [], density = 0.0 }    # Far above the treeline — no trees
+grass-density = 0.0                      # No vegetation survives here
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# The summit is largely devoid of life. Strays patrol the
+# open snowfields at night, their frozen arrows a serious
+# threat to underprepared climbers. Occasional goats
+# navigate the icy ridges with ease, providing a rare
+# source of food for desperate explorers.
+# Standard hostile mobs spawn in darkness as usual.
+[biome.spawning]
+# Strays replace most skeleton spawns — thematic for the
+# frozen peak. Goats spawn rarely on exposed ridgelines.
+# No passive mob spawns otherwise — the summit is barren.

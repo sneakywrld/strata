@@ -1,0 +1,109 @@
+# ============================================================
+#  Biome: Frostfang Aurora Plateau — Frostfang Peaks
+# ============================================================
+# A vast, flat-topped plateau perched high in the Frostfang
+# range. The air here is thin and still — above the wind
+# layer that batters lower elevations. On clear nights,
+# shimmering aurora-like particle effects paint the sky
+# in curtains of green and violet, reflected in the
+# polished ice surface below. The plateau's flat expanse
+# feels otherworldly — a frozen altar to the sky, removed
+# from the chaos of the mountains below. Visibility
+# stretches for hundreds of blocks in every direction,
+# and the silence is profound.
+#
+# Gameplay notes:
+#   - The most visually striking biome in the Frostfang
+#     zone. Aurora particle effects at night create a
+#     memorable experience worth the climb.
+#   - The flat surface at extreme altitude makes this an
+#     ideal location for a mountaintop observatory or
+#     outpost — rare flat buildable space at high elevation.
+#   - Thin air is represented by Slowness I ambient effect,
+#     simulating altitude sickness at this height.
+#   - Low humidity (0.2) means no snow falls here — the
+#     plateau is above the weather.
+#   - The high weirdness value (0.7) makes this biome rare
+#     — a reward for dedicated explorers.
+#   - Pairs with frostfang_rocky_ridge on the plateau edges
+#     and frostfang_snowy_peak at adjacent summits.
+# ============================================================
+
+# ------------------------------------
+#  Core biome identity
+# ------------------------------------
+[biome]
+id = "strata:frostfang_aurora_plateau"       # Unique registry ID
+display-name = "Frostfang Aurora Plateau"    # Shown in F3 debug & maps
+category = "MOUNTAIN"                        # High-altitude plateau
+zone = "frostfang"                           # Parent zone for climate grouping
+
+# ------------------------------------
+#  Climate parameters
+# ------------------------------------
+# These values position the biome within the multi-noise
+# climate system. The high weirdness value is the key
+# parameter — it restricts the plateau to rare terrain
+# conditions, making discovery feel special. Low humidity
+# and high continentalness place it at the driest, most
+# inland high points of the range.
+[biome.climate]
+temperature = -0.5          # Bitterly cold at extreme altitude
+humidity = 0.2              # Very dry — above the weather systems
+continentalness = 0.8       # Deepest inland mountain position
+erosion = 0.1               # Near-neutral — plateau is gently eroded flat
+weirdness = 0.7             # High weirdness — rare, unusual formation
+
+# ------------------------------------
+#  Terrain shape
+# ------------------------------------
+# base-height of 70 places the plateau among the highest
+# points in the zone. The very low height-variation of 5
+# creates the flat tabletop surface that distinguishes
+# this biome — a sudden plane of calm amid the jagged
+# Frostfang terrain. The contrast between the flat
+# plateau and the jagged mountains around it is striking.
+[biome.terrain]
+base-height = 70            # Very high elevation — near summit level
+height-variation = 5        # +/-5 blocks — flat tabletop surface
+
+# ------------------------------------
+#  Surface composition
+# ------------------------------------
+# The plateau surface is packed ice, polished smooth by
+# centuries of wind before the plateau rose above the
+# wind layer. Blue ice lies beneath, representing the
+# ancient glacial core of the mountain that was exposed
+# when the surrounding rock eroded away. The moderate
+# filler depth reflects the solid ice foundation.
+[biome.surface]
+top-block = "minecraft:packed_ice"       # Wind-polished ice surface
+filler-block = "minecraft:blue_ice"      # Ancient glacial core beneath
+filler-depth = 4                         # Solid ice foundation
+
+# ------------------------------------
+#  Feature generation
+# ------------------------------------
+# Nothing grows on the aurora plateau. The surface is
+# bare, polished ice — featureless and pristine. This
+# emptiness is intentional; it focuses attention on the
+# sky and the aurora effects, creating a contemplative
+# atmosphere unlike anywhere else in the zone.
+[biome.features]
+trees = { types = [], density = 0.0 }    # No trees — bare ice plateau
+grass-density = 0.0                      # No vegetation at this altitude
+
+# ------------------------------------
+#  Mob spawning
+# ------------------------------------
+# The aurora plateau is almost entirely devoid of life.
+# The extreme altitude and open terrain discourage most
+# mob spawns. Occasional phantoms circle above if players
+# have not slept — the open sky exposure makes them more
+# noticeable here. Standard hostile mobs are rare due to
+# the flat, well-lit terrain with no shadow cover.
+[biome.spawning]
+# Phantoms are the primary aerial threat for sleepless
+# players — the open sky gives them easy attack runs.
+# Surface hostile spawns are rare — no shadows to hide in.
+# No passive mobs — too high and barren for wildlife.

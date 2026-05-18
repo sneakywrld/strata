@@ -1,0 +1,137 @@
+# ============================================================
+#  Biome: Whispering Firefly Grove — Whispering Woodlands
+# ============================================================
+# A rare pocket of warmth and beauty within the otherwise dark
+# and threatening Whispering Woodlands. At night, the grove comes
+# alive with thousands of warm amber particles drifting lazily
+# between the trees — fireflies (or their magical equivalent).
+# Glow lichen coats the trunks, casting a gentle golden light.
+# This is a peaceful refuge, a place to catch your breath before
+# venturing deeper into the darkness beyond.
+#
+# Gameplay Notes:
+#   - Reduced hostile spawning — this is a relative safe haven.
+#   - Glow lichen on trees provides natural ambient lighting.
+#   - Warm amber particles at night create a magical atmosphere.
+#   - Good location for a forward base within the Whispering zone.
+#   - Bees are common — honey and honeycomb available.
+#   - The grove is small and rare — finding one is a reward in itself.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used internally by Strata.
+# Must be globally unique across all profiles.
+id = "strata:whispering_firefly_grove"
+
+# display-name: Human-readable name shown in F3, /strata info, and maps.
+display-name = "Whispering Firefly Grove"
+
+# category: FOREST — a warm, welcoming forest clearing variant.
+category = "FOREST"
+
+# zone: Which zone this biome belongs to. Must match a key in zones.toml.
+zone = "whispering"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate values determine where this biome generates in the world.
+# Strata uses a 5-axis climate system (matching vanilla 1.18+):
+#   temperature:     Hot vs. cold              (-1.0 to 1.0)
+#   humidity:        Dry vs. wet               (-1.0 to 1.0)
+#   continentalness: Ocean vs. inland          (-1.0 to 1.0)
+#   erosion:         Flat vs. mountainous       (-1.0 to 1.0)
+#   weirdness:       Normal vs. unusual terrain (-1.0 to 1.0)
+[biome.climate]
+# temperature: Moderate — warm enough for fireflies and flowers.
+temperature = 0.5
+# humidity: Moderate — comfortable rather than oppressive.
+# The grove feels airy compared to the suffocating dark forest.
+humidity = 0.65
+# continentalness: Mid-inland — nestled within the woodland interior.
+continentalness = 0.5
+# erosion: Above neutral — gently rolling, pleasant terrain.
+erosion = 0.6
+# weirdness: Negative (-0.3) — the peaceful nature of this biome
+# is the "weird" part. Within the hostile Whispering zone, calm is
+# the anomaly. Negative weirdness helps it generate as small pockets.
+weirdness = -0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Standard forest floor. The grove sits at the same
+# elevation as the surrounding woodland — it is not a valley.
+base-height = 68
+
+# height-variation: Low — gentle, rolling terrain. The grove has
+# a natural clearing quality with smooth, inviting contours.
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Composition
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block — lush, healthy grass bathed in the soft
+# glow of lichen. The biome tint gives it a warm amber-green tone.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt — healthy, well-aerated forest soil.
+filler-block = "minecraft:dirt"
+
+# filler-depth: Standard 3-block depth.
+filler-depth = 3
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Moderate density. A mix of oak and birch creates a lighter,
+# more open canopy than the surrounding dark forest. The spacing
+# allows moonlight and glow lichen to illuminate the ground.
+trees = { types = ["fancy_oak", "birch"], density = 7 }
+
+# grass-density: High — the light and warmth support lush grass growth.
+grass-density = 8
+
+# flower-density: High — wildflowers carpet the grove floor.
+# This is the highest flower density in the Whispering zone.
+flower-density = 6.0
+
+# mushrooms: Some mushrooms in the shadier spots.
+mushrooms = { brown = 3, red = 1 }
+
+# glow-lichen: Coats tree trunks, providing warm ambient light.
+# This is the grove's primary light source and visual signature.
+glow-lichen = { enabled = true, density = 12, placement = ["tree_trunk", "tree_branch"] }
+
+# firefly-particles: Warm amber particle effects that appear at night.
+# Purely visual — creates the magical firefly atmosphere.
+firefly-particles = { enabled = true, density = 15, color = "#FFBF00", time = "night" }
+
+# bee-nests: Elevated bee nest generation. Bees pollinate the flowers
+# and produce honey — a valuable food and crafting resource.
+bee-nests = { enabled = true, chance = 0.15 }
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# Reduced hostile spawning — the grove's natural light from glow lichen
+# suppresses hostile mob generation, making it a relative safe zone.
+hostile-density-multiplier = 0.4
+
+# Elevated passive spawning — the peaceful grove attracts wildlife.
+# Deer (if modded), rabbits, and other gentle creatures gather here.
+passive-density-multiplier = 1.5
+
+# Bees are common due to elevated bee nest generation.
+bee-weight-bonus = 20
+
+# Fireflies (if supported by resource pack/mod) spawn at night.
+# This is a client-side particle effect by default.
+firefly-weight = 10

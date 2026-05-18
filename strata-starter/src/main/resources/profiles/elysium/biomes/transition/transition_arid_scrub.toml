@@ -1,0 +1,168 @@
+# ============================================================
+#  Biome: Arid Scrub — Transition Zone
+# ============================================================
+# The dying edge of the Verdant Expanse where the Scorched
+# Badlands' heat begins to dominate. Green grass gives way to
+# brittle, yellowing tufts and then bare soil. The dirt hardens
+# and cracks under the baking sun, gradually bleaching from
+# brown to sandy tan. Scattered dead bushes and the skeletal
+# remains of once-living trees dot the landscape. The air is
+# noticeably drier and the sky takes on a hazy amber cast. This
+# biome tells a story of ecological collapse in progress — the
+# desert is advancing.
+#
+# Gameplay notes:
+#   - Water sources become scarce — fill bottles before entering.
+#   - Limited wood: only dead bushes and the occasional dying oak.
+#   - Hostile mobs increase as the terrain opens up and shade
+#     vanishes with the tree cover.
+#   - Good source of sand and dead bushes for fuel.
+#   - The last biome where farming is marginally possible
+#     before the Scorched zone makes it impractical.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Transition biomes use the
+# "transition_" prefix to mark them as boundary biomes.
+id = "strata:transition_arid_scrub"
+
+# display-name: Human-readable name shown in F3 debug, minimaps,
+# and /strata biome info commands.
+display-name = "Arid Scrub"
+
+# category: PLAINS — the terrain is flat and open, though
+# parched. PLAINS enables appropriate grass/foliage tinting
+# (which will appear dried and yellowish at this temperature).
+category = "PLAINS"
+
+# zone: "transition" — bridging Verdant Expanse and Scorched
+# Badlands, representing the ecological gradient between them.
+zone = "transition"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Positioned between Verdant (warm, moderate humidity) and
+# Scorched (hot, very dry). Temperature rises and humidity
+# drops compared to the Verdant side.
+[biome.climate]
+# temperature: Warm — noticeably hotter than Verdant (0.5) but
+# not yet at Scorched levels (0.9). 0.7 = uncomfortably warm,
+# with midday heat that wilts vegetation and dries out soil.
+temperature = 0.7
+
+# humidity: Near-zero — rainfall has dropped to almost nothing.
+# -0.1 = the last traces of Verdant moisture are evaporating.
+# Not yet fully arid like Scorched (-0.5) but approaching it.
+humidity = -0.1
+
+# continentalness: Moderately inland. 0.5 = solidly continental,
+# consistent with the interior positioning of both the Verdant
+# and Scorched zones.
+continentalness = 0.5
+
+# erosion: High — the dying vegetation no longer holds the soil.
+# Wind and rare flash floods erode the exposed ground. 0.7 =
+# heavily eroded flat terrain with shallow gullies and ruts.
+erosion = 0.7
+
+# weirdness: Neutral — this is a natural ecological gradient
+# that should appear wherever these two zones share a border.
+# 0.0 = normal, expected transition.
+weirdness = 0.0
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Low and flat — matching the gentle Verdant plains
+# as they transition to the flat desert floor. 5 = barely above
+# sea level, with subtle terrain matching both neighbors.
+# Range: -64.0 to 256.0
+base-height = 5
+
+# height-variation: Very low — the terrain is worn flat by
+# erosion. 4 = minimal undulation, just the occasional shallow
+# wash or dried-up streambed cutting across the parched ground.
+# Range: 0.0 to 30.0
+height-variation = 4
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The surface is transitioning from dirt to sand. The top layer
+# is still compacted earth, but it's cracking and bleaching.
+[biome.surface]
+# top-block: Coarse dirt — the topsoil has dried out and lost
+# its ability to support grass. Cracked, hard-packed earth that
+# crunches underfoot. No grass grows here.
+top-block = "minecraft:coarse_dirt"
+
+# filler-block: Sand is accumulating beneath the surface as
+# the desert encroaches. Digging down reveals the sandy
+# substrate replacing what was once fertile soil.
+filler-block = "minecraft:sand"
+
+# filler-depth: Moderate — the sand layer is building up as
+# windblown grains accumulate. 3 = a meaningful sand deposit
+# beneath the compacted surface dirt.
+# Range: 1 to 8.
+filler-depth = 3
+
+# underwater-block: Sand — any remaining water features have
+# sandy bottoms, typical of arid-zone ephemeral pools.
+underwater-block = "minecraft:sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Dying vegetation. Trees are skeletal, grass is sparse and
+# brown, and dead bushes are the dominant plant life. This
+# biome is a graveyard for the Verdant zone's greenery.
+[biome.features]
+# trees: Rare dying oaks — most trees have already succumbed
+# to the drought. Only scattered, stunted survivors remain.
+#   density: 0.2 = barely any trees. Each surviving tree is a
+#   notable landmark in the barren scrubland.
+trees = { types = ["dead_oak"], density = 0.2 }
+
+# grass-density: Very sparse — only the toughest dry grass
+# clings to cracks in the hardpan soil. 5.0 = scattered tufts
+# rather than continuous ground cover.
+# Range: 0.0 to 100.0
+grass-density = 5.0
+
+# flower-density: None — no flowers survive the drought.
+# 0.0 = the heat and lack of water have killed all flowering
+# plants.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# dead-bush-density: Dead bushes dominate — the primary
+# surface vegetation. 4.0 = scattered bushes across the
+# cracked earth, rolling in the hot wind.
+dead-bush-density = 4.0
+
+# extra-features: Cactus begins appearing at the scrubland's
+# driest edge, foreshadowing the Scorched zone's desert.
+extra-features = [
+    { feature = "cactus", density = 0.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The inhospitable conditions drive away most passive mobs.
+# Hostile mobs from the Scorched zone begin encroaching — husks
+# replace standard zombies as the dominant undead threat.
+[biome.spawning]
+# Husks: Desert-adapted zombies starting to appear. They inflict
+# Hunger on hit, a preview of Scorched zone dangers.
+husk = { weight = 10, min-group = 1, max-group = 3 }
+
+# Rabbits: The only passive mob hardy enough to survive in the
+# scrubland. Desert-colored variants blend into the dry terrain.
+rabbit = { weight = 5, min-group = 1, max-group = 3 }

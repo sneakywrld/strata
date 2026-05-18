@@ -1,0 +1,167 @@
+# ============================================================
+#  Biome: Cypress Bayou — Shadowmire Swamps
+# ============================================================
+# Towering cypress-style trees (dark oak with broad, buttressed
+# trunks) rise from shallow, tea-colored water. Long curtains of
+# Spanish moss (vines) hang from every branch, swaying gently and
+# brushing the water's surface. The bayou has a haunting, Southern
+# Gothic beauty — shafts of green-filtered light pierce the canopy
+# to illuminate the still water below. Small islands of mud and
+# roots provide stepping stones between the massive trunks. The
+# water moves slowly but perceptibly, following ancient channels
+# carved by the bayou's quiet current.
+#
+# Gameplay Notes:
+#   - Vine curtains can be climbed for canopy-level traversal.
+#   - Dark oak logs are abundant and the trees are enormous.
+#   - Boat navigation is possible but vines snag frequently.
+#   - The canopy creates partial shade — some daytime mob spawns.
+#   - Root buttresses provide natural shelter for small bases.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier used by the generator to reference
+# this biome internally. Must be unique across the entire profile.
+# Format: "strata:<zone>_<biome_name>" — lowercase, underscores only.
+id = "strata:shadowmire_cypress_bayou"
+
+# display-name: Human-readable name shown to players in F3 debug,
+# /strata info, and zone-entry messages.
+display-name = "Shadowmire Cypress Bayou"
+
+# category: The broad Minecraft biome category this belongs to.
+# SWAMP enables the murky green water tint and swamp ambient sounds.
+category = "SWAMP"
+
+# zone: Which zone this biome belongs to. Must match a zone key
+# defined in zones/zones.toml.
+zone = "shadowmire"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Climate is a 5-dimensional coordinate that determines where this
+# biome places in the world. Each axis ranges from -1.0 to 1.0.
+[biome.climate]
+# temperature: 0.65 = warm subtropical — cypress trees require
+# consistent warmth and long growing seasons to reach their
+# impressive heights.
+temperature = 0.65
+
+# humidity: 0.9 = near-saturated — the standing water, dense
+# canopy, and hanging moss keep humidity at tropical levels.
+humidity = 0.9
+
+# continentalness: 0.6 = moderately inland — the bayou forms
+# along slow-moving inland waterways, not coastal estuaries.
+continentalness = 0.6
+
+# erosion: 0.6 = moderately eroded — the cypress root systems
+# have stabilized the terrain somewhat, preventing the total
+# flattening seen in open mud flats.
+erosion = 0.6
+
+# weirdness: 0.15 = slightly unusual — the bayou is a natural
+# but somewhat uncommon variant of the swamp, characterized by
+# its towering old-growth trees.
+weirdness = 0.15
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 0 = at sea level. The bayou sits at the waterline,
+# with tree trunks rising from standing water and small mud islands
+# barely breaking the surface.
+# Range: -64.0 to 256.0, typical surface biomes: -5.0 to 30.0
+base-height = 0
+
+# height-variation: 3 = moderate variation. The massive root
+# buttresses and mud islands create noticeable micro-topography
+# — some areas are knee-deep in water while nearby root platforms
+# rise several blocks above the surface.
+# Range: 0.0 (glass-flat) to 30.0 (extreme peaks)
+height-variation = 3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Mud — the bayou floor is waterlogged organic sediment
+# with a thin layer of decomposing leaves and bark.
+top-block = "minecraft:mud"
+
+# filler-block: Rooted dirt — the massive cypress root systems
+# permeate the entire substrate, creating a tough, root-laced
+# sub-layer beneath the surface mud.
+filler-block = "minecraft:rooted_dirt"
+
+# filler-depth: 4 = deep root zone reflecting the enormous cypress
+# trees whose roots extend far below the waterline.
+# Range: 1 to 8.
+filler-depth = 4
+
+# underwater-block: Mud on the bayou channel floors — slow-moving
+# water deposits fine sediment rather than sorting into sand.
+underwater-block = "minecraft:mud"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Massive dark oaks represent the cypress trees, with their
+# broad trunks and spreading canopies. Vine-draped varieties
+# create the hanging moss effect.
+#   types: Tree definition keys from features/trees.toml.
+#   density: 6.0 = moderate-to-dense canopy. The trees are large
+#            enough that moderate density still creates a closed
+#            canopy with vine curtains meeting overhead.
+trees = { types = ["cypress_dark_oak", "vine_oak"], density = 6.0 }
+
+# grass-density: 3.0 = sparse — ferns and sedges grow on exposed
+# root platforms and mud banks.
+# Range: 0.0 to 100.0.
+grass-density = 3.0
+
+# flower-density: 0.5 = occasional blue orchids on root platforms.
+# Range: 0.0 to 15.0.
+flower-density = 0.5
+
+# extra-features: Hanging vines are the signature feature, along
+# with lily pads on the open water and moss on root surfaces.
+extra-features = [
+    { feature = "hanging_vine", density = 10.0 },
+    { feature = "lily_pad", density = 4.0 },
+    { feature = "moss_carpet", density = 3.0 },
+    { feature = "hanging_roots", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+[biome.spawning]
+# The cypress bayou supports a diverse swamp ecosystem. Frogs and
+# fish inhabit the water, while spiders and zombies emerge from
+# the shadowed root cavities at night.
+
+# frog: Frogs perch on root buttresses and lily pads throughout
+# the bayou.
+# weight: 12 for a steady, atmospheric presence.
+frog = { weight = 12, min-group = 2, max-group = 4 }
+
+# spider: Spiders spin webs between the vine curtains, creating
+# additional movement hazards in the canopy.
+# weight: 10 for a meaningful threat among the vines.
+spider = { weight = 10, min-group = 1, max-group = 2 }
+
+# zombie: Zombies wade through the shallow water, their splashing
+# audible before they emerge from behind vine curtains.
+# weight: 8 for an occasional melee threat.
+zombie = { weight = 8, min-group = 1, max-group = 3 }
+
+# salmon: Fish swim in the bayou's deeper channels.
+# weight: 6 for ambient aquatic life and a food source.
+salmon = { weight = 6, min-group = 2, max-group = 4 }

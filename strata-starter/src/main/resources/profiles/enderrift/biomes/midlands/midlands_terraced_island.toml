@@ -1,0 +1,139 @@
+# ============================================================
+#  Biome: Midlands Terraced Island — End Midlands
+# ============================================================
+# A striking island formation where the terrain descends in
+# distinct step-like layers, creating natural terraces. Each
+# terrace is a flat shelf 3-5 blocks wide with a sharp 3-8
+# block drop to the next level below. The result looks like
+# a giant staircase carved into the end stone — or an ancient
+# amphitheater built into the island surface. The terraces
+# follow the island's natural contours, wrapping around the
+# mass in concentric rings from the high center to the low
+# edges. Chorus plants grow on each terrace level, their
+# varying heights creating a stepped canopy effect.
+#
+# Gameplay notes:
+#   - Step-like terrain forming natural terraces.
+#   - Each terrace is a flat shelf 3-5 blocks wide.
+#   - 3-8 block drops between terrace levels.
+#   - Natural amphitheater or staircase appearance.
+#   - Each terrace can host different crops or builds.
+#   - Terraces provide natural fall protection (short drops).
+#   - Chorus plants at different terrace heights.
+#   - Pairs with midlands_rolling_end (smoother terrain)
+#     and outer_end_plateau (similar flat surfaces).
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for the step-terraced
+# island formation in the End midlands.
+id = "strata:midlands_terraced_island"
+
+# display-name: Shown in F3 debug and /strata info.
+display-name = "Terraced Island"
+
+# category: END — End dimension biome.
+category = "END"
+
+# region: End Midlands region.
+region = "midlands"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Neutral — the terraces create varied
+# microclimates at different levels, averaging to
+# neutral. 0.0 = baseline End temperature.
+temperature = 0.0
+
+# humidity: Low-to-moderate — chorus plants grow on
+# each terrace, adding slight moisture at each level.
+# 0.1 = marginally above baseline.
+humidity = 0.1
+
+# continentalness: Fixed at 0.0 for End biomes.
+continentalness = 0.0
+
+# erosion: Fixed at 0.0 for End biomes.
+erosion = 0.0
+
+# weirdness: 0.3 = moderately weird. The terraced
+# formation is visually striking and unusual — the
+# stepped geometry stands out against the organic
+# rolling terrain of adjacent biomes.
+weirdness = 0.3
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 55 — slightly below standard midlands
+# elevation. The terraces step down from a central high
+# point (Y ~70) to the island edges (Y ~40). The base
+# height represents the mid-point of the terrace range.
+base-height = 55
+
+# height-variation: 15 = high variation. The large range
+# is essential for creating the stepped profile — the
+# terrain generator creates distinct plateaus at
+# different heights within this variation band, which
+# are then connected by the sharp drops between levels.
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: End stone — the flat terrace surfaces are
+# standard end stone.
+top-block = "minecraft:end_stone"
+
+# filler-block: End stone — solid substrate beneath each
+# terrace level.
+filler-block = "minecraft:end_stone"
+
+# filler-depth: 4 = standard depth. Each terrace has a
+# solid foundation, not just a thin shelf.
+# Range: 1 to 8.
+filler-depth = 4
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Chorus plants grow on each terrace level, creating a
+# stepped canopy effect when viewed from below.
+[biome.features]
+# end-specific: Chorus plants distributed across terrace
+# levels. Each terrace hosts its own chorus plants,
+# creating a layered vegetation profile. Density is
+# moderate — the terraces are wide enough for both
+# vegetation and clear walking paths.
+trees = { types = ["chorus_tree"], density = 3.0 }
+
+# grass-density: No grass in the End.
+grass-density = 0.0
+
+# extra-features: Terrace-edge features.
+#   chorus_cluster — chorus groupings on wider terraces
+#       where multiple plants can grow side by side.
+extra-features = [
+    { feature = "chorus_cluster", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Endermen patrol individual terraces. The stepped
+# terrain can work in the player's favor — dropping to a
+# lower terrace breaks line-of-sight with endermen above.
+[biome.spawning]
+# enderman: Standard presence — spread across multiple
+# terrace levels. The stepped terrain provides natural
+# cover: players can drop to a lower terrace to break
+# line-of-sight with aggro'd endermen, since endermen
+# cannot see through the terrace edge.
+enderman = { weight = 32, min-group = 1, max-group = 3 }

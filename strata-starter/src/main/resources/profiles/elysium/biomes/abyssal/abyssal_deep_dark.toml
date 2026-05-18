@@ -1,0 +1,152 @@
+# ============================================================
+#  Biome: Abyssal Deep Dark — Abyssal Depths
+# ============================================================
+# The most feared biome in the Abyssal zone. Sculk tendrils
+# carpet the cave floor and creep up the walls, their dark
+# blue-green surface pulsing faintly with each detected
+# vibration. Sculk sensors dot the terrain like organic motion
+# detectors, their tendrils swaying even when the air is still.
+# Sculk shriekers stand as sentinels — trigger enough of them
+# and the Warden rises from the sculk beneath your feet. The
+# silence here is oppressive. No ambient cave sounds. No water
+# dripping. Just the occasional click of a sensor and the
+# distant rumble of something massive stirring below.
+#
+# Gameplay notes:
+#   - EXTREME DANGER — Warden spawns from sculk shriekers.
+#   - Stealth gameplay required: crouch, avoid vibrations.
+#   - Wool blocks and carpet muffle footsteps.
+#   - Swift Sneak enchantment books found in loot chests.
+#   - Sculk blocks drop XP when mined with Silk Touch.
+#   - Darkness effect applied near active shriekers.
+#   - Pairs with abyssal_sculk_cavern for extended sculk zones.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The deep dark is the
+# signature high-danger biome of the Abyssal zone.
+id = "strata:abyssal_deep_dark"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Deep Dark"
+
+# category: CAVE — deep underground biome with suppressed
+# ambient sounds and darkness effect integration.
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# The deep dark occupies a very specific ecological niche:
+# cold, moderate humidity, and high weirdness reflecting the
+# alien nature of the sculk organism.
+[biome.climate]
+# temperature: Cold — the sculk absorbs ambient heat. The
+# deep dark is noticeably colder than surrounding caves.
+# 0.2 = cold but not freezing; the sculk itself is alive.
+temperature = 0.2
+
+# humidity: Moderate — sculk growth requires some moisture
+# but the organism has consumed most available water.
+# 0.4 = drier than typical deep caves.
+humidity = 0.4
+
+# continentalness: Neutral — deep dark can form under any
+# surface terrain. 0.5 = no geographic bias.
+continentalness = 0.5
+
+# erosion: Balanced — the sculk has filled existing cave
+# voids without creating new ones. 0.5 = standard cave shape.
+erosion = 0.5
+
+# weirdness: Elevated — the deep dark is an unusual biome
+# that generates less frequently than standard caves.
+# 0.5 = moderately rare, requiring specific noise conditions.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Deep in the underground — the deep dark sits
+# in the lower reaches of the Abyssal zone. -45 = roughly
+# 45 blocks below sea level, well into deepslate territory.
+base-height = -45
+
+# height-variation: Low variation — the sculk has smoothed
+# the cave floor into rolling organic mounds. No dramatic
+# height changes; the biome is claustrophobically flat.
+# 10 = gentle undulation beneath the sculk carpet.
+height-variation = 10
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# The sculk organism has completely overtaken the original
+# cave surfaces, replacing stone with sculk blocks.
+[biome.surface]
+# top-block: Sculk blocks form the living floor surface.
+# They glow faintly and drop XP when broken.
+top-block = "minecraft:sculk"
+
+# filler-block: Deepslate beneath the sculk layer — this
+# is the original cave rock the sculk colonized.
+filler-block = "minecraft:deepslate"
+
+# filler-depth: Thin sculk penetration — the organism sits
+# on the surface rather than replacing deep rock.
+# 2 = sculk has only colonized the top couple of layers.
+filler-depth = 2
+
+# underwater-block: Any rare water pools are floored with
+# sculk that has adapted to submerged conditions.
+underwater-block = "minecraft:sculk"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Sculk ecosystem features dominate. No natural vegetation
+# survives — the sculk has consumed everything organic.
+[biome.features]
+# trees: No trees. The sculk has no use for wood.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life whatsoever.
+grass-density = 0.0
+
+# flower-density: Nothing blooms in the deep dark.
+flower-density = 0.0
+
+# extra-features: Sculk ecosystem decorations.
+#   sculk_sensor — vibration-detecting blocks that alert the Warden.
+#   sculk_shrieker — triggers Warden spawn after repeated activation.
+#   sculk_vein — thin sculk tendrils spreading across walls/ceiling.
+#   sculk_catalyst — converts nearby mob deaths into more sculk.
+extra-features = [
+    { feature = "sculk_sensor", density = 6.0 },
+    { feature = "sculk_shrieker", density = 3.0 },
+    { feature = "sculk_vein", density = 15.0 },
+    { feature = "sculk_catalyst", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# The deep dark is eerily devoid of normal mob spawns. The
+# sculk has consumed or driven away all other life. Only
+# the Warden patrols this domain.
+[biome.spawning]
+# warden: Does not spawn naturally from the table — summoned
+# by sculk shriekers. Listed here to suppress other hostile
+# mob spawns and document the Warden's territorial presence.
+# Hostile mob spawning is heavily suppressed by the sculk.
+hostile-density-multiplier = 0.1
+
+# No passive mobs survive in the deep dark.
+passive-density-multiplier = 0.0

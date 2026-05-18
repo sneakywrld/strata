@@ -1,0 +1,174 @@
+# ============================================================
+#  Biome: Pirate Cove — Elysium Islands
+# ============================================================
+# A hidden bay carved between towering sea cliffs, accessible
+# only through a narrow channel that opens into a sheltered
+# harbor. The gravel beach is littered with shipwreck debris —
+# broken masts, scattered planks, and half-buried chests. The
+# water in the cove is deep and dark, concealing drowned mobs
+# that patrol the sunken wrecks below. Cliffs rise steeply on
+# three sides, their faces pocked with small cave openings
+# that may lead to buried treasure chambers. An air of danger
+# and mystery pervades the cove — something valuable is hidden
+# here, but claiming it will not be easy.
+#
+# Gameplay notes:
+#   - Shipwreck loot generates frequently — maps, iron, gold.
+#   - Buried treasure chests contain Heart of the Sea for
+#     crafting conduits.
+#   - Drowned are the primary hostile threat — they carry
+#     tridents and nautilus shells.
+#   - Deep water in the cove center (base-height = -3).
+#   - Cliff caves may contain additional loot chests.
+#   - Gravel beach provides flint for arrows.
+#   - High weirdness makes this a rare, memorable discovery.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Island biomes use the
+# "elysium_" prefix as cross-zone ocean features.
+id = "strata:elysium_pirate_cove"
+
+# display-name: Human-readable name shown in F3 debug,
+# /strata info, and minimap overlays.
+display-name = "Pirate Cove"
+
+# category: BEACH — the gravel shoreline and coastal setting
+# place this in the beach family. BEACH enables shipwreck
+# generation, buried treasure placement, and drowned spawning
+# rules appropriate for a dangerous coastal feature.
+category = "BEACH"
+
+# zone: "island" — island biomes generate offshore in ocean
+# areas, independent of mainland zone boundaries.
+zone = "island"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# Temperate and sheltered. The high cliffs block wind, creating
+# still, eerie conditions in the cove. The extreme weirdness
+# ensures this biome generates rarely.
+[biome.climate]
+# temperature: 0.5 = temperate. The sheltered cove maintains
+# mild conditions regardless of the surrounding ocean's
+# temperature — the cliffs create a microclimate.
+temperature = 0.5
+
+# humidity: 0.5 = moderate. The enclosed bay traps some
+# moisture from the ocean, but the steep cliffs prevent
+# the stagnant, swampy conditions of enclosed bays.
+humidity = 0.5
+
+# continentalness: -0.3 = offshore. The cove sits within an
+# island formation in the open ocean, away from the mainland.
+continentalness = -0.3
+
+# erosion: -0.2 = resistant. The cliff walls that form the
+# cove are hard rock that resists erosion, maintaining the
+# steep, enclosed bay shape over geological time.
+erosion = -0.2
+
+# weirdness: 0.8 = very unusual. Hidden pirate coves are
+# among the rarest island features. The high weirdness ensures
+# discovery feels like stumbling upon a genuine secret — a
+# reward for thorough ocean exploration.
+weirdness = 0.8
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: -3 = below sea level. The cove floor sits
+# underwater, creating a deep natural harbor. The surrounding
+# cliffs rise sharply above while the center drops below the
+# waterline — players wade or swim to reach the beach.
+# Range: -64.0 to 256.0
+base-height = -3
+
+# height-variation: 15 = dramatic variation. The terrain swings
+# wildly from the deep cove center to the towering cliff walls.
+# This extreme variation creates the enclosed bay geometry —
+# low in the middle, high on the edges.
+# Range: 0.0 to 30.0
+height-variation = 15
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# Gravel beach with stone cliffs — a rough, unwelcoming shore
+# littered with debris from wrecked ships.
+[biome.surface]
+# top-block: Gravel — a coarse, grey beach surface. Unlike the
+# inviting sand of tropical islands, the gravel signals danger
+# and gives the cove a harsh, industrial character.
+top-block = "minecraft:gravel"
+
+# filler-block: Stone beneath the thin gravel layer. The cove
+# is carved from solid rock, with only a thin veneer of wave-
+# deposited gravel covering the beach.
+filler-block = "minecraft:stone"
+
+# filler-depth: 2 = thin surface layer. The gravel beach is
+# shallow — dig down a few blocks and you hit solid stone.
+# The cove is essentially a flooded cave, not a sand deposit.
+# Range: 1 to 8.
+filler-depth = 2
+
+# underwater-block: Gravel on the cove floor beneath the
+# water — debris from the cliffs mixed with shipwreck remains.
+underwater-block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Minimal natural vegetation. The features here are man-made
+# debris — shipwreck remnants and treasure indicators. The
+# cliffs are bare stone, and the beach is littered gravel.
+[biome.features]
+# trees: No trees. The sheer cliffs and gravel beach provide
+# no soil or light conditions for tree growth.
+trees = { types = [], density = 0.0 }
+
+# grass-density: Zero. Gravel surface with no vegetation.
+# Range: 0.0 to 100.0
+grass-density = 0.0
+
+# flower-density: Zero. No flowers on the barren gravel shore.
+# Range: 0.0 to 15.0
+flower-density = 0.0
+
+# extra-features: Shipwreck debris and treasure indicators
+# are the cove's defining features. Kelp grows on the
+# submerged cliff walls.
+extra-features = [
+    # Shipwreck remnants — broken hull sections on the beach.
+    { feature = "shipwreck", density = 2.0 },
+    # Kelp growing on the submerged cliff walls.
+    { feature = "kelp", density = 3.0 },
+    # Cobweb clusters in cliff-face cave openings.
+    { feature = "cobweb_cluster", density = 1.5 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Dangerous aquatic mobs dominate. Drowned patrol the deep
+# water, guarding the sunken treasure. The cove is hostile
+# territory — players must fight for the loot.
+[biome.spawning]
+# Drowned: Waterlogged zombies that lurk in the cove's deep
+# water. They carry tridents and nautilus shells — valuable
+# drops that make fighting them worthwhile despite the risk.
+drowned = { weight = 20, min-group = 2, max-group = 4 }
+
+# Spider: Lurk in the cliff-face caves and among the shipwreck
+# debris on the beach. Their webs catch the unwary.
+spider = { weight = 8, min-group = 1, max-group = 2 }
+
+# Bat: Flutter in the small caves dotting the cliff walls.
+# Atmospheric mob that adds to the eerie ambiance.
+bat = { weight = 6, min-group = 1, max-group = 3 }

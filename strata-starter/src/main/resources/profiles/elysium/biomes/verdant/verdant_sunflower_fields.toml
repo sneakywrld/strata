@@ -1,0 +1,133 @@
+# ============================================================
+#  Biome: Verdant Sunflower Fields — Verdant Expanse
+# ============================================================
+# Endless fields of sunflowers stretching across flat terrain,
+# all facing east in the morning light. The golden palette is
+# iconic — bright yellow heads above dark green stalks, with
+# bees buzzing between blooms. This biome is visually striking
+# and a natural honey-production hub.
+#
+# Gameplay: Sunflowers provide a renewable yellow dye source and
+# always point east (natural compass). Bee colonies produce
+# honey and honeycomb. Flat terrain is perfect for large builds.
+# The warm, golden atmosphere makes this a favorite for pastoral
+# base locations.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier for this biome.
+# Follows the "strata:<zone>_<name>" convention.
+id = "strata:verdant_sunflower_fields"
+
+# display-name: Human-readable name for UI elements, debug screen,
+# and /strata commands.
+display-name = "Verdant Sunflower Fields"
+
+# category: PLAINS — flat terrain category. Enables village
+# generation eligibility, horse spawning, and plains-style
+# ambient audio (wind, distant birdsong).
+category = "PLAINS"
+
+# zone: Verdant Expanse zone. Generates 1500-3500 blocks from spawn.
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.55 = slightly warmer than standard plains.
+# Sunflowers prefer warm climates with long sunny days.
+# The extra warmth differentiates this from base verdant_plains.
+temperature = 0.55
+
+# humidity: 0.3 = slightly dry. Sunflower fields thrive in
+# well-drained soil that isn't waterlogged. Same as plains.
+humidity = 0.3
+
+# continentalness: 0.4 = moderately inland. Sunflower fields
+# need stable continental climate away from coastal weather.
+continentalness = 0.4
+
+# erosion: 0.85 = very flat. Even flatter than standard plains —
+# sunflower fields are the flattest biome in the Verdant zone,
+# evoking real-world agricultural flatlands.
+erosion = 0.85
+
+# weirdness: 0.2 = slightly unusual. The positive weirdness
+# prevents this biome from generating in the same spots as
+# regular plains, creating distinct sunflower-dominated regions.
+weirdness = 0.2
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 blocks above sea level. Flat and low, matching
+# the plains baseline. Sunflower fields don't sit on hills.
+base-height = 3
+
+# height-variation: 0.3 = nearly flat. Minimal terrain variation
+# reinforces the "endless field" aesthetic — you can see far
+# in every direction across the sunflower tops.
+height-variation = 0.3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Standard grass block. The sunflowers grow on
+# regular grassland — the golden color comes from the flowers
+# themselves, not the terrain.
+top-block = "minecraft:grass_block"
+
+# filler-block: Rich dirt subsoil supporting the dense
+# sunflower root systems.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard topsoil depth. No special
+# geological features beneath sunflower fields.
+filler-depth = 3
+
+# underwater-block: Dirt for any small ponds or depressions
+# that dip below the water table.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Extremely sparse trees. Sunflower fields are defined
+# by their LACK of trees — wide open sky above golden blooms.
+#   density 0.1 = almost no trees. Maybe one per several chunks.
+trees = { types = ["oak"], density = 0.1 }
+
+# grass-density: 40.0 = moderate grass between sunflower stalks.
+# Less than pure plains because sunflowers crowd out grass.
+grass-density = 40.0
+
+# flower-density: 20.0 = extremely dense flower coverage.
+# This is the defining feature — the biome should be visually
+# dominated by sunflowers with other flowers mixed in.
+flower-density = 20.0
+
+# extra-features: Sunflower-specific features and bee infrastructure.
+extra-features = [
+    # Sunflowers are the star — very high density placement.
+    { feature = "sunflower", density = 15.0 },
+    # Bee nests generate on the rare trees, with bees already inside.
+    { feature = "bee_nest", density = 1.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Sunflower fields are a bee paradise with standard pastoral mobs.
+[biome.spawning]
+# Bees are abundant — drawn to the massive sunflower population.
+bee = { weight = 12, min-group = 2, max-group = 4 }
+# Cows and sheep graze between the sunflower rows.
+cow = { weight = 10, min-group = 2, max-group = 4 }
+sheep = { weight = 10, min-group = 2, max-group = 4 }

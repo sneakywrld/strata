@@ -1,0 +1,153 @@
+# ============================================================
+#  Biome: Soul Fire Chamber — Soul Regions
+# ============================================================
+# An enclosed cavern where every exposed surface of soul soil
+# is ablaze with soul fire, creating an overwhelming sea of
+# blue flame that illuminates the chamber in an icy blue glow.
+# The fire covers the floor, climbs the walls, and licks at the
+# ceiling — a blue inferno that is paradoxically cold-looking
+# despite dealing significant fire damage. The soul soil beneath
+# the flames sustains the fire indefinitely, and the concentrated
+# soul particle output creates a dense blue haze above the
+# flames. Skeletons stride through the fire unharmed, their
+# bows drawn and ready, while players must navigate narrow
+# firebreaks of bare netherrack between the burning sections.
+# The light level from concentrated soul fire is high enough
+# to read by, casting everything in an eerie blue-white glow
+# that bleaches all color from the environment.
+#
+# Gameplay notes:
+#   - Fire Resistance or Fire Protection armor essential.
+#   - Soul fire deals 2 hearts per second — lethal quickly.
+#   - Navigate via netherrack firebreaks between burning zones.
+#   - Skeletons immune to fire — attack from within the flames.
+#   - Soul soil harvesting beneath the fire (break fire first).
+#   - Blue ambient lighting for unique building aesthetics.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. The fire chamber is the
+# most hazardous soul biome, defined by wall-to-wall soul fire.
+id = "strata:soul_fire_chamber"
+
+# display-name: Human-readable name for player displays.
+display-name = "Soul Fire Chamber"
+
+# category: NETHER — enclosed nether chamber with extreme soul
+# fire coverage and blue flame illumination.
+category = "NETHER"
+
+# zone: Part of the soul zone — the most fire-hazardous area
+# within the soul regions.
+zone = "soul"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: Despite the fire, soul fire is "cold" — it deals
+# damage through soul energy, not heat. The chamber temperature
+# remains cool for the nether.
+#   0.2 = cool despite the fire — soul fire is cold flame.
+temperature = 0.2
+
+# humidity: Extremely dry — the constant fire removes all
+# moisture from the enclosed space.
+#   -0.6 = bone-dry from constant fire.
+humidity = -0.6
+
+# continentalness: Negative — fire chambers form as enclosed
+# underground spaces.
+#   -0.2 = below standard level, enclosed chamber.
+continentalness = -0.2
+
+# erosion: Moderate — the chamber interior has some open space
+# but is broken up by netherrack firebreaks.
+#   0.5 = moderate openness within the chamber.
+erosion = 0.5
+
+# weirdness: High — a chamber of blue fire is a dramatic and
+# unusual nether formation.
+#   0.6 = highly unusual fire phenomenon.
+weirdness = 0.6
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Below standard — the chamber sits within the
+# nether rock as an enclosed space.
+#   34 = below standard floor, enclosed chamber.
+base-height = 34
+
+# height-variation: Low — the chamber floor is relatively flat,
+# covered in an even layer of soul fire.
+#   2.5 = mostly flat burning surface.
+height-variation = 2.5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Soul soil — the surface that sustains the
+# permanent soul fire coverage throughout the chamber.
+top-block = "minecraft:soul_soil"
+
+# filler-block: Netherrack beneath the soul soil.
+filler-block = "minecraft:netherrack"
+
+# filler-depth: Standard depth.
+#   4 = typical soul soil depth before netherrack.
+filler-depth = 4
+
+# underwater-block: Soul sand at lava boundaries.
+underwater-block = "minecraft:soul_sand"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: No vegetation — everything organic has been consumed
+# by the soul fire.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No plant life in the burning chamber.
+grass-density = 0.0
+
+# flower-density: No flowers in the nether.
+flower-density = 0.0
+
+# extra-features: Fire chamber specific features.
+#   soul_fire — maximum density, covering virtually every
+#     exposed soul soil surface in the chamber.
+#   netherrack_firebreak — thin strips of bare netherrack
+#     between burning zones, providing safe paths.
+#   soul_sand_patch — patches of soul sand adding movement
+#     hazard to the fire danger.
+extra-features = [
+    { feature = "soul_fire", density = 18.0 },
+    { feature = "netherrack_firebreak", density = 3.0 },
+    { feature = "soul_sand_patch", density = 2.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Skeletons are the primary threat — immune to fire, they
+# attack from within the flames with complete impunity.
+[biome.spawning]
+# skeleton: The dominant mob — skeletons walk through soul fire
+# unharmed, using it as cover to fire arrows at players stuck
+# on narrow firebreaks. High density and group sizes.
+skeleton = { weight = 18, min-group = 3, max-group = 5 }
+
+# wither_skeleton: Wither skeletons patrol the chamber edges,
+# their Wither effect stacking with fire damage.
+wither_skeleton = { weight = 8, min-group = 1, max-group = 2 }
+
+# ghast: Occasional ghast in larger chambers — their fireballs
+# ignite additional fire on any netherrack surfaces.
+ghast = { weight = 4, min-group = 1, max-group = 1 }

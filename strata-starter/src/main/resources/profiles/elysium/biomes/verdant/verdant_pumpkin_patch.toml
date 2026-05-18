@@ -1,0 +1,133 @@
+# ============================================================
+#  Biome: Verdant Pumpkin Patch — Verdant Expanse
+# ============================================================
+# A flat, pastoral terrain scattered with pumpkins growing in
+# natural patches among the grass. Hay bales dot the landscape,
+# giving the biome an autumnal harvest-festival atmosphere even
+# in Minecraft's perpetual season. The terrain is ideal for
+# farming communities.
+#
+# Gameplay: Free pumpkin supply for pumpkin pie, jack-o-lanterns,
+# iron golem crafting, and trading with villagers. Hay bales
+# provide a decorative element and can be broken for wheat.
+# The flat terrain and harvest theme make this a natural village
+# location. Pumpkins are also useful for snow golem helmets.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. "pumpkin_patch" evokes the
+# real-world concept of a pumpkin field/farm.
+id = "strata:verdant_pumpkin_patch"
+
+# display-name: Player-facing name shown in F3, minimaps,
+# and /strata biome info.
+display-name = "Verdant Pumpkin Patch"
+
+# category: PLAINS — flat agricultural terrain. Enables village
+# generation, horse spawning, and plains ambient sounds.
+category = "PLAINS"
+
+# zone: Verdant Expanse (1500-3500 blocks from spawn).
+zone = "verdant"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+[biome.climate]
+# temperature: 0.5 = standard temperate. Pumpkins grow well
+# in moderate climates with warm days and cool nights.
+temperature = 0.5
+
+# humidity: 0.4 = moderate. Slightly more moisture than dry
+# plains, providing enough water for pumpkin vine growth
+# without making the terrain muddy.
+humidity = 0.4
+
+# continentalness: 0.4 = moderately inland. Agricultural
+# flatlands in the temperate continental interior.
+continentalness = 0.4
+
+# erosion: 0.85 = very flat. Among the flattest biomes in the
+# zone, mimicking real-world agricultural flatlands where
+# pumpkins are commercially grown.
+erosion = 0.85
+
+# weirdness: 0.25 = moderately unusual. Pumpkin patches are a
+# distinctive specialty biome — the weirdness value ensures they
+# generate in specific pockets rather than everywhere.
+weirdness = 0.25
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: 3 = just above sea level. Flat, low-lying terrain
+# suitable for agriculture. Matches the plains baseline.
+base-height = 3
+
+# height-variation: 0.3 = nearly flat. Minimal terrain variation
+# creates the ideal pumpkin-growing surface — flat enough to
+# see pumpkins scattered across the landscape to the horizon.
+height-variation = 0.3
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+[biome.surface]
+# top-block: Grass block. Standard green surface with pumpkins
+# and hay bales placed as features on top.
+top-block = "minecraft:grass_block"
+
+# filler-block: Dirt — rich agricultural soil beneath the grass.
+filler-block = "minecraft:dirt"
+
+# filler-depth: 3 = standard topsoil depth for fertile plains.
+filler-depth = 3
+
+# underwater-block: Dirt for any irrigation ditches or shallow
+# ponds in the patch.
+underwater-block = "minecraft:dirt"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+[biome.features]
+# trees: Very sparse trees. The pumpkin patch is open terrain —
+# trees would shade the pumpkin vines and block the visual.
+#   density 0.15 = almost no trees. Rare lone oaks serve as
+#   landmarks across the flat terrain.
+trees = { types = ["oak"], density = 0.15 }
+
+# grass-density: 35.0 = moderate. Grass grows between pumpkin
+# patches but is sparser than pure plains because pumpkin vines
+# and hay bales occupy ground space.
+grass-density = 35.0
+
+# flower-density: 2.0 = light flower coverage. Some wildflowers
+# grow among the pumpkins, but this biome is about crops, not blooms.
+flower-density = 2.0
+
+# extra-features: Pumpkins and harvest-themed decorations.
+extra-features = [
+    # Pumpkin patches — the defining feature. High density ensures
+    # pumpkins are visually dominant across the landscape.
+    { feature = "pumpkin", density = 8.0 },
+    # Hay bales scattered as decorative harvest markers.
+    # These generate as placed blocks, evoking farmland atmosphere.
+    { feature = "hay_bale", density = 3.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Farm animals graze among the pumpkin patches.
+[biome.spawning]
+# Cows wander the flat terrain — classic pastoral livestock.
+cow = { weight = 10, min-group = 2, max-group = 4 }
+# Chickens peck around the pumpkin vines.
+chicken = { weight = 10, min-group = 2, max-group = 4 }
+# Pigs root through the pumpkin patch for fallen scraps.
+pig = { weight = 8, min-group = 2, max-group = 3 }

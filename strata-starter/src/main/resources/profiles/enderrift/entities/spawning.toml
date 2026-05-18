@@ -1,0 +1,48 @@
+# ============================================================
+#  End Entity Spawning — Enderrift
+# ============================================================
+# Default mob spawning for the End dimension.
+# Endermen are the dominant mob type. Shulkers appear
+# in end city biomes. The dragon is a special spawn.
+# ============================================================
+
+# -------------------------------------------------------
+# Hostile Mobs
+# -------------------------------------------------------
+
+[[spawns]]
+mob = "minecraft:enderman"
+# weight: Endermen are the primary end mob — very high weight.
+weight = 100
+min-group = 1
+max-group = 4
+category = "HOSTILE"
+
+[[spawns]]
+mob = "minecraft:shulker"
+weight = 10
+min-group = 1
+max-group = 1
+category = "HOSTILE"
+[spawns.conditions]
+# Shulkers primarily spawn in end city biomes.
+# Individual biome configs override this for non-city areas.
+surface = true
+
+[[spawns]]
+mob = "minecraft:endermite"
+weight = 2
+min-group = 1
+max-group = 1
+category = "HOSTILE"
+[spawns.conditions]
+# Endermites are rare natural spawns in the end.
+surface = true
+
+# -------------------------------------------------------
+# Special: Ender Dragon
+# -------------------------------------------------------
+# The ender dragon is handled specially — it spawns once on
+# the central island when a player first enters the End.
+# Re-summoning uses end crystals on the exit portal.
+# This is not configured through normal spawn tables.

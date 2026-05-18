@@ -1,0 +1,251 @@
+# ============================================================
+#  Noise Function Definitions — Elysium Overworld
+# ============================================================
+# Named noise functions used by terrain, biomes, water, and features.
+# Each function has a unique ID (strata:name) and can be referenced
+# by other config files.
+#
+# Noise types available:
+#   simplex, perlin, open_simplex_2, cellular, value,
+#   ridged_multi, white, fractal, domain_warp, composite
+#
+# All noise functions output values in the range [-1.0, 1.0] unless
+# otherwise transformed by composite operations.
+# ============================================================
+
+# -------------------------------------------------------
+# Climate Noises (used for biome assignment)
+# -------------------------------------------------------
+
+# Continentalness: large-scale land/ocean distribution.
+# Low frequency = big continents. This is the "world map" noise.
+[functions."strata:continentalness"]
+# type: Base noise algorithm.
+type = "simplex"
+# frequency: How zoomed-in the noise is. Lower = larger features.
+# 0.0003 creates continent-scale features (~3000+ block wavelength).
+frequency = 0.0003
+# seed-offset: Added to the world seed for this specific noise.
+# Ensures different noises don't correlate with each other.
+seed-offset = 0
+[functions."strata:continentalness".fractal]
+# octaves: Number of noise layers stacked together.
+# More octaves = more fine detail on top of the base shape.
+octaves = 5
+# lacunarity: Frequency multiplier between octaves. 2.0 = each octave is 2x finer.
+lacunarity = 2.0
+# gain: Amplitude multiplier between octaves. 0.5 = each octave is half as strong.
+# Lower gain = smoother. Higher gain = more detailed/rough.
+gain = 0.45
+
+# Sub-continentalness: medium-scale landmass features (peninsulas, bays).
+[functions."strata:sub_continentalness"]
+type = "simplex"
+frequency = 0.0008
+seed-offset = 1
+[functions."strata:sub_continentalness".fractal]
+octaves = 4
+lacunarity = 2.2
+gain = 0.5
+
+# Coastal detail: fine-scale coastline features (coves, headlands).
+[functions."strata:coastal_detail"]
+type = "simplex"
+frequency = 0.004
+seed-offset = 2
+[functions."strata:coastal_detail".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.6
+
+# Temperature: controls warm/cold biome distribution.
+# Medium frequency for biome-scale variation.
+[functions."strata:temperature"]
+type = "simplex"
+frequency = 0.0005
+seed-offset = 10
+[functions."strata:temperature".fractal]
+octaves = 4
+lacunarity = 2.0
+gain = 0.5
+
+# Humidity: controls wet/dry biome distribution.
+[functions."strata:humidity"]
+type = "simplex"
+frequency = 0.0006
+seed-offset = 20
+[functions."strata:humidity".fractal]
+octaves = 4
+lacunarity = 2.0
+gain = 0.5
+
+# Erosion: controls terrain roughness (flat plains vs. rugged mountains).
+[functions."strata:erosion"]
+type = "simplex"
+frequency = 0.0004
+seed-offset = 30
+[functions."strata:erosion".fractal]
+octaves = 5
+lacunarity = 2.0
+gain = 0.45
+
+# Weirdness: controls unusual terrain features (mesas, spikes).
+# Also used for biome variants (e.g., mutated biomes).
+[functions."strata:weirdness"]
+type = "simplex"
+frequency = 0.0007
+seed-offset = 40
+[functions."strata:weirdness".fractal]
+octaves = 4
+lacunarity = 2.0
+gain = 0.55
+
+# -------------------------------------------------------
+# Terrain Noises
+# -------------------------------------------------------
+
+# 3D terrain variation: creates overhangs, arches, and cave openings.
+[functions."strata:terrain_3d"]
+type = "open_simplex_2"
+# Higher frequency than climate noises — these are block-scale features.
+frequency = 0.015
+seed-offset = 100
+[functions."strata:terrain_3d".fractal]
+octaves = 3
+lacunarity = 2.5
+gain = 0.4
+
+# Ridge noise: used for mountain ridgelines and sharp peaks.
+[functions."strata:ridge"]
+type = "ridged_multi"
+frequency = 0.002
+seed-offset = 110
+[functions."strata:ridge".fractal]
+octaves = 5
+lacunarity = 2.1
+gain = 0.5
+
+# Surface variation: small-scale terrain bumps and dips.
+[functions."strata:surface_variation"]
+type = "simplex"
+frequency = 0.04
+seed-offset = 120
+[functions."strata:surface_variation".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.5
+
+# -------------------------------------------------------
+# Cave Noises
+# -------------------------------------------------------
+
+# Cheese cave noise: large open chambers underground.
+[functions."strata:cheese_cave"]
+type = "open_simplex_2"
+frequency = 0.01
+seed-offset = 200
+[functions."strata:cheese_cave".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.5
+
+# Spaghetti cave noise: long winding tunnels.
+[functions."strata:spaghetti_cave"]
+type = "perlin"
+frequency = 0.03
+seed-offset = 210
+[functions."strata:spaghetti_cave".fractal]
+octaves = 2
+lacunarity = 2.0
+gain = 0.5
+
+# Noodle cave noise: thin crevices and narrow passages.
+[functions."strata:noodle_cave"]
+type = "perlin"
+frequency = 0.05
+seed-offset = 220
+[functions."strata:noodle_cave".fractal]
+octaves = 2
+lacunarity = 2.5
+gain = 0.4
+
+# -------------------------------------------------------
+# Water Noises
+# -------------------------------------------------------
+
+# River meander noise: adds natural curves to river paths.
+[functions."strata:river_meander"]
+type = "simplex"
+frequency = 0.002
+seed-offset = 300
+[functions."strata:river_meander".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.6
+
+# River bank noise: micro-variation along river edges for natural banks.
+[functions."strata:river_bank"]
+type = "simplex"
+frequency = 0.02
+seed-offset = 310
+[functions."strata:river_bank".fractal]
+octaves = 2
+lacunarity = 2.0
+gain = 0.5
+
+# Ocean floor noise: variation in ocean floor depth.
+[functions."strata:ocean_floor"]
+type = "simplex"
+frequency = 0.001
+seed-offset = 320
+[functions."strata:ocean_floor".fractal]
+octaves = 4
+lacunarity = 2.0
+gain = 0.5
+
+# Aquifer noise: 3D noise for underground water/lava pockets.
+[functions."strata:aquifer"]
+type = "open_simplex_2"
+frequency = 0.008
+seed-offset = 330
+[functions."strata:aquifer".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.5
+
+# -------------------------------------------------------
+# Utility Noises
+# -------------------------------------------------------
+
+# Ore scatter noise: controls ore vein positioning.
+[functions."strata:ore_scatter"]
+type = "simplex"
+frequency = 0.06
+seed-offset = 400
+
+# Vegetation density noise: controls how dense vegetation is.
+[functions."strata:vegetation_density"]
+type = "simplex"
+frequency = 0.01
+seed-offset = 410
+[functions."strata:vegetation_density".fractal]
+octaves = 2
+lacunarity = 2.0
+gain = 0.5
+
+# Surface noise: used for surface rule variation (e.g., patchy grass/dirt).
+[functions."strata:surface_noise"]
+type = "simplex"
+frequency = 0.08
+seed-offset = 420
+
+# Zone distance noise: adds organic edges to zone boundaries
+# so they don't form perfect circles.
+[functions."strata:zone_edge"]
+type = "simplex"
+frequency = 0.001
+seed-offset = 430
+[functions."strata:zone_edge".fractal]
+octaves = 3
+lacunarity = 2.0
+gain = 0.6

@@ -1,0 +1,155 @@
+# ============================================================
+#  Biome: Abyssal Underground River — Abyssal Depths
+# ============================================================
+# A flowing underground river carving through ancient stone,
+# its gentle current carrying sediment through narrow tunnels
+# that widen into occasional grotto pools. The riverbed is
+# lined with clay and gravel, and the shallow water glows with
+# the soft blue light of glow squid drifting lazily downstream.
+# Axolotls hunt in the shallows, their tiny forms darting
+# between smooth river stones. The tunnel ceiling is low and
+# tight, forcing players to wade or swim through stretches
+# where the water rises to the ceiling.
+#
+# Gameplay notes:
+#   - Linear biome — follows a river-like path underground.
+#   - Shallow enough to wade in most areas (2-3 blocks deep).
+#   - Some sections fully submerged — Respiration recommended.
+#   - Clay deposits for brick crafting.
+#   - Glow squid and axolotl spawns make this a collection biome.
+#   - Connects abyssal_cheese_chamber to abyssal_moss_cavern.
+#   - Boats can navigate wider sections.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+[biome]
+# id: Unique namespaced identifier. Underground rivers serve
+# as natural highways connecting other Abyssal biomes.
+id = "strata:abyssal_underground_river"
+
+# display-name: Shown in F3 debug, minimaps, and info commands.
+display-name = "Underground River"
+
+# category: CAVE — underground waterway biome with water
+# ambient sounds and aquatic mob spawning.
+category = "CAVE"
+
+# zone: Abyssal Depths — Y-based underground zone (Y -64 to 0).
+zone = "abyssal"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# High humidity from the constant flowing water. Moderate
+# temperature kept stable by the water mass.
+[biome.climate]
+# temperature: Cool — the flowing water maintains a constant
+# cool temperature throughout the tunnel system.
+# 0.3 = standard underground coolness.
+temperature = 0.3
+
+# humidity: Very high — the river fills the tunnel with
+# moisture, and water spray from rapids keeps air saturated.
+# 0.8 = one of the wettest biomes in the Abyssal zone.
+humidity = 0.8
+
+# continentalness: Neutral — underground rivers form in any
+# continental setting where groundwater flows.
+# 0.5 = no geographic bias.
+continentalness = 0.5
+
+# erosion: Slightly elevated — the river actively erodes its
+# channel, creating the smooth tunnel walls and wide pools.
+# 0.6 = active water erosion shaping the terrain.
+erosion = 0.6
+
+# weirdness: Slightly negative — underground rivers are
+# natural geological features, not exotic formations.
+# -0.1 = mundane, well-understood cave hydrology.
+weirdness = -0.1
+
+# -------------------------------------------------------
+# Terrain Shape
+# -------------------------------------------------------
+[biome.terrain]
+# base-height: Shallow underground — rivers flow downhill
+# and this one sits in the upper Abyssal zone where
+# surface water infiltrates.
+# -15 = roughly 15 blocks below sea level.
+base-height = -15
+
+# height-variation: Very low — the river channel is narrow
+# and consistent, with gentle bends rather than dramatic
+# elevation changes.
+# 5 = nearly flat riverbed with gentle undulation.
+height-variation = 5
+
+# -------------------------------------------------------
+# Surface Blocks
+# -------------------------------------------------------
+# River-deposited sediments — clay and gravel shaped by
+# the current into smooth beds.
+[biome.surface]
+# top-block: Clay — fine sediment deposited by the slow-
+# moving river current. Rich terracotta-brown color.
+top-block = "minecraft:clay"
+
+# filler-block: Gravel — coarser sediment beneath the clay
+# surface, typical of river geology.
+filler-block = "minecraft:gravel"
+
+# filler-depth: Standard riverbed sediment depth.
+# 2 = thin alluvial layer over bedrock.
+filler-depth = 2
+
+# underwater-block: Clay continues on the submerged riverbed.
+underwater-block = "minecraft:clay"
+
+# -------------------------------------------------------
+# Feature Decoration
+# -------------------------------------------------------
+# Aquatic features with minimal terrestrial vegetation.
+[biome.features]
+# trees: No trees in underground tunnels.
+trees = { types = [], density = 0.0 }
+
+# grass-density: No grass grows in the riverway.
+grass-density = 0.0
+
+# flower-density: No flowers underground.
+flower-density = 0.0
+
+# extra-features: Aquatic and riverine decorations.
+#   glow_lichen — sparse bioluminescence on tunnel walls.
+#   clay_deposit — concentrated clay patches on the riverbed.
+#   smooth_stone — water-polished river stones on banks.
+#   seagrass — aquatic vegetation in the river shallows.
+extra-features = [
+    { feature = "glow_lichen", density = 4.0 },
+    { feature = "clay_deposit", density = 6.0 },
+    { feature = "smooth_stone", density = 3.0 },
+    { feature = "seagrass", density = 5.0 },
+]
+
+# -------------------------------------------------------
+# Mob Spawning Overrides
+# -------------------------------------------------------
+# Aquatic mobs dominate the underground river. This is the
+# prime axolotl and glow squid habitat in the Abyssal zone.
+[biome.spawning]
+# glow_squid: The river's primary ambient mob. Their blue
+# glow illuminates the water and helps navigation.
+glow_squid = { weight = 15, min-group = 2, max-group = 4 }
+
+# axolotl: Abundant in the river shallows. Players can
+# capture them with buckets for companion use.
+axolotl = { weight = 12, min-group = 1, max-group = 4 }
+
+# bat: Roosts in dry sections above the waterline.
+bat = { weight = 5, min-group = 1, max-group = 2 }
+
+# drowned: Occasional hostile presence in deeper submerged
+# sections — a hazard for players swimming through.
+drowned = { weight = 6, min-group = 1, max-group = 2 }

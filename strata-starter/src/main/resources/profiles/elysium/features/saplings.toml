@@ -1,0 +1,108 @@
+# ============================================================
+#  Sapling Biome Rules — Elysium Overworld
+# ============================================================
+# Controls which saplings can grow in which biomes, and what tree
+# variant they produce. This adds biome-aware tree growth:
+# planting an oak sapling in a dark forest might grow a dark oak
+# variant, while planting one in a desert might fail entirely.
+#
+# Without these rules, saplings behave as vanilla (always grow).
+# ============================================================
+
+# -------------------------------------------------------
+# Global Settings
+# -------------------------------------------------------
+[saplings]
+# enabled: Set to false to disable sapling biome rules entirely.
+# When disabled, all saplings behave as vanilla.
+enabled = true
+
+# strict-mode: If true, saplings in denied biomes NEVER grow.
+# If false, saplings in denied biomes grow at a reduced rate (10%).
+# Default: false (reduced rate, not blocked)
+strict-mode = false
+
+# -------------------------------------------------------
+# Oak Sapling
+# -------------------------------------------------------
+[saplings.oak]
+# allowed-biomes: Biome tags where oak saplings grow normally.
+# Empty = allowed everywhere (default for common trees).
+allowed-biomes = []
+# denied-biomes: Biome tags where oak saplings are restricted.
+denied-biomes = ["scorched", "frostfang", "embercrag"]
+# growth-rate: Multiplier on vanilla growth speed. 1.0 = normal.
+growth-rate = 1.0
+# biome-overrides: In specific biomes, oak saplings produce different trees.
+[saplings.oak.biome-overrides]
+# In dark forest biomes, oak saplings grow into fancy oaks.
+whispering = { tree-variant = "fancy_oak", growth-rate = 1.2 }
+# In cherry biomes, oak saplings sometimes grow into cherry trees.
+verdant_cherry_blossom = { tree-variant = "cherry", chance = 0.3 }
+
+# -------------------------------------------------------
+# Birch Sapling
+# -------------------------------------------------------
+[saplings.birch]
+allowed-biomes = []
+denied-biomes = ["scorched", "embercrag"]
+growth-rate = 1.0
+[saplings.birch.biome-overrides]
+# In old-growth birch areas, birch saplings grow into tall birch.
+verdant_old_growth_oak = { tree-variant = "tall_birch" }
+
+# -------------------------------------------------------
+# Spruce Sapling
+# -------------------------------------------------------
+[saplings.spruce]
+allowed-biomes = []
+denied-biomes = ["scorched", "embercrag"]
+growth-rate = 1.0
+[saplings.spruce.biome-overrides]
+# In frostfang mountains, spruce grows taller.
+frostfang = { tree-variant = "mega_spruce", growth-rate = 0.8 }
+
+# -------------------------------------------------------
+# Dark Oak Sapling
+# -------------------------------------------------------
+[saplings.dark_oak]
+# Dark oak only grows naturally in dark forest biomes.
+allowed-biomes = ["whispering"]
+denied-biomes = []
+growth-rate = 1.0
+
+# -------------------------------------------------------
+# Jungle Sapling
+# -------------------------------------------------------
+[saplings.jungle]
+allowed-biomes = []
+denied-biomes = ["frostfang", "scorched"]
+growth-rate = 1.0
+
+# -------------------------------------------------------
+# Acacia Sapling
+# -------------------------------------------------------
+[saplings.acacia]
+# Acacia thrives in warm, dry biomes.
+allowed-biomes = []
+denied-biomes = ["frostfang", "shadowmire"]
+growth-rate = 1.0
+[saplings.acacia.biome-overrides]
+scorched = { growth-rate = 1.5 }
+
+# -------------------------------------------------------
+# Cherry Sapling
+# -------------------------------------------------------
+[saplings.cherry]
+allowed-biomes = []
+denied-biomes = ["scorched", "embercrag"]
+growth-rate = 1.0
+
+# -------------------------------------------------------
+# Mangrove Propagule
+# -------------------------------------------------------
+[saplings.mangrove]
+# Mangroves only grow in swamp/coastal biomes.
+allowed-biomes = ["shadowmire", "stormbreak"]
+denied-biomes = []
+growth-rate = 1.0

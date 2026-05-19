@@ -1,9 +1,9 @@
-name: ${name}
+name: Strata
 version: ${version}
 main: com.protectcord.strata.paper.StrataPlugin
-author: ${author}
+author: SneakyWrld
 description: Strata - Modern World Generation Platform
-api-version: '1.21'
+api-version: '1.13'
 load: STARTUP
 
 softdepend:

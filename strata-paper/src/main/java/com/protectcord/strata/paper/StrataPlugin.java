@@ -38,7 +38,7 @@ public final class StrataPlugin extends JavaPlugin {
         long start = System.currentTimeMillis();
 
         // Ensure config directories exist
-        saveDefaultConfig();
+        getDataFolder().mkdirs();
         Path dataDir = getDataFolder().toPath();
         Path profilesDir = dataDir.resolve("profiles");
         profilesDir.toFile().mkdirs();

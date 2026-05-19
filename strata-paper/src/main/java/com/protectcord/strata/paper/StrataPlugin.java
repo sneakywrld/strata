@@ -145,6 +145,7 @@ public final class StrataPlugin extends JavaPlugin {
         WorldProfile profile = new SimpleWorldProfile(profileConfig.get());
         long seed = getServer().getWorlds().isEmpty() ? 0L : getServer().getWorlds().get(0).getSeed();
         StrataEngine engine = new StrataEngine(profile, seed);
+        engine.initialize();
         generatorEngines.put(worldName, engine);
 
         getLogger().info("Strata generator assigned to world '" + worldName

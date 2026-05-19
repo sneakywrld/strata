@@ -46,6 +46,7 @@ public final class PaperWorldManager implements WorldManager {
         WorldProfile profile = resolveProfile(profileKey);
 
         StrataEngine engine = new StrataEngine(profile, seed);
+        engine.initialize();
         engines.put(worldName, engine);
 
         WorldCreator creator = new WorldCreator(worldName);
@@ -114,6 +115,7 @@ public final class PaperWorldManager implements WorldManager {
         WorldProfile profile = resolveProfile(profileKey);
 
         StrataEngine engine = new StrataEngine(profile, mapping.seed());
+        engine.initialize();
         engines.put(worldName, engine);
 
         WorldCreator creator = new WorldCreator(worldName);

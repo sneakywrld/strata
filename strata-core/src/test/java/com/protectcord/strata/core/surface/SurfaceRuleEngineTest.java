@@ -67,7 +67,7 @@ class SurfaceRuleEngineTest {
      * Creates a mock SurfaceRule that always matches and places the given block.
      */
     private SurfaceRule alwaysMatchRule(int priority, StrataBlockState block) {
-        SurfaceRule rule = mock(SurfaceRule.class, "rule_" + priority + "_" + block.blockId().value());
+        SurfaceRule rule = mock(SurfaceRule.class, "rule_" + priority + "_" + block.blockId().key());
         when(rule.priority()).thenReturn(priority);
         when(rule.apply(any(SurfaceCondition.SurfaceContext.class)))
                 .thenReturn(Optional.of(block));

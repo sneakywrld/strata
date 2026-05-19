@@ -208,7 +208,7 @@ public final class TomlSchema {
         return sb.toString();
     }
 
-    static String toTomlTypeName(Class<?> type) {
+    public static String toTomlTypeName(Class<?> type) {
         if (type == String.class) return "string";
         if (type == int.class || type == Integer.class) return "integer";
         if (type == long.class || type == Long.class) return "integer";

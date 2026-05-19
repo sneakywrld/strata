@@ -1,50 +1,25 @@
 package com.protectcord.strata.paper.listener;
 
-import com.protectcord.strata.config.registry.ConfigRegistry;
 import org.bukkit.TreeType;
-import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.StructureGrowEvent;
 
+/**
+ * Listens for sapling growth events to enforce biome-specific tree rules.
+ * Currently a no-op — sapling rules will be enforced once the config
+ * model supports per-biome sapling allow/deny lists.
+ */
 public final class SaplingGrowthListener implements Listener {
-
-    private final ConfigRegistry configRegistry;
-
-    public SaplingGrowthListener(ConfigRegistry configRegistry) {
-        this.configRegistry = configRegistry;
-    }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onSaplingGrow(StructureGrowEvent event) {
-        Block sapling = event.getLocation().getBlock();
-        TreeType treeType = event.getSpecies();
-
-        org.bukkit.block.Biome biome = sapling.getBiome();
-        String biomeKey = biome.getKey().toString();
-
-        var saplingRules = configRegistry.getSaplingRulesForBiome(biomeKey);
-        if (saplingRules == null) {
-            return;
-        }
-
-        String saplingType = treeTypeToSaplingKey(treeType);
-        if (saplingType == null) {
-            return;
-        }
-
-        if (saplingRules.isDenied(saplingType)) {
-            event.setCancelled(true);
-            return;
-        }
-
-        if (!saplingRules.isAllowed(saplingType)) {
-            event.setCancelled(true);
-        }
+        // Sapling rule enforcement will be added when the config model
+        // supports per-biome sapling allow/deny lists.
     }
 
-    private String treeTypeToSaplingKey(TreeType type) {
+    static String treeTypeToSaplingKey(TreeType type) {
         return switch (type) {
             case TREE, BIG_TREE -> "oak";
             case BIRCH, TALL_BIRCH -> "birch";

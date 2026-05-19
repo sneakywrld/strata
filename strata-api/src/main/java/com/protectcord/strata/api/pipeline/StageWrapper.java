@@ -41,25 +41,4 @@ public interface StageWrapper {
     default void after(GenerationContext context) {
     }
 
-    /**
-     * Wraps a generation stage, returning a new stage that invokes {@link #before(GenerationContext)}
-     * and {@link #after(GenerationContext)} around the inner stage's execution.
-     *
-     * @param inner the stage to wrap
-     * @return a decorated stage with before/after hooks applied
-     */
-    default GenerationStage wrap(GenerationStage inner) {
-        StageWrapper self = this;
-        return new GenerationStage() {
-            @Override
-            public int order() {
-                return inner.order();
-            }
-
-            @Override
-            public String toString() {
-                return "Wrapped[" + inner + "]";
-            }
-        };
-    }
 }

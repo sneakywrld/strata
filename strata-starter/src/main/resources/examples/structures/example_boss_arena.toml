@@ -1,0 +1,55 @@
+# ============================================================
+#  EXAMPLE STRUCTURE — Boss Arena
+# ============================================================
+# A flat circular arena designed for boss encounters. Works with
+# vanilla mobs or MythicMobs. Places in rare biomes at low frequency.
+#
+# This shows how to create a large, terrain-flattening structure
+# that clears space for combat encounters.
+# ============================================================
+
+key = "strata:example_boss_arena"
+display-name = "Boss Arena"
+
+# type: SCHEMATIC — loaded from a .schem file.
+# For a procedural arena, change to "PROCEDURAL" and implement
+# via the Strata API.
+type = "SCHEMATIC"
+schematic = "example_boss_arena.schem"
+
+[placement]
+# Rare structure — one per ~64 chunks, well-spaced.
+spacing = 64
+separation = 32
+salt = 84357291
+
+# Only spawns in endgame zones.
+biomes = [
+    "strata:shattered_reach_boss_arena",
+    "strata:shattered_reach_crystal_wastes",
+    "strata:embercrag_caldera"
+]
+
+[terrain]
+adjust-to-terrain = true
+surface-offset = 0
+
+# Large flattening radius for a clear fighting area.
+flatten-radius = 24
+
+[loot]
+# Boss arenas can have reward chests.
+table = "minecraft:chests/end_city_treasure"
+
+[spawning]
+# Override spawning inside the arena bounds.
+enabled = true
+
+# Prevent passive mobs from cluttering the arena.
+# Hostile mobs will spawn normally (or via MythicMobs).
+[[spawning.deny]]
+category = "PASSIVE"
+
+# Optional: Reference a MythicMobs spawn table for this structure.
+# If MythicMobs is not installed, this key is silently ignored.
+# mythicmobs-table = "BossArena_Tier3"

@@ -1,0 +1,56 @@
+# Biomes
+
+Biomes control the look and feel of each area in your world.
+Each biome defines surface blocks, vegetation, mobs, climate
+parameters, and more.
+
+# Climate Parameters
+
+Strata assigns biomes based on five climate dimensions:
+- Temperature: hot vs cold
+- Humidity: wet vs dry
+- Continentalness: coast vs inland
+- Erosion: flat plains vs jagged peaks
+- Weirdness: common vs rare/unusual terrain
+
+Each biome specifies its ideal range for these values.
+
+# How Biome Lookup Works
+
+Strata uses a KD-tree to quickly find the closest biome
+for any point in climate space. When generating a chunk,
+the engine samples noise at that location to produce five
+climate values, then queries the tree for the best match.
+
+> The KD-tree makes biome lookup extremely fast even with
+> hundreds of registered biomes.
+
+# Creating a Custom Biome
+
+Add a TOML file under profiles/<name>/biomes/:
+
+  [biome]
+  key = "myprofile:cherry_grove"
+  display-name = "Cherry Grove"
+
+  [climate]
+  temperature = [0.3, 0.6]
+  humidity = [0.4, 0.8]
+  continentalness = [0.1, 0.7]
+  erosion = [0.2, 0.6]
+  weirdness = [-0.2, 0.2]
+
+  [surface]
+  top = "minecraft:grass_block"
+  filler = "minecraft:dirt"
+  depth = 4
+
+# Biome-Specific Features
+
+Biomes can define their own ore rates, tree types, and
+decoration. See {link:features} and {link:ores} for details.
+
+> Tip: Use small, overlapping climate ranges to create
+> smooth transitions between biomes.
+
+Related topics: {link:profiles}, {link:noise}, {link:ores}

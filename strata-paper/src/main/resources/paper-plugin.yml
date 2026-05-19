@@ -1,0 +1,15 @@
+name: Strata
+version: ${version}
+main: com.protectcord.strata.paper.StrataPlugin
+description: Strata - Modern World Generation Platform
+author: SneakyWrld
+api-version: '1.19'
+load: BOOTSTRAP
+has-open-classloader: true
+
+dependencies:
+  server:
+    MythicMobs:
+      load: AFTER
+      required: false
+      join-classpath: true

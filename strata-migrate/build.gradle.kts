@@ -16,3 +16,11 @@ dependencies {
 
     testImplementation(libs.bundles.junit)
 }
+
+// Configure the jar task so strata-migrate can run as a standalone CLI tool.
+// Usage: java -jar strata-migrate.jar <terra-pack-dir> <output-dir> [profile-name]
+tasks.jar {
+    manifest {
+        attributes("Main-Class" to "com.protectcord.strata.migrate.cli.MigrateCLI")
+    }
+}

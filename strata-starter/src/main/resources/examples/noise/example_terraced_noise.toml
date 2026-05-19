@@ -1,0 +1,102 @@
+# ============================================================
+#  EXAMPLE NOISE FUNCTION — Terraced Mesa
+# ============================================================
+# This example creates a terraced/stepped noise function that
+# produces flat plateaus with sharp edges — perfect for mesa
+# biomes, rice paddies, or alien landscapes.
+#
+# How it works:
+#   1. Start with a base Simplex noise (smooth rolling hills)
+#   2. Multiply to increase amplitude
+#   3. Apply floor() operation to create discrete steps
+#   4. Divide back down to normalize
+#   5. Add a small Simplex detail layer for surface texture
+#
+# The result looks like a wedding cake of flat layers:
+#
+#     ___
+#    |   |___
+#  __|       |___
+# |              |____
+#
+# Copy this file to profiles/<name>/noise/ and reference it
+# in your terrain config.
+# ============================================================
+
+# key: Unique identifier for this noise function.
+key = "strata:terraced_mesa"
+
+# display-name: Human-readable name.
+display-name = "Terraced Mesa"
+
+# -------------------------------------------------------
+# Base Noise (the rolling shape before terracing)
+# -------------------------------------------------------
+[base]
+# type: Which noise algorithm to use.
+# Valid values: SIMPLEX, PERLIN, OPEN_SIMPLEX2, CELLULAR, VALUE,
+#   RIDGED_MULTI, FRACTAL, COMPOSITE
+type = "FRACTAL"
+
+# algorithm: Base algorithm for fractal stacking.
+# Only used when type = "FRACTAL".
+algorithm = "SIMPLEX"
+
+# frequency: How "zoomed in" the noise is. Lower = larger features.
+# Valid values: Decimal, 0.0001 to 10.0
+# Default: 0.01
+frequency = 0.005
+
+# octaves: Number of fractal layers. More = more detail but slower.
+# Valid values: Integer, 1 to 16
+# Default: 4
+octaves = 3
+
+# lacunarity: Frequency multiplier between octaves.
+# 2.0 is standard (each octave is 2x finer).
+# Valid values: Decimal, 1.0 to 4.0
+# Default: 2.0
+lacunarity = 2.0
+
+# persistence: Amplitude multiplier between octaves.
+# 0.5 is standard (each octave is half as strong).
+# Valid values: Decimal, 0.1 to 1.0
+# Default: 0.5
+persistence = 0.5
+
+# -------------------------------------------------------
+# Composite Operations (applied in order)
+# -------------------------------------------------------
+# Operations transform the base noise output. They chain
+# together to create complex shapes from simple noise.
+
+[[operations]]
+# Multiply to increase amplitude before flooring.
+# This controls how many "steps" are visible.
+# More amplitude = more terraces.
+type = "MULTIPLY"
+value = 6.0
+
+[[operations]]
+# Floor creates the terracing effect by snapping to integers.
+# Each integer boundary becomes a flat plateau edge.
+type = "FLOOR"
+
+[[operations]]
+# Divide back down to normalize the output range.
+type = "MULTIPLY"
+value = 0.166667  # 1/6
+
+# -------------------------------------------------------
+# Detail Layer (optional surface texture)
+# -------------------------------------------------------
+[detail]
+# A small-scale noise added on top to prevent perfectly flat plateaus.
+# This adds subtle surface variation without breaking the terraced look.
+type = "SIMPLEX"
+frequency = 0.05
+amplitude = 0.02
+
+# blend: How to combine with the terraced result.
+# Valid values: "ADD", "MULTIPLY", "MAX", "MIN"
+blend = "ADD"

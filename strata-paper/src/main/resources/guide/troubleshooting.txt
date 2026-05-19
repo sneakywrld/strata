@@ -1,0 +1,68 @@
+# Troubleshooting
+
+Common issues and their solutions.
+
+# 1. World Not Generating with Strata
+
+Ensure you used /strata create, not /mv create or vanilla.
+Check that the profile name is correct:
+$ /strata profiles
+
+# 2. Config Parse Errors on Startup
+
+Look for TOML syntax errors in the console log. Common
+causes: missing quotes around strings, unclosed brackets,
+or tabs instead of spaces in arrays.
+
+# 3. Chunks Not Loading / Timeout
+
+Reduce noise octaves and feature counts. Check server TPS:
+High octave counts on complex noise can cause lag spikes.
+Consider pre-generating with a pregen plugin.
+
+# 4. Performance Issues / Low TPS
+
+Profile the generation with /strata info to see timing.
+Reduce noise octaves from 8 to 4-5. Lower feature counts.
+Disable waterfalls if not needed. Use async chunk loading.
+
+# 5. Version Mismatch Errors
+
+Strata requires a specific NMS adapter for your server
+version. Ensure your Strata jar matches your Paper build.
+$ /strata version
+
+# 6. Blank or Void Chunks
+
+Usually caused by a missing or invalid profile assignment.
+Check that the world is mapped to a profile:
+$ /strata info
+
+# 7. Custom Biome Not Appearing
+
+Verify climate parameter ranges overlap with the world's
+noise output. Very narrow ranges may never match. Widen
+temperature and humidity ranges and test again.
+
+# 8. Structure Not Spawning
+
+Check biome filters - the structure's allowed biomes must
+exist in your profile. Verify spacing/separation values
+are not too large. Check the .schem file path is correct.
+
+# 9. Reload Not Working
+
+Some changes require a full server restart: adding new
+biomes, changing terrain height ranges, or modifying the
+profile inheritance chain. Feature and ore tweaks hot-reload.
+
+# 10. Crash on Startup
+
+Check for jar conflicts. Remove old Strata versions from
+plugins/. Verify Java 21+ is installed. Check that no
+other world generation plugin is conflicting.
+
+> If none of these solve your issue, check the logs in
+> logs/latest.log for detailed error messages.
+
+Related topics: {link:setup}, {link:profiles}, {link:api}

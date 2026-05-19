@@ -1,7 +1,16 @@
 package com.protectcord.strata.api.feature;
 
 /**
- * Built-in placement modifier types that control where features generate.
+ * Built-in placement modifier types that control where and how often features generate.
+ *
+ * <p>Modifiers are applied in sequence as part of a {@link FeaturePlacement} pipeline.
+ * Each modifier either filters candidate positions, multiplies them, or transforms
+ * their coordinates. The order of modifiers matters: for example, {@link #COUNT}
+ * should precede coordinate modifiers.</p>
+ *
+ * @since 1.0.0
+ * @see FeaturePlacement
+ * @see Feature
  */
 public enum PlacementModifier {
     /** Place at a random position within a chunk. */

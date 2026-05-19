@@ -1,0 +1,54 @@
+# Sapling Rules
+
+Strata controls which trees can grow from saplings based
+on the biome where the sapling is planted.
+
+# Biome Sapling Rules
+
+Each biome can define allowed and denied tree types:
+
+  [biome.desert.saplings]
+  allowed = ["dead_bush"]
+  denied = ["oak", "spruce", "birch", "jungle"]
+
+  [biome.taiga.saplings]
+  allowed = ["spruce", "pine"]
+  denied = ["jungle", "acacia"]
+
+If a sapling type is denied, the sapling will not grow
+in that biome regardless of light and space conditions.
+
+> If neither allowed nor denied lists are set, all
+> sapling types are permitted (vanilla behavior).
+
+# Growth Rate Multipliers
+
+Control how fast saplings grow per biome:
+
+  [biome.jungle.saplings]
+  growth-rate = 1.5
+
+  [biome.tundra.saplings]
+  growth-rate = 0.3
+
+A growth rate of 1.0 is vanilla speed. Values above 1.0
+make trees grow faster; below 1.0 makes them slower.
+
+# Tree Variant Overrides
+
+Force specific tree variants when a sapling grows:
+
+  [biome.cherry_grove.saplings.oak]
+  variant = "fancy_oak"
+  growth-rate = 1.2
+
+  [biome.swamp.saplings.oak]
+  variant = "swamp_oak"
+
+This lets you use biome-specific tree shapes without
+custom sapling items.
+
+> Tip: Combine denied lists with zones to create
+> progression-gated farming areas. See {link:zones}.
+
+Related topics: {link:features}, {link:biomes}, {link:zones}

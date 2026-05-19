@@ -1,0 +1,59 @@
+# Features
+
+Features are decorations placed after terrain generation:
+ores, trees, flowers, grass, boulders, and more.
+
+# How Placement Works
+
+Each feature defines three placement parameters:
+
+Count: How many attempts per chunk (e.g., 10 oak trees).
+
+Height: The Y-range where the feature can generate.
+Uses a distribution (uniform, triangle, or trapezoid).
+
+Rarity: Chance that the feature generates at all in a
+given chunk. 1 = always, 10 = 1 in 10 chunks.
+
+# Feature Configuration
+
+  [feature.tall_grass]
+  type = "vegetation"
+  block = "minecraft:tall_grass"
+  count = 20
+  rarity = 1
+
+  [feature.tall_grass.height]
+  type = "uniform"
+  min = 62
+  max = 128
+
+# Adjusting Rates
+
+To make a feature more or less common, change count and
+rarity. For trees, you can also adjust the per-biome
+overrides. See {link:saplings} for tree-specific settings.
+
+> Tip: Set count to 0 to disable a feature entirely
+> without removing its config entry.
+
+# Example: Adding a Boulder Feature
+
+  [feature.mossy_boulder]
+  type = "block_pile"
+  block = "minecraft:mossy_cobblestone"
+  count = 2
+  rarity = 8
+
+  [feature.mossy_boulder.height]
+  type = "uniform"
+  min = 64
+  max = 100
+
+  [feature.mossy_boulder.placement]
+  biomes = ["strata:forest", "strata:taiga"]
+
+After editing, reload to apply:
+$ /strata reload
+
+Related topics: {link:ores}, {link:saplings}, {link:biomes}

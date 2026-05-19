@@ -1,0 +1,59 @@
+# Noise Functions
+
+Noise functions produce smooth pseudo-random values used
+to shape terrain, place biomes, and control features.
+
+# Noise Types
+
+Strata supports several noise algorithms:
+
+> Simplex - Smooth, rolling hills. The most common choice
+> for terrain height and gentle landscapes.
+
+> Cellular (Voronoi) - Creates bubble-like or cell patterns.
+> Great for mesa plateaus and island archipelagos.
+
+> Ridged Multifractal - Produces sharp mountain ridges by
+> inverting and folding simplex noise. Perfect for peaks.
+
+> Value Noise - Blocky, grid-aligned noise. Useful for
+> cave systems and underground variation.
+
+# Key Parameters
+
+Frequency: Controls the scale. Low frequency = large
+features, high frequency = fine detail.
+
+Octaves: Layers of noise at increasing frequency.
+More octaves = more detail but slower generation.
+
+Amplitude: How tall the noise output is. Combined with
+octaves, controls the height variation.
+
+Lacunarity: How much frequency increases per octave.
+Default 2.0, higher values add finer detail faster.
+
+# Composing Noise Functions
+
+Noise functions can be combined using operations:
+
+  [noise.mountains]
+  type = "ridged"
+  frequency = 0.003
+  octaves = 6
+
+  [noise.base_terrain]
+  type = "simplex"
+  frequency = 0.001
+  octaves = 4
+
+  [noise.combined]
+  type = "blend"
+  a = "mountains"
+  b = "base_terrain"
+  weight = 0.6
+
+> Tip: Start with low frequency and few octaves, then
+> increase gradually to avoid performance issues.
+
+Related topics: {link:biomes}, {link:profiles}, {link:water}

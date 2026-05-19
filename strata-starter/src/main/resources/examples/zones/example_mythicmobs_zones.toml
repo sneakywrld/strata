@@ -1,0 +1,151 @@
+# ============================================================
+#  EXAMPLE ZONE CONFIG — Full MythicMobs Integration
+# ============================================================
+# This example demonstrates how to set up spawn zones with both
+# vanilla mob tables AND optional MythicMobs integration.
+#
+# How zones work:
+#   Zones are concentric rings radiating from world spawn. Each
+#   zone defines which biomes it contains, what mobs spawn, and
+#   how difficult encounters are. Zones are defined by radius
+#   from spawn (in blocks).
+#
+# MythicMobs integration:
+#   If MythicMobs is installed, the mythicmobs-table key adds
+#   custom mobs ON TOP of vanilla spawns. If MythicMobs is NOT
+#   installed, those keys are silently ignored — the world works
+#   perfectly with just vanilla mobs.
+#
+# Copy this file to profiles/<name>/zones.toml
+# ============================================================
+
+# -------------------------------------------------------
+# Zone System Settings
+# -------------------------------------------------------
+[settings]
+# enabled: Whether the zone system is active.
+# Valid values: true, false
+# Default: true
+enabled = true
+
+# center-x: X coordinate of zone center (usually 0 for spawn).
+# Valid values: Any integer
+# Default: 0
+center-x = 0
+
+# center-z: Z coordinate of zone center.
+# Valid values: Any integer
+# Default: 0
+center-z = 0
+
+# -------------------------------------------------------
+# Zone 1: Sanctuary (0 - 1500 blocks from spawn)
+# -------------------------------------------------------
+[[zones]]
+name = "Sanctuary"
+min-radius = 0
+max-radius = 1500
+
+# Difficulty multiplier affects mob damage and health.
+# 1.0 = vanilla difficulty. 0.5 = half damage.
+# Valid values: Decimal, 0.0 to 10.0
+difficulty-multiplier = 0.5
+
+# Mob density modifier. 1.0 = vanilla rates. 0.3 = 30% of vanilla.
+# Valid values: Decimal, 0.0 to 5.0
+mob-density-modifier = 0.3
+
+# Biomes that belong to this zone.
+biomes = [
+    "strata:sanctuary_meadow",
+    "strata:sanctuary_grove",
+    "strata:sanctuary_pond",
+    "strata:sanctuary_farmland",
+    "strata:sanctuary_orchard",
+    "strata:sanctuary_wildflower_field"
+]
+
+# Vanilla spawn table — works without any plugins.
+[zones.vanilla-spawns]
+passive = [
+    { mob = "minecraft:cow", weight = 12, min-group = 3, max-group = 6 },
+    { mob = "minecraft:sheep", weight = 12, min-group = 3, max-group = 5 },
+    { mob = "minecraft:pig", weight = 10, min-group = 2, max-group = 4 },
+    { mob = "minecraft:chicken", weight = 10, min-group = 3, max-group = 5 },
+    { mob = "minecraft:rabbit", weight = 8, min-group = 2, max-group = 4 }
+]
+hostile = [
+    { mob = "minecraft:zombie", weight = 5, min-group = 1, max-group = 2 },
+    { mob = "minecraft:skeleton", weight = 3, min-group = 1, max-group = 1 },
+    { mob = "minecraft:spider", weight = 5, min-group = 1, max-group = 2 }
+]
+
+# MythicMobs table — OPTIONAL. Ignored if MythicMobs is not installed.
+# This references a MythicMobs spawn table by name.
+# mythicmobs-table = "Sanctuary_Peaceful"
+
+# -------------------------------------------------------
+# Zone 2: Verdant Expanse (1500 - 4000 blocks)
+# -------------------------------------------------------
+[[zones]]
+name = "Verdant Expanse"
+min-radius = 1500
+max-radius = 4000
+difficulty-multiplier = 1.0
+mob-density-modifier = 0.8
+
+biomes = [
+    "strata:verdant_plains",
+    "strata:verdant_forest",
+    "strata:verdant_river_valley",
+    "strata:verdant_rolling_hills",
+    "strata:verdant_oak_woodland"
+]
+
+[zones.vanilla-spawns]
+passive = [
+    { mob = "minecraft:cow", weight = 10, min-group = 2, max-group = 4 },
+    { mob = "minecraft:sheep", weight = 10, min-group = 2, max-group = 4 },
+    { mob = "minecraft:horse", weight = 5, min-group = 2, max-group = 4 }
+]
+hostile = [
+    { mob = "minecraft:zombie", weight = 10, min-group = 1, max-group = 3 },
+    { mob = "minecraft:skeleton", weight = 8, min-group = 1, max-group = 2 },
+    { mob = "minecraft:spider", weight = 10, min-group = 1, max-group = 3 },
+    { mob = "minecraft:creeper", weight = 6, min-group = 1, max-group = 1 }
+]
+
+# MythicMobs: light wandering monsters, forest creatures.
+# mythicmobs-table = "Verdant_Wilderness"
+
+# -------------------------------------------------------
+# Zone 3: Embercrag Volcanic (10000 - 15000 blocks)
+# -------------------------------------------------------
+[[zones]]
+name = "Embercrag Volcanic"
+min-radius = 10000
+max-radius = 15000
+difficulty-multiplier = 3.0
+mob-density-modifier = 1.5
+
+biomes = [
+    "strata:embercrag_lava_fields",
+    "strata:embercrag_ash_forest",
+    "strata:embercrag_obsidian_waste",
+    "strata:embercrag_caldera",
+    "strata:embercrag_nether_scar"
+]
+
+[zones.vanilla-spawns]
+passive = []
+hostile = [
+    { mob = "minecraft:magma_cube", weight = 15, min-group = 2, max-group = 4 },
+    { mob = "minecraft:blaze", weight = 8, min-group = 1, max-group = 2 },
+    { mob = "minecraft:wither_skeleton", weight = 5, min-group = 1, max-group = 2 },
+    { mob = "minecraft:zombie", weight = 10, min-group = 2, max-group = 4 },
+    { mob = "minecraft:skeleton", weight = 10, min-group = 2, max-group = 3 }
+]
+
+# MythicMobs: fire elementals, lava golems, volcanic dragons.
+# Uncomment the line below if MythicMobs is installed:
+# mythicmobs-table = "Embercrag_Endgame"

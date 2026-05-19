@@ -1,0 +1,181 @@
+# ============================================================
+#  STRATA WORLD PROFILE — "Void"
+# ============================================================
+# A minimal void world. Single bedrock layer at Y=64 with an
+# optional small spawn platform. Ideal for creative servers,
+# minigame arenas, MythicMobs boss arenas, or any scenario
+# where you want a blank canvas.
+#
+# Author: SneakyWrld
+# Environment: NORMAL
+# Biome Count: 1
+#
+# To use this profile:
+#   /strata create arena void
+#
+# To customize, copy this directory and modify.
+# ============================================================
+
+# -------------------------------------------------------
+# Profile Metadata
+# -------------------------------------------------------
+# name: Display name shown in /strata profiles and /strata info.
+name = "Void"
+
+# description: One-line summary. Shown in profile listings.
+description = "Minimal void world — single bedrock layer, optional spawn platform"
+
+# author: Who created this profile.
+author = "SneakyWrld"
+
+# version: Profile version string.
+version = "1.0.0"
+
+# environment: Which dimension this profile targets.
+# Valid values: "NORMAL", "NETHER", "END", "CUSTOM"
+environment = "NORMAL"
+
+# -------------------------------------------------------
+# World Bounds
+# -------------------------------------------------------
+[world]
+# min-y: Lowest Y coordinate. Set to 0 for void worlds since
+# there is nothing below the bedrock layer.
+min-y = 0
+
+# max-y: Highest Y coordinate. 256 is sufficient for a void world.
+max-y = 256
+
+# sea-level: Not relevant for void, but set to below the platform.
+# This prevents water from generating.
+sea-level = -1
+
+# spawn-radius: Radius for spawn protection. Small for void worlds.
+spawn-radius = 64
+
+# -------------------------------------------------------
+# Spawn Platform
+# -------------------------------------------------------
+[spawn-platform]
+# enabled: Whether to generate a small platform at spawn.
+# If false, only the bedrock layer at platform-y exists.
+# Valid values: true, false
+# Default: true
+enabled = true
+
+# material: Block type for the spawn platform surface.
+# Valid values: Any Minecraft block ID (e.g., "minecraft:stone", "minecraft:grass_block")
+# Default: "minecraft:stone"
+material = "minecraft:stone"
+
+# radius: Radius of the spawn platform in blocks.
+# Valid values: Integer, 1 to 64
+# Default: 8
+radius = 8
+
+# platform-y: Y level of the spawn platform surface.
+# The bedrock floor is placed one block below this.
+# Valid values: Integer, 1 to max-y
+# Default: 64
+platform-y = 64
+
+# -------------------------------------------------------
+# Generation Pipeline
+# -------------------------------------------------------
+[pipeline]
+# For void worlds, most generation stages are disabled.
+# Only initialization, surface (bedrock layer), and finalization run.
+
+# stages: Which pipeline stages to run.
+# Valid values: List of stage names. See /strata guide profiles for all stages.
+# Default: All 14 stages (for normal worlds).
+stages = [
+    "INITIALIZATION",
+    "SURFACE_BUILDING",
+    "FINALIZATION"
+]
+
+# -------------------------------------------------------
+# Terrain
+# -------------------------------------------------------
+[terrain]
+# type: Terrain generation mode.
+# Valid values: "DEFAULT" (noise-based), "FLAT" (layer stack), "VOID" (empty)
+# Default: "DEFAULT"
+type = "VOID"
+
+# bedrock-floor: Whether to place a bedrock layer at the bottom.
+# Valid values: true, false
+# Default: true
+bedrock-floor = true
+
+# bedrock-y: Y level of the bedrock floor.
+# Valid values: Integer, min-y to max-y
+# Default: 63 (one below platform)
+bedrock-y = 63
+
+# -------------------------------------------------------
+# Biome
+# -------------------------------------------------------
+[biome]
+# mode: Biome assignment mode.
+# Valid values: "CLIMATE" (5D climate parameters), "SINGLE" (one biome everywhere), "CHECKERBOARD" (debug)
+# Default: "CLIMATE"
+mode = "SINGLE"
+
+# single-biome: The biome used everywhere when mode is "SINGLE".
+# Valid values: Any registered biome key (e.g., "minecraft:plains", "strata:void_biome")
+# Default: "minecraft:plains"
+single-biome = "strata:void"
+
+# -------------------------------------------------------
+# Features & Structures
+# -------------------------------------------------------
+[features]
+# enabled: Whether to generate features (ores, trees, vegetation, etc.)
+# Valid values: true, false
+# Default: false (void worlds are empty by design)
+enabled = false
+
+[structures]
+# enabled: Whether to generate structures (villages, temples, etc.)
+# Valid values: true, false
+# Default: false (void worlds are empty by design)
+enabled = false
+
+# -------------------------------------------------------
+# Caves & Carvers
+# -------------------------------------------------------
+[carvers]
+# enabled: Whether to carve caves and ravines.
+# Valid values: true, false
+# Default: false (nothing to carve in void)
+enabled = false
+
+# -------------------------------------------------------
+# Water
+# -------------------------------------------------------
+[water]
+# enabled: Whether to run water generation (rivers, lakes, aquifers).
+# Valid values: true, false
+# Default: false (no terrain for water to fill)
+enabled = false
+
+# -------------------------------------------------------
+# Entity Spawning
+# -------------------------------------------------------
+[entities]
+# enabled: Whether to configure mob spawning.
+# Valid values: true, false
+# Default: false (void worlds have no natural spawns by default)
+enabled = false
+
+# -------------------------------------------------------
+# Lighting
+# -------------------------------------------------------
+[lighting]
+# sky-light: Whether sky light reaches all positions.
+# In void worlds, this is typically true since there are no obstructions.
+# Valid values: true, false
+# Default: true
+sky-light = true

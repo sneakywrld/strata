@@ -1,0 +1,267 @@
+# ============================================================
+#  STRATA WORLD PROFILE — "Flat"
+# ============================================================
+# A configurable flat world with layer stacking. Each layer
+# specifies a block type and thickness. Optional structures
+# and vegetation can be enabled for testing.
+#
+# Perfect for redstone testing, creative building, plugin
+# development, and minigame servers that need predictable terrain.
+#
+# Author: SneakyWrld
+# Environment: NORMAL
+# Biome Count: 1
+#
+# To use this profile:
+#   /strata create build flat
+#
+# To customize, copy this directory and modify the layers below.
+# ============================================================
+
+# -------------------------------------------------------
+# Profile Metadata
+# -------------------------------------------------------
+# name: Display name shown in /strata profiles and /strata info.
+name = "Flat"
+
+# description: One-line summary. Shown in profile listings.
+description = "Configurable flat world — layer stacking, optional structures and vegetation"
+
+# author: Who created this profile.
+author = "SneakyWrld"
+
+# version: Profile version string.
+version = "1.0.0"
+
+# environment: Which dimension this profile targets.
+# Valid values: "NORMAL", "NETHER", "END", "CUSTOM"
+environment = "NORMAL"
+
+# -------------------------------------------------------
+# World Bounds
+# -------------------------------------------------------
+[world]
+# min-y: Lowest Y coordinate. Set to 0 since flat worlds don't
+# need the deep underground.
+min-y = 0
+
+# max-y: Highest Y coordinate. 256 is plenty for flat worlds.
+max-y = 256
+
+# sea-level: Y level of the ocean surface. Set above all layers
+# to prevent water from generating, or set between layers for
+# a flat world with oceans at the edges.
+# Valid values: Integer, -1 (disabled) to max-y
+# Default: -1 (no sea level)
+sea-level = -1
+
+# spawn-radius: Radius for spawn protection.
+spawn-radius = 64
+
+# -------------------------------------------------------
+# Generation Pipeline
+# -------------------------------------------------------
+[pipeline]
+# For flat worlds, only surface building (layer placement),
+# optional features, and finalization are needed.
+# Add "FEATURE_DECORATION" and "STRUCTURE_GENERATION" to the
+# list below to enable trees, ores, and structures.
+stages = [
+    "INITIALIZATION",
+    "SURFACE_BUILDING",
+    "FINALIZATION"
+]
+
+# -------------------------------------------------------
+# Terrain
+# -------------------------------------------------------
+[terrain]
+# type: Terrain generation mode.
+# Valid values: "DEFAULT" (noise-based), "FLAT" (layer stack), "VOID" (empty)
+# Default: "DEFAULT"
+type = "FLAT"
+
+# bedrock-floor: Whether to add a bedrock layer at the very bottom.
+# Valid values: true, false
+# Default: true
+bedrock-floor = true
+
+# -------------------------------------------------------
+# Layer Stack
+# -------------------------------------------------------
+# Layers are placed bottom to top. Each layer has a block type
+# and thickness (number of blocks). The first layer sits directly
+# on bedrock (if enabled) or at min-y.
+#
+# To add a layer, add a new [[layers]] entry below.
+# To remove a layer, delete or comment out its [[layers]] block.
+#
+# The default stack mimics vanilla superflat:
+#   1 bedrock + 2 dirt + 1 grass_block = surface at Y=4
+# -------------------------------------------------------
+
+[[layers]]
+# block: Minecraft block ID for this layer.
+# Valid values: Any block ID (e.g., "minecraft:stone", "minecraft:dirt")
+block = "minecraft:bedrock"
+
+# thickness: How many blocks tall this layer is.
+# Valid values: Integer, 1 to 256
+thickness = 1
+
+[[layers]]
+# Dirt layer — the main fill beneath grass.
+block = "minecraft:dirt"
+thickness = 2
+
+[[layers]]
+# Grass — the surface layer players walk on.
+block = "minecraft:grass_block"
+thickness = 1
+
+# -------------------------------------------------------
+# Alternative Layer Stacks (commented examples)
+# -------------------------------------------------------
+# Uncomment one of these sections and delete the layers above
+# to try a different flat world preset.
+#
+# --- Redstone Ready ---
+# 63 blocks of sandstone for redstone-friendly building.
+#
+# [[layers]]
+# block = "minecraft:bedrock"
+# thickness = 1
+#
+# [[layers]]
+# block = "minecraft:sandstone"
+# thickness = 62
+#
+# [[layers]]
+# block = "minecraft:smooth_sandstone"
+# thickness = 1
+#
+# --- Classic Flat ---
+# Matches vanilla superflat exactly.
+#
+# [[layers]]
+# block = "minecraft:bedrock"
+# thickness = 1
+#
+# [[layers]]
+# block = "minecraft:dirt"
+# thickness = 2
+#
+# [[layers]]
+# block = "minecraft:grass_block"
+# thickness = 1
+#
+# --- Deep Stone ---
+# 64 blocks of stone for mining-oriented flat worlds.
+#
+# [[layers]]
+# block = "minecraft:bedrock"
+# thickness = 1
+#
+# [[layers]]
+# block = "minecraft:deepslate"
+# thickness = 32
+#
+# [[layers]]
+# block = "minecraft:stone"
+# thickness = 30
+#
+# [[layers]]
+# block = "minecraft:dirt"
+# thickness = 3
+#
+# [[layers]]
+# block = "minecraft:grass_block"
+# thickness = 1
+
+# -------------------------------------------------------
+# Biome
+# -------------------------------------------------------
+[biome]
+# mode: Biome assignment mode.
+# Valid values: "CLIMATE" (5D climate parameters), "SINGLE" (one biome everywhere), "CHECKERBOARD" (debug)
+# Default: "CLIMATE"
+mode = "SINGLE"
+
+# single-biome: The biome used everywhere when mode is "SINGLE".
+# Change this to alter grass color, sky color, and mob spawns.
+# Valid values: Any registered biome key
+# Default: "minecraft:plains"
+single-biome = "minecraft:plains"
+
+# -------------------------------------------------------
+# Features & Structures
+# -------------------------------------------------------
+[features]
+# enabled: Whether to decorate the flat world with ores, trees, etc.
+# Enable this to add trees, flowers, and grass to the flat surface.
+# Valid values: true, false
+# Default: false
+enabled = false
+
+# trees: Whether to generate trees (requires features.enabled = true).
+# Valid values: true, false
+# Default: false
+trees = false
+
+# vegetation: Whether to generate grass, flowers, and bushes.
+# Valid values: true, false
+# Default: false
+vegetation = false
+
+[structures]
+# enabled: Whether to generate structures (villages, temples, etc.)
+# Enabling this on a flat world creates the classic superflat experience
+# with villages scattered across the plains.
+# Valid values: true, false
+# Default: false
+enabled = false
+
+# villages: Whether villages specifically can generate.
+# Requires structures.enabled = true.
+# Valid values: true, false
+# Default: false
+villages = false
+
+# -------------------------------------------------------
+# Caves & Carvers
+# -------------------------------------------------------
+[carvers]
+# enabled: Whether to carve caves. On thin flat worlds this is
+# usually disabled since there isn't enough depth for caves.
+# Valid values: true, false
+# Default: false
+enabled = false
+
+# -------------------------------------------------------
+# Water
+# -------------------------------------------------------
+[water]
+# enabled: Whether to generate water features.
+# Valid values: true, false
+# Default: false
+enabled = false
+
+# -------------------------------------------------------
+# Entity Spawning
+# -------------------------------------------------------
+[entities]
+# enabled: Whether to configure mob spawning.
+# When true, uses the single-biome's default spawn table.
+# Valid values: true, false
+# Default: true
+enabled = true
+
+# -------------------------------------------------------
+# Lighting
+# -------------------------------------------------------
+[lighting]
+# sky-light: Whether sky light fills the world.
+# On flat worlds this is always true.
+# Valid values: true, false
+# Default: true
+sky-light = true

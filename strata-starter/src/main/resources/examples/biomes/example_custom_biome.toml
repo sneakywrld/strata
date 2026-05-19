@@ -1,0 +1,163 @@
+# ============================================================
+#  EXAMPLE BIOME — Crystal Highlands
+# ============================================================
+# This example shows how to define a custom biome from scratch.
+# Copy this file to profiles/<name>/biomes/ and modify it.
+#
+# A biome defines:
+#   - Climate parameters (where it appears on the map)
+#   - Terrain shape (height, variation)
+#   - Surface blocks (what the ground looks like)
+#   - Features (ores, trees, vegetation)
+#   - Mob spawning rules
+#   - Visual effects (fog, water color, particles)
+#
+# After creating a biome file, it's automatically loaded on next
+# profile reload. Use /strata reload to apply changes.
+# ============================================================
+
+# -------------------------------------------------------
+# Biome Identity
+# -------------------------------------------------------
+# key: Unique identifier. Must be lowercase with underscores.
+# Format: namespace:biome_name
+# Valid values: Any unique key not already in use
+key = "strata:crystal_highlands"
+
+# display-name: Human-readable name for /strata biome and guides.
+display-name = "Crystal Highlands"
+
+# category: Biome type grouping. Used for internal sorting.
+# Valid values: PLAINS, FOREST, DESERT, OCEAN, MOUNTAIN, TAIGA,
+#   SWAMP, JUNGLE, BADLANDS, BEACH, CAVE, NETHER, END, MUSHROOM,
+#   RIVER, CUSTOM
+category = "MOUNTAIN"
+
+# -------------------------------------------------------
+# Climate Parameters
+# -------------------------------------------------------
+# These determine WHERE this biome appears in the world.
+# Each value ranges from -2.0 to 2.0. Strata uses a 5D KD-tree
+# to find the closest matching biome for each position's climate.
+#
+# Tip: To make a biome appear more often, create multiple biome
+# files with slightly different climate values pointing to the
+# same visual style.
+[climate]
+# temperature: How warm/cold. -2.0 = frozen, 0.0 = temperate, 2.0 = hot.
+temperature = -0.3
+
+# humidity: How wet/dry. -2.0 = arid, 0.0 = moderate, 2.0 = tropical.
+humidity = -0.5
+
+# continentalness: How far from ocean. -2.0 = deep ocean, 0.0 = coast, 2.0 = inland.
+continentalness = 1.2
+
+# erosion: Terrain smoothness. -2.0 = jagged peaks, 0.0 = hills, 2.0 = flat.
+erosion = -1.0
+
+# weirdness: Terrain weirdness. Affects biome variant selection.
+# -2.0 = normal, 2.0 = weird/rare variant.
+weirdness = 0.5
+
+# -------------------------------------------------------
+# Terrain
+# -------------------------------------------------------
+[terrain]
+# base-height: Average surface Y level for this biome.
+# Valid values: Integer, 0 to 320
+# Default: 64
+base-height = 120
+
+# height-variation: How much the height varies within this biome.
+# Higher = more dramatic terrain. 0.0 = perfectly flat.
+# Valid values: Decimal, 0.0 to 50.0
+# Default: 6.0
+height-variation = 15.0
+
+# -------------------------------------------------------
+# Surface
+# -------------------------------------------------------
+# Surface rules determine what blocks appear on the ground.
+# Rules are evaluated top to bottom; the first matching rule wins.
+[[surface.rules]]
+# Top layer — calcite with amethyst tint.
+condition = "TOP"
+block = "minecraft:calcite"
+
+[[surface.rules]]
+# Under the surface, 3 blocks of stone.
+condition = "BELOW_TOP"
+depth = 3
+block = "minecraft:stone"
+
+[[surface.rules]]
+# Underwater surfaces get gravel.
+condition = "UNDERWATER"
+block = "minecraft:gravel"
+
+# -------------------------------------------------------
+# Features
+# -------------------------------------------------------
+[features]
+# Ores in this biome — amethyst is more common here.
+[[features.ores]]
+block = "minecraft:amethyst_block"
+size = 8
+count = 12
+min-height = 40
+max-height = 110
+
+[[features.ores]]
+block = "minecraft:iron_ore"
+size = 6
+count = 8
+min-height = 0
+max-height = 100
+
+# Surface features
+[[features.vegetation]]
+type = "FLOWER"
+block = "minecraft:allium"
+rarity = 0.3
+
+# -------------------------------------------------------
+# Entity Spawning
+# -------------------------------------------------------
+[spawning]
+[[spawning.passive]]
+mob = "minecraft:goat"
+weight = 10
+min-group = 2
+max-group = 4
+
+[[spawning.hostile]]
+mob = "minecraft:stray"
+weight = 15
+min-group = 1
+max-group = 3
+
+[[spawning.hostile]]
+mob = "minecraft:skeleton"
+weight = 10
+min-group = 1
+max-group = 2
+
+# -------------------------------------------------------
+# Visual Effects
+# -------------------------------------------------------
+[effects]
+# fog-color: Hex color for distance fog. Creates atmosphere.
+# Valid values: RGB hex integer (e.g., 0xC0D8FF for pale blue)
+fog-color = 0xC0D8FF
+
+# water-color: Hex color for water in this biome.
+water-color = 0x6AAEFF
+
+# water-fog-color: Hex color for underwater fog.
+water-fog-color = 0x456EAF
+
+# grass-color-modifier: How grass color is calculated.
+# Valid values: "NONE" (use temperature), "DARK_FOREST" (darker), "SWAMP" (murky)
+# Default: "NONE"
+grass-color-modifier = "NONE"

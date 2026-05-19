@@ -1,0 +1,10 @@
+name: StrataDemoPlugin
+version: "${version}"
+main: com.example.stratademo.StrataDemoPlugin
+api-version: "1.21"
+description: Example plugin showing how to use the Strata World Generation API.
+author: SneakyWrld
+
+# Strata must load before this plugin so the API is available.
+depend:
+  - Strata

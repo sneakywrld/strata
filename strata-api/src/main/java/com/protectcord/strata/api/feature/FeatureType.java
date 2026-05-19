@@ -1,7 +1,14 @@
 package com.protectcord.strata.api.feature;
 
 /**
- * Built-in feature types.
+ * Built-in feature types for categorization and default behavior selection.
+ *
+ * <p>Each constant represents a category of world feature. The type determines default
+ * generation logic and can be used by third-party plugins to filter or categorize features.
+ * Use {@link #CUSTOM} for plugin-defined feature types that do not fit standard categories.</p>
+ *
+ * @since 1.0.0
+ * @see Feature#type()
  */
 public enum FeatureType {
     /** Ore vein generation. */

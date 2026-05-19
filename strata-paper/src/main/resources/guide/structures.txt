@@ -1,0 +1,59 @@
+# Structures
+
+Structures are pre-built or procedurally generated builds
+placed into the world during chunk generation.
+
+# Structure Types
+
+Strata supports three structure placement modes:
+
+> Schematic - Loads a saved schematic file (.schem) and
+> pastes it into the world. Best for hand-built structures
+> like temples, ruins, and villages.
+
+> Jigsaw - Assembles structures from modular pieces that
+> snap together. Used for procedural villages, dungeons,
+> and trail ruins with variable layouts.
+
+> Procedural - Generated entirely by code. Used for
+> features like mineshafts and strongholds that need
+> to adapt to surrounding terrain.
+
+# Placement Grid
+
+Structures are placed on a grid to control spacing:
+
+  [structure.desert_temple]
+  type = "schematic"
+  file = "desert_temple.schem"
+  spacing = 32
+  separation = 8
+  salt = 14357617
+
+Spacing is the grid cell size in chunks. Separation is
+the minimum distance between structures. Salt randomizes
+placement per seed.
+
+# Biome Filters
+
+Restrict structures to specific biomes:
+
+  [structure.desert_temple.placement]
+  biomes = ["strata:desert", "strata:badlands"]
+
+The structure only generates in chunks where the center
+biome matches one of the listed biome keys.
+
+# Adding Custom Structures
+
+1. Build your structure and save it as a .schem file
+2. Place the file in profiles/<name>/structures/
+3. Create a TOML config referencing the schematic
+4. Set spacing, separation, and biome filters
+5. Reload the plugin:
+$ /strata reload
+
+> Tip: Use separation of at least spacing/4 to prevent
+> structures from clustering too densely.
+
+Related topics: {link:features}, {link:biomes}, {link:profiles}

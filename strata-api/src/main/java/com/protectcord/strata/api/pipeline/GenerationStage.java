@@ -2,7 +2,18 @@ package com.protectcord.strata.api.pipeline;
 
 /**
  * The 14 ordered stages of the Strata generation pipeline.
- * Each chunk passes through every stage in sequence.
+ *
+ * <p>Each chunk passes through every enabled stage in sequence, from {@link #INITIALIZATION}
+ * through {@link #FINALIZATION}. Stages can be individually enabled/disabled and monitored
+ * via the {@link PipelineAccessor}.</p>
+ *
+ * <p>Third-party plugins can hook into specific stages by subscribing to
+ * {@link com.protectcord.strata.api.event.ChunkGeneratingEvent} (fired before each stage)
+ * and {@link com.protectcord.strata.api.event.ChunkGeneratedEvent} (fired after all stages complete).</p>
+ *
+ * @since 1.0.0
+ * @see GenerationContext#currentStage()
+ * @see PipelineAccessor
  */
 public enum GenerationStage {
 
@@ -55,14 +66,18 @@ public enum GenerationStage {
     }
 
     /**
-     * Returns the execution order index.
+     * Returns the zero-based execution order index of this stage.
+     *
+     * @return the order index (0 for {@link #INITIALIZATION} through 13 for {@link #FINALIZATION})
      */
     public int order() {
         return order;
     }
 
     /**
-     * Returns the total number of stages.
+     * Returns the total number of pipeline stages (currently 14).
+     *
+     * @return the stage count
      */
     public static int count() {
         return 14;

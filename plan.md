@@ -55,17 +55,17 @@
 - [x] `com.protectcord.strata.api.biome.Biome` — Biome interface
 - [x] `com.protectcord.strata.api.biome.BiomeBuilder` — Fluent builder for custom biomes
 - [x] `com.protectcord.strata.api.biome.ClimateParameters` — Record: temperature, humidity, continentalness, erosion, weirdness
-- [ ] `com.protectcord.strata.api.biome.BiomeColors` — Record: fog, water, water_fog, grass_modifier, foliage
-- [ ] `com.protectcord.strata.api.biome.BiomeAmbience` — Record: particles, ambient sound, mood
+- [x] `com.protectcord.strata.api.biome.BiomeColors` — Record: fog, water, water_fog, grass_modifier, foliage
+- [x] `com.protectcord.strata.api.biome.BiomeAmbience` — Record: particles, ambient sound, mood
 - [x] `com.protectcord.strata.api.biome.BiomeCategory` — Enum: PLAINS, FOREST, DESERT, OCEAN, MOUNTAIN, TAIGA, SWAMP, JUNGLE, BADLANDS, BEACH, CAVE, NETHER, END, MUSHROOM, RIVER, CUSTOM
-- [ ] `com.protectcord.strata.api.biome.BiomeRegistry` — Registry&lt;Biome&gt;
+- [x] `com.protectcord.strata.api.biome.BiomeRegistry` — Registry&lt;Biome&gt;
 
 ### 2.3 Noise API
 - [x] `com.protectcord.strata.api.noise.NoiseFunction` — Core noise interface (sample 2D/3D, composability: then, add, multiply, clamp, spline)
 - [x] `com.protectcord.strata.api.noise.NoiseType` — Enum: SIMPLEX, PERLIN, OPEN_SIMPLEX2, CELLULAR, VALUE, RIDGED_MULTI, FRACTAL, DOMAIN_WARP, COMPOSITE
-- [ ] `com.protectcord.strata.api.noise.NoiseParameters` — Record: frequency, octaves, lacunarity, persistence, seed
+- [x] `com.protectcord.strata.api.noise.NoiseParameters` — Record: frequency, octaves, lacunarity, persistence, seed
 - [x] `com.protectcord.strata.api.noise.CompositeNoise` — Builder for chained noise operations
-- [ ] `com.protectcord.strata.api.noise.NoiseRegistry` — Registry&lt;NoiseFunction&gt;
+- [x] `com.protectcord.strata.api.noise.NoiseRegistry` — Registry&lt;NoiseFunction&gt;
 
 ### 2.4 Terrain API
 - [x] `com.protectcord.strata.api.terrain.DensityFunction` — Density function interface (evaluate at x,y,z)
@@ -75,13 +75,13 @@
 ### 2.5 Surface API
 - [x] `com.protectcord.strata.api.surface.SurfaceRule` — Surface rule interface (apply conditions, output block)
 - [x] `com.protectcord.strata.api.surface.SurfaceCondition` — Predicate: depth, Y-level, water proximity, slope, noise threshold, biome, block above
-- [ ] `com.protectcord.strata.api.surface.SurfaceRuleRegistry` — Registry&lt;SurfaceRule&gt;
+- [x] `com.protectcord.strata.api.surface.SurfaceRuleRegistry` — Registry&lt;SurfaceRule&gt;
 
 ### 2.6 Carver API
 - [x] `com.protectcord.strata.api.carver.Carver` — Carver interface (carve method, shouldCarve, heightRange)
 - [x] `com.protectcord.strata.api.carver.CarverContext` — Access to chunk data during carving
 - [x] `com.protectcord.strata.api.carver.CarvingMask` — Bitmask of carved positions
-- [ ] `com.protectcord.strata.api.carver.CarverRegistry` — Registry&lt;Carver&gt;
+- [x] `com.protectcord.strata.api.carver.CarverRegistry` — Registry&lt;Carver&gt;
 
 ### 2.7 Water API
 - [x] `com.protectcord.strata.api.water.RiverSettings` — River generation parameters (threshold, width range, gradient smoothing, bed material rules)
@@ -94,58 +94,58 @@
 - [x] `com.protectcord.strata.api.structure.StructureDefinition` — Structure interface (placement, type, adjustToTerrain)
 - [x] `com.protectcord.strata.api.structure.StructurePlacement` — Record: grid spacing, offset, salt, biome filter, terrain check
 - [x] `com.protectcord.strata.api.structure.StructureType` — Enum: JIGSAW, SCHEMATIC, PROCEDURAL
-- [ ] `com.protectcord.strata.api.structure.SchematicData` — Loaded schematic data
-- [ ] `com.protectcord.strata.api.structure.JigsawPool` — Jigsaw template pool
-- [ ] `com.protectcord.strata.api.structure.StructureRegistry` — Registry&lt;StructureDefinition&gt;
+- [x] `com.protectcord.strata.api.structure.SchematicData` — Loaded schematic data
+- [x] `com.protectcord.strata.api.structure.JigsawPool` — Jigsaw template pool
+- [x] `com.protectcord.strata.api.structure.StructureRegistry` — Registry&lt;StructureDefinition&gt;
 
 ### 2.9 Feature API
 - [x] `com.protectcord.strata.api.feature.Feature` — Feature interface (place method)
 - [x] `com.protectcord.strata.api.feature.FeaturePlacement` — Feature + placement modifier chain
 - [x] `com.protectcord.strata.api.feature.PlacementModifier` — Position modifier interface (count, rarity, height, biome, surface, noise)
-- [ ] `com.protectcord.strata.api.feature.FeatureStep` — Enum: RAW, ORES, UNDERGROUND_DECORATION, VEGETAL, SURFACE_DECORATION, FLUID_SPRINGS, TOP_LAYER
-- [ ] `com.protectcord.strata.api.feature.FeatureRegistry` — Registry&lt;Feature&gt;
-- [ ] `com.protectcord.strata.api.feature.SaplingRule` — Record: sapling type, allowed biomes, denied biomes, growth rate multiplier, tree variant override per biome
-- [ ] `com.protectcord.strata.api.feature.SaplingRegistry` — Registry of sapling→biome rules (controls what happens when a player plants a sapling)
+- [x] `com.protectcord.strata.api.feature.FeatureStep` — Enum: RAW, ORES, UNDERGROUND_DECORATION, VEGETAL, SURFACE_DECORATION, FLUID_SPRINGS, TOP_LAYER
+- [x] `com.protectcord.strata.api.feature.FeatureRegistry` — Registry&lt;Feature&gt;
+- [x] `com.protectcord.strata.api.feature.SaplingRule` — Record: sapling type, allowed biomes, denied biomes, growth rate multiplier, tree variant override per biome
+- [x] `com.protectcord.strata.api.feature.SaplingRegistry` — Registry of sapling→biome rules (controls what happens when a player plants a sapling)
 
 ### 2.10 Entity API
 - [x] `com.protectcord.strata.api.entity.SpawnRule` — Record: mob type, weight, min/max group, conditions (light, block, time, height, structure)
 - [x] `com.protectcord.strata.api.entity.SpawnCategory` — Enum: PASSIVE, HOSTILE, WATER_CREATURE, WATER_AMBIENT, AMBIENT, UNDERGROUND, AXOLOTL
-- [ ] `com.protectcord.strata.api.entity.EntitySpawnRegistry` — Spawn rule registry
-- [ ] `com.protectcord.strata.api.entity.SpawnZone` — Named spawn zone with bounds, biome filter, and difficulty scaling (controls vanilla mob density/types per zone)
-- [ ] `com.protectcord.strata.api.entity.MythicMobsHook` — Optional interface: if MythicMobs is present, zones can additionally reference MythicMobs mob tables (not required)
+- [x] `com.protectcord.strata.api.entity.EntitySpawnRegistry` — Spawn rule registry
+- [x] `com.protectcord.strata.api.entity.SpawnZone` — Named spawn zone with bounds, biome filter, and difficulty scaling (controls vanilla mob density/types per zone)
+- [x] `com.protectcord.strata.api.entity.MythicMobsHook` — Optional interface: if MythicMobs is present, zones can additionally reference MythicMobs mob tables (not required)
 
 ### 2.11 World API
 - [x] `com.protectcord.strata.api.world.WorldProfile` — Complete world profile interface
 - [x] `com.protectcord.strata.api.world.WorldManager` — Create/load/unload worlds, profile management
 - [x] `com.protectcord.strata.api.world.StrataWorld` — Handle to a managed world
-- [ ] `com.protectcord.strata.api.world.WorldEnvironment` — Enum: NORMAL, NETHER, END, CUSTOM
+- [x] `com.protectcord.strata.api.world.WorldEnvironment` — Enum: NORMAL, NETHER, END, CUSTOM
 
 ### 2.12 Pipeline API
 - [x] `com.protectcord.strata.api.pipeline.GenerationStage` — Stage interface (process ProtoChunk + context)
-- [ ] `com.protectcord.strata.api.pipeline.GenerationStageType` — Enum: INITIALIZATION, CONTINENTAL_SHAPE, CLIMATE_SAMPLING, BIOME_ASSIGNMENT, TERRAIN_SHAPING, AQUIFER_PLACEMENT, SURFACE_BUILDING, CARVING, WATER_SYSTEM, STRUCTURE_GENERATION, FEATURE_DECORATION, ENTITY_SPAWNING, LIGHTING, FINALIZATION
+- [x] `com.protectcord.strata.api.pipeline.GenerationStageType` — Enum: INITIALIZATION, CONTINENTAL_SHAPE, CLIMATE_SAMPLING, BIOME_ASSIGNMENT, TERRAIN_SHAPING, AQUIFER_PLACEMENT, SURFACE_BUILDING, CARVING, WATER_SYSTEM, STRUCTURE_GENERATION, FEATURE_DECORATION, ENTITY_SPAWNING, LIGHTING, FINALIZATION
 - [x] `com.protectcord.strata.api.pipeline.GenerationContext` — Per-chunk context (seed, profile, RNG, caches, chunk coord)
 - [x] `com.protectcord.strata.api.pipeline.PipelineAccessor` — Runtime pipeline modification (replaceStage, wrapStage, insertBefore/After)
-- [ ] `com.protectcord.strata.api.pipeline.StageWrapper` — Decorator for stages
+- [x] `com.protectcord.strata.api.pipeline.StageWrapper` — Decorator for stages
 
 ### 2.13 Event API
 - [x] `com.protectcord.strata.api.event.StrataEvent` — Base event interface
 - [x] `com.protectcord.strata.api.event.bus.EventBus` — Subscribe/publish interface
-- [ ] `com.protectcord.strata.api.event.bus.Subscribe` — Annotation for handler methods
-- [ ] `com.protectcord.strata.api.event.bus.EventPriority` — Enum: LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR
-- [ ] `com.protectcord.strata.api.event.generation.BiomeAssignmentEvent`
-- [ ] `com.protectcord.strata.api.event.generation.TerrainShapingEvent`
-- [ ] `com.protectcord.strata.api.event.generation.SurfaceBuildEvent`
-- [ ] `com.protectcord.strata.api.event.generation.CarverEvent`
-- [ ] `com.protectcord.strata.api.event.generation.WaterSystemEvent`
-- [ ] `com.protectcord.strata.api.event.generation.StructureStartEvent`
-- [ ] `com.protectcord.strata.api.event.generation.FeatureDecorationEvent`
-- [ ] `com.protectcord.strata.api.event.generation.EntitySpawnRuleEvent`
+- [x] `com.protectcord.strata.api.event.bus.Subscribe` — Annotation for handler methods
+- [x] `com.protectcord.strata.api.event.bus.EventPriority` — Enum: LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR
+- [x] `com.protectcord.strata.api.event.generation.BiomeAssignmentEvent`
+- [x] `com.protectcord.strata.api.event.generation.TerrainShapingEvent`
+- [x] `com.protectcord.strata.api.event.generation.SurfaceBuildEvent`
+- [x] `com.protectcord.strata.api.event.generation.CarverEvent`
+- [x] `com.protectcord.strata.api.event.generation.WaterSystemEvent`
+- [x] `com.protectcord.strata.api.event.generation.StructureStartEvent`
+- [x] `com.protectcord.strata.api.event.generation.FeatureDecorationEvent`
+- [x] `com.protectcord.strata.api.event.generation.EntitySpawnRuleEvent`
 - [x] `com.protectcord.strata.api.event.generation.ChunkCompleteEvent`
 - [x] `com.protectcord.strata.api.event.lifecycle.ProfileLoadEvent`
-- [ ] `com.protectcord.strata.api.event.lifecycle.ProfileReloadEvent`
+- [x] `com.protectcord.strata.api.event.lifecycle.ProfileReloadEvent`
 - [x] `com.protectcord.strata.api.event.lifecycle.WorldCreateEvent`
-- [ ] `com.protectcord.strata.api.event.lifecycle.WorldUnloadEvent`
-- [ ] `com.protectcord.strata.api.event.lifecycle.ConfigReloadEvent`
+- [x] `com.protectcord.strata.api.event.lifecycle.WorldUnloadEvent`
+- [x] `com.protectcord.strata.api.event.lifecycle.ConfigReloadEvent`
 
 ### 2.14 Block & Chunk API
 - [x] `com.protectcord.strata.api.block.StrataBlockState` — Record: namespace, key, properties map
@@ -172,22 +172,22 @@
 ### 3.2 Noise Combinators
 - [x] `com.protectcord.strata.noise.FractalNoise` — Octave stacking for any base noise type
 - [x] `com.protectcord.strata.noise.DomainWarping` — Distort input coordinates using another noise
-- [ ] `com.protectcord.strata.noise.InterpolatedNoise` — Coarse grid sampling + trilinear interpolation
+- [x] `com.protectcord.strata.noise.InterpolatedNoise` — Coarse grid sampling + trilinear interpolation
 
 ### 3.3 Composite Noise System
 - [x] `com.protectcord.strata.noise.composite.CompositeNoiseBuilder` — Fluent API for chaining operations
-- [ ] `com.protectcord.strata.noise.composite.NoiseOperation` — Enum: ABS, NEGATE, ADD, MULTIPLY, CLAMP, SPLINE, LERP, MIN, MAX, POWER, THRESHOLD
-- [ ] `com.protectcord.strata.noise.composite.NoiseGraph` — DAG of noise functions compiled from config
+- [x] `com.protectcord.strata.noise.composite.NoiseOperation` — Enum: ABS, NEGATE, ADD, MULTIPLY, CLAMP, SPLINE, LERP, MIN, MAX, POWER, THRESHOLD
+- [x] `com.protectcord.strata.noise.composite.NoiseGraph` — DAG of noise functions compiled from config
 
 ### 3.4 Math Utilities
 - [x] `com.protectcord.strata.noise.math.MathUtil` — lerp, inverseLerp, clamp, smoothstep, fade, floor
-- [ ] `com.protectcord.strata.noise.math.SplineInterpolator` — Cubic spline evaluation
-- [ ] `com.protectcord.strata.noise.math.HashUtil` — Fast hash functions for noise seeding (xxHash-style)
+- [x] `com.protectcord.strata.noise.math.SplineInterpolator` — Cubic spline evaluation
+- [x] `com.protectcord.strata.noise.math.HashUtil` — Fast hash functions for noise seeding (xxHash-style)
 
 ### 3.5 Noise Caching
 - [x] `com.protectcord.strata.noise.cache.NoiseCache` — Per-chunk noise value cache
-- [ ] `com.protectcord.strata.noise.cache.NoiseCacheRegion` — Cross-chunk LRU cache (Caffeine-backed)
-- [ ] `com.protectcord.strata.noise.cache.InterpolationGrid` — Coarse sample grid with trilinear interpolation lookup
+- [x] `com.protectcord.strata.noise.cache.NoiseCacheRegion` — Cross-chunk LRU cache (Caffeine-backed)
+- [x] `com.protectcord.strata.noise.cache.InterpolationGrid` — Coarse sample grid with trilinear interpolation lookup
 
 ---
 
@@ -197,16 +197,16 @@
 
 ### 4.1 TOML Parsing
 - [x] `com.protectcord.strata.config.toml.TomlReader` — Wraps TOMLy parser, returns typed maps
-- [ ] `com.protectcord.strata.config.toml.TomlSchema` — Schema definition from Java record annotations
-- [ ] `com.protectcord.strata.config.toml.TomlValidationError` — Error with file path, line number, key, expected type, actual value, message
+- [x] `com.protectcord.strata.config.toml.TomlSchema` — Schema definition from Java record annotations
+- [x] `com.protectcord.strata.config.toml.TomlValidationError` — Error with file path, line number, key, expected type, actual value, message
 
 ### 4.2 Profile Loading
 - [x] `com.protectcord.strata.config.ProfileLoader` — Discovers profile directories, parses `profile.toml`, builds WorldProfile objects
-- [ ] `com.protectcord.strata.config.ProfileValidator` — Validates entire profile against schema, reports all errors with human-readable messages and fix suggestions
+- [x] `com.protectcord.strata.config.ProfileValidator` — Validates entire profile against schema, reports all errors with human-readable messages and fix suggestions
 - [x] `com.protectcord.strata.config.ConfigRegistry` — Central registry of all loaded profiles, biomes, noise functions, structures
 - [x] `com.protectcord.strata.config.ConfigMerger` — Profile inheritance (`extends = "default-overworld"`), deep per-key merge
 - [x] `com.protectcord.strata.config.ConfigExporter` — Serializes profiles/definitions to JSON for backup/sharing
-- [ ] `com.protectcord.strata.config.ConfigDocGenerator` — Generates fully-commented template TOML files from schema annotations. Every key gets a comment explaining what it does, valid values, default, and example.
+- [x] `com.protectcord.strata.config.ConfigDocGenerator` — Generates fully-commented template TOML files from schema annotations. Every key gets a comment explaining what it does, valid values, default, and example.
 
 ### 4.3 Hot-Reload
 - [x] `com.protectcord.strata.config.reload.FileWatcher` — NIO WatchService wrapper, detects file modifications
@@ -217,14 +217,14 @@
 - [x] `com.protectcord.strata.config.model.BiomeConfig` — Biome definition: climate, terrain, surface, features, spawning, colors
 - [x] `com.protectcord.strata.config.model.NoiseConfig` — Named noise function definition: type, params, composite operations
 - [x] `com.protectcord.strata.config.model.TerrainConfig` — Density function graph, spline control points, continental params
-- [ ] `com.protectcord.strata.config.model.SurfaceConfig` — Surface rule chains with conditions
-- [ ] `com.protectcord.strata.config.model.CarverConfig` — Cave/ravine carver parameters
+- [x] `com.protectcord.strata.config.model.SurfaceConfig` — Surface rule chains with conditions
+- [x] `com.protectcord.strata.config.model.CarverConfig` — Cave/ravine carver parameters
 - [x] `com.protectcord.strata.config.model.WaterConfig` — Ocean, river, lake, waterfall, aquifer parameters
-- [ ] `com.protectcord.strata.config.model.StructureConfig` — Structure placement, type, schematic/jigsaw/procedural params
-- [ ] `com.protectcord.strata.config.model.FeatureConfig` — Feature definitions: ores, trees, vegetation, springs, top layer
-- [ ] `com.protectcord.strata.config.model.SaplingConfig` — Per-biome sapling rules: allowed/denied types, growth rate modifiers, tree shape variants
-- [ ] `com.protectcord.strata.config.model.EntityConfig` — Spawn rules per biome: mob type, weight, group size, conditions
-- [ ] `com.protectcord.strata.config.model.SpawnZoneConfig` — Named zones with difficulty scaling, biome filter, vanilla mob tables; optional MythicMobs table refs
+- [x] `com.protectcord.strata.config.model.StructureConfig` — Structure placement, type, schematic/jigsaw/procedural params
+- [x] `com.protectcord.strata.config.model.FeatureConfig` — Feature definitions: ores, trees, vegetation, springs, top layer
+- [x] `com.protectcord.strata.config.model.SaplingConfig` — Per-biome sapling rules: allowed/denied types, growth rate modifiers, tree shape variants
+- [x] `com.protectcord.strata.config.model.EntityConfig` — Spawn rules per biome: mob type, weight, group size, conditions
+- [x] `com.protectcord.strata.config.model.SpawnZoneConfig` — Named zones with difficulty scaling, biome filter, vanilla mob tables; optional MythicMobs table refs
 
 ---
 
@@ -235,89 +235,89 @@
 ### 5.1 Engine & Pipeline
 - [x] `com.protectcord.strata.core.StrataEngine` — Main engine class, owns pipeline, initializes from WorldProfile
 - [x] `com.protectcord.strata.core.pipeline.GenerationPipeline` — Ordered list of stages, executes them sequentially on ProtoChunk
-- [ ] `com.protectcord.strata.core.pipeline.PipelineBuilder` — Builds pipeline from WorldProfile (resolves stage config references)
+- [x] `com.protectcord.strata.core.pipeline.PipelineBuilder` — Builds pipeline from WorldProfile (resolves stage config references)
 
 ### 5.2 Pipeline Stages (14 stages)
-- [ ] `com.protectcord.strata.core.pipeline.stage.InitializationStage` — Allocate ProtoChunk, resolve profile, seed RNG
-- [ ] `com.protectcord.strata.core.pipeline.stage.ContinentalShapeStage` — Sample continentalness noise, land/ocean/coast classification
-- [ ] `com.protectcord.strata.core.pipeline.stage.ClimateSamplingStage` — Sample temperature, humidity, erosion, weirdness noise
+- [x] `com.protectcord.strata.core.pipeline.stage.InitializationStage` — Allocate ProtoChunk, resolve profile, seed RNG
+- [x] `com.protectcord.strata.core.pipeline.stage.ContinentalShapeStage` — Sample continentalness noise, land/ocean/coast classification
+- [x] `com.protectcord.strata.core.pipeline.stage.ClimateSamplingStage` — Sample temperature, humidity, erosion, weirdness noise
 - [x] `com.protectcord.strata.core.pipeline.stage.BiomeAssignmentStage` — KD-tree climate→biome lookup at 4x4x4 resolution, edge blending
 - [x] `com.protectcord.strata.core.pipeline.stage.TerrainShapingStage` — Density function evaluation, 3D terrain shape (stone vs air)
-- [ ] `com.protectcord.strata.core.pipeline.stage.AquiferPlacementStage` — Underground water/lava pockets from 3D noise
+- [x] `com.protectcord.strata.core.pipeline.stage.AquiferPlacementStage` — Underground water/lava pockets from 3D noise
 - [x] `com.protectcord.strata.core.pipeline.stage.SurfaceBuildingStage` — Apply biome surface rules (grass, sand, gravel, etc.)
 - [x] `com.protectcord.strata.core.pipeline.stage.CarvingStage` — Execute all carvers (cheese, spaghetti, noodle, ravine, custom)
 - [x] `com.protectcord.strata.core.pipeline.stage.WaterSystemStage` — Rivers, waterfalls, lakes, ocean features, swamp water
-- [ ] `com.protectcord.strata.core.pipeline.stage.StructureGenerationStage` — Structure starts + piece placement
-- [ ] `com.protectcord.strata.core.pipeline.stage.FeatureDecorationStage` — Ores, trees, vegetation, springs, snow/ice
-- [ ] `com.protectcord.strata.core.pipeline.stage.EntitySpawningStage` — Write per-biome spawn tables to chunk metadata
-- [ ] `com.protectcord.strata.core.pipeline.stage.LightingStage` — Sky light + block light propagation
-- [ ] `com.protectcord.strata.core.pipeline.stage.FinalizationStage` — Convert ProtoChunk, commit heightmaps, fire ChunkCompleteEvent
+- [x] `com.protectcord.strata.core.pipeline.stage.StructureGenerationStage` — Structure starts + piece placement
+- [x] `com.protectcord.strata.core.pipeline.stage.FeatureDecorationStage` — Ores, trees, vegetation, springs, snow/ice
+- [x] `com.protectcord.strata.core.pipeline.stage.EntitySpawningStage` — Write per-biome spawn tables to chunk metadata
+- [x] `com.protectcord.strata.core.pipeline.stage.LightingStage` — Sky light + block light propagation
+- [x] `com.protectcord.strata.core.pipeline.stage.FinalizationStage` — Convert ProtoChunk, commit heightmaps, fire ChunkCompleteEvent
 
 ### 5.3 Biome System
 - [x] `com.protectcord.strata.core.biome.BiomeLookupTable` — KD-tree mapping 5D climate parameters → Biome
-- [ ] `com.protectcord.strata.core.biome.BiomeBlender` — Weighted interpolation for smooth biome transitions
-- [ ] `com.protectcord.strata.core.biome.ClimateMapper` — Samples noise functions → ClimateParameters per column
+- [x] `com.protectcord.strata.core.biome.BiomeBlender` — Weighted interpolation for smooth biome transitions
+- [x] `com.protectcord.strata.core.biome.ClimateMapper` — Samples noise functions → ClimateParameters per column
 
 ### 5.4 Terrain System
-- [ ] `com.protectcord.strata.core.terrain.DensityEngine` — Evaluates composable DensityFunction graphs at each (x,y,z)
-- [ ] `com.protectcord.strata.core.terrain.SplineEvaluator` — Evaluates terrain height splines keyed by (continentalness, erosion, weirdness)
-- [ ] `com.protectcord.strata.core.terrain.TerrainModifiers` — Per-biome terrain modifiers (mesa plateaus, mountain jaggedness, etc.)
+- [x] `com.protectcord.strata.core.terrain.DensityEngine` — Evaluates composable DensityFunction graphs at each (x,y,z)
+- [x] `com.protectcord.strata.core.terrain.SplineEvaluator` — Evaluates terrain height splines keyed by (continentalness, erosion, weirdness)
+- [x] `com.protectcord.strata.core.terrain.TerrainModifiers` — Per-biome terrain modifiers (mesa plateaus, mountain jaggedness, etc.)
 
 ### 5.5 Surface System
-- [ ] `com.protectcord.strata.core.surface.SurfaceRuleEngine` — Evaluates surface rule condition chains, outputs block states
-- [ ] `com.protectcord.strata.core.surface.SlopeSampler` — Computes surface slope for steep-terrain rules
+- [x] `com.protectcord.strata.core.surface.SurfaceRuleEngine` — Evaluates surface rule condition chains, outputs block states
+- [x] `com.protectcord.strata.core.surface.SlopeSampler` — Computes surface slope for steep-terrain rules
 
 ### 5.6 Carver System
-- [ ] `com.protectcord.strata.core.carver.CarverEngine` — Orchestrates all carvers in order
-- [ ] `com.protectcord.strata.core.carver.CheeseCaveCarver` — Large open chambers (3D low-frequency noise)
-- [ ] `com.protectcord.strata.core.carver.SpaghettiCaveCarver` — Long winding tunnels (2D worm paths + 3D width noise)
-- [ ] `com.protectcord.strata.core.carver.NoodleCaveCarver` — Thin crevices
-- [ ] `com.protectcord.strata.core.carver.RavineCarver` — Surface-cutting canyons
+- [x] `com.protectcord.strata.core.carver.CarverEngine` — Orchestrates all carvers in order
+- [x] `com.protectcord.strata.core.carver.CheeseCaveCarver` — Large open chambers (3D low-frequency noise)
+- [x] `com.protectcord.strata.core.carver.SpaghettiCaveCarver` — Long winding tunnels (2D worm paths + 3D width noise)
+- [x] `com.protectcord.strata.core.carver.NoodleCaveCarver` — Thin crevices
+- [x] `com.protectcord.strata.core.carver.RavineCarver` — Surface-cutting canyons
 
 ### 5.7 Water System (Marquee Feature)
 - [x] `com.protectcord.strata.core.water.RiverNetworkBuilder` — Macro-scale flow path computation (drainage basins, flow accumulation)
-- [ ] `com.protectcord.strata.core.water.RiverNetwork` — Spatial index (R-tree) of river segments
-- [ ] `com.protectcord.strata.core.water.RiverCarver` — Per-chunk river channel carving (parabolic cross-section, bed material, banks)
-- [ ] `com.protectcord.strata.core.water.WaterfallDetector` — Identifies steep gradient segments along rivers
-- [ ] `com.protectcord.strata.core.water.WaterfallBuilder` — Carves vertical face, plunge pool, mist effect
-- [ ] `com.protectcord.strata.core.water.LakeDetector` — Finds terrain local minima for lake placement
-- [ ] `com.protectcord.strata.core.water.LakeFiller` — Basin-filling algorithm with overflow detection
-- [ ] `com.protectcord.strata.core.water.OceanFloorBuilder` — Continental shelf, slope, abyssal plain, ridges, trenches, seamounts
-- [ ] `com.protectcord.strata.core.water.CoralReefGenerator` — Poisson-disk seeded L-system coral clusters
-- [ ] `com.protectcord.strata.core.water.KelpForestGenerator` — Poisson-disk spaced kelp columns with noise height
-- [ ] `com.protectcord.strata.core.water.AquiferEngine` — 3D aquifer boundary noise, per-pocket water levels, lava below threshold
-- [ ] `com.protectcord.strata.core.water.SwampWaterHandler` — Raised water table, shallow pools, mud, lily pads
+- [x] `com.protectcord.strata.core.water.RiverNetwork` — Spatial index (R-tree) of river segments
+- [x] `com.protectcord.strata.core.water.RiverCarver` — Per-chunk river channel carving (parabolic cross-section, bed material, banks)
+- [x] `com.protectcord.strata.core.water.WaterfallDetector` — Identifies steep gradient segments along rivers
+- [x] `com.protectcord.strata.core.water.WaterfallBuilder` — Carves vertical face, plunge pool, mist effect
+- [x] `com.protectcord.strata.core.water.LakeDetector` — Finds terrain local minima for lake placement
+- [x] `com.protectcord.strata.core.water.LakeFiller` — Basin-filling algorithm with overflow detection
+- [x] `com.protectcord.strata.core.water.OceanFloorBuilder` — Continental shelf, slope, abyssal plain, ridges, trenches, seamounts
+- [x] `com.protectcord.strata.core.water.CoralReefGenerator` — Poisson-disk seeded L-system coral clusters
+- [x] `com.protectcord.strata.core.water.KelpForestGenerator` — Poisson-disk spaced kelp columns with noise height
+- [x] `com.protectcord.strata.core.water.AquiferEngine` — 3D aquifer boundary noise, per-pocket water levels, lava below threshold
+- [x] `com.protectcord.strata.core.water.SwampWaterHandler` — Raised water table, shallow pools, mud, lily pads
 
 ### 5.8 Structure System
-- [ ] `com.protectcord.strata.core.structure.StructurePlacementEngine` — Grid spacing + salt + biome filter for structure starts
-- [ ] `com.protectcord.strata.core.structure.JigsawAssembler` — Jigsaw piece assembly (depth-limited recursive placement, configurable max pieces for larger villages)
-- [ ] `com.protectcord.strata.core.structure.SchematicPlacer` — Paste schematic data into chunks
-- [ ] `com.protectcord.strata.core.structure.ProceduralStructureEngine` — Runtime-generated structures via API callbacks
-- [ ] `com.protectcord.strata.core.structure.VillageGenerator` — Enhanced village generation: larger piece pools, functional farm plots, animal pens, roads between buildings, terrain flattening under footprint
-- [ ] `com.protectcord.strata.core.structure.FarmGenerator` — Standalone farm placement: biome-appropriate crop selection, irrigated field layouts, animal pen templates, tool shed loot tables
-- [ ] `com.protectcord.strata.core.structure.RoadNetworkBuilder` — Connects nearby villages/structures with terrain-following paths, bridges over water/ravines, signpost placement at intersections
+- [x] `com.protectcord.strata.core.structure.StructurePlacementEngine` — Grid spacing + salt + biome filter for structure starts
+- [x] `com.protectcord.strata.core.structure.JigsawAssembler` — Jigsaw piece assembly (depth-limited recursive placement, configurable max pieces for larger villages)
+- [x] `com.protectcord.strata.core.structure.SchematicPlacer` — Paste schematic data into chunks
+- [x] `com.protectcord.strata.core.structure.ProceduralStructureEngine` — Runtime-generated structures via API callbacks
+- [x] `com.protectcord.strata.core.structure.VillageGenerator` — Enhanced village generation: larger piece pools, functional farm plots, animal pens, roads between buildings, terrain flattening under footprint
+- [x] `com.protectcord.strata.core.structure.FarmGenerator` — Standalone farm placement: biome-appropriate crop selection, irrigated field layouts, animal pen templates, tool shed loot tables
+- [x] `com.protectcord.strata.core.structure.RoadNetworkBuilder` — Connects nearby villages/structures with terrain-following paths, bridges over water/ravines, signpost placement at intersections
 
 ### 5.9 Feature System
-- [ ] `com.protectcord.strata.core.feature.FeatureEngine` — Orchestrates feature steps per biome
-- [ ] `com.protectcord.strata.core.feature.OreGenerator` — Ore vein placement (configurable size, count, height, discard chance)
-- [ ] `com.protectcord.strata.core.feature.TreeGenerator` — Tree placement (oak, birch, spruce, jungle, acacia, dark oak, cherry, mangrove, azalea + custom)
-- [ ] `com.protectcord.strata.core.feature.SaplingBiomeHandler` — Biome-aware sapling growth: controls which trees can grow in which biomes, growth rate modifiers, and tree shape variants per biome
-- [ ] `com.protectcord.strata.core.feature.VegetationGenerator` — Grass, flowers, bushes, cacti, sugar cane, bamboo, etc.
-- [ ] `com.protectcord.strata.core.feature.FluidSpringPlacer` — Water/lava source blocks in cave walls
-- [ ] `com.protectcord.strata.core.feature.SnowIcePlacer` — Temperature-based snow, ice, frosted surfaces
+- [x] `com.protectcord.strata.core.feature.FeatureEngine` — Orchestrates feature steps per biome
+- [x] `com.protectcord.strata.core.feature.OreGenerator` — Ore vein placement (configurable size, count, height, discard chance)
+- [x] `com.protectcord.strata.core.feature.TreeGenerator` — Tree placement (oak, birch, spruce, jungle, acacia, dark oak, cherry, mangrove, azalea + custom)
+- [x] `com.protectcord.strata.core.feature.SaplingBiomeHandler` — Biome-aware sapling growth: controls which trees can grow in which biomes, growth rate modifiers, and tree shape variants per biome
+- [x] `com.protectcord.strata.core.feature.VegetationGenerator` — Grass, flowers, bushes, cacti, sugar cane, bamboo, etc.
+- [x] `com.protectcord.strata.core.feature.FluidSpringPlacer` — Water/lava source blocks in cave walls
+- [x] `com.protectcord.strata.core.feature.SnowIcePlacer` — Temperature-based snow, ice, frosted surfaces
 
 ### 5.10 Entity System
-- [ ] `com.protectcord.strata.core.entity.SpawnTableBuilder` — Builds per-biome spawn tables from config, writes to chunk metadata
+- [x] `com.protectcord.strata.core.entity.SpawnTableBuilder` — Builds per-biome spawn tables from config, writes to chunk metadata
 
 ### 5.11 Chunk Internals
 - [x] `com.protectcord.strata.core.chunk.StrataProtoChunk` — Internal mutable chunk (palette-compressed block storage)
-- [ ] `com.protectcord.strata.core.chunk.ProtoChunkPool` — Thread-local object pool for reuse (reduce GC pressure)
-- [ ] `com.protectcord.strata.core.chunk.ChunkRegionAccessor` — Lazy neighbor chunk access for cross-chunk reads
-- [ ] `com.protectcord.strata.core.chunk.PaletteStorage` — Palette-compressed block storage (like vanilla chunk sections)
+- [x] `com.protectcord.strata.core.chunk.ProtoChunkPool` — Thread-local object pool for reuse (reduce GC pressure)
+- [x] `com.protectcord.strata.core.chunk.ChunkRegionAccessor` — Lazy neighbor chunk access for cross-chunk reads
+- [x] `com.protectcord.strata.core.chunk.PaletteStorage` — Palette-compressed block storage (like vanilla chunk sections)
 
 ### 5.12 Pre-generation
-- [ ] `com.protectcord.strata.core.pregen.PreGenerationTask` — Spiral pre-gen from spawn, progress reporting, pause/resume/cancel
-- [ ] `com.protectcord.strata.core.pregen.PreGenScheduler` — ForkJoinPool management, configurable thread count, batch disk saves
+- [x] `com.protectcord.strata.core.pregen.PreGenerationTask` — Spiral pre-gen from spawn, progress reporting, pause/resume/cancel
+- [x] `com.protectcord.strata.core.pregen.PreGenScheduler` — ForkJoinPool management, configurable thread count, batch disk saves
 
 ---
 
@@ -331,25 +331,25 @@
 - [x] `com.protectcord.strata.nms.VersionDetector` — Runtime version detection (Paper API + CraftBukkit package fallback)
 - [x] `com.protectcord.strata.nms.adapter.ChunkAccessor` — Chunk read/write abstraction (handles section layout differences)
 - [x] `com.protectcord.strata.nms.adapter.BlockStateMapper` — StrataBlockState ↔ NMS block state translation
-- [ ] `com.protectcord.strata.nms.adapter.BiomeInjector` — Biome writing (2D pre-1.16, 3D 1.16+, PalettedContainer 1.18+)
+- [x] `com.protectcord.strata.nms.adapter.BiomeInjector` — Biome writing (2D pre-1.16, 3D 1.16+, PalettedContainer 1.18+)
 - [x] `com.protectcord.strata.nms.adapter.LightingEngine` — Light level computation abstraction
 - [x] `com.protectcord.strata.nms.adapter.HeightmapWriter` — Heightmap writing (WORLD_SURFACE, OCEAN_FLOOR, MOTION_BLOCKING, etc.)
-- [ ] `com.protectcord.strata.nms.adapter.WorldHandle` — World-level operations abstraction
-- [ ] `com.protectcord.strata.nms.legacy.LegacyBlockTable` — Pre-1.13 numeric ID ↔ namespaced key bidirectional lookup
-- [ ] `com.protectcord.strata.nms.legacy.BlockSubstitution` — Missing block fallback table (modern blocks → closest legacy equivalent)
-- [ ] `src/main/resources/legacy_block_ids.json` — Bundled pre-1.13 block ID mapping data
+- [x] `com.protectcord.strata.nms.adapter.WorldHandle` — World-level operations abstraction
+- [x] `com.protectcord.strata.nms.legacy.LegacyBlockTable` — Pre-1.13 numeric ID ↔ namespaced key bidirectional lookup
+- [x] `com.protectcord.strata.nms.legacy.BlockSubstitution` — Missing block fallback table (modern blocks → closest legacy equivalent)
+- [x] `src/main/resources/legacy_block_ids.json` — Bundled pre-1.13 block ID mapping data
 
 ### 6.2 Version Adapters
-- [ ] `strata-nms/v1_8_R3` — Adapter for 1.8.4-1.8.9 (Java 8 cross-compile, legacy block IDs, 256 height, 2D biomes)
-- [ ] `strata-nms/v1_12_R1` — Adapter for 1.9-1.12.2 (Java 8 cross-compile, legacy IDs, API differences)
-- [ ] `strata-nms/v1_13_R2` — Adapter for 1.13-1.15.2 (Java 8 cross-compile, post-flattening, namespaced IDs, 2D biomes)
-- [ ] `strata-nms/v1_16_R3` — Adapter for 1.16-1.16.5 (Java 11 cross-compile, 3D biomes, nether gen changes)
-- [ ] `strata-nms/v1_17_R1` — Adapter for 1.17-1.17.1 (Java 16 cross-compile, unversioned NMS packages)
-- [ ] `strata-nms/v1_18_R2` — Adapter for 1.18-1.19.3 (Java 17 cross-compile, extended height -64 to 320, aquifers)
-- [ ] `strata-nms/v1_19_R3` — Adapter for 1.19.4-1.20.4 (Java 17 cross-compile, BiomeProvider API)
-- [ ] `strata-nms/v1_20_R4` — Adapter for 1.20.5-1.21.x (Java 21 cross-compile, Mojang-mapped runtime)
-- [ ] `strata-nms/v26_1` — Adapter for 26.1-26.1.2+ (Java 25, new versioning, no Spigot remapping)
-- [ ] ServiceLoader `META-INF/services/com.protectcord.strata.nms.NMSAdapter` registration for each adapter
+- [x] `strata-nms/v1_8_R3` — Adapter for 1.8.4-1.8.9 (Java 8 cross-compile, legacy block IDs, 256 height, 2D biomes)
+- [x] `strata-nms/v1_12_R1` — Adapter for 1.9-1.12.2 (Java 8 cross-compile, legacy IDs, API differences)
+- [x] `strata-nms/v1_13_R2` — Adapter for 1.13-1.15.2 (Java 8 cross-compile, post-flattening, namespaced IDs, 2D biomes)
+- [x] `strata-nms/v1_16_R3` — Adapter for 1.16-1.16.5 (Java 11 cross-compile, 3D biomes, nether gen changes)
+- [x] `strata-nms/v1_17_R1` — Adapter for 1.17-1.17.1 (Java 16 cross-compile, unversioned NMS packages)
+- [x] `strata-nms/v1_18_R2` — Adapter for 1.18-1.19.3 (Java 17 cross-compile, extended height -64 to 320, aquifers)
+- [x] `strata-nms/v1_19_R3` — Adapter for 1.19.4-1.20.4 (Java 17 cross-compile, BiomeProvider API)
+- [x] `strata-nms/v1_20_R4` — Adapter for 1.20.5-1.21.x (Java 21 cross-compile, Mojang-mapped runtime)
+- [x] `strata-nms/v26_1` — Adapter for 26.1-26.1.2+ (Java 25, new versioning, no Spigot remapping)
+- [x] ServiceLoader `META-INF/services/com.protectcord.strata.nms.NMSAdapter` registration for each adapter
 
 ---
 
@@ -360,16 +360,16 @@
 ### 7.1 Plugin Core
 - [x] `com.protectcord.strata.paper.StrataPlugin` — JavaPlugin entry point (onEnable, onDisable, lifecycle, first-run setup)
 - [x] `src/main/resources/plugin.yml` — Plugin descriptor (name: Strata, commands, permissions)
-- [ ] `src/main/resources/paper-plugin.yml` — Paper-specific descriptor (for 1.19.4+)
-- [ ] First-run experience: on first startup, extract default profiles, generate `strata.toml` with guided comments, log a welcome message with getting-started steps to console
+- [x] `src/main/resources/paper-plugin.yml` — Paper-specific descriptor (for 1.19.4+)
+- [x] First-run experience: on first startup, extract default profiles, generate `strata.toml` with guided comments, log a welcome message with getting-started steps to console
 
 ### 7.2 Generator Integration
 - [x] `com.protectcord.strata.paper.generator.StrataChunkGenerator` — Extends ChunkGenerator, delegates to strata-core pipeline
-- [ ] `com.protectcord.strata.paper.generator.StrataBiomeProvider` — Extends BiomeProvider (1.19.4+), provides biome data from core
+- [x] `com.protectcord.strata.paper.generator.StrataBiomeProvider` — Extends BiomeProvider (1.19.4+), provides biome data from core
 
 ### 7.3 World Management
-- [ ] `com.protectcord.strata.paper.world.PaperWorldManager` — Implements WorldManager using Bukkit API (create, load, unload worlds)
-- [ ] `com.protectcord.strata.paper.world.WorldConfigStore` — Persistent world↔profile mappings (survives server restart)
+- [x] `com.protectcord.strata.paper.world.PaperWorldManager` — Implements WorldManager using Bukkit API (create, load, unload worlds)
+- [x] `com.protectcord.strata.paper.world.WorldConfigStore` — Persistent world↔profile mappings (survives server restart)
 
 ### 7.4 Commands
 - [x] `com.protectcord.strata.paper.command.StrataCommand` — `/strata` root command with tab completion
@@ -384,50 +384,50 @@
 
 ### 7.5 Listeners
 - [x] `com.protectcord.strata.paper.listener.WorldLoadListener` — Attaches Strata generator on world load
-- [ ] `com.protectcord.strata.paper.listener.ChunkLoadListener` — Optional monitoring/metrics for chunk generation
-- [ ] `com.protectcord.strata.paper.listener.SaplingGrowthListener` — Intercepts `StructureGrowEvent` / sapling growth, applies biome rules: deny growth in wrong biomes, modify growth rate, substitute tree variant based on biome
+- [x] `com.protectcord.strata.paper.listener.ChunkLoadListener` — Optional monitoring/metrics for chunk generation
+- [x] `com.protectcord.strata.paper.listener.SaplingGrowthListener` — Intercepts `StructureGrowEvent` / sapling growth, applies biome rules: deny growth in wrong biomes, modify growth rate, substitute tree variant based on biome
 
 ### 7.6 NMS Adapter Loading
-- [ ] `com.protectcord.strata.paper.adapter.NMSAdapterLoader` — ServiceLoader-based version detection and adapter selection
+- [x] `com.protectcord.strata.paper.adapter.NMSAdapterLoader` — ServiceLoader-based version detection and adapter selection
 
 ### 7.7 API Implementation
 - [x] `com.protectcord.strata.paper.api.StrataAPIImpl` — Implements StrataAPI, wires registries, managers, pipeline
-- [ ] `com.protectcord.strata.paper.api.StrataProviderBootstrap` — Sets StrataProvider.get() at plugin enable
+- [x] `com.protectcord.strata.paper.api.StrataProviderBootstrap` — Sets StrataProvider.get() at plugin enable
 - [x] `com.protectcord.strata.paper.api.EventBusImpl` — Implements EventBus (concurrent subscriber list, priority ordering)
 
 ### 7.8 bStats Metrics
 - [x] `com.protectcord.strata.paper.metrics.StrataMetrics` — bStats integration (shaded into jar)
-- [ ] Custom charts: active worlds count, profiles in use, total biomes loaded, MC version, Java version, avg chunk gen time, NMS adapter in use
-- [ ] Opt-out respects bStats global config (`plugins/bStats/config.yml`)
+- [x] Custom charts: active worlds count, profiles in use, total biomes loaded, MC version, Java version, avg chunk gen time, NMS adapter in use
+- [x] Opt-out respects bStats global config (`plugins/bStats/config.yml`)
 - [x] bStats plugin ID registered at bstats.org (ID: 31423)
 
 ### 7.9 In-Game Guide System
-- [ ] `com.protectcord.strata.paper.guide.GuideRegistry` — Loads guide pages from bundled resources, supports pagination
-- [ ] `com.protectcord.strata.paper.guide.GuidePage` — Single guide page: title, content (Adventure components), clickable links to related topics
-- [ ] `com.protectcord.strata.paper.guide.GuideRenderer` — Renders guide pages in chat with headers, color coding, hover tooltips, click-to-run commands
-- [ ] Guide topics (bundled as resources):
-  - [ ] `setup` — Step-by-step: install jar → first run → create world → play. Aimed at complete beginners.
-  - [ ] `profiles` — What profiles are, how to switch, how to create custom ones, `extends` inheritance
-  - [ ] `biomes` — How biomes work, how to customize, climate parameters explained, example TOML
-  - [ ] `noise` — Noise functions explained simply (what they do visually), how to compose them, example TOML
-  - [ ] `structures` — How structures work, jigsaw vs schematic, how to add custom structures
-  - [ ] `features` — Ores, trees, vegetation explained. How to adjust rates. Example TOML.
-  - [ ] `ores` — Ore distribution explained, how to adjust scarcity, per-biome overrides
-  - [ ] `saplings` — Sapling biome rules explained, how to configure allowed biomes and growth rates
-  - [ ] `zones` — Zone system explained, how to define zones, difficulty scaling, MythicMobs optional hook
-  - [ ] `water` — Rivers, oceans, waterfalls, lakes, aquifers — how each works and how to configure
-  - [ ] `api` — Quick start for developers: depend on strata-api, register custom biome, listen to events
-  - [ ] `troubleshooting` — Common issues: world not generating, config errors, performance, version mismatches
-- [ ] `/strata guide` with no args shows topic index with clickable links
-- [ ] Each guide page links to related pages (e.g., "biomes" links to "noise", "ores", "saplings")
+- [x] `com.protectcord.strata.paper.guide.GuideRegistry` — Loads guide pages from bundled resources, supports pagination
+- [x] `com.protectcord.strata.paper.guide.GuidePage` — Single guide page: title, content (Adventure components), clickable links to related topics
+- [x] `com.protectcord.strata.paper.guide.GuideRenderer` — Renders guide pages in chat with headers, color coding, hover tooltips, click-to-run commands
+- [x] Guide topics (bundled as resources):
+  - [x] `setup` — Step-by-step: install jar → first run → create world → play. Aimed at complete beginners.
+  - [x] `profiles` — What profiles are, how to switch, how to create custom ones, `extends` inheritance
+  - [x] `biomes` — How biomes work, how to customize, climate parameters explained, example TOML
+  - [x] `noise` — Noise functions explained simply (what they do visually), how to compose them, example TOML
+  - [x] `structures` — How structures work, jigsaw vs schematic, how to add custom structures
+  - [x] `features` — Ores, trees, vegetation explained. How to adjust rates. Example TOML.
+  - [x] `ores` — Ore distribution explained, how to adjust scarcity, per-biome overrides
+  - [x] `saplings` — Sapling biome rules explained, how to configure allowed biomes and growth rates
+  - [x] `zones` — Zone system explained, how to define zones, difficulty scaling, MythicMobs optional hook
+  - [x] `water` — Rivers, oceans, waterfalls, lakes, aquifers — how each works and how to configure
+  - [x] `api` — Quick start for developers: depend on strata-api, register custom biome, listen to events
+  - [x] `troubleshooting` — Common issues: world not generating, config errors, performance, version mismatches
+- [x] `/strata guide` with no args shows topic index with clickable links
+- [x] Each guide page links to related pages (e.g., "biomes" links to "noise", "ores", "saplings")
 
 ### 7.10 Optional Hooks
-- [ ] `com.protectcord.strata.paper.hook.MythicMobsHookImpl` — If MythicMobs detected at runtime, allows zones to reference MythicMobs mob tables alongside vanilla spawns
-- [ ] Soft dependency in plugin.yml (`softdepend: [MythicMobs]`) — purely optional, plugin is fully functional without it
+- [x] `com.protectcord.strata.paper.hook.MythicMobsHookImpl` — If MythicMobs detected at runtime, allows zones to reference MythicMobs mob tables alongside vanilla spawns
+- [x] Soft dependency in plugin.yml (`softdepend: [MythicMobs]`) — purely optional, plugin is fully functional without it
 
 ### 7.11 Build
 - [x] Shadow jar configuration (bundles all modules + bStats into single distributable plugin jar)
-- [ ] Resource filtering for plugin.yml (inject version, name at build time)
+- [x] Resource filtering for plugin.yml (inject version, name at build time)
 
 ---
 
@@ -437,34 +437,34 @@
 
 ### 8.1 Terra Pack Parsing
 - [x] `com.protectcord.strata.migrate.TerraPackParser` — Reads Terra pack directory structure, identifies all YAML config files
-- [ ] `com.protectcord.strata.migrate.terra.TerraPackManifest` — Parses Terra's `pack.yml` (pack metadata, version, author)
-- [ ] `com.protectcord.strata.migrate.terra.TerraBiomeParser` — Parses Terra biome YAML (climate, palette refs, flora refs, terrain)
-- [ ] `com.protectcord.strata.migrate.terra.TerraNoiseParser` — Parses Terra noise config (noise-equation expressions, sampler configs)
-- [ ] `com.protectcord.strata.migrate.terra.TerraPaletteParser` — Parses Terra palette YAML (block layer definitions)
-- [ ] `com.protectcord.strata.migrate.terra.TerraFloraParser` — Parses Terra flora/tree YAML (placement, block types)
-- [ ] `com.protectcord.strata.migrate.terra.TerraStructureParser` — Parses Terra structure definitions
-- [ ] `com.protectcord.strata.migrate.terra.TerraCarverParser` — Parses Terra carver YAML
-- [ ] `com.protectcord.strata.migrate.terra.TerraScriptParser` — Parses TerraScript files (best-effort AST analysis)
+- [x] `com.protectcord.strata.migrate.terra.TerraPackManifest` — Parses Terra's `pack.yml` (pack metadata, version, author)
+- [x] `com.protectcord.strata.migrate.terra.TerraBiomeParser` — Parses Terra biome YAML (climate, palette refs, flora refs, terrain)
+- [x] `com.protectcord.strata.migrate.terra.TerraNoiseParser` — Parses Terra noise config (noise-equation expressions, sampler configs)
+- [x] `com.protectcord.strata.migrate.terra.TerraPaletteParser` — Parses Terra palette YAML (block layer definitions)
+- [x] `com.protectcord.strata.migrate.terra.TerraFloraParser` — Parses Terra flora/tree YAML (placement, block types)
+- [x] `com.protectcord.strata.migrate.terra.TerraStructureParser` — Parses Terra structure definitions
+- [x] `com.protectcord.strata.migrate.terra.TerraCarverParser` — Parses Terra carver YAML
+- [x] `com.protectcord.strata.migrate.terra.TerraScriptParser` — Parses TerraScript files (best-effort AST analysis)
 
 ### 8.2 Converters (Terra → Strata)
 - [x] `com.protectcord.strata.migrate.converter.BiomeConverter` — Terra biome YAML → Strata biome TOML
 - [x] `com.protectcord.strata.migrate.converter.NoiseConverter` — Terra noise expressions → Strata noise function TOML
 - [x] `com.protectcord.strata.migrate.converter.PaletteConverter` — Terra palettes → Strata surface rules TOML
-- [ ] `com.protectcord.strata.migrate.converter.FloraConverter` — Terra flora/trees → Strata feature TOML
-- [ ] `com.protectcord.strata.migrate.converter.StructureConverter` — Terra structures → Strata structure TOML
-- [ ] `com.protectcord.strata.migrate.converter.CarverConverter` — Terra carvers → Strata carver TOML
-- [ ] `com.protectcord.strata.migrate.converter.ScriptTranslator` — TerraScript → Strata schematic + config (best-effort, flags unsupported)
+- [x] `com.protectcord.strata.migrate.converter.FloraConverter` — Terra flora/trees → Strata feature TOML
+- [x] `com.protectcord.strata.migrate.converter.StructureConverter` — Terra structures → Strata structure TOML
+- [x] `com.protectcord.strata.migrate.converter.CarverConverter` — Terra carvers → Strata carver TOML
+- [x] `com.protectcord.strata.migrate.converter.ScriptTranslator` — TerraScript → Strata schematic + config (best-effort, flags unsupported)
 - [x] `com.protectcord.strata.migrate.converter.ProfileAssembler` — Assembles converted components into complete Strata profile
 
 ### 8.3 Reporting & Validation
 - [x] `com.protectcord.strata.migrate.MigrationReport` — Tracks: converted, approximated, unsupported, warnings, errors
-- [ ] `com.protectcord.strata.migrate.MigrationValidator` — Runs generated profile through Strata's config validator
-- [ ] Report output: human-readable text file + JSON machine-readable summary
+- [x] `com.protectcord.strata.migrate.MigrationValidator` — Runs generated profile through Strata's config validator
+- [x] Report output: human-readable text file + JSON machine-readable summary
 
 ### 8.4 Entry Points
-- [ ] In-game command integration (registered in strata-paper's MigrateCommand)
+- [x] In-game command integration (registered in strata-paper's MigrateCommand)
 - [x] `com.protectcord.strata.migrate.cli.MigrateCLI` — Standalone `main()` for offline use: `java -jar strata-migrate.jar <terra-pack> <output-dir>`
-- [ ] Standalone jar build configuration in `strata-migrate/build.gradle.kts`
+- [x] Standalone jar build configuration in `strata-migrate/build.gradle.kts`
 
 ---
 
@@ -1030,16 +1030,16 @@ Radiates outward from the central island (dragon fight area), with outer zones r
 
 ### 9.4 Utility Profiles
 
-- [ ] `profiles/void/profile.toml` — Single bedrock layer at Y 64, optional spawn platform, single biome. For creative servers, minigame arenas, MythicMobs boss arenas.
-- [ ] `profiles/flat/profile.toml` — Configurable layer stack, optional structures and vegetation. For testing, building, redstone.
+- [x] `profiles/void/profile.toml` — Single bedrock layer at Y 64, optional spawn platform, single biome. For creative servers, minigame arenas, MythicMobs boss arenas.
+- [x] `profiles/flat/profile.toml` — Configurable layer stack, optional structures and vegetation. For testing, building, redstone.
 
 ### 9.5 Example Custom Content
-- [ ] `structures/custom/example_tower.toml` + `example_tower.schem` — Demonstration watchtower structure
-- [ ] `structures/custom/example_boss_arena.toml` + `example_boss_arena.schem` — Boss arena template (usable with or without MythicMobs)
-- [ ] Example custom biome definition (shows how to create a zone biome from scratch)
-- [ ] Example custom noise function (terraced terrain for dramatic mesa effects)
-- [ ] Example custom carver (wide spiraling cave system for dungeon crawling)
-- [ ] Example `zones.toml` with MythicMobs integration showing full zone setup
+- [x] `structures/custom/example_tower.toml` + `example_tower.schem` — Demonstration watchtower structure
+- [x] `structures/custom/example_boss_arena.toml` + `example_boss_arena.schem` — Boss arena template (usable with or without MythicMobs)
+- [x] Example custom biome definition (shows how to create a zone biome from scratch)
+- [x] Example custom noise function (terraced terrain for dramatic mesa effects)
+- [x] Example custom carver (wide spiraling cave system for dungeon crawling)
+- [x] Example `zones.toml` with MythicMobs integration showing full zone setup
 
 ---
 
@@ -1051,7 +1051,7 @@ Radiates outward from the central island (dragon fight area), with outer zones r
 - [x] Unit tests for each noise algorithm (known-value regression tests)
 - [x] Unit tests for fractal noise octave stacking
 - [x] Unit tests for composite noise operations
-- [ ] Unit tests for spline interpolation
+- [x] Unit tests for spline interpolation
 - [x] Benchmark: noise sampling throughput (samples/sec for each algorithm)
 
 ### 10.2 Config Tests
@@ -1063,11 +1063,11 @@ Radiates outward from the central island (dragon fight area), with outer zones r
 
 ### 10.3 Core Engine Tests
 - [x] Unit tests for BiomeLookupTable (KD-tree correctness)
-- [ ] Unit tests for DensityEngine (known-input density evaluation)
-- [ ] Unit tests for SurfaceRuleEngine (condition chain evaluation)
+- [x] Unit tests for DensityEngine (known-input density evaluation)
+- [x] Unit tests for SurfaceRuleEngine (condition chain evaluation)
 - [x] Integration tests for full pipeline (generate a chunk, verify blocks at known positions)
-- [ ] Integration tests for water system (river network building, waterfall detection, lake filling)
-- [ ] Integration tests for structure placement (grid spacing verification)
+- [x] Integration tests for water system (river network building, waterfall detection, lake filling)
+- [x] Integration tests for structure placement (grid spacing verification)
 
 ### 10.4 Terra Migration Tests
 - [x] Sample Terra pack fixtures (minimal valid packs for each Terra config type)
@@ -1103,31 +1103,31 @@ Every shipped TOML file is its own documentation. This is the primary way users 
 - [x] Section headers have block comments explaining the section's purpose and how it fits into generation
 - [x] Complex configs (noise functions, density graphs, surface rules) include "how it works" comment blocks with ASCII diagrams where helpful
 - [x] Example: a biome TOML starts with a comment block explaining "This file defines a single biome. Copy this file and modify it to create a new biome."
-- [ ] Validation errors reference the comment/docs for the key that failed (e.g., "temperature must be 0.0-2.0, see comment in biome TOML")
-- [ ] `strata.toml` (global config) is the most heavily documented file — every setting explained, sections for beginners vs advanced
+- [x] Validation errors reference the comment/docs for the key that failed (e.g., "temperature must be 0.0-2.0, see comment in biome TOML")
+- [x] `strata.toml` (global config) is the most heavily documented file — every setting explained, sections for beginners vs advanced
 
 ### 11.2 In-Game Guide Content
 Content for the `/strata guide` system (see Phase 7.9). Written as bundled resource files.
 
-- [ ] 12 guide topics written in clear, beginner-friendly language with examples
-- [ ] Each topic includes: overview, step-by-step instructions, example commands, links to related topics
-- [ ] Troubleshooting topic covers the 10 most common issues with solutions
-- [ ] Guide content reviewed for clarity — assume the reader has never used a world gen plugin before
+- [x] 12 guide topics written in clear, beginner-friendly language with examples
+- [x] Each topic includes: overview, step-by-step instructions, example commands, links to related topics
+- [x] Troubleshooting topic covers the 10 most common issues with solutions
+- [x] Guide content reviewed for clarity — assume the reader has never used a world gen plugin before
 
 ### 11.3 API Documentation
 - [x] Javadoc for all public API interfaces in `strata-api`
-- [ ] API usage guide: "Getting Started with Strata API"
-- [ ] Example plugin project: registers a custom biome, noise function, and structure via the API
+- [x] API usage guide: "Getting Started with Strata API"
+- [x] Example plugin project: registers a custom biome, noise function, and structure via the API
 
 ### 11.4 External Documentation (Wiki / README)
 - [x] README.md — Project overview, features list, installation steps (detailed, step-by-step for beginners), quick start, screenshots
-- [ ] Installation guide: download jar → place in plugins → start server → first-run output explained → create first world
-- [ ] Profile creation guide: "Creating Your First Strata World Profile" (with full annotated example)
-- [ ] Biome creation guide: "Defining Custom Biomes" (copy existing → modify → reload)
-- [ ] Noise function guide: "Composing Noise Functions" (visual examples of what each noise type looks like)
-- [ ] Structure guide: "Adding Custom Structures" (schematic + TOML walkthrough)
-- [ ] Config reference: auto-generated from schema annotations, all TOML keys, types, defaults, descriptions
-- [ ] FAQ: "Do I need to configure anything to start?" (No — Elysium works out of the box), common questions answered
+- [x] Installation guide: download jar → place in plugins → start server → first-run output explained → create first world
+- [x] Profile creation guide: "Creating Your First Strata World Profile" (with full annotated example)
+- [x] Biome creation guide: "Defining Custom Biomes" (copy existing → modify → reload)
+- [x] Noise function guide: "Composing Noise Functions" (visual examples of what each noise type looks like)
+- [x] Structure guide: "Adding Custom Structures" (schematic + TOML walkthrough)
+- [x] Config reference: auto-generated from schema annotations, all TOML keys, types, defaults, descriptions
+- [x] FAQ: "Do I need to configure anything to start?" (No — Elysium works out of the box), common questions answered
 
 ### 11.5 Terra Migration Documentation
 - [x] Migration guide: "Migrating from Terra to Strata" (step-by-step with screenshots)
@@ -1137,8 +1137,8 @@ Content for the `/strata guide` system (see Phase 7.9). Written as bundled resou
 ### 11.6 Project Documentation
 - [x] CONTRIBUTING.md — How to contribute, code style, PR process
 - [x] LICENSE — Choose appropriate license
-- [ ] Performance tuning guide: server operators' guide to Strata config for best performance
-- [ ] Changelog: maintained per release
+- [x] Performance tuning guide: server operators' guide to Strata config for best performance
+- [x] Changelog: maintained per release
 
 ---
 

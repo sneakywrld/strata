@@ -1,0 +1,52 @@
+# Profiles
+
+A profile is a complete world generation configuration.
+Each profile is a directory under plugins/Strata/profiles/
+containing a profile.toml and subdirectories for biomes,
+noise, terrain, structures, and features.
+
+# Shipped Profiles
+
+Strata includes five built-in profiles:
+
+> Elysium - Lush overworld with realistic continents, rivers,
+> and mountain ranges. Ideal for survival gameplay.
+
+> Netherveil - Nether dimension with lava oceans, basalt
+> pillars, warped forests, and soul sand valleys.
+
+> Enderrift - End dimension with floating islands, void
+> chasms, and chorus forests on the outer ring.
+
+> Void - Empty void world. Useful for creative builds or
+> as a base for fully custom generation.
+
+> Flat - Classic flat world with configurable layers.
+
+# Creating a Custom Profile
+
+Copy an existing profile directory and rename it:
+  plugins/Strata/profiles/myprofile/
+Edit profile.toml to set the display name and description.
+Modify biomes, terrain, and other configs as needed.
+
+# Profile Inheritance (extends)
+
+Profiles can inherit from a parent using the extends field
+in profile.toml. The child inherits all parent settings and
+only needs to override specific values.
+
+  [profile]
+  extends = "strata:elysium"
+  display-name = "Hardcore Elysium"
+
+> This is powerful for creating themed variants without
+> duplicating the entire configuration.
+
+# Reloading Profiles
+
+After editing profile files, reload without restarting:
+$ /strata reload
+Hot-reload also triggers automatically when files change.
+
+See also: {link:biomes}, {link:noise}, {link:features}

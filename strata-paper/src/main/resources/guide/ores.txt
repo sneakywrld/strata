@@ -1,0 +1,49 @@
+# Ore Distribution
+
+Ores are a special feature type with distribution curves
+that control where and how densely they appear.
+
+# Elysium Ore Defaults
+
+The Elysium profile uses these ore distributions:
+
+Coal: Y 0-192, peaks around Y 96, common
+Iron: Y -64-72, peaks around Y 16, common
+Copper: Y -16-112, peaks around Y 48, moderate
+Gold: Y -64-32, peaks around Y -16, uncommon
+Lapis: Y -64-64, peaks around Y 0, uncommon
+Redstone: Y -64-16, uniform distribution, moderate
+Diamond: Y -64-16, concentrated at Y -59, rare
+Emerald: Y -16-320, mountains only, very rare
+
+# Diamond Scarcity
+
+Diamonds use a triangle distribution heavily weighted
+toward the deepstrip. The effective spawn rate drops
+sharply above Y -48. Mining at Y -59 is optimal.
+
+> In Elysium, diamond veins average 4-8 ores per vein
+> with about 1.2 veins per chunk at optimal depth.
+
+# Per-Biome Overrides
+
+Override ore rates for specific biomes:
+
+  [biome.mesa.ores.gold]
+  count = 12
+  min-height = -64
+  max-height = 32
+
+This makes gold twice as common in mesa biomes.
+
+# Global Scarcity Multiplier
+
+Apply a multiplier to all ore rates at the profile level:
+
+  [profile.ores]
+  scarcity-multiplier = 0.5
+
+> A multiplier of 0.5 halves all ore spawns, creating a
+> harder survival experience. Use 2.0 for generous ores.
+
+Related topics: {link:features}, {link:biomes}, {link:profiles}

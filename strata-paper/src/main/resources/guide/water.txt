@@ -1,0 +1,71 @@
+# Water Systems
+
+Strata generates realistic water features using
+simulation-based algorithms for rivers, oceans, lakes,
+waterfalls, and aquifers.
+
+# Rivers
+
+Rivers use a drainage basin algorithm:
+1. Rain is simulated across the terrain heightmap
+2. Water flows downhill, accumulating in channels
+3. Channels merge to form rivers that widen downstream
+4. Rivers terminate at oceans or inland lakes
+
+  [water.rivers]
+  enabled = true
+  rain-intensity = 1.0
+  min-flow = 50
+  width-scale = 1.0
+  depth = 4
+  carve-banks = true
+
+> min-flow controls how much accumulated water is needed
+> before a channel becomes a visible river.
+
+# Oceans
+
+Oceans form below sea level with continental shelves:
+
+  [water.oceans]
+  sea-level = 63
+  shelf-width = 64
+  shelf-depth = 45
+  deep-ocean-depth = 30
+  floor-noise-frequency = 0.01
+
+The shelf gradually slopes from the coastline down to
+the deep ocean floor.
+
+# Waterfalls
+
+Waterfalls form where rivers cross sharp elevation drops:
+
+  [water.waterfalls]
+  enabled = true
+  min-drop = 8
+  spray-particles = true
+
+# Lakes
+
+Inland lakes form in terrain depressions:
+
+  [water.lakes]
+  enabled = true
+  min-size = 16
+  max-size = 64
+
+# Aquifers
+
+Underground water pockets below the surface:
+
+  [water.aquifers]
+  enabled = true
+  lava-level = -55
+  water-level = -10
+  noise-frequency = 0.02
+
+Aquifers generate water (or lava at low Y) pockets in
+caves and underground cavities.
+
+Related topics: {link:noise}, {link:biomes}, {link:profiles}

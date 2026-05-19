@@ -1,0 +1,66 @@
+# Developer API
+
+Strata provides a public API for plugins to interact with
+the generation engine, register custom biomes, listen for
+events, and query world data.
+
+# Adding the Dependency
+
+Add strata-api to your build.gradle.kts:
+
+  repositories {
+      maven("https://repo.protectcord.com/releases")
+  }
+  dependencies {
+      compileOnly("com.protectcord:strata-api:1.0.0")
+  }
+
+# Getting the API Instance
+
+  import com.protectcord.strata.api.core.StrataProvider;
+  import com.protectcord.strata.api.core.StrataAPI;
+
+  StrataAPI api = StrataProvider.get();
+
+> Always access the API through StrataProvider. Never
+> cast or depend on internal implementation classes.
+
+# Registering a Custom Biome
+
+  var registry = api.biomeRegistry();
+  registry.register(myNamespacedKey, myBiomeInstance);
+
+Your biome must implement the Biome interface from the
+strata-api module, specifying climate parameters and
+surface configuration.
+
+# Listening to Events
+
+  api.eventBus().subscribe(ChunkPopulateEvent.class,
+      event -> {
+          // Modify chunk after generation
+      });
+
+Available events include ChunkPopulateEvent,
+BiomeResolveEvent, and ProfileLoadEvent.
+
+# Querying World Data
+
+  var worldManager = api.worldManager();
+  var engine = worldManager.getEngine("myworld");
+  engine.ifPresent(e -> {
+      // Access generation internals
+  });
+
+# Best Practices
+
+> Always check that Strata is loaded before accessing the
+> API. Use softdepend in your plugin.yml.
+
+> Register biomes during server startup (onEnable), before
+> worlds begin generating.
+
+> Use the event bus rather than Bukkit events for Strata-
+> specific hooks. This avoids version coupling.
+
+Related topics: {link:profiles}, {link:biomes}, {link:setup}

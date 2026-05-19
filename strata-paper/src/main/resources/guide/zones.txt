@@ -1,0 +1,71 @@
+# Zones
+
+Zones partition the world into areas with different
+difficulty settings and mob behavior.
+
+# What Are Zones?
+
+A zone is a named region defined by distance from the
+world origin or by biome membership. Zones control mob
+spawning density, difficulty scaling, and optional
+integration with MythicMobs.
+
+# Defining Zones
+
+  [zones.safe]
+  display-name = "Safe Zone"
+  radius = 500
+  difficulty = "peaceful"
+  mob-density = 0.0
+
+  [zones.frontier]
+  display-name = "Frontier"
+  min-radius = 500
+  max-radius = 2000
+  difficulty = "normal"
+  mob-density = 1.0
+
+  [zones.wilds]
+  display-name = "The Wilds"
+  min-radius = 2000
+  difficulty = "hard"
+  mob-density = 1.5
+
+Zones are evaluated from most specific to least specific.
+The first matching zone determines the settings.
+
+# Biome-Based Zones
+
+Zones can also be assigned by biome:
+
+  [zones.cursed_forest]
+  biomes = ["strata:dark_forest", "strata:swamp"]
+  difficulty = "hard"
+  mob-density = 2.0
+
+> Biome-based zones take priority over radius-based zones
+> when both match.
+
+# MythicMobs Integration
+
+If MythicMobs is installed, zones can reference mob packs:
+
+  [zones.wilds.mythicmobs]
+  enabled = true
+  mob-pack = "wilds_pack"
+  replace-vanilla = 0.3
+
+This replaces 30% of vanilla mob spawns with MythicMobs
+from the specified pack.
+
+# Mob Density Modifiers
+
+The mob-density value multiplies vanilla spawn rates:
+- 0.0 = no mobs spawn
+- 1.0 = vanilla rates
+- 2.0 = double vanilla rates
+
+> Tip: Use zones with {link:saplings} denied lists to
+> create progression-locked resource areas.
+
+Related topics: {link:biomes}, {link:profiles}, {link:saplings}

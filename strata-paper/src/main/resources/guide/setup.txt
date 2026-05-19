@@ -1,0 +1,45 @@
+# Getting Started with Strata
+
+Welcome to Strata, a world generation engine for PaperMC.
+Follow these steps to create your first custom world.
+
+# Step 1: Install the Plugin
+
+Download the latest Strata jar from the releases page.
+Place the jar file in your server's plugins/ folder.
+Start (or restart) your server to generate default configs.
+
+# Step 2: Check That Strata Loaded
+
+Run the info command to verify the plugin is running:
+$ /strata info
+You should see the version number and loaded profiles.
+
+# Step 3: Browse Available Profiles
+
+Strata ships with several built-in profiles. List them:
+$ /strata profiles
+> Elysium is the default overworld profile - great for survival.
+
+# Step 4: Create a World
+
+Use the create command with a world name and profile:
+$ /strata create myworld elysium
+The world will begin generating with the Elysium profile.
+Teleport to it to explore the terrain.
+
+# Step 5: Explore and Customize
+
+Each profile lives in plugins/Strata/profiles/<name>/.
+Edit the TOML files to tweak biomes, terrain, and features.
+Changes are detected automatically via hot-reload.
+
+> Tip: Start with a shipped profile and modify it rather
+> than building from scratch. See {link:profiles} for details.
+
+# Next Steps
+
+Learn about the profile system: {link:profiles}
+Understand biome configuration: {link:biomes}
+Configure noise functions: {link:noise}
+Set up custom structures: {link:structures}

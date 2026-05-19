@@ -1,0 +1,137 @@
+# ============================================================
+#  STRATA — Global Configuration
+# ============================================================
+# This file controls Strata's global behavior. Individual world
+# profiles have their own configs in the profiles/ directory.
+#
+# This file is generated on first run. Edit it to tune Strata
+# for your server's needs. Use /strata reload to apply changes
+# without restarting the server.
+#
+# Need help? Run /strata guide setup in-game for a walkthrough.
+# ============================================================
+
+# -------------------------------------------------------
+# General Settings
+# -------------------------------------------------------
+[general]
+# default-profile: The profile used when creating worlds without
+# specifying a profile name.
+# Valid values: Any installed profile name (e.g., "elysium", "netherveil", "void")
+# Default: "elysium"
+default-profile = "elysium"
+
+# debug: Enable verbose logging for troubleshooting.
+# Logs noise sampling, pipeline timing, and config parsing details.
+# WARNING: Generates a LOT of log output. Only enable when investigating issues.
+# Valid values: true, false
+# Default: false
+debug = false
+
+# locale: Language for in-game messages and guide content.
+# Valid values: "en" (more languages planned)
+# Default: "en"
+locale = "en"
+
+# -------------------------------------------------------
+# Performance
+# -------------------------------------------------------
+# These settings control how Strata uses server resources.
+# The defaults work well for most servers. Only change these
+# if you're experiencing performance issues or have a powerful
+# dedicated server.
+[performance]
+# chunk-gen-threads: Number of threads used for chunk generation.
+# More threads = faster chunk gen but more CPU usage.
+# Set to 0 to use (available cores - 2).
+# Valid values: Integer, 0 to 32
+# Default: 0 (auto-detect)
+chunk-gen-threads = 0
+
+# noise-cache-size: Maximum number of cached noise values per function.
+# Higher = more memory, fewer recalculations.
+# Valid values: Integer, 1024 to 65536
+# Default: 4096
+noise-cache-size = 4096
+
+# region-cache-size: Number of chunk regions kept in LRU cache.
+# Each region holds precomputed noise for a chunk.
+# Valid values: Integer, 128 to 8192
+# Default: 1024
+region-cache-size = 1024
+
+# proto-chunk-pool-size: Per-thread pool of reusable chunk objects.
+# Reduces garbage collection pressure during generation.
+# Valid values: Integer, 1 to 16
+# Default: 4
+proto-chunk-pool-size = 4
+
+# -------------------------------------------------------
+# Hot-Reload
+# -------------------------------------------------------
+[hot-reload]
+# enabled: Watch profile directories for file changes and
+# automatically reload when a TOML file is modified.
+# Valid values: true, false
+# Default: true
+enabled = true
+
+# debounce-ms: Milliseconds to wait after a file change before
+# reloading. Prevents multiple reloads when saving several files.
+# Valid values: Integer, 100 to 10000
+# Default: 500
+debounce-ms = 500
+
+# -------------------------------------------------------
+# Metrics
+# -------------------------------------------------------
+[metrics]
+# enabled: Send anonymous usage statistics via bStats.
+# This helps the developer understand how Strata is used.
+# No personal data is collected. You can also disable this
+# globally via plugins/bStats/config.yml.
+# Valid values: true, false
+# Default: true
+enabled = true
+
+# -------------------------------------------------------
+# Pre-Generation
+# -------------------------------------------------------
+[pregen]
+# batch-size: Number of chunks to generate before saving to disk.
+# Higher = faster pre-gen but uses more memory. Lower = slower but
+# safer if the server crashes mid-pregen.
+# Valid values: Integer, 16 to 1024
+# Default: 256
+batch-size = 256
+
+# max-threads: Maximum threads for pre-generation tasks.
+# Set to 0 to use (available cores - 1).
+# Valid values: Integer, 0 to 32
+# Default: 0 (auto-detect)
+max-threads = 0
+
+# -------------------------------------------------------
+# Advanced
+# -------------------------------------------------------
+# These settings are for experienced users and plugin developers.
+# Changing these incorrectly can break world generation.
+[advanced]
+# verify-config-on-reload: Run full validation on configs when
+# reloading. Slower but catches errors immediately.
+# Valid values: true, false
+# Default: true
+verify-config-on-reload = true
+
+# event-bus-async: Allow event handlers to run asynchronously.
+# Faster for plugins that don't modify generation data.
+# Valid values: true, false
+# Default: false
+event-bus-async = false
+
+# nms-adapter-override: Force a specific NMS adapter version.
+# Leave empty for auto-detection (recommended).
+# Valid values: "" (auto), "V1_8_R3", "V1_12_R1", "V1_13_R2",
+#   "V1_16_R3", "V1_17_R1", "V1_18_R2", "V1_19_R3", "V1_20_R4", "V26_1"
+# Default: "" (auto-detect)
+nms-adapter-override = ""

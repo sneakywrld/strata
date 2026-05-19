@@ -6,8 +6,21 @@ import java.util.Map;
 
 /**
  * Represents a block state in a platform-agnostic way.
- * A block state is a block type plus optional property key-value pairs
- * (e.g., {@code minecraft:oak_stairs[facing=north,half=top]}).
+ *
+ * <p>A block state consists of a block type identifier ({@link NamespacedKey}) plus optional
+ * property key-value pairs representing block state variants. For example:</p>
+ * <ul>
+ *   <li>{@code minecraft:stone} -- no properties</li>
+ *   <li>{@code minecraft:oak_stairs[facing=north,half=top]} -- with directional properties</li>
+ * </ul>
+ *
+ * <p>Block states are used throughout the API for surface rules, block palettes, aquifer
+ * configuration, and feature placement.</p>
+ *
+ * @param blockId    the namespaced block type identifier (e.g., {@code minecraft:stone})
+ * @param properties an unmodifiable map of block state properties (e.g., {@code facing=north})
+ * @since 1.0.0
+ * @see BlockPalette
  */
 public record StrataBlockState(
         NamespacedKey blockId,
@@ -16,14 +29,27 @@ public record StrataBlockState(
 
     /**
      * Creates a simple block state with no properties.
+     *
+     * @param blockId the block type identifier (e.g., {@code NamespacedKey.minecraft("stone")})
+     * @return a new block state with an empty property map
      */
     public static StrataBlockState of(NamespacedKey blockId) {
         return new StrataBlockState(blockId, Map.of());
     }
 
     /**
-     * Creates a block state from a string like {@code "minecraft:stone"}
-     * or {@code "minecraft:oak_stairs[facing=north,half=top]"}.
+     * Parses a block state from a string representation.
+     *
+     * <p>Accepted formats:</p>
+     * <ul>
+     *   <li>{@code "minecraft:stone"} -- block with no properties</li>
+     *   <li>{@code "minecraft:oak_stairs[facing=north,half=top]"} -- block with properties</li>
+     *   <li>{@code "stone"} -- shorthand using the Strata namespace</li>
+     * </ul>
+     *
+     * @param input the string to parse
+     * @return the parsed block state
+     * @throws IllegalArgumentException if the block ID contains invalid characters
      */
     public static StrataBlockState parse(String input) {
         int bracketStart = input.indexOf('[');

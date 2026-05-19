@@ -1,0 +1,116 @@
+# ============================================================
+#  EXAMPLE CARVER — Spiral Cave System
+# ============================================================
+# This example defines a wide spiraling cave system suitable
+# for dungeon crawling or exploration. It creates a descending
+# spiral tunnel that wraps around a central pillar.
+#
+# How it works:
+#   The carver uses a combination of two noise functions:
+#   - A radial function that creates the spiral shape
+#   - A width function that varies the tunnel diameter
+#
+# The result is a corkscrew-shaped cave that descends from
+# Y=50 down to Y=-20, with the tunnel width varying between
+# 4 and 8 blocks.
+#
+# Copy this file to profiles/<name>/carvers/ and it will be
+# automatically included in cave generation.
+# ============================================================
+
+# key: Unique identifier for this carver.
+key = "strata:spiral_cave"
+
+# display-name: Human-readable name.
+display-name = "Spiral Cave System"
+
+# -------------------------------------------------------
+# Carver Type
+# -------------------------------------------------------
+# type: The carving algorithm to use.
+# Valid values:
+#   "CHEESE"     — Large open chambers (3D noise)
+#   "SPAGHETTI"  — Winding tube-like tunnels
+#   "NOODLE"     — Thin crevices and fissures
+#   "RAVINE"     — Surface-cutting canyons
+#   "CUSTOM"     — Custom shape defined by noise functions below
+# Default: "SPAGHETTI"
+type = "CUSTOM"
+
+# -------------------------------------------------------
+# Height Range
+# -------------------------------------------------------
+# min-y: Lowest Y where this carver can operate.
+# Valid values: Integer, -64 to 320
+# Default: -60
+min-y = -20
+
+# max-y: Highest Y where this carver can start.
+# Valid values: Integer, min-y to 320
+# Default: 50
+max-y = 50
+
+# -------------------------------------------------------
+# Probability & Frequency
+# -------------------------------------------------------
+# probability: Chance this carver activates per chunk.
+# 1.0 = every chunk, 0.01 = 1% of chunks.
+# Valid values: Decimal, 0.0 to 1.0
+# Default: 0.05
+probability = 0.02
+
+# -------------------------------------------------------
+# Tunnel Shape
+# -------------------------------------------------------
+[shape]
+# width-min: Minimum tunnel radius in blocks.
+# Valid values: Decimal, 1.0 to 32.0
+# Default: 2.0
+width-min = 4.0
+
+# width-max: Maximum tunnel radius in blocks.
+# Valid values: Decimal, width-min to 32.0
+# Default: 5.0
+width-max = 8.0
+
+# height-ratio: Height to width ratio of the tunnel cross-section.
+# 1.0 = circular, 0.5 = wide and flat, 2.0 = tall and narrow.
+# Valid values: Decimal, 0.2 to 5.0
+# Default: 1.0
+height-ratio = 0.8
+
+# floor-level: Y level below which the floor is flattened.
+# Creates walkable floors in the tunnel. Set to min-y to disable.
+# Valid values: Integer, min-y to max-y
+# Default: -60 (disabled for most carvers)
+floor-level = -15
+
+# -------------------------------------------------------
+# Noise Functions
+# -------------------------------------------------------
+[noise]
+# path-noise: Controls the horizontal path of the tunnel.
+# Higher frequency = more winding.
+path-frequency = 0.015
+
+# width-noise: Controls the width variation along the tunnel.
+width-frequency = 0.03
+
+# vertical-noise: Controls the descent rate and vertical wobble.
+vertical-frequency = 0.02
+
+# -------------------------------------------------------
+# Fluid Interaction
+# -------------------------------------------------------
+[fluid]
+# aquifers-enabled: Whether underground water/lava can fill carved areas.
+# If true, carved chambers below the aquifer level may flood.
+# Valid values: true, false
+# Default: true
+aquifers-enabled = true
+
+# replace-fluid: Whether to carve through existing water/lava blocks.
+# If false, the carver stops at fluid boundaries.
+# Valid values: true, false
+# Default: false
+replace-fluid = false

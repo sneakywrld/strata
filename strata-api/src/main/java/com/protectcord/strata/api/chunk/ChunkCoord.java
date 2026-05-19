@@ -1,19 +1,31 @@
 package com.protectcord.strata.api.chunk;
 
 /**
- * Immutable chunk coordinate pair.
+ * Immutable chunk coordinate pair representing a 16x16 block column in the world.
+ *
+ * <p>Chunk coordinates are obtained by right-shifting block coordinates by 4 (dividing by 16).
+ * This record provides utilities for converting between block and chunk coordinates,
+ * as well as packing/unpacking to a {@code long} key for efficient hash map storage.</p>
+ *
+ * @param x the chunk X coordinate (block X >> 4)
+ * @param z the chunk Z coordinate (block Z >> 4)
+ * @since 1.0.0
  */
 public record ChunkCoord(int x, int z) {
 
     /**
-     * Returns the world-space block X of this chunk's origin corner.
+     * Returns the world-space block X coordinate of this chunk's origin (minimum) corner.
+     *
+     * @return the block X coordinate ({@code x << 4})
      */
     public int blockX() {
         return x << 4;
     }
 
     /**
-     * Returns the world-space block Z of this chunk's origin corner.
+     * Returns the world-space block Z coordinate of this chunk's origin (minimum) corner.
+     *
+     * @return the block Z coordinate ({@code z << 4})
      */
     public int blockZ() {
         return z << 4;

@@ -11,6 +11,7 @@ dependencies {
     implementation(project(":strata-config"))
     implementation(project(":strata-core"))
     implementation(project(":strata-migrate"))
+    implementation(project(":strata-starter"))
 
     // NMS common + all version adapters
     implementation(project(":strata-nms:common"))
@@ -35,4 +36,12 @@ dependencies {
     // Testing
     testImplementation(libs.bundles.junit)
     testImplementation(libs.bundles.mockito)
+}
+
+// Resource filtering — inject build-time properties into plugin.yml
+tasks.processResources {
+    filteringCharset = "UTF-8"
+    filesMatching("plugin.yml") {
+        expand("version" to project.version, "name" to project.name)
+    }
 }

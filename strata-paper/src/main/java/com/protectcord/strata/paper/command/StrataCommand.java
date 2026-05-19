@@ -4,16 +4,22 @@ import com.protectcord.strata.api.core.NamespacedKey;
 import com.protectcord.strata.config.registry.ConfigRegistry;
 import com.protectcord.strata.config.reload.ReloadCoordinator;
 import com.protectcord.strata.paper.StrataPlugin;
+import com.protectcord.strata.paper.guide.GuidePage;
+import com.protectcord.strata.paper.guide.GuideRegistry;
+import com.protectcord.strata.paper.guide.GuideRenderer;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Main /strata command handler with subcommands:
@@ -28,12 +34,16 @@ public final class StrataCommand implements CommandExecutor, TabCompleter {
     private final StrataPlugin plugin;
     private final ConfigRegistry configRegistry;
     private final ReloadCoordinator reloadCoordinator;
+    private final GuideRegistry guideRegistry;
+    private final MigrateCommand migrateCommand;
 
     public StrataCommand(StrataPlugin plugin, ConfigRegistry configRegistry,
-                         ReloadCoordinator reloadCoordinator) {
+                         ReloadCoordinator reloadCoordinator, GuideRegistry guideRegistry) {
         this.plugin = plugin;
         this.configRegistry = configRegistry;
         this.reloadCoordinator = reloadCoordinator;
+        this.guideRegistry = guideRegistry;
+        this.migrateCommand = new MigrateCommand(plugin);
     }
 
     @Override
@@ -49,6 +59,7 @@ public final class StrataCommand implements CommandExecutor, TabCompleter {
             case "info" -> handleInfo(sender, args);
             case "profiles" -> handleProfiles(sender);
             case "version" -> handleVersion(sender);
+            case "migrate" -> migrateCommand.execute(sender, args);
             case "guide" -> handleGuide(sender, args);
             default -> {
                 sender.sendMessage(Component.text("Unknown subcommand: " + args[0], NamedTextColor.RED));
@@ -119,36 +130,64 @@ public final class StrataCommand implements CommandExecutor, TabCompleter {
 
     private boolean handleGuide(CommandSender sender, String[] args) {
         if (args.length < 2) {
-            sender.sendMessage(Component.text("=== Strata Guide ===", NamedTextColor.GOLD));
-            sender.sendMessage(Component.text("Topics: profiles, biomes, noise, terrain, surface,", NamedTextColor.GRAY));
-            sender.sendMessage(Component.text("  carvers, water, structures, features, entities,", NamedTextColor.GRAY));
-            sender.sendMessage(Component.text("  config, migration", NamedTextColor.GRAY));
-            sender.sendMessage(Component.text("Usage: /strata guide <topic>", NamedTextColor.YELLOW));
+            sendTopicList(sender);
             return true;
         }
 
         String topic = args[1].toLowerCase();
-        Component guide = switch (topic) {
-            case "profiles" -> Component.text("""
-                    Profiles define complete world generation configurations.
-                    Each profile is a directory in plugins/Strata/profiles/
-                    containing a profile.toml and subdirectories for biomes,
-                    noise, terrain, etc. Use 'extends' to inherit from another profile.""", NamedTextColor.GREEN);
-            case "biomes" -> Component.text("""
-                    Biomes are defined in TOML files under profiles/<name>/biomes/.
-                    Each biome specifies climate parameters (temperature, humidity,
-                    continentalness, erosion, weirdness) that determine where it generates.
-                    Biomes also define surface blocks, features, carvers, and spawn rules.""", NamedTextColor.GREEN);
-            case "water" -> Component.text("""
-                    Strata's water system generates realistic rivers using macro-scale
-                    drainage basin computation. Rivers flow downhill, merge, and terminate
-                    at oceans. Waterfalls form where rivers cross elevation changes.
-                    Configure in profile.toml under [water].""", NamedTextColor.GREEN);
-            default -> Component.text("Unknown guide topic: " + topic + ". Try /strata guide", NamedTextColor.RED);
-        };
+        int page = 1;
+        if (args.length >= 3) {
+            try {
+                page = Integer.parseInt(args[2]);
+            } catch (NumberFormatException e) {
+                sender.sendMessage(Component.text("Invalid page number: " + args[2], NamedTextColor.RED));
+                return true;
+            }
+        }
 
-        sender.sendMessage(guide);
+        Optional<GuidePage> guidePage = guideRegistry.getPage(topic, page);
+        if (guidePage.isEmpty()) {
+            if (guideRegistry.getTopics().contains(topic)) {
+                sender.sendMessage(Component.text("Page " + page + " does not exist for topic '" + topic + "'.",
+                        NamedTextColor.RED));
+            } else {
+                sender.sendMessage(Component.text("Unknown topic: " + topic + ". Use /strata guide to list topics.",
+                        NamedTextColor.RED));
+            }
+            return true;
+        }
+
+        if (sender instanceof Player player) {
+            GuideRenderer.renderPage(player, guidePage.get());
+        } else {
+            GuidePage gp = guidePage.get();
+            sender.sendMessage(Component.text("=== " + gp.title() + " (" + gp.pageNumber() + "/"
+                    + gp.totalPages() + ") ===", NamedTextColor.GOLD));
+            for (String line : gp.content()) {
+                sender.sendMessage(Component.text(line, NamedTextColor.WHITE));
+            }
+        }
         return true;
+    }
+
+    private void sendTopicList(CommandSender sender) {
+        sender.sendMessage(Component.text("=== Strata Guide ===", NamedTextColor.GOLD, TextDecoration.BOLD));
+        sender.sendMessage(Component.text("Available topics:", NamedTextColor.GRAY));
+
+        List<String> topics = guideRegistry.getTopics();
+        for (String topic : topics) {
+            Component entry = Component.text("  " + topic, NamedTextColor.GREEN)
+                    .clickEvent(ClickEvent.runCommand("/strata guide " + topic))
+                    .hoverEvent(HoverEvent.showText(
+                            Component.text("Open guide: " + topic, NamedTextColor.YELLOW)));
+            sender.sendMessage(entry);
+        }
+
+        if (topics.isEmpty()) {
+            sender.sendMessage(Component.text("  No guide topics loaded.", NamedTextColor.GRAY));
+        }
+
+        sender.sendMessage(Component.text("Usage: /strata guide <topic> [page]", NamedTextColor.YELLOW));
     }
 
     private void sendHelp(CommandSender sender) {
@@ -161,6 +200,8 @@ public final class StrataCommand implements CommandExecutor, TabCompleter {
                 .append(Component.text(" - Show plugin information", NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("/strata profiles", NamedTextColor.GREEN)
                 .append(Component.text(" - List loaded profiles", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("/strata migrate <pack-dir> [name]", NamedTextColor.GREEN)
+                .append(Component.text(" - Convert Terra pack to Strata", NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("/strata guide <topic>", NamedTextColor.GREEN)
                 .append(Component.text(" - In-game documentation", NamedTextColor.GRAY)));
     }
@@ -171,9 +212,8 @@ public final class StrataCommand implements CommandExecutor, TabCompleter {
             return SUBCOMMANDS.stream().filter(s -> s.startsWith(args[0].toLowerCase())).toList();
         }
         if (args.length == 2 && args[0].equalsIgnoreCase("guide")) {
-            List<String> topics = List.of("profiles", "biomes", "noise", "terrain", "surface",
-                    "carvers", "water", "structures", "features", "entities", "config", "migration");
-            return topics.stream().filter(s -> s.startsWith(args[1].toLowerCase())).toList();
+            return guideRegistry.getTopics().stream()
+                    .filter(s -> s.startsWith(args[1].toLowerCase())).toList();
         }
         if (args.length == 3 && args[0].equalsIgnoreCase("create")) {
             return configRegistry.profileKeys().stream()

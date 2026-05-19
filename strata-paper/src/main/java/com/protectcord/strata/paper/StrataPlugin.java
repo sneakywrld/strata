@@ -1,16 +1,23 @@
 package com.protectcord.strata.paper;
 
+import com.protectcord.strata.api.core.NamespacedKey;
 import com.protectcord.strata.api.core.StrataProvider;
+import com.protectcord.strata.api.world.WorldProfile;
 import com.protectcord.strata.config.loader.ProfileLoader;
+import com.protectcord.strata.config.model.ProfileConfig;
 import com.protectcord.strata.config.registry.ConfigRegistry;
 import com.protectcord.strata.config.reload.FileWatcher;
 import com.protectcord.strata.config.reload.ReloadCoordinator;
+import com.protectcord.strata.core.engine.StrataEngine;
+import com.protectcord.strata.core.world.SimpleWorldProfile;
 import com.protectcord.strata.paper.api.StrataAPIImpl;
 import com.protectcord.strata.paper.command.StrataCommand;
 import com.protectcord.strata.paper.guide.GuideRegistry;
 import com.protectcord.strata.paper.listener.WorldLoadListener;
 import com.protectcord.strata.paper.metrics.MetricsCharts;
+import com.protectcord.strata.paper.world.PaperWorldManager;
 import org.bstats.bukkit.Metrics;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -18,6 +25,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Strata Paper Plugin — PaperMC entry point.
@@ -26,12 +36,15 @@ import java.nio.file.StandardCopyOption;
 public final class StrataPlugin extends JavaPlugin {
 
     private static final int BSTATS_PLUGIN_ID = 31423;
+    private static final String DEFAULT_PROFILE = "elysium";
 
     private ConfigRegistry configRegistry;
     private ReloadCoordinator reloadCoordinator;
+    private PaperWorldManager worldManager;
     private StrataAPIImpl strataAPI;
     private FileWatcher fileWatcher;
     private GuideRegistry guideRegistry;
+    private final Map<String, StrataEngine> generatorEngines = new ConcurrentHashMap<>();
 
     @Override
     public void onEnable() {
@@ -58,8 +71,10 @@ public final class StrataPlugin extends JavaPlugin {
         int profileCount = reloadCoordinator.reloadAll();
         getLogger().info("Loaded " + profileCount + " world generation profile(s)");
 
-        // Initialize API
+        // Initialize world manager and API
+        worldManager = new PaperWorldManager(this, configRegistry);
         strataAPI = new StrataAPIImpl(this, configRegistry);
+        strataAPI.setWorldManager(worldManager);
         StrataProvider.set(strataAPI);
 
         // Load in-game guide
@@ -69,7 +84,8 @@ public final class StrataPlugin extends JavaPlugin {
         // Register commands
         var strataCmd = getCommand("strata");
         if (strataCmd != null) {
-            StrataCommand executor = new StrataCommand(this, configRegistry, reloadCoordinator, guideRegistry);
+            StrataCommand executor = new StrataCommand(this, configRegistry, reloadCoordinator,
+                    guideRegistry, worldManager);
             strataCmd.setExecutor(executor);
             strataCmd.setTabCompleter(executor);
         }
@@ -97,8 +113,50 @@ public final class StrataPlugin extends JavaPlugin {
     }
 
     /**
+     * Called by Bukkit when a world is configured with generator: Strata or Strata:profile-name
+     * in bukkit.yml. This is the hook that makes Strata the world generator.
+     */
+    @Override
+    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+        String profileId = (id == null || id.isEmpty()) ? DEFAULT_PROFILE : id;
+        NamespacedKey profileKey = profileId.contains(":")
+                ? NamespacedKey.parse(profileId)
+                : NamespacedKey.strata(profileId);
+
+        // Config may not be loaded yet during early world creation (before onEnable).
+        // Try to load it on demand.
+        if (configRegistry == null) {
+            getLogger().info("Early generator request for '" + worldName + "' — initializing config...");
+            getDataFolder().mkdirs();
+            Path profilesDir = getDataFolder().toPath().resolve("profiles");
+            configRegistry = new ConfigRegistry();
+            ProfileLoader loader = new ProfileLoader(profilesDir);
+            reloadCoordinator = new ReloadCoordinator(loader, configRegistry);
+            reloadCoordinator.reloadAll();
+        }
+
+        Optional<ProfileConfig> profileConfig = configRegistry.getProfile(profileKey);
+        if (profileConfig.isEmpty()) {
+            getLogger().warning("Profile '" + profileKey + "' not found for world '" + worldName
+                    + "' — falling back to vanilla generation");
+            return null;
+        }
+
+        WorldProfile profile = new SimpleWorldProfile(profileConfig.get());
+        long seed = getServer().getWorlds().isEmpty() ? 0L : getServer().getWorlds().get(0).getSeed();
+        StrataEngine engine = new StrataEngine(profile, seed);
+        generatorEngines.put(worldName, engine);
+
+        getLogger().info("Strata generator assigned to world '" + worldName
+                + "' using profile '" + profileKey + "'");
+
+        return new StrataChunkGenerator(engine);
+    }
+
+    /**
      * Handles first-run setup: extracts the default strata.toml with guided comments,
-     * unpacks starter profiles from the bundled resource jar, and logs a welcome message.
+     * unpacks starter profiles from the bundled resource jar, configures bukkit.yml,
+     * and logs a welcome message.
      */
     private void handleFirstRun(Path dataDir, Path strataToml, Path profilesDir) {
         getLogger().info("First run detected — setting up Strata...");
@@ -128,6 +186,9 @@ public final class StrataPlugin extends JavaPlugin {
         // Extract starter profiles into the profiles directory
         extractStarterProfiles(profilesDir);
 
+        // Auto-configure bukkit.yml to use Strata for the default world
+        configureBukkitYml();
+
         // Log welcome message with getting-started steps
         getLogger().info("========================================");
         getLogger().info("  Welcome to Strata!");
@@ -137,19 +198,59 @@ public final class StrataPlugin extends JavaPlugin {
         getLogger().info("  Default profiles have been installed to:");
         getLogger().info("    " + profilesDir.toAbsolutePath());
         getLogger().info("");
-        getLogger().info("  Getting started:");
-        getLogger().info("    1. Run /strata profiles to see installed profiles");
-        getLogger().info("    2. Run /strata create <world> elysium to create your first world");
-        getLogger().info("    3. Run /strata guide setup for an in-game walkthrough");
-        getLogger().info("    4. Edit strata.toml to change global settings");
-        getLogger().info("    5. Edit profiles in plugins/Strata/profiles/ to customize generation");
+        getLogger().info("  The default world will use the 'elysium' profile.");
+        getLogger().info("  Delete the 'world' folder and restart to generate");
+        getLogger().info("  a fresh world with Strata terrain.");
         getLogger().info("");
-        getLogger().info("  Migrating from Terra?");
-        getLogger().info("    Run /strata migrate <terra-pack-dir> <profile-name>");
-        getLogger().info("    or use the standalone CLI: java -jar strata-migrate.jar");
-        getLogger().info("");
-        getLogger().info("  Documentation: /strata guide <topic>");
+        getLogger().info("  Commands:");
+        getLogger().info("    /strata profiles  — list installed profiles");
+        getLogger().info("    /strata create <world> <profile>  — create a new world");
+        getLogger().info("    /strata guide <topic>  — in-game documentation");
+        getLogger().info("    /strata migrate <terra-pack> <name>  — import Terra pack");
         getLogger().info("========================================");
+    }
+
+    /**
+     * Configures bukkit.yml to use Strata as the default world generator.
+     * Replaces existing generator entries or adds new ones.
+     */
+    private void configureBukkitYml() {
+        Path bukkitYml = getServer().getWorldContainer().toPath().resolve("bukkit.yml");
+        if (!Files.isRegularFile(bukkitYml)) {
+            return;
+        }
+
+        try {
+            String content = Files.readString(bukkitYml);
+
+            if (content.contains("generator: Strata:")) {
+                getLogger().info("bukkit.yml already configured for Strata, skipping");
+                return;
+            }
+
+            // Replace any existing generator references (e.g., Terra) with Strata
+            if (content.contains("generator:")) {
+                content = content.replaceAll(
+                        "(generator:\\s*)\\S+",
+                        "$1Strata:" + DEFAULT_PROFILE);
+                Files.writeString(bukkitYml, content);
+                getLogger().info("Replaced existing generator entries in bukkit.yml with Strata:" + DEFAULT_PROFILE);
+            } else {
+                // No generator configured — append worlds section
+                String worldConfig = "\nworlds:\n"
+                        + "  world:\n"
+                        + "    generator: Strata:" + DEFAULT_PROFILE + "\n";
+                Files.writeString(bukkitYml, content + worldConfig);
+                getLogger().info("Configured bukkit.yml to use Strata:" + DEFAULT_PROFILE
+                        + " for the default world");
+            }
+        } catch (IOException e) {
+            getLogger().warning("Could not auto-configure bukkit.yml: " + e.getMessage());
+            getLogger().warning("To use Strata for world generation, add this to bukkit.yml:");
+            getLogger().warning("  worlds:");
+            getLogger().warning("    world:");
+            getLogger().warning("      generator: Strata:" + DEFAULT_PROFILE);
+        }
     }
 
     /**
@@ -157,8 +258,7 @@ public final class StrataPlugin extends JavaPlugin {
      * Only extracts a profile if its directory does not already exist.
      */
     private void extractStarterProfiles(Path profilesDir) {
-        // The strata-starter module bundles profiles as classpath resources under "profiles/"
-        String[] defaultProfiles = {"elysium", "netherveil"};
+        String[] defaultProfiles = {"elysium", "netherveil", "enderrift"};
 
         for (String profileName : defaultProfiles) {
             Path profileDir = profilesDir.resolve(profileName);
@@ -167,7 +267,6 @@ public final class StrataPlugin extends JavaPlugin {
                 continue;
             }
 
-            // The profile.toml is the minimum required file — try to extract it
             String resourceBase = "profiles/" + profileName + "/profile.toml";
             try (InputStream profileToml = getClassLoader().getResourceAsStream(resourceBase)) {
                 if (profileToml == null) {
@@ -179,7 +278,6 @@ public final class StrataPlugin extends JavaPlugin {
                 Files.copy(profileToml, profileDir.resolve("profile.toml"),
                         StandardCopyOption.REPLACE_EXISTING);
 
-                // Extract known subdirectories for this profile
                 extractProfileSubdirectories(profileName, profileDir);
 
                 getLogger().info("Extracted starter profile: " + profileName);
@@ -189,11 +287,7 @@ public final class StrataPlugin extends JavaPlugin {
         }
     }
 
-    /**
-     * Extracts subdirectory TOML files for a starter profile from classpath resources.
-     */
     private void extractProfileSubdirectories(String profileName, Path profileDir) {
-        // Known subdirectories in the starter pack structure
         String[][] subdirFiles = {
                 {"terrain", "density.toml", "splines.toml", "continents.toml"},
                 {"noise", "functions.toml"},
@@ -226,7 +320,6 @@ public final class StrataPlugin extends JavaPlugin {
             }
         }
 
-        // Extract biome files — these live in nested subdirectories
         String[] biomeRegions = {
                 "sanctuary", "verdant", "whispering", "stormbreak", "frostfang",
                 "scorched", "shadowmire", "abyssal", "ocean"
@@ -238,12 +331,7 @@ public final class StrataPlugin extends JavaPlugin {
         }
     }
 
-    /**
-     * Attempts to extract biome TOML files for a specific region from classpath.
-     */
     private void extractBiomeRegionFiles(String profileName, String region, Path biomeDir) {
-        // Build a list of known biome files per region from the starter pack.
-        // Since classpath enumeration is not reliable, we maintain a manifest.
         String[][] regionBiomes = getStarterBiomeManifest(profileName, region);
 
         for (String[] biomeEntry : regionBiomes) {
@@ -262,10 +350,6 @@ public final class StrataPlugin extends JavaPlugin {
         }
     }
 
-    /**
-     * Returns the list of biome TOML files for a given profile and region.
-     * This acts as a build-time manifest for classpath resource extraction.
-     */
     private static String[][] getStarterBiomeManifest(String profileName, String region) {
         if (!"elysium".equals(profileName)) {
             return new String[0][];
@@ -347,6 +431,7 @@ public final class StrataPlugin extends JavaPlugin {
     }
 
     public ConfigRegistry configRegistry() { return configRegistry; }
+    public PaperWorldManager worldManager() { return worldManager; }
     public StrataAPIImpl strataAPI() { return strataAPI; }
     public GuideRegistry guideRegistry() { return guideRegistry; }
 }

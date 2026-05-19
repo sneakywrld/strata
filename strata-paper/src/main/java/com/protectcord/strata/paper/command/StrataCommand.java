@@ -7,11 +7,15 @@ import com.protectcord.strata.paper.StrataPlugin;
 import com.protectcord.strata.paper.guide.GuidePage;
 import com.protectcord.strata.paper.guide.GuideRegistry;
 import com.protectcord.strata.paper.guide.GuideRenderer;
+import com.protectcord.strata.paper.world.PaperWorldManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,21 +32,24 @@ import java.util.Optional;
 public final class StrataCommand implements CommandExecutor, TabCompleter {
 
     private static final List<String> SUBCOMMANDS = List.of(
-            "create", "reload", "pregen", "info", "profiles", "migrate", "guide", "version"
+            "create", "tp", "reload", "pregen", "info", "profiles", "migrate", "guide", "version"
     );
 
     private final StrataPlugin plugin;
     private final ConfigRegistry configRegistry;
     private final ReloadCoordinator reloadCoordinator;
     private final GuideRegistry guideRegistry;
+    private final PaperWorldManager worldManager;
     private final MigrateCommand migrateCommand;
 
     public StrataCommand(StrataPlugin plugin, ConfigRegistry configRegistry,
-                         ReloadCoordinator reloadCoordinator, GuideRegistry guideRegistry) {
+                         ReloadCoordinator reloadCoordinator, GuideRegistry guideRegistry,
+                         PaperWorldManager worldManager) {
         this.plugin = plugin;
         this.configRegistry = configRegistry;
         this.reloadCoordinator = reloadCoordinator;
         this.guideRegistry = guideRegistry;
+        this.worldManager = worldManager;
         this.migrateCommand = new MigrateCommand(plugin);
     }
 
@@ -55,6 +62,7 @@ public final class StrataCommand implements CommandExecutor, TabCompleter {
 
         return switch (args[0].toLowerCase()) {
             case "create" -> handleCreate(sender, args);
+            case "tp" -> handleTeleport(sender, args);
             case "reload" -> handleReload(sender, args);
             case "info" -> handleInfo(sender, args);
             case "profiles" -> handleProfiles(sender);
@@ -69,24 +77,118 @@ public final class StrataCommand implements CommandExecutor, TabCompleter {
     }
 
     private boolean handleCreate(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("strata.create")) {
+            sender.sendMessage(Component.text("No permission.", NamedTextColor.RED));
+            return true;
+        }
+
         if (args.length < 3) {
-            sender.sendMessage(Component.text("Usage: /strata create <world-name> <profile>", NamedTextColor.RED));
+            sender.sendMessage(Component.text("Usage: /strata create <world-name> <profile> [seed]", NamedTextColor.RED));
             return true;
         }
 
         String worldName = args[1];
         String profileName = args[2];
-        NamespacedKey profileKey = NamespacedKey.parse(profileName);
+        NamespacedKey profileKey = profileName.contains(":")
+                ? NamespacedKey.parse(profileName)
+                : NamespacedKey.strata(profileName);
 
-        if (!configRegistry.getProfile(profileKey).isPresent()) {
-            sender.sendMessage(Component.text("Unknown profile: " + profileName, NamedTextColor.RED));
+        if (configRegistry.getProfile(profileKey).isEmpty()) {
+            sender.sendMessage(Component.text("Unknown profile: " + profileKey, NamedTextColor.RED));
+            sender.sendMessage(Component.text("Use /strata profiles to see available profiles.", NamedTextColor.GRAY));
             return true;
         }
 
-        sender.sendMessage(Component.text("Creating world '" + worldName + "' with profile '"
-                + profileName + "'...", NamedTextColor.GREEN));
+        if (Bukkit.getWorld(worldName) != null) {
+            sender.sendMessage(Component.text("World '" + worldName + "' already exists.", NamedTextColor.RED));
+            return true;
+        }
 
-        // World creation delegated to the WorldManager
+        // Parse optional seed
+        long seed;
+        if (args.length >= 4) {
+            try {
+                seed = Long.parseLong(args[3]);
+            } catch (NumberFormatException e) {
+                seed = args[3].hashCode();
+            }
+        } else {
+            seed = System.nanoTime();
+        }
+
+        sender.sendMessage(Component.text("Creating world '" + worldName + "' with profile '"
+                + profileKey + "'...", NamedTextColor.GREEN));
+
+        try {
+            long finalSeed = seed;
+            // Run world creation on the main thread
+            Bukkit.getScheduler().runTask(plugin, () -> {
+                try {
+                    worldManager.createWorld(worldName, profileKey, finalSeed);
+                    sender.sendMessage(Component.text("World '" + worldName + "' created successfully!",
+                            NamedTextColor.GREEN));
+
+                    if (sender instanceof Player) {
+                        sender.sendMessage(Component.text("[Click to teleport]", NamedTextColor.AQUA)
+                                .clickEvent(ClickEvent.runCommand("/strata tp " + worldName))
+                                .hoverEvent(HoverEvent.showText(
+                                        Component.text("Teleport to " + worldName, NamedTextColor.YELLOW))));
+                    }
+                } catch (Exception e) {
+                    sender.sendMessage(Component.text("Failed to create world: " + e.getMessage(),
+                            NamedTextColor.RED));
+                    plugin.getLogger().severe("World creation failed: " + e.getMessage());
+                }
+            });
+        } catch (Exception e) {
+            sender.sendMessage(Component.text("Failed to create world: " + e.getMessage(), NamedTextColor.RED));
+        }
+
+        return true;
+    }
+
+    private boolean handleTeleport(CommandSender sender, String[] args) {
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage(Component.text("Only players can teleport between worlds.", NamedTextColor.RED));
+            return true;
+        }
+
+        if (args.length < 2) {
+            sender.sendMessage(Component.text("Usage: /strata tp <world>", NamedTextColor.RED));
+
+            // List available worlds
+            sender.sendMessage(Component.text("Available worlds:", NamedTextColor.GRAY));
+            for (World world : Bukkit.getWorlds()) {
+                Component entry = Component.text("  " + world.getName(), NamedTextColor.GREEN)
+                        .clickEvent(ClickEvent.runCommand("/strata tp " + world.getName()))
+                        .hoverEvent(HoverEvent.showText(
+                                Component.text("Teleport to " + world.getName(), NamedTextColor.YELLOW)));
+                sender.sendMessage(entry);
+            }
+            return true;
+        }
+
+        String worldName = args[1];
+        World world = Bukkit.getWorld(worldName);
+
+        if (world == null) {
+            sender.sendMessage(Component.text("World '" + worldName + "' is not loaded.", NamedTextColor.RED));
+            sender.sendMessage(Component.text("Loaded worlds:", NamedTextColor.GRAY));
+            for (World w : Bukkit.getWorlds()) {
+                sender.sendMessage(Component.text("  " + w.getName(), NamedTextColor.GREEN)
+                        .clickEvent(ClickEvent.runCommand("/strata tp " + w.getName())));
+            }
+            return true;
+        }
+
+        Location spawn = world.getSpawnLocation();
+        // Find a safe Y to land on
+        int safeY = world.getHighestBlockYAt(spawn.getBlockX(), spawn.getBlockZ()) + 1;
+        Location safeLoc = new Location(world, spawn.getBlockX() + 0.5, safeY, spawn.getBlockZ() + 0.5,
+                player.getLocation().getYaw(), player.getLocation().getPitch());
+
+        player.teleport(safeLoc);
+        sender.sendMessage(Component.text("Teleported to world '" + worldName + "'", NamedTextColor.GREEN));
         return true;
     }
 
@@ -194,6 +296,8 @@ public final class StrataCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage(Component.text("=== Strata Commands ===", NamedTextColor.GOLD));
         sender.sendMessage(Component.text("/strata create <world> <profile>", NamedTextColor.GREEN)
                 .append(Component.text(" - Create a new world", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("/strata tp <world>", NamedTextColor.GREEN)
+                .append(Component.text(" - Teleport to a world", NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("/strata reload", NamedTextColor.GREEN)
                 .append(Component.text(" - Reload all configurations", NamedTextColor.GRAY)));
         sender.sendMessage(Component.text("/strata info", NamedTextColor.GREEN)
@@ -211,13 +315,21 @@ public final class StrataCommand implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             return SUBCOMMANDS.stream().filter(s -> s.startsWith(args[0].toLowerCase())).toList();
         }
+        if (args.length == 2 && args[0].equalsIgnoreCase("tp")) {
+            return Bukkit.getWorlds().stream()
+                    .map(World::getName)
+                    .filter(s -> s.toLowerCase().startsWith(args[1].toLowerCase()))
+                    .toList();
+        }
         if (args.length == 2 && args[0].equalsIgnoreCase("guide")) {
             return guideRegistry.getTopics().stream()
                     .filter(s -> s.startsWith(args[1].toLowerCase())).toList();
         }
         if (args.length == 3 && args[0].equalsIgnoreCase("create")) {
             return configRegistry.profileKeys().stream()
-                    .map(NamespacedKey::toString).toList();
+                    .map(k -> k.key())
+                    .filter(s -> s.startsWith(args[2].toLowerCase()))
+                    .toList();
         }
         return List.of();
     }
